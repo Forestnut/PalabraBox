@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Nunito:wght@800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffa42e",
+                        "brand-green": "#04724d",
+                        "background-light": "#f0f5f1",
+                        "background-dark": "#080c08",
+                        "text-main": "#080c08"
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "nunito": ["Nunito", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display overflow-hidden">
+<!-- Main Splash Container -->
+<div class="relative flex h-screen w-full flex-col items-center justify-between p-8">
+<!-- Top Spacer -->
+<div class="h-10"></div>
+<!-- Mascot Center Area -->
+<div class="flex flex-col items-center justify-center gap-8 w-full max-w-md">
+<!-- Boxi Mascot (CSS/SVG Based) -->
+<div class="relative w-48 h-48 flex items-center justify-center">
+<!-- Mascot Body -->
+<div class="absolute w-40 h-40 bg-primary rounded-xl shadow-lg border-b-8 border-primary/40 flex flex-col items-center justify-center">
+<!-- Eyes -->
+<div class="flex gap-6 mb-2">
+<div class="w-6 h-6 bg-text-main rounded-full relative">
+<div class="absolute top-1 left-1 w-2 h-2 bg-white rounded-full"></div>
+</div>
+<div class="w-6 h-6 bg-text-main rounded-full relative">
+<div class="absolute top-1 left-1 w-2 h-2 bg-white rounded-full"></div>
+</div>
+</div>
+<!-- Smile -->
+<div class="w-12 h-6 border-b-4 border-text-main rounded-full"></div>
+<!-- Box Flaps Details -->
+<div class="absolute -top-2 left-4 w-12 h-6 bg-primary/80 rounded-t-lg -rotate-12"></div>
+<div class="absolute -top-2 right-4 w-12 h-6 bg-primary/80 rounded-t-lg rotate-12"></div>
+</div>
+<!-- Box Depth Effect -->
+<div class="absolute inset-0 bg-primary/10 rounded-xl -z-10 blur-xl"></div>
+</div>
+<!-- Branding -->
+<div class="text-center">
+<h1 class="font-nunito text-5xl font-extrabold text-text-main tracking-tight mb-2">
+                    PalabraBox
+                </h1>
+<p class="text-text-main/70 text-lg font-medium">
+                    Aprende idiomas jugando
+                </p>
+</div>
+</div>
+<!-- Progress Section -->
+<div class="w-full max-w-xs flex flex-col gap-4 mb-12">
+<div class="flex justify-between items-end">
+<span class="text-text-main/60 text-sm font-semibold uppercase tracking-wider">Cargando lecciones</span>
+<span class="text-brand-green font-bold">60%</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-3 bg-brand-green/10 rounded-full overflow-hidden">
+<div class="h-full rounded-full bg-gradient-to-r from-brand-green to-primary" style="width: 60%;"></div>
+</div>
+<p class="text-center text-text-main/40 text-xs italic">
+                Preparando tu aventura lingüística...
+            </p>
+</div>
+</div>
+<!-- Decorative elements to fill the background nicely -->
+<div class="absolute top-[-10%] left-[-10%] w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-80 h-80 bg-brand-green/5 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Floating language symbols using Material Icons -->
+<div class="absolute top-20 left-10 text-brand-green/20">
+<span class="material-symbols-outlined text-4xl">language</span>
+</div>
+<div class="absolute top-40 right-12 text-primary/20">
+<span class="material-symbols-outlined text-3xl">translate</span>
+</div>
+<div class="absolute bottom-40 left-16 text-primary/20">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+<div class="absolute bottom-60 right-20 text-brand-green/20">
+<span class="material-symbols-outlined text-4xl">psychology</span>
+</div>
+</body></html>

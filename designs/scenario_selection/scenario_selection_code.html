@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PalabraBox - Seleccionar Escenario</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ffa42e",
+              "background-light": "#f8f7f5",
+              "background-dark": "#231a0f",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans"],
+              "nunito": ["Nunito"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+        .boxy-shadow {
+            box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
+        }
+        .boxy-shadow-primary {
+            box-shadow: 0 4px 0 0 #cc8325;
+        }
+        .boxy-card-shadow {
+            box-shadow: 0 8px 0 0 rgba(0,0,0,0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-white dark:bg-slate-900 shadow-2xl">
+<!-- Header -->
+<header class="flex items-center p-4 pt-6 justify-between border-b border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="text-xl font-extrabold flex items-center gap-2">
+<span>🇬🇧</span> Inglés · A1
+                    </h1>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined font-bold">settings</span>
+</button>
+</header>
+<!-- Progress Section -->
+<section class="p-6 space-y-4">
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Tu progreso</p>
+<p class="text-lg font-extrabold text-slate-800 dark:text-slate-200">Completado: <span class="text-primary">1/3</span></p>
+</div>
+<div class="flex items-center gap-1 bg-primary/20 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-primary text-xl fill-1">star</span>
+<span class="font-extrabold text-primary">2</span>
+</div>
+</div>
+<div class="relative w-full h-4 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden border-2 border-slate-100 dark:border-slate-800">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-full boxy-shadow-primary transition-all duration-500" style="width: 33%;"></div>
+</div>
+</section>
+<!-- Main Content: Scenario Grid -->
+<main class="flex-1 p-6">
+<h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4 px-1">Seleccionar Escenario</h2>
+<div class="grid grid-cols-2 gap-4">
+<!-- Tile 1: Colores (Active/Completed) -->
+<div class="group flex flex-col bg-white dark:bg-slate-800 rounded-xl p-4 border-2 border-slate-100 dark:border-slate-700 boxy-card-shadow relative overflow-hidden">
+<div class="absolute top-2 right-2 flex gap-1">
+<span class="material-symbols-outlined text-primary text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-primary text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-slate-300 text-xs">star</span>
+</div>
+<div class="w-full aspect-square flex items-center justify-center mb-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+<div class="relative">
+<span class="material-symbols-outlined text-6xl text-primary">package_2</span>
+<span class="material-symbols-outlined absolute -top-2 -right-2 text-2xl text-yellow-400">auto_awesome</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="font-extrabold text-slate-900 dark:text-white">Colores</p>
+<div class="flex items-center gap-1">
+<span class="text-xs font-bold text-primary">70pts</span>
+<span class="text-[10px] text-slate-400">•</span>
+<span class="text-xs font-bold text-slate-500">2/3 ⭐</span>
+</div>
+</div>
+</div>
+<!-- Tile 2: Números (Playable) -->
+<div class="flex flex-col bg-white dark:bg-slate-800 rounded-xl p-4 border-2 border-primary/40 dark:border-primary/20 boxy-card-shadow ring-2 ring-primary/10">
+<div class="w-full aspect-square flex items-center justify-center mb-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+<span class="material-symbols-outlined text-6xl text-slate-700 dark:text-slate-300">package_2</span>
+</div>
+<div class="space-y-3">
+<p class="font-extrabold text-slate-900 dark:text-white">Números</p>
+<button class="w-full py-2 bg-primary text-white font-black rounded-lg text-sm boxy-shadow-primary active:translate-y-1 active:shadow-none flex items-center justify-center gap-1">
+                            JUGAR <span class="material-symbols-outlined text-sm">play_arrow</span>
+</button>
+</div>
+</div>
+<!-- Tile 3: Animales (Locked) -->
+<div class="flex flex-col bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 border-2 border-slate-100 dark:border-slate-800 boxy-card-shadow opacity-75 grayscale">
+<div class="w-full aspect-square flex items-center justify-center mb-4 bg-slate-200 dark:bg-slate-700 rounded-lg relative">
+<span class="material-symbols-outlined text-6xl text-slate-400">package_2</span>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-white/80 dark:bg-slate-800/80 p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">lock</span>
+</div>
+</div>
+</div>
+<div class="space-y-1">
+<p class="font-extrabold text-slate-400">Animales</p>
+<p class="text-xs font-bold text-slate-400 flex items-center gap-1">
+                            Bloqueado
+                        </p>
+</div>
+</div>
+<!-- Tile 4: Placeholder/More (Locked) -->
+<div class="flex flex-col bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 border-2 border-slate-100 dark:border-slate-800 boxy-card-shadow opacity-75 grayscale">
+<div class="w-full aspect-square flex items-center justify-center mb-4 bg-slate-200 dark:bg-slate-700 rounded-lg relative">
+<span class="material-symbols-outlined text-6xl text-slate-400">package_2</span>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-white/80 dark:bg-slate-800/80 p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">lock</span>
+</div>
+</div>
+</div>
+<div class="space-y-1">
+<p class="font-extrabold text-slate-400">Frutas</p>
+<p class="text-xs font-bold text-slate-400">Próximamente</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="sticky bottom-0 bg-white dark:bg-slate-900 border-t-4 border-slate-100 dark:border-slate-800 px-6 py-4 flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined font-bold text-3xl">grid_view</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Escenarios</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-3xl">leaderboard</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Ranking</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-3xl">person</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+</div>
+<span class="text-[10px] font-black uppercase tracking-tighter">Perfil</span>
+</a>
+</nav>
+</div>
+</body></html>

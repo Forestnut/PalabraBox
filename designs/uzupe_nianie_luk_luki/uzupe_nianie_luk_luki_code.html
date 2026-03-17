@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffa42e",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#231a0f",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>PalabraBox - Learning</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header / TopAppBar -->
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10 border-b border-primary/10">
+<div class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center cursor-pointer">
+<span class="material-symbols-outlined text-3xl">close</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-extrabold leading-tight tracking-[-0.015em] flex-1 text-center">PalabraBox</h2>
+<div class="flex w-24 items-center justify-end gap-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-red-500 font-variation-fill">favorite</span>
+<span class="text-slate-900 dark:text-slate-100 text-base font-bold">3</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary font-variation-fill">emoji_events</span>
+<span class="text-slate-900 dark:text-slate-100 text-base font-bold">120</span>
+</div>
+</div>
+</header>
+<!-- Progress Section -->
+<div class="flex flex-col gap-2 p-4 pt-6">
+<div class="flex justify-between items-end">
+<p class="text-primary text-sm font-bold uppercase tracking-wider">Daily Progress</p>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold">6/10</p>
+</div>
+<div class="rounded-full bg-primary/20 h-3 w-full overflow-hidden border border-primary/10">
+<div class="h-full rounded-full bg-primary" style="width: 60%;"></div>
+</div>
+</div>
+<!-- Main Challenge Area -->
+<main class="flex-1 flex flex-col items-center justify-center px-4 py-8">
+<div class="w-full max-w-lg bg-white dark:bg-slate-800/50 rounded-xl p-8 shadow-sm border-2 border-primary/20">
+<h1 class="text-slate-900 dark:text-slate-100 tracking-tight text-3xl md:text-4xl font-bold leading-relaxed text-center">
+                    I <span class="inline-flex items-center justify-center min-w-[100px] h-12 border-b-4 border-primary bg-primary/10 rounded-t-lg mx-2 text-primary">go</span> to school every day.
+                </h1>
+</div>
+<!-- Illustration Placeholder -->
+<div class="mt-8 flex justify-center">
+<div class="relative w-48 h-48 rounded-2xl bg-primary/5 flex items-center justify-center border-2 border-dashed border-primary/30">
+<span class="material-symbols-outlined text-7xl text-primary/40">school</span>
+<img alt="Illustration of a student going to school" class="absolute inset-0 w-full h-full object-contain p-4 opacity-80" data-alt="Abstract illustration of a yellow school bus on a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtrLVjUXY4zADgtnvuhHuGYmMVZMZoA7Od9ZifBzrjrbqW69MTEnhIEXE3QyIWwXD0XpF4cvyI9Ztm_juHx0IwoOlyU7y4lEjME7dybWFmdNTepoFS5SFHmfI5YWSub4JbbKVUgqAPO9BWkBhzByDdhsFWaHKe2kjjDVTruWAzXMPwEqoeN7zkhduwf83XhgdwVdb_teLPWaLlocOJ4yklHlBkrtbot_IhT05Fu_WlvGFy0lgBnV2kkBKQUg5wYFzfBKnRiitNZlPm"/>
+</div>
+</div>
+</main>
+<!-- Word Chips Selection -->
+<div class="px-4 py-6">
+<p class="text-center text-slate-500 dark:text-slate-400 text-sm font-medium mb-4">Choose the correct word</p>
+<div class="flex gap-4 justify-center flex-wrap max-w-md mx-auto">
+<!-- Selected State -->
+<button class="flex h-14 min-w-[80px] items-center justify-center rounded-xl bg-primary text-slate-900 font-bold text-lg shadow-[0_4px_0_0_#d98516] transform translate-y-1 opacity-50 cursor-default">
+                    go
+                </button>
+<button class="flex h-14 min-w-[80px] items-center justify-center rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-bold text-lg border-2 border-primary/20 shadow-[0_4px_0_0_#eaddcd] hover:shadow-none hover:translate-y-1 transition-all">
+                    eat
+                </button>
+<button class="flex h-14 min-w-[80px] items-center justify-center rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-bold text-lg border-2 border-primary/20 shadow-[0_4px_0_0_#eaddcd] hover:shadow-none hover:translate-y-1 transition-all">
+                    sleep
+                </button>
+<button class="flex h-14 min-w-[80px] items-center justify-center rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-bold text-lg border-2 border-primary/20 shadow-[0_4px_0_0_#eaddcd] hover:shadow-none hover:translate-y-1 transition-all">
+                    run
+                </button>
+</div>
+</div>
+<!-- Action Footer -->
+<footer class="p-4 bg-white dark:bg-slate-900 border-t border-primary/10">
+<div class="max-w-lg mx-auto flex gap-4">
+<button class="flex size-14 items-center justify-center rounded-xl bg-primary/10 text-primary border-2 border-primary/20">
+<span class="material-symbols-outlined">lightbulb</span>
+</button>
+<button class="flex-1 cursor-pointer items-center justify-center rounded-xl h-14 px-5 bg-primary text-slate-900 text-lg font-extrabold shadow-[0_6px_0_0_#d98516] active:shadow-none active:translate-y-1 transition-all uppercase tracking-wider">
+                    Check Answer
+                </button>
+</div>
+</footer>
+</div>
+</body></html>

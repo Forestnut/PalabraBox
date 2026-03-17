@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffa42e",
+                        "emerald-custom": "#04724d",
+                        "background-light": "#F0F5F1",
+                        "background-dark": "#1a1f1b",
+                    },
+                    fontFamily: {
+                        "display": ["Nunito", "sans-serif"],
+                        "sans": ["Nunito", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "12px",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "box": "0 4px 0 0 rgba(0,0,0,0.05)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+        .star-filled {
+            color: #ffa42e;
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .star-outline {
+            color: #d1d5db;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .heart-filled {
+            color: #ef4444;
+            font-variation-settings: 'FILL' 1;
+        }
+        .heart-empty {
+            color: #9ca3af;
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col items-center">
+<div class="relative flex h-full min-h-screen w-full max-w-md flex-col bg-background-light dark:bg-background-dark overflow-x-hidden p-6">
+<!-- Header -->
+<div class="flex flex-col items-center mt-8 mb-6">
+<div class="text-6xl mb-4">📦✨</div>
+<h1 class="text-slate-900 dark:text-slate-100 text-3xl font-extrabold leading-tight text-center">
+                ¡Escenario completado!
+            </h1>
+</div>
+<!-- Stars Section -->
+<div class="flex justify-center gap-2 mb-8">
+<span class="material-symbols-outlined text-6xl star-filled">star</span>
+<span class="material-symbols-outlined text-7xl star-filled -mt-2">star</span>
+<span class="material-symbols-outlined text-6xl star-outline">star</span>
+</div>
+<!-- Stats Card -->
+<div class="bg-white dark:bg-slate-800 rounded-lg shadow-box p-6 mb-8 border border-slate-100 dark:border-slate-700">
+<h2 class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider mb-4 text-center">Tus Resultados</h2>
+<div class="space-y-4">
+<!-- Score Row -->
+<div class="flex items-center justify-between py-2 border-b border-slate-50 dark:border-slate-700">
+<div class="flex items-center gap-3">
+<div class="bg-primary/20 p-2 rounded-full">
+<span class="material-symbols-outlined text-primary">emoji_events</span>
+</div>
+<span class="text-slate-700 dark:text-slate-200 font-bold">Puntuación</span>
+</div>
+<span class="text-slate-900 dark:text-white font-extrabold text-xl">70/100</span>
+</div>
+<!-- Correct Answers Row -->
+<div class="flex items-center justify-between py-2 border-b border-slate-50 dark:border-slate-700">
+<div class="flex items-center gap-3">
+<div class="bg-emerald-custom/20 p-2 rounded-full">
+<span class="material-symbols-outlined text-emerald-custom">task_alt</span>
+</div>
+<span class="text-slate-700 dark:text-slate-200 font-bold">Correctas</span>
+</div>
+<span class="text-slate-900 dark:text-white font-extrabold text-xl">7/10</span>
+</div>
+<!-- Hearts Row -->
+<div class="flex items-center justify-between py-2">
+<div class="flex items-center gap-3">
+<div class="bg-red-100 dark:bg-red-900/30 p-2 rounded-full">
+<span class="material-symbols-outlined text-red-500">favorite</span>
+</div>
+<span class="text-slate-700 dark:text-slate-200 font-bold">Vidas</span>
+</div>
+<div class="flex gap-1">
+<span class="material-symbols-outlined heart-filled text-2xl">favorite</span>
+<span class="material-symbols-outlined heart-filled text-2xl">favorite</span>
+<span class="material-symbols-outlined heart-empty text-2xl">favorite</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4 mt-auto">
+<button class="w-full bg-primary hover:bg-[#e89324] text-white font-extrabold py-4 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-[0_4px_0_0_#d98516] active:translate-y-1 active:shadow-none">
+                SIGUIENTE
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="w-full bg-emerald-custom hover:bg-[#035d3f] text-white font-extrabold py-4 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-[0_4px_0_0_#024f35] active:translate-y-1 active:shadow-none">
+                REPETIR
+                <span class="material-symbols-outlined">refresh</span>
+</button>
+<button class="w-full bg-transparent border-2 border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-extrabold py-4 px-6 rounded-lg flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                ESCENARIOS
+                <span class="material-symbols-outlined">grid_view</span>
+</button>
+</div>
+<!-- Bottom Spacer -->
+<div class="h-8"></div>
+</div>
+</body></html>

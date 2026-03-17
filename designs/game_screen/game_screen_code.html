@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffa42e",
+                        "success": "#10B981",
+                        "background-light": "#F0F5F1",
+                        "background-dark": "#1a1f1b",
+                        "brand-green": "#04724D"
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Nunito", "sans-serif"],
+                        "game": ["Nunito", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<title>PalabraBox - Juego</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-game text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
+<!-- Hearts Section -->
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-red-500 transition-transform active:scale-125" style="font-variation-settings: 'FILL' 1">favorite</span>
+<span class="material-symbols-outlined text-red-500" style="font-variation-settings: 'FILL' 1">favorite</span>
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600" style="font-variation-settings: 'FILL' 1">favorite</span>
+</div>
+<!-- Category Title -->
+<h2 class="text-xl font-extrabold tracking-tight text-brand-green dark:text-primary">Colores</h2>
+<!-- Score/Progress -->
+<div class="bg-primary/10 px-3 py-1 rounded-full">
+<p class="text-primary text-sm font-black leading-normal tracking-wide">3/10 | 30</p>
+</div>
+</div>
+<!-- Animated Progress Bar -->
+<div class="w-full px-4 pb-2">
+<div class="h-4 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden shadow-inner">
+<div class="h-full bg-gradient-to-r from-brand-green to-primary rounded-full transition-all duration-500 ease-out" style="width: 30%;"></div>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto px-4 pt-8 pb-24">
+<!-- Question Area -->
+<div class="text-center mb-10">
+<h1 class="text-3xl font-black leading-tight text-slate-800 dark:text-slate-100 mb-2">
+                ¿Cómo se dice <span class="text-red-500 underline decoration-red-200 decoration-4 underline-offset-4">"rojo"</span> en inglés?
+            </h1>
+<p class="text-slate-500 dark:text-slate-400 font-medium">Selecciona la respuesta correcta</p>
+</div>
+<!-- Answers Area -->
+<div class="grid gap-4">
+<!-- Card 1: Default State -->
+<button class="w-full flex items-center justify-between p-5 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-2xl shadow-[0_4px_0_0_rgba(0,0,0,0.05)] active:translate-y-1 active:shadow-none transition-all group">
+<span class="text-xl font-bold text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">blue</span>
+<div class="w-6 h-6 rounded-full border-2 border-slate-200 dark:border-slate-600"></div>
+</button>
+<!-- Card 2: Selected/Correct State -->
+<button class="w-full flex items-center justify-between p-5 bg-success border-2 border-success rounded-2xl shadow-[0_4px_0_0_#059669] transform translate-y-1">
+<span class="text-xl font-black text-white">red</span>
+<div class="bg-white rounded-full flex items-center justify-center p-0.5">
+<span class="material-symbols-outlined text-success font-black text-lg">check</span>
+</div>
+</button>
+<!-- Card 3: Default State -->
+<button class="w-full flex items-center justify-between p-5 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-2xl shadow-[0_4px_0_0_rgba(0,0,0,0.05)] active:translate-y-1 active:shadow-none transition-all group">
+<span class="text-xl font-bold text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">green</span>
+<div class="w-6 h-6 rounded-full border-2 border-slate-200 dark:border-slate-600"></div>
+</button>
+<!-- Card 4: Default State -->
+<button class="w-full flex items-center justify-between p-5 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-2xl shadow-[0_4px_0_0_rgba(0,0,0,0.05)] active:translate-y-1 active:shadow-none transition-all group">
+<span class="text-xl font-bold text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">yellow</span>
+<div class="w-6 h-6 rounded-full border-2 border-slate-200 dark:border-slate-600"></div>
+</button>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<footer class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-4">
+<div class="max-w-md mx-auto">
+<button class="w-full bg-primary hover:bg-orange-500 text-white font-black text-xl py-4 rounded-2xl shadow-[0_5px_0_0_#d97706] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2">
+<span>CONTINUAR</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</footer>
+<!-- Feedback Message (Optional/Contextual) -->
+<div class="fixed top-24 left-1/2 -translate-x-1/2 bg-success text-white px-6 py-2 rounded-full font-bold shadow-lg flex items-center gap-2 z-50 pointer-events-none">
+<span class="material-symbols-outlined">task_alt</span>
+<span>¡Excelente! +10 pts</span>
+</div>
+</body></html>

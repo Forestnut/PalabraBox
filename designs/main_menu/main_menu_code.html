@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffa42e",
+                        "emerald-action": "#04724d",
+                        "background-light": "#f0f5f1",
+                        "background-dark": "#1a1f1b",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"],
+                        "nunito": ["Nunito"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                    boxShadow: {
+                        'boxy': '0 4px 0 0 rgba(0,0,0,0.1)',
+                        'boxy-primary': '0 6px 0 0 #cc8425',
+                        'boxy-emerald': '0 6px 0 0 #035a3d',
+                        'boxy-card': '0 8px 0 0 rgba(0,0,0,0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col items-center justify-between text-slate-900 dark:text-slate-100">
+<!-- Top Navigation -->
+<div class="w-full max-w-md flex items-center justify-end p-6">
+<button class="flex items-center justify-center w-12 h-12 rounded-xl bg-white dark:bg-slate-800 shadow-boxy text-slate-700 dark:text-slate-200 hover:translate-y-0.5 transition-transform">
+<span class="material-symbols-outlined text-3xl">settings</span>
+</button>
+</div>
+<!-- Main Content -->
+<div class="w-full max-w-md flex-1 flex flex-col items-center px-6 gap-8">
+<!-- Mascot and Title -->
+<div class="flex flex-col items-center gap-4 mt-4">
+<div class="w-40 h-40 bg-primary/20 rounded-xl flex items-center justify-center relative shadow-boxy-card overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/30 to-transparent"></div>
+<!-- Boxi Mascot Placeholder -->
+<img alt="Cute yellow square mascot named Boxi with a friendly smile" class="w-32 h-32 object-contain relative z-10" data-alt="Cute yellow square mascot named Boxi with a friendly smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh1qFNeesOWkC6ZpPwSPdwWq208Ce4RfDgZ2IMVanySW6WXHmtaQfhX2l0JmSmopihWSGjT-hedw0UiXZiWTZXsOqRMY_PSQU9Ut1hCRBtPx9SirnQP9_DeRqbfjxLAhrXS1bvW8up6xDZStdcXScNxKyTftLRAX3-VZ0X-CBm6AaY2UUQIk5qkQgoebGRFdQSEAztmbFhPgpnLS1AkKhk8pq57cmIJ1kHBcbD2giVFThsJfcptEEsu2Zel8JBjfB-1Bw4x5eD9YYs"/>
+</div>
+<h1 class="text-4xl font-extrabold tracking-tight text-slate-800 dark:text-white">PalabraBox</h1>
+</div>
+<!-- Action Buttons -->
+<div class="w-full flex flex-col gap-5 mt-4">
+<button class="w-full py-5 bg-primary hover:bg-primary/90 text-white text-2xl font-black rounded-xl shadow-boxy-primary transform active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined text-3xl">play_arrow</span>
+                JUGAR
+            </button>
+<button class="w-full py-5 bg-emerald-action hover:bg-emerald-action/90 text-white text-2xl font-black rounded-xl shadow-boxy-emerald transform active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined text-3xl">style</span>
+                TARJETAS
+            </button>
+</div>
+<!-- Progress Card -->
+<div class="w-full bg-white dark:bg-slate-800 p-6 rounded-xl shadow-boxy-card flex flex-col gap-4 border border-slate-100 dark:border-slate-700">
+<div class="flex items-center justify-between">
+<h2 class="text-lg font-bold text-slate-600 dark:text-slate-300">Progreso rápido</h2>
+<div class="flex items-center gap-1 bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full">
+<span class="text-lg">🔥</span>
+<span class="font-bold text-orange-600 dark:text-orange-400 text-sm">3 días</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Completado</span>
+<span class="text-xl font-black text-slate-800 dark:text-white">2 / 12</span>
+<div class="w-full h-2 bg-slate-100 dark:bg-slate-700 rounded-full mt-2">
+<div class="h-full bg-primary rounded-full" style="width: 16%"></div>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider text-right">Puntos</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-xl">stars</span>
+<span class="text-xl font-black text-slate-800 dark:text-white">450</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Component -->
+<div class="w-full max-w-md mt-8">
+<div class="flex gap-2 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pb-6 pt-3 rounded-t-xl">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined fill-1">home</span>
+</div>
+<p class="text-xs font-bold leading-normal">Inicio</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">library_books</span>
+</div>
+<p class="text-xs font-medium leading-normal">Colección</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<p class="text-xs font-medium leading-normal">Perfil</p>
+</a>
+</div>
+</div>
+</body></html>

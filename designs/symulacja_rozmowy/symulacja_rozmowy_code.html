@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffa42e",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#231a0f",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-300">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+<!-- Header / TopAppBar -->
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10 border-b border-primary/10">
+<div class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center justify-center cursor-pointer hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined">close</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">PalabraBox</h2>
+<div class="flex w-12 items-center justify-end">
+<p class="text-primary text-base font-bold leading-normal tracking-[0.015em] shrink-0 flex items-center gap-1">
+<span class="material-symbols-outlined text-red-500 text-xl" style="font-variation-settings: 'FILL' 1">favorite</span> 
+                    3
+                </p>
+</div>
+</header>
+<!-- Progress Section -->
+<div class="flex flex-col gap-3 p-4 bg-background-light dark:bg-background-dark">
+<div class="flex gap-6 justify-between items-center">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-semibold leading-normal">Lesson Progress</p>
+<p class="text-primary text-sm font-bold leading-normal">4 / 10</p>
+</div>
+<div class="rounded-full bg-primary/20 h-3 w-full overflow-hidden">
+<div class="h-full rounded-full bg-primary" style="width: 40%;"></div>
+</div>
+</div>
+<!-- Chat Area -->
+<div class="flex-1 flex flex-col gap-6 p-4 overflow-y-auto">
+<!-- NPC Message (Boxi) -->
+<div class="flex items-end gap-3 max-w-[85%]">
+<div class="bg-primary/20 bg-center bg-no-repeat aspect-square bg-cover rounded-xl w-12 h-12 shrink-0 border-2 border-primary/30 flex items-center justify-center overflow-hidden" data-alt="Cute orange box-shaped robot mascot character" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAwIJH_t7Dl9ikoPjTAkOl5H6bYT7v_q4qTiefYrB_Uxv9o-OMe802qu2XCljAJR6CgBXohI5GnFD2bomAvwzIrJ3hkX4Tp01G5XaVjH0owlkdbZ-RFD_VV5fGpcF5oaxUUd26NDa1MZ8aQeQscz0SsbJv9WB3c0khj41zVga_W5O8K-g0OBdP8WjogdvoOBlwGL4XGTfMs814Ln2-MnwTYJzN-RwL9HCJTNuT3xEmQH813teLeVX1wjcTt7846AF6U4jFXu0UMs1rg")'>
+</div>
+<div class="flex flex-1 flex-col gap-1 items-start">
+<p class="text-primary text-[12px] font-bold uppercase tracking-wider ml-2">Boxi</p>
+<div class="text-base font-medium leading-relaxed flex max-w-full rounded-2xl rounded-bl-none px-5 py-3 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 shadow-sm border border-primary/10">
+                        Hello! How are you today?
+                    </div>
+</div>
+</div>
+<!-- Player Selection (The one selected) -->
+<div class="flex items-end gap-3 self-end max-w-[85%]">
+<div class="flex flex-1 flex-col gap-1 items-end">
+<p class="text-slate-500 dark:text-slate-400 text-[12px] font-bold uppercase tracking-wider mr-2 text-right">You</p>
+<div class="text-base font-semibold leading-relaxed flex max-w-full rounded-2xl rounded-br-none px-5 py-3 bg-primary text-white shadow-lg shadow-primary/20">
+                        I am fine, thank you.
+                    </div>
+</div>
+<div class="bg-slate-200 dark:bg-slate-700 bg-center bg-no-repeat aspect-square bg-cover rounded-xl w-12 h-12 shrink-0 border-2 border-slate-300 dark:border-slate-600" data-alt="User profile avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9-t3shSnr1hyc5J2bfF4D_q3wXhaH22gk8xs7VRRf2nesLzcIKNypaO5y9xMT8MLIn6X2AHA6X-gywfi23goODBtR4c7u1gpm3acnDQOqIcElUNjiL5NAIRKZwJZlIZSP3_y3phS4Lt3I73LjO-HuEjwRJlEBJ59yAQ-PkOcHTGZeomrEnAQ2RDKoeixDLOjbbiFKp4RTtMks8vpfsp79zfxVcVLwFSglg7wMNVQrkcV9_h61W0llJ0F_XCWmHiT3Sc7S-dfRJ48E")'></div>
+</div>
+</div>
+<!-- Interactive Response Section -->
+<div class="mt-auto bg-white dark:bg-slate-900 rounded-t-[2rem] p-6 shadow-[0_-8px_30px_rgb(0,0,0,0.05)] border-t border-primary/5">
+<h4 class="text-primary text-sm font-extrabold leading-normal tracking-widest uppercase mb-4 text-center">Select your response</h4>
+<div class="flex flex-col gap-3">
+<!-- Option 1 (Selected State) -->
+<button class="w-full text-left px-6 py-4 rounded-xl border-2 border-primary bg-primary/5 flex items-center justify-between group transition-all">
+<span class="text-slate-900 dark:text-slate-100 font-bold">I am fine, thank you.</span>
+<span class="material-symbols-outlined text-primary font-bold">check_circle</span>
+</button>
+<!-- Option 2 -->
+<button class="w-full text-left px-6 py-4 rounded-xl border-2 border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:border-primary/50 hover:bg-primary/5 transition-all group">
+<span class="text-slate-600 dark:text-slate-400 font-semibold group-hover:text-primary transition-colors">Goodbye!</span>
+</button>
+<!-- Option 3 -->
+<button class="w-full text-left px-6 py-4 rounded-xl border-2 border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:border-primary/50 hover:bg-primary/5 transition-all group">
+<span class="text-slate-600 dark:text-slate-400 font-semibold group-hover:text-primary transition-colors">What is your name?</span>
+</button>
+</div>
+<!-- Footer Action -->
+<div class="mt-6 flex justify-center">
+<button class="bg-primary text-white font-extrabold text-lg px-12 py-4 rounded-xl shadow-lg shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-transform w-full">
+                    CONTINUE
+                </button>
+</div>
+</div>
+</div>
+</body></html>

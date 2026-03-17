@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffa42e",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#231a0f",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<header class="flex items-center p-4 pb-2 justify-between">
+<div class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center justify-start cursor-pointer">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">PalabraBox</h2>
+<div class="flex w-12 items-center justify-end">
+<p class="text-primary text-base font-bold leading-normal tracking-tight shrink-0 flex items-center gap-1">
+<span class="material-symbols-outlined text-red-500 text-xl" style="font-variation-settings: 'FILL' 1">favorite</span>
+                    3
+                </p>
+</div>
+</header>
+<div class="flex flex-col gap-3 p-4">
+<div class="flex gap-6 justify-between items-center">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium">Level Progress</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">stars</span>
+<p class="text-slate-900 dark:text-slate-100 text-xs font-bold">6/10</p>
+</div>
+</div>
+<div class="rounded-full bg-primary/20 h-3 w-full overflow-hidden">
+<div class="h-full rounded-full bg-primary" style="width: 60%;"></div>
+</div>
+</div>
+<main class="flex flex-col flex-1 px-4 py-6">
+<div class="mb-8 text-center">
+<h3 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight mb-2">Translate this sentence</h3>
+<div class="inline-flex items-center gap-3 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-b-4 border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-primary">volume_up</span>
+<p class="text-slate-900 dark:text-slate-100 text-xl font-medium italic">"Me gusta comer pizza"</p>
+</div>
+</div>
+<div class="flex-1 flex flex-col justify-center gap-8">
+<div class="flex flex-wrap gap-3 p-6 min-h-[120px] bg-slate-100 dark:bg-slate-800/50 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 items-center justify-center">
+<div class="flex h-12 min-w-[80px] shrink-0 items-center justify-center rounded-lg bg-primary text-white font-bold shadow-md border-b-4 border-orange-600">
+                        I
+                    </div>
+<div class="flex h-12 min-w-[80px] shrink-0 items-center justify-center rounded-lg border-2 border-dashed border-slate-300 dark:border-slate-600">
+</div>
+<div class="flex h-12 min-w-[80px] shrink-0 items-center justify-center rounded-lg border-2 border-dashed border-slate-300 dark:border-slate-600">
+</div>
+<div class="flex h-12 min-w-[80px] shrink-0 items-center justify-center rounded-lg border-2 border-dashed border-slate-300 dark:border-slate-600">
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-widest text-center">Available Words</p>
+<div class="flex flex-wrap gap-3 justify-center">
+<div class="flex h-12 px-6 shrink-0 items-center justify-center rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 font-bold shadow-sm border-2 border-slate-200 dark:border-slate-600 border-b-4 active:border-b-0 active:translate-y-1 transition-all cursor-pointer">
+                            pizza
+                        </div>
+<div class="flex h-12 px-6 shrink-0 items-center justify-center rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 font-bold shadow-sm border-2 border-slate-200 dark:border-slate-600 border-b-4 active:border-b-0 active:translate-y-1 transition-all cursor-pointer">
+                            like
+                        </div>
+<div class="flex h-12 px-6 shrink-0 items-center justify-center rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 font-bold shadow-sm border-2 border-slate-200 dark:border-slate-600 border-b-4 active:border-b-0 active:translate-y-1 transition-all cursor-pointer">
+                            eating
+                        </div>
+<div class="flex h-12 px-6 shrink-0 items-center justify-center rounded-lg opacity-30 bg-slate-200 dark:bg-slate-800 text-slate-400 font-bold shadow-none border-2 border-transparent">
+                            I
+                        </div>
+</div>
+</div>
+</div>
+</main>
+<footer class="p-4 flex flex-col gap-3 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800">
+<div class="flex gap-3">
+<button class="flex-1 h-14 flex items-center justify-center rounded-xl border-2 border-slate-200 dark:border-slate-700 font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined mr-2">restart_alt</span>
+                    RESET
+                </button>
+<button class="flex-[2] h-14 flex items-center justify-center rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/20 border-b-4 border-orange-600 active:border-b-0 active:translate-y-1 transition-all">
+                    CHECK
+                </button>
+</div>
+</footer>
+</div>
+</body></html>
