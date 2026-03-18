@@ -10,7 +10,7 @@ export function useQuickProgress() {
     const handleUpdate = () => {
       setProgress(progressService.getProgress())
     }
-    
+
     window.addEventListener('pb-progress-updated', handleUpdate)
 
     // Update streak asynchronously to avoid synchronous effect state updates

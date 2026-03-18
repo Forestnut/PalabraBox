@@ -1,18 +1,21 @@
 import { create } from 'zustand'
 
+export type LearningLanguage = 'english' | 'spanish'
+export type LearningLevel = 'beginner' | 'intermediate'
+
 interface SettingsState {
   volume: {
     sound: number
     tts: number
   }
   speechSpeed: number
-  learningLanguage: 'english' | 'spanish' | null
-  learningLevel: 'beginner' | 'intermediate' | null
+  learningLanguage: LearningLanguage | null
+  learningLevel: LearningLevel | null
   setSoundVolume: (val: number) => void
   setTtsVolume: (val: number) => void
   setSpeechSpeed: (val: number) => void
-  setLearningLanguage: (lang: 'english' | 'spanish') => void
-  setLearningLevel: (level: 'beginner' | 'intermediate') => void
+  setLearningLanguage: (lang: LearningLanguage) => void
+  setLearningLevel: (level: LearningLevel) => void
 }
 
 export const useSettingsStore = create<SettingsState>((set) => ({
