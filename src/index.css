@@ -1,12 +1,41 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+@import "tailwindcss";
 
+/* ─── PalabraBox Design Tokens (Tailwind CSS 4) ─── */
 @theme {
-  --font-sans: "Nunito", "system-ui", sans-serif;
+  /* Typography */
+  --font-sans: "Nunito", system-ui, sans-serif;
+
+  /* Colors */
+  --color-pb-dark: #080C08;
+  --color-pb-green: #56876D;
+  --color-pb-emerald: #04724D;
+  --color-pb-amber: #FFA42C;
+  --color-pb-bg: #F0F5F1;
+  --color-pb-success: #10B981;
+  --color-pb-error: #EF4444;
+  --color-pb-text-light: #6B7B71;
+
+  /* Border Radius */
+  --radius-box: 12px;
+  --radius-box-lg: 16px;
+
+  /* Box Shadows — "elevated box" look */
+  --shadow-box: 0 4px 0 0 rgba(8, 12, 8, 0.15), 0 2px 8px rgba(8, 12, 8, 0.08);
+  --shadow-box-hover: 0 6px 0 0 rgba(8, 12, 8, 0.15), 0 4px 12px rgba(8, 12, 8, 0.12);
+  --shadow-box-pressed: 0 2px 0 0 rgba(8, 12, 8, 0.15), 0 1px 4px rgba(8, 12, 8, 0.08);
 }
 
+/* ─── Global Styles ─── */
 body {
   font-family: 'Nunito', sans-serif;
-  background-color: #F0F5F1;
-  color: #080C08;
+  background-color: var(--color-pb-bg);
+  color: var(--color-pb-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure all interactive elements have minimum touch target */
+button, a, [role="button"] {
+  min-height: 48px;
 }
