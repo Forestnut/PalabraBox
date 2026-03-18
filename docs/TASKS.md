@@ -16,18 +16,18 @@ This document tracks the progress of **PalabraBox** development. Tasks are organ
 **Suggested owner:** J+B · **Estimate:** 1h · **Day:** 1
 
 - [x] Clear default Vite boilerplate
-- [ ] Configure Tailwind CSS 4 with `pb-*` design tokens (see [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md))
-- [ ] Set up project folder structure as per [ARCHITECTURE.md](./ARCHITECTURE.md)
-- [ ] Configure `vite-plugin-pwa` for basic manifest/icons
+- [x] Configure Tailwind CSS 4 with `pb-*` design tokens (see [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md))
+- [x] Set up project folder structure as per [ARCHITECTURE.md](./ARCHITECTURE.md)
+- [x] Configure `vite-plugin-pwa` for basic manifest/icons
 
 ### TASK-2: Design System Foundations
 
 **Suggested owner:** B · **Estimate:** 3h · **Day:** 1
 
-- [ ] Create `index.css` with global variables and `@font-face` (Nunito)
-- [ ] Implement the "Box" shadow utilities in Tailwind
-- [ ] Create base UI components: `Button`, `Card`, `ScreenWrapper`
-- [ ] **Acceptance:** Components handle hover/focus/active states with "box lift" effect
+- [x] Create `index.css` with global variables and `@font-face` (Nunito)
+- [x] Implement the "Box" shadow utilities in Tailwind
+- [x] Create base UI components: `Button`, `Card`, `ScreenWrapper`
+- [x] **Acceptance:** Components handle hover/focus/active states with "box lift" effect
 
 ### TASK-3: Supabase Setup & Seed
 
