@@ -33,10 +33,10 @@ This document tracks the progress of **PalabraBox** development. Tasks are organ
 
 **Suggested owner:** J · **Estimate:** 2h · **Day:** 1
 
-- [ ] Create tables: `scenarios`, `questions`, `words` (see [DATABASE.md](./DATABASE.md))
-- [ ] Configure RLS policies (Public Read)
-- [ ] Seed database with initial content (2 scenarios: English Colors, Spanish Animals)
-- [ ] Create `src/lib/supabase.ts` client
+- [x] Create tables: `scenarios`, `questions`, `words` (see [DATABASE.md](./DATABASE.md))
+- [x] Configure RLS policies (Public Read)
+- [x] Seed database with initial content (2 scenarios: English Colors, Spanish Animals)
+- [x] Create `src/lib/supabase.ts` client
 
 ### TASK-4: Zustand Stores
 
