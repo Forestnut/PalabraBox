@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { PageTransition } from '../components/layout/PageTransition'
@@ -51,13 +51,18 @@ export default function GameScreen() {
     answerCorrect,
     answerWrong,
     nextQuestion,
-    resetGame,
     endGame,
   } = useGameStore()
 
   const question = useMemo(() => {
     return DEMO_QUESTIONS[currentQuestionIndex] ?? null
   }, [currentQuestionIndex])
+
+  useEffect(() => {
+    if (status === 'finished') {
+      navigate('/results', { replace: true })
+    }
+  }, [status, navigate])
 
   const handleAnswer = (isCorrect: boolean) => {
     if (isCorrect) {
@@ -82,11 +87,7 @@ export default function GameScreen() {
   }
 
   const handleStart = () => {
-    startGame()
-  }
-
-  const handleRestart = () => {
-    resetGame()
+    startGame(DEMO_QUESTIONS.length)
   }
 
   return (
@@ -120,19 +121,6 @@ export default function GameScreen() {
                 console.debug('Play sound', type)
               }}
             />
-          )}
-
-          {status === 'finished' && (
-            <div className="flex flex-col gap-4">
-              <p className="text-lg font-bold">Game over!</p>
-              <p className="text-pb-text-light">Final score: {score}</p>
-              <div className="flex flex-wrap gap-2">
-                <Button onClick={() => navigate('/menu')}>Back to Menu</Button>
-                <Button variant="secondary" onClick={handleRestart}>
-                  Play Again
-                </Button>
-              </div>
-            </div>
           )}
         </div>
       </ScreenWrapper>
