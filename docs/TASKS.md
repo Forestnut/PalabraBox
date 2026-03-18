@@ -50,10 +50,10 @@ This document tracks the progress of **PalabraBox** development. Tasks are organ
 
 **Suggested owner:** B · **Estimate:** 2h · **Day:** 2
 
-- [ ] Set up `react-router-dom` with all routes from [ARCHITECTURE.md](./ARCHITECTURE.md)
-- [ ] Create empty page components for all routes
-- [ ] Implement `PageTransition` wrapper with Framer Motion
-- [ ] Implement `BackButton` component
+- [x] Set up `react-router-dom` with all routes from [ARCHITECTURE.md](./ARCHITECTURE.md)
+- [x] Create empty page components for all routes
+- [x] Implement `PageTransition` wrapper with Framer Motion
+- [x] Implement `BackButton` component
 
 ### TASK-6: Splash Screen & Main Menu
 
