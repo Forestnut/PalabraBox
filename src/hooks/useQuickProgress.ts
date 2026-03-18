@@ -1,40 +1,24 @@
-import { useEffect, useMemo, useState } from 'react'
-
-export interface QuickProgress {
-  streakDays: number
-  completed: number
-  total: number
-  points: number
-}
-
-const STORAGE_KEY = 'palabrabox.quickProgress'
-
-const DEFAULT_PROGRESS: QuickProgress = {
-  streakDays: 3,
-  completed: 2,
-  total: 12,
-  points: 450,
-}
+import { useMemo, useState, useEffect } from 'react'
+import { progressService } from '../services/progressService'
+import type { ProgressData } from '../services/progressService'
 
 export function useQuickProgress() {
-  const [progress, setProgress] = useState<QuickProgress>(DEFAULT_PROGRESS)
+  const [progress, setProgress] = useState<ProgressData>(() => progressService.getProgress())
 
   useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(STORAGE_KEY)
-      if (!raw) return
-      const parsed = JSON.parse(raw) as QuickProgress
-      if (
-        typeof parsed?.streakDays === 'number' &&
-        typeof parsed?.completed === 'number' &&
-        typeof parsed?.total === 'number' &&
-        typeof parsed?.points === 'number'
-      ) {
-        setProgress(parsed)
-      }
-    } catch {
-      // Ignore invalid stored data
+    // Listen to changes from other parts of the app
+    const handleUpdate = () => {
+      setProgress(progressService.getProgress())
     }
+    
+    window.addEventListener('pb-progress-updated', handleUpdate)
+
+    // Update streak asynchronously to avoid synchronous effect state updates
+    setTimeout(() => {
+      progressService.updateStreak()
+    }, 0)
+
+    return () => window.removeEventListener('pb-progress-updated', handleUpdate)
   }, [])
 
   const percentage = useMemo(() => {
