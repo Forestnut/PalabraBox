@@ -44,7 +44,7 @@ export function useGame(scenarioId: string | undefined) {
         const shuffled = [...(data as Question[])].sort(() => Math.random() - 0.5)
         setQuestions(shuffled)
         
-        startGame() // Reset store state for new game
+        startGame(shuffled.length) // Reset store state for new game
       } catch (err) {
         setError(err instanceof Error ? err.message : String(err))
       } finally {

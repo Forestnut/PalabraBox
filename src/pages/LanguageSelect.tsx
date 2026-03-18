@@ -16,12 +16,7 @@ const languages: Array<{ key: LearningLanguage; label: string; emoji: string }> 
 
 export default function LanguageSelect() {
   const navigate = useNavigate()
-  const { learningLanguage, setLearningLanguage } = useSettingsStore(
-    (state) => ({
-      learningLanguage: state.learningLanguage,
-      setLearningLanguage: state.setLearningLanguage,
-    }),
-  )
+  const { learningLanguage, setLearningLanguage } = useSettingsStore()
 
   const selectedLabel = useMemo(
     () => languages.find((l) => l.key === learningLanguage)?.label,

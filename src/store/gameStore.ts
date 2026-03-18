@@ -8,7 +8,8 @@ interface GameState {
   lives: number
   maxLives: number
   currentQuestionIndex: number
-  startGame: () => void
+  totalQuestions: number
+  startGame: (total?: number) => void
   answerCorrect: () => void
   answerWrong: () => void
   resetGame: () => void
@@ -22,11 +23,12 @@ export const useGameStore = create<GameState>((set) => ({
   lives: 3,
   maxLives: 3,
   currentQuestionIndex: 0,
+  totalQuestions: 0,
 
-  startGame: () => set({ status: 'playing', score: 0, lives: 3, currentQuestionIndex: 0 }),
+  startGame: (total) => set({ status: 'playing', score: 0, lives: 3, currentQuestionIndex: 0, totalQuestions: total ?? 0 }),
   answerCorrect: () => set((state) => ({ score: state.score + 10 })),
   answerWrong: () => set((state) => ({ lives: Math.max(0, state.lives - 1) })),
   nextQuestion: () => set((state) => ({ currentQuestionIndex: state.currentQuestionIndex + 1 })),
   endGame: () => set({ status: 'finished' }),
-  resetGame: () => set({ status: 'idle', score: 0, lives: 3, currentQuestionIndex: 0 }),
+  resetGame: () => set({ status: 'idle', score: 0, lives: 3, currentQuestionIndex: 0, totalQuestions: 0 }),
 }))
