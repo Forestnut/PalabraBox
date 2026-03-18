@@ -14,19 +14,19 @@ Choose a document to learn more about a specific area of the project:
 
 ### 🏗️ Technical Specs
 
-4. [ARCHITECTURE.md](./ARCHITECTURE.md) — Tech stack, project structure, routing, and data flow.
-5. [DATABASE.md](./DATABASE.md) — Supabase schema, table definitions, and content plan.
-6. [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) — Colors, typography, the "box" effect, and animations.
-7. [SERVICES.md](./SERVICES.md) — Hooks, stores, and services API reference.
+1. [ARCHITECTURE.md](./ARCHITECTURE.md) — Tech stack, project structure, routing, and data flow.
+2. [DATABASE.md](./DATABASE.md) — Supabase schema, table definitions, and content plan.
+3. [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) — Colors, typography, the "box" effect, and animations.
+4. [SERVICES.md](./SERVICES.md) — Hooks, stores, and services API reference.
 
 ### 🎮 Game Design
 
-8. [SCREENS.md](./SCREENS.md) — Detailed screen specifications with wireframes and elements.
-9. [GAME_MECHANICS.md](./GAME_MECHANICS.md) — How scoring, lives, stars, and questions work.
+1. [SCREENS.md](./SCREENS.md) — Detailed screen specifications with wireframes and elements.
+2. [GAME_MECHANICS.md](./GAME_MECHANICS.md) — How scoring, lives, stars, and questions work.
 
 ### 🔮 Future
 
-10. [FUTURE_IDEAS.md](./FUTURE_IDEAS.md) — Roadmap and features beyond the MVP.
+1. [FUTURE_IDEAS.md](./FUTURE_IDEAS.md) — Roadmap and features beyond the MVP.
 
 ---
 
