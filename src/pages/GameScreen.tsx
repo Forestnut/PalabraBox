@@ -9,7 +9,18 @@ import { QuestionRenderer } from '../components/questions/QuestionRenderer'
 
 export default function GameScreen() {
   const { scenarioId } = useParams<{ scenarioId: string }>()
-  const { currentQuestion, currentQuestionIndex, questions, loading, error, handleAnswer, goToNext, lives, maxLives, score } = useGame(scenarioId)
+  const {
+    currentQuestion,
+    currentQuestionIndex,
+    questions,
+    loading,
+    error,
+    handleAnswer,
+    goToNext,
+    lives,
+    maxLives,
+    score,
+  } = useGame(scenarioId)
   const { status } = useGameStore()
 
   if (loading) {
@@ -57,33 +68,29 @@ export default function GameScreen() {
             <span className="text-pb-amber drop-shadow-sm">🏆 {score}</span>
             <span className="text-pb-error drop-shadow-sm tracking-widest">
               {Array.from({ length: maxLives || 3 }).map((_, i) => (
-                <span key={i} className={i < lives ? 'opacity-100' : 'opacity-30'}>❤️</span>
+                <span key={i} className={i < lives ? 'opacity-100' : 'opacity-30'}>
+                  ❤️
+                </span>
               ))}
             </span>
           </div>
         </div>
-        
+
         <div className="w-full bg-pb-amber/20 h-4 rounded-full mb-8 shadow-inner overflow-hidden border-2 border-pb-amber/30">
-          <div 
-            className="bg-pb-amber h-full rounded-full transition-all duration-500 ease-out relative" 
-            style={{ width: `${((currentQuestionIndex) / (loading ? 10 : questions.length)) * 100}%` }} 
+          <div
+            className="bg-pb-amber h-full rounded-full transition-all duration-500 ease-out relative"
+            style={{ width: `${(currentQuestionIndex / questions.length) * 100}%` }}
           >
             <div className="absolute inset-0 bg-white/20 w-full h-1/2 rounded-t-full"></div>
           </div>
         </div>
-        
-        {!currentQuestion ? (
-          <div className="flex-1 flex items-center justify-center">
-             <div className="animate-spin text-4xl mt-12">⏳</div>
-          </div>
-        ) : (
-          <QuestionRenderer
-            key={currentQuestion.id}
-            question={currentQuestion}
-            onAnswer={handleAnswer}
-            onNext={goToNext}
-          />
-        )}
+
+        <QuestionRenderer
+          key={currentQuestion.id}
+          question={currentQuestion}
+          onAnswer={handleAnswer}
+          onNext={goToNext}
+        />
       </ScreenWrapper>
     </PageTransition>
   )
