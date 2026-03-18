@@ -77,45 +77,45 @@ This document tracks the progress of **PalabraBox** development. Tasks are organ
 
 **Suggested owner:** J · **Estimate:** 4h · **Day:** 3
 
-- [ ] `useScenarios` hook to fetch data from Supabase
-- [ ] `ScenarioCard` component with box theme
-- [ ] Implement lock/unlock logic based on `localStorage` progress
-- [ ] **Acceptance:** Grid displays icons, stars, and handles locked state correctly
+- [x] `useScenarios` hook to fetch data from Supabase
+- [x] `ScenarioCard` component with box theme
+- [x] Implement lock/unlock logic based on `localStorage` progress
+- [x] **Acceptance:** Grid displays icons, stars, and handles locked state correctly
 
 ### TASK-9: Game Engine (Core Hook)
 
 **Suggested owner:** J · **Estimate:** 5h · **Day:** 4
 
-- [ ] `useGame` hook logic: fetching questions, shuffling, timer-less flow
-- [ ] Scoring logic (+10 per correct)
-- [ ] Lives logic (-1 heart per wrong)
-- [ ] **Acceptance:** Correctly manages state transitions and question sequence
+- [x] `useGame` hook logic: fetching questions, shuffling, timer-less flow
+- [x] Scoring logic (+10 per correct)
+- [x] Lives logic (-1 heart per wrong)
+- [x] **Acceptance:** Correctly manages state transitions and question sequence
 
 ### TASK-10: Question Renderer - Multiple Choice
 
 **Suggested owner:** B · **Estimate:** 4h · **Day:** 4
 
-- [ ] `QuestionRenderer` component
-- [ ] `MultipleChoice` layout with 4 answer tiles
-- [ ] Feedback state (green/red) after selection
-- [ ] Handlers for click sounds
+- [x] `QuestionRenderer` component
+- [x] `MultipleChoice` layout with 4 answer tiles
+- [x] Feedback state (green/red) after selection
+- [x] Handlers for click sounds
 
 ### TASK-11: Results Screen
 
 **Suggested owner:** B · **Estimate:** 4h · **Day:** 5
 
-- [ ] Score display and calculated stars (0-3)
-- [ ] Confetti animation on success (>70%)
-- [ ] Success/Game Over variants
-- [ ] **Acceptance:** Properly saves progress to `localStorage` on mount
+- [x] Score display and calculated stars (0-3)
+- [x] Confetti animation on success (>70%)
+- [x] Success/Game Over variants
+- [x] **Acceptance:** Properly saves progress to `localStorage` on mount
 
 ### TASK-12: Progress Persistence
 
 **Suggested owner:** J · **Estimate:** 3h · **Day:** 5
 
-- [ ] `progressService.ts` to sync Zustand ↔ localStorage
-- [ ] Streak calculation logic
-- [ ] Total points aggregator
+- [x] `progressService.ts` to sync Zustand ↔ localStorage
+- [x] Streak calculation logic
+- [x] Total points aggregator
 
 ---
 
