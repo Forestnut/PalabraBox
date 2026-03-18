@@ -15,7 +15,7 @@ This document tracks the progress of **PalabraBox** development. Tasks are organ
 
 **Suggested owner:** J+B · **Estimate:** 1h · **Day:** 1
 
-- [ ] Clear default Vite boilerplate
+- [x] Clear default Vite boilerplate
 - [ ] Configure Tailwind CSS 4 with `pb-*` design tokens (see [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md))
 - [ ] Set up project folder structure as per [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [ ] Configure `vite-plugin-pwa` for basic manifest/icons
