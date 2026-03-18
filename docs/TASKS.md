@@ -59,10 +59,10 @@ This document tracks the progress of **PalabraBox** development. Tasks are organ
 
 **Suggested owner:** B · **Estimate:** 3h · **Day:** 2
 
-- [ ] Splash Screen logo animation (SVG/📦 emoji)
-- [ ] Main Menu layout with "JUGAR" and "TARJETAS" buttons
-- [ ] Quick progress panel (mocked or from storage)
-- [ ] **Acceptance:** Smooth transition from Splash → Menu
+- [x] Splash Screen logo animation (SVG/📦 emoji)
+- [x] Main Menu layout with "JUGAR" and "TARJETAS" buttons
+- [x] Quick progress panel (mocked or from storage)
+- [x] **Acceptance:** Smooth transition from Splash → Menu
 
 ### TASK-7: Language & Level Selection
 
