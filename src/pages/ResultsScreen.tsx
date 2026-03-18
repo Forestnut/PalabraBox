@@ -29,6 +29,8 @@ export default function ResultsScreen() {
 
   useEffect(() => {
     // Animate stars popping in with a slight delay
+    let intervalId: number | null = null
+
     const timer = setTimeout(() => {
       setStars(earnedStars)
       
@@ -37,11 +39,15 @@ export default function ResultsScreen() {
         const animationEnd = Date.now() + duration
         const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
 
-        const interval: number = window.setInterval(function () {
+        intervalId = window.setInterval(function () {
           const timeLeft = animationEnd - Date.now()
 
           if (timeLeft <= 0) {
-            return clearInterval(interval)
+            if (intervalId !== null) {
+              clearInterval(intervalId)
+              intervalId = null
+            }
+            return
           }
 
           const particleCount = 50 * (timeLeft / duration)
@@ -54,12 +60,15 @@ export default function ResultsScreen() {
             })
           )
         }, 250)
-
-        return () => clearInterval(interval)
       }
     }, 400)
 
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(timer)
+      if (intervalId !== null) {
+        clearInterval(intervalId)
+      }
+    }
   }, [earnedStars, isSuccess])
 
   const handleMenu = () => {
