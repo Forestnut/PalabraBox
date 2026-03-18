@@ -3,30 +3,24 @@ import { MultipleChoice } from './MultipleChoice'
 
 export interface QuestionRendererProps {
   question: Question
-  onAnswer: (isCorrect: boolean) => void
-  onNext: () => void
+  onAnswered: (isCorrect: boolean) => void
+  /** Optional handler for click / correct / wrong sound effects */
   onPlaySound?: (type: 'click' | 'correct' | 'wrong') => void
   disabled?: boolean
 }
 
 export function QuestionRenderer({
   question,
-  onAnswer,
-  onNext,
+  onAnswered,
   onPlaySound,
   disabled,
 }: QuestionRendererProps) {
-  const handleAnswered = (isCorrect: boolean) => {
-    onAnswer(isCorrect)
-    onNext()
-  }
-
   switch (question.type) {
     case 'multiple_choice':
       return (
         <MultipleChoice
           question={question}
-          onAnswer={handleAnswered}
+          onAnswer={onAnswered}
           onPlaySound={onPlaySound}
           disabled={disabled}
         />

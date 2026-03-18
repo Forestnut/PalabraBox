@@ -88,8 +88,10 @@ export default function GameScreen() {
         <QuestionRenderer
           key={currentQuestion.id}
           question={currentQuestion}
-          onAnswer={handleAnswer}
-          onNext={goToNext}
+          onAnswered={(isCorrect) => {
+            handleAnswer(isCorrect)
+            goToNext()
+          }}
         />
       </ScreenWrapper>
     </PageTransition>
