@@ -42,9 +42,9 @@ This document tracks the progress of **PalabraBox** development. Tasks are organ
 
 **Suggested owner:** J · **Estimate:** 2h · **Day:** 2
 
-- [ ] Implement `gameStore.ts`: status, score, lives, current question
-- [ ] Implement `settingsStore.ts`: volumes, speeds, language
-- [ ] **Acceptance:** Stores are reactive and accessible from any component
+- [x] Implement `gameStore.ts`: status, score, lives, current question
+- [x] Implement `settingsStore.ts`: volumes, speeds, language
+- [x] **Acceptance:** Stores are reactive and accessible from any component
 
 ### TASK-5: Routing & Navigation
 
