@@ -4,10 +4,11 @@ import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { BackButton } from '../components/layout/BackButton'
 import { useGame } from '../hooks/useGame'
 import { useGameStore } from '../store/gameStore'
+import { QuestionRenderer } from '../components/questions/QuestionRenderer'
 
 export default function GameScreen() {
   const { scenarioId } = useParams<{ scenarioId: string }>()
-  const { currentQuestion, loading, error, handleAnswer, goToNext, lives, maxLives, score } = useGame(scenarioId)
+  const { currentQuestion, currentQuestionIndex, questions, loading, error, handleAnswer, goToNext, lives, maxLives, score } = useGame(scenarioId)
   const { status } = useGameStore()
 
   if (loading) {
@@ -61,34 +62,27 @@ export default function GameScreen() {
           </div>
         </div>
         
-        <h2 className="text-3xl font-bold mb-10 text-center text-pb-dark">
-          {currentQuestion.question_text}
-        </h2>
-        
-        {/* Placeholder for Task 10 Question Renderer */}
-        <div className="p-8 bg-white rounded-box shadow-box hover:shadow-box-hover transition-shadow text-center">
-          <p className="mb-6 text-pb-text-light font-bold uppercase tracking-wider text-sm">Componente de Pregunta (Plantilla)</p>
-          <div className="flex justify-center gap-4">
-            <button 
-              className="px-6 py-3 bg-pb-success text-white rounded-box font-bold shadow-box hover:shadow-box-hover active:shadow-box-pressed transition-all active:translate-y-0.5 hover:-translate-y-0.5 cursor-pointer"
-              onClick={() => {
-                handleAnswer(true)
-                goToNext()
-              }}
-            >
-              Simular Acierto
-            </button>
-            <button 
-              className="px-6 py-3 bg-pb-error text-white rounded-box font-bold shadow-box hover:shadow-box-hover active:shadow-box-pressed transition-all active:translate-y-0.5 hover:-translate-y-0.5 cursor-pointer"
-              onClick={() => {
-                handleAnswer(false)
-                goToNext()
-              }}
-            >
-              Simular Error
-            </button>
+        <div className="w-full bg-pb-amber/20 h-4 rounded-full mb-8 shadow-inner overflow-hidden border-2 border-pb-amber/30">
+          <div 
+            className="bg-pb-amber h-full rounded-full transition-all duration-500 ease-out relative" 
+            style={{ width: `${((currentQuestionIndex) / (loading ? 10 : questions.length)) * 100}%` }} 
+          >
+            <div className="absolute inset-0 bg-white/20 w-full h-1/2 rounded-t-full"></div>
           </div>
         </div>
+        
+        {!currentQuestion ? (
+          <div className="flex-1 flex items-center justify-center">
+             <div className="animate-spin text-4xl mt-12">⏳</div>
+          </div>
+        ) : (
+          <QuestionRenderer
+            key={currentQuestion.id}
+            question={currentQuestion}
+            onAnswer={handleAnswer}
+            onNext={goToNext}
+          />
+        )}
       </ScreenWrapper>
     </PageTransition>
   )

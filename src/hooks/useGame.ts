@@ -106,6 +106,7 @@ export function useGame(scenarioId: string | undefined) {
     goToNext,
     lives,
     maxLives,
-    score
+    score,
+    currentQuestionIndex
   }
 }

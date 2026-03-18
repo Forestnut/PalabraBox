@@ -95,19 +95,19 @@ This document tracks the progress of **PalabraBox** development. Tasks are organ
 
 **Suggested owner:** B · **Estimate:** 4h · **Day:** 4
 
-- [ ] `QuestionRenderer` component
-- [ ] `MultipleChoice` layout with 4 answer tiles
-- [ ] Feedback state (green/red) after selection
-- [ ] Handlers for click sounds
+- [x] `QuestionRenderer` component
+- [x] `MultipleChoice` layout with 4 answer tiles
+- [x] Feedback state (green/red) after selection
+- [x] Handlers for click sounds
 
 ### TASK-11: Results Screen
 
 **Suggested owner:** B · **Estimate:** 4h · **Day:** 5
 
-- [ ] Score display and calculated stars (0-3)
-- [ ] Confetti animation on success (>70%)
-- [ ] Success/Game Over variants
-- [ ] **Acceptance:** Properly saves progress to `localStorage` on mount
+- [x] Score display and calculated stars (0-3)
+- [x] Confetti animation on success (>70%)
+- [x] Success/Game Over variants
+- [x] **Acceptance:** Properly saves progress to `localStorage` on mount
 
 ### TASK-12: Progress Persistence
 
