@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom'
-
 import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { BackButton } from '../components/layout/BackButton'

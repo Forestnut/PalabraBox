@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import confetti from 'canvas-confetti'
+
 import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { Button } from '../components/ui/Button'
@@ -11,7 +12,7 @@ import { useQuickProgress } from '../hooks/useQuickProgress'
 export default function ResultsScreen() {
   const navigate = useNavigate()
   
-  // Capture the game state strictly ON MOUNT so it never flashes or mutates during unmount
+  // Capture game state strictly ON MOUNT so it never flashes or mutates during unmount
   const store = useGameStore()
   const [results] = useState({
     score: store.score,
@@ -23,93 +24,114 @@ export default function ResultsScreen() {
   const { progress } = useQuickProgress()
   const [stars, setStars] = useState(0)
 
+  const isSuccess = lives > 0
   const earnedStars = Math.max(0, lives)
-  const isWin = earnedStars > 0
 
   useEffect(() => {
     // Animate stars popping in with a slight delay
     const timer = setTimeout(() => {
       setStars(earnedStars)
       
-      if (isWin) {
-        const end = Date.now() + 2 * 1000
-        const colors = ['#56876D', '#FFA42C', '#10B981']
+      if (isSuccess) {
+        const duration = 2500
+        const animationEnd = Date.now() + duration
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
 
-        ;(function frame() {
-          confetti({
-            particleCount: 4,
-            angle: 60,
-            spread: 55,
-            origin: { x: 0 },
-            colors: colors
-          })
-          confetti({
-            particleCount: 4,
-            angle: 120,
-            spread: 55,
-            origin: { x: 1 },
-            colors: colors
-          })
+        const interval: number = window.setInterval(function () {
+          const timeLeft = animationEnd - Date.now()
 
-          if (Date.now() < end) {
-            requestAnimationFrame(frame)
+          if (timeLeft <= 0) {
+            return clearInterval(interval)
           }
-        })()
+
+          const particleCount = 50 * (timeLeft / duration)
+          // since particles fall down, start a bit higher than random
+          confetti(
+            Object.assign({}, defaults, {
+              particleCount,
+              origin: { x: Math.random(), y: Math.random() - 0.2 },
+              colors: ['#FBBF24', '#34D399', '#F87171', '#60A5FA'],
+            })
+          )
+        }, 250)
+
+        return () => clearInterval(interval)
       }
     }, 400)
 
     return () => clearTimeout(timer)
-  }, [earnedStars, isWin])
+  }, [earnedStars, isSuccess])
 
-  const handleReturn = () => {
-    // Only navigate. Game resets happen securely upon ENTERING a new level.
+  const handleMenu = () => {
+    store.resetGame()
+    navigate('/menu')
+  }
+
+  const handlePlayAgain = () => {
+    store.resetGame()
     navigate('/scenarios')
   }
 
   return (
     <PageTransition className="bg-pb-bg">
-      <ScreenWrapper className="flex flex-col items-center justify-center gap-6 min-h-[80vh]">
-        
-        <div className="flex gap-2 mb-4">
-          {[1, 2, 3].map((starIdx) => (
-            <span 
-              key={starIdx} 
-              className={`text-6xl transition-all duration-700 ease-out
-                ${starIdx <= stars ? 'text-pb-amber scale-110 drop-shadow-md' : 'text-gray-300 scale-90 grayscale opacity-50'}
-              `}
-              style={{ transitionDelay: `${starIdx * 150}ms` }}
-            >
-              ★
-            </span>
-          ))}
+      <ScreenWrapper className="flex flex-col items-center justify-center gap-8 py-10 min-h-[80vh]">
+        <div className="flex flex-col items-center gap-2 text-center mt-6">
+          <div className="text-6xl mb-4">{isSuccess ? '🎉' : '💔'}</div>
+          <h1 className={`text-4xl font-black uppercase tracking-widest text-center ${isSuccess ? 'text-pb-success' : 'text-pb-error'}`}>
+            {isSuccess ? '¡Excelente!' : '¡Sigue intentando!'}
+          </h1>
+          <p className="text-pb-text-light text-lg px-4">
+            {isSuccess ? 'Completaste el escenario con éxito.' : 'Perdiste todas tus vidas.'}
+          </p>
         </div>
 
-        <h1 className={`text-4xl font-black uppercase tracking-widest text-center ${isWin ? 'text-pb-success' : 'text-pb-error'}`}>
-          {isWin ? '¡Excelente!' : '¡Inténtalo de nuevo!'}
-        </h1>
+        <Card className="w-full flex flex-col items-center gap-6 p-8 relative overflow-hidden max-w-sm">
+          {/* Stars display */}
+          <div className="flex gap-2">
+            {[1, 2, 3].map((starIdx) => (
+              <div
+                key={starIdx}
+                className={`text-5xl transition-all duration-700 ease-out
+                  ${starIdx <= stars ? 'text-pb-amber scale-110 drop-shadow-md' : 'text-gray-300 scale-90 grayscale opacity-50'}
+                `}
+                style={{ transitionDelay: `${starIdx * 150}ms` }}
+              >
+                ⭐
+              </div>
+            ))}
+          </div>
 
-        <Card className="w-full max-w-sm text-center flex flex-col gap-4 mt-4">
-          <div className="flex justify-between items-center border-b-2 border-gray-100 pb-4">
-            <span className="text-pb-text-light font-bold">Puntuación</span>
-            <span className="text-2xl font-black text-pb-dark">{score}</span>
-          </div>
-          <div className="flex justify-between items-center border-b-2 border-gray-100 pb-4">
-            <span className="text-pb-text-light font-bold">Vidas restantes</span>
-            <span className="text-2xl font-black text-pb-error">
-              {lives} <span className="text-lg">/ {maxLives || 3}</span>
+          <div className="flex flex-col items-center gap-1 w-full">
+            <span className="text-sm font-bold text-pb-text-light uppercase tracking-widest">
+              Puntuación
             </span>
+            <span className="text-5xl font-black text-pb-amber">{score}</span>
           </div>
-          <div className="flex justify-between items-center pt-2">
-            <span className="text-pb-text-light font-bold">Total Puntos</span>
-            <span className="text-2xl font-black text-pb-amber flex items-center gap-2">
-              ⭐ {progress.points}
-            </span>
+
+          <div className="w-full grid grid-cols-2 gap-4 mt-2">
+            <div className="flex flex-col items-center p-3 bg-pb-bg rounded-xl">
+              <span className="text-[10px] font-bold text-pb-text-light uppercase tracking-wider text-center">Total Puntos</span>
+              <span className="text-xl font-bold text-pb-dark">
+                 ⭐ {progress.points}
+              </span>
+            </div>
+            <div className="flex flex-col items-center p-3 bg-pb-bg rounded-xl">
+              <span className="text-[10px] font-bold text-pb-text-light uppercase tracking-wider text-center">Vidas</span>
+              <span className="text-xl font-bold text-pb-emerald">
+                {lives} <span className="text-sm">/ {maxLives}</span>
+              </span>
+            </div>
           </div>
         </Card>
 
-        <Button size="lg" className="w-full max-w-sm mt-8" onClick={handleReturn}>
-          Aceptar
-        </Button>
+        <div className="w-full max-w-sm flex flex-col gap-4 mt-auto mb-6">
+          <Button size="lg" onClick={handlePlayAgain}>
+            Jugar de nuevo
+          </Button>
+          <Button variant="ghost" size="lg" onClick={handleMenu}>
+            Volver al inicio
+          </Button>
+        </div>
       </ScreenWrapper>
     </PageTransition>
   )
