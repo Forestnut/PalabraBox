@@ -68,10 +68,10 @@ This document tracks the progress of **PalabraBox** development. Tasks are organ
 
 **Suggested owner:** B · **Estimate:** 3h · **Day:** 3
 
-- [ ] Language selection cards (flag + name)
-- [ ] Level selection cards with detailed descriptions
-- [ ] Store selection in Zustand
-- [ ] **Acceptance:** Selection flow saves choices and navigates to Scenarios
+- [x] Language selection cards (flag + name)
+- [x] Level selection cards with detailed descriptions
+- [x] Store selection in Zustand
+- [x] **Acceptance:** Selection flow saves choices and navigates to Scenarios
 
 ### TASK-8: Scenario Selection Grid
 
@@ -95,10 +95,10 @@ This document tracks the progress of **PalabraBox** development. Tasks are organ
 
 **Suggested owner:** B · **Estimate:** 4h · **Day:** 4
 
-- [ ] `QuestionRenderer` component
-- [ ] `MultipleChoice` layout with 4 answer tiles
-- [ ] Feedback state (green/red) after selection
-- [ ] Handlers for click sounds
+- [x] `QuestionRenderer` component
+- [x] `MultipleChoice` layout with 4 answer tiles
+- [x] Feedback state (green/red) after selection
+- [x] Handlers for click sounds
 
 ### TASK-11: Results Screen
 

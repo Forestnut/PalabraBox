@@ -26,7 +26,7 @@ export default function MainMenu() {
         </div>
 
         <div className="w-full flex flex-col gap-4">
-          <Button size="lg" onClick={() => navigate('/scenarios')}>
+          <Button size="lg" onClick={() => navigate('/language')}>
             <span className="text-2xl">▶</span>
             JUGAR
           </Button>

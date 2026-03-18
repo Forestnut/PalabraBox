@@ -4,6 +4,7 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import SplashScreen from './pages/SplashScreen'
 import MainMenu from './pages/MainMenu'
 import ScenarioSelect from './pages/ScenarioSelect'
+import GameScreen from './pages/GameScreen'
 import CardsDeck from './pages/CardsDeck'
 import ResultsScreen from './pages/ResultsScreen'
 import SettingsScreen from './pages/SettingsScreen'
@@ -19,6 +20,7 @@ function AppRoutes() {
         <Route path="/" element={<SplashScreen />} />
         <Route path="/menu" element={<MainMenu />} />
         <Route path="/scenarios" element={<ScenarioSelect />} />
+        <Route path="/game/:scenarioId" element={<GameScreen />} />
         <Route path="/cards" element={<CardsDeck />} />
         <Route path="/results" element={<ResultsScreen />} />
         <Route path="/settings" element={<SettingsScreen />} />

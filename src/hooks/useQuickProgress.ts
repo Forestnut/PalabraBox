@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 export interface QuickProgress {
   streakDays: number
@@ -17,12 +17,10 @@ const DEFAULT_PROGRESS: QuickProgress = {
 }
 
 export function useQuickProgress() {
-  const [progress, setProgress] = useState<QuickProgress>(DEFAULT_PROGRESS)
-
-  useEffect(() => {
+  const [progress] = useState<QuickProgress>(() => {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY)
-      if (!raw) return
+      if (!raw) return DEFAULT_PROGRESS
       const parsed = JSON.parse(raw) as QuickProgress
       if (
         typeof parsed?.streakDays === 'number' &&
@@ -30,12 +28,14 @@ export function useQuickProgress() {
         typeof parsed?.total === 'number' &&
         typeof parsed?.points === 'number'
       ) {
-        setProgress(parsed)
+        return parsed
       }
     } catch {
       // Ignore invalid stored data
     }
-  }, [])
+
+    return DEFAULT_PROGRESS
+  })
 
   const percentage = useMemo(() => {
     if (progress.total <= 0) return 0
