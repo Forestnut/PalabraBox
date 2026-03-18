@@ -24,7 +24,13 @@ const levels: Array<{ key: LearningLevel; label: string; description: string }> 
 
 export default function LevelSelect() {
   const navigate = useNavigate()
-  const { learningLanguage, learningLevel, setLearningLevel } = useSettingsStore()
+  const { learningLanguage, learningLevel, setLearningLevel } = useSettingsStore(
+    (state) => ({
+      learningLanguage: state.learningLanguage,
+      learningLevel: state.learningLevel,
+      setLearningLevel: state.setLearningLevel,
+    }),
+  )
 
   useEffect(() => {
     if (!learningLanguage) {
