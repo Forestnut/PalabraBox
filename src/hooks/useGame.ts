@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase'
 import type { Question } from '../types'
 import { useGameStore } from '../store/gameStore'
 import { saveScenarioStars } from '../utils/progress'
+import { progressService } from '../services/progressService'
 
 export function useGame(scenarioId: string | undefined) {
   const [questions, setQuestions] = useState<Question[]>([])
@@ -70,14 +71,17 @@ export function useGame(scenarioId: string | undefined) {
       if (isWin && scenarioId) {
         const stars = Math.max(1, lives)
         saveScenarioStars(scenarioId, stars)
+        progressService.markScenarioCompleted()
       }
+
+      progressService.addPoints(score)
 
       // Small delay out of courtesy before navigating to results
       setTimeout(() => {
         navigate('/results')
       }, 500)
     }
-  }, [status, currentQuestionIndex, lives, questions.length, navigate, endGame, scenarioId])
+  }, [status, currentQuestionIndex, lives, questions.length, navigate, endGame, scenarioId, score])
 
   const handleAnswer = useCallback((isCorrect: boolean) => {
     if (status !== 'playing') return

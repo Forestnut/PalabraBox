@@ -113,9 +113,9 @@ This document tracks the progress of **PalabraBox** development. Tasks are organ
 
 **Suggested owner:** J · **Estimate:** 3h · **Day:** 5
 
-- [ ] `progressService.ts` to sync Zustand ↔ localStorage
-- [ ] Streak calculation logic
-- [ ] Total points aggregator
+- [x] `progressService.ts` to sync Zustand ↔ localStorage
+- [x] Streak calculation logic
+- [x] Total points aggregator
 
 ---
 
