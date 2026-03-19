@@ -30,7 +30,7 @@ export function QuestionRenderer({
       return (
         <div className="p-6 rounded-box-lg bg-white shadow-box">
           <p className="text-base text-pb-text-light">
-            Question type "{question.type}" is not implemented yet.
+            El tipo de pregunta "{question.type}" aún no está implementado.
           </p>
         </div>
       )

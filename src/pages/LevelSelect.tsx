@@ -12,13 +12,13 @@ import type { LearningLevel } from '../store/settingsStore'
 const levels: Array<{ key: LearningLevel; label: string; description: string }> = [
   {
     key: 'beginner',
-    label: 'Beginner',
-    description: 'Simple words and short sentences. Great for first steps.',
+    label: 'Principiante',
+    description: 'Palabras simples y oraciones cortas. Ideal para dar los primeros pasos.',
   },
   {
     key: 'intermediate',
-    label: 'Intermediate',
-    description: 'More vocabulary, longer sentences, and slightly faster pace.',
+    label: 'Intermedio',
+    description: 'Más vocabulario, oraciones más largas y un ritmo ligeramente más rápido.',
   },
 ]
 
@@ -41,9 +41,9 @@ export default function LevelSelect() {
     <PageTransition>
       <ScreenWrapper>
         <BackButton />
-        <h1 className="text-2xl font-bold mt-4">Select Level</h1>
+        <h1 className="text-2xl font-bold mt-4">Seleccionar Nivel</h1>
         <p className="mt-2 text-sm text-pb-text-light">
-          Choose a difficulty level. You can change it later in Settings.
+          Elige un nivel de dificultad. Puedes cambiarlo luego.
         </p>
 
         <div className="grid grid-cols-1 gap-4 mt-6">
@@ -65,7 +65,7 @@ export default function LevelSelect() {
             onClick={() => navigate('/language')}
             className="w-32"
           >
-            Back
+            Atrás
           </Button>
           <Button
             size="md"
@@ -73,13 +73,13 @@ export default function LevelSelect() {
             disabled={!learningLevel}
             onClick={() => navigate('/scenarios')}
           >
-            Start
+            Comenzar
           </Button>
         </div>
 
         {learningLevel && (
           <p className="mt-4 text-xs text-pb-text-light">
-            Selected: <span className="font-bold">{selectedLabel}</span>
+            Seleccionado: <span className="font-bold">{selectedLabel}</span>
           </p>
         )}
       </ScreenWrapper>

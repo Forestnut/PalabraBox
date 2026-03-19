@@ -7,7 +7,7 @@ export function CardsLanguageSelect() {
     <PageTransition>
       <ScreenWrapper>
         <BackButton />
-        <h1 className="text-2xl font-bold mt-4">Flashcards: Language</h1>
+        <h1 className="text-2xl font-bold mt-4">Tarjetas: Idioma</h1>
       </ScreenWrapper>
     </PageTransition>
   )
@@ -18,7 +18,7 @@ export function CardsLevelSelect() {
     <PageTransition>
       <ScreenWrapper>
         <BackButton />
-        <h1 className="text-2xl font-bold mt-4">Flashcards: Level</h1>
+        <h1 className="text-2xl font-bold mt-4">Tarjetas: Nivel</h1>
       </ScreenWrapper>
     </PageTransition>
   )
@@ -29,7 +29,7 @@ export function CardsScenarioSelect() {
     <PageTransition>
       <ScreenWrapper>
         <BackButton />
-        <h1 className="text-2xl font-bold mt-4">Flashcards: Scenario</h1>
+        <h1 className="text-2xl font-bold mt-4">Tarjetas: Escenario</h1>
       </ScreenWrapper>
     </PageTransition>
   )
