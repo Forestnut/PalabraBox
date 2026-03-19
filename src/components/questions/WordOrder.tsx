@@ -1,5 +1,24 @@
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragOverlay,
+  defaultDropAnimationSideEffects,
+} from '@dnd-kit/core'
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  rectSortingStrategy,
+  useSortable
+} from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
+
 import type { Question } from '../../types'
 import { Card } from '../ui/Card'
 import { Button } from '../ui/Button'
@@ -19,23 +38,64 @@ interface WordObj {
   word: string
 }
 
+function SortableWord({ wordObj, onClick }: { wordObj: WordObj; onClick: () => void }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: wordObj.id })
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 10 : 1,
+    opacity: isDragging ? 0 : 1,
+  }
+
+  return (
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      <SortableItemUI 
+        word={wordObj.word} 
+        isDragging={isDragging} 
+        onClick={() => {
+          if (!isDragging) {
+             onClick()
+          }
+        }} 
+      />
+    </div>
+  )
+}
+
 export function WordOrder({ question, onAnswer, onPlaySound, disabled }: WordOrderProps) {
-  // Rozbijamy prawidłowe zdanie na tablicę stringów
   const correctWords = useMemo(() => question.correct_answer.split(' '), [question.correct_answer])
-  
-  // Łączymy z dystraktorami. Mapujemy na obiekt z unikalnym ID po to aby layoutId z Framera 
-  // widziało je jako te same divy gdy klikamy i skaczą one miedzy listami.
+
   const allWordObjects = useMemo<WordObj[]>(() => {
     const rawWords = shuffleArray([...correctWords, ...(question.wrong_answers || [])])
     return rawWords.map((w, i) => ({ id: `word-${i}-${w}`, word: w }))
   }, [correctWords, question.wrong_answers])
 
-  // Roboczy stany: Bank to dolne wycięcia, dropZone to górny pojemnik.
   const [bank, setBank] = useState<WordObj[]>(allWordObjects)
   const [dropZone, setDropZone] = useState<WordObj[]>([])
   const [isChecking, setIsChecking] = useState(false)
+  const [activeId, setActiveId] = useState<string | null>(null)
 
-  // Kliknięcie Puzzla z Banku - przenosi do strefy rzutu
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8, 
+        delay: 0,
+        tolerance: 5,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  )
+
   const handleMoveToDropZone = (item: WordObj, index: number) => {
     if (disabled || isChecking) return
     const newBank = [...bank]
@@ -45,89 +105,139 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled }: WordOrd
     onPlaySound?.('click')
   }
 
-  // Kliknięcie Puzzla ze strefy rzutu - oddaje do banku
-  const handleMoveToBank = (item: WordObj, index: number) => {
+  const handleMoveToBank = (item: WordObj) => {
     if (disabled || isChecking) return
-    const newDrop = [...dropZone]
-    newDrop.splice(index, 1)
-    setDropZone(newDrop)
+    setDropZone(dropZone.filter((x) => x.id !== item.id))
     setBank([...bank, item])
     onPlaySound?.('click')
   }
 
+  const handleDragStart = (event: { active: { id: string | number } }) => {
+    setActiveId(String(event.active.id))
+    onPlaySound?.('click')
+  }
+
+  const handleDragEnd = (event: { active: { id: string | number }; over: { id: string | number } | null }) => {
+    const { active, over } = event
+    setActiveId(null)
+
+    if (over && active.id !== over.id) {
+      setDropZone((items) => {
+        const oldIndex = items.findIndex((i) => i.id === active.id)
+        const newIndex = items.findIndex((i) => i.id === over.id)
+        return arrayMove(items, oldIndex, newIndex)
+      })
+      onPlaySound?.('click')
+    }
+  }
+
+  const handleDragCancel = () => {
+    setActiveId(null)
+  }
+
   const handleCheck = () => {
-    if (disabled || isChecking || dropZone.length !== correctWords.length) return
+    if (disabled || isChecking || dropZone.length < correctWords.length) return
     setIsChecking(true)
     
-    const isCorrect = dropZone.map(d => d.word).join(' ') === question.correct_answer
+    const currentSentence = dropZone.slice(0, correctWords.length).map(d => d.word).join(' ')
+    const isCorrect = currentSentence === question.correct_answer
+    
     onPlaySound?.(isCorrect ? 'correct' : 'wrong')
     
-    // Wizualne odczekanie na animację po sprawdzeniu (dla testów u Jakuba)
     setTimeout(() => {
       onAnswer(isCorrect)
       setIsChecking(false)
     }, 1500)
   }
 
+  const activeWordObj = useMemo(
+    () => dropZone.find((item) => item.id === activeId),
+    [activeId, dropZone]
+  )
+
+  const dropAnimation = {
+    sideEffects: defaultDropAnimationSideEffects({
+      styles: { active: { opacity: "0" } },
+    }),
+  }
+
   return (
-    <div className="flex flex-col gap-6 w-full max-w-lg mx-auto h-full px-2">
-      {/* 
-         STREFA RZUTU (DROP ZONE MOCKUP)
-         Tutaj Jakubowi z dnd-kit powinno wkroczyć <SortableContext> i wypluwać SortableItemy...
-      */}
-      <Card className="p-6 flex flex-col items-center justify-center relative min-h-[220px] bg-white mt-4 border-dashed border-4 border-pb-bg">
-        <div className="w-full flex flex-col items-center mb-6 border-b-2 border-pb-bg pb-4">
-          <span className="text-xl font-bold text-pb-dark text-center leading-tight">
-             {question.question_text || "Ordena la frase"}
-          </span>
-          {question.hint && (
-            <span className="text-xs font-bold text-pb-text-light uppercase tracking-wider mt-2">
-               {question.hint}
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+      onDragCancel={handleDragCancel}
+    >
+      <div className="flex flex-col gap-6 w-full max-w-lg mx-auto h-full px-2">
+        <Card className="p-6 flex flex-col items-center justify-center relative min-h-[220px] bg-white mt-4 border-dashed border-4 border-pb-bg">
+          <div className="w-full flex flex-col items-center mb-6 border-b-2 border-pb-bg pb-4">
+            <span className="text-xl font-bold text-pb-dark text-center leading-tight">
+              {question.question_text || "Ordena la frase"}
             </span>
-          )}
-        </div>
+            {question.hint && (
+              <span className="text-xs font-bold text-pb-text-light uppercase tracking-wider mt-2">
+                {question.hint}
+              </span>
+            )}
+          </div>
 
-        <div className="flex flex-wrap gap-3 w-full min-h-[100px] items-center justify-center content-start">
-          {dropZone.map((item, i) => (
-             <motion.div layoutId={item.id} key={item.id}>
-               <SortableItemUI 
-                 word={item.word} 
-                 onClick={() => handleMoveToBank(item, i)}
-               />
-             </motion.div>
-          ))}
-          {dropZone.length === 0 && (
-             <span className="text-pb-text-light/50 font-bold uppercase tracking-widest text-sm text-center">
-               Arrastra los bloques aquí
-             </span>
-          )}
-        </div>
-      </Card>
+          <SortableContext items={dropZone.map(d => d.id)} strategy={rectSortingStrategy}>
+            <div className="flex flex-wrap gap-3 w-full min-h-[100px] items-center justify-center content-start">
+              {dropZone.map((item) => (
+                 <SortableWord 
+                   key={item.id} 
+                   wordObj={item} 
+                   onClick={() => handleMoveToBank(item)} 
+                 />
+              ))}
+              {dropZone.length === 0 && (
+                 <span className="text-pb-text-light/50 font-bold uppercase tracking-widest text-sm text-center">
+                   Arrastra los bloques aquí
+                 </span>
+              )}
+            </div>
+          </SortableContext>
+        </Card>
 
-      {/* 
-         STREFA BANKU (DRAGGABLES SOURCE)
-      */}
-      <div className="flex-1 flex flex-col justify-end gap-6 mb-4 mt-auto pt-6">
-        <div className="flex flex-wrap justify-center gap-3 min-h-[120px] content-end">
-          {bank.map((item, i) => (
-            <motion.div layoutId={item.id} key={item.id}>
-              <SortableItemUI 
-                word={item.word} 
-                onClick={() => handleMoveToDropZone(item, i)}
-              />
-            </motion.div>
-          ))}
+        {/* BANK - Click to add to dropZone (nie jest DND) */}
+        <div className="flex-1 flex flex-col justify-end gap-6 mb-4 mt-auto pt-6">
+          <div className="flex flex-wrap justify-center gap-3 min-h-[120px] content-end">
+            <AnimatePresence>
+              {bank.map((item, i) => (
+                <motion.div 
+                  layoutId={item.id} 
+                  key={item.id}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                >
+                  <SortableItemUI 
+                    word={item.word} 
+                    onClick={() => handleMoveToDropZone(item, i)}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+          
+          <Button 
+            size="lg" 
+            disabled={isChecking || dropZone.length !== correctWords.length} 
+            onClick={handleCheck}
+            className="w-full mt-4"
+          >
+            COMPROBAR
+          </Button>
         </div>
-        
-        <Button 
-          size="lg" 
-          disabled={isChecking || dropZone.length !== correctWords.length} 
-          onClick={handleCheck}
-          className="w-full mt-4"
-        >
-          COMPROBAR
-        </Button>
       </div>
-    </div>
+      
+      <DragOverlay dropAnimation={dropAnimation}>
+        {activeWordObj ? (
+          <SortableItemUI word={activeWordObj.word} isDragging={true} /> 
+        ) : null}
+      </DragOverlay>
+    </DndContext>
   )
 }
