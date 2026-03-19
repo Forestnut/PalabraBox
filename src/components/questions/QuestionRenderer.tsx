@@ -1,6 +1,7 @@
 import type { Question } from '../../types'
 import { MultipleChoice } from './MultipleChoice'
 import { ImageMatch } from './ImageMatch'
+import { Listening } from './Listening'
 
 export interface QuestionRendererProps {
   question: Question
@@ -29,6 +30,15 @@ export function QuestionRenderer({
     case 'image_match':
       return (
         <ImageMatch
+          question={question}
+          onAnswer={onAnswered}
+          onPlaySound={onPlaySound}
+          disabled={disabled}
+        />
+      )
+    case 'listening':
+      return (
+        <Listening
           question={question}
           onAnswer={onAnswered}
           onPlaySound={onPlaySound}
