@@ -10,9 +10,9 @@ export default function CardsDeck() {
     <PageTransition>
       <ScreenWrapper>
         <BackButton />
-        <h1 className="text-2xl font-bold mt-4">Flashcards</h1>
-        <p>Scenario ID: {scenarioId}</p>
-        <p>Empty placeholder</p>
+        <h1 className="text-2xl font-bold mt-4">Tarjetas</h1>
+        <p>ID del escenario: {scenarioId}</p>
+        <p>Aún no implementado</p>
       </ScreenWrapper>
     </PageTransition>
   )

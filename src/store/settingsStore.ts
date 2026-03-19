@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export type LearningLanguage = 'english' | 'spanish'
+export type LearningLanguage = 'english'
 export type LearningLevel = 'beginner' | 'intermediate'
 
 interface SettingsState {

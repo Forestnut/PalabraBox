@@ -99,7 +99,7 @@ export function MultipleChoice({
       <Card className="p-5">
         <p className="text-lg font-bold">{question.question_text}</p>
         {question.hint && (
-          <p className="mt-2 text-sm text-pb-text-light">Hint: {question.hint}</p>
+          <p className="mt-2 text-sm text-pb-text-light">Pista: {question.hint}</p>
         )}
       </Card>
 
