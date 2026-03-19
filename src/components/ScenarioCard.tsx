@@ -1,4 +1,5 @@
 import type { ScenarioWithProgress } from '../hooks/useScenarios'
+import { cn } from '../utils/cn'
 
 interface Props {
   scenario: ScenarioWithProgress
@@ -12,31 +13,42 @@ export function ScenarioCard({ scenario, onClick }: Props) {
     <button
       onClick={() => !isLocked && onClick(scenario)}
       disabled={isLocked}
-      className={`
-        relative w-full p-4 rounded-box text-left transition-all duration-150 select-none
-        ${
-          isLocked
-            ? 'bg-gray-200 text-gray-500 cursor-not-allowed opacity-80'
-            : 'bg-white shadow-box hover:-translate-y-0.5 active:translate-y-0.5 hover:shadow-box-hover active:shadow-box-pressed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber'
-        }
-      `}
+      className={cn(
+        "relative flex flex-col items-center justify-center p-4 sm:p-6 border-4 rounded-3xl transition-all duration-300 aspect-square text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber",
+        isLocked 
+          ? "bg-pb-bg/50 border-pb-bg opacity-75 grayscale cursor-not-allowed" 
+          : "bg-white border-pb-bg shadow-box cursor-pointer hover:border-pb-amber hover:-translate-y-1 hover:shadow-box-hover active:translate-y-1 active:shadow-box-pressed group"
+      )}
     >
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-4xl">{isLocked ? '🔒' : emoji}</span>
+      {/* If locked, display big transparent padlock overlay */}
+      {isLocked && (
+        <div className="absolute inset-0 flex items-center justify-center bg-pb-bg/30 rounded-2xl z-10 backdrop-blur-[1px]">
+          <span className="text-6xl drop-shadow-md">🔒</span>
+        </div>
+      )}
+
+      {/* Stars Header */}
+      <div className="flex items-center justify-center w-full absolute top-3 sm:top-4 z-20">
         <div className="flex gap-1">
           {[1, 2, 3].map((star) => (
-            <span
-              key={star}
-              className={`text-xl ${!isLocked && star <= stars ? 'text-pb-amber' : 'text-gray-300'}`}
+            <span 
+              key={star} 
+              className={cn("text-lg sm:text-xl drop-shadow-sm", !isLocked && star <= stars ? 'text-pb-amber' : 'text-pb-bg drop-shadow-none')}
             >
               ★
             </span>
           ))}
         </div>
       </div>
-      
-      <h3 className="font-bold text-lg mb-1">{title_display}</h3>
-      {description && <p className="text-sm opacity-80">{description}</p>}
+
+      <span className={cn(
+        "text-5xl sm:text-6xl mb-2 sm:mb-3 mt-4 transition-transform duration-300",
+        !isLocked && "group-hover:scale-110 group-hover:-rotate-6 drop-shadow-sm"
+      )}>
+        {emoji}
+      </span>
+      <h2 className="text-base sm:text-lg font-black text-pb-dark leading-tight relative z-20">{title_display}</h2>
+      {description && <p className="text-[10px] sm:text-xs text-pb-text-light font-bold mt-1 line-clamp-2 relative z-20">{description}</p>}
     </button>
   )
 }
