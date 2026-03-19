@@ -1,5 +1,7 @@
 import { AnimatePresence } from 'framer-motion'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import { audioService } from './services/audioService'
 
 import SplashScreen from './pages/SplashScreen'
 import MainMenu from './pages/MainMenu'
@@ -33,5 +35,9 @@ function AppRoutes() {
 }
 
 export default function App() {
+  useEffect(() => {
+    audioService.preloadSounds()
+  }, [])
+
   return <AppRoutes />
 }

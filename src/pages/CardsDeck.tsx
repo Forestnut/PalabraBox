@@ -45,7 +45,7 @@ export default function CardsDeck() {
 
         {/* Card Component Rendering Centered */}
         <div className="flex-1 flex flex-col justify-center items-center w-full z-0 px-2 sm:px-4 perspective-1000">
-          <FlashCard word={currentWord} />
+          <FlashCard key={currentWord.id} word={currentWord} />
         </div>
 
         {/* Navigation Controlls */}
