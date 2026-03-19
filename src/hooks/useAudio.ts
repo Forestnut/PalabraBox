@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from 'react';
-import { audioService, SoundEffectType } from '../services/audioService';
+import { audioService, type SoundEffectType } from '../services/audioService';
 
 /**
  * A handy hook to play sound effects anywhere in a component
