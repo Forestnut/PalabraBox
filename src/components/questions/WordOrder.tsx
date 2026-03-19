@@ -170,7 +170,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled }: WordOrd
       onDragCancel={handleDragCancel}
     >
       <div className="flex flex-col gap-6 w-full max-w-lg mx-auto h-full px-2">
-        <Card className="p-6 flex flex-col items-center justify-center relative min-h-[220px] bg-white mt-4 border-dashed border-4 border-pb-bg">
+        <Card className="p-6 flex flex-col items-center justify-center relative min-h-55 bg-white mt-4 border-dashed border-4 border-pb-bg">
           <div className="w-full flex flex-col items-center mb-6 border-b-2 border-pb-bg pb-4">
             <span className="text-xl font-bold text-pb-dark text-center leading-tight">
               {question.question_text || "Ordena la frase"}
@@ -183,7 +183,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled }: WordOrd
           </div>
 
           <SortableContext items={dropZone.map(d => d.id)} strategy={rectSortingStrategy}>
-            <div className="flex flex-wrap gap-3 w-full min-h-[100px] items-center justify-center content-start">
+            <div className="flex flex-wrap gap-3 w-full min-h-25 items-center justify-center content-start">
               {dropZone.map((item) => (
                  <SortableWord 
                    key={item.id} 
@@ -202,7 +202,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled }: WordOrd
 
         {/* BANK - Click to add to dropZone (nie jest DND) */}
         <div className="flex-1 flex flex-col justify-end gap-6 mb-4 mt-auto pt-6">
-          <div className="flex flex-wrap justify-center gap-3 min-h-[120px] content-end">
+          <div className="flex flex-wrap justify-center gap-3 min-h-30 content-end">
             <AnimatePresence>
               {bank.map((item, i) => (
                 <motion.div 
