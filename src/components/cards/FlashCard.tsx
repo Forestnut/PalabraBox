@@ -11,15 +11,15 @@ export function FlashCard({ word }: FlashCardProps) {
 
   return (
     <div 
-      className="w-full max-w-sm aspect-[3/4] [perspective:1000px] mx-auto cursor-pointer group"
+      className="w-full max-w-sm aspect-3/4 perspective-[1000px] mx-auto cursor-pointer group"
       onClick={() => setIsFlipped(!isFlipped)}
     >
       <div className={cn(
-        "relative w-full h-full transition-all duration-500 [transform-style:preserve-3d]",
-        isFlipped && "[transform:rotateY(180deg)]"
+        "relative w-full h-full transition-all duration-500 transform-3d",
+        isFlipped && "transform-[rotateY(180deg)]"
       )}>
         {/* Front */}
-        <div className="absolute inset-0 w-full h-full bg-white rounded-3xl shadow-box border-4 border-pb-bg flex flex-col items-center justify-center p-6 [backface-visibility:hidden]">
+        <div className="absolute inset-0 w-full h-full bg-white rounded-3xl shadow-box border-4 border-pb-bg flex flex-col items-center justify-center p-6 backface-hidden">
           <span className="text-[120px] leading-none mb-6 drop-shadow-md">{word.image_emoji || '❓'}</span>
           <h2 className="text-4xl font-black text-pb-dark mb-2 text-center">{word.word}</h2>
           <span className="text-pb-amber font-bold text-sm tracking-widest uppercase">{word.category}</span>
@@ -31,7 +31,7 @@ export function FlashCard({ word }: FlashCardProps) {
         </div>
 
         {/* Back */}
-        <div className="absolute inset-0 w-full h-full bg-pb-amber rounded-3xl shadow-box border-4 border-pb-amber flex flex-col items-center justify-center p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] text-white">
+        <div className="absolute inset-0 w-full h-full bg-pb-amber rounded-3xl shadow-box border-4 border-pb-amber flex flex-col items-center justify-center p-6 backface-hidden transform-[rotateY(180deg)] text-white">
           <span className="text-xl font-bold opacity-80 mb-2">Traducción</span>
           <h2 className="text-5xl font-black mb-8 text-center">{word.translation_es || word.translation_en || '...'}</h2>
           
