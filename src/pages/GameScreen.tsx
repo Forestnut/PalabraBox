@@ -1,9 +1,12 @@
 import { useParams } from 'react-router-dom'
+import { useState, useCallback, useRef } from 'react'
 
 import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { BackButton } from '../components/layout/BackButton'
+import { Mascot, type MascotMood } from '../components/ui/Mascot'
 import { useGame } from '../hooks/useGame'
+import { useAudio } from '../hooks/useAudio'
 import { useGameStore } from '../store/gameStore'
 import { QuestionRenderer } from '../components/questions/QuestionRenderer'
 
@@ -22,6 +25,23 @@ export default function GameScreen() {
     score,
   } = useGame(scenarioId)
   const { status } = useGameStore()
+  const { playSound } = useAudio()
+
+  const [boxiMood, setBoxiMood] = useState<MascotMood>('idle')
+  const boxiTimeoutRef = useRef<number | null>(null)
+
+  const handlePlaySound = useCallback((type: 'click' | 'correct' | 'wrong') => {
+    playSound(type)
+    if (type === 'correct') {
+      setBoxiMood('happy')
+      if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
+      boxiTimeoutRef.current = window.setTimeout(() => setBoxiMood('idle'), 1500)
+    } else if (type === 'wrong') {
+      setBoxiMood('wrong')
+      if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
+      boxiTimeoutRef.current = window.setTimeout(() => setBoxiMood('idle'), 1200)
+    }
+  }, [playSound])
 
   if (loading) {
     return (
@@ -62,11 +82,14 @@ export default function GameScreen() {
   return (
     <PageTransition>
       <ScreenWrapper>
-        <div className="flex items-center justify-between mb-6">
-          <BackButton />
-          <div className="flex items-center gap-4 font-bold text-xl">
+        <div className="flex items-center justify-between mb-4">
+          <BackButton label="←" />
+          <div className="flex-1 flex justify-center mt-4">
+            <Mascot mood={boxiMood} size="sm" />
+          </div>
+          <div className="flex items-center gap-2 sm:gap-4 font-bold text-lg sm:text-xl">
             <span className="text-pb-amber drop-shadow-sm">🏆 {score}</span>
-            <span className="text-pb-error drop-shadow-sm tracking-widest">
+            <span className="text-pb-error drop-shadow-sm tracking-widest text-sm sm:text-xl">
               {Array.from({ length: maxLives || 3 }).map((_, i) => (
                 <span key={i} className={i < lives ? 'opacity-100' : 'opacity-30'}>
                   ❤️
@@ -76,7 +99,7 @@ export default function GameScreen() {
           </div>
         </div>
 
-        <div className="w-full bg-pb-amber/20 h-4 rounded-full mb-8 shadow-inner overflow-hidden border-2 border-pb-amber/30">
+        <div className="w-full bg-pb-amber/20 h-4 rounded-full mb-6 shadow-inner overflow-hidden border-2 border-pb-amber/30">
           <div
             className="bg-pb-amber h-full rounded-full transition-all duration-500 ease-out relative"
             style={{ width: `${(currentQuestionIndex / questions.length) * 100}%` }}
@@ -92,6 +115,7 @@ export default function GameScreen() {
             handleAnswer(isCorrect)
             goToNext()
           }}
+          onPlaySound={handlePlaySound}
         />
       </ScreenWrapper>
     </PageTransition>

@@ -4,6 +4,7 @@ import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
+import { Mascot } from '../components/ui/Mascot'
 import { useQuickProgress } from '../hooks/useQuickProgress'
 
 export default function MainMenu() {
@@ -26,11 +27,9 @@ export default function MainMenu() {
           ⚙️
         </button>
 
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-36 h-36 rounded-xl bg-pb-amber/20 shadow-box flex items-center justify-center">
-            <img src="/BoxLogo.svg" alt="PalabraBox Logo" className="w-24 h-24 object-contain drop-shadow-md" />
-          </div>
-          <h1 className="text-4xl font-extrabold">PalabraBox</h1>
+        <div className="flex flex-col items-center gap-4 mb-2">
+          <Mascot mood="idle" size="lg" className="drop-shadow-md mt-4" />
+          <h1 className="text-4xl font-extrabold mt-4">PalabraBox</h1>
         </div>
 
         <div className="w-full flex flex-col gap-4">

@@ -89,7 +89,7 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
   - Animowany czysty CSS/SVG z idle-loops mrugający do gracza czy wybuchajajcy serduszkami na dobrym wyniku.
 
 ### 🔗 Integracja Fazy 3
-- [ ] **TASK-I3:** Spięcie drag&drop razem z generatorem zdania, przetesowanie responsywności Boxiego.
+- [x] **TASK-I3:** Spięcie drag&drop razem z generatorem zdania, przetesowanie responsywności Boxiego.
 
 ---
 

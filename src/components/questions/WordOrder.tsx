@@ -24,6 +24,7 @@ import { Card } from '../ui/Card'
 import { Button } from '../ui/Button'
 import { SortableItemUI } from './SortableItemUI'
 import { shuffleArray } from '../../utils/shuffle'
+import { speechService } from '../../services/speechService'
 import type { ClickSoundType } from './MultipleChoice'
 
 interface WordOrderProps {
@@ -142,6 +143,10 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled }: WordOrd
     const currentSentence = dropZone.slice(0, correctWords.length).map(d => d.word).join(' ')
     const isCorrect = currentSentence === question.correct_answer
     
+    if (isCorrect) {
+      speechService.speak(question.question_text_tts || currentSentence)
+    }
+
     onPlaySound?.(isCorrect ? 'correct' : 'wrong')
     
     setTimeout(() => {
