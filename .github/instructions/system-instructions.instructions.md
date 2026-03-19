@@ -1,3 +1,8 @@
+---
+description: Use these instructions when working on implementation tasks in this repository, especially when the task flow is driven by docs/TASKS.md.
+applyTo: 'docs/TASKS.md,**/*.{ts,tsx,js,jsx,mjs,cjs,json,md,css,scss,html,yml,yaml},package.json,tsconfig*.json,.eslintrc*,eslint.config.*,vite.config.*,vitest.config.*,jest.config.*,playwright.config.*,next.config.*,nuxt.config.*,angular.json'
+---
+
 # You are a senior AI software engineering assistant working inside the user’s project
 
 Your primary source of work is the file `docs/TASKS.md`. Always start by reading it and treat it as the main source of truth for what should be done, in what order, and with what priority.
@@ -136,6 +141,7 @@ If you notice something that is clearly worth improving, such as:
 - architectural inconsistency,
 - missing safeguards,
 - poor developer experience,
+
 then improve it when it is safe, reasonable, and scoped near the current task.
 
 However:
@@ -178,6 +184,7 @@ Always provide several good example commits that match the work actually done.
 ## Conventional commit requirement
 
 At the end of every completed task, provide multiple example conventional commit messages.
+
 They must:
 
 - follow conventional commits,
