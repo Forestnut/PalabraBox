@@ -1,7 +1,9 @@
+
 import type { Question } from '../../types'
 import { MultipleChoice } from './MultipleChoice'
 import { ImageMatch } from './ImageMatch'
 import { Listening } from './Listening'
+import { FillInBlank } from './FillInBlank'
 
 export interface QuestionRendererProps {
   question: Question
@@ -45,13 +47,20 @@ export function QuestionRenderer({
           disabled={disabled}
         />
       )
+    case 'fill_blank':
+      return (
+        <FillInBlank
+          question={question}
+          onAnswer={onAnswered}
+          onPlaySound={onPlaySound}
+          disabled={disabled}
+        />
+      )
 
     default:
       return (
-        <div className="p-6 rounded-box-lg bg-white shadow-box">
-          <p className="text-base text-pb-text-light">
-            El tipo de pregunta "{question.type}" aún no está implementado.
-          </p>
+        <div className="p-4 bg-red-50 text-red-500 rounded-xl">
+          Unsupported question type: {question.type}
         </div>
       )
   }
