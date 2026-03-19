@@ -1,220 +1,113 @@
-# ✅ Project Tasks & Priorities
+# ✅ Harmonogram, Zadania i Główne Źródło Prawdy (TASKS.md)
 
-This document tracks the progress of **PalabraBox** development. Tasks are organized into 3 phases: MVP, Important, and Nice-to-Have.
+Ten plik to **GŁÓWNE ŹRÓDŁO WIEDZY** dla projektu **PalabraBox**. Zarządza absolutnie wszystkimi etapami powstawania aplikacji i został zaprojektowany z myślą o pełnej autonomii działania dla programistów oraz agentów AI.
 
-**Project Timeline:** 10 Days (March 17–26, 2026)
-**Owners:** Jakub (J), Błażej (B) — both fullstack.
-
----
-
-## 🚀 Phase 1: MVP (Minimum Viable Product)
-
-*Goal: Working game loop (Select → Play → Results) with 2 scenarios.*
-
-### TASK-1: Project Initialization
-
-**Suggested owner:** J+B · **Estimate:** 1h · **Day:** 1
-
-- [x] Clear default Vite boilerplate
-- [x] Configure Tailwind CSS 4 with `pb-*` design tokens (see [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md))
-- [x] Set up project folder structure as per [ARCHITECTURE.md](./ARCHITECTURE.md)
-- [x] Configure `vite-plugin-pwa` for basic manifest/icons
-
-### TASK-2: Design System Foundations
-
-**Suggested owner:** B · **Estimate:** 3h · **Day:** 1
-
-- [x] Create `index.css` with global variables and `@font-face` (Nunito)
-- [x] Implement the "Box" shadow utilities in Tailwind
-- [x] Create base UI components: `Button`, `Card`, `ScreenWrapper`
-- [x] **Acceptance:** Components handle hover/focus/active states with "box lift" effect
-
-### TASK-3: Supabase Setup & Seed
-
-**Suggested owner:** J · **Estimate:** 2h · **Day:** 1
-
-- [x] Create tables: `scenarios`, `questions`, `words` (see [DATABASE.md](./DATABASE.md))
-- [x] Configure RLS policies (Public Read)
-- [x] Seed database with initial content (2 scenarios: English Colors, Spanish Animals)
-- [x] Create `src/lib/supabase.ts` client
-
-### TASK-4: Zustand Stores
-
-**Suggested owner:** J · **Estimate:** 2h · **Day:** 2
-
-- [x] Implement `gameStore.ts`: status, score, lives, current question
-- [x] Implement `settingsStore.ts`: volumes, speeds, language
-- [x] **Acceptance:** Stores are reactive and accessible from any component
-
-### TASK-5: Routing & Navigation
-
-**Suggested owner:** B · **Estimate:** 2h · **Day:** 2
-
-- [x] Set up `react-router-dom` with all routes from [ARCHITECTURE.md](./ARCHITECTURE.md)
-- [x] Create empty page components for all routes
-- [x] Implement `PageTransition` wrapper with Framer Motion
-- [x] Implement `BackButton` component
-
-### TASK-6: Splash Screen & Main Menu
-
-**Suggested owner:** B · **Estimate:** 3h · **Day:** 2
-
-- [x] Splash Screen logo animation (SVG/📦 emoji)
-- [x] Main Menu layout with "JUGAR" and "TARJETAS" buttons
-- [x] Quick progress panel (mocked or from storage)
-- [x] **Acceptance:** Smooth transition from Splash → Menu
-
-### TASK-7: Language & Level Selection
-
-**Suggested owner:** B · **Estimate:** 3h · **Day:** 3
-
-- [x] Language selection cards (flag + name)
-- [x] Level selection cards with detailed descriptions
-- [x] Store selection in Zustand
-- [x] **Acceptance:** Selection flow saves choices and navigates to Scenarios
-
-### TASK-8: Scenario Selection Grid
-
-**Suggested owner:** J · **Estimate:** 4h · **Day:** 3
-
-- [x] `useScenarios` hook to fetch data from Supabase
-- [x] `ScenarioCard` component with box theme
-- [x] Implement lock/unlock logic based on `localStorage` progress
-- [x] **Acceptance:** Grid displays icons, stars, and handles locked state correctly
-
-### TASK-9: Game Engine (Core Hook)
-
-**Suggested owner:** J · **Estimate:** 5h · **Day:** 4
-
-- [x] `useGame` hook logic: fetching questions, shuffling, timer-less flow
-- [x] Scoring logic (+10 per correct)
-- [x] Lives logic (-1 heart per wrong)
-- [x] **Acceptance:** Correctly manages state transitions and question sequence
-
-### TASK-10: Question Renderer - Multiple Choice
-
-**Suggested owner:** B · **Estimate:** 4h · **Day:** 4
-
-- [x] `QuestionRenderer` component
-- [x] `MultipleChoice` layout with 4 answer tiles
-- [x] Feedback state (green/red) after selection
-- [x] Handlers for click sounds
-
-### TASK-11: Results Screen
-
-**Suggested owner:** B · **Estimate:** 4h · **Day:** 5
-
-- [x] Score display and calculated stars (0-3)
-- [x] Confetti animation on success (>70%)
-- [x] Success/Game Over variants
-- [x] **Acceptance:** Properly saves progress to `localStorage` on mount
-
-### TASK-12: Progress Persistence
-
-**Suggested owner:** J · **Estimate:** 3h · **Day:** 5
-
-- [x] `progressService.ts` to sync Zustand ↔ localStorage
-- [x] Streak calculation logic
-- [x] Total points aggregator
+**Oś czasu projektu:** 10 Dni (17–26 Marca 2026)  
+**Właściciele:**
+- **Jakub (J)** - Architektura Danych, Supabase, Zustand, Logika Biznesowa, Integracje Usług, Custom Hooks, Backend.
+- **Błażej (B)** - Interfejs Użytkownika (UI), Routing, Tailwind, Komponenty Prezencyjne, UX/UI, Framer Motion, Mocks.
 
 ---
 
-## 🟡 Phase 2: Important (Content & Polish)
-
-*Goal: Full content, all question types, sound, and settings.*
-
-### TASK-13: Question Renderer - Image Match
-
-**Suggested owner:** B · **Estimate:** 2h · **Day:** 6
-
-- [ ] Image/Emoji display component
-- [ ] Integration into `QuestionRenderer`
-
-### TASK-14: Question Renderer - Listening
-
-**Suggested owner:** J · **Estimate:** 3h · **Day:** 6
-
-- [ ] `SpeechService` implementation (Web Speech API)
-- [ ] `SpeakButton` component with pulsing animation
-- [ ] TTS integration into game store
-
-### TASK-15: Sound Effects & Service
-
-**Suggested owner:** B · **Estimate:** 2h · **Day:** 6
-
-- [ ] `audioService` with Howler.js
-- [ ] Trigger sounds: correct, wrong, click, victory, game over
-- [ ] **Acceptance:** Volume settings correctly apply to sounds
-
-### TASK-16: Flashcard System (MVP)
-
-**Suggested owner:** J · **Estimate:** 4h · **Day:** 7
-
-- [ ] `useWords` hook
-- [ ] `FlashCard` component with 3D flip animation
-- [ ] Navigation (prev/next) and count (e.g., 5/15)
-
-### TASK-17: Settings Screen
-
-**Suggested owner:** B · **Estimate:** 4h · **Day:** 7
-
-- [ ] Volume sliders (Sound & TTS)
-- [ ] TTS speed selector
-- [ ] App information & credits
-
-### TASK-18: Content Expansion (12 scenarios)
-
-**Suggested owner:** J · **Estimate:** 4h · **Day:** 8
-
-- [ ] Finalize content for all 12 scenarios in Supabase
-- [ ] Ensure balanced difficulty between Beginner/Intermediate
-- [ ] Add categories for flashcards
-
-### TASK-19: PWA Finalization
-
-**Suggested owner:** B · **Estimate:** 2h · **Day:** 8
-
-- [ ] Final icons, splash screen, and color theme
-- [ ] Offline caching for shell and sounds
+## 🤖 Instrukcje dla Agentów AI (Kluczowe)
+Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
+1. **Niezależność Środowisk:** Jakub nie pisze komponentów UI, a Błażej nie pisze logiki. Agent modyfikuje tylko pliki właściwe zadaniu.
+2. **Mockowanie i Atrapy (Klucz do równoległości):**
+   - Jeśli Błażej (B) dostarcza UI a brakuje danych (J) $\rightarrow$ wstaw mock data (`const MOCK_WORDS = [...]`).
+   - Jeśli Jakub (J) dostarcza logikę a brakuje guzików (B) $\rightarrow$ wystaw hooka w pliku i napisz mikro-komponent testowy w dowolnym rogu, który tylko go odpala.
+3. **Zadania Integracyjne (J+B):** Punkty spotkań (Merge Points), w których mokowane dane zamieniane są na realne połączenia. Są one zazwyczaj zamykane pod koniec każdej fazy.
 
 ---
 
-## 🟢 Phase 3: Nice-to-Have (Stretch Goals)
+## 🚀 Faza 1: MVP (Minimum Viable Product) [ZAKOŃCZONA]
+*Cel fazy: Działająca pętla gry. Rozdzielenie ról nastąpiło po początkowej konfiguracji.*
 
-*Goal: Premium features and extra question types.*
+### 🛠️ Zadania Wspólne MVP
+- [x] **TASK-0:** Inicjalizacja Vite, Tailwind, folderów i PWA w postaci wyjściowej. *(J+B)*
 
-### TASK-20: Question Renderer - Fill in the Blank
+### 🧠 Ścieżka Jakuba (J)
+- [x] **TASK-J1:** Baza danych Supabase, tabele (`scenarios`, `questions`, `words`), RLS, export typów do TypeScript.
+- [x] **TASK-J2:** Stan Globalny (`gameStore.ts`, `settingsStore.ts`) niezależny od renderingu Reacta.
+- [x] **TASK-J3:** Logika pobierania i przeliczania gry: `useScenarios`, `useGame`, losowanie punktów i sumowanie żyć.
+- [x] **TASK-J4:** Zapis stanu do LocalStorage z `progressService.ts`.
 
-**Suggested owner:** B · **Estimate:** 3h · **Day:** 9
+### 🎨 Ścieżka Błażeja (B)
+- [x] **TASK-B1:** Wyprowadzenie klas CSS, `Box shadow` w Tailwind. Przygotowanie Button, Card.
+- [x] **TASK-B2:** Statyczny Skeleton pod Routing + ładowarki w `react-router-dom` bez twardych linków.
+- [x] **TASK-B3:** Layout `SplashScreen` z logiem emoji i layout podstawowego `MainMenu`.
+- [x] **TASK-B4:** Ekrany Wyboru (Wizualnie). Kafle Scenariuszy i ekran konfiguracyjny (Mock data).
+- [x] **TASK-B5:** Ekran gry `QuestionRenderer` pod typ *MultipleChoice* + prosta prezentacja wyniku w `ResultsScreen.tsx`.
 
-- [ ] Text-with-gap layout
-- [ ] Interaction: click word to fill gap
+### 🔗 Integracja MVP
+- [x] **TASK-I1:** Wpięcie realnych hooków pobierania API na wyprodukowane i oskryptowane widoki.
 
-### TASK-21: Question Renderer - Word Order
+---
 
-**Suggested owner:** J · **Estimate:** 5h · **Day:** 9
+## 🟡 Faza 2: Zawartość, Formaty i Audio (Important) [W TRAKCIE]
+*Rozbudowa wariantów pytań i obsługa multimediów. Błażej dba o styl, Jakub buduje mechanikę pod maską.*
 
-- [ ] Integration of `@dnd-kit` for sorting
-- [ ] Mobile-friendly drag & drop
+### 🧠 Ścieżka Jakuba (J)
+- [ ] **TASK-J5: Usługa Speech (Web Speech API / TTS)**
+  - Implementacja instancji `SpeechService.ts`. Płynne łączenie TTS ze zdarzeniem, by można go zawołać z dowolnego miejsca.
+- [ ] **TASK-J6: Przechwytywanie Fiszek - Logika (useWords)**
+  - Opracowanie logiki pobierania i segregowania wyrazów z bazy Supabase w trybie Offline (zapis na cache przez localStorage lub PWA) `src/hooks/useWords.ts`.
+- [ ] **TASK-J7: Kontent i Seeding**
+  - Stworzenie pełnej konfiguracji 12 modułów językowych w bazie.  
+- [ ] **TASK-J8: Stan Audio dla Howler.js**
+  - Opracowanie metod i serwisu ładującego SFX w pamięć podręczną gry przy starcie do szybkiego użycia w hooku. Nasłuch ustawień Mute.
 
-### TASK-22: Mascot Animations ("Boxi")
+### 🎨 Ścieżka Błażeja (B)
+- [ ] **TASK-B6: Layout Pytania Obrazkowego (Image Match)**
+  - Ostylowanie opcji i graficzne podpięcie wielkiego pola `<Emoji>` jako pytania.
+- [ ] **TASK-B7: Layout i Guzik Słuchania (Listening)**
+  - Zbudowanie pulsującego `<button>` ze stanem (Mock) "Playing" i przekształcenie wizualne list odpowiedzi z 2x2 na ułożenie szerszych linijek tekstu.
+- [ ] **TASK-B8: Ekran Zmiany Opcji (Settings UI)**
+  - Układ pionowy na komponenty Drag Sliders.
+- [ ] **TASK-B9: Layout Fiszek Karcianych (Flashcard UI)**
+  - Czysto wizualny komponent `FlashCard.tsx` rotujący się w efekcie 3D flipu na CSS oraz kontrolki góra/dół.
 
-**Suggested owner:** B · **Estimate:** 4h · **Day:** 9
+### 🔗 Integracja Fazy 2
+- [ ] **TASK-I2:** Błażej nałożony na dźwięki Jakuba używa ich w komponentach i podłącza event `onPlay` do guzików w ui zadań ze ścieżki słuchowej.
 
-- [ ] CSS/SVG Mascot that reacts to answers
-- [ ] Idle animations on menu
+---
 
-### TASK-23: Advanced Statistics
+## 🟢 Faza 3: Zaawansowana Mechanika Rozgrywki (Stretch Goals)
+*Komplikacje pytań polegające na sortowaniu słów i budowie logiki DND.*
 
-**Suggested owner:** J · **Estimate:** 3h · **Day:** 10
+### 🧠 Ścieżka Jakuba (J)
+- [ ] **TASK-J9: Analityka i Moduł Raportu**
+  - Prosty system kalkulacji "słów z najgorszym wynikiem" na bazie poprzednich wejść gracza w celach personalizacji fiszek.
+- [ ] **TASK-J10: Algorytm Dnd-Kit & Moduł Sensors**
+  - Jakub instaluje i obudowuje `@dnd-kit/core`. Zajmuje się hookami dotykowymi na komórki (Sensory pointer/touch), tak aby wykluczyć bug scrollowania bez męczenia stylowania.
 
-- [ ] Time spent learning
-- [ ] Most missed words report
+### 🎨 Ścieżka Błażeja (B)
+- [ ] **TASK-B10: Wizualne Uzupełnianie Luk**
+  - Wyrysowanie interfejsu zdań z odstępami ("_____") animowane tak, żeby po kliknięciu wyraz z banku odlatywał w wyznaczoną dziurę (Framer Motion `layoutId`).
+- [ ] **TASK-B11: Layout Układanki DND (Word Order)**
+  - Błażej wyłącznie dostosowuje grid i style elementów `SortableItem`, ustawiając odległości cieni pod palcem bez ingerencji w logikę przesuwania.
+- [ ] **TASK-B12: Mascot Wprowadzenie - Boxi Pudełko**
+  - Animowany czysty CSS/SVG z idle-loops mrugający do gracza czy wybuchajajcy serduszkami na dobrym wyniku.
 
-### TASK-24: Deployment & Final Polish
+### 🔗 Integracja Fazy 3
+- [ ] **TASK-I3:** Spięcie drag&drop razem z generatorem zdania, przetesowanie responsywności Boxiego.
 
-**Suggested owner:** J+B · **Estimate:** 3h · **Day:** 10
+---
 
-- [ ] Build and deploy to Vercel
-- [ ] Final bug-hunt on mobile devices
-- [ ] Updated README and project presentation
+## 🚀 Faza 4: Dostępność Offline i Szlifowanie (Wyjście ze strefy Stretch)
+*Finalne uderzenie - dedykowane na ostatnie dni z 10-dniowego deadline-u.*
+
+### 🧠 Ścieżka Jakuba (J)
+- [ ] **TASK-J11: PWA Cache Fiszek i Wyników**
+  - Konfiguracja logiki workbox-a, by tryb "Tarjetas/Fiszki" działał bez włączonego Wifi, zapis do lokalnego cache API.
+- [ ] **TASK-J12: Audyt bezpieczeństwa i czyszczenie stanu**
+  - Rozwiązanie problemów z resetowaniem cache na twardo w razie przestarzałych migracji czy starych stanów zapisu graczy.
+
+### 🎨 Ścieżka Błażeja (B)
+- [ ] **TASK-B13: Ostatnie poprawki UX / Mobilne wpadki**
+  - Blokada podwójnego wciskania przycisków w Mobile Safari/Chrome. Naprawa wycieków cieni i ukrywanie "scroll-x". Poprawa ikon PWA.
+- [ ] **TASK-B14: Konfetti w wywiadówkach / Detale**
+  - Zwiększenie satysfakcji użytkownika o nowe stany kolorystyczne na ekranach końcowych.
+
+### 🔗 Integracja Faza 4 i Deploy
+- [ ] **TASK-I4:** Pełne manualne przejście Quality Assurance na 3 różnych urządzeniach.
+- [ ] **TASK-I5:** Eksport na Vercel z ostrym lockiem wersji i oddanie MVP inwestorom.
