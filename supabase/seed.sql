@@ -125,7 +125,9 @@ INSERT INTO public.questions (scenario_id, type, question_text, question_text_tt
 ('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', 'How do you say "rojo" in English?', 'red', 'red', ARRAY['white', 'purple', 'yellow'], NULL, 7),
 ('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'listening', 'Listen and select the correct word', 'purple', 'purple', ARRAY['yellow', 'orange', 'green'], NULL, 8),
 ('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'image_match', 'Which word represents 🟣?', 'purple', 'purple', ARRAY['white', 'yellow', 'blue'], '🟣', 9),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', 'How do you say "naranja" in English?', 'orange', 'orange', ARRAY['white', 'red', 'green'], NULL, 10);
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', 'How do you say "naranja" in English?', 'orange', 'orange', ARRAY['white', 'red', 'green'], NULL, 10),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'Arrange the words correctly', 'the color is red', 'the color is red', ARRAY['sun', 'not'], NULL, 11),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'fill_blank', 'The color of a frog is ____.', 'green', 'green', ARRAY['red', 'blue', 'white'], NULL, 12);
 
 -- Questions for Animals
 INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
