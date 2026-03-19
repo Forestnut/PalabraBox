@@ -20,7 +20,7 @@ export default function MainMenu() {
       <ScreenWrapper className="flex flex-col items-center gap-6">
         <div className="flex flex-col items-center gap-4">
           <div className="w-36 h-36 rounded-xl bg-pb-amber/20 shadow-box flex items-center justify-center">
-            <span className="text-6xl">📦</span>
+            <img src="/BoxLogo.svg" alt="PalabraBox Logo" className="w-24 h-24 object-contain drop-shadow-md" />
           </div>
           <h1 className="text-4xl font-extrabold">PalabraBox</h1>
         </div>
