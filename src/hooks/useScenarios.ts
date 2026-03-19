@@ -14,7 +14,7 @@ export function useScenarios() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const learningLanguage = useSettingsStore((state) => state.learningLanguage) || 'spanish'
+  const learningLanguage = useSettingsStore((state) => state.learningLanguage) || 'english'
   const learningLevel = useSettingsStore((state) => state.learningLevel) || 'beginner'
 
   useEffect(() => {

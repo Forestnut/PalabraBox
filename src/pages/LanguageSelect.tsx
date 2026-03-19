@@ -10,8 +10,7 @@ import { useSettingsStore } from '../store/settingsStore'
 import type { LearningLanguage } from '../store/settingsStore'
 
 const languages: Array<{ key: LearningLanguage; label: string; emoji: string }> = [
-  { key: 'english', label: 'English', emoji: '🇺🇸' },
-  { key: 'spanish', label: 'Español', emoji: '🇪🇸' },
+  { key: 'english', label: 'Inglés', emoji: '🇺🇸' },
 ]
 
 export default function LanguageSelect() {
@@ -27,9 +26,9 @@ export default function LanguageSelect() {
     <PageTransition>
       <ScreenWrapper>
         <BackButton />
-        <h1 className="text-2xl font-bold mt-4">Select Language</h1>
+        <h1 className="text-2xl font-bold mt-4">Seleccionar Idioma</h1>
         <p className="mt-2 text-sm text-pb-text-light">
-          Choose the language you want to learn. You can change it later in Settings.
+          Elige el idioma que quieres aprender. Entorno optimizado para hispanohablantes.
         </p>
 
         <div className="grid grid-cols-1 gap-4 mt-6">
@@ -51,7 +50,7 @@ export default function LanguageSelect() {
             onClick={() => navigate('/menu')}
             className="w-32"
           >
-            Anuluj
+            Cancelar
           </Button>
           <Button
             size="md"
@@ -59,13 +58,13 @@ export default function LanguageSelect() {
             disabled={!learningLanguage}
             onClick={() => navigate('/level')}
           >
-            Continue
+            Continuar
           </Button>
         </div>
 
         {learningLanguage && (
           <p className="mt-4 text-xs text-pb-text-light">
-            Selected: <span className="font-bold">{selectedLabel}</span>
+            Seleccionado: <span className="font-bold">{selectedLabel}</span>
           </p>
         )}
       </ScreenWrapper>
