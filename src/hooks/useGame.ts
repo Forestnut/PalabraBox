@@ -5,6 +5,7 @@ import type { Question } from '../types'
 import { useGameStore } from '../store/gameStore'
 import { saveScenarioStars } from '../utils/progress'
 import { progressService } from '../services/progressService'
+import { analyticsService } from '../services/analyticsService'
 
 export function useGame(scenarioId: string | undefined) {
   const [questions, setQuestions] = useState<Question[]>([])
@@ -86,12 +87,16 @@ export function useGame(scenarioId: string | undefined) {
   const handleAnswer = useCallback((isCorrect: boolean) => {
     if (status !== 'playing') return
 
+    if (currentQuestion?.correct_answer) {
+      analyticsService.logAnswer(currentQuestion.correct_answer, isCorrect)
+    }
+
     if (isCorrect) {
        answerCorrect()
     } else {
        answerWrong()
     }
-  }, [status, answerCorrect, answerWrong])
+  }, [status, answerCorrect, answerWrong, currentQuestion])
 
   const goToNext = useCallback(() => {
     nextQuestion()
