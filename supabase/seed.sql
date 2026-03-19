@@ -31,30 +31,30 @@ VALUES (
 
 
 -- QUESTIONS FOR SCENARIO 1 (English Colors & Shapes)
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, sort_order) VALUES
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "rojo" en inglés?', 'red', 'red', ARRAY['blue', 'green', 'yellow'], 1),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "azul" en inglés?', 'blue', 'blue', ARRAY['red', 'black', 'white'], 2),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "amarillo" en inglés?', 'yellow', 'yellow', ARRAY['orange', 'purple', 'green'], 3),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "verde" en inglés?', 'green', 'green', ARRAY['red', 'blue', 'brown'], 4),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'image_match', '¿A qué calor corresponde 🖤?', 'black', 'black', ARRAY['white', 'grey', 'purple'], 5),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'image_match', '¿A qué calor corresponde 🤍?', 'white', 'white', ARRAY['black', 'pink', 'orange'], 6),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'listening', 'Escucha y selecciona la palabra correcta', 'purple', 'purple', ARRAY['pink', 'brown', 'grey'], 7),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Qué figura geométrica es un "circle"?', 'circle', 'círculo', ARRAY['cuadrado', 'triángulo', 'rectángulo'], 8),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "cuadrado" en inglés?', 'square', 'square', ARRAY['circle', 'triangle', 'star'], 9),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Qué significa "star"?', 'star', 'estrella', ARRAY['luna', 'sol', 'nube'], 10);
+INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "rojo" en inglés?', 'red', 'red', ARRAY['blue', 'green', 'yellow'], NULL, 1),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "azul" en inglés?', 'blue', 'blue', ARRAY['red', 'black', 'white'], NULL, 2),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "amarillo" en inglés?', 'yellow', 'yellow', ARRAY['orange', 'purple', 'green'], NULL, 3),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "verde" en inglés?', 'green', 'green', ARRAY['red', 'blue', 'brown'], NULL, 4),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'image_match', '¿A qué calor corresponde 🖤?', 'black', 'black', ARRAY['white', 'grey', 'purple'], '🖤', 5),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'image_match', '¿A qué calor corresponde 🤍?', 'white', 'white', ARRAY['black', 'pink', 'orange'], '🤍', 6),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'listening', 'Escucha y selecciona la palabra correcta', 'purple', 'purple', ARRAY['pink', 'brown', 'grey'], NULL, 7),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Qué figura geométrica es un "circle"?', 'circle', 'círculo', ARRAY['cuadrado', 'triángulo', 'rectángulo'], NULL, 8),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "cuadrado" en inglés?', 'square', 'square', ARRAY['circle', 'triangle', 'star'], NULL, 9),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Qué significa "star"?', 'star', 'estrella', ARRAY['luna', 'sol', 'nube'], NULL, 10);
 
 -- QUESTIONS FOR SCENARIO 2 (Spanish Animals)
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, sort_order) VALUES
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "dog" in Spanish?', 'perro', 'perro', ARRAY['gato', 'pájaro', 'pez'], 1),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "cat" in Spanish?', 'gato', 'gato', ARRAY['perro', 'ratón', 'conejo'], 2),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "bird" in Spanish?', 'pájaro', 'pájaro', ARRAY['pez', 'vaca', 'cerdo'], 3),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'image_match', 'Which animal is 🐟?', 'pez', 'pez', ARRAY['caballo', 'pato', 'rana'], 4),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'image_match', 'Which animal is 🐄?', 'vaca', 'vaca', ARRAY['oveja', 'cerdo', 'toro'], 5),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'listening', 'Listen and select the correct animal', 'caballo', 'caballo', ARRAY['vaca', 'oveja', 'cabra'], 6),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'What does "cerdo" mean?', 'cerdo', 'pig', ARRAY['cow', 'horse', 'sheep'], 7),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "rabbit" in Spanish?', 'conejo', 'conejo', ARRAY['ratón', 'gato', 'zorro'], 8),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'What animal is a "rana"?', 'rana', 'frog', ARRAY['toad', 'lizard', 'snake'], 9),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "monkey" in Spanish?', 'mono', 'mono', ARRAY['elefante', 'león', 'tigre'], 10);
+INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "dog" in Spanish?', 'perro', 'perro', ARRAY['gato', 'pájaro', 'pez'], NULL, 1),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "cat" in Spanish?', 'gato', 'gato', ARRAY['perro', 'ratón', 'conejo'], NULL, 2),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "bird" in Spanish?', 'pájaro', 'pájaro', ARRAY['pez', 'vaca', 'cerdo'], NULL, 3),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'image_match', 'Which animal is 🐟?', 'pez', 'pez', ARRAY['caballo', 'pato', 'rana'], '🐟', 4),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'image_match', 'Which animal is 🐄?', 'vaca', 'vaca', ARRAY['oveja', 'cerdo', 'toro'], '🐄', 5),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'listening', 'Listen and select the correct animal', 'caballo', 'caballo', ARRAY['vaca', 'oveja', 'cabra'], NULL, 6),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'What does "cerdo" mean?', 'cerdo', 'pig', ARRAY['cow', 'horse', 'sheep'], NULL, 7),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "rabbit" in Spanish?', 'conejo', 'conejo', ARRAY['ratón', 'gato', 'zorro'], NULL, 8),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'What animal is a "rana"?', 'rana', 'frog', ARRAY['toad', 'lizard', 'snake'], NULL, 9),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "monkey" in Spanish?', 'mono', 'mono', ARRAY['elefante', 'león', 'tigre'], NULL, 10);
 
 -- WORDS BANK (Flashcards Database)
 INSERT INTO public.words (word, language, level, category, translation_es, translation_en, image_emoji, audio_text) VALUES

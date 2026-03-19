@@ -57,7 +57,7 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
   - Opracowanie metod i serwisu ładującego SFX w pamięć podręczną gry przy starcie do szybkiego użycia w hooku. Nasłuch ustawień Mute.
 
 ### 🎨 Ścieżka Błażeja (B)
-- [ ] **TASK-B6: Layout Pytania Obrazkowego (Image Match)**
+- [x] **TASK-B6: Layout Pytania Obrazkowego (Image Match)**
   - Ostylowanie opcji i graficzne podpięcie wielkiego pola `<Emoji>` jako pytania.
 - [ ] **TASK-B7: Layout i Guzik Słuchania (Listening)**
   - Zbudowanie pulsującego `<button>` ze stanem (Mock) "Playing" i przekształcenie wizualne list odpowiedzi z 2x2 na ułożenie szerszych linijek tekstu.
