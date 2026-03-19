@@ -17,13 +17,13 @@ export default function SplashScreen() {
   return (
     <PageTransition className="flex items-center justify-center bg-pb-dark text-white">
       <div className="text-center">
-        <motion.span
-          className="text-6xl"
+        <motion.img
+          src="/BoxLogo.svg"
+          alt="PalabraBox Logo"
+          className="w-24 h-24 mx-auto drop-shadow-2xl"
           animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.1, 1.1, 1] }}
           transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          📦
-        </motion.span>
+        />
         <motion.h1
           className="text-4xl font-extrabold mt-4"
           initial={{ opacity: 0, y: 12 }}
