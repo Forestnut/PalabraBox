@@ -53,7 +53,7 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
   - Opracowanie logiki pobierania i segregowania wyrazów z bazy Supabase w trybie Offline (zapis na cache przez localStorage lub PWA) `src/hooks/useWords.ts`.
 - [x] **TASK-J7: Kontent i Seeding**
   - Stworzenie pełnej konfiguracji 12 modułów językowych w bazie.  
-- [ ] **TASK-J8: Stan Audio dla Howler.js**
+- [x] **TASK-J8: Stan Audio dla Howler.js**
   - Opracowanie metod i serwisu ładującego SFX w pamięć podręczną gry przy starcie do szybkiego użycia w hooku. Nasłuch ustawień Mute.
 
 ### 🎨 Ścieżka Błażeja (B)
