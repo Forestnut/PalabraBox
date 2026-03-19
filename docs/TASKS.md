@@ -75,7 +75,7 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
 *Komplikacje pytań polegające na sortowaniu słów i budowie logiki DND.*
 
 ### 🧠 Ścieżka Jakuba (J)
-- [ ] **TASK-J9: Analityka i Moduł Raportu**
+- [x] **TASK-J9: Analityka i Moduł Raportu**
   - Prosty system kalkulacji "słów z najgorszym wynikiem" na bazie poprzednich wejść gracza w celach personalizacji fiszek.
 - [ ] **TASK-J10: Algorytm Dnd-Kit & Moduł Sensors**
   - Jakub instaluje i obudowuje `@dnd-kit/core`. Zajmuje się hookami dotykowymi na komórki (Sensory pointer/touch), tak aby wykluczyć bug scrollowania bez męczenia stylowania.
