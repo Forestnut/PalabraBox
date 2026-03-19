@@ -4,6 +4,7 @@ import { MultipleChoice } from './MultipleChoice'
 import { ImageMatch } from './ImageMatch'
 import { Listening } from './Listening'
 import { FillInBlank } from './FillInBlank'
+import { WordOrder } from './WordOrder'
 
 export interface QuestionRendererProps {
   question: Question
@@ -50,6 +51,15 @@ export function QuestionRenderer({
     case 'fill_blank':
       return (
         <FillInBlank
+          question={question}
+          onAnswer={onAnswered}
+          onPlaySound={onPlaySound}
+          disabled={disabled}
+        />
+      )
+    case 'word_order':
+      return (
+        <WordOrder
           question={question}
           onAnswer={onAnswered}
           onPlaySound={onPlaySound}

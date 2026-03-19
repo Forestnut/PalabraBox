@@ -83,7 +83,7 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
 ### 🎨 Ścieżka Błażeja (B)
 - [x] **TASK-B10: Wizualne Uzupełnianie Luk**
   - Wyrysowanie interfejsu zdań z odstępami ("_____") animowane tak, żeby po kliknięciu wyraz z banku odlatywał w wyznaczoną dziurę (Framer Motion `layoutId`).
-- [ ] **TASK-B11: Layout Układanki DND (Word Order)**
+- [x] **TASK-B11: Layout Układanki DND (Word Order)**
   - Błażej wyłącznie dostosowuje grid i style elementów `SortableItem`, ustawiając odległości cieni pod palcem bez ingerencji w logikę przesuwania.
 - [ ] **TASK-B12: Mascot Wprowadzenie - Boxi Pudełko**
   - Animowany czysty CSS/SVG z idle-loops mrugający do gracza czy wybuchajajcy serduszkami na dobrym wyniku.
