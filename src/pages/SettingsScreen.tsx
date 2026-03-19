@@ -7,8 +7,8 @@ export default function SettingsScreen() {
     <PageTransition>
       <ScreenWrapper>
         <BackButton />
-        <h1 className="text-2xl font-bold mt-4">Settings</h1>
-        <p>Empty placeholder</p>
+        <h1 className="text-2xl font-bold mt-4">Configuración</h1>
+        <p>Aún no implementado</p>
       </ScreenWrapper>
     </PageTransition>
   )

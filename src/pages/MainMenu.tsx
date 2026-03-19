@@ -41,7 +41,7 @@ export default function MainMenu() {
             <h2 className="text-lg font-bold text-pb-dark">Progreso rápido</h2>
             <div className="flex items-center gap-1 bg-pb-amber/20 px-3 py-1 rounded-full">
               <span className="text-lg">🔥</span>
-              <span className="font-bold text-pb-amber text-sm">{progress.streakDays} dni</span>
+              <span className="font-bold text-pb-amber text-sm">{progress.streakDays} días</span>
             </div>
           </div>
 
