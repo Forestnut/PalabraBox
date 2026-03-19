@@ -47,13 +47,13 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
 *Rozbudowa wariantów pytań i obsługa multimediów. Błażej dba o styl, Jakub buduje mechanikę pod maską.*
 
 ### 🧠 Ścieżka Jakuba (J)
-- [ ] **TASK-J5: Usługa Speech (Web Speech API / TTS)**
+- [x] **TASK-J5: Usługa Speech (Web Speech API / TTS)**
   - Implementacja instancji `SpeechService.ts`. Płynne łączenie TTS ze zdarzeniem, by można go zawołać z dowolnego miejsca.
-- [ ] **TASK-J6: Przechwytywanie Fiszek - Logika (useWords)**
+- [x] **TASK-J6: Przechwytywanie Fiszek - Logika (useWords)**
   - Opracowanie logiki pobierania i segregowania wyrazów z bazy Supabase w trybie Offline (zapis na cache przez localStorage lub PWA) `src/hooks/useWords.ts`.
-- [ ] **TASK-J7: Kontent i Seeding**
+- [x] **TASK-J7: Kontent i Seeding**
   - Stworzenie pełnej konfiguracji 12 modułów językowych w bazie.  
-- [ ] **TASK-J8: Stan Audio dla Howler.js**
+- [x] **TASK-J8: Stan Audio dla Howler.js**
   - Opracowanie metod i serwisu ładującego SFX w pamięć podręczną gry przy starcie do szybkiego użycia w hooku. Nasłuch ustawień Mute.
 
 ### 🎨 Ścieżka Błażeja (B)

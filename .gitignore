@@ -23,3 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Supabase
+supabase/.temp
+supabase/.branches
+
+# Lint
+lint_output*

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import type { Word } from '../../types'
 import { cn } from '../../utils/cn'
 
@@ -8,11 +8,6 @@ interface FlashCardProps {
 
 export function FlashCard({ word }: FlashCardProps) {
   const [isFlipped, setIsFlipped] = useState(false)
-
-  // Reset flip state when the word changes to prevent showing the back by default
-  useEffect(() => {
-    setIsFlipped(false)
-  }, [word.id])
 
   return (
     <div 
