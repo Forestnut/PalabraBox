@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
 import type { Word } from '../types';
 import { useSettingsStore } from '../store/settingsStore';
+import { analyticsService } from '../services/analyticsService';
 
 const CACHE_KEY_PREFIX = 'palabrabox_words_';
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
@@ -105,10 +106,48 @@ export function useWords(category?: string) {
    * Helper function to get random flashcards a subset of words.
    * @param limit How many words to pick
    */
-  const getRandomWords = (limit: number): Word[] => {
+  const getRandomWords = useCallback((limit: number): Word[] => {
     const shuffled = [...words].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, limit);
-  };
+  }, [words]);
 
-  return { words, loading, error, refreshWords, getRandomWords };
+  /**
+   * Helper function to get personalized flashcards based on worst performance.
+   * Words with worst scores are prioritized. 
+   * @param limit How many words to pick.
+   */
+  const getPersonalizedWords = useCallback((limit: number): Word[] => {
+    if (words.length === 0) return [];
+    
+    const stats = analyticsService.getWorstWordsStats();
+    
+    // Create a map for quick lookup
+    const statsMap = new Map(stats.map(s => [s.word.toLowerCase(), s]));
+
+    const sortedWords = [...words].sort((a, b) => {
+      // Słowa, które w ogóle nie były przerabiane w statystykach, można traktować różnie.
+      // Dajmy im neutralną wartość, ale jeśli mamy words ze złymi statystykami, powinny być wyżej.
+      const statA = statsMap.get(a.word.toLowerCase());
+      const statB = statsMap.get(b.word.toLowerCase());
+
+      // Jeśli słowo nie ma statystyk, traktujemy je średnio/losowo (0.5 ratio, 0 incorrect)
+      const ratioA = statA ? (statA.correct / (statA.correct + statA.incorrect)) : 0.5;
+      const ratioB = statB ? (statB.correct / (statB.correct + statB.incorrect)) : 0.5;
+
+      if (ratioA !== ratioB) {
+        return ratioA - ratioB; // Mniejsze ratio win -> idzie wyżej
+      }
+
+      if (statA && statB) {
+        return statB.incorrect - statA.incorrect; // Więcej wpadek win -> wyżej
+      }
+
+      // Jeśli oba nie mają, zostawiamy jako losowe lub bez zmiany
+      return 0.5 - Math.random(); 
+    });
+
+    return sortedWords.slice(0, limit);
+  }, [words]);
+
+  return { words, loading, error, refreshWords, getRandomWords, getPersonalizedWords };
 }
