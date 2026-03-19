@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { PageTransition } from '../components/layout/PageTransition'
+import { Mascot } from '../components/ui/Mascot'
 
 export default function SplashScreen() {
   const navigate = useNavigate()
@@ -17,13 +18,7 @@ export default function SplashScreen() {
   return (
     <PageTransition className="flex items-center justify-center bg-pb-dark text-white">
       <div className="text-center">
-        <motion.img
-          src="/BoxLogo.svg"
-          alt="PalabraBox Logo"
-          className="w-24 h-24 mx-auto drop-shadow-2xl"
-          animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.1, 1.1, 1] }}
-          transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-        />
+        <Mascot mood="idle" size="lg" className="mx-auto mb-6" />
         <motion.h1
           className="text-4xl font-extrabold mt-4"
           initial={{ opacity: 0, y: 12 }}

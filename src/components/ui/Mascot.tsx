@@ -64,8 +64,8 @@ export function Mascot({ mood = 'idle', size = 'md', className }: MascotProps) {
       <div className={cn('relative flex flex-col items-center', wrapperAnim)}>
         {/* Box flaps (cardboard ears) */}
         <div className="flex gap-1 mb-0.5">
-          <div className={cn(s.flap, 'rounded-t-md border-2 border-b-0 border-amber-400', bodyColor, 'rotate-[-6deg]')} />
-          <div className={cn(s.flap, 'rounded-t-md border-2 border-b-0 border-amber-400', bodyColor, 'rotate-[6deg]')} />
+          <div className={cn(s.flap, 'rounded-t-md border-2 border-b-0 border-amber-400', bodyColor, '-rotate-6')} />
+          <div className={cn(s.flap, 'rounded-t-md border-2 border-b-0 border-amber-400', bodyColor, 'rotate-6')} />
         </div>
 
         {/* Main box body */}
