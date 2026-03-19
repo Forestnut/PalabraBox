@@ -63,7 +63,7 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
   - Zbudowanie pulsującego `<button>` ze stanem (Mock) "Playing" i przekształcenie wizualne list odpowiedzi z 2x2 na ułożenie szerszych linijek tekstu.
 - [x] **TASK-B8: Ekran Zmiany Opcji (Settings UI)**
   - Układ pionowy na komponenty Drag Sliders.
-- [ ] **TASK-B9: Layout Fiszek Karcianych (Flashcard UI)**
+- [x] **TASK-B9: Layout Fiszek Karcianych (Flashcard UI)**
   - Czysto wizualny komponent `FlashCard.tsx` rotujący się w efekcie 3D flipu na CSS oraz kontrolki góra/dół.
 
 ### 🔗 Integracja Fazy 2
