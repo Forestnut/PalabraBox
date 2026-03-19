@@ -39,3 +39,71 @@ body {
 button, a, [role="button"] {
   min-height: 48px;
 }
+
+/* ─── Boxi Mascot Animations ─── */
+
+/* Eye blink: scaleY from 1 → 0.05 → 1, repeats every ~3s */
+@keyframes boxiBlink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  93%           { transform: scaleY(0.05); }
+}
+
+/* Idle gentle bob */
+@keyframes boxiBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* Happy bounce */
+@keyframes boxiHappy {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  20%      { transform: translateY(-12px) rotate(-3deg); }
+  50%      { transform: translateY(-16px) rotate(3deg); }
+  70%      { transform: translateY(-8px) rotate(-2deg); }
+}
+
+/* Wrong answer shake */
+@keyframes boxiShake {
+  0%, 100% { transform: translateX(0); }
+  15%      { transform: translateX(-6px) rotate(-3deg); }
+  35%      { transform: translateX(6px) rotate(3deg); }
+  55%      { transform: translateX(-4px) rotate(-2deg); }
+  75%      { transform: translateX(4px) rotate(2deg); }
+}
+
+/* Floating hearts pop up and fade */
+@keyframes boxiHeartPop {
+  0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+  30%  { opacity: 1; transform: translateY(-12px) scale(1.1); }
+  70%  { opacity: 0.7; transform: translateY(-24px) scale(1); }
+  100% { opacity: 0; transform: translateY(-36px) scale(0.8); }
+}
+
+/* Utility animation classes (consumed by Mascot.tsx) */
+.animate-boxi-blink {
+  animation: boxiBlink 3s infinite ease-in-out;
+}
+.animate-boxi-bob {
+  animation: boxiBob 2.4s infinite ease-in-out;
+}
+.animate-boxi-happy {
+  animation: boxiHappy 0.8s infinite ease-in-out;
+}
+.animate-boxi-shake {
+  animation: boxiShake 0.55s ease-in-out;
+}
+.animate-boxi-heartpop {
+  animation: boxiHeartPop 1.2s infinite ease-out;
+}
+
+/* Existing utility kept from previous tasks */
+.animate-bounce-slight {
+  animation: boxiBob 2s infinite ease-in-out;
+}
+.scale-in {
+  animation: scaleIn 0.2s ease-out both;
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
