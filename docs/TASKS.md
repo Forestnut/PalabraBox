@@ -67,7 +67,7 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
   - Czysto wizualny komponent `FlashCard.tsx` rotujący się w efekcie 3D flipu na CSS oraz kontrolki góra/dół.
 
 ### 🔗 Integracja Fazy 2
-- [ ] **TASK-I2:** Błażej nałożony na dźwięki Jakuba używa ich w komponentach i podłącza event `onPlay` do guzików w ui zadań ze ścieżki słuchowej.
+- [x] **TASK-I2:** Błażej nałożony na dźwięki Jakuba używa ich w komponentach i podłącza event `onPlay` do guzików w ui zadań ze ścieżki słuchowej.
 
 ---
 

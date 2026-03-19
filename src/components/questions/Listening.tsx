@@ -6,6 +6,7 @@ import { Card } from '../ui/Card'
 import { cn } from '../../utils/cn'
 import { shuffleArray } from '../../utils/shuffle'
 import type { ClickSoundType } from './MultipleChoice'
+import { speechService } from '../../services/speechService'
 
 interface ListeningProps {
   question: Question
@@ -43,6 +44,7 @@ export function Listening({
     return () => {
       if (answerTimeoutRef.current) window.clearTimeout(answerTimeoutRef.current)
       if (playTimeoutRef.current) window.clearTimeout(playTimeoutRef.current)
+      speechService.stop()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []) // empty deps, only trigger right at mount
@@ -51,10 +53,17 @@ export function Listening({
     if (isPlaying) return
     setIsPlaying(true)
     
-    // TODO: Connect with SpeechService in TASK-J5
+    // Connects with Jakub's SpeechService
+    const textToSpeak = question.question_text_tts || question.question_text || 'Error'
+    
+    speechService.speak(textToSpeak)
+    
+    // Estimate speaking duration: Base 800ms + 100ms per character (Safe upper bound for UI feeling responsive)
+    const estimatedDurationMs = Math.max(1200, 800 + (textToSpeak.length * 100))
+    
     playTimeoutRef.current = window.setTimeout(() => {
       setIsPlaying(false)
-    }, 2000)
+    }, estimatedDurationMs)
   }
 
   const handleSelect = (option: string) => {
