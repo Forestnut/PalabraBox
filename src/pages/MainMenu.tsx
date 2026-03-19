@@ -16,8 +16,16 @@ export default function MainMenu() {
   )
 
   return (
-    <PageTransition className="bg-pb-bg text-pb-dark">
-      <ScreenWrapper className="flex flex-col items-center gap-6">
+    <PageTransition className="bg-pb-bg text-pb-dark relative">
+      <ScreenWrapper className="flex flex-col items-center gap-6 pt-12">
+        <button
+          onClick={() => navigate('/settings')}
+          className="absolute top-6 right-6 text-2xl bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-box hover:scale-105 hover:text-pb-amber active:scale-95 transition-all text-pb-text-light z-10"
+          aria-label="Configuración"
+        >
+          ⚙️
+        </button>
+
         <div className="flex flex-col items-center gap-4">
           <div className="w-36 h-36 rounded-xl bg-pb-amber/20 shadow-box flex items-center justify-center">
             <img src="/BoxLogo.svg" alt="PalabraBox Logo" className="w-24 h-24 object-contain drop-shadow-md" />
