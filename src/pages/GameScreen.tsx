@@ -117,15 +117,17 @@ export default function GameScreen() {
           </div>
         </div>
 
-        <QuestionRenderer
-          key={currentQuestion.id}
-          question={currentQuestion}
-          onAnswered={(isCorrect) => {
-            handleAnswer(isCorrect)
-            goToNext()
-          }}
-          onPlaySound={handlePlaySound}
-        />
+        <div className="flex-1 flex flex-col min-h-0 w-full">
+          <QuestionRenderer
+            key={currentQuestion.id}
+            question={currentQuestion}
+            onAnswered={(isCorrect) => {
+              handleAnswer(isCorrect)
+              goToNext()
+            }}
+            onPlaySound={handlePlaySound}
+          />
+        </div>
       </ScreenWrapper>
     </PageTransition>
   )

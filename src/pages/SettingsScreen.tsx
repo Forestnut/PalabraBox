@@ -100,7 +100,7 @@ export default function SettingsScreen() {
         <div className="mt-auto pt-8 flex flex-col items-center justify-center text-center gap-2 opacity-70">
           <img src="/BoxLogo.svg" alt="PalabraBox Logo" className="w-16 h-16 grayscale opacity-60 mb-2" />
           <p className="font-bold text-pb-dark text-lg">PalabraBox <span className="text-sm font-normal text-pb-text-light">v1.0.0</span></p>
-          <p className="text-xs text-pb-text-light font-medium max-w-[200px]">
+          <p className="text-xs text-pb-text-light font-medium max-w-50">
             Diseñado y desarrollado por <br/><span className="text-pb-amber font-bold">Jakub</span> & <span className="text-pb-amber font-bold">Błażej</span>
           </p>
         </div>
