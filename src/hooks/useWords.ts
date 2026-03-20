@@ -107,7 +107,17 @@ export function useWords(category?: string) {
    * @param limit How many words to pick
    */
   const getRandomWords = useCallback((limit: number): Word[] => {
-    const shuffled = [...words].sort(() => 0.5 - Math.random());
+    const uniqueMap = new Map<string, Word>();
+    for (const w of words) {
+      uniqueMap.set(w.word.toLowerCase(), w);
+    }
+    const uniqueWords = Array.from(uniqueMap.values());
+
+    const shuffled = [...uniqueWords];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
     return shuffled.slice(0, limit);
   }, [words]);
 
@@ -119,18 +129,28 @@ export function useWords(category?: string) {
   const getPersonalizedWords = useCallback((limit: number): Word[] => {
     if (words.length === 0) return [];
     
+    // 1. Deduplicate
+    const uniqueMap = new Map<string, Word>();
+    for (const w of words) {
+      uniqueMap.set(w.word.toLowerCase(), w);
+    }
+    const uniqueWords = Array.from(uniqueMap.values());
+
+    // 2. Base Random Shuffle (Fisher-Yates) to ensure fair distribution of untested cards
+    const shuffled = [...uniqueWords];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
     const stats = analyticsService.getWorstWordsStats();
-    
-    // Create a map for quick lookup
     const statsMap = new Map(stats.map(s => [s.word.toLowerCase(), s]));
 
-    const sortedWords = [...words].sort((a, b) => {
-      // Słowa, które w ogóle nie były przerabiane w statystykach, można traktować różnie.
-      // Dajmy im neutralną wartość, ale jeśli mamy words ze złymi statystykami, powinny być wyżej.
+    // 3. Sort by priority
+    const sortedWords = shuffled.sort((a, b) => {
       const statA = statsMap.get(a.word.toLowerCase());
       const statB = statsMap.get(b.word.toLowerCase());
 
-      // Jeśli słowo nie ma statystyk, traktujemy je średnio/losowo (0.5 ratio, 0 incorrect)
       const ratioA = statA ? (statA.correct / (statA.correct + statA.incorrect)) : 0.5;
       const ratioB = statB ? (statB.correct / (statB.correct + statB.incorrect)) : 0.5;
 
@@ -142,8 +162,8 @@ export function useWords(category?: string) {
         return statB.incorrect - statA.incorrect; // Więcej wpadek win -> wyżej
       }
 
-      // Jeśli oba nie mają, zostawiamy jako losowe lub bez zmiany
-      return 0.5 - Math.random(); 
+      // Preserve the shuffled order if stats are identical
+      return 0; 
     });
 
     return sortedWords.slice(0, limit);
