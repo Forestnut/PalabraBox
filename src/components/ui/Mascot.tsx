@@ -34,16 +34,16 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
   }, [mood])
 
   const idleBob = { 
-    y: [0, -4, 0], 
+    y: [0, -3, 0], 
     scaleY: [1, 0.98, 1],
     scaleX: [1, 1.01, 1],
-    transition: { repeat: Infinity, duration: 2.2, ease: "easeInOut" as const } 
+    transition: { repeat: Infinity, duration: 3, ease: "easeInOut" as const } 
   }
   
   const happyJump = { 
     y: [0, -15, 0], 
     scaleY: [1, 1.08, 0.92, 1],
-    transition: { repeat: Infinity, duration: 0.5, ease: "easeOut" as const } 
+    transition: { repeat: 2, duration: 0.5, ease: "easeOut" as const } 
   }
 
   const wrongShake = { 
@@ -62,7 +62,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
     y: [0, 8, 0],
     scaleY: [1, 0.9, 1],
     scaleX: [1, 1.05, 1],
-    transition: { repeat: Infinity, duration: 3, ease: "easeInOut" as const }
+    transition: { repeat: 2, duration: 2, ease: "easeInOut" as const }
   }
 
   const sleepingBreath = {
@@ -83,17 +83,14 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
     }
   }
 
-  // Paths
-  const backFlapOpened = "M 40 40 L 120 40 L 110 5 L 50 5 Z"
-  const backFlapClosed = "M 40 40 L 120 40 L 100 60 L 20 60 Z"
-
-  const leftFlapOpened = "M 20 60 L 40 40 L 15 35 L -5 55 Z"
+  // Paths - Poprawione, zeby nie byly nienaturalnie wygiete
+  const leftFlapOpened = "M 20 60 L 40 40 L 10 40 L -10 60 Z"
   const leftFlapClosed = "M 20 60 L 40 40 L 80 40 L 60 60 Z"
 
-  const rightFlapOpened = "M 100 60 L 120 40 L 145 35 L 125 55 Z"
+  const rightFlapOpened = "M 100 60 L 120 40 L 150 40 L 130 60 Z"
   const rightFlapClosed = "M 100 60 L 120 40 L 80 40 L 60 60 Z"
 
-  const frontFlapOpened = "M 20 60 L 100 60 L 105 85 L 15 85 Z"
+  const frontFlapOpened = "M 20 60 L 100 60 L 105 80 L 15 80 Z"
   const frontFlapClosed = "M 20 60 L 100 60 L 120 40 L 40 40 Z"
 
   return (
@@ -178,13 +175,6 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
                 </g>
               )}
             </AnimatePresence>
-
-            {/* BACK FLAP */}
-            <motion.path 
-              animate={{ d: isClosed ? backFlapClosed : backFlapOpened }}
-              fill="#D97706" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" strokeLinecap="round"
-              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
-            />
 
             {/* INSIDE HOLE */}
             <path d="M 20 60 L 100 60 L 120 40 L 40 40 Z" fill="#451A03" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" />
