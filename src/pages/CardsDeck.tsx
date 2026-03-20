@@ -1,24 +1,24 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { BackButton } from '../components/layout/BackButton'
 import { FlashCard } from '../components/cards/FlashCard'
 import { Button } from '../components/ui/Button'
-import type { Word } from '../types'
-
-// Mock Data for UI/UX testing before Jakub builds `useWords` integration (TASK-J6)
-const MOCK_WORDS: Word[] = [
-  { id: '1', word: 'manzana', language: 'spanish', level: 'beginner', category: 'comida', translation_es: null, translation_en: 'apple', image_emoji: '🍎', audio_text: 'manzana' },
-  { id: '2', word: 'perro', language: 'spanish', level: 'beginner', category: 'animales', translation_es: null, translation_en: 'dog', image_emoji: '🐶', audio_text: 'perro' },
-  { id: '3', word: 'casa', language: 'spanish', level: 'beginner', category: 'objetos', translation_es: null, translation_en: 'house', image_emoji: '🏠', audio_text: 'casa' },
-  { id: '4', word: 'coche', language: 'spanish', level: 'beginner', category: 'transporte', translation_es: null, translation_en: 'car', image_emoji: '🚗', audio_text: 'coche' },
-]
+import { useWords } from '../hooks/useWords'
 
 export default function CardsDeck() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  
+  // Pobieramy słówka (nie określamy scenariusza, bierzemy z preferowanego przez użytkownika języka/poziomu)
+  const { loading, getPersonalizedWords } = useWords()
+
+  // Gdy hook pobierze słówka, losujemy spersonalizowany zestaw (np. 15 słówek)
+  const cardWords = useMemo(() => {
+    return getPersonalizedWords(15)
+  }, [getPersonalizedWords])
 
   const handleNext = () => {
-    if (currentIndex < MOCK_WORDS.length - 1) {
+    if (currentIndex < cardWords.length - 1) {
       setCurrentIndex(prev => prev + 1)
     }
   }
@@ -29,7 +29,32 @@ export default function CardsDeck() {
     }
   }
 
-  const currentWord = MOCK_WORDS[currentIndex]
+  if (loading) {
+    return (
+      <PageTransition className="bg-pb-bg">
+        <ScreenWrapper className="flex flex-col h-full py-6 pb-8 justify-center items-center">
+          <p className="text-xl text-pb-text font-bold">Cargando...</p>
+        </ScreenWrapper>
+      </PageTransition>
+    )
+  }
+
+  if (cardWords.length === 0) {
+    return (
+      <PageTransition className="bg-pb-bg">
+        <ScreenWrapper className="flex flex-col h-full py-6 pb-8">
+          <div className="flex items-center mb-8 z-10 w-full">
+            <BackButton />
+          </div>
+          <div className="flex-1 flex justify-center items-center">
+            <p className="text-xl text-pb-text-light text-center">Brak słówek w bazie.</p>
+          </div>
+        </ScreenWrapper>
+      </PageTransition>
+    )
+  }
+
+  const currentWord = cardWords[currentIndex]
 
   return (
     <PageTransition className="bg-pb-bg">
@@ -38,8 +63,8 @@ export default function CardsDeck() {
         <div className="flex items-center justify-between mb-8 z-10 w-full">
           <BackButton />
           <div className="bg-white px-5 py-2 rounded-full shadow-box font-bold flex items-center justify-center border-2 border-transparent">
-            <span className="text-pb-dark text-xl mr-1">{currentIndex + 1}</span> 
-            <span className="text-pb-text-light">/ {MOCK_WORDS.length}</span>
+            <span className="text-pb-dark text-xl mr-1">{currentIndex + 1}</span>
+            <span className="text-pb-text-light">/ {cardWords.length}</span>
           </div>
         </div>
 
@@ -61,7 +86,7 @@ export default function CardsDeck() {
           </Button>
           <Button 
             onClick={handleNext} 
-            disabled={currentIndex === MOCK_WORDS.length - 1}
+            disabled={currentIndex === cardWords.length - 1}
             className="flex-1 py-4 text-xl tracking-wider"
           >
             Siguiente

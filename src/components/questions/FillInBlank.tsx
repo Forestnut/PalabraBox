@@ -5,6 +5,7 @@ import { Card } from '../ui/Card'
 import { Button } from '../ui/Button'
 import { cn } from '../../utils/cn'
 import { shuffleArray } from '../../utils/shuffle'
+import { speechService } from '../../services/speechService'
 import type { ClickSoundType } from './MultipleChoice'
 
 interface FillInBlankProps {
@@ -52,6 +53,12 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: FillI
     setIsChecking(true)
     const isCorrect = selectedWord === question.correct_answer
     setFeedback(isCorrect ? 'correct' : 'wrong')
+    
+    if (isCorrect) {
+      const fullSentence = question.question_text?.replace('____', selectedWord) || selectedWord
+      speechService.speak(question.question_text_tts || fullSentence)
+    }
+    
     onPlaySound?.(isCorrect ? 'correct' : 'wrong')
 
     answerTimeoutRef.current = window.setTimeout(() => {
@@ -72,13 +79,13 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: FillI
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-lg mx-auto h-full px-2">
-      <Card className="p-6 sm:p-8 flex flex-col items-center justify-center relative min-h-[180px] bg-white mt-4">
+      <Card className="p-6 sm:p-8 flex flex-col items-center justify-center relative min-h-45 bg-white mt-4">
         <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-4 text-xl sm:text-2xl font-bold text-pb-dark text-center leading-loose">
           <span>{beforeBlank}</span>
           
           <div 
             className={cn(
-              "relative min-w-[100px] h-12 rounded-xl border-2 flex items-center justify-center px-4 transition-colors cursor-pointer",
+              "relative min-w-25 h-12 rounded-xl border-2 flex items-center justify-center px-4 transition-colors cursor-pointer",
               blankStateClass
             )}
             onClick={() => {
@@ -116,7 +123,7 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: FillI
           {wordsBank.map(word => {
             const isSelected = selectedWord === word
             return (
-              <div key={word} className="relative h-14 min-w-[120px]">
+              <div key={word} className="relative h-14 min-w-30">
                 {/* Ghost placeholder when the word is dropped in the blank */}
                 <div className={cn(
                   "absolute inset-0 bg-pb-bg rounded-xl border-2 border-pb-text-light/20 flex items-center justify-center transition-opacity duration-300",
