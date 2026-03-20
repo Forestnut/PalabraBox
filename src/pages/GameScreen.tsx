@@ -53,9 +53,9 @@ export default function GameScreen() {
           const typePhrases: Record<string, string> = {
             'listening': 'Teraz pora sprawdzić twój słuch!',
             'multiple_choice': 'Wybierz poprawną odpowiedź!',
-            'image_match': 'Dopasuj odpowiedni obrazek!',
+            'image_match': 'Dopasuj odpowiedź!',
             'word_order': 'Ułóż słowa w poprawnej kolejności!',
-            'fill_in_blank': 'Uzupełnij brakujące słowo!'
+            'fill_blank': 'Uzupełnij brakujące słowo!'
           }
           if (typePhrases[currentQuestion.type]) {
             text = typePhrases[currentQuestion.type]
@@ -65,12 +65,7 @@ export default function GameScreen() {
         setIntermissionText(text)
         setShowIntermission(true)
         
-        const t = setTimeout(() => {
-          setShowIntermission(false)
-        }, 2500)
-        
         prevQuestionIndex.current = currentQuestionIndex
-        return () => clearTimeout(t)
       } else {
         // Pierwsze pytanie - pomijamy intermission
         prevQuestionIndex.current = currentQuestionIndex
@@ -141,7 +136,7 @@ export default function GameScreen() {
     return (
       <PageTransition>
         <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
-          <Mascot mood="happy" size="xl" />
+          <Mascot mood={streakRef.current > 0 && streakRef.current % 3 === 0 ? "celebrate" : "idle"} size="xl" />
           <h2 className="text-3xl font-black text-center text-pb-dark mb-4 mt-8 px-4" style={{ WebkitTextStroke: '1px white' }}>
             {intermissionText}
           </h2>
@@ -163,7 +158,7 @@ export default function GameScreen() {
       <ScreenWrapper>
         <div className="flex items-center justify-between mb-4 mt-4 px-2">
           <BackButton fallbackUrl="/scenarios" label="←" />
-          <div className="flex-1 flex justify-center items-end px-2 pt-4 min-h-20">
+          <div className="flex-1 flex justify-center items-end px-2 pt-4 min-h-20 relative z-20">
             <Mascot mood={boxiMood} size="sm" message={boxiMessage} className="origin-bottom transform hover:scale-110 transition-transform md:hidden" />
             <Mascot mood={boxiMood} size="md" message={boxiMessage} className="origin-bottom transform hover:scale-110 transition-transform hidden md:flex" />
           </div>
