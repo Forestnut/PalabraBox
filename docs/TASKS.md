@@ -103,9 +103,9 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
   - Rozwiązanie problemów z resetowaniem cache na twardo w razie przestarzałych migracji czy starych stanów zapisu graczy.
 
 ### 🎨 Ścieżka Błażeja (B)
-- [ ] **TASK-B13: Ostatnie poprawki UX / Mobilne wpadki**
+- [x] **TASK-B13: Ostatnie poprawki UX / Mobilne wpadki**
   - Blokada podwójnego wciskania przycisków w Mobile Safari/Chrome. Naprawa wycieków cieni i ukrywanie "scroll-x". Poprawa ikon PWA.
-- [ ] **TASK-B14: Konfetti w wywiadówkach / Detale**
+- [x] **TASK-B14: Konfetti w wywiadówkach / Detale**
   - Zwiększenie satysfakcji użytkownika o nowe stany kolorystyczne na ekranach końcowych.
 
 ### 🔗 Integracja Faza 4 i Deploy

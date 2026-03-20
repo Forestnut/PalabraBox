@@ -25,8 +25,35 @@ export default function ResultsScreen() {
   const { progress } = useQuickProgress()
   const [stars, setStars] = useState(0)
 
-  const isSuccess = lives > 0
   const earnedStars = Math.max(0, lives)
+  
+  let resultState: 'perfect' | 'good' | 'fail' = 'fail'
+  if (earnedStars === 3) resultState = 'perfect'
+  else if (earnedStars > 0) resultState = 'good'
+
+  const getBackgroundClass = () => {
+    if (resultState === 'perfect') return 'bg-amber-50'
+    if (resultState === 'good') return 'bg-emerald-50'
+    return 'bg-red-50'
+  }
+
+  const getTitleClass = () => {
+    if (resultState === 'perfect') return 'text-pb-amber'
+    if (resultState === 'good') return 'text-pb-success'
+    return 'text-pb-error'
+  }
+
+  const getTitleText = () => {
+    if (resultState === 'perfect') return '¡Perfecto!'
+    if (resultState === 'good') return '¡Excelente!'
+    return '¡Sigue intentando!'
+  }
+
+  const getSubtitleText = () => {
+    if (resultState === 'perfect') return '¡Lograste la puntuación máxima!'
+    if (resultState === 'good') return 'Completaste el escenario con éxito.'
+    return 'Perdiste todas tus vidas.'
+  }
 
   useEffect(() => {
     // Animate stars popping in with a slight delay
@@ -35,24 +62,40 @@ export default function ResultsScreen() {
     const timer = setTimeout(() => {
       setStars(earnedStars)
       
-      if (isSuccess) {
+      if (resultState === 'perfect') {
+        const duration = 3500
+        const animationEnd = Date.now() + duration
+        const defaults = { startVelocity: 35, spread: 360, ticks: 80, zIndex: 0 }
+
+        intervalId = window.setInterval(function () {
+          const timeLeft = animationEnd - Date.now()
+          if (timeLeft <= 0) {
+            if (intervalId !== null) clearInterval(intervalId)
+            intervalId = null
+            return
+          }
+          const particleCount = 75 * (timeLeft / duration)
+          confetti(
+            Object.assign({}, defaults, {
+              particleCount,
+              origin: { x: Math.random(), y: Math.random() - 0.2 },
+              colors: ['#FFA42C', '#FBBF24', '#F59E0B', '#FFFBEB'],
+            })
+          )
+        }, 200)
+      } else if (resultState === 'good') {
         const duration = 2500
         const animationEnd = Date.now() + duration
         const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
 
         intervalId = window.setInterval(function () {
           const timeLeft = animationEnd - Date.now()
-
           if (timeLeft <= 0) {
-            if (intervalId !== null) {
-              clearInterval(intervalId)
-              intervalId = null
-            }
+            if (intervalId !== null) clearInterval(intervalId)
+            intervalId = null
             return
           }
-
           const particleCount = 50 * (timeLeft / duration)
-          // since particles fall down, start a bit higher than random
           confetti(
             Object.assign({}, defaults, {
               particleCount,
@@ -70,7 +113,7 @@ export default function ResultsScreen() {
         clearInterval(intervalId)
       }
     }
-  }, [earnedStars, isSuccess])
+  }, [earnedStars, resultState])
 
   const handleMenu = () => {
     store.resetGame()
@@ -83,17 +126,17 @@ export default function ResultsScreen() {
   }
 
   return (
-    <PageTransition className="bg-pb-bg">
+    <PageTransition className={`${getBackgroundClass()} transition-colors duration-1000`}>
       <ScreenWrapper className="flex flex-col items-center justify-center gap-8 py-10 min-h-[80vh]">
         <div className="flex flex-col items-center gap-2 text-center mt-6">
           <div className="mb-4 flex justify-center h-32 items-end">
-            <Mascot mood={isSuccess ? 'happy' : 'wrong'} size="lg" />
+            <Mascot mood={resultState === 'fail' ? 'wrong' : 'happy'} size="lg" />
           </div>
-          <h1 className={`text-4xl font-black uppercase tracking-widest text-center ${isSuccess ? 'text-pb-success' : 'text-pb-error'}`}>
-            {isSuccess ? '¡Excelente!' : '¡Sigue intentando!'}
+          <h1 className={`text-4xl font-black uppercase tracking-widest text-center transition-colors duration-1000 ${getTitleClass()}`}>
+            {getTitleText()}
           </h1>
-          <p className="text-pb-text-light text-lg px-4">
-            {isSuccess ? 'Completaste el escenario con éxito.' : 'Perdiste todas tus vidas.'}
+          <p className="text-pb-text-light text-lg px-4 transition-colors duration-1000">
+            {getSubtitleText()}
           </p>
         </div>
 
