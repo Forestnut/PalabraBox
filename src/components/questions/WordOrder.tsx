@@ -32,6 +32,7 @@ interface WordOrderProps {
   onAnswer: (isCorrect: boolean) => void
   onPlaySound?: (type: ClickSoundType) => void
   disabled?: boolean
+  scenarioLanguage?: string | null
 }
 
 interface WordObj {
@@ -71,7 +72,7 @@ function SortableWord({ wordObj, onClick }: { wordObj: WordObj; onClick: () => v
   )
 }
 
-export function WordOrder({ question, onAnswer, onPlaySound, disabled }: WordOrderProps) {
+export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioLanguage }: WordOrderProps) {
   const correctWords = useMemo(() => question.correct_answer.split(' '), [question.correct_answer])
 
   const allWordObjects = useMemo<WordObj[]>(() => {
@@ -144,7 +145,8 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled }: WordOrd
     const isCorrect = currentSentence === question.correct_answer
     
     if (isCorrect) {
-      speechService.speak(question.question_text_tts || currentSentence)
+      const ttsLang = scenarioLanguage === 'english' ? 'en-US' : 'es-ES'
+      speechService.speak(question.question_text_tts || currentSentence, ttsLang)
     }
 
     onPlaySound?.(isCorrect ? 'correct' : 'wrong')

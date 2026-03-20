@@ -4,7 +4,7 @@
 
 - [x] ADD: dodaj przy przycisku ustawień myszkę która klika
 
-- [ ] FIX: w zadanaich ze słuchania wymowa po angielsku jest z dziwnym akcentem
+- [x] FIX: w zadanaich ze słuchania wymowa po angielsku jest z dziwnym akcentem
 
 - [ ] FIX: po przejściu poziomu Intermediate po kliknięciu przycisku zostajemy przekierowani na poziomy Beginner
 

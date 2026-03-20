@@ -11,6 +11,7 @@ export function useGame(scenarioId: string | undefined) {
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [scenarioLanguage, setScenarioLanguage] = useState<string | null>(null)
   
   const navigate = useNavigate()
   
@@ -39,7 +40,16 @@ export function useGame(scenarioId: string | undefined) {
           .eq('scenario_id', scenarioId)
           .limit(10)
 
+        const { data: scenarioData, error: scenarioError } = await supabase
+          .from('scenarios')
+          .select('language')
+          .eq('id', scenarioId)
+          .single()
+
         if (err) throw err
+        if (scenarioError) throw scenarioError
+
+        setScenarioLanguage(scenarioData.language)
 
         // Shuffle questions
         const shuffled = [...(data as Question[])].sort(() => Math.random() - 0.5)
@@ -112,6 +122,7 @@ export function useGame(scenarioId: string | undefined) {
     lives,
     maxLives,
     score,
-    currentQuestionIndex
+    currentQuestionIndex,
+    scenarioLanguage
   }
 }

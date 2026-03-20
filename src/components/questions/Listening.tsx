@@ -13,6 +13,7 @@ interface ListeningProps {
   onAnswer: (isCorrect: boolean) => void
   onPlaySound?: (type: ClickSoundType) => void
   disabled?: boolean
+  scenarioLanguage?: string | null
 }
 
 const FEEDBACK_DELAY_MS = {
@@ -25,6 +26,7 @@ export function Listening({
   onAnswer,
   onPlaySound,
   disabled,
+  scenarioLanguage,
 }: ListeningProps) {
   const [selected, setSelected] = useState<string | null>(null)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
@@ -55,8 +57,9 @@ export function Listening({
     
     // Connects with Jakub's SpeechService
     const textToSpeak = question.question_text_tts || question.question_text || 'Error'
+    const ttsLang = scenarioLanguage === 'english' ? 'en-US' : 'es-ES'
     
-    speechService.speak(textToSpeak)
+    speechService.speak(textToSpeak, ttsLang)
     
     // Estimate speaking duration: Base 800ms + 100ms per character (Safe upper bound for UI feeling responsive)
     const estimatedDurationMs = Math.max(1200, 800 + (textToSpeak.length * 100))
