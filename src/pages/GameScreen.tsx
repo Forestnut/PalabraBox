@@ -34,23 +34,54 @@ export default function GameScreen() {
   // Intermission State
   const [showIntermission, setShowIntermission] = useState(false)
   const prevQuestionIndex = useRef<number>(-1)
+  const streakRef = useRef<number>(0)
+  const [intermissionText, setIntermissionText] = useState('')
 
   useEffect(() => {
-    // Show intermission when question changes and game is playing
-    if (status === 'playing' && currentQuestion && currentQuestionIndex !== prevQuestionIndex.current) {
-      prevQuestionIndex.current = currentQuestionIndex
-      setShowIntermission(true)
-      
-      const t = setTimeout(() => {
-        setShowIntermission(false)
-      }, 2500)
-      return () => clearTimeout(t)
+    // Show intermission ONLY after returning to playing state (i.e. next question)
+    // but not on the very first question
+    if (status === 'playing' && currentQuestionIndex !== prevQuestionIndex.current) {
+      if (currentQuestionIndex > 0 && currentQuestion) {
+        
+        let text = 'Przygotuj się na kolejne zadanie!'
+        
+        // 1. Sprawdź streak
+        if (streakRef.current > 0 && streakRef.current % 3 === 0) {
+          text = 'Idziesz jak burza! Tak trzymaj!'
+        } else {
+          // 2. Jeśli nie streak, daj powiązane zadanie
+          const typePhrases: Record<string, string> = {
+            'listening': 'Teraz pora sprawdzić twój słuch!',
+            'multiple_choice': 'Wybierz poprawną odpowiedź!',
+            'image_match': 'Dopasuj odpowiedni obrazek!',
+            'word_order': 'Ułóż słowa w poprawnej kolejności!',
+            'fill_in_blank': 'Uzupełnij brakujące słowo!'
+          }
+          if (typePhrases[currentQuestion.type]) {
+            text = typePhrases[currentQuestion.type]
+          }
+        }
+
+        setIntermissionText(text)
+        setShowIntermission(true)
+        
+        const t = setTimeout(() => {
+          setShowIntermission(false)
+        }, 2500)
+        
+        prevQuestionIndex.current = currentQuestionIndex
+        return () => clearTimeout(t)
+      } else {
+        // Pierwsze pytanie - pomijamy intermission
+        prevQuestionIndex.current = currentQuestionIndex
+      }
     }
-  }, [currentQuestion, currentQuestionIndex, status])
+  }, [currentQuestionIndex, status, currentQuestion?.type])
 
   const handlePlaySound = useCallback((type: 'click' | 'correct' | 'wrong') => {
     playSound(type)
     if (type === 'correct') {
+      streakRef.current += 1
       setBoxiMood('happy')
       setBoxiMessage('¡Genial!')
       if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
@@ -59,6 +90,7 @@ export default function GameScreen() {
         setBoxiMessage(null)
       }, 1500)
     } else if (type === 'wrong') {
+      streakRef.current = 0
       setBoxiMood('wrong')
       setBoxiMessage('¡Ups!')
       if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
@@ -105,23 +137,22 @@ export default function GameScreen() {
     )
   }
 
-  const intermissionPhrases: Record<string, string> = {
-    'listening': 'Teraz pora sprawdzić twój słuch!',
-    'multiple_choice': 'Wybierz poprawną odpowiedź!',
-    'image_match': 'Dopasuj odpowiedni obrazek!',
-    'word_order': 'Ułóż słowa w poprawnej kolejności!'
-  }
-
   if (showIntermission) {
-    const text = intermissionPhrases[currentQuestion.type] || 'Przygotuj się na kolejne zadanie!'
     return (
       <PageTransition>
         <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
           <Mascot mood="happy" size="xl" />
           <h2 className="text-3xl font-black text-center text-pb-dark mb-4 mt-8 px-4" style={{ WebkitTextStroke: '1px white' }}>
-            {text}
+            {intermissionText}
           </h2>
           <div className="w-16 h-2 bg-pb-amber rounded-full animate-pulse mt-4"></div>
+          
+          <button 
+            onClick={() => setShowIntermission(false)}
+            className="mt-8 px-8 py-3 bg-pb-amber hover:bg-yellow-500 text-white font-bold rounded-xl shadow-[0_4px_0_#b45309] active:translate-y-1 active:shadow-none transition-all"
+          >
+            Kontynuuj
+          </button>
         </ScreenWrapper>
       </PageTransition>
     )
