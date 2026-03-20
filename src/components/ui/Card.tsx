@@ -1,27 +1,32 @@
-import type { ReactNode } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 import { cn } from '../../utils/cn'
 
-interface CardProps {
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
-  className?: string
-  /** When true, card responds to hover (lift) and active (press). */
-  interactive?: boolean
-  /** Optional click handler for interactive cards */
-  onClick?: () => void
+  padding?: 'none' | 'sm' | 'md' | 'lg'
 }
 
-export function Card({ children, className, interactive = false, onClick }: CardProps) {
+const paddingStyles = {
+  none: '',
+  sm: 'p-4',
+  md: 'p-6',
+  lg: 'p-8',
+}
+
+export function Card({
+  children,
+  className,
+  padding = 'md',
+  ...props
+}: CardProps) {
   return (
     <div
-      role={onClick ? 'button' : undefined}
-      tabIndex={onClick ? 0 : undefined}
-      onClick={onClick}
       className={cn(
-        'bg-white rounded-box-lg shadow-box p-6',
-        interactive &&
-          'transition-all duration-150 cursor-pointer hover:-translate-y-0.5 hover:shadow-box-hover active:translate-y-0.5 active:shadow-box-pressed',
+        'bg-white rounded-2xl border-2 border-slate-200 shadow-[0_6px_0_0_rgba(203,213,225,1)] text-pb-dark',
+        paddingStyles[padding],
         className,
       )}
+      {...props}
     >
       {children}
     </div>

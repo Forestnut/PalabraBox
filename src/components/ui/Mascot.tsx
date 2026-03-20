@@ -1,11 +1,3 @@
-/**
- * Boxi – the PalabraBox mascot.
- * A pure CSS/TSX animated box character.
- * Props:
- *  - mood: 'idle' | 'happy' | 'wrong'
- *  - size: 'sm' | 'md' | 'lg' (default: 'md')
- *  - className: optional extra classes
- */
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '../../utils/cn'
 
@@ -19,97 +11,167 @@ interface MascotProps {
   message?: string | null
 }
 
-const sizeMap: Record<MascotSize, { box: string; eye: string; mouth: string; flap: string; particle: string }> = {
-  sm: { box: 'w-16 h-14', eye: 'w-2 h-2', mouth: 'w-5 h-2.5', flap: 'w-5 h-3', particle: 'text-lg' },
-  md: { box: 'w-24 h-20', eye: 'w-3 h-3', mouth: 'w-7 h-3.5', flap: 'w-7 h-4', particle: 'text-2xl' },
-  lg: { box: 'w-36 h-28', eye: 'w-4 h-4', mouth: 'w-10 h-5', flap: 'w-11 h-6', particle: 'text-4xl' },
+const sizeMap: Record<MascotSize, string> = {
+  sm: 'w-16 h-16',
+  md: 'w-28 h-28',
+  lg: 'w-40 h-40',
 }
 
 export function Mascot({ mood = 'idle', size = 'md', className, message }: MascotProps) {
-  const s = sizeMap[size]
+  // Simple animations for different moods
+  const bobAnim = mood === 'idle' 
+    ? { y: [0, -4, 0], transition: { repeat: Infinity, duration: 2, ease: "easeInOut" } }
+    : mood === 'happy'
+    ? { y: [0, -10, 0], transition: { repeat: Infinity, duration: 0.5, ease: "easeOut" } }
+    : { x: [-3, 3, -3, 3, 0], transition: { duration: 0.4 } } // wrong shake
 
-  // Resolve box body color based on mood
-  const bodyColor =
-    mood === 'happy' ? 'bg-pb-amber border-amber-400' :
-    mood === 'wrong' ? 'bg-red-100 border-red-300' :
-    'bg-amber-100 border-amber-300'
-
-  // Resolve mouth shape based on mood
-  const mouthClass =
-    mood === 'happy' ? 'rounded-t-full border-b-0 border-t border-x border-amber-700/60' :
-    mood === 'wrong' ? 'rounded-b-full border-t-0 border-b border-x border-amber-700/60 translate-y-0.5' :
-    'rounded-full border border-amber-700/40'
-
-  // Resolve wrapper animation based on mood
-  const wrapperAnim =
-    mood === 'happy' ? 'animate-boxi-happy' :
-    mood === 'wrong'  ? 'animate-boxi-shake' :
-    'animate-boxi-bob'
+  // Heart particles for happy
+  const hearts = mood === 'happy' ? ['💕', '✨', '💕'] : []
 
   return (
-    <div className={cn('relative inline-flex flex-col items-center select-none', className)} role="img" aria-label="Boxi mascot">
+    <div className={cn('relative inline-flex flex-col items-center select-none', className)}>
       {/* Speech Bubble */}
       <AnimatePresence>
         {message && (
           <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            initial={{ opacity: 0, y: 10, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9, y: 5 }}
-            className="absolute bottom-[110%] left-1/2 -translate-x-1/2 mb-2 bg-white text-pb-dark px-4 py-2 rounded-2xl shadow-box-hover border-2 border-pb-bg whitespace-nowrap font-bold z-10 before:content-[''] before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:border-8 before:border-transparent before:border-t-white"
+            exit={{ opacity: 0, scale: 0.8, y: 5 }}
+            className="absolute bottom-[115%] left-1/2 -translate-x-1/2 mb-2 bg-white text-pb-dark px-4 py-2 rounded-2xl border-2 border-slate-200 shadow-[0_4px_0_0_rgba(203,213,225,1)] whitespace-nowrap font-black z-20 text-center text-sm md:text-base before:content-[''] before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:w-4 before:h-4 before:bg-white before:border-b-2 before:border-r-2 before:border-slate-200 before:rotate-45"
           >
             {message}
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Floating hearts / particles on happy */}
-      {mood === 'happy' && (
-        <div className="absolute -top-8 w-full flex justify-around pointer-events-none" aria-hidden>
-          {['💕', '⭐', '💕'].map((emoji, i) => (
-            <span
+      <div className="relative">
+        {/* Floating particles */}
+        <AnimatePresence>
+          {hearts.map((h, i) => (
+            <motion.div
               key={i}
-              className={cn(s.particle, 'animate-boxi-heartpop')}
-              style={{ animationDelay: `${i * 0.15}s` }}
+              initial={{ opacity: 0, y: 0, scale: 0 }}
+              animate={{ opacity: 1, y: -40 - (i*10), scale: 1.5, x: (i-1)*20 }}
+              exit={{ opacity: 0 }}
+              transition={{ repeat: Infinity, duration: 1.5, delay: i * 0.2 }}
+              className="absolute top-0 left-1/2 -translate-x-1/2 text-2xl z-0 pointer-events-none"
             >
-              {emoji}
-            </span>
+              {h}
+            </motion.div>
           ))}
-        </div>
-      )}
+        </AnimatePresence>
 
-      <div className={cn('relative flex flex-col items-center', wrapperAnim)}>
-        {/* Box flaps (cardboard ears) */}
-        <div className="flex gap-1 mb-0.5">
-          <div className={cn(s.flap, 'rounded-t-md border-2 border-b-0 border-amber-400', bodyColor, '-rotate-6')} />
-          <div className={cn(s.flap, 'rounded-t-md border-2 border-b-0 border-amber-400', bodyColor, 'rotate-6')} />
-        </div>
+        <motion.div 
+          animate={bobAnim} 
+          className={cn(sizeMap[size], "relative z-10")}
+          style={{ transformOrigin: 'bottom center' }}
+        >
+          {/* Cardboard Box SVG */}
+          <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-md overflow-visible">
+            {/* Back Flap */}
+            <motion.path 
+              d="M 20 30 L 80 30 L 70 10 L 30 10 Z" 
+              fill="#B47228" 
+              stroke="#4A2E15" 
+              strokeWidth="3" 
+              strokeLinejoin="round"
+              initial={{ rotateX: 0 }}
+              animate={mood === 'happy' ? { rotateX: [0, 20, 0] } : {}}
+              transition={{ repeat: Infinity, duration: 0.5 }}
+              style={{ transformOrigin: 'center 30px' }}
+            />
+            
+            {/* Box Body */}
+            <path 
+              d="M 15 30 L 85 30 L 80 90 L 20 90 Z" 
+              fill="#F4A236" 
+              stroke="#4A2E15" 
+              strokeWidth="3" 
+              strokeLinejoin="round" 
+            />
+            
+            {/* Box Inner Shadow / Fold Line */}
+            <path d="M 20 90 L 15 30" stroke="#4A2E15" strokeWidth="3" opacity="0.3" />
+            <path d="M 80 90 L 85 30" stroke="#4A2E15" strokeWidth="3" opacity="0.3" />
 
-        {/* Main box body */}
-        <div className={cn(s.box, 'relative rounded-2xl border-2 flex items-center justify-center', bodyColor, 'shadow-box overflow-hidden')}>
-          {/* Face */}
-          <div className="flex flex-col items-center gap-1">
-            {/* Eyes row */}
-            <div className="flex gap-3">
-              {/* Left eye */}
-              <div className={cn(s.eye, 'rounded-full bg-pb-dark animate-boxi-blink relative overflow-hidden')}>
-                {/* Eye shine */}
-                <div className="absolute top-0.5 right-0.5 w-1 h-1 rounded-full bg-white opacity-70" />
-              </div>
-              {/* Right eye */}
-              <div className={cn(s.eye, 'rounded-full bg-pb-dark animate-boxi-blink relative overflow-hidden')}>
-                <div className="absolute top-0.5 right-0.5 w-1 h-1 rounded-full bg-white opacity-70" />
-              </div>
-            </div>
+            {/* Left Flap */}
+            <motion.path 
+              d="M 15 30 L 5 45 L 25 55 L 35 30 Z" 
+              fill="#F4A236" 
+              stroke="#4A2E15" 
+              strokeWidth="3" 
+              strokeLinejoin="round"
+              initial={{ rotate: 0 }}
+              animate={mood === 'happy' ? { rotate: [-5, 5, -5] } : { rotate: [0, 2, 0] }}
+              transition={{ repeat: Infinity, duration: mood === 'happy' ? 0.3 : 3 }}
+              style={{ transformOrigin: '15px 30px' }}
+            />
 
-            {/* Mouth */}
-            <div className={cn(s.mouth, mouthClass)} />
-          </div>
+            {/* Right Flap */}
+            <motion.path 
+              d="M 85 30 L 95 45 L 75 55 L 65 30 Z" 
+              fill="#E08F22" 
+              stroke="#4A2E15" 
+              strokeWidth="3" 
+              strokeLinejoin="round"
+              initial={{ rotate: 0 }}
+              animate={mood === 'happy' ? { rotate: [5, -5, 5] } : { rotate: [0, -2, 0] }}
+              transition={{ repeat: Infinity, duration: mood === 'happy' ? 0.3 : 3.2 }}
+              style={{ transformOrigin: '85px 30px' }}
+            />
 
-          {/* Subtle cardboard texture lines */}
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-amber-400/20" />
-          </div>
-        </div>
+            {/* Face Container */}
+            <g transform="translate(0, 10)">
+              {/* Left Eye */}
+              {mood === 'happy' ? (
+                <path d="M 35 45 Q 40 40 45 45" fill="none" stroke="#4A2E15" strokeWidth="4" strokeLinecap="round" />
+              ) : mood === 'wrong' ? (
+                <path d="M 35 40 L 45 50 M 45 40 L 35 50" stroke="#4A2E15" strokeWidth="4" strokeLinecap="round" />
+              ) : (
+                <motion.circle 
+                  cx="40" cy="45" r="4" fill="#4A2E15"
+                  animate={{ scaleY: [1, 0.1, 1] }}
+                  transition={{ repeat: Infinity, duration: 3, times: [0, 0.05, 0.1] }}
+                />
+              )}
+
+              {/* Right Eye */}
+              {mood === 'happy' ? (
+                <path d="M 55 45 Q 60 40 65 45" fill="none" stroke="#4A2E15" strokeWidth="4" strokeLinecap="round" />
+              ) : mood === 'wrong' ? (
+                <path d="M 55 40 L 65 50 M 65 40 L 55 50" stroke="#4A2E15" strokeWidth="4" strokeLinecap="round" />
+              ) : (
+                <motion.circle 
+                  cx="60" cy="45" r="4" fill="#4A2E15"
+                  animate={{ scaleY: [1, 0.1, 1] }}
+                  transition={{ repeat: Infinity, duration: 3, times: [0, 0.05, 0.1] }}
+                />
+              )}
+
+              {/* Mouth */}
+              {mood === 'happy' ? (
+                <path d="M 42 55 Q 50 65 58 55" fill="none" stroke="#4A2E15" strokeWidth="4" strokeLinecap="round" />
+              ) : mood === 'wrong' ? (
+                <path d="M 45 60 Q 50 55 55 60" fill="none" stroke="#4A2E15" strokeWidth="3" strokeLinecap="round" />
+              ) : (
+                <path d="M 46 56 Q 50 58 54 56" fill="none" stroke="#4A2E15" strokeWidth="3" strokeLinecap="round" />
+              )}
+            </g>
+
+            {/* Front Flap (Folded down a bit) */}
+            <motion.path 
+              d="M 15 30 L 85 30 L 75 40 L 25 40 Z" 
+              fill="#FFB952" 
+              stroke="#4A2E15" 
+              strokeWidth="3" 
+              strokeLinejoin="round"
+              initial={{ rotateX: 0 }}
+              animate={mood === 'happy' ? { rotateX: [0, -20, 0] } : {}}
+              transition={{ repeat: Infinity, duration: 0.5 }}
+              style={{ transformOrigin: 'center 30px' }}
+            />
+          </svg>
+        </motion.div>
       </div>
     </div>
   )

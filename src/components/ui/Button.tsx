@@ -66,7 +66,7 @@ export function Button({
         'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber',
         variantStyles[variant],
         sizeStyles[size],
-        (disabled || isClickLocked) && 'opacity-50 pointer-events-none',
+        (disabled || isClickLocked) && 'opacity-50 pointer-events-none grayscale',
         className,
       )}
       disabled={disabled || isClickLocked}
