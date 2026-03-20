@@ -29,6 +29,7 @@ export function useGame(scenarioId: string | undefined) {
   } = useGameStore()
 
   useEffect(() => {
+    let ignore = false;
     if (!scenarioId) return
 
     async function fetchQuestions() {
@@ -49,6 +50,8 @@ export function useGame(scenarioId: string | undefined) {
         if (err) throw err
         if (scenarioError) throw scenarioError
 
+        if (ignore) return;
+
         setScenarioLanguage(scenarioData.language)
 
         // Shuffle questions
@@ -64,6 +67,10 @@ export function useGame(scenarioId: string | undefined) {
     }
 
     fetchQuestions()
+
+    return () => {
+      ignore = true;
+    }
   }, [scenarioId, startGame])
 
   const currentQuestion = questions[currentQuestionIndex]
