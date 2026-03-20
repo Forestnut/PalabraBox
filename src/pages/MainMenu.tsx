@@ -21,7 +21,7 @@ export default function MainMenu() {
       <ScreenWrapper className="flex flex-col items-center gap-6 pt-12">
         <button
           onClick={() => navigate('/settings')}
-          className="absolute top-6 right-6 text-2xl bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-box hover:scale-105 hover:text-pb-amber active:scale-95 transition-all text-pb-text-light z-10"
+          className="absolute top-6 right-6 text-2xl bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-box hover:scale-105 hover:text-pb-amber active:scale-95 transition-all text-pb-text-light z-10 cursor-pointer"
           aria-label="Configuración"
         >
           ⚙️
