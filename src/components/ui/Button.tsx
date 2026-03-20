@@ -70,7 +70,12 @@ export function Button({
         className,
       )}
       disabled={disabled || isClickLocked}
-      onClick={handleClick}
+      onClick={(e) => {
+        import('../../services/audioService').then(({ audioService }) => {
+          audioService.play('click')
+        })
+        return handleClick(e);
+      }}
       {...props}
     >
       {children}
