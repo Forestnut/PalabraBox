@@ -37,7 +37,7 @@ export function SelectableCard({
         }
       }}
       className={cn(
-        'focus-visible:outline focus-visible:outline-2 focus-visible:outline-pb-amber',
+        'focus-visible:outline-2 focus-visible:outline-pb-amber',
         onClick && 'cursor-pointer',
       )}
     >
