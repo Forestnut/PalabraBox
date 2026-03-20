@@ -6,6 +6,7 @@
  *  - size: 'sm' | 'md' | 'lg' (default: 'md')
  *  - className: optional extra classes
  */
+import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '../../utils/cn'
 
 export type MascotMood = 'idle' | 'happy' | 'wrong'
@@ -15,6 +16,7 @@ interface MascotProps {
   mood?: MascotMood
   size?: MascotSize
   className?: string
+  message?: string | null
 }
 
 const sizeMap: Record<MascotSize, { box: string; eye: string; mouth: string; flap: string; particle: string }> = {
@@ -23,7 +25,7 @@ const sizeMap: Record<MascotSize, { box: string; eye: string; mouth: string; fla
   lg: { box: 'w-36 h-28', eye: 'w-4 h-4', mouth: 'w-10 h-5', flap: 'w-11 h-6', particle: 'text-4xl' },
 }
 
-export function Mascot({ mood = 'idle', size = 'md', className }: MascotProps) {
+export function Mascot({ mood = 'idle', size = 'md', className, message }: MascotProps) {
   const s = sizeMap[size]
 
   // Resolve box body color based on mood
@@ -46,6 +48,20 @@ export function Mascot({ mood = 'idle', size = 'md', className }: MascotProps) {
 
   return (
     <div className={cn('relative inline-flex flex-col items-center select-none', className)} role="img" aria-label="Boxi mascot">
+      {/* Speech Bubble */}
+      <AnimatePresence>
+        {message && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9, y: 5 }}
+            className="absolute bottom-[110%] left-1/2 -translate-x-1/2 mb-2 bg-white text-pb-dark px-4 py-2 rounded-2xl shadow-box-hover border-2 border-pb-bg whitespace-nowrap font-bold z-10 before:content-[''] before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:border-8 before:border-transparent before:border-t-white"
+          >
+            {message}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Floating hearts / particles on happy */}
       {mood === 'happy' && (
         <div className="absolute -top-8 w-full flex justify-around pointer-events-none" aria-hidden>

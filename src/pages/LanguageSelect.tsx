@@ -25,7 +25,7 @@ export default function LanguageSelect() {
   return (
     <PageTransition>
       <ScreenWrapper>
-        <BackButton />
+        <BackButton fallbackUrl="/menu" />
         <h1 className="text-2xl font-bold mt-4">Seleccionar Idioma</h1>
         <p className="mt-2 text-sm text-pb-text-light">
           Elige el idioma que quieres aprender. Entorno optimizado para hispanohablantes.

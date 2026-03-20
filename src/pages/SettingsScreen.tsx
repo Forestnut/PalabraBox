@@ -49,7 +49,7 @@ export default function SettingsScreen() {
     <PageTransition>
       <ScreenWrapper className="flex flex-col gap-6 py-6 pb-12">
         <div className="flex items-center gap-4 mb-2">
-          <BackButton />
+          <BackButton fallbackUrl="/menu" />
           <h1 className="text-3xl font-black text-pb-dark tracking-wide uppercase">Opciones</h1>
         </div>
 

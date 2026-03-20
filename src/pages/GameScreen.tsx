@@ -23,24 +23,32 @@ export default function GameScreen() {
     lives,
     maxLives,
     score,
-    scenarioLanguage,
   } = useGame(scenarioId)
   const { status } = useGameStore()
   const { playSound } = useAudio()
 
   const [boxiMood, setBoxiMood] = useState<MascotMood>('idle')
+  const [boxiMessage, setBoxiMessage] = useState<string | null>(null)
   const boxiTimeoutRef = useRef<number | null>(null)
 
   const handlePlaySound = useCallback((type: 'click' | 'correct' | 'wrong') => {
     playSound(type)
     if (type === 'correct') {
       setBoxiMood('happy')
+      setBoxiMessage('¡Genial!')
       if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
-      boxiTimeoutRef.current = window.setTimeout(() => setBoxiMood('idle'), 1500)
+      boxiTimeoutRef.current = window.setTimeout(() => {
+        setBoxiMood('idle')
+        setBoxiMessage(null)
+      }, 1500)
     } else if (type === 'wrong') {
       setBoxiMood('wrong')
+      setBoxiMessage('¡Ups!')
       if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
-      boxiTimeoutRef.current = window.setTimeout(() => setBoxiMood('idle'), 1200)
+      boxiTimeoutRef.current = window.setTimeout(() => {
+        setBoxiMood('idle')
+        setBoxiMessage(null)
+      }, 1200)
     }
   }, [playSound])
 
@@ -55,7 +63,7 @@ export default function GameScreen() {
   if (error) {
     return (
       <ScreenWrapper>
-        <BackButton />
+        <BackButton fallbackUrl="/scenarios" label="←" />
         <p className="text-center text-pb-error py-8 font-bold">Error: {error}</p>
       </ScreenWrapper>
     )
@@ -74,7 +82,7 @@ export default function GameScreen() {
   if (!currentQuestion) {
     return (
       <ScreenWrapper>
-        <BackButton />
+        <BackButton fallbackUrl="/scenarios" label="←" />
         <p className="text-center py-8 font-bold text-pb-text-light">No se encontraron preguntas.</p>
       </ScreenWrapper>
     )
@@ -83,10 +91,10 @@ export default function GameScreen() {
   return (
     <PageTransition>
       <ScreenWrapper>
-        <div className="flex items-center justify-between mb-4">
-          <BackButton label="←" />
-          <div className="flex-1 flex justify-center mt-4">
-            <Mascot mood={boxiMood} size="sm" />
+        <div className="flex items-center justify-between mb-4 mt-2">
+          <BackButton fallbackUrl="/scenarios" label="←" />
+          <div className="flex-1 flex justify-center mt-2 relative">
+            <Mascot mood={boxiMood} size="sm" message={boxiMessage} className="absolute -top-4" />
           </div>
           <div className="flex items-center gap-2 sm:gap-4 font-bold text-lg sm:text-xl">
             <span className="text-pb-amber drop-shadow-sm">🏆 {score}</span>
@@ -112,7 +120,6 @@ export default function GameScreen() {
         <QuestionRenderer
           key={currentQuestion.id}
           question={currentQuestion}
-          scenarioLanguage={scenarioLanguage}
           onAnswered={(isCorrect) => {
             handleAnswer(isCorrect)
             goToNext()
