@@ -63,12 +63,12 @@ export function MultipleChoice({
   }
 
   const getOptionClass = (option: string) => {
-    const base = 'w-full text-left'
+    const base = 'w-full text-left font-bold text-lg'
     if (!selected) {
       return cn(
         base,
-        'bg-white border border-transparent shadow-box hover:border-pb-amber/60',
-        'transition-all duration-150',
+        'bg-white border-2 border-slate-200 border-b-4 hover:bg-slate-50',
+        'transition-all duration-150 active:translate-y-[2px] active:border-b-2',
       )
     }
 
@@ -76,22 +76,22 @@ export function MultipleChoice({
     const isCorrect = option === question.correct_answer
 
     if (isSelected && feedback === 'correct') {
-      return cn(base, 'bg-pb-success/20 border border-pb-success')
+      return cn(base, 'bg-green-100 border-2 border-green-500 border-b-4 text-green-900')
     }
 
     if (isSelected && feedback === 'wrong') {
-      return cn(base, 'bg-pb-error/20 border border-pb-error')
+      return cn(base, 'bg-red-100 border-2 border-red-500 border-b-4 text-red-900')
     }
 
     if (!isSelected && feedback) {
       // If wrong, still highlight correct answer
       if (isCorrect) {
-        return cn(base, 'bg-pb-success/20 border border-pb-success')
+        return cn(base, 'bg-green-100 border-2 border-green-500 border-b-4 text-green-900')
       }
-      return cn(base, 'bg-white border border-transparent')
+      return cn(base, 'bg-white border-2 border-slate-200 border-b-4 opacity-50')
     }
 
-    return cn(base, 'bg-white border border-transparent')
+    return cn(base, 'bg-white border-2 border-slate-200 border-b-4')
   }
 
   return (

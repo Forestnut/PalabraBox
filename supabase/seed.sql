@@ -374,3 +374,32 @@ INSERT INTO public.questions (scenario_id, type, question_text, question_text_tt
 ('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
 ('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
 ('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14);
+
+-- NOWE ZADANIA DO PALABRABOX (Drag & Drop, Fill Blank)
+
+-- 1. Drag & Drop - Kolory i Ksztalty (word_order)
+INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'red apple', 'Uloz slowa w poprawnej kolejnosci, aby powiedziec "Czerwone jablko"', '["apple", "red"]', '["red", "apple"]', 'W jezyku angielskim przymiotnik (red) stawiamy przed rzeczownikiem (apple).') ON CONFLICT DO NOTHING;
+INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'blue bird', 'Uloz slowa w poprawnej kolejnosci, aby powiedziec "Niebieski ptak"', '["bird", "blue"]', '["blue", "bird"]', 'Niebieski ptak to "blue bird".') ON CONFLICT DO NOTHING;
+INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'is yellow', 'Uloz zdanie: "Slonce jest zolte" (The sun is yellow)', '["yellow", "The", "sun", "is"]', '["The", "sun", "is", "yellow"]', 'Prawidlowa kolejnosc: Podmiot (The sun) + orzeczenie (is) + przymiotnik (yellow).') ON CONFLICT DO NOTHING;
+
+-- 2. Fill in the Blank - Kolory i Ksztalty (fill_blank)
+INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'fill_blank', 'green', 'Grass is ___ (Trawa jest zielona)', '["red", "green", "blue"]', '"green"', 'Grass is green. Zielony to green.') ON CONFLICT DO NOTHING;
+INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'fill_blank', 'white', 'Snow is ___ (Snieg jest bialy)', '["black", "white", "purple"]', '"white"', 'White oznacza bialy.') ON CONFLICT DO NOTHING;
+
+-- 3. Drag & Drop - Zwierzeta (word_order)
+INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'word_order', 'dog barking', 'Uloz zdanie: "Pies szczeka" (The dog is barking)', '["barking", "is", "dog", "The"]', '["The", "dog", "is", "barking"]', 'Najpierw podmiot (The dog), potem czasownik (is), potem czasownik z -ing (barking).') ON CONFLICT DO NOTHING;
+INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'word_order', 'fast horse', 'Uloz zdanie: "To jest szybki kon" (This is a fast horse)', '["fast", "is", "This", "horse", "a"]', '["This", "is", "a", "fast", "horse"]', 'Prawidlowy szyk: This is + a + przymiotnik + rzeczownik.')  ON CONFLICT DO NOTHING;
+
+-- 4. Fill in the Blank - Zwierzeta (fill_blank)
+INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'fill_blank', 'cat', 'A ___ says meow. (Kot mowi miau)', '["dog", "cat", "cow"]', '"cat"', 'Cat to kot.') ON CONFLICT DO NOTHING;
+INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'fill_blank', 'fish', 'A ___ swims in water. (Ryba plywa w wodzie)', '["bird", "horse", "fish"]', '"fish"', 'Fish to ryba.') ON CONFLICT DO NOTHING;
+

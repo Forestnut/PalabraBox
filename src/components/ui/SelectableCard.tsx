@@ -1,38 +1,63 @@
-import { motion, HTMLMotionProps } from 'framer-motion'
+import type { ReactNode } from 'react'
 import { cn } from '../../utils/cn'
+import { Card } from './Card'
 
-interface SelectableCardProps extends HTMLMotionProps<"button"> {
+interface SelectableCardProps {
+  /** Main label (e.g. language name) */
+  title: string
+  /** Optional secondary text or description */
+  description?: string
+  /** Large visual icon / emoji */
+  icon?: ReactNode
+  /** Whether this option is currently selected */
   selected?: boolean
-  correct?: boolean | null
-  children: React.ReactNode
+  /** Click handler */
+  onClick?: () => void
+  /** Optional additional classNames */
+  className?: string
 }
 
 export function SelectableCard({
-  selected,
-  correct,
-  children,
+  title,
+  description,
+  icon,
+  selected = false,
+  onClick,
   className,
-  ...props
 }: SelectableCardProps) {
-  const getStyle = () => {
-    if (correct === true) return 'bg-green-100 border-green-500 shadow-[0_4px_0_0_rgba(34,197,94,1)] text-green-900'
-    if (correct === false && selected) return 'bg-red-100 border-red-500 shadow-[0_4px_0_0_rgba(239,68,68,1)] text-red-900'
-    if (selected) return 'bg-blue-50 border-blue-500 shadow-[0_4px_0_0_rgba(59,130,246,1)] text-blue-900'
-    return 'bg-white border-slate-200 shadow-[0_4px_0_0_rgba(203,213,225,1)] hover:bg-slate-50 text-pb-dark'
-  }
-
   return (
-    <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98, y: 2, boxShadow: "0 0px 0 0 rgba(0,0,0,0)" }}
+    <div
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onClick={onClick}
+      onKeyDown={(event) => {
+        if (onClick && (event.key === 'Enter' || event.key === ' ')) {
+          event.preventDefault()
+          onClick()
+        }
+      }}
       className={cn(
-        'w-full p-4 rounded-2xl border-2 font-bold text-lg transition-colors cursor-pointer disabled:cursor-default',
-        getStyle(),
-        className,
+        'focus-visible:outline focus-visible:outline-2 focus-visible:outline-pb-amber',
+        onClick && 'cursor-pointer',
       )}
-      {...props}
     >
-      {children}
-    </motion.button>
+      <Card
+        interactive
+        className={cn(
+          'flex flex-col items-start gap-3',
+          selected && 'border-pb-emerald bg-emerald-50/50',
+          className,
+        )}
+      >
+        <div className="flex items-center justify-between w-full">
+          <div className="flex items-center gap-3">
+            {icon && <div className="text-3xl">{icon}</div>}
+            <h3 className="text-lg font-bold">{title}</h3>
+          </div>
+          {selected && <span className="text-pb-emerald font-bold">✓</span>}
+        </div>
+        {description && <p className="text-sm text-pb-text-light">{description}</p>}
+      </Card>
+    </div>
   )
 }

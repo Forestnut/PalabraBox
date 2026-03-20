@@ -20,9 +20,9 @@ const sizeMap: Record<MascotSize, string> = {
 export function Mascot({ mood = 'idle', size = 'md', className, message }: MascotProps) {
   // Simple animations for different moods
   const bobAnim = mood === 'idle' 
-    ? { y: [0, -4, 0], transition: { repeat: Infinity, duration: 2, ease: "easeInOut" } }
+    ? { y: [0, -4, 0], transition: { repeat: Infinity, duration: 2, ease: "easeInOut" as const } }
     : mood === 'happy'
-    ? { y: [0, -10, 0], transition: { repeat: Infinity, duration: 0.5, ease: "easeOut" } }
+    ? { y: [0, -10, 0], transition: { repeat: Infinity, duration: 0.5, ease: "easeOut" as const } }
     : { x: [-3, 3, -3, 3, 0], transition: { duration: 0.4 } } // wrong shake
 
   // Heart particles for happy
@@ -62,7 +62,8 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
         </AnimatePresence>
 
         <motion.div 
-          animate={bobAnim} 
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          animate={bobAnim as any} 
           className={cn(sizeMap[size], "relative z-10")}
           style={{ transformOrigin: 'bottom center' }}
         >
