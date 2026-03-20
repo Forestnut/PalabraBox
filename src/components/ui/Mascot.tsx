@@ -22,7 +22,9 @@ const sizeMap: Record<MascotSize, string> = {
 
 export function Mascot({ mood = 'idle', size = 'md', className, message }: MascotProps) {
   const [isBlinking, setIsBlinking] = useState(false)
-  const isClosed = mood === 'sleeping'
+  
+  // Default is closed, except when happy or celebrate (confetti happens)
+  const isClosed = mood !== 'happy' && mood !== 'celebrate'
   
   useEffect(() => {
     if (mood !== 'idle' && mood !== 'happy') return
@@ -83,14 +85,17 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
     }
   }
 
-  // Paths - Poprawione, zeby nie byly nienaturalnie wygiete
-  const leftFlapOpened = "M 20 60 L 40 40 L 10 40 L -10 60 Z"
+  // Paths - skrzydełka równo (Straight Flaps along Z axis)
+  const backFlapOpened = "M 40 40 L 120 40 L 115 35 L 45 35 Z"
+  const backFlapClosed = "M 40 40 L 120 40 L 100 60 L 20 60 Z"
+
+  const leftFlapOpened = "M 20 60 L 40 40 L 40 20 L 20 40 Z"
   const leftFlapClosed = "M 20 60 L 40 40 L 80 40 L 60 60 Z"
 
-  const rightFlapOpened = "M 100 60 L 120 40 L 150 40 L 130 60 Z"
+  const rightFlapOpened = "M 100 60 L 120 40 L 120 20 L 100 40 Z"
   const rightFlapClosed = "M 100 60 L 120 40 L 80 40 L 60 60 Z"
 
-  const frontFlapOpened = "M 20 60 L 100 60 L 105 80 L 15 80 Z"
+  const frontFlapOpened = "M 20 60 L 100 60 L 100 95 L 20 95 Z"
   const frontFlapClosed = "M 20 60 L 100 60 L 120 40 L 40 40 Z"
 
   return (
@@ -98,10 +103,10 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
       <AnimatePresence>
         {message && (
           <motion.div
-            initial={{ opacity: 0, y: 15, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8, y: 10 }}
-            className="absolute bottom-fulleft-1/2 -translate-x-1/2 mb-4 bg-white text-pb-dark px-5 py-3 rounded-3xl border-4 border-pb-amber/30 shadow-[0_8px_16px_rgba(0,0,0,0.1)] whitespace-nowrap font-black z-30 text-center text-sm md:text-base before:content-[''] before:absolute before:-bottom-3 before:left-1/2 before:-translate-x-1/2 before:w-5 before:h-5 before:bg-white before:border-b-4 before:border-r-4 before:border-pb-amber/30 before:rotate-45"
+            initial={{ opacity: 0, x: -15, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8, x: -10 }}
+            className="absolute left-[90%] top-0 ml-4 bg-white text-pb-dark px-5 py-3 rounded-3xl border-4 border-pb-amber/30 shadow-[0_8px_16px_rgba(0,0,0,0.1)] whitespace-nowrap font-black z-30 text-center text-sm md:text-base before:content-[''] before:absolute before:left-[-11px] before:top-1/2 before:-translate-y-1/2 before:w-5 before:h-5 before:bg-white before:border-b-4 before:border-l-4 before:border-pb-amber/30 before:rotate-45"
           >
             {message}
           </motion.div>
@@ -131,9 +136,9 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
               {(mood === 'happy' || mood === 'celebrate') && (
                 <g>
                   {[
-                    { x: 30, y: 40, c: '#EF4444' }, { x: 70, y: 30, c: '#3B82F6' },
-                    { x: 110, y: 45, c: '#10B981' }, { x: 50, y: 15, c: '#F59E0B' },
-                    { x: 90, y: 10, c: '#8B5CF6' }
+                    { x: 50, y: 50, c: '#EF4444' }, { x: 70, y: 50, c: '#3B82F6' },
+                    { x: 90, y: 50, c: '#10B981' }, { x: 60, y: 50, c: '#F59E0B' },
+                    { x: 80, y: 50, c: '#8B5CF6' }
                   ].map((conf, i) => (
                     <motion.rect
                       key={`c-${i}`}
@@ -141,7 +146,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
                       initial={{ y: 50, scale: 0, opacity: 1 }}
                       animate={{ 
                         y: [-10, -60, -20, 80],
-                        x: [conf.x, conf.x + (i%2 ? -30 : 30)],
+                        x: [conf.x, conf.x + (i%2 ? -40 : 40)],
                         rotate: [0, 180, 360, 720],
                         scale: [0, 1.5, 1, 0]
                       }}
@@ -176,6 +181,13 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
               )}
             </AnimatePresence>
 
+            {/* BACK FLAP (Peeking slightly down/back) */}
+            <motion.path 
+              animate={{ d: isClosed ? backFlapClosed : backFlapOpened }}
+              fill="#D97706" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" strokeLinecap="round"
+              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+            />
+
             {/* INSIDE HOLE */}
             <path d="M 20 60 L 100 60 L 120 40 L 40 40 Z" fill="#451A03" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" />
 
@@ -198,7 +210,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
 
             {/* FRONT FACE */}
             <path d="M 20 60 L 100 60 L 100 130 L 20 130 Z" fill="url(#frontGrad)" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" />
-            <path d="M 24 64 L 96 64" stroke="#FBBF24" strokeWidth="6" strokeLinecap="round" opacity="0.8" fill="none" />
+            <path d="M 24 64 L 96 64" stroke="#FBBF24" strokeWidth="6" strokeLinecap="round" fill="none" />
 
             {/* FACE elements relative to front face center (60, 95) */}
             <g transform="translate(60, 95)">
