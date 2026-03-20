@@ -73,10 +73,10 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled, scenari
 
   const blankStateClass = selectedWord 
     ? feedback === 'correct' 
-      ? 'bg-pb-success border-pb-success text-white shadow-box' 
+      ? 'bg-pb-success border-pb-success border-b-[4px] text-white translate-y-[-2px]' 
       : feedback === 'wrong' 
-        ? 'bg-pb-error border-pb-error text-white shadow-box' 
-        : 'bg-pb-amber border-pb-amber text-white shadow-box'
+        ? 'bg-pb-error border-pb-error border-b-[4px] text-white translate-y-[-2px]' 
+        : 'bg-pb-amber border-pb-amber border-b-[4px] text-white translate-y-[-2px]'
     : 'bg-pb-bg border-pb-text-light/30 border-dashed text-transparent'
 
   return (
@@ -137,8 +137,9 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled, scenari
                     layoutId={`word-${word}`}
                     onClick={() => handleSelectWord(word)}
                     disabled={isChecking || disabled}
-                    className="absolute inset-0 bg-white border-2 border-pb-bg shadow-box rounded-xl text-lg font-bold text-pb-dark flex items-center justify-center px-6 hover:border-pb-amber hover:text-pb-amber active:scale-95 transition-colors z-10"
-                    whileTap={{ scale: 0.95 }}
+                    className="absolute inset-0 bg-white border-2 border-b-4 border-slate-200 rounded-2xl text-lg font-bold text-pb-dark flex items-center justify-center px-6 hover:bg-slate-50 transition-colors z-10"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98, y: 2, borderBottomWidth: '2px' }}
                   >
                     {word}
                   </motion.button>
