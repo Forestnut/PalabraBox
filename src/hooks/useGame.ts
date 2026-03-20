@@ -39,7 +39,6 @@ export function useGame(scenarioId: string | undefined) {
           .from('questions')
           .select('*')
           .eq('scenario_id', scenarioId)
-          .limit(10)
 
         const { data: scenarioData, error: scenarioError } = await supabase
           .from('scenarios')
@@ -54,8 +53,8 @@ export function useGame(scenarioId: string | undefined) {
 
         setScenarioLanguage(scenarioData.language)
 
-        // Shuffle questions
-        const shuffled = [...(data as Question[])].sort(() => Math.random() - 0.5)
+        // Shuffle questions and pick max 10
+        const shuffled = [...(data as Question[])].sort(() => Math.random() - 0.5).slice(0, 10)
         setQuestions(shuffled)
         
         startGame(shuffled.length) // Reset store state for new game

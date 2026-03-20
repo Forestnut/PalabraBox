@@ -14,10 +14,10 @@ export function BackButton({ label = '← Volver', fallbackUrl }: BackButtonProp
       variant="ghost"
       size="sm"
       onClick={() => {
-        if (window.history.length > 2) {
-          navigate(-1)
-        } else if (fallbackUrl) {
+        if (fallbackUrl) {
           navigate(fallbackUrl)
+        } else if (window.history.length > 2) {
+          navigate(-1)
         } else {
           navigate('/menu')
         }

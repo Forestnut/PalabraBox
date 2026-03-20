@@ -132,7 +132,8 @@ INSERT INTO public.questions (scenario_id, type, question_text, question_text_tt
 -- Questions for Animals
 INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
 ('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'multiple_choice', 'How do you say "perro" in English?', 'dog', 'dog', ARRAY['fish', 'cow', 'cat'], NULL, 1),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'multiple_choice', 'How do you say "perro" in English?', 'dog', 'dog', ARRAY['rabbit', 'cow', 'fish'], NULL, 2),
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'fill_blank', 'The ____ barks loudly.', 'dog', 'dog', ARRAY['cat', 'cow', 'fish'], NULL, 2),
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'word_order', 'Arrange the words correctly', 'the dog is big', 'the dog is big', ARRAY['small', 'not'], NULL, 11),
 ('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'image_match', 'Which word represents 🐱?', 'cat', 'cat', ARRAY['horse', 'fish', 'rabbit'], '🐱', 3),
 ('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'listening', 'Listen and select the correct word', 'pig', 'pig', ARRAY['bird', 'rabbit', 'dog'], NULL, 4),
 ('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'multiple_choice', 'How do you say "pez" in English?', 'fish', 'fish', ARRAY['pig', 'cow', 'cat'], NULL, 5),
@@ -184,14 +185,14 @@ INSERT INTO public.questions (scenario_id, type, question_text, question_text_tt
 -- Questions for Travel & Transport
 INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
 ('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'multiple_choice', 'How do you say "hotel" in English?', 'hotel', 'hotel', ARRAY['plane', 'ticket', 'car'], NULL, 1),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'multiple_choice', 'How do you say "hotel" in English?', 'hotel', 'hotel', ARRAY['bus', 'airport', 'car'], NULL, 2),
+('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'word_order', 'Arrange the words correctly', 'we sleep at the hotel', 'we sleep at the hotel', ARRAY['run', 'not'], NULL, 2),
 ('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'image_match', 'Which word represents 🚌?', 'bus', 'bus', ARRAY['train', 'passport', 'hotel'], '🚌', 3),
 ('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'listening', 'Listen and select the correct word', 'car', 'car', ARRAY['airport', 'hotel', 'plane'], NULL, 4),
 ('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'multiple_choice', 'How do you say "autobús" in English?', 'bus', 'bus', ARRAY['car', 'airport', 'passport'], NULL, 5),
 ('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'image_match', 'Which word represents 🛂?', 'passport', 'passport', ARRAY['train', 'bus', 'plane'], '🛂', 6),
 ('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'multiple_choice', 'How do you say "tren" in English?', 'train', 'train', ARRAY['ticket', 'bus', 'plane'], NULL, 7),
 ('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'listening', 'Listen and select the correct word', 'passport', 'passport', ARRAY['plane', 'bus', 'hotel'], NULL, 8),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'image_match', 'Which word represents ✈️?', 'plane', 'plane', ARRAY['car', 'hotel', 'passport'], '✈️', 9),
+('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9atna0b1c', 'image_match', 'Which word represents ✈️?', 'plane', 'plane', ARRAY['car', 'hotel', 'passport'], '✈️', 9),
 ('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'multiple_choice', 'How do you say "autobús" in English?', 'bus', 'bus', ARRAY['train', 'passport', 'car'], NULL, 10);
 
 -- Questions for Los Colores y Formas
@@ -200,7 +201,7 @@ INSERT INTO public.questions (scenario_id, type, question_text, question_text_tt
 ('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'multiple_choice', 'How do you say "blue" in Spanish?', 'azul', 'azul', ARRAY['naranja', 'blanco', 'verde'], NULL, 2),
 ('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'image_match', 'Which word represents 🟣?', 'morado', 'morado', ARRAY['rojo', 'negro', 'azul'], '🟣', 3),
 ('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'listening', 'Listen and select the correct word', 'azul', 'azul', ARRAY['amarillo', 'rojo', 'verde'], NULL, 4),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'multiple_choice', 'How do you say "blue" in Spanish?', 'azul', 'azul', ARRAY['naranja', 'negro', 'amarillo'], NULL, 5),
+('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'fill_blank', 'El cielo es ____.', 'azul', 'azul', ARRAY['rojo', 'negro', 'verde'], NULL, 5),
 ('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'image_match', 'Which word represents 🟠?', 'naranja', 'naranja', ARRAY['verde', 'morado', 'negro'], '🟠', 6),
 ('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'multiple_choice', 'How do you say "red" in Spanish?', 'rojo', 'rojo', ARRAY['naranja', 'blanco', 'morado'], NULL, 7),
 ('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'listening', 'Listen and select the correct word', 'blanco', 'blanco', ARRAY['naranja', 'rojo', 'negro'], NULL, 8),
@@ -215,7 +216,7 @@ INSERT INTO public.questions (scenario_id, type, question_text, question_text_tt
 ('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'listening', 'Listen and select the correct word', 'perro', 'perro', ARRAY['cerdo', 'gato', 'conejo'], NULL, 4),
 ('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "bird" in Spanish?', 'pájaro', 'pájaro', ARRAY['cerdo', 'gato', 'vaca'], NULL, 5),
 ('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'image_match', 'Which word represents 🐱?', 'gato', 'gato', ARRAY['conejo', 'perro', 'pez'], '🐱', 6),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "bird" in Spanish?', 'pájaro', 'pájaro', ARRAY['vaca', 'pez', 'conejo'], NULL, 7),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'word_order', 'Arrange the words correctly', 'el pájaro puede volar', 'el pájaro puede volar', ARRAY['perro', 'no'], NULL, 7),
 ('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'listening', 'Listen and select the correct word', 'caballo', 'caballo', ARRAY['perro', 'vaca', 'pez'], NULL, 8),
 ('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'image_match', 'Which word represents 🐦?', 'pájaro', 'pájaro', ARRAY['pez', 'cerdo', 'gato'], '🐦', 9),
 ('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "rabbit" in Spanish?', 'conejo', 'conejo', ARRAY['vaca', 'pez', 'perro'], NULL, 10);

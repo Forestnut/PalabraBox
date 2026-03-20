@@ -40,7 +40,7 @@ export default function LevelSelect() {
   return (
     <PageTransition>
       <ScreenWrapper>
-        <BackButton />
+        <BackButton fallbackUrl="/language" />
         <h1 className="text-2xl font-bold mt-4">Seleccionar Nivel</h1>
         <p className="mt-2 text-sm text-pb-text-light">
           Elige un nivel de dificultad. Puedes cambiarlo luego.

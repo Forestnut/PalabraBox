@@ -25,7 +25,7 @@ export default function ScenarioSelect() {
     <PageTransition className="bg-pb-bg">
       <ScreenWrapper className="flex flex-col py-6 pb-12">
         <div className="flex items-center gap-4 mb-8">
-          <BackButton />
+          <BackButton fallbackUrl="/level" />
           <h1 className="text-3xl font-black text-pb-dark tracking-wide uppercase">Niveles</h1>
         </div>
 

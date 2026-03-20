@@ -5,7 +5,7 @@
 class SpeechService {
   private synth: SpeechSynthesis | null = null;
   private voice: SpeechSynthesisVoice | null = null;
-  private defaultLang: string = 'es-ES';
+  private defaultLang: string = 'en-US';
 
   constructor() {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -25,10 +25,10 @@ class SpeechService {
   private initVoices() {
     if (!this.synth) return;
     const voices = this.synth.getVoices();
-    // Prefer Google Spanish if available, else standard Spanish, else first available
+    // Prefer Google US English if available, else standard English, else first available
     this.voice = 
       voices.find((v) => v.lang === this.defaultLang && v.name.includes('Google')) ||
-      voices.find((v) => v.lang === this.defaultLang) || 
+      voices.find((v) => v.lang.startsWith('en')) || 
       voices[0] || null;
   }
 
