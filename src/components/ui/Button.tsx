@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import { cn } from '../../utils/cn'
 
@@ -33,8 +34,28 @@ export function Button({
   children,
   className,
   disabled,
+  onClick,
   ...props
 }: ButtonProps) {
+  const [isClickLocked, setIsClickLocked] = useState(false)
+
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (disabled || isClickLocked) {
+      e.preventDefault()
+      return
+    }
+    
+    setIsClickLocked(true)
+    
+    try {
+      await onClick?.(e)
+    } finally {
+      setTimeout(() => {
+        setIsClickLocked(false)
+      }, 300)
+    }
+  }
+
   return (
     <button
       className={cn(
@@ -45,10 +66,11 @@ export function Button({
         'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber',
         variantStyles[variant],
         sizeStyles[size],
-        disabled && 'opacity-50 pointer-events-none',
+        (disabled || isClickLocked) && 'opacity-50 pointer-events-none',
         className,
       )}
-      disabled={disabled}
+      disabled={disabled || isClickLocked}
+      onClick={handleClick}
       {...props}
     >
       {children}

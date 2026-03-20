@@ -6,4 +6,14 @@
 
 - [ ] FIX: zmień rozmiary obrazów i ogólnie UI, tak by wszystko było widoczne bez zbędnego scrollowania
 
-- [ ] ADD: dodaj przy przycisku ustawień myszkę która klika- [ ] FIX: w zadanaich ze słuchania wymowa po angielsku jest z dziwnym akcentem
+- [ ] ADD: dodaj przy przycisku ustawień myszkę która klika
+
+- [ ] FIX: w zadanaich ze słuchania wymowa po angielsku jest z dziwnym akcentem
+
+- [ ] FIX: powtarzające się pytania
+
+- [ ] FIX: pytania nie powinny być po angielsku a po hiszpańsku
+
+- [ ] FIX: po przejściu poziomu Intermediate po kliknięciu przycisku zostajemy przekierowani na poziomy Beginner
+
+- [ ] FIX: napraw emotkę PalabraCwela

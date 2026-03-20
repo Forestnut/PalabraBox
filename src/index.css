@@ -27,6 +27,11 @@
 }
 
 /* ─── Global Styles ─── */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 body {
   font-family: 'Nunito', sans-serif;
   background-color: var(--color-pb-bg);
