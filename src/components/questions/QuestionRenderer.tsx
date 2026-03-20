@@ -12,6 +12,7 @@ export interface QuestionRendererProps {
   /** Optional handler for click / correct / wrong sound effects */
   onPlaySound?: (type: 'click' | 'correct' | 'wrong') => void
   disabled?: boolean
+  scenarioLanguage?: string | null
 }
 
 export function QuestionRenderer({
@@ -19,6 +20,7 @@ export function QuestionRenderer({
   onAnswered,
   onPlaySound,
   disabled,
+  scenarioLanguage,
 }: QuestionRendererProps) {
   switch (question.type) {
     case 'multiple_choice':
@@ -46,6 +48,7 @@ export function QuestionRenderer({
           onAnswer={onAnswered}
           onPlaySound={onPlaySound}
           disabled={disabled}
+          scenarioLanguage={scenarioLanguage}
         />
       )
     case 'fill_blank':
@@ -55,6 +58,7 @@ export function QuestionRenderer({
           onAnswer={onAnswered}
           onPlaySound={onPlaySound}
           disabled={disabled}
+          scenarioLanguage={scenarioLanguage}
         />
       )
     case 'word_order':
@@ -64,6 +68,7 @@ export function QuestionRenderer({
           onAnswer={onAnswered}
           onPlaySound={onPlaySound}
           disabled={disabled}
+          scenarioLanguage={scenarioLanguage}
         />
       )
 

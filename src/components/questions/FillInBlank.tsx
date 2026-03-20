@@ -13,9 +13,10 @@ interface FillInBlankProps {
   onAnswer: (isCorrect: boolean) => void
   onPlaySound?: (type: ClickSoundType) => void
   disabled?: boolean
+  scenarioLanguage?: string | null
 }
 
-export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: FillInBlankProps) {
+export function FillInBlank({ question, onAnswer, onPlaySound, disabled, scenarioLanguage }: FillInBlankProps) {
   // Format expected: "Yo ____ una manzana." where "____" is the blank.
   const parts = (question.question_text || '').split('____')
   const beforeBlank = parts[0] || ''
@@ -56,7 +57,8 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: FillI
     
     if (isCorrect) {
       const fullSentence = question.question_text?.replace('____', selectedWord) || selectedWord
-      speechService.speak(question.question_text_tts || fullSentence)
+      const ttsLang = scenarioLanguage === 'english' ? 'en-US' : 'es-ES'
+      speechService.speak(question.question_text_tts || fullSentence, ttsLang)
     }
     
     onPlaySound?.(isCorrect ? 'correct' : 'wrong')
