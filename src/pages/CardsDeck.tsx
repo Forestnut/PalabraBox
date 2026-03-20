@@ -44,7 +44,7 @@ export default function CardsDeck() {
       <PageTransition className="bg-pb-bg">
         <ScreenWrapper className="flex flex-col h-full py-6 pb-8">
           <div className="flex items-center mb-8 z-10 w-full">
-            <BackButton fallbackUrl="/cards" />
+            <BackButton fallbackUrl="/menu" />
           </div>
           <div className="flex-1 flex justify-center items-center">
             <p className="text-xl text-pb-text-light text-center">Brak słówek w bazie.</p>
@@ -61,7 +61,7 @@ export default function CardsDeck() {
       <ScreenWrapper className="flex flex-col h-full py-6 pb-8">
         {/* Header Options */}
         <div className="flex items-center justify-between mb-8 z-10 w-full">
-          <BackButton fallbackUrl="/cards" />
+          <BackButton fallbackUrl="/menu" />
           <div className="bg-white px-5 py-2 rounded-full shadow-box font-bold flex items-center justify-center border-2 border-transparent">
             <span className="text-pb-dark text-xl mr-1">{currentIndex + 1}</span>
             <span className="text-pb-text-light">/ {cardWords.length}</span>

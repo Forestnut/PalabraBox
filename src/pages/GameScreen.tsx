@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 
 import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
@@ -30,6 +30,23 @@ export default function GameScreen() {
   const [boxiMood, setBoxiMood] = useState<MascotMood>('idle')
   const [boxiMessage, setBoxiMessage] = useState<string | null>(null)
   const boxiTimeoutRef = useRef<number | null>(null)
+
+  // Intermission State
+  const [showIntermission, setShowIntermission] = useState(false)
+  const prevQuestionIndex = useRef<number>(-1)
+
+  useEffect(() => {
+    // Show intermission when question changes and game is playing
+    if (status === 'playing' && currentQuestion && currentQuestionIndex !== prevQuestionIndex.current) {
+      prevQuestionIndex.current = currentQuestionIndex
+      setShowIntermission(true)
+      
+      const t = setTimeout(() => {
+        setShowIntermission(false)
+      }, 2500)
+      return () => clearTimeout(t)
+    }
+  }, [currentQuestion, currentQuestionIndex, status])
 
   const handlePlaySound = useCallback((type: 'click' | 'correct' | 'wrong') => {
     playSound(type)
@@ -88,17 +105,40 @@ export default function GameScreen() {
     )
   }
 
+  const intermissionPhrases: Record<string, string> = {
+    'listening': 'Teraz pora sprawdzić twój słuch!',
+    'multiple_choice': 'Wybierz poprawną odpowiedź!',
+    'image_match': 'Dopasuj odpowiedni obrazek!',
+    'word_order': 'Ułóż słowa w poprawnej kolejności!'
+  }
+
+  if (showIntermission) {
+    const text = intermissionPhrases[currentQuestion.type] || 'Przygotuj się na kolejne zadanie!'
+    return (
+      <PageTransition>
+        <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
+          <Mascot mood="happy" size="xl" />
+          <h2 className="text-3xl font-black text-center text-pb-dark mb-4 mt-8 px-4" style={{ WebkitTextStroke: '1px white' }}>
+            {text}
+          </h2>
+          <div className="w-16 h-2 bg-pb-amber rounded-full animate-pulse mt-4"></div>
+        </ScreenWrapper>
+      </PageTransition>
+    )
+  }
+
   return (
     <PageTransition>
       <ScreenWrapper>
-        <div className="flex items-center justify-between mb-4 mt-2">
+        <div className="flex items-center justify-between mb-4 mt-4 px-2">
           <BackButton fallbackUrl="/scenarios" label="←" />
-          <div className="flex-1 flex justify-center mt-2 relative">
-            <Mascot mood={boxiMood} size="sm" message={boxiMessage} className="absolute -top-4" />
+          <div className="flex-1 flex justify-center items-end px-2 pt-4 min-h-20">
+            <Mascot mood={boxiMood} size="sm" message={boxiMessage} className="origin-bottom transform hover:scale-110 transition-transform md:hidden" />
+            <Mascot mood={boxiMood} size="md" message={boxiMessage} className="origin-bottom transform hover:scale-110 transition-transform hidden md:flex" />
           </div>
-          <div className="flex items-center gap-2 sm:gap-4 font-bold text-lg sm:text-xl">
-            <span className="text-pb-amber drop-shadow-sm">🏆 {score}</span>
-            <span className="text-pb-error drop-shadow-sm tracking-widest text-sm sm:text-xl">
+          <div className="flex flex-col items-end sm:flex-row sm:items-center gap-1 sm:gap-4 font-bold text-base sm:text-xl relative z-10">
+            <span className="text-pb-amber drop-shadow-sm flex items-center gap-1">⚡ {score}</span>
+            <span className="text-pb-error drop-shadow-sm tracking-widest text-sm sm:text-xl flex">
               {Array.from({ length: maxLives || 3 }).map((_, i) => (
                 <span key={i} className={i < lives ? 'opacity-100' : 'opacity-30'}>
                   ❤️

@@ -21,15 +21,19 @@ export default function MainMenu() {
       <ScreenWrapper className="flex flex-col items-center gap-6 pt-12">
         <button
           onClick={() => navigate('/settings')}
-          className="absolute top-6 right-6 text-2xl bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-box hover:scale-105 hover:text-pb-amber active:scale-95 transition-all text-pb-text-light z-10 cursor-pointer"
+          className="absolute top-6 right-6 text-2xl bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-box hover:scale-105 hover:text-pb-amber active:scale-95 transition-all text-pb-text-light z-10"
           aria-label="Configuración"
         >
           ⚙️
         </button>
 
-        <div className="flex flex-col items-center gap-4 mb-2">
-          <Mascot mood="idle" size="lg" className="drop-shadow-md mt-4" />
-          <h1 className="text-4xl font-extrabold mt-4">PalabraBox</h1>
+        <div className="flex flex-col items-center gap-6 mt-8 mb-4">
+          <div className="relative w-48 h-48 flex items-end justify-center pb-4">
+            <div className="absolute inset-x-8 bottom-0 h-16 bg-pb-amber/30 blur-2xl rounded-[100%]"></div>
+            <div className="absolute inset-0 bg-linear-to-t from-pb-amber/20 to-transparent rounded-full blur-xl opacity-60"></div>
+            <Mascot mood="happy" size="xl" className="drop-shadow-2xl relative z-10" />
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-extrabold pb-title drop-shadow-sm text-pb-dark">PalabraBox</h1>
         </div>
 
         <div className="w-full flex flex-col gap-4">
@@ -70,7 +74,7 @@ export default function MainMenu() {
                 Puntos
               </span>
               <div className="flex items-center gap-1">
-                <span className="text-2xl">⭐</span>
+                <span className="text-2xl text-pb-primary">⚡</span>
                 <span className="text-xl font-black text-pb-dark">{progress.points}</span>
               </div>
             </div>

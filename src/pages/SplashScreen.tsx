@@ -18,7 +18,9 @@ export default function SplashScreen() {
   return (
     <PageTransition className="flex items-center justify-center bg-pb-dark text-white">
       <div className="text-center">
-        <Mascot mood="idle" size="lg" className="mx-auto mb-6" />
+        <div className="mx-auto mb-4 flex justify-center">
+          <Mascot mood="idle" size="lg" />
+        </div>
         <motion.h1
           className="text-4xl font-extrabold mt-4"
           initial={{ opacity: 0, y: 12 }}

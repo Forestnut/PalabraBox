@@ -403,3 +403,19 @@ INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, c
 INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
 ('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'fill_blank', 'fish', 'A ___ swims in water. (Ryba plywa w wodzie)', '["bird", "horse", "fish"]', '"fish"', 'Fish to ryba.') ON CONFLICT DO NOTHING;
 
+
+
+-- Extended Word Order Questions
+INSERT INTO public.questions (scenario_id, type, question_text, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
+('c1fc3572-1b15-46aa-ab54-20ce4b1386ab', 'word_order', '¿Cómo te llamas?', '¿ Cómo te llamas ?', '["yo", "es"]'::jsonb, null, 11),
+('c1fc3572-1b15-46aa-ab54-20ce4b1386ab', 'word_order', 'Encantado de conocerte', 'Encantado de conocerte', '["mucho", "mal"]'::jsonb, null, 12),
+('c1fc3572-1b15-46aa-ab54-20ce4b1386ab', 'word_order', 'Yo soy de España', 'Yo soy de España', '["nosotros", "en"]'::jsonb, null, 13),
+('c1fc3572-1b15-46aa-ab54-20ce4b1386ab', 'word_order', 'Hasta la vista', 'Hasta la vista', '["luego", "hola"]'::jsonb, null, 14),
+('62e1a8bb-e054-46c5-8f6a-1153e77f98c1', 'word_order', 'Mi madre es muy amable', 'Mi madre es muy amable', '["padre", "poco"]'::jsonb, null, 11),
+('62e1a8bb-e054-46c5-8f6a-1153e77f98c1', 'word_order', 'Mi familia es bastante grande', 'Mi familia es bastante grande', '["pequeña", "un"]'::jsonb, null, 12),
+('62e1a8bb-e054-46c5-8f6a-1153e77f98c1', 'word_order', 'Tengo dos hermanos menores', 'Tengo dos hermanos menores', '["hermana", "tres"]'::jsonb, null, 13),
+('848bb226-8cf9-4fef-9a5d-16a7571cf3b1', 'word_order', 'Me gusta comer paella', 'Me gusta comer paella', '["beber", "agua"]'::jsonb, null, 11),
+('848bb226-8cf9-4fef-9a5d-16a7571cf3b1', 'word_order', 'Un vaso de agua por favor', 'Un vaso de agua por favor', '["taza", "leche"]'::jsonb, null, 12),
+('848bb226-8cf9-4fef-9a5d-16a7571cf3b1', 'word_order', 'La comida está deliciosa', 'La comida está deliciosa', '["mala", "el"]'::jsonb, null, 13),
+('2816f1a8-8e3d-4c3e-82d1-0309dd0a6712', 'word_order', '¿Dónde está el aeropuerto?', '¿ Dónde está el aeropuerto ?', '["estacion", "como"]'::jsonb, null, 11),
+('2816f1a8-8e3d-4c3e-82d1-0309dd0a6712', 'word_order', 'Un billete de ida', 'Un billete de ida', '["vuelta", "dos"]'::jsonb, null, 12);
