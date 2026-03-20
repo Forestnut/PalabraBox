@@ -21,9 +21,9 @@
   --radius-box-lg: 16px;
 
   /* Box Shadows — "elevated box" look */
-  --shadow-box: 0 4px 0 0 rgba(8, 12, 8, 0.15), 0 2px 8px rgba(8, 12, 8, 0.08);
-  --shadow-box-hover: 0 6px 0 0 rgba(8, 12, 8, 0.15), 0 4px 12px rgba(8, 12, 8, 0.12);
-  --shadow-box-pressed: 0 2px 0 0 rgba(8, 12, 8, 0.15), 0 1px 4px rgba(8, 12, 8, 0.08);
+  --shadow-box: 0 4px 0 0 rgba(8, 12, 8, 0.15);
+  --shadow-box-hover: 0 5px 0 0 rgba(8, 12, 8, 0.15);
+  --shadow-box-pressed: 0 0 0 0 transparent;
 }
 
 /* ─── Global Styles ─── */
