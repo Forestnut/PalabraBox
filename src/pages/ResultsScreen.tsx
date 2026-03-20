@@ -6,6 +6,7 @@ import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
+import { Mascot } from '../components/ui/Mascot'
 import { useGameStore } from '../store/gameStore'
 import { useQuickProgress } from '../hooks/useQuickProgress'
 
@@ -85,12 +86,8 @@ export default function ResultsScreen() {
     <PageTransition className="bg-pb-bg">
       <ScreenWrapper className="flex flex-col items-center justify-center gap-8 py-10 min-h-[80vh]">
         <div className="flex flex-col items-center gap-2 text-center mt-6">
-          <div className="mb-4 flex justify-center">
-            {isSuccess ? (
-              <img src="/PalabraBoxHappy.png" alt="Éxito" className="w-32 h-32 object-contain drop-shadow-lg" />
-            ) : (
-              <img src="/PalabraBoxSad.png" alt="Fracaso" className="w-32 h-32 object-contain drop-shadow-lg" />
-            )}
+          <div className="mb-4 flex justify-center h-32 items-end">
+            <Mascot mood={isSuccess ? 'happy' : 'wrong'} size="lg" />
           </div>
           <h1 className={`text-4xl font-black uppercase tracking-widest text-center ${isSuccess ? 'text-pb-success' : 'text-pb-error'}`}>
             {isSuccess ? '¡Excelente!' : '¡Sigue intentando!'}
