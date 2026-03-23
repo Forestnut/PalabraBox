@@ -88,7 +88,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 8, 
+        distance: 12, 
         delay: 0,
         tolerance: 5,
       },
@@ -138,11 +138,13 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
   }
 
   const handleCheck = () => {
-    if (disabled || isChecking || dropZone.length < correctWords.length) return
+    if (disabled || isChecking || dropZone.length === 0) return
     setIsChecking(true)
     
-    const currentSentence = dropZone.slice(0, correctWords.length).map(d => d.word).join(' ')
-    const isCorrect = currentSentence === question.correct_answer
+    const currentSentence = dropZone.map(d => d.word).join(' ').trim().toLowerCase()
+    const correctClean = question.correct_answer.replace(/[.,!?¡¿]/g, '').trim().toLowerCase()
+    
+    const isCorrect = currentSentence === correctClean
     
     if (isCorrect) {
       const ttsLang = scenarioLanguage === 'english' ? 'en-US' : 'es-ES'
@@ -231,7 +233,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
           
           <Button 
             size="lg" 
-            disabled={isChecking || dropZone.length !== correctWords.length} 
+            disabled={isChecking || dropZone.length === 0} 
             onClick={handleCheck}
             className="w-full mt-4"
           >

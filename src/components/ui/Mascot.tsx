@@ -106,7 +106,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
             initial={{ opacity: 0, x: -15, scale: 0.8 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8, x: -10 }}
-            className="absolute left-[90%] top-0 ml-4 bg-white text-pb-dark px-5 py-3 rounded-3xl border-4 border-pb-amber/30 shadow-[0_8px_16px_rgba(0,0,0,0.1)] whitespace-nowrap font-black z-30 text-center text-sm md:text-base before:content-[''] before:absolute before:left-[-11px] before:top-1/2 before:-translate-y-1/2 before:w-5 before:h-5 before:bg-white before:border-b-4 before:border-l-4 before:border-pb-amber/30 before:rotate-45"
+            className="absolute left-[90%] top-0 ml-4 bg-white text-pb-dark px-5 py-3 rounded-3xl border-4 border-pb-amber/30 shadow-[0_8px_16px_rgba(0,0,0,0.1)] whitespace-nowrap font-black z-30 text-center text-sm md:text-base before:content-[''] before:absolute before:-left-2.75 before:top-1/2 before:-translate-y-1/2 before:w-5 before:h-5 before:bg-white before:border-b-4 before:border-l-4 before:border-pb-amber/30 before:rotate-45"
           >
             {message}
           </motion.div>

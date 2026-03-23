@@ -1,19 +1,19 @@
--- Seed Data for PalabraBox MVP (Auto-Generated 12 Modules)
--- SCENARIOS
-INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES ('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'Colors & Shapes', 'Colores y Formas', 'english', 'beginner', 'Learn the primary colors and basic shapes in English.', '🎨', 'colors', 1) ON CONFLICT (id) DO NOTHING;
-INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES ('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'Animals', 'Los Animales', 'english', 'beginner', 'Learn the names of common animals in English.', '🐶', 'animals', 2) ON CONFLICT (id) DO NOTHING;
-INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES ('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'Food & Drinks', 'Comida y Bebidas', 'english', 'beginner', 'Essential vocabulary for eating and drinking.', '🍔', 'food', 3) ON CONFLICT (id) DO NOTHING;
-INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES ('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'Family', 'La Familia', 'english', 'beginner', 'Vocabulary related to family members.', '👨‍👩‍👧‍👦', 'family', 4) ON CONFLICT (id) DO NOTHING;
-INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES ('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'Parts of the Body', 'Partes del Cuerpo', 'english', 'intermediate', 'Learn how to name body parts in English.', '🦵', 'body', 5) ON CONFLICT (id) DO NOTHING;
-INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES ('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'Travel & Transport', 'Viajes y Transporte', 'english', 'intermediate', 'Useful words for traveling and transportation.', '✈️', 'travel', 6) ON CONFLICT (id) DO NOTHING;
-INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES ('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'Los Colores y Formas', 'Colors & Shapes', 'spanish', 'beginner', 'Learn the primary colors and basic shapes in Spanish.', '🎨', 'colors', 1) ON CONFLICT (id) DO NOTHING;
-INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES ('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'Los Animales', 'Animals', 'spanish', 'beginner', 'Aprende los nombres de los animales más comunes en español.', '🐶', 'animals', 2) ON CONFLICT (id) DO NOTHING;
-INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES ('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'Comida y Bebidas', 'Food & Drinks', 'spanish', 'beginner', 'Essential vocabulary for eating and drinking in Spanish.', '🍔', 'food', 3) ON CONFLICT (id) DO NOTHING;
-INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES ('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'Mi Familia', 'My Family', 'spanish', 'beginner', 'Vocabulary related to family members in Spanish.', '👨‍👩‍👧‍👦', 'family', 4) ON CONFLICT (id) DO NOTHING;
-INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES ('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'Partes del Cuerpo', 'Body Parts', 'spanish', 'intermediate', 'Learn how to name body parts in Spanish.', '🦵', 'body', 5) ON CONFLICT (id) DO NOTHING;
-INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES ('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'Viajes y Transporte', 'Travel', 'spanish', 'intermediate', 'Useful words for traveling and transportation in Spanish.', '✈️', 'travel', 6) ON CONFLICT (id) DO NOTHING;
+-- Seed Data for PalabraBox Phase 3.5
+INSERT INTO public.scenarios (id, title, title_display, language, level, description, emoji, category, sort_order) VALUES
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'Colors & Shapes', 'Colores y Formas', 'english', 'beginner', 'Learn the primary colors and basic shapes in English.', '🎨', 'colors', 1),
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'Animals', 'Los Animales', 'english', 'beginner', 'Learn the names of common animals in English.', '🐶', 'animals', 2),
+('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'Food & Drinks', 'Comida y Bebidas', 'english', 'beginner', 'Essential vocabulary for eating and drinking.', '🍔', 'food', 3),
+('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'Family', 'La Familia', 'english', 'beginner', 'Vocabulary related to family members.', '👨‍👩‍👧‍👦', 'family', 4),
+('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'Parts of the Body', 'Partes del Cuerpo', 'english', 'intermediate', 'Learn how to name body parts in English.', '🦵', 'body', 5),
+('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'Travel & Transport', 'Viajes y Transporte', 'english', 'intermediate', 'Useful words for traveling and transportation.', '✈️', 'travel', 6),
+('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'Los Colores y Formas', 'Colors & Shapes', 'spanish', 'beginner', 'Learn the primary colors and basic shapes in Spanish.', '🎨', 'colors', 1),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'Los Animales', 'Animals', 'spanish', 'beginner', 'Aprende los nombres de los animales más comunes en español.', '🐶', 'animals', 2),
+('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'Comida y Bebidas', 'Food & Drinks', 'spanish', 'beginner', 'Essential vocabulary for eating and drinking in Spanish.', '🍔', 'food', 3),
+('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'Mi Familia', 'My Family', 'spanish', 'beginner', 'Vocabulary related to family members in Spanish.', '👨‍👩‍👧‍👦', 'family', 4),
+('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'Partes del Cuerpo', 'Body Parts', 'spanish', 'intermediate', 'Learn how to name body parts in Spanish.', '🦵', 'body', 5),
+('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'Viajes y Transporte', 'Travel', 'spanish', 'intermediate', 'Useful words for traveling and transportation in Spanish.', '✈️', 'travel', 6)
+ON CONFLICT (id) DO NOTHING;
 
--- WORDS
 INSERT INTO public.words (word, language, level, category, translation_es, translation_en, image_emoji, audio_text) VALUES
 ('red', 'english', 'beginner', 'colors', 'rojo', NULL, '🔴', 'red'),
 ('blue', 'english', 'beginner', 'colors', 'azul', NULL, '🔵', 'blue'),
@@ -110,312 +110,93 @@ INSERT INTO public.words (word, language, level, category, translation_es, trans
 ('billete', 'spanish', 'intermediate', 'travel', NULL, 'ticket', '🎫', 'billete'),
 ('hotel', 'spanish', 'intermediate', 'travel', NULL, 'hotel', '🏨', 'hotel'),
 ('pasaporte', 'spanish', 'intermediate', 'travel', NULL, 'passport', '🛂', 'pasaporte'),
-('aeropuerto', 'spanish', 'intermediate', 'travel', NULL, 'airport', '🛫', 'aeropuerto'); 
+('aeropuerto', 'spanish', 'intermediate', 'travel', NULL, 'airport', '🛫', 'aeropuerto');
 
--- QUESTIONS
-
--- Questions for Colors & Shapes
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', 'How do you say "negro" in English?', 'black', 'black', ARRAY['orange', 'green', 'purple'], NULL, 1),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', 'How do you say "rojo" in English?', 'red', 'red', ARRAY['orange', 'yellow', 'white'], NULL, 2),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'image_match', 'Which word represents 🔴?', 'red', 'red', ARRAY['yellow', 'orange', 'blue'], '🔴', 3),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'listening', 'Listen and select the correct word', 'red', 'red', ARRAY['purple', 'green', 'white'], NULL, 4),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', 'How do you say "blanco" in English?', 'white', 'white', ARRAY['orange', 'red', 'green'], NULL, 5),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'image_match', 'Which word represents 🔵?', 'blue', 'blue', ARRAY['purple', 'green', 'white'], '🔵', 6),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', 'How do you say "rojo" in English?', 'red', 'red', ARRAY['white', 'purple', 'yellow'], NULL, 7),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'listening', 'Listen and select the correct word', 'purple', 'purple', ARRAY['yellow', 'orange', 'green'], NULL, 8),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'image_match', 'Which word represents 🟣?', 'purple', 'purple', ARRAY['white', 'yellow', 'blue'], '🟣', 9),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', 'How do you say "naranja" in English?', 'orange', 'orange', ARRAY['white', 'red', 'green'], NULL, 10),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'Arrange the words correctly', 'the color is red', 'the color is red', ARRAY['sun', 'not'], NULL, 11),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'fill_blank', 'The color of a frog is ____.', 'green', 'green', ARRAY['red', 'blue', 'white'], NULL, 12);
-
--- Questions for Animals
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'multiple_choice', 'How do you say "perro" in English?', 'dog', 'dog', ARRAY['fish', 'cow', 'cat'], NULL, 1),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'multiple_choice', 'How do you say "perro" in English?', 'dog', 'dog', ARRAY['rabbit', 'cow', 'fish'], NULL, 2),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'image_match', 'Which word represents 🐱?', 'cat', 'cat', ARRAY['horse', 'fish', 'rabbit'], '🐱', 3),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'listening', 'Listen and select the correct word', 'pig', 'pig', ARRAY['bird', 'rabbit', 'dog'], NULL, 4),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'multiple_choice', 'How do you say "pez" in English?', 'fish', 'fish', ARRAY['pig', 'cow', 'cat'], NULL, 5),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'image_match', 'Which word represents 🐄?', 'cow', 'cow', ARRAY['horse', 'rabbit', 'bird'], '🐄', 6),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'multiple_choice', 'How do you say "conejo" in English?', 'rabbit', 'rabbit', ARRAY['horse', 'fish', 'cow'], NULL, 7),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'listening', 'Listen and select the correct word', 'rabbit', 'rabbit', ARRAY['dog', 'pig', 'horse'], NULL, 8),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'image_match', 'Which word represents 🐄?', 'cow', 'cow', ARRAY['horse', 'dog', 'pig'], '🐄', 9),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'multiple_choice', 'How do you say "pájaro" in English?', 'bird', 'bird', ARRAY['cow', 'dog', 'fish'], NULL, 10);
-
--- Questions for Food & Drinks
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'multiple_choice', 'How do you say "queso" in English?', 'cheese', 'cheese', ARRAY['bread', 'water', 'meat'], NULL, 1),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'multiple_choice', 'How do you say "agua" in English?', 'water', 'water', ARRAY['milk', 'meat', 'bread'], NULL, 2),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'image_match', 'Which word represents 🥛?', 'milk', 'milk', ARRAY['cheese', 'apple', 'meat'], '🥛', 3),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'listening', 'Listen and select the correct word', 'cheese', 'cheese', ARRAY['milk', 'water', 'apple'], NULL, 4),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'multiple_choice', 'How do you say "manzana" in English?', 'apple', 'apple', ARRAY['cheese', 'egg', 'bread'], NULL, 5),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'image_match', 'Which word represents 🥛?', 'milk', 'milk', ARRAY['egg', 'chicken', 'bread'], '🥛', 6),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'multiple_choice', 'How do you say "leche" in English?', 'milk', 'milk', ARRAY['water', 'chicken', 'apple'], NULL, 7),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'listening', 'Listen and select the correct word', 'egg', 'egg', ARRAY['cheese', 'apple', 'meat'], NULL, 8),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'image_match', 'Which word represents 🍞?', 'bread', 'bread', ARRAY['milk', 'egg', 'meat'], '🍞', 9),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'multiple_choice', 'How do you say "pollo" in English?', 'chicken', 'chicken', ARRAY['milk', 'bread', 'water'], NULL, 10);
-
--- Questions for Family
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'multiple_choice', 'How do you say "madre" in English?', 'mother', 'mother', ARRAY['brother', 'father', 'grandmother'], NULL, 1),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'multiple_choice', 'How do you say "padre" in English?', 'father', 'father', ARRAY['grandmother', 'aunt', 'grandfather'], NULL, 2),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'image_match', 'Which word represents 👴?', 'grandfather', 'grandfather', ARRAY['aunt', 'brother', 'grandmother'], '👴', 3),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'listening', 'Listen and select the correct word', 'brother', 'brother', ARRAY['mother', 'father', 'sister'], NULL, 4),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'multiple_choice', 'How do you say "abuela" in English?', 'grandmother', 'grandmother', ARRAY['mother', 'father', 'brother'], NULL, 5),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'image_match', 'Which word represents 👨?', 'father', 'father', ARRAY['aunt', 'grandfather', 'mother'], '👨', 6),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'multiple_choice', 'How do you say "abuelo" in English?', 'grandfather', 'grandfather', ARRAY['father', 'grandmother', 'mother'], NULL, 7),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'listening', 'Listen and select the correct word', 'uncle', 'uncle', ARRAY['father', 'grandfather', 'mother'], NULL, 8),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'image_match', 'Which word represents 👨?', 'father', 'father', ARRAY['aunt', 'grandmother', 'grandfather'], '👨', 9),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'multiple_choice', 'How do you say "hermana" in English?', 'sister', 'sister', ARRAY['brother', 'grandfather', 'aunt'], NULL, 10);
-
--- Questions for Parts of the Body
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'multiple_choice', 'How do you say "cabeza" in English?', 'head', 'head', ARRAY['mouth', 'ear', 'eye'], NULL, 1),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'multiple_choice', 'How do you say "boca" in English?', 'mouth', 'mouth', ARRAY['nose', 'leg', 'head'], NULL, 2),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'image_match', 'Which word represents 👁️?', 'eye', 'eye', ARRAY['ear', 'leg', 'head'], '👁️', 3),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'listening', 'Listen and select the correct word', 'leg', 'leg', ARRAY['hand', 'foot', 'ear'], NULL, 4),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'multiple_choice', 'How do you say "cabeza" in English?', 'head', 'head', ARRAY['nose', 'hand', 'mouth'], NULL, 5),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'image_match', 'Which word represents 👃?', 'nose', 'nose', ARRAY['ear', 'head', 'leg'], '👃', 6),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'multiple_choice', 'How do you say "cabeza" in English?', 'head', 'head', ARRAY['leg', 'eye', 'foot'], NULL, 7),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'listening', 'Listen and select the correct word', 'ear', 'ear', ARRAY['foot', 'leg', 'mouth'], NULL, 8),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'image_match', 'Which word represents ✋?', 'hand', 'hand', ARRAY['head', 'nose', 'ear'], '✋', 9),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'multiple_choice', 'How do you say "cabeza" in English?', 'head', 'head', ARRAY['hand', 'leg', 'mouth'], NULL, 10);
-
--- Questions for Travel & Transport
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'multiple_choice', 'How do you say "hotel" in English?', 'hotel', 'hotel', ARRAY['plane', 'ticket', 'car'], NULL, 1),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'multiple_choice', 'How do you say "hotel" in English?', 'hotel', 'hotel', ARRAY['bus', 'airport', 'car'], NULL, 2),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'image_match', 'Which word represents 🚌?', 'bus', 'bus', ARRAY['train', 'passport', 'hotel'], '🚌', 3),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'listening', 'Listen and select the correct word', 'car', 'car', ARRAY['airport', 'hotel', 'plane'], NULL, 4),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'multiple_choice', 'How do you say "autobús" in English?', 'bus', 'bus', ARRAY['car', 'airport', 'passport'], NULL, 5),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'image_match', 'Which word represents 🛂?', 'passport', 'passport', ARRAY['train', 'bus', 'plane'], '🛂', 6),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'multiple_choice', 'How do you say "tren" in English?', 'train', 'train', ARRAY['ticket', 'bus', 'plane'], NULL, 7),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'listening', 'Listen and select the correct word', 'passport', 'passport', ARRAY['plane', 'bus', 'hotel'], NULL, 8),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'image_match', 'Which word represents ✈️?', 'plane', 'plane', ARRAY['car', 'hotel', 'passport'], '✈️', 9),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'multiple_choice', 'How do you say "autobús" in English?', 'bus', 'bus', ARRAY['train', 'passport', 'car'], NULL, 10);
-
--- Questions for Los Colores y Formas
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'multiple_choice', 'How do you say "white" in Spanish?', 'blanco', 'blanco', ARRAY['morado', 'verde', 'naranja'], NULL, 1),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'multiple_choice', 'How do you say "blue" in Spanish?', 'azul', 'azul', ARRAY['naranja', 'blanco', 'verde'], NULL, 2),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'image_match', 'Which word represents 🟣?', 'morado', 'morado', ARRAY['rojo', 'negro', 'azul'], '🟣', 3),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'listening', 'Listen and select the correct word', 'azul', 'azul', ARRAY['amarillo', 'rojo', 'verde'], NULL, 4),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'multiple_choice', 'How do you say "blue" in Spanish?', 'azul', 'azul', ARRAY['naranja', 'negro', 'amarillo'], NULL, 5),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'image_match', 'Which word represents 🟠?', 'naranja', 'naranja', ARRAY['verde', 'morado', 'negro'], '🟠', 6),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'multiple_choice', 'How do you say "red" in Spanish?', 'rojo', 'rojo', ARRAY['naranja', 'blanco', 'morado'], NULL, 7),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'listening', 'Listen and select the correct word', 'blanco', 'blanco', ARRAY['naranja', 'rojo', 'negro'], NULL, 8),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'image_match', 'Which word represents 🟡?', 'amarillo', 'amarillo', ARRAY['blanco', 'verde', 'negro'], '🟡', 9),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'multiple_choice', 'How do you say "orange" in Spanish?', 'naranja', 'naranja', ARRAY['amarillo', 'negro', 'morado'], NULL, 10);
-
--- Questions for Los Animales
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "fish" in Spanish?', 'pez', 'pez', ARRAY['gato', 'vaca', 'cerdo'], NULL, 1),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "cow" in Spanish?', 'vaca', 'vaca', ARRAY['gato', 'pez', 'conejo'], NULL, 2),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'image_match', 'Which word represents 🐷?', 'cerdo', 'cerdo', ARRAY['pájaro', 'conejo', 'pez'], '🐷', 3),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'listening', 'Listen and select the correct word', 'perro', 'perro', ARRAY['cerdo', 'gato', 'conejo'], NULL, 4),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "bird" in Spanish?', 'pájaro', 'pájaro', ARRAY['cerdo', 'gato', 'vaca'], NULL, 5),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'image_match', 'Which word represents 🐱?', 'gato', 'gato', ARRAY['conejo', 'perro', 'pez'], '🐱', 6),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "bird" in Spanish?', 'pájaro', 'pájaro', ARRAY['vaca', 'pez', 'conejo'], NULL, 7),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'listening', 'Listen and select the correct word', 'caballo', 'caballo', ARRAY['perro', 'vaca', 'pez'], NULL, 8),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'image_match', 'Which word represents 🐦?', 'pájaro', 'pájaro', ARRAY['pez', 'cerdo', 'gato'], '🐦', 9),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "rabbit" in Spanish?', 'conejo', 'conejo', ARRAY['vaca', 'pez', 'perro'], NULL, 10);
-
--- Questions for Comida y Bebidas
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'multiple_choice', 'How do you say "cheese" in Spanish?', 'queso', 'queso', ARRAY['pollo', 'pan', 'manzana'], NULL, 1),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'multiple_choice', 'How do you say "meat" in Spanish?', 'carne', 'carne', ARRAY['huevo', 'manzana', 'agua'], NULL, 2),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'image_match', 'Which word represents 🍗?', 'pollo', 'pollo', ARRAY['manzana', 'carne', 'queso'], '🍗', 3),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'listening', 'Listen and select the correct word', 'agua', 'agua', ARRAY['leche', 'pan', 'carne'], NULL, 4),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'multiple_choice', 'How do you say "milk" in Spanish?', 'leche', 'leche', ARRAY['manzana', 'carne', 'pollo'], NULL, 5),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'image_match', 'Which word represents 🥩?', 'carne', 'carne', ARRAY['pollo', 'pan', 'agua'], '🥩', 6),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'multiple_choice', 'How do you say "water" in Spanish?', 'agua', 'agua', ARRAY['leche', 'queso', 'carne'], NULL, 7),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'listening', 'Listen and select the correct word', 'pan', 'pan', ARRAY['manzana', 'huevo', 'queso'], NULL, 8),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'image_match', 'Which word represents 🥚?', 'huevo', 'huevo', ARRAY['manzana', 'queso', 'pollo'], '🥚', 9),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'multiple_choice', 'How do you say "chicken" in Spanish?', 'pollo', 'pollo', ARRAY['agua', 'huevo', 'pan'], NULL, 10);
-
--- Questions for Mi Familia
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'multiple_choice', 'How do you say "mother" in Spanish?', 'madre', 'madre', ARRAY['padre', 'abuela', 'hermana'], NULL, 1),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'multiple_choice', 'How do you say "grandmother" in Spanish?', 'abuela', 'abuela', ARRAY['tía', 'hermana', 'abuelo'], NULL, 2),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'image_match', 'Which word represents 👵?', 'abuela', 'abuela', ARRAY['tío', 'padre', 'hermana'], '👵', 3),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'listening', 'Listen and select the correct word', 'madre', 'madre', ARRAY['abuelo', 'hermano', 'padre'], NULL, 4),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'multiple_choice', 'How do you say "father" in Spanish?', 'padre', 'padre', ARRAY['madre', 'tía', 'hermano'], NULL, 5),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'image_match', 'Which word represents 👱‍♀️?', 'tía', 'tía', ARRAY['abuelo', 'abuela', 'padre'], '👱‍♀️', 6),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'multiple_choice', 'How do you say "uncle" in Spanish?', 'tío', 'tío', ARRAY['padre', 'hermano', 'tía'], NULL, 7),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'listening', 'Listen and select the correct word', 'abuelo', 'abuelo', ARRAY['tío', 'tía', 'madre'], NULL, 8),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'image_match', 'Which word represents 👩?', 'madre', 'madre', ARRAY['hermana', 'abuela', 'padre'], '👩', 9),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'multiple_choice', 'How do you say "uncle" in Spanish?', 'tío', 'tío', ARRAY['hermano', 'tía', 'madre'], NULL, 10);
-
--- Questions for Partes del Cuerpo
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'multiple_choice', 'How do you say "foot" in Spanish?', 'pie', 'pie', ARRAY['oreja', 'nariz', 'ojo'], NULL, 1),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'multiple_choice', 'How do you say "foot" in Spanish?', 'pie', 'pie', ARRAY['cabeza', 'nariz', 'mano'], NULL, 2),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'image_match', 'Which word represents 👂?', 'oreja', 'oreja', ARRAY['pie', 'pierna', 'boca'], '👂', 3),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'listening', 'Listen and select the correct word', 'oreja', 'oreja', ARRAY['boca', 'pierna', 'nariz'], NULL, 4),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'multiple_choice', 'How do you say "nose" in Spanish?', 'nariz', 'nariz', ARRAY['pierna', 'mano', 'oreja'], NULL, 5),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'image_match', 'Which word represents 👄?', 'boca', 'boca', ARRAY['nariz', 'cabeza', 'pie'], '👄', 6),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'multiple_choice', 'How do you say "leg" in Spanish?', 'pierna', 'pierna', ARRAY['nariz', 'cabeza', 'mano'], NULL, 7),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'listening', 'Listen and select the correct word', 'ojo', 'ojo', ARRAY['pierna', 'boca', 'cabeza'], NULL, 8),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'image_match', 'Which word represents 🗣️?', 'cabeza', 'cabeza', ARRAY['nariz', 'oreja', 'mano'], '🗣️', 9),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'multiple_choice', 'How do you say "hand" in Spanish?', 'mano', 'mano', ARRAY['nariz', 'cabeza', 'pierna'], NULL, 10);
-
--- Questions for Viajes y Transporte
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'multiple_choice', 'How do you say "car" in Spanish?', 'coche', 'coche', ARRAY['billete', 'hotel', 'autobús'], NULL, 1),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'multiple_choice', 'How do you say "train" in Spanish?', 'tren', 'tren', ARRAY['aeropuerto', 'billete', 'coche'], NULL, 2),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'image_match', 'Which word represents 🚌?', 'autobús', 'autobús', ARRAY['pasaporte', 'billete', 'hotel'], '🚌', 3),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'listening', 'Listen and select the correct word', 'avión', 'avión', ARRAY['billete', 'aeropuerto', 'coche'], NULL, 4),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'multiple_choice', 'How do you say "ticket" in Spanish?', 'billete', 'billete', ARRAY['tren', 'aeropuerto', 'autobús'], NULL, 5),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'image_match', 'Which word represents 🚗?', 'coche', 'coche', ARRAY['avión', 'autobús', 'tren'], '🚗', 6),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'multiple_choice', 'How do you say "train" in Spanish?', 'tren', 'tren', ARRAY['hotel', 'avión', 'billete'], NULL, 7),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'listening', 'Listen and select the correct word', 'coche', 'coche', ARRAY['tren', 'pasaporte', 'aeropuerto'], NULL, 8),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'image_match', 'Which word represents 🚗?', 'coche', 'coche', ARRAY['autobús', 'tren', 'hotel'], '🚗', 9),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'multiple_choice', 'How do you say "airport" in Spanish?', 'aeropuerto', 'aeropuerto', ARRAY['autobús', 'hotel', 'avión'], NULL, 10);
-
--- New Generated Questions for word_order and fill_blank
-INSERT INTO public.questions (id, type, question, text_to_read, correct_answer, options, image_url, scenario_id)
-VALUES
-('6588a96a-e699-43b3-8dc3-84945614c6c1', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 1),
-('960c1fb2-1702-451d-b67b-007f985f4488', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 1),
-('cfc1542f-60e4-43f5-a3d9-dda115f4a986', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 1),
-('932ffea9-eb8b-4ed1-a1f5-7df4fc4fe647', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 1),
-('ad40a69c-6ad0-4d82-98be-8c2898d740ec', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 2),
-('a0bafa52-ec91-4286-90c9-67e28e37ba94', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 2),
-('a1b150c6-fae6-4be4-9db3-0f8ccff2e574', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 2),
-('ad1d218c-681a-420e-8b9d-081d9812fc77', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 2),
-('cf6498f0-09e3-486c-bbb4-c6d7eef1ff99', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 3),
-('448f889a-ef22-4f2f-b0d7-89ad74c7187c', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 3),
-('890417a4-355c-4fe6-880f-0a2e5e171597', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 3),
-('a860656c-6026-46c4-a7aa-46c179f6f0f9', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 3),
-('a8921c59-d774-4a18-a5ad-0cdf53a93363', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 4),
-('20468369-12f0-43ae-968a-b124b9045967', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 4),
-('de9053b5-233b-4439-8dd8-736a3249a408', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 4),
-('dd267bc6-02e0-4738-b4eb-1cdfa70a2d10', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 4),
-('1672f59a-99c3-4dcd-a73d-3e86404570c8', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 5),
-('a53cb11c-b24d-461c-87ed-236e1e200c85', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 5),
-('f8dc3afe-4553-4f24-97e3-11a58f06f28e', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 5),
-('90ecd4cf-0f6e-47c7-aeac-1d4bb4e06432', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 5),
-('9356719e-9ac2-4bf4-b115-06f525523762', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 6),
-('24fe31a2-424f-4f70-8ce2-af48f02f8169', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 6),
-('3f4d79a3-8a99-4320-b0f2-4c5d489040df', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 6),
-('b8cd7fec-e3b5-48b8-837e-d897f7c40126', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 6),
-('6b49e41f-cbbb-4fb8-9a43-0a2e9431e14c', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 7),
-('c18559e3-2f9a-4a21-8d1d-7ed3f502b8b4', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 7),
-('d2fa985e-9e99-458a-b1a0-b17867bafbc9', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 7),
-('45f08c4e-da4b-4834-8b7e-d17ad3ebe15f', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 7),
-('16ff6aa0-5098-41c4-84e2-038980011c79', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 8),
-('11bddaf0-296c-4213-8626-5bff25e31789', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 8),
-('a1220aba-bc1f-44f1-811a-3d4061fdd099', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 8),
-('9e016196-2dfd-449e-a486-81a8a611353d', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 8),
-('05ae06fd-f06f-4fd2-a572-68cce47f86b7', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 9),
-('44ac1d31-350c-4739-ab4b-438cdf9a052f', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 9),
-('d4fd4353-9884-405e-8587-967309c5639b', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 9),
-('f1fd0dda-1403-456d-9cb3-1b5c78af436f', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 9),
-('f7e60362-d3fa-4908-bebd-072e0e2d019d', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 10),
-('085ef785-30b8-4666-8dfe-f6a364e3bbc9', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 10),
-('5f3bb269-fc70-4b8d-85f3-913140a45415', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 10),
-('9024bd22-a45d-4d63-a5fd-71afb5519137', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 10),
-('e64b2418-82ea-483f-bcab-960407666a57', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('ee5ef102-1d33-418b-952a-c95e0557f8bb', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 11),
-('3f955579-58ec-478f-b277-01aafe5ce44c', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 11),
-('fa4f25c7-30ed-47b8-9fbf-b31bda13d6f7', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 11),
-('61035750-9d80-4e4f-b3aa-4b7a12495362', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 12),
-('9d1439ae-259f-4dfb-9ec5-039f0b445200', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('01a4bb95-e572-47be-a24a-d0799b2a63c5', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 12),
-('509d9673-163e-406d-a719-99f9be4058b9', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 12);
-
--- New Generated Questions for word_order and fill_blank
-INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
-('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
-('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
-('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
-('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
-('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
-('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
-('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
-('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
-('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'word_order', 'Arrange the words to form the sentence.', 'I would like a coffee', 'I would like a coffee', ARRAY['I', 'would', 'like', 'a', 'coffee'], NULL, 11),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'word_order', 'Arrange the words.', 'Where is the bathroom', 'Where is the bathroom', ARRAY['Where', 'is', 'the', 'bathroom'], NULL, 12),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'fill_blank', 'Complete the sentence.', 'Hello, nice to _ you.', 'meet', ARRAY['meet', 'meat', 'greet', 'seat'], NULL, 13),
-('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'fill_blank', 'Complete the sentence.', 'I need to go to the _.', 'airport', ARRAY['airport', 'plane', 'sky', 'fly'], NULL, 14);
-
--- NOWE ZADANIA DO PALABRABOX (Drag & Drop, Fill Blank)
-
--- 1. Drag & Drop - Kolory i Ksztalty (word_order)
-INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'red apple', 'Uloz slowa w poprawnej kolejnosci, aby powiedziec "Czerwone jablko"', '["apple", "red"]', '["red", "apple"]', 'W jezyku angielskim przymiotnik (red) stawiamy przed rzeczownikiem (apple).') ON CONFLICT DO NOTHING;
-INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'blue bird', 'Uloz slowa w poprawnej kolejnosci, aby powiedziec "Niebieski ptak"', '["bird", "blue"]', '["blue", "bird"]', 'Niebieski ptak to "blue bird".') ON CONFLICT DO NOTHING;
-INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'is yellow', 'Uloz zdanie: "Slonce jest zolte" (The sun is yellow)', '["yellow", "The", "sun", "is"]', '["The", "sun", "is", "yellow"]', 'Prawidlowa kolejnosc: Podmiot (The sun) + orzeczenie (is) + przymiotnik (yellow).') ON CONFLICT DO NOTHING;
-
--- 2. Fill in the Blank - Kolory i Ksztalty (fill_blank)
-INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'fill_blank', 'green', 'Grass is ___ (Trawa jest zielona)', '["red", "green", "blue"]', '"green"', 'Grass is green. Zielony to green.') ON CONFLICT DO NOTHING;
-INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
-('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'fill_blank', 'white', 'Snow is ___ (Snieg jest bialy)', '["black", "white", "purple"]', '"white"', 'White oznacza bialy.') ON CONFLICT DO NOTHING;
-
--- 3. Drag & Drop - Zwierzeta (word_order)
-INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'word_order', 'dog barking', 'Uloz zdanie: "Pies szczeka" (The dog is barking)', '["barking", "is", "dog", "The"]', '["The", "dog", "is", "barking"]', 'Najpierw podmiot (The dog), potem czasownik (is), potem czasownik z -ing (barking).') ON CONFLICT DO NOTHING;
-INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'word_order', 'fast horse', 'Uloz zdanie: "To jest szybki kon" (This is a fast horse)', '["fast", "is", "This", "horse", "a"]', '["This", "is", "a", "fast", "horse"]', 'Prawidlowy szyk: This is + a + przymiotnik + rzeczownik.')  ON CONFLICT DO NOTHING;
-
--- 4. Fill in the Blank - Zwierzeta (fill_blank)
-INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'fill_blank', 'cat', 'A ___ says meow. (Kot mowi miau)', '["dog", "cat", "cow"]', '"cat"', 'Cat to kot.') ON CONFLICT DO NOTHING;
-INSERT INTO public.questions (scenario_id, type, target_word, prompt, options, correct_answer, explanation) VALUES 
-('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'fill_blank', 'fish', 'A ___ swims in water. (Ryba plywa w wodzie)', '["bird", "horse", "fish"]', '"fish"', 'Fish to ryba.') ON CONFLICT DO NOTHING;
-
-
-
--- Extended Word Order Questions
-INSERT INTO public.questions (scenario_id, type, question_text, correct_answer, wrong_answers, image_emoji, sort_order) VALUES
-('c1fc3572-1b15-46aa-ab54-20ce4b1386ab', 'word_order', '¿Cómo te llamas?', '¿ Cómo te llamas ?', '["yo", "es"]'::jsonb, null, 11),
-('c1fc3572-1b15-46aa-ab54-20ce4b1386ab', 'word_order', 'Encantado de conocerte', 'Encantado de conocerte', '["mucho", "mal"]'::jsonb, null, 12),
-('c1fc3572-1b15-46aa-ab54-20ce4b1386ab', 'word_order', 'Yo soy de España', 'Yo soy de España', '["nosotros", "en"]'::jsonb, null, 13),
-('c1fc3572-1b15-46aa-ab54-20ce4b1386ab', 'word_order', 'Hasta la vista', 'Hasta la vista', '["luego", "hola"]'::jsonb, null, 14),
-('62e1a8bb-e054-46c5-8f6a-1153e77f98c1', 'word_order', 'Mi madre es muy amable', 'Mi madre es muy amable', '["padre", "poco"]'::jsonb, null, 11),
-('62e1a8bb-e054-46c5-8f6a-1153e77f98c1', 'word_order', 'Mi familia es bastante grande', 'Mi familia es bastante grande', '["pequeña", "un"]'::jsonb, null, 12),
-('62e1a8bb-e054-46c5-8f6a-1153e77f98c1', 'word_order', 'Tengo dos hermanos menores', 'Tengo dos hermanos menores', '["hermana", "tres"]'::jsonb, null, 13),
-('848bb226-8cf9-4fef-9a5d-16a7571cf3b1', 'word_order', 'Me gusta comer paella', 'Me gusta comer paella', '["beber", "agua"]'::jsonb, null, 11),
-('848bb226-8cf9-4fef-9a5d-16a7571cf3b1', 'word_order', 'Un vaso de agua por favor', 'Un vaso de agua por favor', '["taza", "leche"]'::jsonb, null, 12),
-('848bb226-8cf9-4fef-9a5d-16a7571cf3b1', 'word_order', 'La comida está deliciosa', 'La comida está deliciosa', '["mala", "el"]'::jsonb, null, 13),
-('2816f1a8-8e3d-4c3e-82d1-0309dd0a6712', 'word_order', '¿Dónde está el aeropuerto?', '¿ Dónde está el aeropuerto ?', '["estacion", "como"]'::jsonb, null, 11),
-('2816f1a8-8e3d-4c3e-82d1-0309dd0a6712', 'word_order', 'Un billete de ida', 'Un billete de ida', '["vuelta", "dos"]'::jsonb, null, 12);
+INSERT INTO public.questions (scenario_id, type, question_text, question_text_tts, correct_answer, wrong_answers, image_emoji, hint, sort_order) VALUES
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "rojo" en inglés?', 'red', 'red', ARRAY['orange', 'green', 'purple'], NULL, NULL, 1),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "azul" en inglés?', 'blue', 'blue', ARRAY['red', 'white', 'black'], NULL, NULL, 2),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'multiple_choice', '¿Cómo se dice "verde" en inglés?', 'green', 'green', ARRAY['yellow', 'blue', 'orange'], NULL, NULL, 3),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'image_match', '¿Qué palabra representa 🔴?', 'red', 'red', ARRAY['yellow', 'orange', 'blue'], '🔴', NULL, 4),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'image_match', '¿Qué palabra representa 🔵?', 'blue', 'blue', ARRAY['purple', 'green', 'white'], '🔵', NULL, 5),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'listening', 'Escucha y selecciona la palabra correcta', 'yellow', 'yellow', ARRAY['black', 'orange', 'green'], NULL, NULL, 6),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'listening', 'Escucha y selecciona la palabra correcta', 'white', 'white', ARRAY['black', 'red', 'green'], NULL, NULL, 7),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'Ordena las palabras para formar: "El color es rojo"', 'the color is red', 'the color is red', ARRAY['sun', 'not', 'blue'], NULL, 'Translate to English', 8),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'Ordena las palabras para formar: "El cielo es azul"', 'the sky is blue', 'the sky is blue', ARRAY['green', 'are', 'bird'], NULL, 'Translate to English', 9),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'word_order', 'Ordena las palabras para formar: "La caja amarilla"', 'the yellow box', 'the yellow box', ARRAY['red', 'boxes', 'is'], NULL, 'Translate to English', 10),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'fill_blank', 'The color of a frog is ____.', 'green', 'green', ARRAY['red', 'blue', 'white'], NULL, NULL, 11),
+('e11c8282-e565-4f40-8483-e0202e8d3eaa', 'fill_blank', 'The sun is ____.', 'yellow', 'yellow', ARRAY['purple', 'black', 'orange'], NULL, NULL, 12),
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'multiple_choice', '¿Cómo se dice "perro" en inglés?', 'dog', 'dog', ARRAY['fish', 'cow', 'cat'], NULL, NULL, 13),
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'image_match', '¿Qué palabra representa 🐱?', 'cat', 'cat', ARRAY['horse', 'fish', 'rabbit'], '🐱', NULL, 14),
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'listening', 'Escucha y selecciona la palabra correcta', 'pig', 'pig', ARRAY['bird', 'rabbit', 'dog'], NULL, NULL, 15),
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'word_order', 'Ordena las palabras para formar: "El perro ladra"', 'the dog barks', 'the dog barks', ARRAY['cat', 'meows', 'is'], NULL, 'Translate to English', 16),
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'word_order', 'Ordena las palabras para formar: "Un conejo rápido"', 'a fast rabbit', 'a fast rabbit', ARRAY['slow', 'turtle', 'the'], NULL, 'Translate to English', 17),
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'word_order', 'Ordena las palabras para formar: "Mi gato duerme"', 'my cat sleeps', 'my cat sleeps', ARRAY['dog', 'playing', 'is'], NULL, 'Translate to English', 18),
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'fill_blank', 'A ___ says meow.', 'cat', 'cat', ARRAY['dog', 'cow', 'fish'], NULL, NULL, 19),
+('2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e', 'fill_blank', 'A ___ swims in the water.', 'fish', 'fish', ARRAY['bird', 'cat', 'horse'], NULL, NULL, 20),
+('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'multiple_choice', '¿Cómo se dice "queso" en inglés?', 'cheese', 'cheese', ARRAY['bread', 'water', 'meat'], NULL, NULL, 21),
+('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'image_match', '¿Qué palabra representa 🥛?', 'milk', 'milk', ARRAY['cheese', 'apple', 'meat'], '🥛', NULL, 22),
+('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'listening', 'Escucha y selecciona la palabra correcta', 'cheese', 'cheese', ARRAY['milk', 'water', 'apple'], NULL, NULL, 23),
+('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'word_order', 'Ordena las palabras para formar: "Yo bebo agua"', 'i drink water', 'i drink water', ARRAY['eat', 'milk', 'you'], NULL, 'Translate to English', 24),
+('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'word_order', 'Ordena las palabras para formar: "Me gusta el pollo"', 'i like chicken', 'i like chicken', ARRAY['hate', 'fish', 'do'], NULL, 'Translate to English', 25),
+('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'word_order', 'Ordena las palabras para formar: "Una manzana roja"', 'a red apple', 'a red apple', ARRAY['green', 'the', 'meat'], NULL, 'Translate to English', 26),
+('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'fill_blank', 'I eat ___ with cheese.', 'bread', 'bread', ARRAY['water', 'milk', 'apple'], NULL, NULL, 27),
+('3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f', 'fill_blank', 'Cows give us ___.', 'milk', 'milk', ARRAY['bread', 'chicken', 'apple'], NULL, NULL, 28),
+('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'multiple_choice', '¿Cómo se dice "madre" en inglés?', 'mother', 'mother', ARRAY['brother', 'father', 'grandmother'], NULL, NULL, 29),
+('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'image_match', '¿Qué palabra representa 👴?', 'grandfather', 'grandfather', ARRAY['aunt', 'brother', 'grandmother'], '👴', NULL, 30),
+('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'listening', 'Escucha y selecciona la palabra correcta', 'brother', 'brother', ARRAY['mother', 'father', 'sister'], NULL, NULL, 31),
+('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'word_order', 'Ordena las palabras para formar: "Mi hermano pequeño"', 'my little brother', 'my little brother', ARRAY['big', 'sister', 'is'], NULL, 'Translate to English', 32),
+('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'word_order', 'Ordena las palabras para formar: "Ella es mi tía"', 'she is my aunt', 'she is my aunt', ARRAY['he', 'uncle', 'the'], NULL, 'Translate to English', 33),
+('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'word_order', 'Ordena las palabras para formar: "Mi padre trabaja"', 'my father works', 'my father works', ARRAY['mother', 'sleeping', 'is'], NULL, 'Translate to English', 34),
+('4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a', 'fill_blank', 'My mother and ___.', 'father', 'father', ARRAY['sister', 'uncle', 'aunt'], NULL, NULL, 35),
+('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'multiple_choice', '¿Cómo se dice "cabeza" en inglés?', 'head', 'head', ARRAY['mouth', 'ear', 'eye'], NULL, NULL, 36),
+('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'image_match', '¿Qué palabra representa 👁️?', 'eye', 'eye', ARRAY['ear', 'leg', 'head'], '👁️', NULL, 37),
+('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'listening', 'Escucha y selecciona la palabra correcta', 'leg', 'leg', ARRAY['hand', 'foot', 'ear'], NULL, NULL, 38),
+('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'word_order', 'Ordena las palabras para formar: "Cierra los ojos"', 'close your eyes', 'close your eyes', ARRAY['open', 'mouth', 'my'], NULL, 'Translate to English', 39),
+('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'word_order', 'Ordena las palabras para formar: "Mis dos manos"', 'my two hands', 'my two hands', ARRAY['one', 'feet', 'the'], NULL, 'Translate to English', 40),
+('5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b', 'word_order', 'Ordena las palabras para formar: "Tengo una nariz"', 'i have a nose', 'i have a nose', ARRAY['two', 'ears', 'has'], NULL, 'Translate to English', 41),
+('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'multiple_choice', '¿Cómo se dice "hotel" en inglés?', 'hotel', 'hotel', ARRAY['plane', 'ticket', 'car'], NULL, NULL, 42),
+('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'image_match', '¿Qué palabra representa 🚌?', 'bus', 'bus', ARRAY['train', 'passport', 'hotel'], '🚌', NULL, 43),
+('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'listening', 'Escucha y selecciona la palabra correcta', 'car', 'car', ARRAY['airport', 'hotel', 'plane'], NULL, NULL, 44),
+('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'word_order', 'Ordena las palabras para formar: "Dónde está el hotel"', 'where is the hotel', 'where is the hotel', ARRAY['who', 'airport', 'are'], NULL, 'Translate to English', 45),
+('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'word_order', 'Ordena las palabras para formar: "Necesito un billete"', 'i need a ticket', 'i need a ticket', ARRAY['want', 'passport', 'the'], NULL, 'Translate to English', 46),
+('6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c', 'word_order', 'Ordena las palabras para formar: "El tren rápido"', 'the fast train', 'the fast train', ARRAY['slow', 'bus', 'a'], NULL, 'Translate to English', 47),
+('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'multiple_choice', 'How do you say "white" in Spanish?', 'blanco', 'blanco', ARRAY['morado', 'verde', 'naranja'], NULL, NULL, 48),
+('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'multiple_choice', 'How do you say "blue" in Spanish?', 'azul', 'azul', ARRAY['naranja', 'blanco', 'verde'], NULL, NULL, 49),
+('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'multiple_choice', 'How do you say "red" in Spanish?', 'rojo', 'rojo', ARRAY['naranja', 'blanco', 'morado'], NULL, NULL, 50),
+('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'image_match', 'Which word represents 🟣?', 'morado', 'morado', ARRAY['rojo', 'negro', 'azul'], '🟣', NULL, 51),
+('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'image_match', 'Which word represents 🟠?', 'naranja', 'naranja', ARRAY['verde', 'morado', 'negro'], '🟠', NULL, 52),
+('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'listening', 'Listen and select the correct word', 'azul', 'azul', ARRAY['amarillo', 'rojo', 'verde'], NULL, NULL, 53),
+('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'listening', 'Listen and select the correct word', 'blanco', 'blanco', ARRAY['naranja', 'rojo', 'negro'], NULL, NULL, 54),
+('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'word_order', 'Translate to Spanish: "The color is red"', 'el color es rojo', 'el color es rojo', ARRAY['sol', 'no', 'azul'], NULL, 'Translate to Spanish', 55),
+('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'word_order', 'Translate to Spanish: "The sky is blue"', 'el cielo es azul', 'el cielo es azul', ARRAY['verde', 'son', 'pájaro'], NULL, 'Translate to Spanish', 56),
+('7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d', 'word_order', 'Translate to Spanish: "The yellow box"', 'la caja amarilla', 'la caja amarilla', ARRAY['rojo', 'cajas', 'es'], NULL, 'Translate to Spanish', 57),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'multiple_choice', 'How do you say "fish" in Spanish?', 'pez', 'pez', ARRAY['gato', 'vaca', 'cerdo'], NULL, NULL, 58),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'image_match', 'Which word represents 🐷?', 'cerdo', 'cerdo', ARRAY['pájaro', 'conejo', 'pez'], '🐷', NULL, 59),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'listening', 'Listen and select the correct word', 'perro', 'perro', ARRAY['cerdo', 'gato', 'conejo'], NULL, NULL, 60),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'word_order', 'Translate to Spanish: "The dog barks"', 'el perro ladra', 'el perro ladra', ARRAY['gato', 'maúlla', 'es'], NULL, 'Translate to Spanish', 61),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'word_order', 'Translate to Spanish: "A fast rabbit"', 'un conejo rápido', 'un conejo rápido', ARRAY['lento', 'tortuga', 'la'], NULL, 'Translate to Spanish', 62),
+('3a2ecbbd-0112-4c22-bde1-f8e136cf95fc', 'word_order', 'Translate to Spanish: "My cat sleeps"', 'mi gato duerme', 'mi gato duerme', ARRAY['perro', 'jugando', 'está'], NULL, 'Translate to Spanish', 63),
+('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'multiple_choice', 'How do you say "cheese" in Spanish?', 'queso', 'queso', ARRAY['pollo', 'pan', 'manzana'], NULL, NULL, 64),
+('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'image_match', 'Which word represents 🍗?', 'pollo', 'pollo', ARRAY['manzana', 'carne', 'queso'], '🍗', NULL, 65),
+('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'listening', 'Listen and select the correct word', 'agua', 'agua', ARRAY['leche', 'pan', 'carne'], NULL, NULL, 66),
+('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'word_order', 'Translate to Spanish: "I drink water"', 'yo bebo agua', 'yo bebo agua', ARRAY['como', 'leche', 'tú'], NULL, 'Translate to Spanish', 67),
+('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'word_order', 'Translate to Spanish: "I like chicken"', 'me gusta el pollo', 'me gusta el pollo', ARRAY['odio', 'pescado', 'sé'], NULL, 'Translate to Spanish', 68),
+('9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f', 'word_order', 'Translate to Spanish: "A red apple"', 'una manzana roja', 'una manzana roja', ARRAY['verde', 'la', 'carne'], NULL, 'Translate to Spanish', 69),
+('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'multiple_choice', 'How do you say "mother" in Spanish?', 'madre', 'madre', ARRAY['padre', 'abuela', 'hermana'], NULL, NULL, 70),
+('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'image_match', 'Which word represents 👵?', 'abuela', 'abuela', ARRAY['tío', 'padre', 'hermana'], '👵', NULL, 71),
+('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'listening', 'Listen and select the correct word', 'madre', 'madre', ARRAY['abuelo', 'hermano', 'padre'], NULL, NULL, 72),
+('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'word_order', 'Translate to Spanish: "My little brother"', 'mi hermano pequeño', 'mi hermano pequeño', ARRAY['grande', 'hermana', 'es'], NULL, 'Translate to Spanish', 73),
+('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'word_order', 'Translate to Spanish: "She is my aunt"', 'ella es mi tía', 'ella es mi tía', ARRAY['él', 'tío', 'la'], NULL, 'Translate to Spanish', 74),
+('0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a', 'word_order', 'Translate to Spanish: "My father works"', 'mi padre trabaja', 'mi padre trabalha', ARRAY['madre', 'durmiendo', 'está'], NULL, 'Translate to Spanish', 75),
+('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'multiple_choice', 'How do you say "foot" in Spanish?', 'pie', 'pie', ARRAY['oreja', 'nariz', 'ojo'], NULL, NULL, 76),
+('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'image_match', 'Which word represents 👂?', 'oreja', 'oreja', ARRAY['pie', 'pierna', 'boca'], '👂', NULL, 77),
+('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'listening', 'Listen and select the correct word', 'oreja', 'oreja', ARRAY['boca', 'pierna', 'nariz'], NULL, NULL, 78),
+('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'word_order', 'Translate to Spanish: "Close your eyes"', 'cierra los ojos', 'cierra los ojos', ARRAY['abre', 'boca', 'mis'], NULL, 'Translate to Spanish', 79),
+('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'word_order', 'Translate to Spanish: "My two hands"', 'mis dos manos', 'mis dos manos', ARRAY['una', 'pies', 'las'], NULL, 'Translate to Spanish', 80),
+('1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b', 'word_order', 'Translate to Spanish: "I have a nose"', 'tengo una nariz', 'tengo una nariz', ARRAY['dos', 'orejas', 'tiene'], NULL, 'Translate to Spanish', 81),
+('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'multiple_choice', 'How do you say "car" in Spanish?', 'coche', 'coche', ARRAY['billete', 'hotel', 'autobús'], NULL, NULL, 82),
+('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'image_match', 'Which word represents 🚌?', 'autobús', 'autobús', ARRAY['pasaporte', 'billete', 'hotel'], '🚌', NULL, 83),
+('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'listening', 'Listen and select the correct word', 'avión', 'avión', ARRAY['billete', 'aeropuerto', 'coche'], NULL, NULL, 84),
+('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'word_order', 'Translate to Spanish: "Where is the hotel"', 'dónde está el hotel', 'dónde está el hotel', ARRAY['quién', 'aeropuerto', 'son'], NULL, 'Translate to Spanish', 85),
+('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'word_order', 'Translate to Spanish: "I need a ticket"', 'necesito un billete', 'necesito un billete', ARRAY['quiero', 'pasaporte', 'el'], NULL, 'Translate to Spanish', 86),
+('2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c', 'word_order', 'Translate to Spanish: "The fast train"', 'el tren rápido', 'el tren rápido', ARRAY['lento', 'autobús', 'un'], NULL, 'Translate to Spanish', 87);

@@ -128,7 +128,7 @@ export default function ResultsScreen() {
             <div className="flex flex-col items-center p-3 bg-pb-bg rounded-xl">
               <span className="text-[10px] font-bold text-pb-text-light uppercase tracking-wider text-center">Total Puntos</span>
               <span className="text-xl font-bold text-pb-dark">
-                 ⭐ {progress.points}
+                 ⚡ {progress.points}
               </span>
             </div>
             <div className="flex flex-col items-center p-3 bg-pb-bg rounded-xl">
