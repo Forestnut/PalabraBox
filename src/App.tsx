@@ -1,9 +1,9 @@
 import { AnimatePresence } from 'framer-motion'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { audioService } from './services/audioService'
 
-import SplashScreen from './pages/SplashScreen'
+import { LoaderOverlay } from './components/ui/LoaderOverlay'
 import MainMenu from './pages/MainMenu'
 import ScenarioSelect from './pages/ScenarioSelect'
 import GameScreen from './pages/GameScreen'
@@ -19,7 +19,7 @@ function AppRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<SplashScreen />} />
+        <Route path="/" element={<Navigate to="/menu" replace />} />
         <Route path="/menu" element={<MainMenu />} />
         <Route path="/scenarios" element={<ScenarioSelect />} />
         <Route path="/game/:scenarioId" element={<GameScreen />} />
@@ -28,16 +28,34 @@ function AppRoutes() {
         <Route path="/settings" element={<SettingsScreen />} />
         <Route path="/language" element={<LanguageSelect />} />
         <Route path="/level" element={<LevelSelect />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/menu" replace />} />
       </Routes>
     </AnimatePresence>
   )
 }
 
 export default function App() {
+  const [isInitializing, setIsInitializing] = useState(true)
+
   useEffect(() => {
-    audioService.preloadSounds()
+    // Simulate real initialization process (e.g. fetching user session, caching sounds)
+    const initApp = async () => {
+      try {
+        await audioService.preloadSounds()
+        // Wait at least a tiny bit for the splash screen feel if everything loaded instantly
+        await new Promise(resolve => setTimeout(resolve, 800))
+      } finally {
+        setIsInitializing(false)
+      }
+    }
+    
+    initApp()
   }, [])
 
-  return <AppRoutes />
+  return (
+    <>
+      <LoaderOverlay isLoading={isInitializing} />
+      {!isInitializing && <AppRoutes />}
+    </>
+  )
 }

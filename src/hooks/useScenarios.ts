@@ -9,6 +9,9 @@ export interface ScenarioWithProgress extends Scenario {
   isLocked: boolean
 }
 
+// Simple in-memory cache to avoid refetching scenarios across page navigation
+const scenariosCache: Record<string, Scenario[]> = {}
+
 export function useScenarios() {
   const [scenarios, setScenarios] = useState<ScenarioWithProgress[]>([])
   const [loading, setLoading] = useState(true)
@@ -21,27 +24,32 @@ export function useScenarios() {
     async function fetchScenarios() {
       try {
         setLoading(true)
-        const { data, error: err } = await supabase
-          .from('scenarios')
-          .select('*')
-          .eq('language', learningLanguage)
-          .eq('level', learningLevel)
-          .order('sort_order', { ascending: true })
+        const cacheKey = `${learningLanguage}-${learningLevel}`
+        let rawData: Scenario[] = []
 
-        if (err) throw err
+        if (scenariosCache[cacheKey]) {
+          rawData = scenariosCache[cacheKey]
+        } else {
+          const { data, error: err } = await supabase
+            .from('scenarios')
+            .select('*')
+            .eq('language', learningLanguage)
+            .eq('level', learningLevel)
+            .order('sort_order', { ascending: true })
 
-        // Calculate progress and locked states
+          if (err) throw err
+          rawData = data as Scenario[]
+          scenariosCache[cacheKey] = rawData
+        }
+
+        // Always re-calculate progress and locked states to ensure fresh local progress is read
         let prevUnlocked = true
-        const enriched = (data as Scenario[]).map((scenario, index) => {
+        const enriched = rawData.map((scenario, index) => {
           const stars = getScenarioStars(scenario.id)
-          // Always unlock the first one, or if the previous one was unlocked AND has > 0 stars
-          // We can simplify: always unlock the first scenario, others require prev to have stars.
-          // Wait, Task 8 says "Implement lock/unlock logic based on localStorage progress".
-          // Let's assume order dictates progression.
           const isLocked = index === 0 ? false : !prevUnlocked
           
           if (stars === 0) {
-            prevUnlocked = false // Nex scenarios will be locked
+            prevUnlocked = false
           }
 
           return {

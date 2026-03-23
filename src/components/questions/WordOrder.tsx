@@ -141,8 +141,12 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
     if (disabled || isChecking || dropZone.length === 0) return
     setIsChecking(true)
     
-    const currentSentence = dropZone.map(d => d.word).join(' ').trim().toLowerCase()
-    const correctClean = question.correct_answer.replace(/[.,!?¡¿]/g, '').trim().toLowerCase()
+    // Ignore punctuation, casing and extra spaces 
+    const sanitizeString = (str: string) => 
+      str.replace(/[.,!?¡¿""'']/g, '').toLowerCase().trim()
+
+    const currentSentence = dropZone.map(d => sanitizeString(d.word)).join(' ')
+    const correctClean = sanitizeString(question.correct_answer).split(' ').join(' ') // ensuring multiple spaces are handled basically the same
     
     const isCorrect = currentSentence === correctClean
     
@@ -170,6 +174,28 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
     }),
   }
 
+  // Extract quoted text if present to highlight it better
+  const renderQuestionText = (text: string) => {
+    const match = text.match(/^(.*?):\s*"(.*?)"$/)
+    if (match) {
+      return (
+        <div className="flex flex-col items-center">
+          <span className="text-sm font-semibold tracking-wide text-pb-text-light uppercase mb-3">
+            {match[1]}
+          </span>
+          <span className="text-2xl font-black text-pb-dark text-center leading-tight">
+            {match[2]}
+          </span>
+        </div>
+      )
+    }
+    return (
+      <span className="text-xl font-bold text-pb-dark text-center leading-tight">
+        {text}
+      </span>
+    )
+  }
+
   return (
     <DndContext
       sensors={sensors}
@@ -181,11 +207,9 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
       <div className="flex flex-col gap-6 w-full max-w-lg mx-auto h-full px-2">
         <Card className="p-6 flex flex-col items-center justify-center relative min-h-55 bg-white mt-4 border-dashed border-4 border-pb-bg">
           <div className="w-full flex flex-col items-center mb-6 border-b-2 border-pb-bg pb-4">
-            <span className="text-xl font-bold text-pb-dark text-center leading-tight">
-              {question.question_text || "Ordena la frase"}
-            </span>
+            {renderQuestionText(question.question_text || "Ordena la frase")}
             {question.hint && (
-              <span className="text-xs font-bold text-pb-text-light uppercase tracking-wider mt-2">
+              <span className="text-xs font-bold text-pb-primary uppercase tracking-wider mt-3 bg-pb-bg px-3 py-1 rounded-full">
                 {question.hint}
               </span>
             )}

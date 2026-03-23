@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useId } from 'react'
 import { cn } from '../../utils/cn'
 
 export type MascotMood = 'idle' | 'happy' | 'wrong' | 'sad' | 'celebrate' | 'sleeping'
@@ -22,8 +22,11 @@ const sizeMap: Record<MascotSize, string> = {
 
 export function Mascot({ mood = 'idle', size = 'md', className, message }: MascotProps) {
   const [isBlinking, setIsBlinking] = useState(false)
+  const uniqueId = useId()
+  const gId1 = `frontGrad-${uniqueId.replace(/:/g, '')}`
+  const gId2 = `rightGrad-${uniqueId.replace(/:/g, '')}`
   
-  // Default is closed, except when happy or celebrate (confetti happens)
+  // Default is closed, except when happy or celebrate
   const isClosed = mood !== 'happy' && mood !== 'celebrate'
   
   useEffect(() => {
@@ -86,20 +89,40 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
   }
 
   // Paths - skrzydełka równo (Straight Flaps along Z axis)
-  const backFlapOpened = "M 40 40 L 120 40 L 115 35 L 45 35 Z"
-  const backFlapClosed = "M 40 40 L 120 40 L 100 60 L 20 60 Z"
+  // Back flap falls backwards slightly
+  const backFlapOpened = "M 40 40 L 120 40 L 125 30 L 35 30 Z"
+  const backFlapClosed = "M 40 40 L 120 40 L 110 50 L 30 50 Z"
 
-  const leftFlapOpened = "M 20 60 L 40 40 L 40 20 L 20 40 Z"
-  const leftFlapClosed = "M 20 60 L 40 40 L 80 40 L 60 60 Z"
+  // Left flap falls left down
+  const leftFlapOpened = "M 20 60 L 40 40 L 20 45 L 0 65 Z"
+  const leftFlapClosed = "M 20 60 L 40 40 L 50 45 L 30 65 Z" // Inner fold
 
-  const rightFlapOpened = "M 100 60 L 120 40 L 120 20 L 100 40 Z"
-  const rightFlapClosed = "M 100 60 L 120 40 L 80 40 L 60 60 Z"
+  // Right flap falls right down
+  const rightFlapOpened = "M 100 60 L 120 40 L 140 45 L 120 65 Z"
+  const rightFlapClosed = "M 100 60 L 120 40 L 110 45 L 90 65 Z" // Inner fold
 
-  const frontFlapOpened = "M 20 60 L 100 60 L 100 95 L 20 95 Z"
-  const frontFlapClosed = "M 20 60 L 100 60 L 120 40 L 40 40 Z"
+  // Front flap falls forward but very short to avoid hiding eyes
+  const frontFlapOpened = "M 20 60 L 100 60 L 95 70 L 15 70 Z"
+  const frontFlapClosed = "M 20 60 L 100 60 L 110 50 L 30 50 Z"
+
+  const handleInteraction = () => {
+    // Force blink and a tiny scale bounce on interaction
+    setIsBlinking(true)
+    setTimeout(() => setIsBlinking(false), 200)
+    
+    // Quick micro-jump
+    if (mood === 'idle' || mood === 'sleeping') {
+      // It will just blink for now, jumping might conflict with framer-motion variants, 
+      // but we can animate a wrapper or trust the user feels the blink.
+    }
+  }
 
   return (
-    <div className={cn('relative inline-flex flex-col items-center justify-end select-none', className)}>
+    <div 
+      className={cn('relative inline-flex flex-col items-center justify-end select-none cursor-pointer', className)}
+      onMouseEnter={handleInteraction}
+      onClick={handleInteraction}
+    >
       <AnimatePresence>
         {message && (
           <motion.div
@@ -121,17 +144,43 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
         >
           <svg viewBox="-10 -10 160 160" className="w-full h-full drop-shadow-[0_15px_15px_rgba(217,119,6,0.3)] overflow-visible">
             <defs>
-              <linearGradient id="frontGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <linearGradient id={gId1} x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#F5A623" />
                 <stop offset="100%" stopColor="#D97706" />
               </linearGradient>
-              <linearGradient id="rightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient id={gId2} x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#D97706" />
                 <stop offset="100%" stopColor="#92400E" />
               </linearGradient>
             </defs>
 
-            {/* CONFETTI LAYER (Inside the back flap but behind front flap) */}
+            {/* INSIDE HOLE */}
+            <path d="M 20 60 L 100 60 L 120 40 L 40 40 Z" fill="#451A03" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" />
+
+            {/* ZZZs happen inside or behind */}
+            <AnimatePresence>
+              {mood === 'sleeping' && (
+                <g>
+                  {[0,1,2].map((z) => (
+                    <motion.text
+                      key={`z-${z}`}
+                      x="100" y="30"
+                      fontSize="24"
+                      fontWeight="900"
+                      fill="#60A5FA"
+                      initial={{ opacity: 0, y: 30, x: 80, scale: 0.5 }}
+                      animate={{ opacity: [0, 1, 0], y: -10 - (z*15), x: 100 + (z*10), scale: [0.5, 1.5, 2] }}
+                      transition={{ repeat: Infinity, duration: 2.5, delay: z * 0.8 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      z
+                    </motion.text>
+                  ))}
+                </g>
+              )}
+            </AnimatePresence>
+
+            {/* CONFETTI LAYER (Inside the hole, comes out) */}
             <AnimatePresence>
               {(mood === 'happy' || mood === 'celebrate') && (
                 <g>
@@ -158,46 +207,20 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
               )}
             </AnimatePresence>
 
-            {/* ZZZs */}
-            <AnimatePresence>
-              {mood === 'sleeping' && (
-                <g>
-                  {[0,1,2].map((z) => (
-                    <motion.text
-                      key={`z-${z}`}
-                      x="100" y="30"
-                      fontSize="24"
-                      fontWeight="900"
-                      fill="#60A5FA"
-                      initial={{ opacity: 0, y: 30, x: 80, scale: 0.5 }}
-                      animate={{ opacity: [0, 1, 0], y: -10 - (z*15), x: 100 + (z*10), scale: [0.5, 1.5, 2] }}
-                      transition={{ repeat: Infinity, duration: 2.5, delay: z * 0.8 }}
-                      exit={{ opacity: 0 }}
-                    >
-                      z
-                    </motion.text>
-                  ))}
-                </g>
-              )}
-            </AnimatePresence>
-
-            {/* BACK FLAP (Peeking slightly down/back) */}
+            {/* BACK FLAP */}
             <motion.path 
               animate={{ d: isClosed ? backFlapClosed : backFlapOpened }}
               fill="#D97706" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" strokeLinecap="round"
               transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
             />
 
-            {/* INSIDE HOLE */}
-            <path d="M 20 60 L 100 60 L 120 40 L 40 40 Z" fill="#451A03" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" />
-
             {/* RIGHT FACE */}
-            <path d="M 100 60 L 120 40 L 120 110 L 100 130 Z" fill="url(#rightGrad)" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" />
+            <path d="M 100 60 L 120 40 L 120 110 L 100 130 Z" fill={`url(#${gId2})`} stroke="#78350F" strokeWidth="6" strokeLinejoin="round" />
 
             {/* LEFT FLAP */}
             <motion.path 
               animate={{ d: isClosed ? leftFlapClosed : leftFlapOpened }}
-              fill="#F5A623" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" strokeLinecap="round"
+              fill="#F5B041" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" strokeLinecap="round"
               transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
             />
 
@@ -208,8 +231,10 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
               transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
             />
 
+            {/* FRONT FLAP (In correct drawing order for closed state, will be drawn later for overlap if needed. Actually it's better to keep front flop later for overlaps) */}
+
             {/* FRONT FACE */}
-            <path d="M 20 60 L 100 60 L 100 130 L 20 130 Z" fill="url(#frontGrad)" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" />
+            <path d="M 20 60 L 100 60 L 100 130 L 20 130 Z" fill={`url(#${gId1})`} stroke="#78350F" strokeWidth="6" strokeLinejoin="round" />
             <path d="M 24 64 L 96 64" stroke="#FBBF24" strokeWidth="6" strokeLinecap="round" fill="none" />
 
             {/* FACE elements relative to front face center (60, 95) */}
@@ -286,6 +311,21 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
               fill="#FBBF24" stroke="#78350F" strokeWidth="6" strokeLinejoin="round" strokeLinecap="round"
               transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
             />
+            {/* TAPE ONLY VISIBLE WHEN CLOSED */}
+            <AnimatePresence>
+              {isClosed && (
+                <motion.path
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.7 }}
+                  exit={{ opacity: 0 }}
+                  d="M 32 50 L 108 50"
+                  stroke="#FEF08A" // Light tape color
+                  strokeWidth="8"
+                  strokeLinecap="square"
+                  style={{ mixBlendMode: 'overlay' }}
+                />
+              )}
+            </AnimatePresence>
           </svg>
         </motion.div>
       </div>
