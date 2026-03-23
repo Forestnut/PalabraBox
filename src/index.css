@@ -35,9 +35,13 @@ html, body {
 body {
   font-family: 'Nunito', sans-serif;
   background-color: var(--color-pb-bg);
+  /* Subtle premium dotted background */
+  background-image: radial-gradient(rgba(107, 123, 113, 0.15) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
   color: var(--color-pb-dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 /* Ensure all interactive elements have minimum touch target */

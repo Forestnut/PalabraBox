@@ -7,6 +7,8 @@ import { saveScenarioStars } from '../utils/progress'
 import { progressService } from '../services/progressService'
 import { analyticsService } from '../services/analyticsService'
 
+import { shuffleArray } from '../utils/shuffle'
+
 export function useGame(scenarioId: string | undefined) {
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
@@ -53,8 +55,34 @@ export function useGame(scenarioId: string | undefined) {
 
         setScenarioLanguage(scenarioData.language)
 
-        // Shuffle questions and pick max 10
-        const shuffled = [...(data as Question[])].sort(() => Math.random() - 0.5).slice(0, 10)
+        const allQuestions = data as Question[]
+        
+        // Group by type to ensure variety
+        const questionsByType: Record<string, Question[]> = {}
+        allQuestions.forEach(q => {
+          if (!questionsByType[q.type]) questionsByType[q.type] = []
+          questionsByType[q.type].push(q)
+        })
+
+        const selected: Question[] = []
+        
+        // Pick one of each type first
+        Object.keys(questionsByType).forEach(type => {
+          const group = questionsByType[type]
+          if (group.length > 0) {
+            const rIdx = Math.floor(Math.random() * group.length)
+            selected.push(group.splice(rIdx, 1)[0])
+          }
+        })
+
+        // Fill remaining up to 10 with other random questions
+        const remaining = shuffleArray(Object.values(questionsByType).flat())
+        while (selected.length < 10 && remaining.length > 0) {
+          selected.push(remaining.pop()!)
+        }
+        
+        // Final shuffle before serving
+        const shuffled = shuffleArray(selected)
         setQuestions(shuffled)
         
         startGame(shuffled.length) // Reset store state for new game
@@ -78,8 +106,8 @@ export function useGame(scenarioId: string | undefined) {
   useEffect(() => {
     if (status !== 'playing') return
 
-    const isWin = currentQuestionIndex >= questions.length && questions.length > 0
     const isLoss = lives <= 0
+    const isWin = currentQuestionIndex >= questions.length && questions.length > 0 && !isLoss
 
     if (isWin || isLoss) {
       endGame()

@@ -47,9 +47,14 @@ with open(seed_file, 'a', encoding='utf-8') as f:
         # Ensure single quotes for SQL string safety
         qtext_sql = f"'{qtext}'"
         cans_sql = f"'{cans}'"
-        # wans is like "['yo', 'es']" -> needs array literal in jsonb: '["yo", "es"]'::jsonb
-        wans_json = wans.replace("'", '"')
-        wans_sql = f"'{wans_json}'::jsonb"
+        # wans is like "['yo', 'es']" -> needs array literal in postgres: ARRAY['yo', 'es']
+        import ast
+        try:
+            wans_list = ast.literal_eval(wans)
+            wans_inner = ", ".join([f"'{w}'" for w in wans_list])
+            wans_sql = f"ARRAY[{wans_inner}]"
+        except Exception:
+            wans_sql = "ARRAY[]"
         values.append(f"('{sid}', '{qtype}', {qtext_sql}, {cans_sql}, {wans_sql}, {imj}, {so})")
     
     f.write(",\n".join(values) + ";\n")
