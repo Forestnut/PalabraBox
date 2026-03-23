@@ -26,7 +26,15 @@ export default function ResultsScreen() {
   const [stars, setStars] = useState(0)
 
   const isSuccess = lives > 0
-  const earnedStars = Math.max(0, lives)
+  const mistakes = maxLives - lives
+  
+  // New star logic based on mistakes (0 mistakes = 3 stars, 1-2 mistakes = 2 stars, otherwise 1 or 0)
+  let earnedStars = 0
+  if (isSuccess) {
+    if (mistakes === 0) earnedStars = 3
+    else if (mistakes <= 2) earnedStars = 2
+    else earnedStars = 1
+  }
 
   useEffect(() => {
     // Animate stars popping in with a slight delay
@@ -102,19 +110,29 @@ export default function ResultsScreen() {
         </div>
 
         <Card className="w-full flex flex-col items-center gap-6 p-8 relative overflow-hidden max-w-sm">
-          {/* Stars display */}
-          <div className="flex gap-2">
-            {[1, 2, 3].map((starIdx) => (
-              <div
-                key={starIdx}
-                className={`text-5xl transition-all duration-700 ease-out
-                  ${starIdx <= stars ? 'text-pb-amber scale-110 drop-shadow-md' : 'text-gray-300 scale-90 grayscale opacity-50'}
-                `}
-                style={{ transitionDelay: `${starIdx * 150}ms` }}
-              >
-                ⭐
-              </div>
-            ))}
+          <div className="flex flex-col gap-2 items-center w-full mb-2">
+            <div className="flex gap-2">
+              {[1, 2, 3].map((starIdx) => (
+                <div
+                  key={starIdx}
+                  className={`text-5xl transition-all duration-700 ease-out
+                    ${starIdx <= stars ? 'text-pb-amber scale-110 drop-shadow-md' : 'text-gray-300 scale-90 grayscale opacity-50'}
+                  `}
+                  style={{ transitionDelay: `${starIdx * 150}ms` }}
+                >
+                  ⭐
+                </div>
+              ))}
+            </div>
+            {isSuccess && (
+              <span className="text-xs font-bold text-pb-text-light mt-1">
+                {mistakes === 0 
+                  ? '¡Perfecto! Sin errores = 3 estrellas' 
+                  : mistakes <= 2 
+                    ? `Solo ${mistakes} ${mistakes === 1 ? 'error' : 'errores'} = 2 estrellas`
+                    : `Sobreviviente (${mistakes} errores) = 1 estrella`}
+              </span>
+            )}
           </div>
 
           <div className="flex flex-col items-center gap-1 w-full">

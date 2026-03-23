@@ -30,12 +30,44 @@ export default function GameScreen() {
   const [boxiMood, setBoxiMood] = useState<MascotMood>('idle')
   const [boxiMessage, setBoxiMessage] = useState<string | null>(null)
   const boxiTimeoutRef = useRef<number | null>(null)
+  const sleepTimeoutRef = useRef<number | null>(null)
 
   // Intermission State
   const [showIntermission, setShowIntermission] = useState(false)
   const prevQuestionIndex = useRef<number>(-1)
   const streakRef = useRef<number>(0)
   const [intermissionText, setIntermissionText] = useState('')
+
+  // Sleep timer logic
+  useEffect(() => {
+    if (status !== 'playing' || showIntermission) return
+
+    const resetSleepTimer = () => {
+      if (sleepTimeoutRef.current) window.clearTimeout(sleepTimeoutRef.current)
+      // Only set idle if it was sleeping. Don't overwrite 'happy' or 'wrong' animations
+      setBoxiMood(current => current === 'sleeping' ? 'idle' : current)
+      
+      sleepTimeoutRef.current = window.setTimeout(() => {
+        setBoxiMood('sleeping')
+        setBoxiMessage('Zzz...')
+      }, 15000) // 15 seconds of inactivity
+    }
+
+    // Reset timer on any mouse movement or touch
+    window.addEventListener('mousemove', resetSleepTimer)
+    window.addEventListener('touchstart', resetSleepTimer)
+    window.addEventListener('keydown', resetSleepTimer)
+
+    // Initial start
+    resetSleepTimer()
+
+    return () => {
+      window.removeEventListener('mousemove', resetSleepTimer)
+      window.removeEventListener('touchstart', resetSleepTimer)
+      window.removeEventListener('keydown', resetSleepTimer)
+      if (sleepTimeoutRef.current) window.clearTimeout(sleepTimeoutRef.current)
+    }
+  }, [status, showIntermission, currentQuestionIndex])
 
   useEffect(() => {
     // Show intermission ONLY after returning to playing state (i.e. next question)

@@ -38,7 +38,21 @@ export default function ScenarioSelect() {
           </div>
         )}
         
-        {loading && <p className="text-pb-text-light text-center py-8 font-bold">Cargando niveles...</p>}
+        {loading && (
+          <div className="grid grid-cols-2 gap-4 sm:gap-5 mt-2">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="animate-pulse flex flex-col items-center p-4 rounded-3xl bg-white shadow-sm border-b-4 border-gray-200">
+                <div className="w-16 h-16 bg-gray-200 rounded-full mb-3"></div>
+                <div className="h-4 bg-gray-200 rounded-md w-3/4 mb-2"></div>
+                <div className="h-3 bg-gray-200 rounded-md w-1/2"></div>
+                <div className="w-full mt-4 flex justify-between px-2">
+                  <div className="w-5 h-5 bg-gray-200 rounded-full"></div>
+                  <div className="w-5 h-5 bg-gray-200 rounded-full"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
         
         {error && (
           <div className="bg-pb-error/10 text-pb-error p-4 rounded-box mb-4 font-bold border-2 border-pb-error text-center">
