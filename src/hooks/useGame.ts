@@ -65,20 +65,40 @@ export function useGame(scenarioId: string | undefined) {
         })
 
         const selected: Question[] = []
+        const usedAnswers = new Set<string>()
         
-        // Pick one of each type first
+        // Pick one of each type first to ensure variety
         Object.keys(questionsByType).forEach(type => {
           const group = questionsByType[type]
           if (group.length > 0) {
             const rIdx = Math.floor(Math.random() * group.length)
-            selected.push(group.splice(rIdx, 1)[0])
+            const picked = group.splice(rIdx, 1)[0]
+            selected.push(picked)
+            if (picked.correct_answer) usedAnswers.add(picked.correct_answer.toLowerCase())
           }
         })
 
         // Fill remaining up to 10 with other random questions
+        // Prioritize questions with unique correct answers to avoid repeating words
         const remaining = shuffleArray(Object.values(questionsByType).flat())
+        const nonUniqueRemaining: Question[] = []
+        
+        // First pass: dynamically check if the question's answer is already used
         while (selected.length < 10 && remaining.length > 0) {
-          selected.push(remaining.pop()!)
+          const picked = remaining.pop()!
+          const ans = picked.correct_answer?.toLowerCase() || ''
+          
+          if (!ans || !usedAnswers.has(ans)) {
+            selected.push(picked)
+            if (ans) usedAnswers.add(ans)
+          } else {
+            nonUniqueRemaining.push(picked)
+          }
+        }
+
+        // If we still need more to reach 10, fallback to reusing words
+        while (selected.length < 10 && nonUniqueRemaining.length > 0) {
+          selected.push(nonUniqueRemaining.pop()!)
         }
         
         // Final shuffle before serving
