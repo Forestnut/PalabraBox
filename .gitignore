@@ -30,3 +30,5 @@ supabase/.branches
 
 # Lint
 lint_output*
+build_out.txt
+lint_output.txt
