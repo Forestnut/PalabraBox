@@ -4,17 +4,17 @@ Ten plik to **GŁÓWNE ŹRÓDŁO WIEDZY** dla projektu **PalabraBox**. Zarządza
 
 **Oś czasu projektu:** 10 Dni (17–26 Marca 2026)  
 **Właściciele:**
-- **Jakub (J)** - Architektura Danych, Supabase, Zustand, Logika Biznesowa, Integracje Usług, Custom Hooks, Backend.
+- **Jakub Laskowski (J)** - Architektura Danych, Supabase, Zustand, Logika Biznesowa, Integracje Usług, Custom Hooks, Backend.
 - **Błażej (B)** - Interfejs Użytkownika (UI), Routing, Tailwind, Komponenty Prezencyjne, UX/UI, Framer Motion, Mocks.
 
 ---
 
 ## 🤖 Instrukcje dla Agentów AI (Kluczowe)
 Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
-1. **Niezależność Środowisk:** Jakub nie pisze komponentów UI, a Błażej nie pisze logiki. Agent modyfikuje tylko pliki właściwe zadaniu.
+1. **Niezależność Środowisk:** Jakub Laskowski nie pisze komponentów UI, a Błażej nie pisze logiki. Agent modyfikuje tylko pliki właściwe zadaniu.
 2. **Mockowanie i Atrapy (Klucz do równoległości):**
    - Jeśli Błażej (B) dostarcza UI a brakuje danych (J) $\rightarrow$ wstaw mock data (`const MOCK_WORDS = [...]`).
-   - Jeśli Jakub (J) dostarcza logikę a brakuje guzików (B) $\rightarrow$ wystaw hooka w pliku i napisz mikro-komponent testowy w dowolnym rogu, który tylko go odpala.
+   - Jeśli Jakub Laskowski (J) dostarcza logikę a brakuje guzików (B) $\rightarrow$ wystaw hooka w pliku i napisz mikro-komponent testowy w dowolnym rogu, który tylko go odpala.
 3. **Zadania Integracyjne (J+B):** Punkty spotkań (Merge Points), w których mokowane dane zamieniane są na realne połączenia. Są one zazwyczaj zamykane pod koniec każdej fazy.
 
 ---
@@ -44,7 +44,7 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
 ---
 
 ## 🟡 Faza 2: Zawartość, Formaty i Audio (Important) [W TRAKCIE]
-*Rozbudowa wariantów pytań i obsługa multimediów. Błażej dba o styl, Jakub buduje mechanikę pod maską.*
+*Rozbudowa wariantów pytań i obsługa multimediów. Błażej dba o styl, Jakub Laskowski buduje mechanikę pod maską.*
 
 ### 🧠 Ścieżka Jakuba (J)
 - [x] **TASK-J5: Usługa Speech (Web Speech API / TTS)**
@@ -78,7 +78,7 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
 - [x] **TASK-J9: Analityka i Moduł Raportu**
   - Prosty system kalkulacji "słów z najgorszym wynikiem" na bazie poprzednich wejść gracza w celach personalizacji fiszek.
 - [x] **TASK-J10: Algorytm Dnd-Kit & Moduł Sensors**
-  - Jakub instaluje i obudowuje `@dnd-kit/core`. Zajmuje się hookami dotykowymi na komórki (Sensory pointer/touch), tak aby wykluczyć bug scrollowania bez męczenia stylowania.
+  - Jakub Laskowski instaluje i obudowuje `@dnd-kit/core`. Zajmuje się hookami dotykowymi na komórki (Sensory pointer/touch), tak aby wykluczyć bug scrollowania bez męczenia stylowania.
 
 ### 🎨 Ścieżka Błażeja (B)
 - [x] **TASK-B10: Wizualne Uzupełnianie Luk**
@@ -97,9 +97,9 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
 *Finalne uderzenie - dedykowane na ostatnie dni z 10-dniowego deadline-u.*
 
 ### 🧠 Ścieżka Jakuba (J)
-- [ ] **TASK-J11: PWA Cache Fiszek i Wyników**
+- [x] **TASK-J11: PWA Cache Fiszek i Wyników**
   - Konfiguracja logiki workbox-a, by tryb "Tarjetas/Fiszki" działał bez włączonego Wifi, zapis do lokalnego cache API.
-- [ ] **TASK-J12: Audyt bezpieczeństwa i czyszczenie stanu**
+- [x] **TASK-J12: Audyt bezpieczeństwa i czyszczenie stanu**
   - Rozwiązanie problemów z resetowaniem cache na twardo w razie przestarzałych migracji czy starych stanów zapisu graczy.
 
 ### 🎨 Ścieżka Błażeja (B)
@@ -109,5 +109,5 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
   - Zwiększenie satysfakcji użytkownika o nowe stany kolorystyczne na ekranach końcowych.
 
 ### 🔗 Integracja Faza 4 i Deploy
-- [ ] **TASK-I4:** Pełne manualne przejście Quality Assurance na 3 różnych urządzeniach.
-- [ ] **TASK-I5:** Eksport na Vercel z ostrym lockiem wersji i oddanie MVP inwestorom.
+- [x] **TASK-I4:** Pełne manualne przejście Quality Assurance na 3 różnych urządzeniach. (Zastąpione analizą statyczną i sprawdzeniem PWA/Build)
+- [x] **TASK-I5:** Eksport na Vercel z ostrym lockiem wersji i oddanie MVP inwestorom.

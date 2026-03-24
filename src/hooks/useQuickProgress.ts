@@ -1,30 +1,32 @@
-import { useMemo, useState, useEffect } from 'react'
-import { progressService } from '../services/progressService'
-import type { ProgressData } from '../services/progressService'
+/**
+ * Hook to quickly access user's core progress stats (streak, points, completions)
+ * connected safely to persistent Zustand store.
+ */
+import { useMemo, useEffect } from 'react'
+import { useProgressStore } from '../store/progressStore'
 
 export function useQuickProgress() {
-  const [progress, setProgress] = useState<ProgressData>(() => progressService.getProgress())
+  const streakDays = useProgressStore(state => state.streakDays)
+  const completed = useProgressStore(state => state.completed)
+  const total = useProgressStore(state => state.total)
+  const points = useProgressStore(state => state.points)
+  const lastActiveDate = useProgressStore(state => state.lastActiveDate)
+  const updateStreak = useProgressStore(state => state.updateStreak)
 
   useEffect(() => {
-    // Listen to changes from other parts of the app
-    const handleUpdate = () => {
-      setProgress(progressService.getProgress())
-    }
-
-    window.addEventListener('pb-progress-updated', handleUpdate)
-
-    // Update streak asynchronously to avoid synchronous effect state updates
+    // Determine streak continuously safely mounted
     setTimeout(() => {
-      progressService.updateStreak()
+      updateStreak()
     }, 0)
-
-    return () => window.removeEventListener('pb-progress-updated', handleUpdate)
-  }, [])
+  }, [updateStreak])
 
   const percentage = useMemo(() => {
-    if (progress.total <= 0) return 0
-    return Math.round((progress.completed / progress.total) * 100)
-  }, [progress.completed, progress.total])
+    if (total <= 0) return 0
+    return Math.round((completed / total) * 100)
+  }, [completed, total])
 
-  return { progress, percentage }
+  return { 
+    progress: { streakDays, completed, total, points, lastActiveDate }, 
+    percentage 
+  }
 }

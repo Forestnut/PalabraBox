@@ -387,7 +387,7 @@
 │                              │
 │   INFORMACIÓN                │
 │   PalabraBox v1.0            │
-│   Jakub & Błażej             │
+│   Jakub Laskowski & Błażej Goliszek    │
 │   Prácticas Arrabal          │
 │   Málaga 2026                │
 └──────────────────────────────┘

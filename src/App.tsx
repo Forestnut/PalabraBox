@@ -2,6 +2,7 @@ import { AnimatePresence } from 'framer-motion'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { audioService } from './services/audioService'
+import { runMigrations } from './services/migrationService'
 
 import { LoaderOverlay } from './components/ui/LoaderOverlay'
 import MainMenu from './pages/MainMenu'
@@ -12,6 +13,7 @@ import ResultsScreen from './pages/ResultsScreen'
 import SettingsScreen from './pages/SettingsScreen'
 import LanguageSelect from './pages/LanguageSelect'
 import LevelSelect from './pages/LevelSelect'
+import SplashScreen from './pages/SplashScreen'
 
 function AppRoutes() {
   const location = useLocation()
@@ -19,7 +21,7 @@ function AppRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Navigate to="/menu" replace />} />
+        <Route path="/" element={<SplashScreen />} />
         <Route path="/menu" element={<MainMenu />} />
         <Route path="/scenarios" element={<ScenarioSelect />} />
         <Route path="/game/:scenarioId" element={<GameScreen />} />
@@ -41,6 +43,13 @@ export default function App() {
     // Simulate real initialization process (e.g. fetching user session, caching sounds)
     const initApp = async () => {
       try {
+        const didReset = await runMigrations();
+        if (didReset) {
+          console.log('App state was reset for new version.');
+          // You could potentially trigger a full reload here: window.location.reload();
+          // but react state will initialize fresh anyway.
+        }
+        
         await audioService.preloadSounds()
         // Wait at least a tiny bit for the splash screen feel if everything loaded instantly
         await new Promise(resolve => setTimeout(resolve, 800))

@@ -42,8 +42,8 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
   // Blinking logic (only active when idle or happy)
   useEffect(() => {
     if (currentMood !== 'idle' && currentMood !== 'happy') {
-      setIsBlinking(false)
-      return
+      const t = setTimeout(() => setIsBlinking(false), 0)
+      return () => clearTimeout(t)
     }
 
     let blinkTimeout: ReturnType<typeof setTimeout> | null = null
