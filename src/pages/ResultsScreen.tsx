@@ -92,8 +92,8 @@ export default function ResultsScreen() {
 
   return (
     <PageTransition className="bg-pb-bg overflow-x-hidden">
-      <ScreenWrapper className="flex flex-col items-center justify-between py-4 sm:py-10 min-h-[100dvh] max-h-[100dvh]">
-        <div className="flex flex-col items-center gap-1 sm:gap-2 text-center mt-2 flex-grow justify-center">
+      <ScreenWrapper className="flex flex-col items-center justify-between py-4 sm:py-10 min-h-dvh max-h-dvh">
+        <div className="flex flex-col items-center gap-1 sm:gap-2 text-center mt-2 grow justify-center">
           <div className="mb-2 sm:mb-4 w-full flex justify-center scale-75 sm:scale-100 origin-bottom">
             <Mascot 
               mood={isSuccess ? 'celebrate' : 'sad'} 

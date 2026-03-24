@@ -10,7 +10,7 @@ export function LoaderOverlay({ isLoading }: LoaderOverlayProps) {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-pb-dark text-white"
+          className="fixed inset-0 z-100 flex flex-col items-center justify-center bg-pb-dark text-white"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
