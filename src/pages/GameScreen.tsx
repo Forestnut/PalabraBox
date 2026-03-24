@@ -75,19 +75,19 @@ export default function GameScreen() {
     if (status === 'playing' && currentQuestionIndex !== prevQuestionIndex.current) {
       if (currentQuestionIndex > 0 && currentQuestion) {
         
-        let text = 'Przygotuj się na kolejne zadanie!'
+        let text = '¡Prepárate para la siguiente tarea!'
         
         // 1. Sprawdź streak
         if (streakRef.current > 0 && streakRef.current % 3 === 0) {
-          text = 'Idziesz jak burza! Tak trzymaj!'
+          text = '¡Vas muy rápido! ¡Sigue así!'
         } else {
           // 2. Jeśli nie streak, daj powiązane zadanie
           const typePhrases: Record<string, string> = {
-            'listening': 'Teraz pora sprawdzić twój słuch!',
-            'multiple_choice': 'Wybierz poprawną odpowiedź!',
-            'image_match': 'Dopasuj odpowiedź!',
-            'word_order': 'Ułóż słowa w poprawnej kolejności!',
-            'fill_blank': 'Uzupełnij brakujące słowo!'
+            'listening': '¡Ahora vamos a comprobar tu oído!',
+            'multiple_choice': '¡Elige la respuesta correcta!',
+            'image_match': '¡Empareja la respuesta!',
+            'word_order': '¡Ordena las palabras correctamente!',
+            'fill_blank': '¡Completa la palabra que falta!'
           }
           if (typePhrases[currentQuestion.type]) {
             text = typePhrases[currentQuestion.type]
@@ -178,7 +178,7 @@ export default function GameScreen() {
             onClick={() => setShowIntermission(false)}
             className="mt-8 px-8 py-3 bg-pb-amber hover:bg-yellow-500 text-white font-bold rounded-xl shadow-[0_4px_0_#b45309] active:translate-y-1 active:shadow-none transition-all"
           >
-            Kontynuuj
+            Continuar
           </button>
         </ScreenWrapper>
       </PageTransition>
