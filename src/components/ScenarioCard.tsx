@@ -42,13 +42,13 @@ export function ScenarioCard({ scenario, onClick }: Props) {
       </div>
 
       <span className={cn(
-        "text-5xl sm:text-6xl mb-2 sm:mb-3 mt-4 transition-transform duration-300",
+        "text-5xl sm:text-6xl mb-1 sm:mb-3 mt-4 transition-transform duration-300",
         !isLocked && "group-hover:scale-110 group-hover:-rotate-6 drop-shadow-sm"
       )}>
         {emoji}
       </span>
-      <h2 className="text-sm sm:text-lg font-black text-pb-dark leading-tight relative z-20 mt-1">{title_display}</h2>
-      {description && <p className="text-[10px] sm:text-xs text-pb-text-light font-bold mt-1 relative z-20 px-1">{description}</p>}
+      <h2 className="text-xs sm:text-lg font-black text-pb-dark leading-tight relative z-20 mt-1 line-clamp-2">{title_display}</h2>
+      {description && <p className="text-[10px] sm:text-xs text-pb-text-light font-bold mt-1 relative z-20 px-1 line-clamp-2 hidden sm:block">{description}</p>}
     </button>
   )
 }
