@@ -130,8 +130,9 @@ export default function GameScreen() {
 
   if (loading) {
     return (
-      <ScreenWrapper>
-        <p className="text-center py-8 font-bold text-pb-text-light">Cargando partida...</p>
+      <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
+        <Mascot mood="idle" size="lg" />
+        <h2 className="text-2xl font-bold mt-6 text-pb-dark animate-pulse">Cargando partida...</h2>
       </ScreenWrapper>
     )
   }

@@ -6,15 +6,27 @@ import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import { Mascot } from '../components/ui/Mascot'
 import { useQuickProgress } from '../hooks/useQuickProgress'
+import { useScenarios } from '../hooks/useScenarios'
 
 export default function MainMenu() {
   const navigate = useNavigate()
-  const { progress, percentage } = useQuickProgress()
+  const { progress } = useQuickProgress()
+  const { scenarios, loading } = useScenarios()
 
-  const progressText = useMemo(
-    () => `${progress.completed} / ${progress.total}`,
-    [progress.completed, progress.total],
-  )
+  const { completed, total, percentage } = useMemo(() => {
+    if (!scenarios || scenarios.length === 0) {
+      return { completed: 0, total: 0, percentage: 0 }
+    }
+    const comp = scenarios.filter(s => s.stars > 0).length
+    const tot = scenarios.length
+    return {
+      completed: comp,
+      total: tot,
+      percentage: Math.round((comp / tot) * 100)
+    }
+  }, [scenarios])
+
+  const progressText = loading ? '...' : `${completed} / ${total}`
 
   return (
     <PageTransition className="bg-pb-bg text-pb-dark relative">

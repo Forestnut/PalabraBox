@@ -4,6 +4,7 @@ import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { BackButton } from '../components/layout/BackButton'
 import { FlashCard } from '../components/cards/FlashCard'
 import { Button } from '../components/ui/Button'
+import { Mascot } from '../components/ui/Mascot'
 import { useWords } from '../hooks/useWords'
 
 export default function CardsDeck() {
@@ -32,8 +33,9 @@ export default function CardsDeck() {
   if (loading) {
     return (
       <PageTransition className="bg-pb-bg">
-        <ScreenWrapper className="flex flex-col h-full py-6 pb-8 justify-center items-center">
-          <p className="text-xl text-pb-text font-bold">Cargando...</p>
+        <ScreenWrapper className="flex flex-col h-full py-6 pb-8 justify-center items-center min-h-[80vh]">
+          <Mascot mood="idle" size="lg" />
+          <h2 className="text-2xl font-bold mt-6 text-pb-dark animate-pulse">Cargando...</h2>
         </ScreenWrapper>
       </PageTransition>
     )
