@@ -55,7 +55,7 @@ export function Listening({
     if (isPlaying) return
     setIsPlaying(true)
     
-    // Connects with Jakub's SpeechService
+    // Connects with Jakub Laskowski's SpeechService
     const textToSpeak = question.question_text_tts || question.question_text || 'Error'
     const ttsLang = scenarioLanguage === 'english' ? 'en-US' : 'es-ES'
     

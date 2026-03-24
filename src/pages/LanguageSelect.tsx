@@ -9,8 +9,9 @@ import { SelectableCard } from '../components/ui/SelectableCard'
 import { useSettingsStore } from '../store/settingsStore'
 import type { LearningLanguage } from '../store/settingsStore'
 
-const languages: Array<{ key: LearningLanguage; label: string; emoji: string }> = [
+const languages: Array<{ key: LearningLanguage | 'polaco'; label: string; emoji: string; disabled?: boolean }> = [
   { key: 'english', label: 'Inglés', emoji: '🇺🇸' },
+  { key: 'polaco', label: 'Polaco (Próximamente)', emoji: '🇵🇱', disabled: true },
 ]
 
 export default function LanguageSelect() {
@@ -33,13 +34,18 @@ export default function LanguageSelect() {
 
         <div className="grid grid-cols-1 gap-4 mt-6">
           {languages.map((language) => (
-            <SelectableCard
-              key={language.key}
-              title={language.label}
-              icon={language.emoji}
-              selected={learningLanguage === language.key}
-              onClick={() => setLearningLanguage(language.key)}
-            />
+            <div key={language.key} className={language.disabled ? "opacity-50 pointer-events-none" : ""}>
+              <SelectableCard
+                title={language.label}
+                icon={language.emoji}
+                selected={learningLanguage === language.key}
+                onClick={() => {
+                  if (!language.disabled) {
+                    setLearningLanguage(language.key as LearningLanguage)
+                  }
+                }}
+              />
+            </div>
           ))}
         </div>
 
