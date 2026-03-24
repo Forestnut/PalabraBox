@@ -30,6 +30,6 @@ Choose a document to learn more about a specific area of the project:
 
 ---
 
-**Team:** Jakub Laskowski (Engine/Backend) & Błażej (UI/UX/Frontend)
+**Team:** Jakub Laskowski (Engine/Backend) & Błażej Goliszek (UI/UX/Frontend)
 **Date:** March 2026
 **Location:** Arrabal, Málaga

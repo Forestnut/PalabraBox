@@ -2484,7 +2484,7 @@ Scenariusz prezentacji (5-10 minut):
 10. Dashboard Supabase → pokazać jak dodawać nowe pytania (1 minuta)
 
 **Ustalenie:**
-- Kto prowadzi demo? (np. Jakub Laskowski pokazuje grę, kolega pokazuje Supabase)
+- Kto prowadzi demo? (np. Jakub Laskowski pokazuje grę, Błażej Goliszek pokazuje Supabase)
 - Laptop + telefon do demonstracji
 - Upewnić się że internet działa (backup: nagranie screencast)
 
@@ -2504,7 +2504,7 @@ Scenariusz prezentacji (5-10 minut):
 
 ## 15. Podział ról
 
-| Obszar | Jakub Laskowski | Kolega |
+| Obszar | Jakub Laskowski | Błażej Goliszek |
 |--------|-------|--------|
 | Supabase (tabele, klient, zapytania) | ✅ | |
 | Typy TypeScript | ✅ | |
