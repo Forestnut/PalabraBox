@@ -97,9 +97,9 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
 *Finalne uderzenie - dedykowane na ostatnie dni z 10-dniowego deadline-u.*
 
 ### 🧠 Ścieżka Jakuba (J)
-- [ ] **TASK-J11: PWA Cache Fiszek i Wyników**
+- [x] **TASK-J11: PWA Cache Fiszek i Wyników**
   - Konfiguracja logiki workbox-a, by tryb "Tarjetas/Fiszki" działał bez włączonego Wifi, zapis do lokalnego cache API.
-- [ ] **TASK-J12: Audyt bezpieczeństwa i czyszczenie stanu**
+- [x] **TASK-J12: Audyt bezpieczeństwa i czyszczenie stanu**
   - Rozwiązanie problemów z resetowaniem cache na twardo w razie przestarzałych migracji czy starych stanów zapisu graczy.
 
 ### 🎨 Ścieżka Błażeja (B)

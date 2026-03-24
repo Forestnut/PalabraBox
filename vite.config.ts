@@ -42,6 +42,22 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // 3 MB
         globIgnores: ['**/BoxLogo.svg'],
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/.*\.supabase\.co\/rest\/v1\/(words|scenarios|questions).*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'supabase-api-cache',
+              expiration: {
+                maxEntries: 200,
+                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200], // Allow opaque responses and successful ones
+              },
+            },
+          },
+        ],
       },
     }),
   ],
