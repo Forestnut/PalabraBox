@@ -14,7 +14,7 @@ export function ScenarioCard({ scenario, onClick }: Props) {
       onClick={() => !isLocked && onClick(scenario)}
       disabled={isLocked}
       className={cn(
-        "relative flex flex-col items-center justify-center p-4 sm:p-6 border-4 rounded-3xl transition-all duration-300 aspect-square text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber",
+        "relative flex flex-col items-center justify-center p-4 sm:p-5 border-4 rounded-3xl transition-all duration-300 min-h-[160px] sm:min-h-[180px] text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber",
         isLocked 
           ? "bg-pb-bg/50 border-pb-bg opacity-75 grayscale cursor-not-allowed" 
           : "bg-white border-pb-bg shadow-box cursor-pointer hover:border-pb-amber hover:-translate-y-1 hover:shadow-box-hover active:translate-y-1 active:shadow-box-pressed group"
@@ -47,8 +47,8 @@ export function ScenarioCard({ scenario, onClick }: Props) {
       )}>
         {emoji}
       </span>
-      <h2 className="text-base sm:text-lg font-black text-pb-dark leading-tight relative z-20">{title_display}</h2>
-      {description && <p className="text-[10px] sm:text-xs text-pb-text-light font-bold mt-1 line-clamp-2 relative z-20">{description}</p>}
+      <h2 className="text-sm sm:text-lg font-black text-pb-dark leading-tight relative z-20 mt-1">{title_display}</h2>
+      {description && <p className="text-[10px] sm:text-xs text-pb-text-light font-bold mt-1 relative z-20 px-1">{description}</p>}
     </button>
   )
 }

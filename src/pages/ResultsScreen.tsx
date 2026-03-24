@@ -92,9 +92,9 @@ export default function ResultsScreen() {
 
   return (
     <PageTransition className="bg-pb-bg">
-      <ScreenWrapper className="flex flex-col items-center justify-center gap-8 py-10 min-h-[80vh]">
-        <div className="flex flex-col items-center gap-2 text-center mt-6">
-          <div className="mb-4 mt-8 flex justify-center w-full">
+      <ScreenWrapper className="flex flex-col items-center justify-center gap-4 sm:gap-8 py-6 sm:py-10 min-h-[80vh]">
+        <div className="flex flex-col items-center gap-2 text-center mt-2 sm:mt-6">
+          <div className="mb-2 sm:mb-4 mt-2 sm:mt-8 flex justify-center w-full">
             <Mascot 
               mood={isSuccess ? 'celebrate' : 'sad'} 
               size="xl" 
@@ -109,8 +109,8 @@ export default function ResultsScreen() {
           </p>
         </div>
 
-        <Card className="w-full flex flex-col items-center gap-6 p-8 relative overflow-hidden max-w-sm">
-          <div className="flex flex-col gap-2 items-center w-full mb-2">
+        <Card className="w-full flex flex-col items-center gap-4 sm:gap-6 p-4 sm:p-8 relative overflow-hidden max-w-sm">
+          <div className="flex flex-col gap-1 sm:gap-2 items-center w-full mb-1 sm:mb-2">
             <div className="flex gap-2">
               {[1, 2, 3].map((starIdx) => (
                 <div
