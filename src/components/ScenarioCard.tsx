@@ -20,11 +20,9 @@ export function ScenarioCard({ scenario, onClick }: Props) {
           : "bg-white border-pb-bg shadow-box cursor-pointer hover:border-pb-amber hover:-translate-y-1 hover:shadow-box-hover active:translate-y-1 active:shadow-box-pressed group"
       )}
     >
-      {/* If locked, display big transparent padlock overlay */}
+      {/* If locked, display big transparent mask overlay */}
       {isLocked && (
-        <div className="absolute inset-0 flex items-center justify-center bg-pb-bg/30 rounded-2xl z-10 backdrop-blur-[1px]">
-          <span className="text-6xl drop-shadow-md">🔒</span>
-        </div>
+        <div className="absolute inset-0 bg-pb-bg/30 rounded-2xl z-10 backdrop-blur-[1px]"></div>
       )}
 
       {/* Stars Header */}
@@ -42,10 +40,10 @@ export function ScenarioCard({ scenario, onClick }: Props) {
       </div>
 
       <span className={cn(
-        "text-5xl sm:text-6xl mb-2 sm:mb-3 mt-4 transition-transform duration-300",
+        "text-5xl sm:text-6xl mb-2 sm:mb-3 mt-4 transition-transform duration-300 relative z-20",
         !isLocked && "group-hover:scale-110 group-hover:-rotate-6 drop-shadow-sm"
       )}>
-        {emoji}
+        {isLocked ? "🔒" : emoji}
       </span>
       <h2 className="text-base sm:text-lg font-black text-pb-dark leading-tight relative z-20">{title_display}</h2>
       {description && <p className="text-[10px] sm:text-xs text-pb-text-light font-bold mt-1 line-clamp-2 relative z-20">{description}</p>}
