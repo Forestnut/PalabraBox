@@ -13,6 +13,7 @@ import ResultsScreen from './pages/ResultsScreen'
 import SettingsScreen from './pages/SettingsScreen'
 import LanguageSelect from './pages/LanguageSelect'
 import LevelSelect from './pages/LevelSelect'
+import SplashScreen from './pages/SplashScreen'
 
 function AppRoutes() {
   const location = useLocation()
@@ -20,7 +21,7 @@ function AppRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Navigate to="/menu" replace />} />
+        <Route path="/" element={<SplashScreen />} />
         <Route path="/menu" element={<MainMenu />} />
         <Route path="/scenarios" element={<ScenarioSelect />} />
         <Route path="/game/:scenarioId" element={<GameScreen />} />
