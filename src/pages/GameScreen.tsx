@@ -35,7 +35,6 @@ export default function GameScreen() {
 
   // Intermission State
   const [showIntermission, setShowIntermission] = useState(false)
-  const prevQuestionIndex = useRef<number>(-1)
   const streakRef = useRef<number>(0)
   const [intermissionText, setIntermissionText] = useState('')
 
@@ -70,42 +69,7 @@ export default function GameScreen() {
     }
   }, [status, showIntermission, currentQuestionIndex])
 
-  useEffect(() => {
-    // Show intermission ONLY after returning to playing state (i.e. next question)
-    // but not on the very first question
-    if (status === 'playing' && currentQuestionIndex !== prevQuestionIndex.current) {
-      if (currentQuestionIndex > 0 && currentQuestion) {
-        
-        let text = 'Przygotuj się na kolejne zadanie!'
-        
-        // 1. Sprawdź streak
-        if (streakRef.current > 0 && streakRef.current % 3 === 0) {
-          text = 'Idziesz jak burza! Tak trzymaj!'
-        } else {
-          // 2. Jeśli nie streak, daj powiązane zadanie
-          const typePhrases: Record<string, string> = {
-            'listening': 'Teraz pora sprawdzić twój słuch!',
-            'multiple_choice': 'Wybierz poprawną odpowiedź!',
-            'image_match': 'Dopasuj odpowiedź!',
-            'word_order': 'Ułóż słowa w poprawnej kolejności!',
-            'fill_blank': 'Uzupełnij brakujące słowo!'
-          }
-          if (typePhrases[currentQuestion.type]) {
-            text = typePhrases[currentQuestion.type]
-          }
-        }
-
-        setIntermissionText(text)
-        setShowIntermission(true)
-        
-        prevQuestionIndex.current = currentQuestionIndex
-      } else {
-        // Pierwsze pytanie - pomijamy intermission
-        prevQuestionIndex.current = currentQuestionIndex
-      }
-    }
-  }, [currentQuestionIndex, status, currentQuestion?.type])
-
+  // Intermission logic is now handled in onAnswered to ensure it batches with goToNext() and prevents the next question from briefly mounting
   const handlePlaySound = useCallback((type: 'click' | 'correct' | 'wrong') => {
     playSound(type)
     if (type === 'correct') {
@@ -223,6 +187,33 @@ export default function GameScreen() {
             scenarioLanguage={scenarioLanguage}
             onAnswered={(isCorrect) => {
               handleAnswer(isCorrect)
+              
+              const nextLives = isCorrect ? lives : lives - 1;
+              if (currentQuestionIndex + 1 < questions.length && nextLives > 0) {
+                let text = 'Przygotuj się na kolejne zadanie!'
+                
+                // 1. Sprawdź streak (which was already updated by handlePlaySound)
+                if (streakRef.current > 0 && streakRef.current % 3 === 0) {
+                  text = 'Idziesz jak burza! Tak trzymaj!'
+                } else {
+                  // 2. Jeśli nie streak, daj powiązane zadanie na podstawie TYPU NASTĘPNEGO PYTANIA
+                  const nextQ = questions[currentQuestionIndex + 1]
+                  const typePhrases: Record<string, string> = {
+                    'listening': 'Teraz pora sprawdzić twój słuch!',
+                    'multiple_choice': 'Wybierz poprawną odpowiedź!',
+                    'image_match': 'Dopasuj odpowiedź!',
+                    'word_order': 'Ułóż słowa w poprawnej kolejności!',
+                    'fill_blank': 'Uzupełnij brakujące słowo!'
+                  }
+                  if (nextQ && typePhrases[nextQ.type]) {
+                    text = typePhrases[nextQ.type]
+                  }
+                }
+                
+                setIntermissionText(text)
+                setShowIntermission(true)
+              }
+              
               goToNext()
             }}
             onPlaySound={handlePlaySound}
