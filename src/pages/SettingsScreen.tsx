@@ -97,12 +97,32 @@ export default function SettingsScreen() {
           </div>
         </Card>
 
+        <Card className="p-6 flex flex-col gap-4">
+          <div className="flex items-center gap-2 text-pb-text-light font-bold text-xs uppercase tracking-wider">
+            <span className="text-lg">🌍</span> Idioma de la Aplicación
+          </div>
+          
+          <div className="grid grid-cols-2 gap-2 mt-2">
+            <button
+              className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-pb-amber text-white shadow-inner scale-105"
+            >
+              🇪🇸 Español
+            </button>
+            <button
+              disabled
+              className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-pb-bg text-pb-text-light opacity-50 cursor-not-allowed"
+            >
+              🇵🇱 Polaco (Próximamente)
+            </button>
+          </div>
+        </Card>
+
         {/* Info & Credits */}
         <div className="mt-auto pt-8 flex flex-col items-center justify-center text-center gap-2 opacity-70">
           <Mascot mood="idle" size="sm" className="opacity-80 mb-2" />
           <p className="font-bold text-pb-dark text-lg">PalabraBox <span className="text-sm font-normal text-pb-text-light">v1.0.0</span></p>
           <p className="text-xs text-pb-text-light font-medium max-w-50">
-            Diseñado y desarrollado por <br/><span className="text-pb-amber font-bold">Jakub Laskowski</span> & <span className="text-pb-amber font-bold">Błażej</span>
+            Diseñado y desarrollado por <br/><span className="text-pb-amber font-bold">Jakub Laskowski</span> & <span className="text-pb-amber font-bold">Błażej Goliszek</span>
           </p>
         </div>
       </ScreenWrapper>
