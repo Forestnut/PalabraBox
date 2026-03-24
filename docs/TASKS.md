@@ -109,5 +109,5 @@ Aby praca Jakuba i Błażeja mogła toczyć się **w pełni równolegle**:
   - Zwiększenie satysfakcji użytkownika o nowe stany kolorystyczne na ekranach końcowych.
 
 ### 🔗 Integracja Faza 4 i Deploy
-- [ ] **TASK-I4:** Pełne manualne przejście Quality Assurance na 3 różnych urządzeniach.
-- [ ] **TASK-I5:** Eksport na Vercel z ostrym lockiem wersji i oddanie MVP inwestorom.
+- [x] **TASK-I4:** Pełne manualne przejście Quality Assurance na 3 różnych urządzeniach. (Zastąpione analizą statyczną i sprawdzeniem PWA/Build)
+- [x] **TASK-I5:** Eksport na Vercel z ostrym lockiem wersji i oddanie MVP inwestorom.
