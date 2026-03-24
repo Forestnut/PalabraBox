@@ -44,10 +44,14 @@ export function useScenarios() {
 
         // Always re-calculate progress and locked states to ensure fresh local progress is read
         let prevUnlocked = true
+        let completedCount = 0
         const enriched = rawData.map((scenario, index) => {
           const stars = getScenarioStars(scenario.id)
           const isLocked = index === 0 ? false : !prevUnlocked
           
+          if (stars > 0) {
+             completedCount++;
+          }
           if (stars === 0) {
             prevUnlocked = false
           }
@@ -57,6 +61,11 @@ export function useScenarios() {
             stars,
             isLocked,
           }
+        })
+        
+        // Sync true values to the fast global store whenever we fetch/re-evaluate scenarios
+        import('../services/progressService').then(({ progressService }) => {
+          progressService.updateCompletedTotal(completedCount, rawData.length)
         })
 
         setScenarios(enriched)
