@@ -102,7 +102,7 @@ export default function SettingsScreen() {
           <Mascot mood="idle" size="sm" className="opacity-80 mb-2" />
           <p className="font-bold text-pb-dark text-lg">PalabraBox <span className="text-sm font-normal text-pb-text-light">v1.0.0</span></p>
           <p className="text-xs text-pb-text-light font-medium max-w-50">
-            Diseñado y desarrollado por <br/><span className="text-pb-amber font-bold">Jakub</span> & <span className="text-pb-amber font-bold">Błażej</span>
+            Diseñado y desarrollado por <br/><span className="text-pb-amber font-bold">Jakub Laskowski</span> & <span className="text-pb-amber font-bold">Błażej</span>
           </p>
         </div>
       </ScreenWrapper>

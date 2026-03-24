@@ -737,7 +737,7 @@ Ten styl daje efekt:
 │   ┌────────────────────────┐ │
 │   │ PalabraBox v1.0        │ │
 │   │ Desarrollado por:      │ │
-│   │ Jakub & [Kolega]       │ │
+│   │ Jakub Laskowski & [Kolega]       │ │
 │   │ Málaga 2025            │ │
 │   │                        │ │
 │   │ Prácticas en Arrabal   │ │
@@ -767,7 +767,7 @@ Ten styl daje efekt:
    - Kontroluje `utterance.rate` w SpeechSynthesis API
 
 5. **Información (Informacje):**
-   - Nazwa, wersja, autorzy
+   - Nazwa, wersja, autorzy (Jakub Laskowski & Błażej Goliszek)
    - Kontekst: praktyki w Maladze, Arrabal
 
 **Zapisywanie ustawień:**
@@ -1696,7 +1696,7 @@ vercel
 
 #### Cel: Projekt działa lokalnie, Supabase ma tabele z testowymi danymi, puste strony z routingiem, Tailwind skonfigurowany z paletą PalabraBox.
 
-#### Jakub — Backend & dane (4-5h)
+#### Jakub Laskowski — Backend & dane (4-5h)
 
 **1. Supabase setup (2h):**
 - Utworzenie konta i projektu na supabase.com
@@ -1775,7 +1775,7 @@ vercel
 
 #### Cel: Gracz widzi menu główne, może wybrać język i poziom. Store trzyma wybory. Ekrany wyglądają ładnie z designem PalabraBox.
 
-#### Jakub — Store & logika (4-5h)
+#### Jakub Laskowski — Store & logika (4-5h)
 
 **1. Zustand gameStore (2h):**
 - `src/store/gameStore.ts` z pełną implementacją:
@@ -1853,7 +1853,7 @@ vercel
 
 #### Cel: Gracz wybiera scenariusz, wchodzi do ekranu gry z działającym silnikiem (pasek postępu, serca, punkty). Na razie pytania to placeholder.
 
-#### Jakub — Silnik gry (4-5h)
+#### Jakub Laskowski — Silnik gry (4-5h)
 
 **1. Hook useScenarios (1h):**
 - Pobieranie scenariuszy z Supabase (filtrowane po language + level ze store)
@@ -1940,7 +1940,7 @@ function useGame(scenarioId: string) {
 
 #### Cel: Pierwsze prawdziwe pytania działają. Gracz odpowiada, dostaje feedback, gra liczy punkty i życia.
 
-#### Jakub — Multiple Choice (4-5h)
+#### Jakub Laskowski — Multiple Choice (4-5h)
 
 **1. QuestionRenderer (30min):**
 ```tsx
@@ -2031,7 +2031,7 @@ interface AnswerCardProps {
 
 #### Cel: Wszystkie 5 typów pytań zaimplementowane. Word Order z drag & drop (lub fallback klikanie).
 
-#### Jakub — Listening + Fill Blank (4-5h)
+#### Jakub Laskowski — Listening + Fill Blank (4-5h)
 
 **1. Listening.tsx (2.5h):**
 - Duży przycisk "🔊 Escuchar"
@@ -2094,7 +2094,7 @@ Zamiana na klikanie:
 
 #### Cel: Baza ma pełny content (12 scenariuszy, ~120 pytań). Ekran wyników działa z gwiazdkami i zapisem postępu.
 
-#### Jakub — Content angielski + postęp (4-5h)
+#### Jakub Laskowski — Content angielski + postęp (4-5h)
 
 **1. Content angielski — Beginner (1.5h):**
 
@@ -2169,7 +2169,7 @@ Zamiana na klikanie:
 
 #### Cel: Tryb fiszek działa. Dźwięki są podłączone.
 
-#### Jakub — Audio (3-4h)
+#### Jakub Laskowski — Audio (3-4h)
 
 **1. Pobranie dźwięków (30min):**
 - Wejście na [mixkit.co/free-sound-effects/](https://mixkit.co/free-sound-effects/)
@@ -2236,7 +2236,7 @@ Zamiana na klikanie:
 
 #### Cel: Ekran ustawień działa. Menu główne pokazuje postęp. Gra wygląda dobrze na telefonie.
 
-#### Jakub — Ustawienia + postęp w menu (4h)
+#### Jakub Laskowski — Ustawienia + postęp w menu (4h)
 
 **1. SettingsScreen (2h):**
 - Sekcja "Idioma de la app":
@@ -2251,7 +2251,7 @@ Zamiana na klikanie:
   - Podłączony do settingsStore → speechService
 - Sekcja "Información":
   - PalabraBox v1.0
-  - Autorzy
+  - Autorzy (Jakub Laskowski & Błażej Goliszek)
   - Prácticas en Arrabal, Málaga 2025
 - Komponent Slider.tsx (reużywalny)
 
@@ -2459,7 +2459,7 @@ Abre el enlace → "Añadir a pantalla de inicio"
 3. Añade palabras en `words` con la misma category (para tarjetas)
 
 ## 👥 Equipo
-- Jakub — game engine, Supabase, TTS, audio
+- Jakub Laskowski — game engine, Supabase, TTS, audio
 - [Kolega] — UI/UX, animaciones, responsividad
 
 ## 📍 Contexto
@@ -2484,7 +2484,7 @@ Scenariusz prezentacji (5-10 minut):
 10. Dashboard Supabase → pokazać jak dodawać nowe pytania (1 minuta)
 
 **Ustalenie:**
-- Kto prowadzi demo? (np. Jakub pokazuje grę, kolega pokazuje Supabase)
+- Kto prowadzi demo? (np. Jakub Laskowski pokazuje grę, kolega pokazuje Supabase)
 - Laptop + telefon do demonstracji
 - Upewnić się że internet działa (backup: nagranie screencast)
 
@@ -2504,7 +2504,7 @@ Scenariusz prezentacji (5-10 minut):
 
 ## 15. Podział ról
 
-| Obszar | Jakub | Kolega |
+| Obszar | Jakub Laskowski | Kolega |
 |--------|-------|--------|
 | Supabase (tabele, klient, zapytania) | ✅ | |
 | Typy TypeScript | ✅ | |
