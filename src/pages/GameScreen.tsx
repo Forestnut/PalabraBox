@@ -190,9 +190,13 @@ export default function GameScreen() {
       <ScreenWrapper>
         <div className="flex items-center justify-between mb-4 mt-4 px-2">
           <BackButton fallbackUrl="/scenarios" label="←" />
-          <div className="flex-1 flex justify-center items-end px-2 pt-4 min-h-20 relative z-20">
-            <Mascot mood={boxiMood} size="sm" message={boxiMessage} className="origin-bottom transform hover:scale-110 transition-transform md:hidden" />
-            <Mascot mood={boxiMood} size="md" message={boxiMessage} className="origin-bottom transform hover:scale-110 transition-transform hidden md:flex" />
+          <div className="flex-1 flex justify-center items-end px-2 pt-4 min-h-20 relative z-20 mascot-container pointer-events-none">
+            <div className="md:hidden pointer-events-auto origin-bottom transform hover:scale-110 transition-transform">
+              <Mascot mood={boxiMood} size="sm" message={boxiMessage} />
+            </div>
+            <div className="hidden md:flex pointer-events-auto origin-bottom transform hover:scale-110 transition-transform">
+              <Mascot mood={boxiMood} size="md" message={boxiMessage} />
+            </div>
           </div>
           <div className="flex flex-col items-end sm:flex-row sm:items-center gap-1 sm:gap-4 font-bold text-base sm:text-xl relative z-10">
             <span className="text-pb-amber drop-shadow-sm flex items-center gap-1">⚡ {score}</span>
