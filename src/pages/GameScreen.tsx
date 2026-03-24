@@ -35,7 +35,7 @@ export default function GameScreen() {
   // Intermission State
   const [showIntermission, setShowIntermission] = useState(false)
   const prevQuestionIndex = useRef<number>(-1)
-  const streakRef = useRef<number>(0)
+  const [streak, setStreak] = useState<number>(0)
   const [intermissionText, setIntermissionText] = useState('')
 
   // Sleep timer logic
@@ -78,7 +78,7 @@ export default function GameScreen() {
         let text = '¡Prepárate para la siguiente tarea!'
         
         // 1. Sprawdź streak
-        if (streakRef.current > 0 && streakRef.current % 3 === 0) {
+        if (streak > 0 && streak % 3 === 0) {
           text = '¡Batiendo récords! ¡Sigue así!'
         } else {
           // 2. Jeśli nie streak, daj powiązane zadanie
@@ -94,8 +94,10 @@ export default function GameScreen() {
           }
         }
 
-        setIntermissionText(text)
-        setShowIntermission(true)
+        setTimeout(() => {
+          setIntermissionText(text)
+          setShowIntermission(true)
+        }, 0)
         
         prevQuestionIndex.current = currentQuestionIndex
       } else {
@@ -103,12 +105,12 @@ export default function GameScreen() {
         prevQuestionIndex.current = currentQuestionIndex
       }
     }
-  }, [currentQuestionIndex, status, currentQuestion?.type])
+  }, [currentQuestionIndex, status, currentQuestion, streak])
 
   const handlePlaySound = useCallback((type: 'click' | 'correct' | 'wrong') => {
     playSound(type)
     if (type === 'correct') {
-      streakRef.current += 1
+      setStreak(s => s + 1)
       setBoxiMood('happy')
       setBoxiMessage('¡Genial!')
       if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
@@ -117,7 +119,7 @@ export default function GameScreen() {
         setBoxiMessage(null)
       }, 1500)
     } else if (type === 'wrong') {
-      streakRef.current = 0
+      setStreak(0)
       setBoxiMood('wrong')
       setBoxiMessage('¡Ups!')
       if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
@@ -169,7 +171,7 @@ export default function GameScreen() {
     return (
       <PageTransition>
         <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
-          <Mascot mood={streakRef.current > 0 && streakRef.current % 3 === 0 ? "celebrate" : "idle"} size="xl" />
+          <Mascot mood={streak > 0 && streak % 3 === 0 ? "celebrate" : "idle"} size="xl" />
           <h2 className="text-3xl font-black text-center text-pb-dark mb-4 mt-8 px-4" style={{ WebkitTextStroke: '1px white' }}>
             {intermissionText}
           </h2>
