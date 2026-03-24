@@ -47,11 +47,19 @@ class ProgressService {
 
   markScenarioCompleted(): void {
     const data = this.getProgress()
-    // Avoid exceeding total
+    // It's technically possible to complete scenarios up to total count
     if (data.completed < data.total) {
       data.completed += 1
     }
     this.saveProgress(data)
+  }
+
+  // A more robust way: set exactly how many are complete based on stars
+  updateCompletedTotal(completedCount: number, totalCount: number): void {
+     const data = this.getProgress()
+     data.completed = completedCount
+     data.total = totalCount
+     this.saveProgress(data)
   }
 
   updateStreak(): void {

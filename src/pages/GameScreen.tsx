@@ -35,7 +35,7 @@ export default function GameScreen() {
   // Intermission State
   const [showIntermission, setShowIntermission] = useState(false)
   const prevQuestionIndex = useRef<number>(-1)
-  const streakRef = useRef<number>(0)
+  const [streak, setStreak] = useState<number>(0)
   const [intermissionText, setIntermissionText] = useState('')
 
   // Sleep timer logic
@@ -75,27 +75,29 @@ export default function GameScreen() {
     if (status === 'playing' && currentQuestionIndex !== prevQuestionIndex.current) {
       if (currentQuestionIndex > 0 && currentQuestion) {
         
-        let text = 'Przygotuj się na kolejne zadanie!'
+        let text = '¡Prepárate para la siguiente tarea!'
         
         // 1. Sprawdź streak
-        if (streakRef.current > 0 && streakRef.current % 3 === 0) {
-          text = 'Idziesz jak burza! Tak trzymaj!'
+        if (streak > 0 && streak % 3 === 0) {
+          text = '¡Batiendo récords! ¡Sigue así!'
         } else {
           // 2. Jeśli nie streak, daj powiązane zadanie
           const typePhrases: Record<string, string> = {
-            'listening': 'Teraz pora sprawdzić twój słuch!',
-            'multiple_choice': 'Wybierz poprawną odpowiedź!',
-            'image_match': 'Dopasuj odpowiedź!',
-            'word_order': 'Ułóż słowa w poprawnej kolejności!',
-            'fill_blank': 'Uzupełnij brakujące słowo!'
+            'listening': '¡Ahora vamos a comprobar tu oído!',
+            'multiple_choice': '¡Elige la respuesta correcta!',
+            'image_match': '¡Empareja la respuesta!',
+            'word_order': '¡Ordena las palabras correctamente!',
+            'fill_blank': '¡Rellena la palabra que falta!'
           }
           if (typePhrases[currentQuestion.type]) {
             text = typePhrases[currentQuestion.type]
           }
         }
 
-        setIntermissionText(text)
-        setShowIntermission(true)
+        setTimeout(() => {
+          setIntermissionText(text)
+          setShowIntermission(true)
+        }, 0)
         
         prevQuestionIndex.current = currentQuestionIndex
       } else {
@@ -103,12 +105,12 @@ export default function GameScreen() {
         prevQuestionIndex.current = currentQuestionIndex
       }
     }
-  }, [currentQuestionIndex, status, currentQuestion?.type])
+  }, [currentQuestionIndex, status, currentQuestion, streak])
 
   const handlePlaySound = useCallback((type: 'click' | 'correct' | 'wrong') => {
     playSound(type)
     if (type === 'correct') {
-      streakRef.current += 1
+      setStreak(s => s + 1)
       setBoxiMood('happy')
       setBoxiMessage('¡Genial!')
       if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
@@ -117,7 +119,7 @@ export default function GameScreen() {
         setBoxiMessage(null)
       }, 1500)
     } else if (type === 'wrong') {
-      streakRef.current = 0
+      setStreak(0)
       setBoxiMood('wrong')
       setBoxiMessage('¡Ups!')
       if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
@@ -130,8 +132,9 @@ export default function GameScreen() {
 
   if (loading) {
     return (
-      <ScreenWrapper>
-        <p className="text-center py-8 font-bold text-pb-text-light">Cargando partida...</p>
+      <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
+        <Mascot mood="idle" size="lg" />
+        <h2 className="text-2xl font-bold mt-6 text-pb-dark animate-pulse">Cargando partida...</h2>
       </ScreenWrapper>
     )
   }
@@ -168,7 +171,7 @@ export default function GameScreen() {
     return (
       <PageTransition>
         <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
-          <Mascot mood={streakRef.current > 0 && streakRef.current % 3 === 0 ? "celebrate" : "idle"} size="xl" />
+          <Mascot mood={streak > 0 && streak % 3 === 0 ? "celebrate" : "idle"} size="xl" />
           <h2 className="text-3xl font-black text-center text-pb-dark mb-4 mt-8 px-4" style={{ WebkitTextStroke: '1px white' }}>
             {intermissionText}
           </h2>
@@ -178,7 +181,7 @@ export default function GameScreen() {
             onClick={() => setShowIntermission(false)}
             className="mt-8 px-8 py-3 bg-pb-amber hover:bg-yellow-500 text-white font-bold rounded-xl shadow-[0_4px_0_#b45309] active:translate-y-1 active:shadow-none transition-all"
           >
-            Kontynuuj
+            Continuar
           </button>
         </ScreenWrapper>
       </PageTransition>

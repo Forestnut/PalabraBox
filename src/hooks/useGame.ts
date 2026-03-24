@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase'
 import type { Question } from '../types'
 import { useGameStore } from '../store/gameStore'
 import { saveScenarioStars } from '../utils/progress'
-import { progressService } from '../services/progressService'
+import { useProgressStore } from '../store/progressStore'
 import { analyticsService } from '../services/analyticsService'
 
 import { shuffleArray } from '../utils/shuffle'
@@ -116,10 +116,10 @@ export function useGame(scenarioId: string | undefined) {
       if (isWin && scenarioId) {
         const stars = Math.max(1, lives)
         saveScenarioStars(scenarioId, stars)
-        progressService.markScenarioCompleted()
+        // Let useScenarios accurately recount the actual database completion state next screen
       }
 
-      progressService.addPoints(score)
+      useProgressStore.getState().addPoints(score)
 
       // Small delay out of courtesy before navigating to results
       setTimeout(() => {
@@ -160,3 +160,4 @@ export function useGame(scenarioId: string | undefined) {
     scenarioLanguage
   }
 }
+

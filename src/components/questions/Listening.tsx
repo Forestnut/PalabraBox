@@ -55,7 +55,7 @@ export function Listening({
     if (isPlaying) return
     setIsPlaying(true)
     
-    // Connects with Jakub's SpeechService
+    // Connects with Jakub Laskowski's SpeechService
     const textToSpeak = question.question_text_tts || question.question_text || 'Error'
     const ttsLang = scenarioLanguage === 'english' ? 'en-US' : 'es-ES'
     
@@ -120,7 +120,7 @@ export function Listening({
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-sm mx-auto">
-      <Card className="p-8 flex flex-col items-center justify-center relative min-h-[240px] bg-white">
+      <Card className="p-8 flex flex-col items-center justify-center relative min-h-60 bg-white">
         
         <p className="text-lg font-bold text-center mb-6 text-pb-dark">
           {question.question_text || 'Escucha y selecciona la palabra correcta:'}
@@ -164,7 +164,7 @@ export function Listening({
             onClick={() => handleSelect(option)}
             disabled={!!selected || disabled}
             className={cn(
-              'rounded-box-lg px-6 py-4 min-h-[64px]',
+              'rounded-box-lg px-6 py-4 min-h-16',
               getOptionClass(option),
               selected ? 'cursor-default' : 'cursor-pointer active:scale-95',
             )}
