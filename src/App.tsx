@@ -2,6 +2,7 @@ import { AnimatePresence } from 'framer-motion'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { audioService } from './services/audioService'
+import { runMigrations } from './services/migrationService'
 
 import { LoaderOverlay } from './components/ui/LoaderOverlay'
 import MainMenu from './pages/MainMenu'
@@ -41,6 +42,13 @@ export default function App() {
     // Simulate real initialization process (e.g. fetching user session, caching sounds)
     const initApp = async () => {
       try {
+        const didReset = await runMigrations();
+        if (didReset) {
+          console.log('App state was reset for new version.');
+          // You could potentially trigger a full reload here: window.location.reload();
+          // but react state will initialize fresh anyway.
+        }
+        
         await audioService.preloadSounds()
         // Wait at least a tiny bit for the splash screen feel if everything loaded instantly
         await new Promise(resolve => setTimeout(resolve, 800))
