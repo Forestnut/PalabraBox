@@ -2298,7 +2298,7 @@ Chrome DevTools → Ctrl+Shift+M → przetestować na:
 </div>
 
 // Kafelki odpowiedzi — min rozmiar dotykowy
-<button className="min-h-[48px] w-full ...">
+<button className="min-h-12 w-full ...">
 
 // Grid scenariuszy
 <div className="grid grid-cols-2 gap-3 sm:gap-4">
