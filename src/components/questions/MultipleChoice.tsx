@@ -1,124 +1,82 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
-
+import { useState, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import type { Question } from '../../types'
-import { Card } from '../ui/Card'
 import { cn } from '../../utils/cn'
 import { shuffleArray } from '../../utils/shuffle'
 
-export type ClickSoundType = 'click' | 'correct' | 'wrong'
-
-interface MultipleChoiceProps {
+interface Props {
   question: Question
-  /** Called when user selects an answer and the feedback delay ends */
   onAnswer: (isCorrect: boolean) => void
-  /** Optional handler to play click/correct/wrong sounds */
-  onPlaySound?: (type: ClickSoundType) => void
-  /** Disable interaction (useful for pausing or before question loads) */
+  onPlaySound?: (type: 'click' | 'correct' | 'wrong') => void
   disabled?: boolean
 }
 
-const FEEDBACK_DELAY_MS = {
-  correct: 1200,
-  wrong: 1500,
-}
-
-export function MultipleChoice({
-  question,
-  onAnswer,
-  onPlaySound,
-  disabled,
-}: MultipleChoiceProps) {
-  const [selected, setSelected] = useState<string | null>(null)
-  const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
-  const timeoutRef = useRef<number | null>(null)
-
+export function MultipleChoice({ question, onAnswer, onPlaySound, disabled }: Props) {
   const options = useMemo(() => {
     return shuffleArray([question.correct_answer, ...question.wrong_answers])
   }, [question.correct_answer, question.wrong_answers])
 
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        window.clearTimeout(timeoutRef.current)
-      }
-    }
-  }, [])
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
+  const [answered, setAnswered] = useState(false)
 
-  const handleSelect = (option: string) => {
-    if (disabled || selected) return
+  const handleSelect = (answer: string) => {
+    if (answered || disabled) return
+    setSelectedAnswer(answer)
+    setAnswered(true)
 
-    const isCorrect = option === question.correct_answer
-    setSelected(option)
-    setFeedback(isCorrect ? 'correct' : 'wrong')
+    const correct = answer === question.correct_answer
+    onPlaySound?.(correct ? 'correct' : 'wrong')
 
-    onPlaySound?.('click')
-    onPlaySound?.(isCorrect ? 'correct' : 'wrong')
-
-    timeoutRef.current = window.setTimeout(() => {
-      onAnswer(isCorrect)
-      setSelected(null)
-      setFeedback(null)
-      timeoutRef.current = null
-    }, FEEDBACK_DELAY_MS[isCorrect ? 'correct' : 'wrong'])
+    setTimeout(() => {
+      onAnswer(correct)
+    }, 900)
   }
 
-  const getOptionClass = (option: string) => {
-    const base = 'w-full text-left font-bold text-lg'
-    if (!selected) {
-      return cn(
-        base,
-        'bg-white border-2 border-slate-200 border-b-4 hover:bg-slate-50',
-        'transition-all duration-150 active:translate-y-[2px] active:border-b-2',
-      )
+  const getOptionStyle = (option: string) => {
+    if (!answered) {
+      return 'bg-white/75 backdrop-blur-xl ring-1 ring-black/[0.04] shadow-glass hover:shadow-elevated hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-soft cursor-pointer'
     }
-
-    const isSelected = option === selected
-    const isCorrect = option === question.correct_answer
-
-    if (isSelected && feedback === 'correct') {
-      return cn(base, 'bg-green-100 border-2 border-green-500 border-b-4 text-green-900')
+    if (option === question.correct_answer) {
+      return 'bg-emerald-50 ring-2 ring-pb-success/40 shadow-[0_0_0_4px_rgba(16,185,129,0.1)]'
     }
-
-    if (isSelected && feedback === 'wrong') {
-      return cn(base, 'bg-red-100 border-2 border-red-500 border-b-4 text-red-900')
+    if (option === selectedAnswer && option !== question.correct_answer) {
+      return 'bg-red-50 ring-2 ring-pb-error/40 shadow-[0_0_0_4px_rgba(239,68,68,0.1)]'
     }
-
-    if (!isSelected && feedback) {
-      // If wrong, still highlight correct answer
-      if (isCorrect) {
-        return cn(base, 'bg-green-100 border-2 border-green-500 border-b-4 text-green-900')
-      }
-      return cn(base, 'bg-white border-2 border-slate-200 border-b-4 opacity-50')
-    }
-
-    return cn(base, 'bg-white border-2 border-slate-200 border-b-4')
+    return 'bg-white/40 opacity-40'
   }
 
   return (
-    <div className="flex flex-col gap-3">
-      <Card className="p-5">
-        <p className="text-lg font-bold">{question.question_text}</p>
-        {question.hint && (
-          <p className="mt-2 text-sm text-pb-text-light">Pista: {question.hint}</p>
-        )}
-      </Card>
+    <div className="flex flex-col gap-4 w-full text-center flex-1">
+      <div className="flex items-center justify-center min-h-24 py-4">
+        <h2 className="text-xl sm:text-2xl font-black text-pb-dark leading-tight px-2 tracking-tight">
+          {question.question_text}
+        </h2>
+      </div>
 
-      <div className="grid grid-cols-1 gap-3">
-        {options.map((option) => (
-          <button
-            key={option}
-            type="button"
-            onClick={() => handleSelect(option)}
-            disabled={!!selected || disabled}
-            className={cn(
-              'rounded-box-lg px-4 py-4 text-left',
-              getOptionClass(option),
-              selected ? 'cursor-default' : 'cursor-pointer',
-            )}
-          >
-            {option}
-          </button>
-        ))}
+      <div className="grid grid-cols-1 gap-2.5 w-full">
+        <AnimatePresence>
+          {options.map((option: string, index: number) => (
+            <motion.button
+              key={option}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.06, duration: 0.25 }}
+              onClick={() => handleSelect(option)}
+              disabled={answered || disabled}
+              className={cn(
+                'w-full py-4 px-5 rounded-2xl text-base font-bold transition-all duration-200 text-left leading-snug',
+                getOptionStyle(option),
+              )}
+            >
+              <span className="inline-flex items-center gap-3 w-full">
+                <span className="w-7 h-7 rounded-lg bg-black/4 flex items-center justify-center text-sm font-black text-pb-text-light/60 shrink-0">
+                  {String.fromCharCode(65 + index)}
+                </span>
+                <span>{option}</span>
+              </span>
+            </motion.button>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   )
