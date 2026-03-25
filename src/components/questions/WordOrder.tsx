@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect, useMemo } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import {
   DndContext,
@@ -36,21 +36,15 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled }: Props) 
   const [answered, setAnswered] = useState(false)
 
   const wordList = useMemo(() => {
-    // correct_answer is the sentence in correct order
-    // wrong_answers contains the shuffled words as individual entries,
-    // or we can split correct_answer into words and shuffle
     if (question.wrong_answers && question.wrong_answers.length > 0) {
       return question.wrong_answers
     }
     return question.correct_answer.split(' ')
   }, [question.correct_answer, question.wrong_answers])
 
-  const shuffledRef = useRef<string[]>([])
-  if (shuffledRef.current.length === 0) {
-    shuffledRef.current = [...wordList].sort(() => Math.random() - 0.5)
-  }
-
-  const [items, setItems] = useState<string[]>(shuffledRef.current)
+  const [items, setItems] = useState<string[]>(() => 
+    [...wordList].sort(() => Math.random() - 0.5)
+  )
   const [activeId, setActiveId] = useState<string | null>(null)
 
   const sensors = useSensors(
@@ -58,13 +52,6 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled }: Props) 
     useSensor(TouchSensor, { activationConstraint: { delay: 150, tolerance: 5 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   )
-
-  useEffect(() => {
-    shuffledRef.current = [...wordList].sort(() => Math.random() - 0.5)
-    setItems(shuffledRef.current)
-    setAnswered(false)
-    setActiveId(null)
-  }, [question.id, wordList])
 
   const handleDragStart = useCallback((event: DragStartEvent) => {
     setActiveId(event.active.id as string)
