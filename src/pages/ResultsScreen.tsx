@@ -110,7 +110,7 @@ export default function ResultsScreen() {
         </div>
 
         {/* Results Card */}
-        <Card className="w-full flex flex-col items-center gap-2 sm:gap-4 p-5 sm:p-8 relative overflow-hidden max-w-sm mt-2 mb-4 shrink-0">
+        <Card className="w-full flex flex-col items-center gap-2 sm:gap-4 p-5 sm:p-8 relative overflow-hidden max-w-sm mt-2 mb-4 shrink-0 border-2 border-b-4 border-slate-200/60 bg-white">
           
           {/* Stars */}
           <div className="flex flex-col gap-1 sm:gap-2 items-center w-full mb-1 sm:mb-2">
@@ -165,19 +165,19 @@ export default function ResultsScreen() {
           </div>
 
           {/* Stats grid */}
-          <div className="w-full grid grid-cols-2 gap-2 mt-auto">
-            <div className="flex flex-col items-center p-2.5 bg-black/2 rounded-xl">
-              <span className="text-[10px] font-bold text-pb-text-light uppercase tracking-wider text-center">Total Puntos</span>
-              <span className="text-lg font-bold text-pb-dark flex items-center gap-1">
-                <FontAwesomeIcon icon={faBolt} className="text-pb-amber text-sm" />
+          <div className="w-full grid grid-cols-2 gap-3 mt-4">
+            <div className="flex flex-col items-center p-3 bg-amber-50 border-2 border-b-4 border-amber-200 rounded-2xl">
+              <span className="text-[10px] sm:text-xs font-black text-amber-600/60 uppercase tracking-widest text-center mb-1">Total Puntos</span>
+              <span className="text-xl sm:text-2xl font-black text-amber-500 flex items-center gap-1.5 drop-shadow-sm">
+                <FontAwesomeIcon icon={faBolt} className="text-amber-500 text-lg" />
                 {progress.points}
               </span>
             </div>
-            <div className="flex flex-col items-center p-2.5 bg-black/2 rounded-xl">
-              <span className="text-[10px] font-bold text-pb-text-light uppercase tracking-wider text-center">Vidas</span>
-              <span className="text-lg font-bold text-pb-emerald flex items-center gap-1">
-                <FontAwesomeIcon icon={faHeart} className="text-pb-error text-sm" />
-                {lives} <span className="text-xs text-pb-text-light">/ {maxLives}</span>
+            <div className="flex flex-col items-center p-3 bg-rose-50 border-2 border-b-4 border-rose-200 rounded-2xl">
+              <span className="text-[10px] sm:text-xs font-black text-rose-600/60 uppercase tracking-widest text-center mb-1">Vidas</span>
+              <span className="text-xl sm:text-2xl font-black text-rose-500 flex items-center gap-1.5 drop-shadow-sm">
+                <FontAwesomeIcon icon={faHeart} className="text-rose-500 text-lg" />
+                {lives} <span className="text-sm text-rose-400 opacity-70">/ {maxLives}</span>
               </span>
             </div>
           </div>

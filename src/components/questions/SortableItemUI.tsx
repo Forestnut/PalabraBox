@@ -1,47 +1,23 @@
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
 import { cn } from '../../utils/cn'
-import type { ReactNode } from 'react'
 
-interface SortableItemUIProps {
-  id: string
-  disabled?: boolean
-  children: ReactNode
+interface SortableItemUIProps extends React.HTMLAttributes<HTMLDivElement> {
+  word: string
+  isDragging?: boolean
 }
 
-export function SortableItemUI({ id, disabled = false, children }: SortableItemUIProps) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id })
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    zIndex: isDragging ? 20 : undefined,
-  }
-
+export function SortableItemUI({ word, isDragging, className, ...props }: SortableItemUIProps) {
   return (
     <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
+      style={{ touchAction: 'none' }}
       className={cn(
-        'rounded-xl px-5 py-3 font-bold text-sm sm:text-base text-center select-none',
-        'transition-shadow duration-200',
-        isDragging
-          ? 'opacity-40 shadow-none'
-          : disabled
-            ? 'bg-white/60 text-pb-text-light cursor-not-allowed'
-            : 'bg-white/75 backdrop-blur-xl ring-1 ring-black/4 shadow-glass cursor-grab active:cursor-grabbing active:shadow-elevated',
+        "relative flex items-center gap-2 bg-white border-2 border-b-4 border-slate-200 px-4 py-3 rounded-2xl cursor-grab transition-all hover:bg-slate-50 active:border-b-2 active:translate-y-0.5 active:cursor-grabbing select-none",
+        isDragging && "opacity-50 border-dashed border-b-2 translate-y-0.5 scale-105 z-50",
+        className
       )}
+      {...props}
     >
-      {children}
+      <span className="text-pb-text-light/50 text-xl leading-none">⋮</span>
+      <span className="text-lg font-bold text-pb-dark">{word}</span>
     </div>
   )
 }

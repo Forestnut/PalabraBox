@@ -39,15 +39,15 @@ export function FlashCard({ word }: FlashCardProps) {
         <div
           className={cn(
             'absolute inset-0 backface-hidden rounded-3xl',
-            'bg-white/80 backdrop-blur-xl p-6 sm:p-8',
+            'bg-white p-6 sm:p-8',
             'shadow-elevated ring-1 ring-black/4',
             'flex flex-col items-center justify-center gap-4',
           )}
-          style={{ backfaceVisibility: 'hidden' }}
+          style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
         >
           {emoji && <span className="text-5xl sm:text-6xl mb-2">{emoji}</span>}
           
-          <h2 className="text-3xl sm:text-4xl font-black text-pb-dark tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-pb-dark tracking-tight text-center">
             {word.word}
           </h2>
 
@@ -70,15 +70,26 @@ export function FlashCard({ word }: FlashCardProps) {
         <div
           className={cn(
             'absolute inset-0 backface-hidden rounded-3xl',
-            'bg-linear-to-br from-pb-amber/90 to-[#FF8C00]/90 backdrop-blur-xl p-6 sm:p-8',
+            'bg-linear-to-br from-[#FFA500] to-[#FF8C00] p-6 sm:p-8',
             'shadow-elevated',
             'flex flex-col items-center justify-center gap-4',
           )}
-          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+          style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
         >
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight text-center">
+          {emoji && <span className="text-4xl sm:text-5xl mb-2 opacity-90 drop-shadow-sm">{emoji}</span>}
+
+          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight text-center drop-shadow-sm">
             {translation}
           </h2>
+
+          <motion.button
+            onClick={handlePlayAudio}
+            className="mt-2 w-12 h-12 rounded-full bg-white text-pb-amber flex items-center justify-center shadow-[0_4px_0_0_#d86c00] active:shadow-[0_1px_0_0_#d86c00] active:translate-y-[3px] transition-all cursor-pointer"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+          >
+            <FontAwesomeIcon icon={faVolumeHigh} className="text-lg" />
+          </motion.button>
 
           <div className="absolute bottom-5 flex items-center gap-1.5 text-xs text-white/40 font-semibold">
             <FontAwesomeIcon icon={faRotate} className="text-[10px]" />

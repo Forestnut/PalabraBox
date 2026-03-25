@@ -13,7 +13,6 @@ import ResultsScreen from './pages/ResultsScreen'
 import SettingsScreen from './pages/SettingsScreen'
 import LanguageSelect from './pages/LanguageSelect'
 import LevelSelect from './pages/LevelSelect'
-import SplashScreen from './pages/SplashScreen'
 
 function AppRoutes() {
   const location = useLocation()
@@ -21,7 +20,7 @@ function AppRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<SplashScreen />} />
+        <Route path="/" element={<Navigate to="/menu" replace />} />
         <Route path="/menu" element={<MainMenu />} />
         <Route path="/scenarios" element={<ScenarioSelect />} />
         <Route path="/game/:scenarioId" element={<GameScreen />} />
@@ -51,8 +50,8 @@ export default function App() {
         }
         
         await audioService.preloadSounds()
-        // Wait at least a tiny bit for the splash screen feel if everything loaded instantly
-        await new Promise(resolve => setTimeout(resolve, 800))
+        // Use a longer timeout so the LoaderOverlay acts as the primary splash screen
+        await new Promise(resolve => setTimeout(resolve, 1600))
       } finally {
         setIsInitializing(false)
       }
