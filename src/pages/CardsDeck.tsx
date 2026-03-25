@@ -1,5 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
@@ -8,21 +7,14 @@ import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { BackButton } from '../components/layout/BackButton'
 import { FlashCard } from '../components/cards/FlashCard'
-import { useSettingsStore } from '../store/settingsStore'
 import { useWords } from '../hooks/useWords'
 
 export default function CardsDeck() {
-  const navigate = useNavigate()
-  const { learningLanguage, learningLevel } = useSettingsStore()
   const { words, loading } = useWords()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0) // -1 left, 1 right
 
-  useEffect(() => {
-    if (!learningLanguage || !learningLevel) {
-      navigate('/language', { replace: true })
-    }
-  }, [learningLanguage, learningLevel, navigate])
+
 
   const prev = useCallback(() => {
     if (currentIndex <= 0) return

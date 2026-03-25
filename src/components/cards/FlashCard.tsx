@@ -15,10 +15,19 @@ export function FlashCard({ word }: FlashCardProps) {
   const [flipped, setFlipped] = useState(false)
   const speechSpeed = useSettingsStore((s) => s.speechSpeed)
 
-  const handlePlayAudio = (e: React.MouseEvent) => {
+  const handlePlayAudio = (e: React.MouseEvent, side: 'front' | 'back') => {
     e.stopPropagation()
-    const text = word.audio_text || word.word
-    speechService.speak(text, 'en-US', speechSpeed)
+    const isFrontSpanish = word.language === 'spanish'
+    
+    if (side === 'front') {
+      const text = word.audio_text || word.word
+      const lang = isFrontSpanish ? 'es-ES' : 'en-US'
+      speechService.speak(text, lang, speechSpeed)
+    } else {
+      const text = word.translation_es || word.translation_en || ''
+      const lang = isFrontSpanish ? 'en-US' : 'es-ES'
+      speechService.speak(text, lang, speechSpeed)
+    }
   }
 
   const emoji = word.image_emoji
@@ -52,7 +61,7 @@ export function FlashCard({ word }: FlashCardProps) {
           </h2>
 
           <motion.button
-            onClick={handlePlayAudio}
+            onClick={(e) => handlePlayAudio(e, 'front')}
             className="mt-2 w-14 h-14 rounded-full bg-linear-to-b from-[#0a8a5e] to-pb-emerald text-white flex items-center justify-center shadow-[0_4px_0_0_#035c3a] active:shadow-[0_1px_0_0_#035c3a] active:translate-y-[3px] transition-all cursor-pointer"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
@@ -83,7 +92,7 @@ export function FlashCard({ word }: FlashCardProps) {
           </h2>
 
           <motion.button
-            onClick={handlePlayAudio}
+            onClick={(e) => handlePlayAudio(e, 'back')}
             className="mt-2 w-12 h-12 rounded-full bg-white text-pb-amber flex items-center justify-center shadow-[0_4px_0_0_#d86c00] active:shadow-[0_1px_0_0_#d86c00] active:translate-y-[3px] transition-all cursor-pointer"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
