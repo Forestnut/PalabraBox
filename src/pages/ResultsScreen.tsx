@@ -98,7 +98,6 @@ export default function ResultsScreen() {
             <Mascot 
               mood={isSuccess ? 'celebrate' : 'sad'} 
               size="xl" 
-              className="drop-shadow-lg" 
             />
           </div>
           <h1 className={`text-2xl sm:text-4xl font-black uppercase tracking-widest text-center ${isSuccess ? 'text-pb-success' : 'text-pb-error'}`}>
@@ -116,7 +115,7 @@ export default function ResultsScreen() {
                 <div
                   key={starIdx}
                   className={`text-3xl sm:text-5xl transition-all duration-700 ease-out
-                    ${starIdx <= stars ? 'text-pb-amber scale-110 drop-shadow-md' : 'text-gray-300 scale-90 grayscale opacity-50'}
+                    ${starIdx <= stars ? 'text-pb-amber scale-110' : 'text-gray-300 scale-90 grayscale opacity-50'}
                   `}
                   style={{ transitionDelay: `${starIdx * 150}ms` }}
                 >

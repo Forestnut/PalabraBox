@@ -17,7 +17,7 @@ export function Card({ children, className, interactive = false, onClick }: Card
       tabIndex={onClick ? 0 : undefined}
       onClick={onClick}
       className={cn(
-        'bg-white rounded-3xl border-2 border-slate-200 border-b-4 p-6',
+        'bg-white rounded-2xl border-2 border-slate-200 border-b-4 p-6',
         interactive &&
           'transition-all duration-150 cursor-pointer hover:bg-slate-50 active:translate-y-1 active:border-b-2',
         className,

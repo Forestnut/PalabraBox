@@ -14,7 +14,7 @@ export function ScenarioCard({ scenario, onClick }: Props) {
       onClick={() => !isLocked && onClick(scenario)}
       disabled={isLocked}
       className={cn(
-        "relative flex flex-col items-center justify-center p-4 sm:p-5 border-4 rounded-3xl transition-all duration-300 min-h-40 sm:min-h-45 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber",
+        "relative flex flex-col items-center justify-center p-4 sm:p-5 border-4 rounded-2xl transition-all duration-300 min-h-40 sm:min-h-45 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber",
         isLocked 
           ? "bg-pb-bg/50 border-pb-bg opacity-75 grayscale cursor-not-allowed" 
           : "bg-white border-pb-bg shadow-box cursor-pointer hover:border-pb-amber hover:-translate-y-1 hover:shadow-box-hover active:translate-y-1 active:shadow-box-pressed group"
@@ -22,8 +22,8 @@ export function ScenarioCard({ scenario, onClick }: Props) {
     >
       {/* If locked, display big transparent padlock overlay */}
       {isLocked && (
-        <div className="absolute inset-0 flex items-center justify-center bg-pb-bg/30 rounded-2xl z-10 backdrop-blur-[1px]">
-          <span className="text-6xl drop-shadow-md">🔒</span>
+        <div className="absolute inset-0 flex items-center justify-center bg-white/50 rounded-2xl z-10">
+          <span className="text-6xl">🔒</span>
         </div>
       )}
 
@@ -33,7 +33,7 @@ export function ScenarioCard({ scenario, onClick }: Props) {
           {[1, 2, 3].map((star) => (
             <span 
               key={star} 
-              className={cn("text-lg sm:text-xl drop-shadow-sm", !isLocked && star <= stars ? 'text-pb-amber' : 'text-pb-bg drop-shadow-none')}
+              className={cn("text-lg sm:text-xl", !isLocked && star <= stars ? 'text-pb-amber' : 'text-pb-bg')}
             >
               ★
             </span>
@@ -43,7 +43,7 @@ export function ScenarioCard({ scenario, onClick }: Props) {
 
       <span className={cn(
         "text-5xl sm:text-6xl mb-1 sm:mb-3 mt-4 transition-transform duration-300",
-        !isLocked && "group-hover:scale-110 group-hover:-rotate-6 drop-shadow-sm"
+        !isLocked && "group-hover:scale-110 group-hover:-rotate-6"
       )}>
         {emoji}
       </span>

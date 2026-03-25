@@ -164,7 +164,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
           className="relative z-10 h-full w-full"
           style={{ transformOrigin: '50% 100%' }}
         >
-          <svg viewBox="-10 -10 160 160" className="w-full h-full drop-shadow-[0_15px_15px_rgba(217,119,6,0.3)] overflow-visible">
+          <svg viewBox="-10 -10 160 160" className="w-full h-full overflow-visible">
             <defs>
               <linearGradient id={gId1} x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#F59E0B" />

@@ -202,8 +202,8 @@ export default function GameScreen() {
             </div>
           </div>
           <div className="flex flex-col items-end sm:flex-row sm:items-center gap-1 sm:gap-4 font-bold text-base sm:text-xl relative z-10">
-            <span className="text-pb-amber drop-shadow-sm flex items-center gap-1">⚡ {score}</span>
-            <span className="text-pb-error drop-shadow-sm tracking-widest text-sm sm:text-xl flex">
+            <span className="text-pb-amber flex items-center gap-1">⚡ {score}</span>
+            <span className="text-pb-error tracking-widest text-sm sm:text-xl flex">
               {Array.from({ length: maxLives || 3 }).map((_, i) => (
                 <span key={i} className={i < lives ? 'opacity-100' : 'opacity-30'}>
                   ❤️
