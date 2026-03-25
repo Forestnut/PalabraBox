@@ -54,8 +54,8 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: Props
         <h2 className="text-xl sm:text-2xl font-black text-pb-dark leading-relaxed px-2 tracking-tight flex flex-wrap items-baseline justify-center gap-x-1">
           {parts[0]}
           <span className={cn(
-            'inline-flex items-center justify-center min-w-32 py-1.5 px-3 rounded-xl border-2 border-dashed transition-all duration-300 text-lg sm:text-xl mx-1',
-            selectedWord ? 'border-pb-amber/50' : 'border-pb-text-light/20',
+            'inline-flex items-center justify-center min-w-32 py-1.5 px-3 rounded-2xl border-2 border-b-4 transition-all duration-300 text-lg sm:text-xl mx-2 shadow-sm',
+            selectedWord ? 'border-pb-amber bg-amber-50' : 'border-slate-300 bg-slate-100 border-dashed',
             blankFeedback
           )}>
             <AnimatePresence mode="wait">
@@ -70,7 +70,7 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: Props
                   {selectedWord}
                 </motion.span>
               ) : (
-                <span className="text-pb-text-light/30">___</span>
+                <span className="text-slate-300 font-bold tracking-widest">___</span>
               )}
             </AnimatePresence>
           </span>
@@ -78,7 +78,7 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: Props
         </h2>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-2 w-full">
+      <div className="flex flex-wrap justify-center gap-3 w-full">
         {wordOptions.map((word: string, index: number) => (
           <motion.button
             key={word}
@@ -88,12 +88,12 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: Props
             onClick={() => handleWordClick(word)}
             disabled={answered || disabled}
             className={cn(
-              'px-5 py-3 rounded-xl font-bold text-sm sm:text-base transition-all duration-200',
+              'px-5 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all duration-200',
               selectedWord === word
-                ? 'bg-linear-to-b from-[#FFB347] to-pb-amber text-white shadow-[0_3px_0_0_#c97a1a] scale-105'
+                ? 'bg-[#d7ffb8] border-2 border-b-4 border-[#58cc02] text-[#58cc02] scale-105'
                 : answered
-                  ? 'bg-white/40 opacity-40'
-                  : 'bg-white/75 backdrop-blur-xl ring-1 ring-black/4 shadow-glass hover:shadow-elevated hover:-translate-y-0.5 active:translate-y-0.5 cursor-pointer',
+                  ? 'bg-slate-100 border-2 border-slate-200 text-slate-400 opacity-50'
+                  : 'bg-white border-2 border-b-4 border-slate-200 text-pb-dark hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] cursor-pointer',
             )}
           >
             {word}

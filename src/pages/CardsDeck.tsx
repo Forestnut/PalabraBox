@@ -90,21 +90,21 @@ export default function CardsDeck() {
           </AnimatePresence>
         </div>
 
-        <div className="flex items-center justify-center gap-6 mt-2">
+        <div className="flex items-center justify-center gap-6 mt-4 mb-2">
           <button
             onClick={prev}
             disabled={currentIndex <= 0}
-            className="w-14 h-14 rounded-full flex items-center justify-center bg-white/70 backdrop-blur-lg shadow-soft ring-1 ring-black/4 text-pb-dark transition-all hover:bg-white/90 hover:shadow-glass active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            className="w-16 h-16 rounded-full flex items-center justify-center bg-white border-2 border-b-4 border-slate-200 text-pb-dark transition-all hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
-            <FontAwesomeIcon icon={faChevronLeft} className="text-base" />
+            <FontAwesomeIcon icon={faChevronLeft} className="text-xl" />
           </button>
 
           <button
             onClick={next}
             disabled={currentIndex >= words.length - 1}
-            className="w-14 h-14 rounded-full flex items-center justify-center bg-white/70 backdrop-blur-lg shadow-soft ring-1 ring-black/4 text-pb-dark transition-all hover:bg-white/90 hover:shadow-glass active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            className="w-16 h-16 rounded-full flex items-center justify-center bg-white border-2 border-b-4 border-slate-200 text-pb-dark transition-all hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
-            <FontAwesomeIcon icon={faChevronRight} className="text-base" />
+            <FontAwesomeIcon icon={faChevronRight} className="text-xl" />
           </button>
         </div>
       </ScreenWrapper>

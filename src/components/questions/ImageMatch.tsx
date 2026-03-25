@@ -34,15 +34,15 @@ export function ImageMatch({ question, onAnswer, onPlaySound, disabled }: Props)
 
   const getOptionStyle = (option: string) => {
     if (!answered) {
-      return 'bg-white/75 backdrop-blur-xl ring-1 ring-black/[0.04] shadow-glass hover:shadow-elevated hover:scale-[1.03] active:scale-[0.97] cursor-pointer'
+      return 'bg-white border-2 border-b-4 border-slate-200 text-pb-dark hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] cursor-pointer'
     }
     if (option === question.correct_answer) {
-      return 'bg-emerald-50 ring-2 ring-pb-success/40 shadow-[0_0_0_4px_rgba(16,185,129,0.1)]'
+      return 'bg-[#d7ffb8] border-2 border-b-4 border-[#58cc02] text-[#58cc02]'
     }
     if (option === selectedAnswer) {
-      return 'bg-red-50 ring-2 ring-pb-error/40 shadow-[0_0_0_4px_rgba(239,68,68,0.1)]'
+      return 'bg-[#ffdfe0] border-2 border-b-4 border-[#ea2b2b] text-[#ea2b2b]'
     }
-    return 'bg-white/40 opacity-40'
+    return 'bg-slate-100 border-2 border-slate-200 text-slate-400 opacity-60'
   }
 
   return (

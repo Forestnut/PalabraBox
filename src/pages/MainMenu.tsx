@@ -75,37 +75,37 @@ export default function MainMenu() {
         </div>
 
         {/* Progress Card */}
-        <Card className="w-full mt-1">
-          <div className="flex items-center justify-between">
-            <h2 className="text-base font-bold text-pb-dark">Progreso rápido</h2>
-            <div className="flex items-center gap-1.5 bg-linear-to-r from-amber-50 to-orange-50 px-3 py-1 rounded-full ring-1 ring-pb-amber/20">
+        <Card className="w-full mt-1 border-2 border-b-4 border-slate-200/60 bg-white p-5">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-base sm:text-lg font-black text-pb-dark tracking-wide">Progreso rápido</h2>
+            <div className="flex items-center gap-1.5 bg-amber-50 px-3 py-1 rounded-full ring-1 ring-amber-200">
               <FontAwesomeIcon icon={faFire} className="text-pb-amber text-sm" />
               <span className="font-bold text-pb-amber text-sm">{progress.streakDays} días</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mt-4">
-            <div className="flex flex-col">
-              <span className="text-[11px] font-bold text-pb-text-light uppercase tracking-wider">
+          <div className="grid grid-cols-2 gap-3 mt-2">
+            <div className="flex flex-col items-center justify-center p-3 bg-indigo-50 border-2 border-b-4 border-indigo-200 rounded-2xl">
+              <span className="text-[10px] sm:text-xs font-black text-indigo-600/60 uppercase tracking-widest text-center mb-1">
                 Completado
               </span>
-              <span className="text-xl font-black text-pb-dark">{progressText}</span>
-              <div className="w-full h-2 bg-pb-bg rounded-full mt-2 overflow-hidden">
+              <span className="text-xl sm:text-2xl font-black text-indigo-500 drop-shadow-sm">{progressText}</span>
+              <div className="w-full h-2.5 bg-indigo-200/50 rounded-full mt-3 overflow-hidden">
                 <motion.div
-                  className="h-full bg-linear-to-r from-pb-amber to-[#FFD166] rounded-full"
+                  className="h-full bg-linear-to-r from-indigo-400 to-indigo-500 rounded-full"
                   initial={{ width: 0 }}
                   animate={{ width: `${percentage}%` }}
                   transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
                 />
               </div>
             </div>
-            <div className="flex flex-col items-end">
-              <span className="text-[11px] font-bold text-pb-text-light uppercase tracking-wider text-right">
+            <div className="flex flex-col items-center justify-center p-3 bg-amber-50 border-2 border-b-4 border-amber-200 rounded-2xl">
+              <span className="text-[10px] sm:text-xs font-black text-amber-600/60 uppercase tracking-widest text-center mb-1">
                 Puntos
               </span>
               <div className="flex items-center gap-1.5 mt-0.5">
-                <FontAwesomeIcon icon={faBolt} className="text-pb-amber text-lg" />
-                <span className="text-xl font-black text-pb-dark">{progress.points}</span>
+                <FontAwesomeIcon icon={faBolt} className="text-amber-500 text-lg sm:text-xl drop-shadow-sm" />
+                <span className="text-xl sm:text-2xl font-black text-amber-500 drop-shadow-sm">{progress.points}</span>
               </div>
             </div>
           </div>
