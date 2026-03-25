@@ -41,11 +41,9 @@ export default function MainMenu() {
 
         <div className="flex flex-col items-center gap-6 mt-8 mb-4">
           <div className="relative w-48 h-48 flex items-end justify-center pb-4">
-            <div className="absolute inset-x-8 bottom-0 h-16 bg-pb-amber/30 blur-2xl rounded-[100%]"></div>
-            <div className="absolute inset-0 bg-linear-to-t from-pb-amber/20 to-transparent rounded-full blur-xl opacity-60"></div>
-            <Mascot mood="happy" size="xl" className="drop-shadow-2xl relative z-10" />
+            <Mascot mood="happy" size="xl" className="relative z-10" />
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold pb-title drop-shadow-sm text-pb-dark">PalabraBox</h1>
+          <h1 className="text-4xl sm:text-5xl font-extrabold pb-title text-pb-dark">PalabraBox</h1>
         </div>
 
         <div className="w-full flex flex-col gap-4">

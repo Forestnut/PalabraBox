@@ -41,7 +41,7 @@ export default function ScenarioSelect() {
         {loading && (
           <div className="grid grid-cols-2 gap-4 sm:gap-5 mt-2">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="animate-pulse flex flex-col items-center p-4 rounded-3xl bg-white shadow-sm border-b-4 border-gray-200">
+              <div key={i} className="animate-pulse flex flex-col items-center p-4 rounded-2xl bg-white shadow-sm border-b-4 border-gray-200">
                 <div className="w-16 h-16 bg-gray-200 rounded-full mb-3"></div>
                 <div className="h-4 bg-gray-200 rounded-md w-3/4 mb-2"></div>
                 <div className="h-3 bg-gray-200 rounded-md w-1/2"></div>

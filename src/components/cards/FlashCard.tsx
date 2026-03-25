@@ -31,8 +31,8 @@ export function FlashCard({ word }: FlashCardProps) {
         isFlipped && "transform-[rotateY(180deg)]"
       )}>
         {/* Front - Spanish */}
-        <div className="absolute inset-0 w-full h-full bg-white rounded-3xl shadow-box border-4 border-pb-bg flex flex-col items-center justify-center p-6 backface-hidden">
-          <span className="text-[120px] leading-none mb-6 drop-shadow-md">{word.image_emoji || '❓'}</span>
+        <div className="absolute inset-0 w-full h-full bg-white rounded-2xl shadow-box border-4 border-pb-bg flex flex-col items-center justify-center p-6 backface-hidden">
+          <span className="text-[120px] leading-none mb-6">{word.image_emoji || '❓'}</span>
           
           <h2 className="text-4xl font-black text-pb-dark mb-2 text-center">{spanishText}</h2>
           <span className="text-pb-amber font-bold text-sm tracking-widest uppercase mb-4">{word.category}</span>
@@ -42,7 +42,7 @@ export function FlashCard({ word }: FlashCardProps) {
               e.stopPropagation() 
               speechService.speak(spanishAudio, 'es-ES')
             }}
-            className="w-12 h-12 rounded-full bg-pb-bg text-pb-amber flex items-center justify-center text-2xl shadow-md hover:scale-105 active:scale-95 transition-all z-10"
+            className="w-12 h-12 rounded-full bg-pb-bg text-pb-amber flex items-center justify-center text-2xl shadow-box hover:scale-105 active:scale-95 transition-all z-10"
             aria-label="Escuchar en español"
           >
             🔊
@@ -50,13 +50,12 @@ export function FlashCard({ word }: FlashCardProps) {
           
           <div className="absolute bottom-6 flex flex-col items-center opacity-40">
             <span className="text-2xl animate-bounce">👆</span>
-            <p className="text-pb-text-light text-xs font-bold uppercase tracking-widest">Toca para voltear</p>
           </div>
         </div>
 
         {/* Back - English */}
-        <div className="absolute inset-0 w-full h-full bg-pb-amber rounded-3xl shadow-box border-4 border-pb-amber flex flex-col items-center justify-center p-6 backface-hidden transform-[rotateY(180deg)] text-white">
-          <span className="text-xl font-bold opacity-80 mb-2">Traducción</span>
+        <div className="absolute inset-0 w-full h-full bg-pb-amber rounded-2xl shadow-box border-4 border-pb-amber flex flex-col items-center justify-center p-6 backface-hidden transform-[rotateY(180deg)] text-white">
+          <span className="text-xl font-bold opacity-80 mb-2">Traduccion</span>
           <h2 className="text-5xl font-black mb-8 text-center">{englishText}</h2>
           
           <button 
@@ -64,7 +63,7 @@ export function FlashCard({ word }: FlashCardProps) {
               e.stopPropagation()
               speechService.speak(englishAudio, 'en-US')
             }}
-            className="w-16 h-16 rounded-full bg-white text-pb-amber flex items-center justify-center text-3xl shadow-md hover:scale-105 active:scale-95 transition-all z-10"
+            className="w-16 h-16 rounded-full bg-white text-pb-amber flex items-center justify-center text-3xl shadow-box hover:scale-105 active:scale-95 transition-all z-10"
             aria-label="Escuchar en inglés"
           >
             🔊

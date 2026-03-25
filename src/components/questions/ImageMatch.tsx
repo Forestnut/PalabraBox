@@ -95,15 +95,15 @@ export function ImageMatch({
     
     // Check if it's an image path or standard emoji
     if (question.image_emoji.includes('/') || question.image_emoji.includes('.')) {
-      return <img src={question.image_emoji} alt="question image" className="w-40 h-40 object-contain drop-shadow-md" />
+      return <img src={question.image_emoji} alt="question image" className="w-40 h-40 object-contain" />
     }
     
-    return <span className="text-[120px] leading-tight drop-shadow-md">{question.image_emoji}</span>
+    return <span className="text-[120px] leading-tight">{question.image_emoji}</span>
   }
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-sm mx-auto">
-      <Card className="p-8 flex flex-col items-center justify-center relative min-h-[260px] bg-white">
+      <Card className="p-8 flex flex-col items-center justify-center relative min-h-65 bg-white">
         <div className="flex-1 flex items-center justify-center animate-bounce-slight scale-in relative z-10">
             {renderImage()}
         </div>
@@ -122,7 +122,7 @@ export function ImageMatch({
             onClick={() => handleSelect(option)}
             disabled={!!selected || disabled}
             className={cn(
-              'rounded-box-lg px-2 py-6 min-h-[90px]',
+              'rounded-box-lg px-2 py-6 min-h-22.5',
               getOptionClass(option),
               selected ? 'cursor-default' : 'cursor-pointer active:scale-95',
             )}
