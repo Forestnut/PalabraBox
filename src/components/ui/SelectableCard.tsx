@@ -48,7 +48,7 @@ export function SelectableCard({
         className={cn(
           'flex flex-col items-start gap-3',
           selected && 'ring-2 ring-pb-emerald/60 bg-emerald-50/40',
-          !selected && 'ring-1 ring-black/[0.04]',
+          !selected && 'ring-1 ring-black/4',
           className,
         )}
       >

@@ -1,5 +1,7 @@
 import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
@@ -26,13 +28,15 @@ export default function LanguageSelect() {
   return (
     <PageTransition>
       <ScreenWrapper>
-        <BackButton fallbackUrl="/menu" />
-        <h1 className="text-2xl font-bold mt-4">Seleccionar Idioma</h1>
-        <p className="mt-2 text-sm text-pb-text-light">
+        <div className="flex items-center gap-4 mb-2">
+          <BackButton fallbackUrl="/menu" />
+          <h1 className="text-2xl font-black text-pb-dark tracking-tight">Seleccionar Idioma</h1>
+        </div>
+        <p className="mt-1 mb-6 text-sm text-pb-text-light leading-relaxed">
           Elige el idioma que quieres aprender. Entorno optimizado para hispanohablantes.
         </p>
 
-        <div className="grid grid-cols-1 gap-4 mt-6">
+        <div className="grid grid-cols-1 gap-3">
           {languages.map((language) => (
             <div key={language.key} className={language.disabled ? "opacity-50 pointer-events-none" : ""}>
               <SelectableCard
@@ -51,10 +55,10 @@ export default function LanguageSelect() {
 
         <div className="mt-6 flex justify-end gap-2">
           <Button
-            variant="secondary"
+            variant="ghost"
             size="md"
             onClick={() => navigate('/menu')}
-            className="w-32"
+            className="w-28"
           >
             Cancelar
           </Button>
@@ -65,6 +69,7 @@ export default function LanguageSelect() {
             onClick={() => navigate('/level')}
           >
             Continuar
+            <FontAwesomeIcon icon={faArrowRight} className="text-sm" />
           </Button>
         </div>
 

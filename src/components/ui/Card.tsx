@@ -18,7 +18,7 @@ export function Card({ children, className, interactive = false, onClick }: Card
       onClick={onClick}
       className={cn(
         'bg-white/75 backdrop-blur-xl rounded-2xl p-6',
-        'ring-1 ring-black/[0.04]',
+        'ring-1 ring-black/4',
         'shadow-glass',
         interactive &&
           'transition-all duration-200 ease-out cursor-pointer hover:shadow-elevated hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-soft',
