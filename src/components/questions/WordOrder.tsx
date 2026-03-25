@@ -4,11 +4,13 @@ import {
   DndContext,
   closestCenter,
   KeyboardSensor,
-  PointerSensor,
   useSensor,
   useSensors,
   DragOverlay,
   defaultDropAnimationSideEffects,
+  useDroppable,
+  MouseSensor,
+  TouchSensor,
 } from '@dnd-kit/core'
 import {
   arrayMove,
@@ -63,25 +65,13 @@ function SortableWord({ wordObj, onClick }: { wordObj: WordObj; onClick: () => v
         <SortableItemUI 
           word={wordObj.word} 
           isDragging={isDragging} 
-          onPointerUp={(e) => {
+          onClick={() => {
             if (!isDragging) {
                onClick()
             }
           }} 
         />
       </div>
-      {!isDragging && (
-        <button 
-          onPointerDown={(e) => { 
-            e.stopPropagation() 
-            onClick() 
-          }}
-          className="absolute -top-2 -right-2 bg-pb-error text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shadow-md cursor-pointer sm:opacity-0 sm:group-hover:opacity-100 transition-opacity z-50 hover:scale-110 active:scale-95 touch-manipulation"
-          aria-label="Quitar palabra"
-        >
-          ✕
-        </button>
-      )}
     </div>
   )
 }
@@ -99,11 +89,19 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
   const [isChecking, setIsChecking] = useState(false)
   const [activeId, setActiveId] = useState<string | null>(null)
 
+  const { setNodeRef: setBankNodeRef } = useDroppable({
+    id: 'bank-droppable',
+  })
+
   const sensors = useSensors(
-    useSensor(PointerSensor, {
+    useSensor(MouseSensor, {
       activationConstraint: {
-        distance: 12, 
-        delay: 0,
+        distance: 10,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 150,
         tolerance: 5,
       },
     }),
@@ -137,7 +135,15 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
     const { active, over } = event
     setActiveId(null)
 
-    if (over && active.id !== over.id) {
+    if (!over || over.id === 'bank-droppable') {
+      const draggedItem = dropZone.find(i => i.id === active.id)
+      if (draggedItem) {
+        handleMoveToBank(draggedItem)
+      }
+      return
+    }
+
+    if (active.id !== over.id) {
       setDropZone((items) => {
         const oldIndex = items.findIndex((i) => i.id === active.id)
         const newIndex = items.findIndex((i) => i.id === over.id)
@@ -255,8 +261,8 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
           </SortableContext>
         </Card>
 
-        {/* BANK - Click to add to dropZone (nie jest DND) */}
-        <div className="flex-1 flex flex-col justify-end gap-6 mb-4 mt-auto pt-6">
+        {/* BANK - Click to add to dropZone or Drag to move back */}
+        <div ref={setBankNodeRef} className="flex-1 flex flex-col justify-end gap-6 mb-4 mt-auto pt-6">
           <div className="flex flex-wrap justify-center gap-3 min-h-30 content-end">
             <AnimatePresence>
               {bank.map((item, i) => (
