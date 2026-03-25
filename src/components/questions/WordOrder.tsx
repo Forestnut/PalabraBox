@@ -58,16 +58,30 @@ function SortableWord({ wordObj, onClick }: { wordObj: WordObj; onClick: () => v
   }
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <SortableItemUI 
-        word={wordObj.word} 
-        isDragging={isDragging} 
-        onClick={() => {
-          if (!isDragging) {
-             onClick()
-          }
-        }} 
-      />
+    <div ref={setNodeRef} style={style} className="relative group">
+      <div {...attributes} {...listeners}>
+        <SortableItemUI 
+          word={wordObj.word} 
+          isDragging={isDragging} 
+          onPointerUp={(e) => {
+            if (!isDragging) {
+               onClick()
+            }
+          }} 
+        />
+      </div>
+      {!isDragging && (
+        <button 
+          onPointerDown={(e) => { 
+            e.stopPropagation() 
+            onClick() 
+          }}
+          className="absolute -top-2 -right-2 bg-pb-error text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shadow-md cursor-pointer sm:opacity-0 sm:group-hover:opacity-100 transition-opacity z-50 hover:scale-110 active:scale-95 touch-manipulation"
+          aria-label="Quitar palabra"
+        >
+          ✕
+        </button>
+      )}
     </div>
   )
 }
@@ -175,24 +189,32 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
   }
 
   // Extract quoted text if present to highlight it better
-  const renderQuestionText = (text: string) => {
+  const renderQuestionText = () => {
+    const text = question.question_text || "Ordena la frase"
     const match = text.match(/^(.*?):\s*"(.*?)"$/)
+    
     if (match) {
       return (
         <div className="flex flex-col items-center">
           <span className="text-sm font-semibold tracking-wide text-pb-text-light uppercase mb-3">
-            {match[1]}
+            Traduce al inglés:
           </span>
           <span className="text-2xl font-black text-pb-dark text-center leading-tight">
-            {match[2]}
+            "{match[2]}"
           </span>
         </div>
       )
     }
+    
     return (
-      <span className="text-xl font-bold text-pb-dark text-center leading-tight">
-        {text}
-      </span>
+      <div className="flex flex-col items-center">
+        <span className="text-sm font-semibold tracking-wide text-pb-text-light uppercase mb-3">
+          Traduce al inglés:
+        </span>
+        <span className="text-xl font-bold text-pb-dark text-center leading-tight">
+          {text}
+        </span>
+      </div>
     )
   }
 
@@ -207,7 +229,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
       <div className="flex flex-col gap-6 w-full max-w-lg mx-auto h-full px-2">
         <Card className="p-6 flex flex-col items-center justify-center relative min-h-55 bg-white mt-4 border-dashed border-4 border-pb-bg">
           <div className="w-full flex flex-col items-center mb-6 border-b-2 border-pb-bg pb-4">
-            {renderQuestionText(question.question_text || "Ordena la frase")}
+            {renderQuestionText()}
             {question.hint && (
               <span className="text-xs font-bold text-pb-primary uppercase tracking-wider mt-3 bg-pb-bg px-3 py-1 rounded-full">
                 {question.hint}
