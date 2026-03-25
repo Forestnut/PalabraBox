@@ -1,4 +1,6 @@
 import type { ReactNode } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { cn } from '../../utils/cn'
 import { Card } from './Card'
 
@@ -37,7 +39,7 @@ export function SelectableCard({
         }
       }}
       className={cn(
-        'focus-visible:outline-2 focus-visible:outline-pb-amber',
+        'focus-visible:outline-2 focus-visible:outline-pb-amber rounded-2xl',
         onClick && 'cursor-pointer',
       )}
     >
@@ -45,7 +47,8 @@ export function SelectableCard({
         interactive
         className={cn(
           'flex flex-col items-start gap-3',
-          selected && 'border-pb-emerald bg-emerald-50/50',
+          selected && 'ring-2 ring-pb-emerald/60 bg-emerald-50/40',
+          !selected && 'ring-1 ring-black/[0.04]',
           className,
         )}
       >
@@ -54,9 +57,14 @@ export function SelectableCard({
             {icon && <div className="text-3xl">{icon}</div>}
             <h3 className="text-lg font-bold">{title}</h3>
           </div>
-          {selected && <span className="text-pb-emerald font-bold">✓</span>}
+          {selected && (
+            <FontAwesomeIcon
+              icon={faCircleCheck}
+              className="text-pb-emerald text-xl"
+            />
+          )}
         </div>
-        {description && <p className="text-sm text-pb-text-light">{description}</p>}
+        {description && <p className="text-sm text-pb-text-light leading-relaxed">{description}</p>}
       </Card>
     </div>
   )
