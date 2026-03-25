@@ -4,11 +4,13 @@ import {
   DndContext,
   closestCenter,
   KeyboardSensor,
-  PointerSensor,
   useSensor,
   useSensors,
   DragOverlay,
   defaultDropAnimationSideEffects,
+  useDroppable,
+  MouseSensor,
+  TouchSensor,
 } from '@dnd-kit/core'
 import {
   arrayMove,
@@ -58,16 +60,18 @@ function SortableWord({ wordObj, onClick }: { wordObj: WordObj; onClick: () => v
   }
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <SortableItemUI 
-        word={wordObj.word} 
-        isDragging={isDragging} 
-        onClick={() => {
-          if (!isDragging) {
-             onClick()
-          }
-        }} 
-      />
+    <div ref={setNodeRef} style={style} className="relative group">
+      <div {...attributes} {...listeners}>
+        <SortableItemUI 
+          word={wordObj.word} 
+          isDragging={isDragging} 
+          onClick={() => {
+            if (!isDragging) {
+               onClick()
+            }
+          }} 
+        />
+      </div>
     </div>
   )
 }
@@ -85,11 +89,19 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
   const [isChecking, setIsChecking] = useState(false)
   const [activeId, setActiveId] = useState<string | null>(null)
 
+  const { setNodeRef: setBankNodeRef } = useDroppable({
+    id: 'bank-droppable',
+  })
+
   const sensors = useSensors(
-    useSensor(PointerSensor, {
+    useSensor(MouseSensor, {
       activationConstraint: {
-        distance: 12, 
-        delay: 0,
+        distance: 10,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 150,
         tolerance: 5,
       },
     }),
@@ -123,7 +135,15 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
     const { active, over } = event
     setActiveId(null)
 
-    if (over && active.id !== over.id) {
+    if (!over || over.id === 'bank-droppable') {
+      const draggedItem = dropZone.find(i => i.id === active.id)
+      if (draggedItem) {
+        handleMoveToBank(draggedItem)
+      }
+      return
+    }
+
+    if (active.id !== over.id) {
       setDropZone((items) => {
         const oldIndex = items.findIndex((i) => i.id === active.id)
         const newIndex = items.findIndex((i) => i.id === over.id)
@@ -175,24 +195,32 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
   }
 
   // Extract quoted text if present to highlight it better
-  const renderQuestionText = (text: string) => {
+  const renderQuestionText = () => {
+    const text = question.question_text || "Ordena la frase"
     const match = text.match(/^(.*?):\s*"(.*?)"$/)
+    
     if (match) {
       return (
         <div className="flex flex-col items-center">
           <span className="text-sm font-semibold tracking-wide text-pb-text-light uppercase mb-3">
-            {match[1]}
+            Traduce al inglés:
           </span>
           <span className="text-2xl font-black text-pb-dark text-center leading-tight">
-            {match[2]}
+            "{match[2]}"
           </span>
         </div>
       )
     }
+    
     return (
-      <span className="text-xl font-bold text-pb-dark text-center leading-tight">
-        {text}
-      </span>
+      <div className="flex flex-col items-center">
+        <span className="text-sm font-semibold tracking-wide text-pb-text-light uppercase mb-3">
+          Traduce al inglés:
+        </span>
+        <span className="text-xl font-bold text-pb-dark text-center leading-tight">
+          {text}
+        </span>
+      </div>
     )
   }
 
@@ -207,7 +235,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
       <div className="flex flex-col gap-6 w-full max-w-lg mx-auto h-full px-2">
         <Card className="p-6 flex flex-col items-center justify-center relative min-h-55 bg-white mt-4 border-dashed border-4 border-pb-bg">
           <div className="w-full flex flex-col items-center mb-6 border-b-2 border-pb-bg pb-4">
-            {renderQuestionText(question.question_text || "Ordena la frase")}
+            {renderQuestionText()}
             {question.hint && (
               <span className="text-xs font-bold text-pb-primary uppercase tracking-wider mt-3 bg-pb-bg px-3 py-1 rounded-full">
                 {question.hint}
@@ -233,8 +261,8 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
           </SortableContext>
         </Card>
 
-        {/* BANK - Click to add to dropZone (nie jest DND) */}
-        <div className="flex-1 flex flex-col justify-end gap-6 mb-4 mt-auto pt-6">
+        {/* BANK - Click to add to dropZone or Drag to move back */}
+        <div ref={setBankNodeRef} className="flex-1 flex flex-col justify-end gap-6 mb-4 mt-auto pt-6">
           <div className="flex flex-wrap justify-center gap-3 min-h-30 content-end">
             <AnimatePresence>
               {bank.map((item, i) => (

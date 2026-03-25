@@ -104,7 +104,14 @@ export function ImageMatch({
   return (
     <div className="flex flex-col gap-6 w-full max-w-sm mx-auto">
       <Card className="p-8 flex flex-col items-center justify-center relative min-h-[260px] bg-white">
-        <div className="flex-1 flex items-center justify-center animate-bounce-slight scale-in relative z-10">
+        {question.question_text && (
+          <div className="w-full text-center mb-6 pb-2">
+            <h2 className="text-xl sm:text-2xl font-black text-pb-dark leading-tight">
+              {question.question_text}
+            </h2>
+          </div>
+        )}
+        <div className="flex-1 flex items-center justify-center animate-bounce-slight scale-in relative z-10 w-full min-h-[140px]">
             {renderImage()}
         </div>
         {question.hint && (
