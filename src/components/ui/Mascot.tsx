@@ -328,68 +328,62 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
             </AnimatePresence>
 
             {/* --- ZZZ EFFECT --- */}
-            <AnimatePresence>
-              {currentMood === 'sleeping' && (
-                <motion.g key="zzz-effect" exit={{ opacity: 0 }}>
-                  {[0, 1, 2].map((z) => (
-                    <motion.text
-                      key={`z-${z}`}
-                      x="100" y="30"
-                      fontSize="24"
-                      fontWeight="900"
-                      fill="#60A5FA"
-                      initial={{ opacity: 0, y: 30, x: 80, scale: 0.5 }}
-                      animate={{ opacity: [0, 1, 0], y: -10 - (z * 15), x: 100 + (z * 10), scale: [0.5, 1.5, 2] }}
-                      transition={{ repeat: Infinity, duration: 2.5, delay: z * 0.8 }}
-                      exit={{ opacity: 0 }}
-                    >
-                      z
-                    </motion.text>
-                  ))}
-                </motion.g>
-              )}
-            </AnimatePresence>
+            {currentMood === 'sleeping' && (
+              <g key="zzz-effect">
+                {[0, 1, 2].map((z) => (
+                  <motion.text
+                    key={`z-${z}`}
+                    x="100" y="30"
+                    fontSize="24"
+                    fontWeight="900"
+                    fill="#60A5FA"
+                    initial={{ opacity: 0, y: 30, x: 80, scale: 0.5 }}
+                    animate={{ opacity: [0, 1, 0], y: -10 - (z * 15), x: 100 + (z * 10), scale: [0.5, 1.5, 2] }}
+                    transition={{ repeat: Infinity, duration: 2.5, delay: z * 0.8 }}
+                  >
+                    z
+                  </motion.text>
+                ))}
+              </g>
+            )}
 
             {/* --- CONFETTI EFFECT --- */}
-            <AnimatePresence>
-              {currentMood === 'celebrate' && (
-                <motion.g key="confetti-effect" exit={{ opacity: 0 }}>
-                  {[
-                    { c: '#EF4444' }, { c: '#3B82F6' },
-                    { c: '#10B981' }, { c: '#F59E0B' },
-                    { c: '#8B5CF6' }, { c: '#EC4899' }
-                  ].map((conf, i) => {
-                    const startX = 60 + ((i * 13) % 20 - 10);
-                    const startY = 55;
-                    const peakY = startY - 40 - ((i * 7) % 20);
-                    const endY = startY + 60;
-                    const endX = startX + ((i % 2 ? -1 : 1) * (15 + ((i * 11) % 20)));
+            {currentMood === 'celebrate' && (
+              <g key="confetti-effect">
+                {[
+                  { c: '#EF4444' }, { c: '#3B82F6' },
+                  { c: '#10B981' }, { c: '#F59E0B' },
+                  { c: '#8B5CF6' }, { c: '#EC4899' }
+                ].map((conf, i) => {
+                  const startX = 60 + ((i * 13) % 20 - 10);
+                  const startY = 55;
+                  const peakY = startY - 40 - ((i * 7) % 20);
+                  const endY = startY + 60;
+                  const endX = startX + ((i % 2 ? -1 : 1) * (15 + ((i * 11) % 20)));
 
-                    return (
-                      <motion.rect
-                        key={`c-${i}`}
-                        x="0" y="0" width="8" height="8" fill={conf.c} rx="2"
-                        initial={{ x: startX, y: startY, scale: 0, opacity: 0 }}
-                        animate={{ 
-                          y: [startY, peakY, endY],
-                          x: [startX, startX + (endX - startX) * 0.5, endX],
-                          rotate: [0, 180, 720],
-                          scale: [0, 1.2, 0.8, 0],
-                          opacity: [0, 1, 1, 0]
-                        }}
-                        transition={{ 
-                          duration: 1.5 + (i % 3) * 0.2, 
-                          ease: "easeOut", 
-                          repeat: Infinity, 
-                          delay: 0.3 + i * 0.1 
-                        }}
-                        exit={{ opacity: 0, scale: 0 }}
-                      />
-                    );
-                  })}
-                </motion.g>
-              )}
-            </AnimatePresence>
+                  return (
+                    <motion.rect
+                      key={`c-${i}`}
+                      x="0" y="0" width="8" height="8" fill={conf.c} rx="2"
+                      initial={{ x: startX, y: startY, scale: 0, opacity: 0 }}
+                      animate={{ 
+                        y: [startY, peakY, endY],
+                        x: [startX, startX + (endX - startX) * 0.5, endX],
+                        rotate: [0, 180, 720],
+                        scale: [0, 1.2, 0.8, 0],
+                        opacity: [0, 1, 1, 0]
+                      }}
+                      transition={{ 
+                        duration: 1.5 + (i % 3) * 0.2, 
+                        ease: "easeOut", 
+                        repeat: Infinity, 
+                        delay: 0.3 + i * 0.1 
+                      }}
+                    />
+                  );
+                })}
+              </g>
+            )}
 
           </svg>
         </motion.div>
