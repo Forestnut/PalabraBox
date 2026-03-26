@@ -11,9 +11,9 @@ import { SelectableCard } from '../components/ui/SelectableCard'
 import { useSettingsStore } from '../store/settingsStore'
 import type { LearningLanguage } from '../store/settingsStore'
 
-const languages: Array<{ key: LearningLanguage | 'polaco'; label: string; emoji: string; disabled?: boolean }> = [
+const languages: Array<{ key: LearningLanguage | 'polish'; label: string; emoji: string; disabled?: boolean }> = [
   { key: 'english', label: 'Inglés', emoji: '🇺🇸' },
-  { key: 'polaco', label: 'Polaco (Próximamente)', emoji: '🇵🇱', disabled: true },
+  { key: 'polish', label: 'Polaco(Próximamente)', emoji: '🇵🇱', disabled: true },
 ]
 
 export default function LanguageSelect() {

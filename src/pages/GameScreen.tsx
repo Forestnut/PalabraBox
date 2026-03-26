@@ -13,6 +13,9 @@ import { useAudio } from '../hooks/useAudio'
 import { useGameStore } from '../store/gameStore'
 import { QuestionRenderer } from '../components/questions/QuestionRenderer'
 
+/**
+ * Main gameplay screen that renders one question at a time and controls intermission prompts.
+ */
 export default function GameScreen() {
   const { scenarioId } = useParams<{ scenarioId: string }>()
   const {
@@ -41,6 +44,14 @@ export default function GameScreen() {
   const streakRef = useRef<number>(0)
   const [intermissionText, setIntermissionText] = useState('')
   const [intermissionMood, setIntermissionMood] = useState<MascotMood>('idle')
+
+  const typePhrases: Record<string, string> = {
+    listening: '¡Ahora vamos a comprobar tu oído!',
+    multiple_choice: '¡Elige la respuesta correcta!',
+    image_match: '¡Relaciona la respuesta correcta!',
+    word_order: '¡Ordena las palabras correctamente!',
+    fill_blank: '¡Completa la palabra que falta!',
+  }
 
   // Sleep timer logic
   useEffect(() => {
@@ -214,23 +225,16 @@ export default function GameScreen() {
               
               const nextLives = isCorrect ? lives : lives - 1
               if (currentQuestionIndex + 1 < questions.length && nextLives > 0) {
-                let text = '¡Prepárate para la siguiente tarea!'
+                let text = '¡Prepárate para el siguiente reto!'
                 let moodToSet: MascotMood = 'idle'
                 
-                // 1. Sprawdź streak (which was already updated by handlePlaySound)
+                // Check streak first (already updated by handlePlaySound).
                 if (streakRef.current > 0 && streakRef.current % 3 === 0) {
-                  text = '¡Vas genial! ¡Sigue así!'
+                  text = '¡Vas con todo! ¡Sigue así!'
                   moodToSet = 'celebrate'
                 } else {
-                  // 2. Jeśli nie streak, daj powiązane zadanie na podstawie TYPU NASTĘPNEGO PYTANIA
+                  // If no streak milestone, show a hint based on the next question type.
                   const nextQ = questions[currentQuestionIndex + 1]
-                  const typePhrases: Record<string, string> = {
-                    'listening': '¡Es hora de poner a prueba tu oído!',
-                    'multiple_choice': '¡Elige la respuesta correcta!',
-                    'image_match': '¡Empareja la respuesta!',
-                    'word_order': '¡Ordena las palabras correctamente!',
-                    'fill_blank': '¡Completa la palabra que falta!'
-                  }
                   if (nextQ && typePhrases[nextQ.type]) {
                     text = typePhrases[nextQ.type]
                   }

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import { cn } from '../../utils/cn'
+import { audioService } from '../../services/audioService'
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger'
 type ButtonSize = 'sm' | 'md' | 'lg'
@@ -87,10 +88,8 @@ export function Button({
       )}
       disabled={disabled || isClickLocked}
       onClick={(e) => {
-        import('../../services/audioService').then(({ audioService }) => {
-          audioService.play('click')
-        })
-        return handleClick(e);
+        audioService.play('click')
+        return handleClick(e)
       }}
       {...props}
     >

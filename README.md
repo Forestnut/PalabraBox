@@ -2,7 +2,7 @@
   <img src="public/PalabraBoxHappy.png" alt="PalabraBox Logo" width="150" height="auto" />
   <h1>📦 PalabraBox</h1>
   <p><em>Learn English by Playing!</em></p>
-  <p><strong>Created by Jakub Laskowski & Błażej Goliszek</strong></p>
+  <p><strong>Created by the PalabraBox Team</strong></p>
   <p>
     <a href="https://palabrabox.vercel.app"><strong>Play Live on Vercel »</strong></a>
   </p>

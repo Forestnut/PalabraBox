@@ -62,7 +62,7 @@ export function FlashCard({ word }: FlashCardProps) {
 
           <motion.button
             onClick={(e) => handlePlayAudio(e, 'front')}
-            className="mt-2 w-14 h-14 rounded-full bg-linear-to-b from-[#0a8a5e] to-pb-emerald text-white flex items-center justify-center shadow-[0_4px_0_0_#035c3a] active:shadow-[0_1px_0_0_#035c3a] active:translate-y-[3px] transition-all cursor-pointer"
+            className="mt-2 w-14 h-14 rounded-full bg-linear-to-b from-[#0a8a5e] to-pb-emerald text-white flex items-center justify-center shadow-[0_4px_0_0_#035c3a] active:shadow-[0_1px_0_0_#035c3a] active:translate-y-0.75 transition-all cursor-pointer"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
           >
@@ -93,7 +93,7 @@ export function FlashCard({ word }: FlashCardProps) {
 
           <motion.button
             onClick={(e) => handlePlayAudio(e, 'back')}
-            className="mt-2 w-12 h-12 rounded-full bg-white text-pb-amber flex items-center justify-center shadow-[0_4px_0_0_#d86c00] active:shadow-[0_1px_0_0_#d86c00] active:translate-y-[3px] transition-all cursor-pointer"
+            className="mt-2 w-12 h-12 rounded-full bg-white text-pb-amber flex items-center justify-center shadow-[0_4px_0_0_#d86c00] active:shadow-[0_1px_0_0_#d86c00] active:translate-y-0.75 transition-all cursor-pointer"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
           >
