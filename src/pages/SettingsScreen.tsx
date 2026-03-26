@@ -114,7 +114,7 @@ export default function SettingsScreen() {
               disabled
               className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-white/40 text-pb-text-light opacity-50 cursor-not-allowed"
             >
-              🇮🇹 Italiano (Coming Soon)
+              🇮🇹 Italiano (Próximamente)
             </button>
           </div>
         </Card>
@@ -126,8 +126,8 @@ export default function SettingsScreen() {
             PalabraBox <span className="text-xs font-normal text-pb-text-light">v1.0.0</span>
           </p>
           <p className="text-[11px] text-pb-text-light font-medium max-w-52 leading-relaxed">
-            Designed and developed by <br/>
-            <span className="text-pb-amber font-bold">PalabraBox Team</span>
+            Diseñado y desarrollado por <br/>
+            <span className="text-pb-amber font-bold">Equipo PalabraBox</span>
           </p>
         </div>
       </ScreenWrapper>

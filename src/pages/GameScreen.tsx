@@ -46,11 +46,11 @@ export default function GameScreen() {
   const [intermissionMood, setIntermissionMood] = useState<MascotMood>('idle')
 
   const typePhrases: Record<string, string> = {
-    listening: 'Now let us test your listening skills!',
-    multiple_choice: 'Pick the correct answer!',
-    image_match: 'Match the right answer!',
-    word_order: 'Arrange the words in the correct order!',
-    fill_blank: 'Fill in the missing word!',
+    listening: '¡Ahora vamos a comprobar tu oído!',
+    multiple_choice: '¡Elige la respuesta correcta!',
+    image_match: '¡Relaciona la respuesta correcta!',
+    word_order: '¡Ordena las palabras correctamente!',
+    fill_blank: '¡Completa la palabra que falta!',
   }
 
   // Sleep timer logic
@@ -156,7 +156,7 @@ export default function GameScreen() {
             onClick={() => setShowIntermission(false)}
             className="mt-8 px-8 py-3 bg-linear-to-b from-[#FFB347] to-pb-amber text-white font-bold rounded-2xl shadow-[0_4px_0_#c97a1a] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
           >
-            Continue
+            Continuar
           </button>
         </ScreenWrapper>
       </PageTransition>
@@ -226,12 +226,12 @@ export default function GameScreen() {
               
               const nextLives = isCorrect ? lives : lives - 1
               if (currentQuestionIndex + 1 < questions.length && nextLives > 0) {
-                let text = 'Get ready for the next challenge!'
+                let text = '¡Prepárate para el siguiente reto!'
                 let moodToSet: MascotMood = 'idle'
                 
                 // Check streak first (already updated by handlePlaySound).
                 if (streakRef.current > 0 && streakRef.current % 3 === 0) {
-                  text = 'You are on fire! Keep going!'
+                  text = '¡Vas con todo! ¡Sigue así!'
                   moodToSet = 'celebrate'
                 } else {
                   // If no streak milestone, show a hint based on the next question type.
