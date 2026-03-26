@@ -49,11 +49,9 @@ export default function GameScreen() {
     const resetSleepTimer = () => {
       if (sleepTimeoutRef.current) window.clearTimeout(sleepTimeoutRef.current)
       setBoxiMood(current => current === 'sleeping' ? 'idle' : current)
-      setBoxiMessage(current => current === 'Zzz...' ? null : current)
       
       sleepTimeoutRef.current = window.setTimeout(() => {
         setBoxiMood('sleeping')
-        setBoxiMessage('Zzz...')
       }, 15000)
     }
 
