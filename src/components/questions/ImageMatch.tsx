@@ -104,7 +104,7 @@ export function ImageMatch({ question, onAnswer, onPlaySound, disabled }: Props)
         </div>
       )}
 
-      <div className="flex items-center justify-center min-h-[140px] relative z-10 w-full mb-4">
+      <div className="flex items-center justify-center min-h-35 relative z-10 w-full mb-4">
         {renderImage()}
       </div>
 
