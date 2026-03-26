@@ -27,12 +27,11 @@ import { Button } from '../ui/Button'
 import { SortableItemUI } from './SortableItemUI'
 import { shuffleArray } from '../../utils/shuffle'
 import { speechService } from '../../services/speechService'
-import type { ClickSoundType } from './MultipleChoice'
 
 interface WordOrderProps {
   question: Question
   onAnswer: (isCorrect: boolean) => void
-  onPlaySound?: (type: ClickSoundType) => void
+  onPlaySound?: (type: 'click' | 'correct' | 'wrong') => void
   disabled?: boolean
   scenarioLanguage?: string | null
 }

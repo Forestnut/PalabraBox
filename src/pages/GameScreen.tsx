@@ -1,5 +1,8 @@
 import { useParams } from 'react-router-dom'
 import { useState, useCallback, useRef, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faBolt } from '@fortawesome/free-solid-svg-icons'
 
 import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
@@ -45,21 +48,18 @@ export default function GameScreen() {
 
     const resetSleepTimer = () => {
       if (sleepTimeoutRef.current) window.clearTimeout(sleepTimeoutRef.current)
-      // Only set idle if it was sleeping. Don't overwrite 'happy' or 'wrong' animations
       setBoxiMood(current => current === 'sleeping' ? 'idle' : current)
       
       sleepTimeoutRef.current = window.setTimeout(() => {
         setBoxiMood('sleeping')
         setBoxiMessage('Zzz...')
-      }, 15000) // 15 seconds of inactivity
+      }, 15000)
     }
 
-    // Reset timer on any mouse movement or touch
     window.addEventListener('mousemove', resetSleepTimer)
     window.addEventListener('touchstart', resetSleepTimer)
     window.addEventListener('keydown', resetSleepTimer)
 
-    // Initial start
     resetSleepTimer()
 
     return () => {
@@ -96,8 +96,9 @@ export default function GameScreen() {
 
   if (loading) {
     return (
-      <ScreenWrapper>
-        <p className="text-center py-8 font-bold text-pb-text-light">Cargando partida...</p>
+      <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
+        <Mascot mood="idle" size="lg" />
+        <h2 className="text-xl font-bold mt-6 text-pb-dark animate-pulse">Cargando partida...</h2>
       </ScreenWrapper>
     )
   }
@@ -105,7 +106,7 @@ export default function GameScreen() {
   if (error) {
     return (
       <ScreenWrapper>
-        <BackButton fallbackUrl="/scenarios" label="←" />
+        <BackButton fallbackUrl="/scenarios" />
         <p className="text-center text-pb-error py-8 font-bold">Error: {error}</p>
       </ScreenWrapper>
     )
@@ -124,7 +125,7 @@ export default function GameScreen() {
   if (!currentQuestion) {
     return (
       <ScreenWrapper>
-        <BackButton fallbackUrl="/scenarios" label="←" />
+        <BackButton fallbackUrl="/scenarios" />
         <p className="text-center py-8 font-bold text-pb-text-light">No se encontraron preguntas.</p>
       </ScreenWrapper>
     )
@@ -135,14 +136,14 @@ export default function GameScreen() {
       <PageTransition>
         <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
           <Mascot mood={intermissionMood} size="xl" />
-          <h2 className="text-3xl font-black text-center text-pb-dark mb-4 mt-8 px-4" style={{ WebkitTextStroke: '1px white' }}>
+          <h2 className="text-2xl sm:text-3xl font-black text-center text-pb-dark mb-4 mt-8 px-4 leading-tight">
             {intermissionText}
           </h2>
-          <div className="w-16 h-2 bg-pb-amber rounded-full animate-pulse mt-4"></div>
+          <div className="w-12 h-1.5 bg-pb-amber rounded-full animate-pulse mt-3" />
           
           <button 
             onClick={() => setShowIntermission(false)}
-            className="mt-8 px-8 py-3 bg-pb-amber hover:bg-yellow-500 text-white font-bold rounded-xl shadow-[0_4px_0_#b45309] active:translate-y-1 active:shadow-none transition-all"
+            className="mt-8 px-8 py-3 bg-linear-to-b from-[#FFB347] to-pb-amber text-white font-bold rounded-2xl shadow-[0_4px_0_#c97a1a] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
           >
             Kontynuuj
           </button>
@@ -151,34 +152,57 @@ export default function GameScreen() {
     )
   }
 
+  const progressPercent = questions.length > 0 ? (currentQuestionIndex / questions.length) * 100 : 0
+
   return (
     <PageTransition>
       <ScreenWrapper>
-        <div className="flex items-center justify-between mb-4 mt-4 px-2">
-          <BackButton fallbackUrl="/scenarios" label="←" />
-          <div className="flex-1 flex justify-center items-end px-2 pt-4 min-h-20 relative z-20">
-            <Mascot mood={boxiMood} size="sm" message={boxiMessage} className="origin-bottom transform hover:scale-110 transition-transform md:hidden" />
-            <Mascot mood={boxiMood} size="md" message={boxiMessage} className="origin-bottom transform hover:scale-110 transition-transform hidden md:flex" />
+        <div className="flex items-center justify-between mb-3 mt-3 px-1 gap-3">
+          <BackButton fallbackUrl="/scenarios" />
+
+          <div className="flex-1 flex justify-center items-end min-h-16 relative z-20 pointer-events-none">
+            <div className="md:hidden pointer-events-auto origin-bottom transform hover:scale-110 transition-transform">
+              <Mascot mood={boxiMood} size="sm" message={boxiMessage} />
+            </div>
+            <div className="hidden md:flex pointer-events-auto origin-bottom transform hover:scale-110 transition-transform">
+              <Mascot mood={boxiMood} size="md" message={boxiMessage} />
+            </div>
           </div>
-          <div className="flex flex-col items-end sm:flex-row sm:items-center gap-1 sm:gap-4 font-bold text-base sm:text-xl relative z-10">
-            <span className="text-pb-amber drop-shadow-sm flex items-center gap-1">⚡ {score}</span>
-            <span className="text-pb-error drop-shadow-sm tracking-widest text-sm sm:text-xl flex">
+
+          {/* Stats */}
+          <div className="flex items-center gap-3 font-bold text-base relative z-10">
+            <span className="text-pb-amber flex items-center gap-1">
+              <FontAwesomeIcon icon={faBolt} className="text-sm" />
+              {score}
+            </span>
+            <span className="flex gap-0.5">
               {Array.from({ length: maxLives || 3 }).map((_, i) => (
-                <span key={i} className={i < lives ? 'opacity-100' : 'opacity-30'}>
-                  ❤️
-                </span>
+                <motion.span
+                  key={i}
+                  initial={false}
+                  animate={i < lives ? { scale: 1, opacity: 1 } : { scale: 0.75, opacity: 0.2 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 15 }}
+                >
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    className={i < lives ? 'text-pb-error text-sm' : 'text-pb-text-light/30 text-sm'}
+                  />
+                </motion.span>
               ))}
             </span>
           </div>
         </div>
 
-        <div className="w-full bg-pb-amber/20 h-4 rounded-full mb-6 shadow-inner overflow-hidden border-2 border-pb-amber/30">
-          <div
-            className="bg-pb-amber h-full rounded-full transition-all duration-500 ease-out relative"
-            style={{ width: `${(currentQuestionIndex / questions.length) * 100}%` }}
+        {/* Progress Bar */}
+        <div className="w-full bg-black/4 h-2.5 rounded-full mb-5 overflow-hidden">
+          <motion.div
+            className="bg-linear-to-r from-pb-amber to-[#FFD166] h-full rounded-full relative"
+            initial={false}
+            animate={{ width: `${progressPercent}%` }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
           >
-            <div className="absolute inset-0 bg-white/20 w-full h-1/2 rounded-t-full"></div>
-          </div>
+            <div className="absolute inset-0 bg-white/25 h-1/2 rounded-t-full" />
+          </motion.div>
         </div>
 
         <div className="flex-1 flex flex-col min-h-0 w-full">
@@ -189,7 +213,7 @@ export default function GameScreen() {
             onAnswered={(isCorrect) => {
               handleAnswer(isCorrect)
               
-              const nextLives = isCorrect ? lives : lives - 1;
+              const nextLives = isCorrect ? lives : lives - 1
               if (currentQuestionIndex + 1 < questions.length && nextLives > 0) {
                 let text = 'Przygotuj się na kolejne zadanie!'
                 let moodToSet: MascotMood = 'idle'

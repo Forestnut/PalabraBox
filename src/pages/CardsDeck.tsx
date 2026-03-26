@@ -1,98 +1,103 @@
-import { useState, useMemo } from 'react'
+import { useState, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+
 import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { BackButton } from '../components/layout/BackButton'
 import { FlashCard } from '../components/cards/FlashCard'
-import { Button } from '../components/ui/Button'
-import { Mascot } from '../components/ui/Mascot'
 import { useWords } from '../hooks/useWords'
 
 export default function CardsDeck() {
+  const { words, loading } = useWords()
   const [currentIndex, setCurrentIndex] = useState(0)
-  
-  // Pobieramy słówka (nie określamy scenariusza, bierzemy z preferowanego przez użytkownika języka/poziomu)
-  const { loading, getPersonalizedWords } = useWords()
+  const [direction, setDirection] = useState(0) // -1 left, 1 right
 
-  // Gdy hook pobierze słówka, losujemy spersonalizowany zestaw (np. 15 słówek)
-  const cardWords = useMemo(() => {
-    return getPersonalizedWords(15)
-  }, [getPersonalizedWords])
 
-  const handleNext = () => {
-    if (currentIndex < cardWords.length - 1) {
-      setCurrentIndex(prev => prev + 1)
-    }
-  }
 
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(prev => prev - 1)
-    }
-  }
+  const prev = useCallback(() => {
+    if (currentIndex <= 0) return
+    setDirection(-1)
+    setCurrentIndex((i) => i - 1)
+  }, [currentIndex])
+
+  const next = useCallback(() => {
+    if (currentIndex >= words.length - 1) return
+    setDirection(1)
+    setCurrentIndex((i) => i + 1)
+  }, [currentIndex, words.length])
 
   if (loading) {
     return (
-      <PageTransition className="bg-pb-bg">
-        <ScreenWrapper className="flex flex-col h-full py-6 pb-8 justify-center items-center min-h-[80vh]">
-          <Mascot mood="idle" size="lg" />
-          <h2 className="text-2xl font-bold mt-6 text-pb-dark animate-pulse">Cargando...</h2>
+      <PageTransition>
+        <ScreenWrapper className="flex flex-col items-center justify-center">
+          <div className="animate-pulse flex flex-col items-center gap-4">
+            <div className="w-72 h-96 rounded-3xl bg-white/50 shadow-soft" />
+            <div className="h-4 w-24 bg-black/4 rounded-lg" />
+          </div>
         </ScreenWrapper>
       </PageTransition>
     )
   }
 
-  if (cardWords.length === 0) {
+  if (words.length === 0) {
     return (
-      <PageTransition className="bg-pb-bg">
-        <ScreenWrapper className="flex flex-col h-full py-6 pb-8">
-          <div className="flex items-center mb-8 z-10 w-full">
-            <BackButton fallbackUrl="/menu" />
-          </div>
-          <div className="flex-1 flex justify-center items-center">
-            <p className="text-xl text-pb-text-light text-center">Brak słówek w bazie.</p>
-          </div>
+      <PageTransition>
+        <ScreenWrapper className="flex flex-col items-center justify-center">
+          <BackButton fallbackUrl="/menu" />
+          <p className="mt-4 text-center font-bold text-pb-text-light text-base">
+            No se encontraron tarjetas.
+          </p>
         </ScreenWrapper>
       </PageTransition>
     )
   }
 
-  const currentWord = cardWords[currentIndex]
+  const currentWord = words[currentIndex]
 
   return (
-    <PageTransition className="bg-pb-bg">
-      <ScreenWrapper className="flex flex-col h-full py-6 pb-8">
-        {/* Header Options */}
-        <div className="flex items-center justify-between mb-8 z-10 w-full">
+    <PageTransition>
+      <ScreenWrapper className="flex flex-col items-center gap-4 py-6">
+        <div className="w-full flex items-center justify-between mb-4">
           <BackButton fallbackUrl="/menu" />
-          <div className="bg-white px-5 py-2 rounded-full shadow-box font-bold flex items-center justify-center border-2 border-transparent">
-            <span className="text-pb-dark text-xl mr-1">{currentIndex + 1}</span>
-            <span className="text-pb-text-light">/ {cardWords.length}</span>
+          <div className="bg-white/70 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-soft ring-1 ring-black/4 font-bold text-pb-amber text-sm">
+            {currentIndex + 1} / {words.length}
           </div>
         </div>
 
-        {/* Card Component Rendering Centered */}
-        <div className="flex-1 flex flex-col justify-center items-center w-full z-0 px-2 sm:px-4 perspective-1000">
-          <FlashCard key={currentWord.id} word={currentWord} />
+        <div className="flex-1 flex items-center justify-center w-full overflow-hidden py-2">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={currentWord.id}
+              custom={direction}
+              initial={{ opacity: 0, x: direction * 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction * -60 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="w-full"
+            >
+              <FlashCard word={currentWord} />
+            </motion.div>
+          </AnimatePresence>
         </div>
 
-        {/* Navigation Controlls */}
-        <div className="flex items-center justify-between mt-8 gap-4 z-10 w-full px-2">
-          <Button 
-            variant="secondary" 
-            onClick={handlePrev} 
-            disabled={currentIndex === 0}
-            className="w-16 h-16 rounded-full p-0 flex items-center justify-center text-3xl shrink-0"
-            aria-label="Anterior Tarjeta"
+        <div className="flex items-center justify-center gap-6 mt-4 mb-2">
+          <button
+            onClick={prev}
+            disabled={currentIndex <= 0}
+            className="w-16 h-16 rounded-full flex items-center justify-center bg-white border-2 border-b-4 border-slate-200 text-pb-dark transition-all hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
-            ◀
-          </Button>
-          <Button 
-            onClick={handleNext} 
-            disabled={currentIndex === cardWords.length - 1}
-            className="flex-1 py-4 text-xl tracking-wider"
+            <FontAwesomeIcon icon={faChevronLeft} className="text-xl" />
+          </button>
+
+          <button
+            onClick={next}
+            disabled={currentIndex >= words.length - 1}
+            className="w-16 h-16 rounded-full flex items-center justify-center bg-white border-2 border-b-4 border-slate-200 text-pb-dark transition-all hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
-            Siguiente
-          </Button>
+            <FontAwesomeIcon icon={faChevronRight} className="text-xl" />
+          </button>
         </div>
       </ScreenWrapper>
     </PageTransition>

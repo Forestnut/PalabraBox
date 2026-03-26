@@ -12,20 +12,36 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary:
-    'bg-pb-amber text-white shadow-box hover:shadow-box-hover active:shadow-box-pressed',
-  secondary:
-    'bg-pb-emerald text-white shadow-box hover:shadow-box-hover active:shadow-box-pressed',
-  ghost:
-    'bg-transparent text-pb-dark hover:bg-white/60 hover:shadow-box active:shadow-box-pressed',
-  danger:
-    'bg-pb-error text-white shadow-box hover:shadow-box-hover active:shadow-box-pressed',
+  primary: [
+    'bg-gradient-to-b from-[#FFB347] to-pb-amber text-white',
+    'shadow-[0_4px_0_0_#c97a1a,0_6px_16px_-2px_rgba(255,164,44,0.35)]',
+    'hover:shadow-[0_5px_0_0_#c97a1a,0_8px_20px_-2px_rgba(255,164,44,0.4)]',
+    'active:shadow-[0_1px_0_0_#c97a1a,0_2px_4px_rgba(255,164,44,0.2)] active:translate-y-[3px]',
+  ].join(' '),
+  secondary: [
+    'bg-gradient-to-b from-[#0a8a5e] to-pb-emerald text-white',
+    'shadow-[0_4px_0_0_#035c3a,0_6px_16px_-2px_rgba(4,114,77,0.3)]',
+    'hover:shadow-[0_5px_0_0_#035c3a,0_8px_20px_-2px_rgba(4,114,77,0.35)]',
+    'active:shadow-[0_1px_0_0_#035c3a,0_2px_4px_rgba(4,114,77,0.2)] active:translate-y-[3px]',
+  ].join(' '),
+  ghost: [
+    'bg-white/50 text-pb-dark',
+    'shadow-soft',
+    'hover:bg-white/80 hover:shadow-glass',
+    'active:bg-white/60 active:translate-y-[1px]',
+  ].join(' '),
+  danger: [
+    'bg-gradient-to-b from-[#f87171] to-pb-error text-white',
+    'shadow-[0_4px_0_0_#b91c1c,0_6px_16px_-2px_rgba(239,68,68,0.3)]',
+    'hover:shadow-[0_5px_0_0_#b91c1c,0_8px_20px_-2px_rgba(239,68,68,0.35)]',
+    'active:shadow-[0_1px_0_0_#b91c1c,0_2px_4px_rgba(239,68,68,0.2)] active:translate-y-[3px]',
+  ].join(' '),
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'py-2 px-4 text-sm',
-  md: 'py-3 px-6 text-base',
-  lg: 'py-4 px-8 text-lg',
+  sm: 'py-2.5 px-4 text-sm rounded-xl',
+  md: 'py-3 px-6 text-base rounded-2xl',
+  lg: 'py-4 px-8 text-lg rounded-2xl',
 }
 
 export function Button({
@@ -60,9 +76,9 @@ export function Button({
     <button
       className={cn(
         'inline-flex items-center justify-center gap-2',
-        'font-bold rounded-box',
-        'transition-all duration-150 cursor-pointer select-none',
-        'hover:-translate-y-0.5 active:translate-y-0.5',
+        'font-bold',
+        'transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] cursor-pointer select-none',
+        'hover:-translate-y-0.5',
         'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber',
         variantStyles[variant],
         sizeStyles[size],

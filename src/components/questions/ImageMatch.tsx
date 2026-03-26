@@ -1,15 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-
+import { motion, AnimatePresence } from 'framer-motion'
 import type { Question } from '../../types'
-import { Card } from '../ui/Card'
 import { cn } from '../../utils/cn'
 import { shuffleArray } from '../../utils/shuffle'
-import type { ClickSoundType } from './MultipleChoice'
 
-interface ImageMatchProps {
+interface Props {
   question: Question
   onAnswer: (isCorrect: boolean) => void
-  onPlaySound?: (type: ClickSoundType) => void
+  onPlaySound?: (type: 'click' | 'correct' | 'wrong') => void
   disabled?: boolean
 }
 
@@ -18,12 +16,7 @@ const FEEDBACK_DELAY_MS = {
   wrong: 1500,
 }
 
-export function ImageMatch({
-  question,
-  onAnswer,
-  onPlaySound,
-  disabled,
-}: ImageMatchProps) {
+export function ImageMatch({ question, onAnswer, onPlaySound, disabled }: Props) {
   const [selected, setSelected] = useState<string | null>(null)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
   const timeoutRef = useRef<number | null>(null)
@@ -58,85 +51,85 @@ export function ImageMatch({
     }, FEEDBACK_DELAY_MS[isCorrect ? 'correct' : 'wrong'])
   }
 
-  const getOptionClass = (option: string) => {
-    const base = 'w-full text-center flex items-center justify-center font-bold text-xl'
+  const getOptionStyle = (option: string) => {
+    const base = 'py-5 px-3 rounded-2xl text-sm sm:text-base font-bold transition-all duration-200'
     if (!selected) {
-      return cn(
-        base,
-        'bg-white border border-transparent shadow-box hover:border-pb-amber/60',
-        'transition-all duration-150',
-      )
+      return cn(base, 'bg-white border-2 border-b-4 border-slate-200 text-pb-dark hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] cursor-pointer')
     }
-
+    
     const isSelected = option === selected
     const isCorrect = option === question.correct_answer
 
     if (isSelected && feedback === 'correct') {
-      return cn(base, 'bg-pb-success/20 border border-pb-success text-pb-success')
+      return cn(base, 'bg-[#d7ffb8] border-2 border-b-4 border-[#58cc02] text-[#58cc02]')
     }
 
     if (isSelected && feedback === 'wrong') {
-      return cn(base, 'bg-pb-error/20 border border-pb-error text-pb-error')
+      return cn(base, 'bg-[#ffdfe0] border-2 border-b-4 border-[#ea2b2b] text-[#ea2b2b]')
     }
 
-    if (!isSelected && feedback) {
-      if (isCorrect) {
-        return cn(base, 'bg-pb-success/20 border border-pb-success text-pb-success')
-      }
-      return cn(base, 'bg-white border border-transparent')
+    if (!isSelected && feedback && isCorrect) {
+      return cn(base, 'bg-[#d7ffb8] border-2 border-b-4 border-[#58cc02] text-[#58cc02]')
     }
 
-    return cn(base, 'bg-white border border-transparent')
+    return cn(base, 'bg-slate-100 border-2 border-slate-200 text-slate-400 opacity-60')
   }
 
-  // Determine how to render the image_emoji
   const renderImage = () => {
-    if (!question.image_emoji) return <span className="text-6xl">❓</span>
+    const target = question.image_emoji || question.question_text || '❓'
     
-    // Check if it's an image path or standard emoji
-    if (question.image_emoji.includes('/') || question.image_emoji.includes('.')) {
-      return <img src={question.image_emoji} alt="question image" className="w-40 h-40 object-contain drop-shadow-md" />
+    if (target.includes('/') || target.includes('.')) {
+      return <img src={target} alt="question image" className="w-40 h-40 object-contain drop-shadow-md" />
     }
     
-    return <span className="text-[120px] leading-tight drop-shadow-md">{question.image_emoji}</span>
+    return (
+      <motion.span
+        className="text-7xl sm:text-8xl drop-shadow-md"
+        initial={{ scale: 0.8 }}
+        animate={{ scale: 1 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+      >
+        {target}
+      </motion.span>
+    )
   }
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-sm mx-auto">
-      <Card className="p-8 flex flex-col items-center justify-center relative min-h-[260px] bg-white">
-        {question.question_text && (
-          <div className="w-full text-center mb-6 pb-2">
-            <h2 className="text-xl sm:text-2xl font-black text-pb-dark leading-tight">
-              {question.question_text}
-            </h2>
-          </div>
-        )}
-        <div className="flex-1 flex items-center justify-center animate-bounce-slight scale-in relative z-10 w-full min-h-[140px]">
-            {renderImage()}
+    <div className="flex flex-col gap-6 w-full max-w-sm mx-auto flex-1 justify-center">
+      {question.question_text && question.image_emoji && (
+        <div className="w-full text-center mb-2">
+          <h2 className="text-xl sm:text-2xl font-black text-pb-dark leading-tight">
+            {question.question_text}
+          </h2>
         </div>
-        {question.hint && (
-          <div className="w-full text-center mt-4 border-t border-pb-bg pt-3">
-             <p className="text-sm font-bold text-pb-amber uppercase tracking-widest">{question.hint}</p>
-          </div>
-        )}
-      </Card>
+      )}
 
-      <div className="grid grid-cols-2 gap-4">
-        {options.map((option) => (
-          <button
-            key={option}
-            type="button"
-            onClick={() => handleSelect(option)}
-            disabled={!!selected || disabled}
-            className={cn(
-              'rounded-box-lg px-2 py-6 min-h-[90px]',
-              getOptionClass(option),
-              selected ? 'cursor-default' : 'cursor-pointer active:scale-95',
-            )}
-          >
-            {option}
-          </button>
-        ))}
+      <div className="flex items-center justify-center min-h-[140px] relative z-10 w-full mb-4">
+        {renderImage()}
+      </div>
+
+      {question.hint && (
+        <div className="w-full text-center mb-6">
+           <p className="text-sm font-bold text-pb-amber uppercase tracking-widest">{question.hint}</p>
+        </div>
+      )}
+
+      <div className="grid grid-cols-2 gap-3 w-full">
+        <AnimatePresence>
+          {options.map((option: string, index: number) => (
+            <motion.button
+              key={option}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.06, duration: 0.25 }}
+              onClick={() => handleSelect(option)}
+              disabled={!!selected || disabled}
+              className={getOptionStyle(option)}
+            >
+              {option}
+            </motion.button>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   )

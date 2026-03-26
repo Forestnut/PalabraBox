@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBell, faCommentDots, faBolt, faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { BackButton } from '../components/layout/BackButton'
@@ -10,18 +12,18 @@ interface RangeSliderProps {
   label: string
   value: number
   onChange: (val: number) => void
-  icon?: string
+  icon: typeof faBell
 }
 
 function RangeSlider({ label, value, onChange, icon }: RangeSliderProps) {
   return (
     <div className="flex flex-col gap-3 w-full">
-      <div className="flex justify-between items-center text-pb-text-light font-bold text-xs uppercase tracking-wider">
-        <span className="flex items-center gap-2">
-          {icon && <span className="text-lg">{icon}</span>}
+      <div className="flex justify-between items-center">
+        <span className="flex items-center gap-2 text-pb-text-light font-bold text-xs uppercase tracking-wider">
+          <FontAwesomeIcon icon={icon} className="text-sm text-pb-dark/40" />
           {label}
         </span>
-        <span className="text-pb-amber">{Math.round(value * 100)}%</span>
+        <span className="text-pb-amber font-bold text-sm tabular-nums">{Math.round(value * 100)}%</span>
       </div>
       <input
         type="range"
@@ -30,12 +32,7 @@ function RangeSlider({ label, value, onChange, icon }: RangeSliderProps) {
         step={0.05}
         value={value}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full h-4 bg-pb-amber/20 rounded-full appearance-none outline-none cursor-pointer
-          [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-7 [&::-webkit-slider-thumb]:h-7
-          [&::-webkit-slider-thumb]:bg-pb-amber [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-md
-          [&::-webkit-slider-thumb]:active:scale-95 [&::-webkit-slider-thumb]:transition-transform
-          [&::-moz-range-thumb]:w-7 [&::-moz-range-thumb]:h-7 [&::-moz-range-thumb]:bg-pb-amber
-          [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-none [&::-moz-range-thumb]:shadow-md"
+        className="w-full"
       />
     </div>
   )
@@ -48,47 +45,48 @@ export default function SettingsScreen() {
 
   return (
     <PageTransition>
-      <ScreenWrapper className="flex flex-col gap-6 py-6 pb-12">
-        <div className="flex items-center gap-4 mb-2">
+      <ScreenWrapper className="flex flex-col gap-5 py-6 pb-12">
+        <div className="flex items-center gap-4 mb-1">
           <BackButton fallbackUrl="/menu" />
-          <h1 className="text-3xl font-black text-pb-dark tracking-wide uppercase">Opciones</h1>
+          <h1 className="text-2xl font-black text-pb-dark tracking-tight">Opciones</h1>
         </div>
 
-        <Card className="p-6 flex flex-col gap-6">
-          <h2 className="text-lg font-bold text-pb-dark mb-2">Sonido y Audio</h2>
+        <Card className="flex flex-col gap-5">
+          <h2 className="text-sm font-bold text-pb-text-light uppercase tracking-wider">Sonido y Audio</h2>
           
           <RangeSlider
             label="Efectos de Sonido"
             value={volume.sound}
             onChange={setSoundVolume}
-            icon="🔔"
+            icon={faBell}
           />
 
-          <hr className="border-t-2 border-pb-bg" />
+          <div className="h-px bg-black/4" />
 
           <RangeSlider
             label="Voz del Lector (TTS)"
             value={volume.tts}
             onChange={setTtsVolume}
-            icon="🗣️"
+            icon={faCommentDots}
           />
         </Card>
 
-        <Card className="p-6 flex flex-col gap-4">
+        <Card className="flex flex-col gap-4">
           <div className="flex items-center gap-2 text-pb-text-light font-bold text-xs uppercase tracking-wider">
-            <span className="text-lg">⚡</span> Velocidad del Lector
+            <FontAwesomeIcon icon={faBolt} className="text-sm text-pb-dark/40" />
+            Velocidad del Lector
           </div>
           
-          <div className="grid grid-cols-5 gap-2 mt-2">
+          <div className="grid grid-cols-5 gap-2 mt-1">
             {speeds.map((s) => (
               <button
                 key={s}
                 onClick={() => setSpeechSpeed(s)}
                 className={cn(
-                  "py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none",
+                  "py-3 rounded-xl font-black text-xs sm:text-sm transition-all duration-200 focus:outline-none cursor-pointer",
                   speechSpeed === s
-                    ? "bg-pb-amber text-white shadow-inner scale-105"
-                    : "bg-pb-bg text-pb-text-light hover:bg-pb-amber/20 active:scale-95"
+                    ? "bg-linear-to-b from-[#FFB347] to-pb-amber text-white shadow-[0_3px_0_0_#c97a1a] scale-105"
+                    : "bg-white/60 text-pb-text-light ring-1 ring-black/4 hover:bg-white active:scale-95"
                 )}
               >
                 {s}x
@@ -97,32 +95,36 @@ export default function SettingsScreen() {
           </div>
         </Card>
 
-        <Card className="p-6 flex flex-col gap-4">
+        <Card className="flex flex-col gap-4">
           <div className="flex items-center gap-2 text-pb-text-light font-bold text-xs uppercase tracking-wider">
-            <span className="text-lg">🌍</span> Idioma de la Aplicación
+            <FontAwesomeIcon icon={faGlobe} className="text-sm text-pb-dark/40" />
+            Idioma de la Aplicación
           </div>
           
-          <div className="grid grid-cols-2 gap-2 mt-2">
+          <div className="grid grid-cols-2 gap-2 mt-1">
             <button
-              className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-pb-amber text-white shadow-inner scale-105"
+              className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-linear-to-b from-[#FFB347] to-pb-amber text-white shadow-[0_3px_0_0_#c97a1a] scale-105"
             >
               🇪🇸 Español
             </button>
             <button
               disabled
-              className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-pb-bg text-pb-text-light opacity-50 cursor-not-allowed"
+              className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-white/40 text-pb-text-light opacity-50 cursor-not-allowed"
             >
               🇵🇱 Polaco (Próximamente)
             </button>
           </div>
         </Card>
 
-        {/* Info & Credits */}
-        <div className="mt-auto pt-8 flex flex-col items-center justify-center text-center gap-2 opacity-70">
-          <Mascot mood="idle" size="sm" className="opacity-80 mb-2" />
-          <p className="font-bold text-pb-dark text-lg">PalabraBox <span className="text-sm font-normal text-pb-text-light">v1.0.0</span></p>
-          <p className="text-xs text-pb-text-light font-medium max-w-50">
-            Diseñado y desarrollado por <br/><span className="text-pb-amber font-bold">Jakub Laskowski</span> & <span className="text-pb-amber font-bold">Błażej Goliszek</span>
+        {/* Credits */}
+        <div className="mt-auto pt-8 flex flex-col items-center justify-center text-center gap-2 opacity-60">
+          <Mascot mood="idle" size="sm" className="mb-1" />
+          <p className="font-bold text-pb-dark text-sm">
+            PalabraBox <span className="text-xs font-normal text-pb-text-light">v1.0.0</span>
+          </p>
+          <p className="text-[11px] text-pb-text-light font-medium max-w-52 leading-relaxed">
+            Diseñado y desarrollado por <br/>
+            <span className="text-pb-amber font-bold">Jakub Laskowski</span> & <span className="text-pb-amber font-bold">Błażej Goliszek</span>
           </p>
         </div>
       </ScreenWrapper>
