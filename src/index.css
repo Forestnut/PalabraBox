@@ -64,6 +64,14 @@ button, a, [role="button"] {
 }
 
 /* ─── Scrollbar ─── */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(86, 135, 109, 0.3) transparent;

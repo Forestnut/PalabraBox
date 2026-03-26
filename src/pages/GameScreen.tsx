@@ -49,6 +49,7 @@ export default function GameScreen() {
     const resetSleepTimer = () => {
       if (sleepTimeoutRef.current) window.clearTimeout(sleepTimeoutRef.current)
       setBoxiMood(current => current === 'sleeping' ? 'idle' : current)
+      setBoxiMessage(current => current === 'Zzz...' ? null : current)
       
       sleepTimeoutRef.current = window.setTimeout(() => {
         setBoxiMood('sleeping')
@@ -145,7 +146,7 @@ export default function GameScreen() {
             onClick={() => setShowIntermission(false)}
             className="mt-8 px-8 py-3 bg-linear-to-b from-[#FFB347] to-pb-amber text-white font-bold rounded-2xl shadow-[0_4px_0_#c97a1a] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
           >
-            Kontynuuj
+            Continuar
           </button>
         </ScreenWrapper>
       </PageTransition>
@@ -215,22 +216,22 @@ export default function GameScreen() {
               
               const nextLives = isCorrect ? lives : lives - 1
               if (currentQuestionIndex + 1 < questions.length && nextLives > 0) {
-                let text = 'Przygotuj się na kolejne zadanie!'
+                let text = '¡Prepárate para la siguiente tarea!'
                 let moodToSet: MascotMood = 'idle'
                 
                 // 1. Sprawdź streak (which was already updated by handlePlaySound)
                 if (streakRef.current > 0 && streakRef.current % 3 === 0) {
-                  text = 'Idziesz jak burza! Tak trzymaj!'
+                  text = '¡Vas genial! ¡Sigue así!'
                   moodToSet = 'celebrate'
                 } else {
                   // 2. Jeśli nie streak, daj powiązane zadanie na podstawie TYPU NASTĘPNEGO PYTANIA
                   const nextQ = questions[currentQuestionIndex + 1]
                   const typePhrases: Record<string, string> = {
-                    'listening': 'Teraz pora sprawdzić twój słuch!',
-                    'multiple_choice': 'Wybierz poprawną odpowiedź!',
-                    'image_match': 'Dopasuj odpowiedź!',
-                    'word_order': 'Ułóż słowa w poprawnej kolejności!',
-                    'fill_blank': 'Uzupełnij brakujące słowo!'
+                    'listening': '¡Es hora de poner a prueba tu oído!',
+                    'multiple_choice': '¡Elige la respuesta correcta!',
+                    'image_match': '¡Empareja la respuesta!',
+                    'word_order': '¡Ordena las palabras correctamente!',
+                    'fill_blank': '¡Completa la palabra que falta!'
                   }
                   if (nextQ && typePhrases[nextQ.type]) {
                     text = typePhrases[nextQ.type]
