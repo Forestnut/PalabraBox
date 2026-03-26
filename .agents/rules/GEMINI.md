@@ -58,6 +58,7 @@ For every task, follow this flow:
   - no warnings,
   - no type issues.
 - Code that produces errors or warnings is considered unacceptable.
+- **Tailwind CSS**: Always respect `suggestCanonicalClasses` warnings from Tailwind IntelliSense. Use predefined Tailwind classes instead of arbitrary values (e.g., use `min-h-56` instead of `min-h-[14rem]`). This ensures consistency and optimal bundle size.
 - Always follow DRY.
 - Avoid unnecessary duplication in logic, structures, utilities, and comments.
 - Keep the style consistent with the existing codebase unless there is a strong reason to improve it.
