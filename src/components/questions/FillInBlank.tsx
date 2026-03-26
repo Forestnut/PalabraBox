@@ -1,159 +1,111 @@
-import { useState, useMemo, useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import type { Question } from '../../types'
-import { Card } from '../ui/Card'
-import { Button } from '../ui/Button'
 import { cn } from '../../utils/cn'
 import { shuffleArray } from '../../utils/shuffle'
-import { speechService } from '../../services/speechService'
-import type { ClickSoundType } from './MultipleChoice'
+import { Button } from '../ui/Button'
 
-interface FillInBlankProps {
+interface Props {
   question: Question
   onAnswer: (isCorrect: boolean) => void
-  onPlaySound?: (type: ClickSoundType) => void
+  onPlaySound?: (type: 'click' | 'correct' | 'wrong') => void
   disabled?: boolean
   scenarioLanguage?: string | null
 }
 
-export function FillInBlank({ question, onAnswer, onPlaySound, disabled, scenarioLanguage }: FillInBlankProps) {
-  // Format expected: "Yo ____ una manzana." where "____" is the blank.
-  const parts = (question.question_text || '').split('____')
-  const beforeBlank = parts[0] || ''
-  const afterBlank = parts[1] || ''
-
-  const [selectedWord, setSelectedWord] = useState<string | null>(null)
-  const [isChecking, setIsChecking] = useState(false)
-  const [feedback, setFeedback] = useState<'correct'|'wrong'|null>(null)
-  const answerTimeoutRef = useRef<number | null>(null)
-
-  const wordsBank = useMemo(() => {
+export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: Props) {
+  const wordOptions = useMemo(() => {
     return shuffleArray([question.correct_answer, ...question.wrong_answers])
   }, [question.correct_answer, question.wrong_answers])
 
-  useEffect(() => {
-    return () => {
-      if (answerTimeoutRef.current) window.clearTimeout(answerTimeoutRef.current)
-    }
-  }, [])
+  const [selectedWord, setSelectedWord] = useState<string | null>(null)
+  const [answered, setAnswered] = useState(false)
 
-  const handleSelectWord = (word: string) => {
-    if (disabled || isChecking) return
-    if (selectedWord === word) {
-      setSelectedWord(null) // deselect
-      onPlaySound?.('click')
-    } else {
-      setSelectedWord(word)
-      onPlaySound?.('click')
-    }
+  const handleWordClick = (word: string) => {
+    if (answered || disabled) return
+    setSelectedWord((prev) => (prev === word ? null : word))
   }
 
-  const handleCheck = () => {
-    if (!selectedWord || disabled || isChecking) return
+  const handleSubmit = () => {
+    if (!selectedWord || answered) return
+    setAnswered(true)
 
-    setIsChecking(true)
-    const isCorrect = selectedWord === question.correct_answer
-    setFeedback(isCorrect ? 'correct' : 'wrong')
-    
-    if (isCorrect) {
-      const fullSentence = question.question_text?.replace('____', selectedWord) || selectedWord
-      const ttsLang = scenarioLanguage === 'english' ? 'en-US' : 'es-ES'
-      speechService.speak(question.question_text_tts || fullSentence, ttsLang)
-    }
-    
-    onPlaySound?.(isCorrect ? 'correct' : 'wrong')
+    const correct = selectedWord === question.correct_answer
+    onPlaySound?.(correct ? 'correct' : 'wrong')
 
-    answerTimeoutRef.current = window.setTimeout(() => {
-      onAnswer(isCorrect)
-      setSelectedWord(null)
-      setFeedback(null)
-      setIsChecking(false)
-    }, 1500)
+    setTimeout(() => {
+      onAnswer(correct)
+    }, 900)
   }
 
-  const blankStateClass = selectedWord 
-    ? feedback === 'correct' 
-      ? 'bg-pb-success border-pb-success border-b-[4px] text-white translate-y-[-2px]' 
-      : feedback === 'wrong' 
-        ? 'bg-pb-error border-pb-error border-b-[4px] text-white translate-y-[-2px]' 
-        : 'bg-pb-amber border-pb-amber border-b-[4px] text-white translate-y-[-2px]'
-    : 'bg-pb-bg border-pb-text-light/30 border-dashed text-transparent'
+  const parts = question.question_text?.split('___') ?? [question.question_text]
+
+  const blankFeedback = answered
+    ? selectedWord === question.correct_answer
+      ? 'ring-2 ring-pb-success/40 bg-emerald-50'
+      : 'ring-2 ring-pb-error/40 bg-red-50'
+    : selectedWord
+      ? 'ring-2 ring-pb-amber/40 bg-amber-50/40'
+      : ''
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-lg mx-auto h-full px-2">
-      <Card className="p-6 sm:p-8 flex flex-col items-center justify-center relative min-h-45 bg-white mt-4">
-        <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-4 text-xl sm:text-2xl font-bold text-pb-dark text-center leading-loose">
-          <span>{beforeBlank}</span>
-          
-          <div 
+    <div className="flex flex-col gap-6 w-full text-center flex-1 items-center">
+      <div className="flex items-center justify-center min-h-24 py-4">
+        <h2 className="text-xl sm:text-2xl font-black text-pb-dark leading-relaxed px-2 tracking-tight flex flex-wrap items-baseline justify-center gap-x-1">
+          {parts[0]}
+          <span className={cn(
+            'inline-flex items-center justify-center min-w-32 py-1.5 px-3 rounded-2xl border-2 border-b-4 transition-all duration-300 text-lg sm:text-xl mx-2 shadow-sm',
+            selectedWord ? 'border-pb-amber bg-amber-50' : 'border-slate-300 bg-slate-100 border-dashed',
+            blankFeedback
+          )}>
+            <AnimatePresence mode="wait">
+              {selectedWord ? (
+                <motion.span
+                  key={selectedWord}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  className="font-black text-pb-dark"
+                >
+                  {selectedWord}
+                </motion.span>
+              ) : (
+                <span className="text-slate-300 font-bold tracking-widest">___</span>
+              )}
+            </AnimatePresence>
+          </span>
+          {parts[1] && parts[1]}
+        </h2>
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-3 w-full">
+        {wordOptions.map((word: string, index: number) => (
+          <motion.button
+            key={word}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.06, duration: 0.25 }}
+            onClick={() => handleWordClick(word)}
+            disabled={answered || disabled}
             className={cn(
-              "relative min-w-25 h-12 rounded-xl border-2 flex items-center justify-center px-4 transition-colors cursor-pointer",
-              blankStateClass
+              'px-5 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all duration-200',
+              selectedWord === word
+                ? 'bg-[#d7ffb8] border-2 border-b-4 border-[#58cc02] text-[#58cc02] scale-105'
+                : answered
+                  ? 'bg-slate-100 border-2 border-slate-200 text-slate-400 opacity-50'
+                  : 'bg-white border-2 border-b-4 border-slate-200 text-pb-dark hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] cursor-pointer',
             )}
-            onClick={() => {
-               if (selectedWord && !isChecking) {
-                  setSelectedWord(null)
-                  onPlaySound?.('click')
-               }
-            }}
           >
-            {selectedWord ? (
-              <motion.span 
-                layoutId={`word-${selectedWord}`} 
-                className="font-black text-xl"
-              >
-                {selectedWord}
-              </motion.span>
-            ) : (
-              "____"
-            )}
-          </div>
+            {word}
+          </motion.button>
+        ))}
+      </div>
 
-          <span>{afterBlank}</span>
-        </div>
-        
-        {question.hint && (
-          <div className="w-full text-center mt-6 border-t border-pb-bg pt-3">
-             <p className="text-sm font-bold text-pb-text-light">{question.hint}</p>
-          </div>
-        )}
-      </Card>
-
-      {/* Word Bank Area */}
-      <div className="flex-1 flex flex-col justify-end gap-6 mb-4 mt-auto pt-6">
-        <div className="flex flex-wrap justify-center gap-3">
-          {wordsBank.map(word => {
-            const isSelected = selectedWord === word
-            return (
-              <div key={word} className="relative h-14 min-w-30">
-                {/* Ghost placeholder when the word is dropped in the blank */}
-                <div className={cn(
-                  "absolute inset-0 bg-pb-bg rounded-xl border-2 border-pb-text-light/20 flex items-center justify-center transition-opacity duration-300",
-                  isSelected ? "opacity-100" : "opacity-0"
-                )} />
-
-                {!isSelected && (
-                  <motion.button
-                    layoutId={`word-${word}`}
-                    onClick={() => handleSelectWord(word)}
-                    disabled={isChecking || disabled}
-                    className="absolute inset-0 bg-white border-2 border-b-4 border-slate-200 rounded-2xl text-lg font-bold text-pb-dark flex items-center justify-center px-6 hover:bg-slate-50 transition-colors z-10"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98, y: 2, borderBottomWidth: '2px' }}
-                  >
-                    {word}
-                  </motion.button>
-                )}
-              </div>
-            )
-          })}
-        </div>
-        
-        <Button 
-          size="lg" 
-          disabled={!selectedWord || isChecking} 
-          onClick={handleCheck}
-          className="w-full mt-4"
+      <div className="mt-auto pt-4 w-full">
+        <Button
+          onClick={handleSubmit}
+          disabled={!selectedWord || answered}
+          className="w-full"
         >
           COMPROBAR
         </Button>

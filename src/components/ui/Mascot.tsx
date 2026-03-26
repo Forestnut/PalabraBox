@@ -164,7 +164,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
           className="relative z-10 h-full w-full"
           style={{ transformOrigin: '50% 100%' }}
         >
-          <svg viewBox="-10 -10 160 160" className="w-full h-full drop-shadow-[0_15px_15px_rgba(217,119,6,0.3)] overflow-visible">
+          <svg viewBox="-10 -10 160 160" className="w-full h-full overflow-visible">
             <defs>
               <linearGradient id={gId1} x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#F59E0B" />
@@ -351,27 +351,41 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
 
             {/* --- CONFETTI EFFECT --- */}
             <AnimatePresence>
-              {(currentMood === 'happy' || currentMood === 'celebrate') && (
+              {currentMood === 'celebrate' && (
                 <g>
                   {[
-                    { x: 50, y: 50, c: '#EF4444' }, { x: 70, y: 50, c: '#3B82F6' },
-                    { x: 90, y: 50, c: '#10B981' }, { x: 60, y: 50, c: '#F59E0B' },
-                    { x: 80, y: 50, c: '#8B5CF6' }
-                  ].map((conf, i) => (
-                    <motion.rect
-                      key={`c-${i}`}
-                      x={conf.x} y={conf.y} width="8" height="8" fill={conf.c} rx="2"
-                      initial={{ y: 50, scale: 0, opacity: 1 }}
-                      animate={{ 
-                        y: [-10, -60, -20, 80],
-                        x: [conf.x, conf.x + (i % 2 ? -40 : 40)],
-                        rotate: [0, 180, 360, 720],
-                        scale: [0, 1.5, 1, 0]
-                      }}
-                      transition={{ duration: 1.5, ease: "easeOut", repeat: Infinity, delay: i * 0.1 }}
-                      exit={{ opacity: 0, scale: 0 }}
-                    />
-                  ))}
+                    { c: '#EF4444' }, { c: '#3B82F6' },
+                    { c: '#10B981' }, { c: '#F59E0B' },
+                    { c: '#8B5CF6' }, { c: '#EC4899' }
+                  ].map((conf, i) => {
+                    const startX = 60 + ((i * 13) % 20 - 10);
+                    const startY = 55;
+                    const peakY = startY - 40 - ((i * 7) % 20);
+                    const endY = startY + 60;
+                    const endX = startX + ((i % 2 ? -1 : 1) * (15 + ((i * 11) % 20)));
+
+                    return (
+                      <motion.rect
+                        key={`c-${i}`}
+                        x="0" y="0" width="8" height="8" fill={conf.c} rx="2"
+                        initial={{ x: startX, y: startY, scale: 0, opacity: 0 }}
+                        animate={{ 
+                          y: [startY, peakY, endY],
+                          x: [startX, startX + (endX - startX) * 0.5, endX],
+                          rotate: [0, 180, 720],
+                          scale: [0, 1.2, 0.8, 0],
+                          opacity: [0, 1, 1, 0]
+                        }}
+                        transition={{ 
+                          duration: 1.5 + (i % 3) * 0.2, 
+                          ease: "easeOut", 
+                          repeat: Infinity, 
+                          delay: 0.3 + i * 0.1 
+                        }}
+                        exit={{ opacity: 0, scale: 0 }}
+                      />
+                    );
+                  })}
                 </g>
               )}
             </AnimatePresence>

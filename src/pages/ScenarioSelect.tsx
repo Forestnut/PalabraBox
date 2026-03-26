@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { BackButton } from '../components/layout/BackButton'
@@ -13,7 +14,6 @@ export default function ScenarioSelect() {
   const startGame = useGameStore(state => state.startGame)
 
   const handleScenarioClick = (scenario: ScenarioWithProgress) => {
-    // Reset/Start game store for this scenario
     startGame()
     navigate(`/game/${scenario.id}`)
   }
@@ -24,50 +24,52 @@ export default function ScenarioSelect() {
   return (
     <PageTransition className="bg-pb-bg">
       <ScreenWrapper className="flex flex-col py-6 pb-12">
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-4 mb-6">
           <BackButton fallbackUrl="/level" />
-          <h1 className="text-3xl font-black text-pb-dark tracking-wide uppercase">Niveles</h1>
+          <h1 className="text-2xl font-black text-pb-dark tracking-tight">Niveles</h1>
         </div>
 
         {!loading && !error && (
           <div className="w-full flex justify-between items-end mb-4 px-1">
-            <p className="font-bold text-pb-text-light text-sm uppercase tracking-widest">Elige una aventura</p>
-            <div className="bg-white px-3 py-1 rounded-full shadow-sm font-bold text-pb-amber text-sm flex items-center gap-1">
+            <p className="font-bold text-pb-text-light text-xs uppercase tracking-widest">Elige una aventura</p>
+            <div className="bg-white/70 backdrop-blur-sm px-3 py-1 rounded-full shadow-soft ring-1 ring-black/4 font-bold text-pb-amber text-sm flex items-center gap-1">
               <span>{unlockedCount}</span> / <span>{totalCount}</span>
             </div>
           </div>
         )}
         
         {loading && (
-          <div className="grid grid-cols-2 gap-4 sm:gap-5 mt-2">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-2">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="animate-pulse flex flex-col items-center p-4 rounded-3xl bg-white shadow-sm border-b-4 border-gray-200">
-                <div className="w-16 h-16 bg-gray-200 rounded-full mb-3"></div>
-                <div className="h-4 bg-gray-200 rounded-md w-3/4 mb-2"></div>
-                <div className="h-3 bg-gray-200 rounded-md w-1/2"></div>
-                <div className="w-full mt-4 flex justify-between px-2">
-                  <div className="w-5 h-5 bg-gray-200 rounded-full"></div>
-                  <div className="w-5 h-5 bg-gray-200 rounded-full"></div>
-                </div>
+              <div key={i} className="animate-pulse flex flex-col items-center p-4 rounded-2xl bg-white/50 backdrop-blur-sm min-h-40">
+                <div className="w-14 h-14 bg-black/4 rounded-full mb-3" />
+                <div className="h-3.5 bg-black/4 rounded-md w-3/4 mb-2" />
+                <div className="h-2.5 bg-black/4 rounded-md w-1/2" />
               </div>
             ))}
           </div>
         )}
         
         {error && (
-          <div className="bg-pb-error/10 text-pb-error p-4 rounded-box mb-4 font-bold border-2 border-pb-error text-center">
+          <div className="bg-pb-error/10 text-pb-error p-4 rounded-2xl mb-4 font-bold ring-1 ring-pb-error/20 text-center text-sm">
             Error al cargar: {error}
           </div>
         )}
 
         {!loading && !error && (
-          <div className="grid grid-cols-2 gap-4 sm:gap-5 mt-2">
-            {scenarios.map((scenario) => (
-              <ScenarioCard
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-2">
+            {scenarios.map((scenario, index) => (
+              <motion.div
                 key={scenario.id}
-                scenario={scenario}
-                onClick={handleScenarioClick}
-              />
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.04, duration: 0.3, ease: 'easeOut' }}
+              >
+                <ScenarioCard
+                  scenario={scenario}
+                  onClick={handleScenarioClick}
+                />
+              </motion.div>
             ))}
           </div>
         )}

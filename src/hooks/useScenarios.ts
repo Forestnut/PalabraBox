@@ -20,62 +20,62 @@ const scenariosCache: Record<string, Scenario[]> = {}
  * @returns Object containing the scenarios array, loading boolean, and error string.
  */
 export function useScenarios() {
-  const [scenarios, setScenarios] = useState<ScenarioWithProgress[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
   const learningLanguage = useSettingsStore((state) => state.learningLanguage) || 'english'
   const learningLevel = useSettingsStore((state) => state.learningLevel) || 'beginner'
-
-  // Grab the update function from store once to make sure dependency array is stable
   const updateCompletedTotal = useProgressStore(state => state.updateCompletedTotal)
+
+  const cacheKey = `${learningLanguage}-${learningLevel}`
+
+  const getEnriched = (rawData: Scenario[]) => {
+    let prevUnlocked = true
+    return rawData.map((scenario, index) => {
+      const stars = getScenarioStars(scenario.id)
+      const isLocked = index === 0 ? false : !prevUnlocked
+      
+      if (stars === 0) prevUnlocked = false
+
+      return { ...scenario, stars, isLocked }
+    })
+  }
+
+  const [scenarios, setScenarios] = useState<ScenarioWithProgress[]>(() => {
+    if (scenariosCache[cacheKey]) {
+      return getEnriched(scenariosCache[cacheKey])
+    }
+    return []
+  })
+  const [loading, setLoading] = useState(!scenariosCache[cacheKey])
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     async function fetchScenarios() {
+      // If cached, sync store but don't show loading
+      if (scenariosCache[cacheKey]) {
+        const enriched = getEnriched(scenariosCache[cacheKey])
+        const completedCount = enriched.filter(e => e.stars > 0).length
+        updateCompletedTotal(completedCount, enriched.length)
+        setScenarios(enriched)
+        setLoading(false)
+        return
+      }
+
       try {
         setLoading(true)
-        const cacheKey = `${learningLanguage}-${learningLevel}`
-        let rawData: Scenario[] = []
+        const { data, error: err } = await supabase
+          .from('scenarios')
+          .select('*')
+          .eq('language', learningLanguage)
+          .eq('level', learningLevel)
+          .order('sort_order', { ascending: true })
 
-        if (scenariosCache[cacheKey]) {
-          rawData = scenariosCache[cacheKey]
-        } else {
-          const { data, error: err } = await supabase
-            .from('scenarios')
-            .select('*')
-            .eq('language', learningLanguage)
-            .eq('level', learningLevel)
-            .order('sort_order', { ascending: true })
+        if (err) throw err
+        const rawData = data as Scenario[]
+        scenariosCache[cacheKey] = rawData
 
-          if (err) throw err
-          rawData = data as Scenario[]
-          scenariosCache[cacheKey] = rawData
-        }
-
-        // Always re-calculate progress and locked states to ensure fresh local progress is read
-        let prevUnlocked = true
-        let completedCount = 0
-        const enriched = rawData.map((scenario, index) => {
-          const stars = getScenarioStars(scenario.id)
-          const isLocked = index === 0 ? false : !prevUnlocked
-          
-          if (stars > 0) {
-             completedCount++;
-          }
-          if (stars === 0) {
-            prevUnlocked = false
-          }
-
-          return {
-            ...scenario,
-            stars,
-            isLocked,
-          }
-        })
+        const enriched = getEnriched(rawData)
+        const completedCount = enriched.filter(e => e.stars > 0).length
         
-        // Sync true values to the global store 
         updateCompletedTotal(completedCount, rawData.length)
-
         setScenarios(enriched)
       } catch (err) {
         setError(err instanceof Error ? err.message : String(err))
@@ -85,8 +85,9 @@ export function useScenarios() {
     }
 
     fetchScenarios()
-  }, [learningLanguage, learningLevel, updateCompletedTotal])
+  }, [cacheKey, learningLanguage, learningLevel, updateCompletedTotal])
 
   return { scenarios, loading, error }
 }
+
 
