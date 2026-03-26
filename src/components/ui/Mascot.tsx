@@ -208,6 +208,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
               <AnimatePresence>
                 {(currentMood === 'wrong' || currentMood === 'sad') && (
                   <motion.g
+                    key="sweat-drop"
                     initial={{ opacity: 0, y: -20, x: 25, scale: 0 }}
                     animate={{ opacity: [0, 1, 0], y: [-20, 15, 25], scale: [0, 1.2, 1] }}
                     transition={{ repeat: Infinity, duration: 1.2, ease: "easeIn" }}
@@ -329,7 +330,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
             {/* --- ZZZ EFFECT --- */}
             <AnimatePresence>
               {currentMood === 'sleeping' && (
-                <g>
+                <motion.g key="zzz-effect" exit={{ opacity: 0 }}>
                   {[0, 1, 2].map((z) => (
                     <motion.text
                       key={`z-${z}`}
@@ -345,14 +346,14 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
                       z
                     </motion.text>
                   ))}
-                </g>
+                </motion.g>
               )}
             </AnimatePresence>
 
             {/* --- CONFETTI EFFECT --- */}
             <AnimatePresence>
               {currentMood === 'celebrate' && (
-                <g>
+                <motion.g key="confetti-effect" exit={{ opacity: 0 }}>
                   {[
                     { c: '#EF4444' }, { c: '#3B82F6' },
                     { c: '#10B981' }, { c: '#F59E0B' },
@@ -386,7 +387,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
                       />
                     );
                   })}
-                </g>
+                </motion.g>
               )}
             </AnimatePresence>
 
