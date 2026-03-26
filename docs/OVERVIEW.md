@@ -72,8 +72,8 @@ Main Menu → Tarjetas → Select Language → Select Level → Select Scenario 
 
 | Person | Role | Skills |
 | --- | --- | --- |
-| **Jakub Laskowski** | Game engine, Backend, Data | Fullstack (junior-mid) |
-| **Błażej** | UI/UX, Components, Animations | Fullstack (junior-mid) |
+| **Core Team** | Game engine, Backend, Data | Fullstack |
+| **Product Team** | UI/UX, Components, Animations | Fullstack |
 
 Both work together on: testing, deployment, README, demo preparation.
 
