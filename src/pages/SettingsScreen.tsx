@@ -114,7 +114,7 @@ export default function SettingsScreen() {
               disabled
               className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-white/40 text-pb-text-light opacity-50 cursor-not-allowed"
             >
-              🇮🇹 Italiano (Próximamente)
+              🇵🇱 Polaco(Próximamente)
             </button>
           </div>
         </Card>
