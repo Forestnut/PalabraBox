@@ -22,7 +22,6 @@ import {
 import { CSS } from '@dnd-kit/utilities'
 
 import type { Question } from '../../types'
-import { Card } from '../ui/Card'
 import { Button } from '../ui/Button'
 import { SortableItemUI } from './SortableItemUI'
 import { shuffleArray } from '../../utils/shuffle'
@@ -200,23 +199,17 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
     
     if (match) {
       return (
-        <div className="flex flex-col items-center w-full">
-          <span className="text-xs sm:text-sm font-semibold tracking-wider text-pb-text-light uppercase mb-2 sm:mb-3 text-center">
-            Traduce al inglés:
-          </span>
-          <span className="text-xl sm:text-2xl font-black text-pb-dark text-center leading-tight sm:leading-snug wrap-break-word w-full">
-            "{match[2]}"
+        <div className="flex flex-col items-start w-full">
+          <span className="text-xl sm:text-2xl font-black text-pb-dark leading-tight sm:leading-snug wrap-break-word w-full">
+            {match[2]}
           </span>
         </div>
       )
     }
     
     return (
-      <div className="flex flex-col items-center w-full">
-        <span className="text-xs sm:text-sm font-semibold tracking-wider text-pb-text-light uppercase mb-2 sm:mb-3 text-center">
-          Traduce al inglés:
-        </span>
-        <span className="text-lg sm:text-xl font-bold text-pb-dark text-center leading-tight sm:leading-snug wrap-break-word w-full">
+      <div className="flex flex-col items-start w-full">
+        <span className="text-lg sm:text-xl font-bold text-pb-dark leading-tight sm:leading-snug wrap-break-word w-full">
           {text}
         </span>
       </div>
@@ -231,19 +224,34 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >
-      <div className="flex flex-col gap-4 sm:gap-6 w-full max-w-2xl mx-auto h-full px-2 sm:px-4">
-        <Card className="p-4 sm:p-6 flex flex-col items-center justify-center relative min-h-56 sm:min-h-55 bg-slate-50/40 sm:mt-4 border-dashed border-[3px] sm:border-4 border-slate-200/80 shadow-sm">
-          <div className="w-full flex flex-col items-center mb-4 sm:mb-6 border-b-2 border-slate-200/60 pb-3 sm:pb-4">
-            {renderQuestionText()}
-            {question.hint && (
-              <span className="text-[10px] sm:text-xs font-bold text-pb-primary uppercase tracking-wider mt-3 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100/50 shadow-sm">
+      <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-2xl mx-auto h-full px-1 sm:px-4 flex-1">
+        
+        {/* QUESTION HEADER (outside dropzone like Duolingo) */}
+        <div className="w-full flex flex-col mb-1 sm:mb-2 pt-4 px-2">
+          <span className="text-sm sm:text-base font-bold text-slate-400 mb-1.5 sm:mb-2">
+            Traduce esta frase
+          </span>
+          {renderQuestionText()}
+          {question.hint && (
+            <div className="mt-3 flex justify-start w-full">
+              <span className="text-[12px] sm:text-sm font-bold text-pb-primary uppercase tracking-wider bg-indigo-50/80 px-3.5 py-1.5 rounded-xl border border-indigo-100/50 shadow-sm">
                 {question.hint}
               </span>
-            )}
+            </div>
+          )}
+        </div>
+
+        {/* DROP ZONE */}
+        <div className="w-full relative min-h-30 sm:min-h-35 flex flex-col justify-start mt-2">
+          {/* Decorative background lines to look like notebook */}
+          <div className="absolute inset-x-0 top-0 pointer-events-none flex flex-col gap-[3.8rem] sm:gap-[4.2rem] mt-12.5 sm:mt-15 px-2">
+            <div className="w-full border-b-2 border-slate-200"></div>
+            <div className="w-full border-b-2 border-slate-200"></div>
+            <div className="w-full border-b-2 border-slate-200 hidden sm:block"></div>
           </div>
 
           <SortableContext items={dropZone.map(d => d.id)} strategy={rectSortingStrategy}>
-            <div className="flex flex-wrap gap-2.5 sm:gap-3 w-full min-h-28 items-center justify-center content-start">
+            <div className="flex flex-wrap gap-2.5 sm:gap-3 w-full min-h-25 items-start justify-start content-start relative z-10 px-2 py-2">
               {dropZone.map((item) => (
                  <SortableWord 
                    key={item.id} 
@@ -251,18 +259,13 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
                    onClick={() => handleMoveToBank(item)} 
                  />
               ))}
-              {dropZone.length === 0 && (
-                 <span className="text-slate-400/80 font-bold uppercase tracking-widest text-[13px] sm:text-sm text-center px-4 w-full mt-4">
-                   Arrastra los bloques aquí
-                 </span>
-              )}
             </div>
           </SortableContext>
-        </Card>
+        </div>
 
         {/* BANK - Click to add to dropZone or Drag to move back */}
-        <div ref={setBankNodeRef} className="flex-1 flex flex-col justify-end gap-5 sm:gap-6 mb-2 sm:mb-4 mt-auto pt-4 sm:pt-6">
-          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 min-h-32 shadow-inner-none content-end">
+        <div ref={setBankNodeRef} className="flex-1 flex flex-col justify-end gap-5 sm:gap-6 mt-auto pt-2 pb-2">
+          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 min-h-35 content-center p-2 mb-2 sm:mb-0 border-t-2 border-slate-100 sm:border-0 pt-6 sm:pt-0">
             <AnimatePresence>
               {bank.map((item, i) => (
                 <motion.div 
