@@ -15,6 +15,9 @@ interface RangeSliderProps {
   icon: typeof faBell
 }
 
+/**
+ * Reusable labeled slider used for audio-related preference controls.
+ */
 function RangeSlider({ label, value, onChange, icon }: RangeSliderProps) {
   return (
     <div className="flex flex-col gap-3 w-full">
@@ -111,7 +114,7 @@ export default function SettingsScreen() {
               disabled
               className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-white/40 text-pb-text-light opacity-50 cursor-not-allowed"
             >
-              🇵🇱 Polaco (Próximamente)
+              🇮🇹 Italiano (Coming Soon)
             </button>
           </div>
         </Card>
@@ -123,8 +126,8 @@ export default function SettingsScreen() {
             PalabraBox <span className="text-xs font-normal text-pb-text-light">v1.0.0</span>
           </p>
           <p className="text-[11px] text-pb-text-light font-medium max-w-52 leading-relaxed">
-            Diseñado y desarrollado por <br/>
-            <span className="text-pb-amber font-bold">Jakub Laskowski</span> & <span className="text-pb-amber font-bold">Błażej Goliszek</span>
+            Designed and developed by <br/>
+            <span className="text-pb-amber font-bold">PalabraBox Team</span>
           </p>
         </div>
       </ScreenWrapper>
