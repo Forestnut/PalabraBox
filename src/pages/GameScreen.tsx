@@ -26,6 +26,7 @@ export default function GameScreen() {
     lives,
     maxLives,
     score,
+    scenarioLanguage,
   } = useGame(scenarioId)
   const { status } = useGameStore()
   const { playSound } = useAudio()
@@ -37,9 +38,9 @@ export default function GameScreen() {
 
   // Intermission State
   const [showIntermission, setShowIntermission] = useState(false)
-  const prevQuestionIndex = useRef<number>(-1)
-  const [streak, setStreak] = useState<number>(0)
+  const streakRef = useRef<number>(0)
   const [intermissionText, setIntermissionText] = useState('')
+  const [intermissionMood, setIntermissionMood] = useState<MascotMood>('idle')
 
   // Sleep timer logic
   useEffect(() => {
@@ -69,43 +70,11 @@ export default function GameScreen() {
     }
   }, [status, showIntermission, currentQuestionIndex])
 
-  useEffect(() => {
-    if (status === 'playing' && currentQuestionIndex !== prevQuestionIndex.current) {
-      if (currentQuestionIndex > 0 && currentQuestion) {
-        
-        let text = '¡Prepárate para la siguiente tarea!'
-        
-        if (streak > 0 && streak % 3 === 0) {
-          text = '¡Batiendo récords! ¡Sigue así!'
-        } else {
-          const typePhrases: Record<string, string> = {
-            'listening': '¡Ahora vamos a comprobar tu oído!',
-            'multiple_choice': '¡Elige la respuesta correcta!',
-            'image_match': '¡Empareja la respuesta!',
-            'word_order': '¡Ordena las palabras correctamente!',
-            'fill_blank': '¡Rellena la palabra que falta!'
-          }
-          if (typePhrases[currentQuestion.type]) {
-            text = typePhrases[currentQuestion.type]
-          }
-        }
-
-        setTimeout(() => {
-          setIntermissionText(text)
-          setShowIntermission(true)
-        }, 0)
-        
-        prevQuestionIndex.current = currentQuestionIndex
-      } else {
-        prevQuestionIndex.current = currentQuestionIndex
-      }
-    }
-  }, [currentQuestionIndex, status, currentQuestion, streak])
-
+  // Intermission logic is now handled in onAnswered to ensure it batches with goToNext() and prevents the next question from briefly mounting
   const handlePlaySound = useCallback((type: 'click' | 'correct' | 'wrong') => {
     playSound(type)
     if (type === 'correct') {
-      setStreak(s => s + 1)
+      streakRef.current += 1
       setBoxiMood('happy')
       setBoxiMessage('¡Genial!')
       if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
@@ -114,7 +83,7 @@ export default function GameScreen() {
         setBoxiMessage(null)
       }, 1500)
     } else if (type === 'wrong') {
-      setStreak(0)
+      streakRef.current = 0
       setBoxiMood('wrong')
       setBoxiMessage('¡Ups!')
       if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
@@ -166,7 +135,7 @@ export default function GameScreen() {
     return (
       <PageTransition>
         <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
-          <Mascot mood={streak > 0 && streak % 3 === 0 ? "celebrate" : "idle"} size="xl" />
+          <Mascot mood={intermissionMood} size="xl" />
           <h2 className="text-2xl sm:text-3xl font-black text-center text-pb-dark mb-4 mt-8 px-4 leading-tight">
             {intermissionText}
           </h2>
@@ -176,7 +145,7 @@ export default function GameScreen() {
             onClick={() => setShowIntermission(false)}
             className="mt-8 px-8 py-3 bg-linear-to-b from-[#FFB347] to-pb-amber text-white font-bold rounded-2xl shadow-[0_4px_0_#c97a1a] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
           >
-            Continuar
+            Kontynuuj
           </button>
         </ScreenWrapper>
       </PageTransition>
@@ -188,11 +157,9 @@ export default function GameScreen() {
   return (
     <PageTransition>
       <ScreenWrapper>
-        {/* HUD Bar */}
         <div className="flex items-center justify-between mb-3 mt-3 px-1 gap-3">
           <BackButton fallbackUrl="/scenarios" />
 
-          {/* Mascot centered */}
           <div className="flex-1 flex justify-center items-end min-h-16 relative z-20 pointer-events-none">
             <div className="md:hidden pointer-events-auto origin-bottom transform hover:scale-110 transition-transform">
               <Mascot mood={boxiMood} size="sm" message={boxiMessage} />
@@ -242,8 +209,39 @@ export default function GameScreen() {
           <QuestionRenderer
             key={currentQuestion.id}
             question={currentQuestion}
+            scenarioLanguage={scenarioLanguage}
             onAnswered={(isCorrect) => {
               handleAnswer(isCorrect)
+              
+              const nextLives = isCorrect ? lives : lives - 1
+              if (currentQuestionIndex + 1 < questions.length && nextLives > 0) {
+                let text = 'Przygotuj się na kolejne zadanie!'
+                let moodToSet: MascotMood = 'idle'
+                
+                // 1. Sprawdź streak (which was already updated by handlePlaySound)
+                if (streakRef.current > 0 && streakRef.current % 3 === 0) {
+                  text = 'Idziesz jak burza! Tak trzymaj!'
+                  moodToSet = 'celebrate'
+                } else {
+                  // 2. Jeśli nie streak, daj powiązane zadanie na podstawie TYPU NASTĘPNEGO PYTANIA
+                  const nextQ = questions[currentQuestionIndex + 1]
+                  const typePhrases: Record<string, string> = {
+                    'listening': 'Teraz pora sprawdzić twój słuch!',
+                    'multiple_choice': 'Wybierz poprawną odpowiedź!',
+                    'image_match': 'Dopasuj odpowiedź!',
+                    'word_order': 'Ułóż słowa w poprawnej kolejności!',
+                    'fill_blank': 'Uzupełnij brakujące słowo!'
+                  }
+                  if (nextQ && typePhrases[nextQ.type]) {
+                    text = typePhrases[nextQ.type]
+                  }
+                }
+                
+                setIntermissionText(text)
+                setIntermissionMood(moodToSet)
+                setShowIntermission(true)
+              }
+              
               goToNext()
             }}
             onPlaySound={handlePlaySound}
