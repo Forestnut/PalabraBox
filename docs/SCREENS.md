@@ -372,7 +372,7 @@
 │                              │
 │   IDIOMA DE LA APP           │
 │   🇪🇸 Español        ✅     │
-│   🇮🇹 Italiano    Coming Soon │
+│   🇵🇱 Polish      Coming Soon │
 │                              │
 │   SONIDO                     │
 │   Efectos de sonido          │
@@ -395,7 +395,7 @@
 
 **Sections:**
 
-1. **Idioma de la app**: Spanish active (✅), Italian grayed out with "Coming Soon"
+1. **Idioma de la app**: Spanish active (✅), Polish grayed out with "Coming Soon"
 2. **Efectos de sonido**: Volume slider 0–100% → controls Howler.js sounds
 3. **Volumen TTS**: Slider 0–100% → controls speech volume (0% = disabled)
 4. **Velocidad TTS**: 3-position slider: Lento (0.6) / Normal (0.9) / Rápido (1.2)
