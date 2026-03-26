@@ -13,7 +13,7 @@ import type { LearningLanguage } from '../store/settingsStore'
 
 const languages: Array<{ key: LearningLanguage | 'italian'; label: string; emoji: string; disabled?: boolean }> = [
   { key: 'english', label: 'Inglés', emoji: '🇺🇸' },
-  { key: 'italian', label: 'Italiano (Coming Soon)', emoji: '🇮🇹', disabled: true },
+  { key: 'italian', label: 'Italiano (Próximamente)', emoji: '🇮🇹', disabled: true },
 ]
 
 export default function LanguageSelect() {
