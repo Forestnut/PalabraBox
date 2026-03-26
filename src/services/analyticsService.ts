@@ -24,7 +24,7 @@ class AnalyticsService {
   }
 
   /**
-   * Zapisuje wynik odpowiedzi na podstawie klucza (np. słowa lub frazy)
+    * Stores answer results keyed by a normalized token (for example a word or phrase).
    */
   logAnswer(wordKey: string, isCorrect: boolean): void {
     const map = this.getStatsMap();
@@ -44,14 +44,14 @@ class AnalyticsService {
   }
 
   /**
-   * Zwraca statystyki wszystkich słów, opcjonalnie posortowane od najgorszych do najlepszych
+   * Returns tracked word statistics sorted from weakest to strongest performance.
    */
   getWorstWordsStats(): WordStats[] {
     const map = this.getStatsMap();
     const stats = Object.values(map);
 
-    // Sortowanie: najpierw te z najmniejszą celnością (correct / total)
-    // Jeśli total jest małe, też mogą mieć priorytet
+    // Prioritize lower accuracy first (correct / total).
+    // For ties, prioritize words with more incorrect attempts.
     return stats.sort((a, b) => {
       const totalA = a.correct + a.incorrect;
       const totalB = b.correct + b.incorrect;
@@ -59,12 +59,10 @@ class AnalyticsService {
       const ratioA = totalA > 0 ? a.correct / totalA : 0;
       const ratioB = totalB > 0 ? b.correct / totalB : 0;
 
-      // Im mniejszy stosunek poprawnych odpowiedzi, tym wyżej na liście (najgorsze słowa)
       if (ratioA !== ratioB) {
         return ratioA - ratioB;
       }
       
-      // Jeśli ratio jest równe, wybieramy te, gdzie było więcej błędów (lub ogólnie więcej prób jako potwierdzone słabe)
       return b.incorrect - a.incorrect;
     });
   }

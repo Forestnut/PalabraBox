@@ -12,6 +12,9 @@ interface WordsCache {
   data: Word[];
 }
 
+/**
+ * Provides cached and personalized word collections for flashcards and exercises.
+ */
 export function useWords(category?: string) {
   const [words, setWords] = useState<Word[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -155,11 +158,11 @@ export function useWords(category?: string) {
       const ratioB = statB ? (statB.correct / (statB.correct + statB.incorrect)) : 0.5;
 
       if (ratioA !== ratioB) {
-        return ratioA - ratioB; // Mniejsze ratio win -> idzie wyżej
+        return ratioA - ratioB; // Lower ratio means weaker performance, so it gets higher priority.
       }
 
       if (statA && statB) {
-        return statB.incorrect - statA.incorrect; // Więcej wpadek win -> wyżej
+        return statB.incorrect - statA.incorrect; // More mistakes should be reviewed first.
       }
 
       // Preserve the shuffled order if stats are identical
