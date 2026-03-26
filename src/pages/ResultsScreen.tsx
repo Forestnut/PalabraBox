@@ -91,7 +91,7 @@ export default function ResultsScreen() {
 
   return (
     <PageTransition className="bg-pb-bg overflow-x-hidden">
-      <ScreenWrapper className="flex flex-col items-center justify-between py-4 sm:py-10 min-h-dvh max-h-dvh">
+      <ScreenWrapper className="flex flex-col items-center justify-between py-4 sm:py-10 no-scrollbar">
         
         {/* Hero section */}
         <div className="flex flex-col items-center gap-1 sm:gap-2 text-center mt-2 grow justify-center">
