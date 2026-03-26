@@ -93,7 +93,7 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: Props
                 ? 'bg-[#d7ffb8] border-2 border-b-4 border-[#58cc02] text-[#58cc02] scale-105'
                 : answered
                   ? 'bg-slate-100 border-2 border-slate-200 text-slate-400 opacity-50'
-                  : 'bg-white border-2 border-b-4 border-slate-200 text-pb-dark hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] cursor-pointer',
+                  : 'bg-white border-2 border-b-4 border-slate-200 text-pb-dark hover:bg-slate-50 active:border-b-2 active:translate-y-0.5 cursor-pointer',
             )}
           >
             {word}
