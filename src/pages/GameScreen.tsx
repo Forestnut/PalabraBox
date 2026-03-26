@@ -13,6 +13,9 @@ import { useAudio } from '../hooks/useAudio'
 import { useGameStore } from '../store/gameStore'
 import { QuestionRenderer } from '../components/questions/QuestionRenderer'
 
+/**
+ * Main gameplay screen that renders one question at a time and controls intermission prompts.
+ */
 export default function GameScreen() {
   const { scenarioId } = useParams<{ scenarioId: string }>()
   const {
@@ -41,6 +44,14 @@ export default function GameScreen() {
   const streakRef = useRef<number>(0)
   const [intermissionText, setIntermissionText] = useState('')
   const [intermissionMood, setIntermissionMood] = useState<MascotMood>('idle')
+
+  const typePhrases: Record<string, string> = {
+    listening: 'Now let us test your listening skills!',
+    multiple_choice: 'Pick the correct answer!',
+    image_match: 'Match the right answer!',
+    word_order: 'Arrange the words in the correct order!',
+    fill_blank: 'Fill in the missing word!',
+  }
 
   // Sleep timer logic
   useEffect(() => {
@@ -145,7 +156,7 @@ export default function GameScreen() {
             onClick={() => setShowIntermission(false)}
             className="mt-8 px-8 py-3 bg-linear-to-b from-[#FFB347] to-pb-amber text-white font-bold rounded-2xl shadow-[0_4px_0_#c97a1a] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
           >
-            Kontynuuj
+            Continue
           </button>
         </ScreenWrapper>
       </PageTransition>
@@ -215,23 +226,16 @@ export default function GameScreen() {
               
               const nextLives = isCorrect ? lives : lives - 1
               if (currentQuestionIndex + 1 < questions.length && nextLives > 0) {
-                let text = 'Przygotuj się na kolejne zadanie!'
+                let text = 'Get ready for the next challenge!'
                 let moodToSet: MascotMood = 'idle'
                 
-                // 1. Sprawdź streak (which was already updated by handlePlaySound)
+                // Check streak first (already updated by handlePlaySound).
                 if (streakRef.current > 0 && streakRef.current % 3 === 0) {
-                  text = 'Idziesz jak burza! Tak trzymaj!'
+                  text = 'You are on fire! Keep going!'
                   moodToSet = 'celebrate'
                 } else {
-                  // 2. Jeśli nie streak, daj powiązane zadanie na podstawie TYPU NASTĘPNEGO PYTANIA
+                  // If no streak milestone, show a hint based on the next question type.
                   const nextQ = questions[currentQuestionIndex + 1]
-                  const typePhrases: Record<string, string> = {
-                    'listening': 'Teraz pora sprawdzić twój słuch!',
-                    'multiple_choice': 'Wybierz poprawną odpowiedź!',
-                    'image_match': 'Dopasuj odpowiedź!',
-                    'word_order': 'Ułóż słowa w poprawnej kolejności!',
-                    'fill_blank': 'Uzupełnij brakujące słowo!'
-                  }
                   if (nextQ && typePhrases[nextQ.type]) {
                     text = typePhrases[nextQ.type]
                   }
