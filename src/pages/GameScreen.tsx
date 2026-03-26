@@ -63,7 +63,6 @@ export default function GameScreen() {
       
       sleepTimeoutRef.current = window.setTimeout(() => {
         setBoxiMood('sleeping')
-        setBoxiMessage('Zzz...')
       }, 15000)
     }
 
