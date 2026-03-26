@@ -51,6 +51,15 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   letter-spacing: -0.01em;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input, textarea {
+  user-select: auto;
+  -webkit-user-select: auto;
+  -webkit-touch-callout: default;
 }
 
 #root {

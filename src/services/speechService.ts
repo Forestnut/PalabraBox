@@ -38,17 +38,28 @@ class SpeechService {
    * @param lang Optional language code (e.g. 'en-US', 'es-ES')
    * @param rate Speech rate (default 1)
    * @param pitch Speech pitch (default 1)
+   * @param onEnd Optional callback when speech finishes
    */
-  public speak(text: string, lang?: string, rate: number = 1, pitch: number = 1): void {
+  public speak(
+    text: string, 
+    lang?: string, 
+    rate: number = 1, 
+    pitch: number = 1,
+    onEnd?: () => void
+  ): void {
     if (!this.synth) {
       console.warn('SpeechSynthesis not initialized or supported.');
+      if (onEnd) onEnd();
       return;
     }
 
     // Cancel any ongoing speech
     this.synth.cancel();
 
-    if (!text.trim()) return;
+    if (!text.trim()) {
+      if (onEnd) onEnd();
+      return;
+    }
 
     const utterance = new SpeechSynthesisUtterance(text);
     
@@ -64,6 +75,11 @@ class SpeechService {
 
     utterance.rate = rate;
     utterance.pitch = pitch;
+
+    if (onEnd) {
+      utterance.onend = onEnd;
+      utterance.onerror = onEnd; // fallback just in case
+    }
 
     this.synth.speak(utterance);
   }

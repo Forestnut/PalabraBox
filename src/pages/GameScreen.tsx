@@ -229,15 +229,35 @@ export default function GameScreen() {
                 let text = '¡Prepárate para el siguiente reto!'
                 let moodToSet: MascotMood = 'idle'
                 
-                // Check streak first (already updated by handlePlaySound).
-                if (streakRef.current > 0 && streakRef.current % 3 === 0) {
-                  text = '¡Vas con todo! ¡Sigue así!'
-                  moodToSet = 'celebrate'
-                } else {
-                  // If no streak milestone, show a hint based on the next question type.
-                  const nextQ = questions[currentQuestionIndex + 1]
-                  if (nextQ && typePhrases[nextQ.type]) {
+                const currentStreak = streakRef.current
+                const nextQ = questions[currentQuestionIndex + 1]
+                const currQ = questions[currentQuestionIndex]
+                
+                if (isCorrect) {
+                  moodToSet = 'happy'
+                  if (currentStreak > 0 && currentStreak % 3 === 0) {
+                    text = '¡Vas con todo! ¡Sigue así!'
+                    moodToSet = 'celebrate'
+                  } else if (nextQ?.type === 'listening') {
+                    text = '¡Excelente! Ahora afina tu oído para el siguiente.'
+                  } else if (currQ.type === 'listening') {
+                    text = '¡Tienes muy buen oído! Sigamos.'
+                  } else if (nextQ && typePhrases[nextQ.type]) {
                     text = typePhrases[nextQ.type]
+                  } else {
+                    const praises = ['¡Muy bien!', '¡Perfecto!', '¡Sigue así!', '¡Excelente!']
+                    text = praises[Math.floor(Math.random() * praises.length)] + (nextQ && typePhrases[nextQ.type] ? ' ' + typePhrases[nextQ.type] : '')
+                  }
+                } else {
+                  moodToSet = 'sad'
+                  if (currQ.type === 'listening') {
+                    text = 'Tranquilo, la escucha puede ser difícil. ¡Inténtalo de nuevo!'
+                  } else if (nextQ?.type === 'listening') {
+                    text = 'No te desanimes. Vamos a probar con un reto de escuchar.'
+                  } else if (nextQ && typePhrases[nextQ.type]) {
+                    text = '¡No pasa nada! ' + typePhrases[nextQ.type]
+                  } else {
+                    text = '¡Ups! Sigue intentándolo.'
                   }
                 }
                 
