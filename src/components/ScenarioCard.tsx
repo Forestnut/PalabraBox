@@ -24,8 +24,8 @@ export function ScenarioCard({ scenario, onClick }: Props) {
     >
       {/* Locked overlay */}
       {isLocked && (
-        <div className="absolute inset-0 flex items-center justify-center rounded-2xl z-10">
-          <FontAwesomeIcon icon={faLock} className="text-3xl text-pb-text-light/40" />
+        <div className="absolute inset-0 bg-pb-bg/30 backdrop-blur-[1px] flex items-center justify-center rounded-2xl z-10">
+          <FontAwesomeIcon icon={faLock} className="text-3xl text-pb-text-light/40 drop-shadow-sm" />
         </div>
       )}
 
@@ -46,10 +46,10 @@ export function ScenarioCard({ scenario, onClick }: Props) {
       </div>
 
       <span className={cn(
-        "text-5xl sm:text-6xl mb-1 sm:mb-3 mt-4 transition-transform duration-300",
-        !isLocked && "group-hover:scale-110 group-hover:-rotate-3"
+        "text-5xl sm:text-6xl mb-2 sm:mb-3 mt-4 transition-transform duration-300 relative z-20",
+        !isLocked && "group-hover:scale-110 group-hover:-rotate-6 drop-shadow-sm"
       )}>
-        {emoji}
+        {isLocked ? "🔒" : emoji}
       </span>
       <h2 className="text-xs sm:text-sm font-black text-pb-dark leading-tight relative z-20 mt-1 line-clamp-2">{title_display}</h2>
       {description && <p className="text-[10px] sm:text-xs text-pb-text-light font-medium mt-1 relative z-20 px-1 line-clamp-2 hidden sm:block">{description}</p>}
