@@ -170,15 +170,21 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
     
     if (isCorrect) {
       const ttsLang = scenarioLanguage === 'english' ? 'en-US' : 'es-ES'
-      speechService.speak(question.question_text_tts || currentSentence, ttsLang)
+      speechService.speak(question.question_text_tts || currentSentence, ttsLang, 1, 1, () => {
+        // Wait for speech to complete
+        setTimeout(() => {
+          onAnswer(isCorrect)
+          setIsChecking(false)
+        }, 500)
+      })
+      onPlaySound?.('correct')
+    } else {
+      onPlaySound?.('wrong')
+      setTimeout(() => {
+        onAnswer(isCorrect)
+        setIsChecking(false)
+      }, 1500)
     }
-
-    onPlaySound?.(isCorrect ? 'correct' : 'wrong')
-    
-    setTimeout(() => {
-      onAnswer(isCorrect)
-      setIsChecking(false)
-    }, 1500)
   }
 
   const activeWordObj = useMemo(

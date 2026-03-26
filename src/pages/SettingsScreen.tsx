@@ -106,15 +106,17 @@ export default function SettingsScreen() {
           
           <div className="grid grid-cols-2 gap-2 mt-1">
             <button
-              className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-linear-to-b from-[#FFB347] to-pb-amber text-white shadow-[0_3px_0_0_#c97a1a] scale-105"
+              className="py-3 px-2 flex items-center justify-center gap-2 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-linear-to-b from-[#FFB347] to-pb-amber text-white shadow-[0_3px_0_0_#c97a1a] scale-105"
             >
-              🇪🇸 Español
+              <img src="https://flagcdn.com/es.svg" alt="Español" className="w-5 h-5 rounded-sm object-cover" loading="lazy" />
+              Español
             </button>
             <button
               disabled
-              className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-white/40 text-pb-text-light opacity-50 cursor-not-allowed"
+              className="py-3 px-2 flex items-center justify-center gap-2 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-white/40 text-pb-text-light opacity-50 cursor-not-allowed"
             >
-              🇵🇱 Polaco(Próximamente)
+              <img src="https://flagcdn.com/pl.svg" alt="Polaco" className="w-5 h-5 rounded-sm object-cover" loading="lazy" />
+              Polaco
             </button>
           </div>
         </Card>
