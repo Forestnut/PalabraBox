@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faLayerGroup, faGear, faFire, faBolt } from '@fortawesome/free-solid-svg-icons'
 import { PageTransition } from '../components/layout/PageTransition'
-import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import { Mascot } from '../components/ui/Mascot'
@@ -32,8 +31,11 @@ export default function MainMenu() {
   const progressText = loading ? '...' : `${completed} / ${total}`
 
   return (
-    <PageTransition className="bg-pb-bg text-pb-dark relative">
-      <ScreenWrapper className="flex flex-col items-center gap-5 pt-10">
+    <PageTransition className="bg-pb-bg text-pb-dark relative overflow-y-auto h-dvh">
+      <div
+        className="max-w-lg mx-auto sm:px-6 px-5 w-full flex flex-col items-center gap-5 pt-10 no-scrollbar pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(2.5rem,env(safe-area-inset-top))]"
+        style={{ minHeight: '100%' }}
+      >
 
         {/* Settings button */}
         <motion.button
@@ -74,6 +76,25 @@ export default function MainMenu() {
           </Button>
         </div>
 
+        {/* Arrabal Sponsor Badge */}
+        <a
+          href="https://www.asociacionarrabal.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col items-center gap-1.5 mt-1 opacity-75 hover:opacity-100 transition-opacity duration-200"
+          aria-label="Asociación Arrabal"
+        >
+          <span className="text-[10px] font-bold text-pb-text-light uppercase tracking-widest">
+            Con el apoyo de
+          </span>
+          <img
+            src="/ArrabalLogo.png"
+            alt="Asociación Arrabal"
+            className="h-9 sm:h-10 w-auto object-contain"
+            loading="lazy"
+          />
+        </a>
+
         {/* Progress Card */}
         <Card className="w-full mt-1 border-2 border-b-4 border-slate-200/60 bg-white p-5">
           <div className="flex items-center justify-between mb-4">
@@ -110,7 +131,7 @@ export default function MainMenu() {
             </div>
           </div>
         </Card>
-      </ScreenWrapper>
+      </div>
     </PageTransition>
   )
 }
