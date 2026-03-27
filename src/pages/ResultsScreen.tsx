@@ -6,12 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faBolt, faHeart, faRotateRight, faHouse } from '@fortawesome/free-solid-svg-icons'
 
 import { PageTransition } from '../components/layout/PageTransition'
-import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import { Mascot } from '../components/ui/Mascot'
 import { useGameStore } from '../store/gameStore'
 import { useQuickProgress } from '../hooks/useQuickProgress'
+import { useAudio } from '../hooks/useAudio'
 
 export default function ResultsScreen() {
   const navigate = useNavigate()
@@ -25,6 +25,7 @@ export default function ResultsScreen() {
   
   const { score, lives, maxLives } = results
   const { progress } = useQuickProgress()
+  const { playSound } = useAudio()
   const [stars, setStars] = useState(0)
 
   const isSuccess = lives > 0
@@ -42,6 +43,9 @@ export default function ResultsScreen() {
 
     const timer = setTimeout(() => {
       setStars(earnedStars)
+
+      // Play result sound effect
+      playSound(isSuccess ? 'correct' : 'wrong')
       
       if (isSuccess) {
         const duration = 2500
@@ -77,7 +81,7 @@ export default function ResultsScreen() {
         clearInterval(intervalId)
       }
     }
-  }, [earnedStars, isSuccess])
+  }, [earnedStars, isSuccess, playSound])
 
   const handleMenu = () => {
     store.resetGame()
@@ -90,8 +94,11 @@ export default function ResultsScreen() {
   }
 
   return (
-    <PageTransition className="bg-pb-bg overflow-x-hidden">
-      <ScreenWrapper className="flex flex-col items-center justify-between py-4 sm:py-10 no-scrollbar">
+    <PageTransition className="bg-pb-bg overflow-x-hidden overflow-y-auto h-dvh">
+      <div
+        className="max-w-lg mx-auto sm:px-6 px-5 w-full flex flex-col items-center justify-between py-4 sm:py-10 no-scrollbar"
+        style={{ minHeight: '100%' }}
+      >
         
         {/* Hero section */}
         <div className="flex flex-col items-center gap-1 sm:gap-2 text-center mt-2 grow justify-center">
@@ -194,7 +201,7 @@ export default function ResultsScreen() {
             Volver al inicio
           </Button>
         </div>
-      </ScreenWrapper>
+      </div>
     </PageTransition>
   )
 }
