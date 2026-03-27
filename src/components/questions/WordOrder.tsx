@@ -224,7 +224,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >
-      <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-2xl mx-auto h-full px-1 sm:px-4 flex-1">
+      <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-2xl mx-auto h-full px-1 sm:px-4 flex-1 no-scrollbar overflow-hidden">
         
         {/* QUESTION HEADER (outside dropzone like Duolingo) */}
         <div className="w-full flex flex-col mb-1 sm:mb-2 pt-4 px-2">
@@ -264,8 +264,8 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
         </div>
 
         {/* BANK - Click to add to dropZone or Drag to move back */}
-        <div ref={setBankNodeRef} className="flex-1 flex flex-col justify-end gap-5 sm:gap-6 mt-auto pt-2 pb-2">
-          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 min-h-35 content-center p-2 mb-2 sm:mb-0 border-t-2 border-slate-100 sm:border-0 pt-6 sm:pt-0">
+        <div ref={setBankNodeRef} className="flex flex-col gap-3 sm:gap-4 mt-2 pb-2">
+          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 min-h-24 content-center p-2 border-t-2 border-slate-100 pt-4">
             <AnimatePresence>
               {bank.map((item, i) => (
                 <motion.div 
@@ -289,7 +289,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
             size="lg" 
             disabled={isChecking || dropZone.length === 0} 
             onClick={handleCheck}
-            className="w-full mt-2 sm:mt-4 shadow-sm hover:shadow-md transition-shadow"
+            className="w-full shadow-sm hover:shadow-md transition-shadow"
           >
             COMPROBAR
           </Button>
