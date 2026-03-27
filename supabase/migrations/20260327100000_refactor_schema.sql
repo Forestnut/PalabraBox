@@ -16,17 +16,26 @@ CREATE TABLE IF NOT EXISTS public.word_translations (
   UNIQUE(word_id, language)
 );
 
--- Przepisanie danych słówek (zakładamy, że base_key to angielskie słowo)
+-- Przepisanie danych slówek (zakladamy, ze base_key to angielskie slowo)
 INSERT INTO public.words_new (id, base_key, category, level)
-SELECT id, word, category, level FROM public.words;
+SELECT id, word, category, level FROM (
+    SELECT id, word, category, level,
+           ROW_NUMBER() OVER(PARTITION BY word ORDER BY id) as rn
+    FROM public.words
+) sub WHERE rn = 1;
 
 -- Angielskie tlumaczenie
 INSERT INTO public.word_translations (word_id, language, text, audio_text)
-SELECT id, 'en', word, audio_text FROM public.words;
+SELECT DISTINCT ON (wn.id) wn.id, 'en', w.word, w.audio_text 
+FROM public.words w
+JOIN public.words_new wn ON w.word = wn.base_key;
 
 -- Hiszpańskie tlumaczenie
 INSERT INTO public.word_translations (word_id, language, text, audio_text)
-SELECT id, 'es', translation_es, NULL FROM public.words WHERE translation_es IS NOT NULL;
+SELECT DISTINCT ON (wn.id) wn.id, 'es', w.translation_es, NULL 
+FROM public.words w
+JOIN public.words_new wn ON w.word = wn.base_key
+WHERE w.translation_es IS NOT NULL;
 
 
 -- 2. USUNIĘCIE DUPLIKACJI SCENARIUSZY

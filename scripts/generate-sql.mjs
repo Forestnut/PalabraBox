@@ -42,30 +42,28 @@ function processBlock(blockFile, sortStart) {
 
     // 3. Insert words and translations
     scenario.words.forEach(word => {
-      const wordId = generateUUID(`word_${word.base_key}`);
       
-      sql += `INSERT INTO public.words (id, base_key, category, level)\n`;
-      sql += `VALUES ('${wordId}', '${escapeSql(word.base_key)}', '${scenario.category}', '${scenario.level}')\n`;
-      sql += `ON CONFLICT (id) DO NOTHING;\n\n`;
-      // We don't have conflict on base_key unless explicitly specified, let's assume we conflict on ID or just DO NOTHING on ID.
-      // Wait, docs say "ON CONFLICT (base_key) DO NOTHING". But we don't know if base_key has unique constraint. I'll rely on ID constraint since it's deterministic.
+      // Upsert word without hardcoded ID so it merges with existing base_key and gets the DB ID
+      sql += `INSERT INTO public.words (base_key, category, level)\n`;
+      sql += `VALUES ('${escapeSql(word.base_key)}', '${scenario.category}', '${scenario.level}')\n`;
+      sql += `ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;\n\n`;
 
       // English
       if (word.en) {
-        const transIdEn = generateUUID(`word_trans_${wordId}_en`);
-        sql += `INSERT INTO public.word_translations (id, word_id, language, text, audio_text)\n`;
-        sql += `VALUES ('${transIdEn}', '${wordId}', 'en', '${escapeSql(word.en)}', '${escapeSql(word.en)}')\n`;
+        sql += `INSERT INTO public.word_translations (word_id, language, text, audio_text)\n`;
+        sql += `VALUES ((SELECT id FROM public.words WHERE base_key = '${escapeSql(word.base_key)}'), 'en', '${escapeSql(word.en)}', '${escapeSql(word.en)}')\n`;
         sql += `ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;\n\n`;
       }
       
       // Spanish
       if (word.es) {
-        const transIdEs = generateUUID(`word_trans_${wordId}_es`);
-        sql += `INSERT INTO public.word_translations (id, word_id, language, text, audio_text)\n`;
-        sql += `VALUES ('${transIdEs}', '${wordId}', 'es', '${escapeSql(word.es)}', '${escapeSql(word.es)}')\n`;
+        sql += `INSERT INTO public.word_translations (word_id, language, text, audio_text)\n`;
+        sql += `VALUES ((SELECT id FROM public.words WHERE base_key = '${escapeSql(word.base_key)}'), 'es', '${escapeSql(word.es)}', '${escapeSql(word.es)}')\n`;
         sql += `ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;\n\n`;
       }
     });
+
+
 
     // 4. Insert questions
     scenario.questions.forEach((question, qIdx) => {
