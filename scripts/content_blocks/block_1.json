@@ -1,0 +1,1510 @@
+[
+  {
+    "title": {
+      "en": "Basics",
+      "es": "Básicos"
+    },
+    "description": {
+      "en": "Learn essential greetings and polite words.",
+      "es": "Aprende saludos esenciales y palabras de cortesía."
+    },
+    "category": "basics",
+    "level": "beginner",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "hello",
+        "en": "hello",
+        "es": "hola"
+      },
+      {
+        "base_key": "yes",
+        "en": "yes",
+        "es": "sí"
+      },
+      {
+        "base_key": "no",
+        "en": "no",
+        "es": "no"
+      },
+      {
+        "base_key": "please",
+        "en": "please",
+        "es": "por favor"
+      },
+      {
+        "base_key": "thanks",
+        "en": "thanks",
+        "es": "gracias"
+      },
+      {
+        "base_key": "sorry",
+        "en": "sorry",
+        "es": "lo siento"
+      },
+      {
+        "base_key": "goodbye",
+        "en": "goodbye",
+        "es": "adiós"
+      },
+      {
+        "base_key": "and",
+        "en": "and",
+        "es": "y"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say 'hello'?",
+          "es": "¿Cómo se dice 'hello'?"
+        },
+        "data": {
+          "correct": "hola",
+          "options": [
+            "adiós",
+            "hola",
+            "gracias"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Translate: 'please and thanks'",
+          "es": "Traduce: 'please and thanks'"
+        },
+        "data": {
+          "correct": "por favor y gracias",
+          "options": [
+            "sí y no",
+            "hola y adiós",
+            "por favor y gracias"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen and select the correct meaning.",
+          "es": "Escucha y selecciona el significado correcto."
+        },
+        "data": {
+          "correct": "sorry",
+          "audio_text": "lo siento"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank for 'yes'",
+          "es": "Completa el espacio"
+        },
+        "data": {
+          "correct": "sí",
+          "text_before": "",
+          "text_after": ", gracias"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank for 'no'",
+          "es": "Completa el espacio para 'no'"
+        },
+        "data": {
+          "correct": "no",
+          "text_before": "Oh, ",
+          "text_after": ", lo siento"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'hello'",
+          "es": "Completa con 'hello'"
+        },
+        "data": {
+          "correct": "hola",
+          "text_before": "¡",
+          "text_after": "!"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'thanks'",
+          "es": "Completa con 'thanks'"
+        },
+        "data": {
+          "correct": "gracias",
+          "text_before": "Sí, ",
+          "text_after": "!"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'please'",
+          "es": "Completa el espacio para 'please'"
+        },
+        "data": {
+          "correct": "por favor",
+          "text_before": "Un café, ",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'goodbye'",
+          "es": "Completa el espacio para 'goodbye'"
+        },
+        "data": {
+          "correct": "adiós",
+          "text_before": "Bueno, ",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'Hello, yes please.'",
+          "es": "Construye: 'Hello, yes please.'"
+        },
+        "data": {
+          "correct": [
+            "hola",
+            "sí",
+            "por favor"
+          ],
+          "words": [
+            "hola",
+            "sí",
+            "por favor",
+            "no",
+            "gracias"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'No, thanks.'",
+          "es": "Construye: 'No, thanks.'"
+        },
+        "data": {
+          "correct": [
+            "no",
+            "gracias"
+          ],
+          "words": [
+            "no",
+            "gracias",
+            "sí",
+            "hola"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'Sorry, goodbye.'",
+          "es": "Construye: 'Sorry, goodbye.'"
+        },
+        "data": {
+          "correct": [
+            "lo siento",
+            "adiós"
+          ],
+          "words": [
+            "lo siento",
+            "adiós",
+            "por favor",
+            "hola"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'Yes and no.'",
+          "es": "Construye: 'Yes and no.'"
+        },
+        "data": {
+          "correct": [
+            "sí",
+            "y",
+            "no"
+          ],
+          "words": [
+            "sí",
+            "y",
+            "no",
+            "hola",
+            "gracias"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'Hello and goodbye.'",
+          "es": "Construye: 'Hello and goodbye.'"
+        },
+        "data": {
+          "correct": [
+            "hola",
+            "y",
+            "adiós"
+          ],
+          "words": [
+            "hola",
+            "y",
+            "adiós",
+            "por favor",
+            "sí"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'Please, thanks.'",
+          "es": "Construye: 'Please, thanks.'"
+        },
+        "data": {
+          "correct": [
+            "por favor",
+            "gracias"
+          ],
+          "words": [
+            "por favor",
+            "gracias",
+            "lo siento",
+            "no"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": {
+      "en": "To Be + Pronouns",
+      "es": "Ser/Estar + Pronombres"
+    },
+    "description": {
+      "en": "Learn basic pronouns and the verb 'to be'.",
+      "es": "Aprende pronombres básicos y el verbo 'ser/estar'."
+    },
+    "category": "grammar",
+    "level": "beginner",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "I",
+        "en": "I",
+        "es": "yo"
+      },
+      {
+        "base_key": "you",
+        "en": "you",
+        "es": "tú"
+      },
+      {
+        "base_key": "he",
+        "en": "he",
+        "es": "él"
+      },
+      {
+        "base_key": "she",
+        "en": "she",
+        "es": "ella"
+      },
+      {
+        "base_key": "am",
+        "en": "am (estar)",
+        "es": "estoy"
+      },
+      {
+        "base_key": "is",
+        "en": "is (estar)",
+        "es": "está"
+      },
+      {
+        "base_key": "are",
+        "en": "are (estar)",
+        "es": "estás"
+      },
+      {
+        "base_key": "happy",
+        "en": "happy",
+        "es": "feliz"
+      },
+      {
+        "base_key": "tired",
+        "en": "tired",
+        "es": "cansado"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say 'I am happy'?",
+          "es": "¿Cómo se dice 'I am happy'?"
+        },
+        "data": {
+          "correct": "yo estoy feliz",
+          "options": [
+            "tú estás feliz",
+            "yo estoy feliz",
+            "ella está cansada"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Translate: 'You are tired'",
+          "es": "Traduce: 'You are tired'"
+        },
+        "data": {
+          "correct": "tú estás cansado",
+          "options": [
+            "él está feliz",
+            "tú estás cansado",
+            "yo estoy cansado"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen and select the correct meaning.",
+          "es": "Escucha y selecciona el significado correcto."
+        },
+        "data": {
+          "correct": "she is happy",
+          "audio_text": "ella está feliz"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'I' for 'I am tired'",
+          "es": "Completa con 'yo'"
+        },
+        "data": {
+          "correct": "yo",
+          "text_before": "",
+          "text_after": " estoy cansado."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'am' for 'I am happy'",
+          "es": "Completa con 'estoy'"
+        },
+        "data": {
+          "correct": "estoy",
+          "text_before": "Hola, yo ",
+          "text_after": " feliz."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'are' for 'You are tired'",
+          "es": "Completa con 'estás'"
+        },
+        "data": {
+          "correct": "estás",
+          "text_before": "Tú ",
+          "text_after": " cansado."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'is' for 'He is happy'",
+          "es": "Completa con 'está'"
+        },
+        "data": {
+          "correct": "está",
+          "text_before": "Sí, él ",
+          "text_after": " feliz."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'she' for 'She is tired'",
+          "es": "Completa con 'ella'"
+        },
+        "data": {
+          "correct": "ella",
+          "text_before": "",
+          "text_after": " está cansada."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'happy'",
+          "es": "Completa con 'feliz'"
+        },
+        "data": {
+          "correct": "feliz",
+          "text_before": "Ella está ",
+          "text_after": "!"
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'I am happy.'",
+          "es": "Construye: 'I am happy.'"
+        },
+        "data": {
+          "correct": [
+            "yo",
+            "estoy",
+            "feliz"
+          ],
+          "words": [
+            "yo",
+            "estoy",
+            "feliz",
+            "tú",
+            "cansado"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'You are tired.'",
+          "es": "Construye: 'You are tired.'"
+        },
+        "data": {
+          "correct": [
+            "tú",
+            "estás",
+            "cansado"
+          ],
+          "words": [
+            "tú",
+            "estás",
+            "cansado",
+            "él",
+            "feliz"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'He is happy.'",
+          "es": "Construye: 'He is happy.'"
+        },
+        "data": {
+          "correct": [
+            "él",
+            "está",
+            "feliz"
+          ],
+          "words": [
+            "él",
+            "está",
+            "feliz",
+            "ella",
+            "estoy"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'She is tired.'",
+          "es": "Construye: 'She is tired.'"
+        },
+        "data": {
+          "correct": [
+            "ella",
+            "está",
+            "cansada"
+          ],
+          "words": [
+            "ella",
+            "está",
+            "cansada",
+            "yo",
+            "feliz"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'Hello, I am tired.'",
+          "es": "Construye: 'Hello, I am tired.'"
+        },
+        "data": {
+          "correct": [
+            "hola",
+            "yo",
+            "estoy",
+            "cansado"
+          ],
+          "words": [
+            "hola",
+            "yo",
+            "estoy",
+            "cansado",
+            "feliz"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'Yes, she is happy.'",
+          "es": "Construye: 'Yes, she is happy.'"
+        },
+        "data": {
+          "correct": [
+            "sí",
+            "ella",
+            "está",
+            "feliz"
+          ],
+          "words": [
+            "sí",
+            "ella",
+            "está",
+            "feliz",
+            "cansado"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": {
+      "en": "Introductions",
+      "es": "Presentaciones"
+    },
+    "description": {
+      "en": "Introduce yourself and ask where others are from.",
+      "es": "Preséntate y pregunta de dónde son los demás."
+    },
+    "category": "basics",
+    "level": "beginner",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "name",
+        "en": "name",
+        "es": "nombre"
+      },
+      {
+        "base_key": "my",
+        "en": "my",
+        "es": "mi"
+      },
+      {
+        "base_key": "from",
+        "en": "from",
+        "es": "de"
+      },
+      {
+        "base_key": "country",
+        "en": "country",
+        "es": "país"
+      },
+      {
+        "base_key": "meet",
+        "en": "meet / to know",
+        "es": "conocer"
+      },
+      {
+        "base_key": "nice",
+        "en": "nice / pleasure",
+        "es": "gusto"
+      },
+      {
+        "base_key": "is_ser",
+        "en": "is (ser)",
+        "es": "es"
+      },
+      {
+        "base_key": "am_ser",
+        "en": "am (ser)",
+        "es": "soy"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say 'My name is'?",
+          "es": "¿Cómo se dice 'My name is'?"
+        },
+        "data": {
+          "correct": "mi nombre es",
+          "options": [
+            "yo soy",
+            "mi nombre es",
+            "yo estoy"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Translate: 'Nice to meet you'",
+          "es": "Traduce: 'Nice to meet you'"
+        },
+        "data": {
+          "correct": "mucho gusto",
+          "options": [
+            "mucho gusto",
+            "mi nombre es",
+            "hola adiós"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen and select the correct meaning.",
+          "es": "Escucha y selecciona el significado correcto."
+        },
+        "data": {
+          "correct": "I am from Spain",
+          "audio_text": "yo soy de España"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'my' for 'My name'",
+          "es": "Completa con 'mi'"
+        },
+        "data": {
+          "correct": "mi",
+          "text_before": "Hola, ",
+          "text_after": " nombre es Juan."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'name' for 'My name is'",
+          "es": "Completa con 'nombre'"
+        },
+        "data": {
+          "correct": "nombre",
+          "text_before": "Mi ",
+          "text_after": " es Ana."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'is (ser)'",
+          "es": "Completa con 'es'"
+        },
+        "data": {
+          "correct": "es",
+          "text_before": "Mi nombre ",
+          "text_after": " Carlos."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'from'",
+          "es": "Completa con 'de'"
+        },
+        "data": {
+          "correct": "de",
+          "text_before": "Yo soy ",
+          "text_after": " México."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'am (ser)'",
+          "es": "Completa con 'soy'"
+        },
+        "data": {
+          "correct": "soy",
+          "text_before": "Yo ",
+          "text_after": " de Colombia."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'nice' (pleasure) for 'nice to meet you'",
+          "es": "Completa con 'gusto'"
+        },
+        "data": {
+          "correct": "gusto",
+          "text_before": "Mucho ",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'My name is Carlos.'",
+          "es": "Construye: 'My name is Carlos.'"
+        },
+        "data": {
+          "correct": [
+            "mi",
+            "nombre",
+            "es",
+            "Carlos"
+          ],
+          "words": [
+            "mi",
+            "nombre",
+            "es",
+            "Carlos",
+            "soy"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'I am from Spain.'",
+          "es": "Construye: 'I am from Spain.'"
+        },
+        "data": {
+          "correct": [
+            "yo",
+            "soy",
+            "de",
+            "España"
+          ],
+          "words": [
+            "yo",
+            "soy",
+            "de",
+            "España",
+            "estoy"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'Hello, my name is Ana.'",
+          "es": "Construye: 'Hello, my name is Ana.'"
+        },
+        "data": {
+          "correct": [
+            "hola",
+            "mi",
+            "nombre",
+            "es",
+            "Ana"
+          ],
+          "words": [
+            "hola",
+            "mi",
+            "nombre",
+            "es",
+            "Ana",
+            "de"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'Nice to meet you (Mucho gusto).'",
+          "es": "Construye: 'Nice to meet you.'"
+        },
+        "data": {
+          "correct": [
+            "mucho",
+            "gusto"
+          ],
+          "words": [
+            "mucho",
+            "gusto",
+            "hola",
+            "adiós"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'He is from Mexico.'",
+          "es": "Construye: 'He is from Mexico.'"
+        },
+        "data": {
+          "correct": [
+            "él",
+            "es",
+            "de",
+            "México"
+          ],
+          "words": [
+            "él",
+            "es",
+            "de",
+            "México",
+            "soy"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'Yes, I am Ana. Nice to meet you.'",
+          "es": "Construye: 'Yes, I am Ana. Nice to meet you.'"
+        },
+        "data": {
+          "correct": [
+            "sí",
+            "yo",
+            "soy",
+            "Ana",
+            "mucho",
+            "gusto"
+          ],
+          "words": [
+            "sí",
+            "yo",
+            "soy",
+            "Ana",
+            "mucho",
+            "gusto",
+            "es",
+            "estoy"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": {
+      "en": "Basic Verbs",
+      "es": "Verbos Básicos"
+    },
+    "description": {
+      "en": "Learn to express actions and desires.",
+      "es": "Aprende a expresar acciones y deseos."
+    },
+    "category": "verbs",
+    "level": "beginner",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "eat",
+        "en": "to eat",
+        "es": "comer"
+      },
+      {
+        "base_key": "drink",
+        "en": "to drink",
+        "es": "beber"
+      },
+      {
+        "base_key": "go",
+        "en": "to go",
+        "es": "ir"
+      },
+      {
+        "base_key": "like",
+        "en": "to like",
+        "es": "gustar"
+      },
+      {
+        "base_key": "have",
+        "en": "to have",
+        "es": "tener"
+      },
+      {
+        "base_key": "want",
+        "en": "to want",
+        "es": "querer"
+      },
+      {
+        "base_key": "need",
+        "en": "to need",
+        "es": "necesitar"
+      },
+      {
+        "base_key": "i_want",
+        "en": "I want",
+        "es": "quiero"
+      },
+      {
+        "base_key": "i_need",
+        "en": "I need",
+        "es": "necesito"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say 'to eat'?",
+          "es": "¿Cómo se dice 'to eat'?"
+        },
+        "data": {
+          "correct": "comer",
+          "options": [
+            "beber",
+            "comer",
+            "ir"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Translate: 'I need to drink'",
+          "es": "Traduce: 'I need to drink'"
+        },
+        "data": {
+          "correct": "necesito beber",
+          "options": [
+            "quiero comer",
+            "necesito beber",
+            "quiero ir"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen and select the correct meaning.",
+          "es": "Escucha y selecciona el significado correcto."
+        },
+        "data": {
+          "correct": "I want to go",
+          "audio_text": "quiero ir"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'I want' for 'I want to eat'",
+          "es": "Completa con 'quiero'"
+        },
+        "data": {
+          "correct": "quiero",
+          "text_before": "Yo ",
+          "text_after": " comer."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'eat' for 'I want to eat'",
+          "es": "Completa con 'comer'"
+        },
+        "data": {
+          "correct": "comer",
+          "text_before": "Quiero ",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'I need' for 'I need to go'",
+          "es": "Completa con 'necesito'"
+        },
+        "data": {
+          "correct": "necesito",
+          "text_before": "Yo ",
+          "text_after": " ir."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'go' for 'I need to go'",
+          "es": "Completa con 'ir'"
+        },
+        "data": {
+          "correct": "ir",
+          "text_before": "Necesito ",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'drink' for 'I want to drink'",
+          "es": "Completa con 'beber'"
+        },
+        "data": {
+          "correct": "beber",
+          "text_before": "Quiero ",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'have' for 'to have'",
+          "es": "Completa con 'tener'"
+        },
+        "data": {
+          "correct": "tener",
+          "text_before": "Necesito ",
+          "text_after": " un libro."
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'I want to eat.'",
+          "es": "Construye: 'I want to eat.'"
+        },
+        "data": {
+          "correct": [
+            "yo",
+            "quiero",
+            "comer"
+          ],
+          "words": [
+            "yo",
+            "quiero",
+            "comer",
+            "necesito",
+            "beber"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'I need to go.'",
+          "es": "Construye: 'I need to go.'"
+        },
+        "data": {
+          "correct": [
+            "yo",
+            "necesito",
+            "ir"
+          ],
+          "words": [
+            "yo",
+            "necesito",
+            "ir",
+            "quiero",
+            "comer"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'I want to drink.'",
+          "es": "Construye: 'I want to drink.'"
+        },
+        "data": {
+          "correct": [
+            "quiero",
+            "beber"
+          ],
+          "words": [
+            "quiero",
+            "beber",
+            "necesito",
+            "ir"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'Please, I need to eat.'",
+          "es": "Construye: 'Please, I need to eat.'"
+        },
+        "data": {
+          "correct": [
+            "por favor",
+            "necesito",
+            "comer"
+          ],
+          "words": [
+            "por favor",
+            "necesito",
+            "comer",
+            "quiero",
+            "beber"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'Yes, I want to go.'",
+          "es": "Construye: 'Yes, I want to go.'"
+        },
+        "data": {
+          "correct": [
+            "sí",
+            "quiero",
+            "ir"
+          ],
+          "words": [
+            "sí",
+            "quiero",
+            "ir",
+            "yo",
+            "comer"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'I need to have.'",
+          "es": "Construye: 'I need to have.'"
+        },
+        "data": {
+          "correct": [
+            "necesito",
+            "tener"
+          ],
+          "words": [
+            "necesito",
+            "tener",
+            "quiero",
+            "ir"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": {
+      "en": "Objects & Articles",
+      "es": "Objetos y Artículos"
+    },
+    "description": {
+      "en": "Learn to talk about everyday objects.",
+      "es": "Aprende a hablar de objetos cotidianos."
+    },
+    "category": "vocabulary",
+    "level": "beginner",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "a_masc",
+        "en": "a (masculine)",
+        "es": "un"
+      },
+      {
+        "base_key": "a_fem",
+        "en": "a (feminine)",
+        "es": "una"
+      },
+      {
+        "base_key": "the_masc",
+        "en": "the (masculine)",
+        "es": "el"
+      },
+      {
+        "base_key": "the_fem",
+        "en": "the (feminine)",
+        "es": "la"
+      },
+      {
+        "base_key": "dog",
+        "en": "dog",
+        "es": "perro"
+      },
+      {
+        "base_key": "car",
+        "en": "car",
+        "es": "coche"
+      },
+      {
+        "base_key": "house",
+        "en": "house",
+        "es": "casa"
+      },
+      {
+        "base_key": "book",
+        "en": "book",
+        "es": "libro"
+      },
+      {
+        "base_key": "pen",
+        "en": "pen",
+        "es": "bolígrafo"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say 'the dog'?",
+          "es": "¿Cómo se dice 'the dog'?"
+        },
+        "data": {
+          "correct": "el perro",
+          "options": [
+            "la casa",
+            "el perro",
+            "un coche"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Translate: 'a book'",
+          "es": "Traduce: 'a book'"
+        },
+        "data": {
+          "correct": "un libro",
+          "options": [
+            "el libro",
+            "una casa",
+            "un libro"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen and select the correct meaning.",
+          "es": "Escucha y selecciona el significado correcto."
+        },
+        "data": {
+          "correct": "the house",
+          "audio_text": "la casa"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'the (masc)' for 'the car'",
+          "es": "Completa con 'el'"
+        },
+        "data": {
+          "correct": "el",
+          "text_before": "Quiero ",
+          "text_after": " coche."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'a (fem)' for 'a house'",
+          "es": "Completa con 'una'"
+        },
+        "data": {
+          "correct": "una",
+          "text_before": "Necesito ",
+          "text_after": " casa."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'car'",
+          "es": "Completa con 'coche'"
+        },
+        "data": {
+          "correct": "coche",
+          "text_before": "Tengo un ",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'house'",
+          "es": "Completa con 'casa'"
+        },
+        "data": {
+          "correct": "casa",
+          "text_before": "La ",
+          "text_after": " es grande."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'dog'",
+          "es": "Completa con 'perro'"
+        },
+        "data": {
+          "correct": "perro",
+          "text_before": "El ",
+          "text_after": " está cansado."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in 'book'",
+          "es": "Completa con 'libro'"
+        },
+        "data": {
+          "correct": "libro",
+          "text_before": "Quiero un ",
+          "text_after": " por favor."
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'I want the car.'",
+          "es": "Construye: 'I want the car.'"
+        },
+        "data": {
+          "correct": [
+            "yo",
+            "quiero",
+            "el",
+            "coche"
+          ],
+          "words": [
+            "yo",
+            "quiero",
+            "el",
+            "coche",
+            "la"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'I need a house.'",
+          "es": "Construye: 'I need a house.'"
+        },
+        "data": {
+          "correct": [
+            "necesito",
+            "una",
+            "casa"
+          ],
+          "words": [
+            "necesito",
+            "una",
+            "casa",
+            "un",
+            "coche"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'The dog is happy.'",
+          "es": "Construye: 'The dog is happy.'"
+        },
+        "data": {
+          "correct": [
+            "el",
+            "perro",
+            "está",
+            "feliz"
+          ],
+          "words": [
+            "el",
+            "perro",
+            "está",
+            "feliz",
+            "cansado"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'I want a book please.'",
+          "es": "Construye: 'I want a book please.'"
+        },
+        "data": {
+          "correct": [
+            "quiero",
+            "un",
+            "libro",
+            "por favor"
+          ],
+          "words": [
+            "quiero",
+            "un",
+            "libro",
+            "por favor",
+            "una"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'The house and the car.'",
+          "es": "Construye: 'The house and the car.'"
+        },
+        "data": {
+          "correct": [
+            "la",
+            "casa",
+            "y",
+            "el",
+            "coche"
+          ],
+          "words": [
+            "la",
+            "casa",
+            "y",
+            "el",
+            "coche",
+            "un"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Construct: 'I need a pen.'",
+          "es": "Construye: 'I need a pen.'"
+        },
+        "data": {
+          "correct": [
+            "necesito",
+            "un",
+            "bolígrafo"
+          ],
+          "words": [
+            "necesito",
+            "un",
+            "bolígrafo",
+            "el",
+            "casa"
+          ]
+        }
+      }
+    ]
+  }
+]
