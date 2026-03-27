@@ -121,18 +121,66 @@ export default function SettingsScreen() {
           </div>
         </Card>
 
-        {/* Credits */}
-        <div className="mt-auto pt-8 flex flex-col items-center justify-center text-center gap-2 opacity-60">
-          <Mascot mood="idle" size="sm" className="mb-1" />
-          <p className="font-bold text-pb-dark text-sm">
-            PalabraBox <span className="text-xs font-normal text-pb-text-light">v1.0.0</span>
-          </p>
-          <p className="text-[11px] text-pb-text-light font-medium max-w-52 leading-relaxed">
-            Diseñado y desarrollado por <br/>
-            <span className="text-pb-amber font-bold">Equipo PalabraBox</span>
-          </p>
+        {/* Acerca de */}
+        <Card className="flex flex-col gap-4">
+          <h2 className="text-sm font-bold text-pb-text-light uppercase tracking-wider">Acerca de</h2>
+          
+          <div className="flex flex-col items-center gap-3 py-1">
+            <a
+              href="https://www.asociacionarrabal.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Asociación Arrabal"
+              className="opacity-80 hover:opacity-100 transition-opacity duration-200"
+            >
+              <img
+                src="/ArrabalLogo.png"
+                alt="Asociación Arrabal"
+                className="h-10 w-auto object-contain"
+                loading="lazy"
+              />
+            </a>
+            <p className="text-xs text-pb-text-light font-semibold text-center">
+              Asociación Arrabal
+            </p>
+          </div>
+
+          <div className="h-px bg-black/4" />
+
+          <div className="flex flex-col gap-1.5">
+            <p className="text-[11px] text-pb-text-light font-bold uppercase tracking-wider mb-1">Autores</p>
+            <div className="flex flex-col gap-2">
+              <a
+                href="https://www.linkedin.com/in/blazejgoliszek/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm font-bold text-pb-dark hover:text-pb-amber transition-colors duration-200"
+              >
+                <span className="w-6 h-6 rounded-full bg-[#0A66C2] flex items-center justify-center text-white text-[10px] font-black shrink-0">in</span>
+                Błażej Goliszek
+              </a>
+              <a
+                href="https://www.linkedin.com/in/jakub-laskowski-dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm font-bold text-pb-dark hover:text-pb-amber transition-colors duration-200"
+              >
+                <span className="w-6 h-6 rounded-full bg-[#0A66C2] flex items-center justify-center text-white text-[10px] font-black shrink-0">in</span>
+                Jakub Laskowski
+              </a>
+            </div>
+          </div>
+        </Card>
+
+        {/* Version footer */}
+        <div className="mt-auto pt-2 flex items-center justify-center gap-1.5 opacity-40">
+          <Mascot mood="idle" size="sm" />
+          <span className="font-bold text-pb-dark text-xs">
+            PalabraBox <span className="font-normal text-pb-text-light">v1.0.0</span>
+          </span>
         </div>
       </ScreenWrapper>
     </PageTransition>
   )
 }
+
