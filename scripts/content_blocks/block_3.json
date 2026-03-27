@@ -1,0 +1,512 @@
+[
+  {
+    "category": "daily_life",
+    "level": "beginner",
+    "target_language": "es",
+    "source_language": "en",
+    "title": {
+      "en": "Daily Routine",
+      "es": "Rutina diaria"
+    },
+    "description": {
+      "en": "Learn to talk about your daily habits.",
+      "es": "Aprende a hablar de tus hábitos diarios."
+    },
+    "words": [
+      { "base_key": "wake_up", "en": "wake up", "es": "despertarse" },
+      { "base_key": "work", "en": "work", "es": "trabajar" },
+      { "base_key": "sleep", "en": "sleep", "es": "dormir" },
+      { "base_key": "eat_breakfast", "en": "eat breakfast", "es": "desayunar" },
+      { "base_key": "eat_lunch", "en": "eat lunch", "es": "comer" },
+      { "base_key": "eat_dinner", "en": "eat dinner", "es": "cenar" },
+      { "base_key": "morning", "en": "morning", "es": "mañana" },
+      { "base_key": "night", "en": "night", "es": "noche" },
+      { "base_key": "afternoon", "en": "afternoon", "es": "tarde" }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": "¿Qué haces por la mañana para empezar el día?",
+        "data": { "correct": "Me despierto", "options": ["Me despierto", "Duermo", "Ceno", "Adiós"] }
+      },
+      {
+        "type": "multiple_choice",
+        "question": "How do you say 'to eat dinner'?",
+        "data": { "correct": "cenar", "options": ["cenar", "comer", "desayunar", "trabajar"] }
+      },
+      {
+        "type": "listening",
+        "question": "¿Qué dices?",
+        "data": { "correct": "I sleep at night.", "audio_text": "Yo duermo por la noche." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "trabajo", "text_before": "Yo ", "text_after": " en una oficina todos los días." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "desayuno", "text_before": "Por la mañana, yo ", "text_after": " pan con café." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "cenamos", "text_before": "Nosotros ", "text_after": " muy tarde por la noche." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "dormir", "text_before": "Es hora de ", "text_after": " porque estoy cansado." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "Me despierto", "text_before": "", "text_after": " a las siete de la mañana." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "tarde", "text_before": "Nos vemos esta ", "text_after": " después del trabajo." }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Me", "despierto", "temprano", "hoy"], "words": ["Me", "despierto", "temprano", "hoy", "duermo"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Trabajo", "por", "la", "mañana"], "words": ["Trabajo", "por", "la", "mañana", "noche"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Me", "gusta", "dormir", "mucho"], "words": ["Me", "gusta", "dormir", "mucho", "cenar"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Yo", "desayuno", "con", "mi", "gato"], "words": ["Yo", "desayuno", "con", "mi", "gato", "perro"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Comemos", "tarde", "los", "domingos"], "words": ["Comemos", "tarde", "los", "domingos", "Me"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Ella", "duerme", "toda", "la", "noche"], "words": ["Ella", "duerme", "toda", "la", "noche", "gusta"] }
+      }
+    ]
+  },
+  {
+    "category": "basics",
+    "level": "beginner",
+    "target_language": "es",
+    "source_language": "en",
+    "title": {
+      "en": "Places",
+      "es": "Lugares"
+    },
+    "description": {
+      "en": "Talk about places in the city.",
+      "es": "Habla sobre lugares en la ciudad."
+    },
+    "words": [
+      { "base_key": "home", "en": "home", "es": "la casa" },
+      { "base_key": "school", "en": "school", "es": "la escuela" },
+      { "base_key": "city", "en": "city", "es": "la ciudad" },
+      { "base_key": "street", "en": "street", "es": "la calle" },
+      { "base_key": "park", "en": "park", "es": "el parque" },
+      { "base_key": "shop", "en": "shop/store", "es": "la tienda" },
+      { "base_key": "bank", "en": "bank", "es": "el banco" },
+      { "base_key": "go", "en": "to go", "es": "ir" },
+      { "base_key": "be_location", "en": "to be (location)", "es": "estar" }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": "Where do children learn?",
+        "data": { "correct": "la escuela", "options": ["la escuela", "el parque", "el banco", "la calle"] }
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Translates to 'the city':",
+        "data": { "correct": "la ciudad", "options": ["la ciudad", "la calle", "la casa", "el parque"] }
+      },
+      {
+        "type": "listening",
+        "question": "¿Qué escuchas?",
+        "data": { "correct": "I go to the park.", "audio_text": "Yo voy al parque." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "casa", "text_before": "Mi ", "text_after": " es muy bonita." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "tienda", "text_before": "Compro leche en la ", "text_after": "." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "calle", "text_before": "Camino por la ", "text_after": " principal." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "banco", "text_before": "Tengo dinero en el ", "text_after": "." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "escuela", "text_before": "Los niños están en la ", "text_after": "." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "ciudad", "text_before": "Madrid es una ", "text_after": " muy grande." }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Voy", "a", "mi", "casa"], "words": ["Voy", "a", "mi", "casa", "banco"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["El", "parque", "es", "grande"], "words": ["El", "parque", "es", "grande", "Voy"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Estoy", "en", "la", "calle"], "words": ["Estoy", "en", "la", "calle", "tienda"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Ella", "camina", "por", "la", "ciudad"], "words": ["Ella", "camina", "por", "la", "ciudad", "casa"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Nosotros", "vamos", "a", "la", "tienda"], "words": ["Nosotros", "vamos", "a", "la", "tienda", "Voy"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["¿Dónde", "está", "el", "banco?"], "words": ["¿Dónde", "está", "el", "banco?", "calle"] }
+      }
+    ]
+  },
+  {
+    "category": "basic_situations",
+    "level": "beginner",
+    "target_language": "es",
+    "source_language": "en",
+    "title": {
+      "en": "Shopping",
+      "es": "De compras"
+    },
+    "description": {
+      "en": "Vocabulary for shopping and money.",
+      "es": "Vocabulario para comprar y dinero."
+    },
+    "words": [
+      { "base_key": "price", "en": "price", "es": "el precio" },
+      { "base_key": "money", "en": "money", "es": "el dinero" },
+      { "base_key": "expensive", "en": "expensive", "es": "caro" },
+      { "base_key": "cheap", "en": "cheap", "es": "barato" },
+      { "base_key": "buy", "en": "to buy", "es": "comprar" },
+      { "base_key": "sell", "en": "to sell", "es": "vender" },
+      { "base_key": "clothes", "en": "clothes", "es": "la ropa" },
+      { "base_key": "pay", "en": "to pay", "es": "pagar" },
+      { "base_key": "cost", "en": "to cost", "es": "costar" }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": "What is the opposite of 'caro' (expensive)?",
+        "data": { "correct": "barato", "options": ["barato", "dinero", "precio", "ropa"] }
+      },
+      {
+        "type": "multiple_choice",
+        "question": "How do you say 'money'?",
+        "data": { "correct": "el dinero", "options": ["el dinero", "el precio", "comprar", "pagar"] }
+      },
+      {
+        "type": "listening",
+        "question": "¿Qué dice?",
+        "data": { "correct": "I want to buy clothes.", "audio_text": "Quiero comprar ropa." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "caro", "text_before": "Este teléfono es muy ", "text_after": ", no tengo dinero." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "barato", "text_before": "Ese libro es muy ", "text_after": ", solo cuesta un euro." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "dinero", "text_before": "Necesito más ", "text_after": " para pagar." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "comprar", "text_before": "Voy a la tienda a ", "text_after": " comida." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "precio", "text_before": "¿Cuál es el ", "text_after": " de esto?" }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "ropa", "text_before": "Me gusta mucho esta ", "text_after": " nueva." }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Tiene", "un", "buen", "precio"], "words": ["Tiene", "un", "buen", "precio", "vender"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Quiero", "comprar", "esta", "ropa"], "words": ["Quiero", "comprar", "esta", "ropa", "barato"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["¿Cuánto", "cuesta", "esto?"], "words": ["¿Cuánto", "cuesta", "esto?", "dinero"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["El", "coche", "es", "muy", "caro"], "words": ["El", "coche", "es", "muy", "caro", "precio"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Yo", "pago", "con", "mi", "dinero"], "words": ["Yo", "pago", "con", "mi", "dinero", "compras"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Ellos", "venden", "fruta", "barata"], "words": ["Ellos", "venden", "fruta", "barata", "comprar"] }
+      }
+    ]
+  },
+  {
+    "category": "basic_situations",
+    "level": "beginner",
+    "target_language": "es",
+    "source_language": "en",
+    "title": {
+      "en": "Restaurant",
+      "es": "Restaurante"
+    },
+    "description": {
+      "en": "Words and phrases for eating out.",
+      "es": "Palabras y frases para comer fuera."
+    },
+    "words": [
+      { "base_key": "menu", "en": "menu", "es": "el menú" },
+      { "base_key": "order", "en": "to order/ask", "es": "pedir" },
+      { "base_key": "table", "en": "table", "es": "la mesa" },
+      { "base_key": "waiter", "en": "waiter", "es": "el camarero" },
+      { "base_key": "bill", "en": "bill/check", "es": "la cuenta" },
+      { "base_key": "food", "en": "food", "es": "la comida" },
+      { "base_key": "restaurant", "en": "restaurant", "es": "el restaurante" },
+      { "base_key": "delicious", "en": "delicious", "es": "delicioso" },
+      { "base_key": "water", "en": "water", "es": "el agua" }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": "What do you ask for at the end of the meal?",
+        "data": { "correct": "la cuenta", "options": ["la cuenta", "la mesa", "el menú", "el agua"] }
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Who brings the food?",
+        "data": { "correct": "el camarero", "options": ["el camarero", "la comida", "el restaurante", "pedir"] }
+      },
+      {
+        "type": "listening",
+        "question": "¿Qué quiere decir?",
+        "data": { "correct": "The food is delicious.", "audio_text": "La comida es deliciosa." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "menú", "text_before": "Por favor, ¿me trae el ", "text_after": "?" }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "agua", "text_before": "Quiero beber un vaso de ", "text_after": "." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "cuenta", "text_before": "Camarero, la ", "text_after": " por favor." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "mesa", "text_before": "Necesitamos una ", "text_after": " para cuatro personas." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "pedir", "text_before": "Ya estamos listos para ", "text_after": " la comida." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "restaurante", "text_before": "Vamos a comer en un ", "text_after": " italiano." }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["La", "comida", "es", "muy", "buena"], "words": ["La", "comida", "es", "muy", "buena", "mesa"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Yo", "pido", "un", "café"], "words": ["Yo", "pido", "un", "café", "cuenta"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["El", "camarero", "trae", "el", "agua"], "words": ["El", "camarero", "trae", "el", "agua", "pedir"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["¿Puede", "traerme", "el", "menú?"], "words": ["¿Puede", "traerme", "el", "menú?", "delicioso"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Pagamos", "la", "cuenta", "ahora"], "words": ["Pagamos", "la", "cuenta", "ahora", "menú"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Una", "mesa", "para", "dos"], "words": ["Una", "mesa", "para", "dos", "camarero"] }
+      }
+    ]
+  },
+  {
+    "category": "travel",
+    "level": "beginner",
+    "target_language": "es",
+    "source_language": "en",
+    "title": {
+      "en": "Travel Basics",
+      "es": "Viajes básicos"
+    },
+    "description": {
+      "en": "Essential vocabulary for traveling.",
+      "es": "Vocabulario esencial para viajar."
+    },
+    "words": [
+      { "base_key": "hotel", "en": "hotel", "es": "el hotel" },
+      { "base_key": "ticket", "en": "ticket", "es": "el boleto" },
+      { "base_key": "airport", "en": "airport", "es": "el aeropuerto" },
+      { "base_key": "train", "en": "train", "es": "el tren" },
+      { "base_key": "bus", "en": "bus", "es": "el autobús" },
+      { "base_key": "passport", "en": "passport", "es": "el pasaporte" },
+      { "base_key": "flight", "en": "flight", "es": "el vuelo" },
+      { "base_key": "travel", "en": "to travel", "es": "viajar" },
+      { "base_key": "suitcase", "en": "suitcase", "es": "la maleta" }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": "Which of these is used to fly?",
+        "data": { "correct": "el avión (el vuelo)", "options": ["el avión (el vuelo)", "el hotel", "el tren", "el autobús"] }
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Translate 'airport':",
+        "data": { "correct": "el aeropuerto", "options": ["el aeropuerto", "el hotel", "el boleto", "la maleta"] }
+      },
+      {
+        "type": "listening",
+        "question": "¿Qué idioma es?",
+        "data": { "correct": "I have my passport and ticket.", "audio_text": "Tengo mi pasaporte y boleto." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "hotel", "text_before": "Dormimos en un ", "text_after": " muy cómodo." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "pasaporte", "text_before": "Para volar a otro país necesitas un ", "text_after": "." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "tren", "text_before": "Viajamos a París en ", "text_after": "." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "maleta", "text_before": "Tengo mi ropa en la ", "text_after": "." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "aeropuerto", "text_before": "El avión sale del ", "text_after": " en una hora." }
+      },
+      {
+        "type": "fill_blank",
+        "question": "Completa la oración",
+        "data": { "correct": "viajar", "text_before": "Me gusta mucho ", "text_after": " por el mundo." }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Tengo", "el", "boleto", "para", "el", "vuelo"], "words": ["Tengo", "el", "boleto", "para", "el", "vuelo", "tren"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["El", "autobús", "llega", "muy", "tarde"], "words": ["El", "autobús", "llega", "muy", "tarde", "hotel"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Nosotros", "vamos", "al", "aeropuerto"], "words": ["Nosotros", "vamos", "al", "aeropuerto", "boleto"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["¿Dónde", "está", "mi", "maleta?"], "words": ["¿Dónde", "está", "mi", "maleta?", "viajar"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Me", "gusta", "viajar", "en", "tren"], "words": ["Me", "gusta", "viajar", "en", "tren", "hotel"] }
+      },
+      {
+        "type": "word_order",
+        "question": "Ordena las palabras",
+        "data": { "correct": ["Tengo", "mi", "pasaporte", "aquí"], "words": ["Tengo", "mi", "pasaporte", "aquí", "vuelo"] }
+      }
+    ]
+  }
+]

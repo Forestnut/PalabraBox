@@ -1,0 +1,1551 @@
+[
+  {
+    "title": {
+      "en": "Preferences",
+      "es": "Preferencias"
+    },
+    "description": {
+      "en": "Expressing what you like and prefer.",
+      "es": "Expresando lo que te gusta y prefieres."
+    },
+    "category": "conversation",
+    "level": "intermediate",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "favorite",
+        "en": "favorite",
+        "es": "favorito"
+      },
+      {
+        "base_key": "prefer",
+        "en": "prefer",
+        "es": "preferir"
+      },
+      {
+        "base_key": "best",
+        "en": "best",
+        "es": "mejor"
+      },
+      {
+        "base_key": "worst",
+        "en": "worst",
+        "es": "peor"
+      },
+      {
+        "base_key": "rather",
+        "en": "rather",
+        "es": "preferiría"
+      },
+      {
+        "base_key": "like",
+        "en": "like",
+        "es": "gustar"
+      },
+      {
+        "base_key": "hate",
+        "en": "hate",
+        "es": "odiar"
+      },
+      {
+        "base_key": "enjoy",
+        "en": "enjoy",
+        "es": "disfrutar"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Which do you prefer?",
+          "es": "¿Cuál prefieres?"
+        },
+        "data": {
+          "correct": "Prefiero este",
+          "options": [
+            "Prefiero este",
+            "Odio este",
+            "Mejor este"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "It is my favorite book.",
+          "es": "Es mi libro favorito."
+        },
+        "data": {
+          "correct": "libro favorito",
+          "options": [
+            "libro favorito",
+            "libro peor",
+            "libro más"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen and translate.",
+          "es": "Escucha y traduce."
+        },
+        "data": {
+          "correct": "I hate waiting.",
+          "audio_text": "Odio esperar."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "I prefer tea.",
+          "es": "Yo ___ el té."
+        },
+        "data": {
+          "correct": "prefiero",
+          "text_before": "Yo",
+          "text_after": "el té."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "This is the best.",
+          "es": "Este es el ___."
+        },
+        "data": {
+          "correct": "mejor",
+          "text_before": "Este es el",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "I like apples.",
+          "es": "Me ___ las manzanas."
+        },
+        "data": {
+          "correct": "gustan",
+          "text_before": "Me",
+          "text_after": "las manzanas."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "It is the worst idea.",
+          "es": "Es la ___ idea."
+        },
+        "data": {
+          "correct": "peor",
+          "text_before": "Es la",
+          "text_after": "idea."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "I enjoy reading.",
+          "es": "Yo ___ leer."
+        },
+        "data": {
+          "correct": "disfruto",
+          "text_before": "Yo",
+          "text_after": "leer."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "My favorite color.",
+          "es": "Mi color ___."
+        },
+        "data": {
+          "correct": "favorito",
+          "text_before": "Mi color",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "I would rather go home.",
+          "es": "Preferiría ir a casa."
+        },
+        "data": {
+          "correct": [
+            "Preferiría",
+            "ir",
+            "a",
+            "casa."
+          ],
+          "words": [
+            "Preferiría",
+            "ir",
+            "a",
+            "casa.",
+            "odio"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "I like it a lot.",
+          "es": "Me gusta mucho."
+        },
+        "data": {
+          "correct": [
+            "Me",
+            "gusta",
+            "mucho."
+          ],
+          "words": [
+            "Me",
+            "gusta",
+            "mucho.",
+            "peor"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "She prefers coffee.",
+          "es": "Ella prefiere el café."
+        },
+        "data": {
+          "correct": [
+            "Ella",
+            "prefiere",
+            "el",
+            "café."
+          ],
+          "words": [
+            "Ella",
+            "prefiere",
+            "el",
+            "café.",
+            "agua"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "It is not the best.",
+          "es": "No es el mejor."
+        },
+        "data": {
+          "correct": [
+            "No",
+            "es",
+            "el",
+            "mejor."
+          ],
+          "words": [
+            "No",
+            "es",
+            "el",
+            "mejor.",
+            "favorito"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "We hate the cold.",
+          "es": "Odiamos el frío."
+        },
+        "data": {
+          "correct": [
+            "Odiamos",
+            "el",
+            "frío."
+          ],
+          "words": [
+            "Odiamos",
+            "el",
+            "frío.",
+            "calor"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "My favorite movie.",
+          "es": "Mi película favorita."
+        },
+        "data": {
+          "correct": [
+            "Mi",
+            "película",
+            "favorita."
+          ],
+          "words": [
+            "Mi",
+            "película",
+            "favorita.",
+            "libro"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": {
+      "en": "Emotions",
+      "es": "Emociones"
+    },
+    "description": {
+      "en": "Talking about feelings and moods.",
+      "es": "Hablando de sentimientos y estados de ánimo."
+    },
+    "category": "life",
+    "level": "intermediate",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "happy",
+        "en": "happy",
+        "es": "feliz"
+      },
+      {
+        "base_key": "sad",
+        "en": "sad",
+        "es": "triste"
+      },
+      {
+        "base_key": "tired",
+        "en": "tired",
+        "es": "cansado"
+      },
+      {
+        "base_key": "angry",
+        "en": "angry",
+        "es": "enojado"
+      },
+      {
+        "base_key": "excited",
+        "en": "excited",
+        "es": "emocionado"
+      },
+      {
+        "base_key": "afraid",
+        "en": "afraid",
+        "es": "asustado"
+      },
+      {
+        "base_key": "surprised",
+        "en": "surprised",
+        "es": "sorprendido"
+      },
+      {
+        "base_key": "nervous",
+        "en": "nervous",
+        "es": "nervioso"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Why are you angry?",
+          "es": "¿Por qué estás enojado?"
+        },
+        "data": {
+          "correct": "enojado",
+          "options": [
+            "enojado",
+            "feliz",
+            "triste"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "She feels completely exhausted.",
+          "es": "Ella se siente muy cansada."
+        },
+        "data": {
+          "correct": "cansada",
+          "options": [
+            "cansada",
+            "asustada",
+            "sorprendida"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen and relate the emotion.",
+          "es": "Escucha y relaciona la emoción."
+        },
+        "data": {
+          "correct": "They are happy.",
+          "audio_text": "Ellos están felices."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "He is very sad.",
+          "es": "Él está muy ___."
+        },
+        "data": {
+          "correct": "triste",
+          "text_before": "Él está muy",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "I am excited!",
+          "es": "¡Estoy ___!"
+        },
+        "data": {
+          "correct": "emocionado",
+          "text_before": "¡Estoy",
+          "text_after": "!"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Are you afraid of the dark?",
+          "es": "¿Estás ___ de la oscuridad?"
+        },
+        "data": {
+          "correct": "asustado",
+          "text_before": "¿Estás",
+          "text_after": "de la oscuridad?"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "We were surprised.",
+          "es": "Estábamos ___."
+        },
+        "data": {
+          "correct": "sorprendidos",
+          "text_before": "Estábamos",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "I feel nervous.",
+          "es": "Me siento ___."
+        },
+        "data": {
+          "correct": "nervioso",
+          "text_before": "Me siento",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "She is happy.",
+          "es": "Ella es ___."
+        },
+        "data": {
+          "correct": "feliz",
+          "text_before": "Ella es",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "They are very tired today.",
+          "es": "Ellos están muy cansados hoy."
+        },
+        "data": {
+          "correct": [
+            "Ellos",
+            "están",
+            "muy",
+            "cansados",
+            "hoy."
+          ],
+          "words": [
+            "Ellos",
+            "están",
+            "muy",
+            "cansados",
+            "hoy.",
+            "felices"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Do not be sad.",
+          "es": "No estés triste."
+        },
+        "data": {
+          "correct": [
+            "No",
+            "estés",
+            "triste."
+          ],
+          "words": [
+            "No",
+            "estés",
+            "triste.",
+            "feliz"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "I am so angry.",
+          "es": "Estoy tan enojado."
+        },
+        "data": {
+          "correct": [
+            "Estoy",
+            "tan",
+            "enojado."
+          ],
+          "words": [
+            "Estoy",
+            "tan",
+            "enojado.",
+            "asustado"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "We are excited for the trip.",
+          "es": "Estamos emocionados por el viaje."
+        },
+        "data": {
+          "correct": [
+            "Estamos",
+            "emocionados",
+            "por",
+            "el",
+            "viaje."
+          ],
+          "words": [
+            "Estamos",
+            "emocionados",
+            "por",
+            "el",
+            "viaje.",
+            "tristes"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "He was surprised to see her.",
+          "es": "Se sorprendió al verla."
+        },
+        "data": {
+          "correct": [
+            "Se",
+            "sorprendió",
+            "al",
+            "verla."
+          ],
+          "words": [
+            "Se",
+            "sorprendió",
+            "al",
+            "verla.",
+            "nervioso"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "She is afraid of dogs.",
+          "es": "Ella está asustada de los perros."
+        },
+        "data": {
+          "correct": [
+            "Ella",
+            "está",
+            "asustada",
+            "de",
+            "los",
+            "perros."
+          ],
+          "words": [
+            "Ella",
+            "está",
+            "asustada",
+            "de",
+            "los",
+            "perros.",
+            "gatos"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": {
+      "en": "Conversations",
+      "es": "Conversaciones"
+    },
+    "description": {
+      "en": "Keywords to maintain dialogs.",
+      "es": "Palabras clave para mantener diálogos."
+    },
+    "category": "conversation",
+    "level": "intermediate",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "dialog",
+        "en": "dialog",
+        "es": "diálogo"
+      },
+      {
+        "base_key": "ask",
+        "en": "ask",
+        "es": "preguntar"
+      },
+      {
+        "base_key": "help",
+        "en": "help",
+        "es": "ayudar"
+      },
+      {
+        "base_key": "pardon",
+        "en": "pardon",
+        "es": "perdón"
+      },
+      {
+        "base_key": "repeat",
+        "en": "repeat",
+        "es": "repetir"
+      },
+      {
+        "base_key": "slowly",
+        "en": "slowly",
+        "es": "lentamente"
+      },
+      {
+        "base_key": "understand",
+        "en": "understand",
+        "es": "entender"
+      },
+      {
+        "base_key": "mean",
+        "en": "mean",
+        "es": "significar"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Can you speak more slowly?",
+          "es": "¿Puedes hablar más lentamente?"
+        },
+        "data": {
+          "correct": "lentamente",
+          "options": [
+            "lentamente",
+            "perdón",
+            "ayudar"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "I do not understand.",
+          "es": "No entiendo."
+        },
+        "data": {
+          "correct": "entiendo",
+          "options": [
+            "entiendo",
+            "pregunto",
+            "repito"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen to the phrase.",
+          "es": "Escucha la frase."
+        },
+        "data": {
+          "correct": "Can you help me?",
+          "audio_text": "¿Puedes ayudarme?"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Could you repeat that?",
+          "es": "¿Podría ___ eso?"
+        },
+        "data": {
+          "correct": "repetir",
+          "text_before": "¿Podría",
+          "text_after": "eso?"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "I want to ask a question.",
+          "es": "Quiero ___ una pregunta."
+        },
+        "data": {
+          "correct": "preguntar",
+          "text_before": "Quiero",
+          "text_after": "una pregunta."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "What does this mean?",
+          "es": "¿Qué ___ esto?"
+        },
+        "data": {
+          "correct": "significa",
+          "text_before": "¿Qué",
+          "text_after": "esto?"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Pardon me.",
+          "es": "___, disculpe."
+        },
+        "data": {
+          "correct": "Perdón",
+          "text_before": "",
+          "text_after": ", disculpe."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "They had a long dialog.",
+          "es": "Tuvieron un largo ___."
+        },
+        "data": {
+          "correct": "diálogo",
+          "text_before": "Tuvieron un largo",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "I understand now.",
+          "es": "Ya ___."
+        },
+        "data": {
+          "correct": "entiendo",
+          "text_before": "Ya",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Can you help me please?",
+          "es": "¿Puedes ayudarme por favor?"
+        },
+        "data": {
+          "correct": [
+            "¿Puedes",
+            "ayudarme",
+            "por",
+            "favor?"
+          ],
+          "words": [
+            "¿Puedes",
+            "ayudarme",
+            "por",
+            "favor?",
+            "preguntar"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Please speak more slowly.",
+          "es": "Por favor habla más lentamente."
+        },
+        "data": {
+          "correct": [
+            "Por",
+            "favor",
+            "habla",
+            "más",
+            "lentamente."
+          ],
+          "words": [
+            "Por",
+            "favor",
+            "habla",
+            "más",
+            "lentamente.",
+            "rápido"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "What does that word mean?",
+          "es": "¿Qué significa esa palabra?"
+        },
+        "data": {
+          "correct": [
+            "¿Qué",
+            "significa",
+            "esa",
+            "palabra?"
+          ],
+          "words": [
+            "¿Qué",
+            "significa",
+            "esa",
+            "palabra?",
+            "diálogo"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "I need to ask you something.",
+          "es": "Necesito preguntarte algo."
+        },
+        "data": {
+          "correct": [
+            "Necesito",
+            "preguntarte",
+            "algo."
+          ],
+          "words": [
+            "Necesito",
+            "preguntarte",
+            "algo.",
+            "entender"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Pardon, I didn't hear you.",
+          "es": "Perdón, no te escuché."
+        },
+        "data": {
+          "correct": [
+            "Perdón,",
+            "no",
+            "te",
+            "escuché."
+          ],
+          "words": [
+            "Perdón,",
+            "no",
+            "te",
+            "escuché.",
+            "repetir"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Can you repeat the question?",
+          "es": "¿Puedes repetir la pregunta?"
+        },
+        "data": {
+          "correct": [
+            "¿Puedes",
+            "repetir",
+            "la",
+            "pregunta?"
+          ],
+          "words": [
+            "¿Puedes",
+            "repetir",
+            "la",
+            "pregunta?",
+            "lentamente"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": {
+      "en": "Travel Advanced",
+      "es": "Viajes Avanzados"
+    },
+    "description": {
+      "en": "Vocabulary for airport and travel logistics.",
+      "es": "Vocabulario para aeropuerto y logística de viajes."
+    },
+    "category": "travel",
+    "level": "intermediate",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "passport",
+        "en": "passport",
+        "es": "pasaporte"
+      },
+      {
+        "base_key": "luggage",
+        "en": "luggage",
+        "es": "equipaje"
+      },
+      {
+        "base_key": "flight",
+        "en": "flight",
+        "es": "vuelo"
+      },
+      {
+        "base_key": "delay",
+        "en": "delay",
+        "es": "retraso"
+      },
+      {
+        "base_key": "gate",
+        "en": "gate",
+        "es": "puerta"
+      },
+      {
+        "base_key": "customs",
+        "en": "customs",
+        "es": "aduana"
+      },
+      {
+        "base_key": "boarding",
+        "en": "boarding",
+        "es": "embarque"
+      },
+      {
+        "base_key": "ticket",
+        "en": "ticket",
+        "es": "boleto"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Where is the boarding gate?",
+          "es": "¿Dónde está la puerta de embarque?"
+        },
+        "data": {
+          "correct": "puerta",
+          "options": [
+            "puerta",
+            "aduana",
+            "equipaje"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "My flight has a delay.",
+          "es": "Mi vuelo tiene un retraso."
+        },
+        "data": {
+          "correct": "retraso",
+          "options": [
+            "retraso",
+            "pasaporte",
+            "boleto"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen carefully to the announcement.",
+          "es": "Escuche atentamente el anuncio."
+        },
+        "data": {
+          "correct": "Show your passport at customs.",
+          "audio_text": "Muestre su pasaporte en la aduana."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "I lost my luggage.",
+          "es": "Perdí mi ___."
+        },
+        "data": {
+          "correct": "equipaje",
+          "text_before": "Perdí mi",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "The boarding starts now.",
+          "es": "El ___ comienza ahora."
+        },
+        "data": {
+          "correct": "embarque",
+          "text_before": "El",
+          "text_after": "comienza ahora."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Do you have your ticket?",
+          "es": "¿Tienes tu ___?"
+        },
+        "data": {
+          "correct": "boleto",
+          "text_before": "¿Tienes tu",
+          "text_after": "?"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "The flight is cancelled.",
+          "es": "El ___ está cancelado."
+        },
+        "data": {
+          "correct": "vuelo",
+          "text_before": "El",
+          "text_after": "está cancelado."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Go through customs.",
+          "es": "Pase por la ___."
+        },
+        "data": {
+          "correct": "aduana",
+          "text_before": "Pase por la",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "I need a new passport.",
+          "es": "Necesito un nuevo ___."
+        },
+        "data": {
+          "correct": "pasaporte",
+          "text_before": "Necesito un nuevo",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "We are waiting at the gate.",
+          "es": "Estamos esperando en la puerta."
+        },
+        "data": {
+          "correct": [
+            "Estamos",
+            "esperando",
+            "en",
+            "la",
+            "puerta."
+          ],
+          "words": [
+            "Estamos",
+            "esperando",
+            "en",
+            "la",
+            "puerta.",
+            "vuelo"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "The flight has a long delay.",
+          "es": "El vuelo tiene un largo retraso."
+        },
+        "data": {
+          "correct": [
+            "El",
+            "vuelo",
+            "tiene",
+            "un",
+            "largo",
+            "retraso."
+          ],
+          "words": [
+            "El",
+            "vuelo",
+            "tiene",
+            "un",
+            "largo",
+            "retraso.",
+            "equipaje"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Here is my boarding pass.",
+          "es": "Aquí está mi pase de embarque."
+        },
+        "data": {
+          "correct": [
+            "Aquí",
+            "está",
+            "mi",
+            "pase",
+            "de",
+            "embarque."
+          ],
+          "words": [
+            "Aquí",
+            "está",
+            "mi",
+            "pase",
+            "de",
+            "embarque.",
+            "aduana"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Show your passport and ticket.",
+          "es": "Muestre su pasaporte y boleto."
+        },
+        "data": {
+          "correct": [
+            "Muestre",
+            "su",
+            "pasaporte",
+            "y",
+            "boleto."
+          ],
+          "words": [
+            "Muestre",
+            "su",
+            "pasaporte",
+            "y",
+            "boleto.",
+            "retraso"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "They checked our luggage at customs.",
+          "es": "Revisaron nuestro equipaje en la aduana."
+        },
+        "data": {
+          "correct": [
+            "Revisaron",
+            "nuestro",
+            "equipaje",
+            "en",
+            "la",
+            "aduana."
+          ],
+          "words": [
+            "Revisaron",
+            "nuestro",
+            "equipaje",
+            "en",
+            "la",
+            "aduana.",
+            "puerta"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "The flight leaves at noon.",
+          "es": "El vuelo sale al mediodía."
+        },
+        "data": {
+          "correct": [
+            "El",
+            "vuelo",
+            "sale",
+            "al",
+            "mediodía."
+          ],
+          "words": [
+            "El",
+            "vuelo",
+            "sale",
+            "al",
+            "mediodía.",
+            "boleto"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": {
+      "en": "Work & School",
+      "es": "Trabajo y Escuela"
+    },
+    "description": {
+      "en": "Terms related to professional and academic life.",
+      "es": "Términos relacionados con la vida profesional y académica."
+    },
+    "category": "life",
+    "level": "intermediate",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "meeting",
+        "en": "meeting",
+        "es": "reunión"
+      },
+      {
+        "base_key": "boss",
+        "en": "boss",
+        "es": "jefe"
+      },
+      {
+        "base_key": "teacher",
+        "en": "teacher",
+        "es": "profesor"
+      },
+      {
+        "base_key": "exam",
+        "en": "exam",
+        "es": "examen"
+      },
+      {
+        "base_key": "project",
+        "en": "project",
+        "es": "proyecto"
+      },
+      {
+        "base_key": "deadline",
+        "en": "deadline",
+        "es": "fecha límite"
+      },
+      {
+        "base_key": "desk",
+        "en": "desk",
+        "es": "escritorio"
+      },
+      {
+        "base_key": "office",
+        "en": "office",
+        "es": "oficina"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "I have a meeting at 10.",
+          "es": "Tengo una reunión a las 10."
+        },
+        "data": {
+          "correct": "reunión",
+          "options": [
+            "reunión",
+            "examen",
+            "proyecto"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "The boss is in the office.",
+          "es": "El jefe está en la oficina."
+        },
+        "data": {
+          "correct": "jefe",
+          "options": [
+            "jefe",
+            "profesor",
+            "escritorio"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Identify the spoken phrase.",
+          "es": "Identifica la frase hablada."
+        },
+        "data": {
+          "correct": "The deadline is tomorrow.",
+          "audio_text": "La fecha límite es mañana."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "My teacher is very smart.",
+          "es": "Mi ___ es muy inteligente."
+        },
+        "data": {
+          "correct": "profesor",
+          "text_before": "Mi",
+          "text_after": "es muy inteligente."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "I failed the exam.",
+          "es": "Reprobé el ___."
+        },
+        "data": {
+          "correct": "examen",
+          "text_before": "Reprobé el",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "The project is complete.",
+          "es": "El ___ está completo."
+        },
+        "data": {
+          "correct": "proyecto",
+          "text_before": "El",
+          "text_after": "está completo."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Leave it on my desk.",
+          "es": "Déjalo en mi ___."
+        },
+        "data": {
+          "correct": "escritorio",
+          "text_before": "Déjalo en mi",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "We work in the same office.",
+          "es": "Trabajamos en la misma ___."
+        },
+        "data": {
+          "correct": "oficina",
+          "text_before": "Trabajamos en la misma",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "The meeting is long.",
+          "es": "La ___ es larga."
+        },
+        "data": {
+          "correct": "reunión",
+          "text_before": "La",
+          "text_after": "es larga."
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "I need to talk to my boss.",
+          "es": "Necesito hablar con mi jefe."
+        },
+        "data": {
+          "correct": [
+            "Necesito",
+            "hablar",
+            "con",
+            "mi",
+            "jefe."
+          ],
+          "words": [
+            "Necesito",
+            "hablar",
+            "con",
+            "mi",
+            "jefe.",
+            "profesor"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "The new project starts today.",
+          "es": "El nuevo proyecto empieza hoy."
+        },
+        "data": {
+          "correct": [
+            "El",
+            "nuevo",
+            "proyecto",
+            "empieza",
+            "hoy."
+          ],
+          "words": [
+            "El",
+            "nuevo",
+            "proyecto",
+            "empieza",
+            "hoy.",
+            "examen"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "We missed the project deadline.",
+          "es": "Perdimos la fecha límite del proyecto."
+        },
+        "data": {
+          "correct": [
+            "Perdimos",
+            "la",
+            "fecha",
+            "límite",
+            "del",
+            "proyecto."
+          ],
+          "words": [
+            "Perdimos",
+            "la",
+            "fecha",
+            "límite",
+            "del",
+            "proyecto.",
+            "reunión"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Your papers are on the desk.",
+          "es": "Tus papeles están en el escritorio."
+        },
+        "data": {
+          "correct": [
+            "Tus",
+            "papeles",
+            "están",
+            "en",
+            "el",
+            "escritorio."
+          ],
+          "words": [
+            "Tus",
+            "papeles",
+            "están",
+            "en",
+            "el",
+            "escritorio.",
+            "oficina"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "The teacher graded our exams.",
+          "es": "El profesor calificó nuestros exámenes."
+        },
+        "data": {
+          "correct": [
+            "El",
+            "profesor",
+            "calificó",
+            "nuestros",
+            "exámenes."
+          ],
+          "words": [
+            "El",
+            "profesor",
+            "calificó",
+            "nuestros",
+            "exámenes.",
+            "proyectos"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "She works in a big office.",
+          "es": "Ella trabaja en una oficina grande."
+        },
+        "data": {
+          "correct": [
+            "Ella",
+            "trabaja",
+            "en",
+            "una",
+            "oficina",
+            "grande."
+          ],
+          "words": [
+            "Ella",
+            "trabaja",
+            "en",
+            "una",
+            "oficina",
+            "grande.",
+            "jefe"
+          ]
+        }
+      }
+    ]
+  }
+]

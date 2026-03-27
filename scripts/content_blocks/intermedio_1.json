@@ -1,0 +1,1166 @@
+[
+  {
+    "title": {
+      "en": "Past (basic)",
+      "es": "Pasado (básico)"
+    },
+    "description": {
+      "en": "Learn basic verbs in the past tense.",
+      "es": "Aprende verbos básicos en tiempo pasado."
+    },
+    "category": "grammar",
+    "level": "intermediate",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "went",
+        "en": "went",
+        "es": "fui"
+      },
+      {
+        "base_key": "ate",
+        "en": "ate",
+        "es": "comí"
+      },
+      {
+        "base_key": "saw",
+        "en": "saw",
+        "es": "vi"
+      },
+      {
+        "base_key": "played",
+        "en": "played",
+        "es": "jugué"
+      },
+      {
+        "base_key": "worked",
+        "en": "worked",
+        "es": "trabajé"
+      },
+      {
+        "base_key": "bought",
+        "en": "bought",
+        "es": "compré"
+      },
+      {
+        "base_key": "yesterday",
+        "en": "yesterday",
+        "es": "ayer"
+      },
+      {
+        "base_key": "last week",
+        "en": "last week",
+        "es": "la semana pasada"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say 'I went yesterday'?",
+          "es": "¿Cómo se dice 'I went yesterday'?"
+        },
+        "data": {
+          "correct": "Fui ayer",
+          "options": [
+            "Fui ayer",
+            "Voy ayer",
+            "Comí ayer"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Select the correct translation for 'I saw'.",
+          "es": "Selecciona la traducción correcta para 'I saw'."
+        },
+        "data": {
+          "correct": "Vi",
+          "options": [
+            "Vi",
+            "Fui",
+            "Veo"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen and select what it means.",
+          "es": "Escucha y selecciona qué significa."
+        },
+        "data": {
+          "correct": "I played last week",
+          "audio_text": "Jugué la semana pasada"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I ate a lot.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Yo",
+          "correct": "comí",
+          "text_after": "mucho."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I worked yesterday.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Yo",
+          "correct": "trabajé",
+          "text_after": "ayer."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I bought a shirt.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Yo",
+          "correct": "compré",
+          "text_after": "una camisa."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I saw the movie.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Yo",
+          "correct": "vi",
+          "text_after": "la película."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I went to the park.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Yo",
+          "correct": "fui",
+          "text_after": "al parque."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I played tennis.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Yo",
+          "correct": "jugué",
+          "text_after": "al tenis."
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I went to the store yesterday.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Fui",
+            "a la tienda",
+            "ayer"
+          ],
+          "words": [
+            "ayer",
+            "a la tienda",
+            "Fui",
+            "voy"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I ate apples last week.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Comí",
+            "manzanas",
+            "la semana pasada"
+          ],
+          "words": [
+            "la semana pasada",
+            "Comí",
+            "manzanas",
+            "veo"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I saw my friend.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Vi",
+            "a mi",
+            "amigo"
+          ],
+          "words": [
+            "amigo",
+            "Vi",
+            "a mi",
+            "jugué"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I played soccer.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Jugué",
+            "al",
+            "fútbol"
+          ],
+          "words": [
+            "al",
+            "fútbol",
+            "Jugué",
+            "trabajé"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I worked a lot yesterday.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Trabajé",
+            "mucho",
+            "ayer"
+          ],
+          "words": [
+            "mucho",
+            "ayer",
+            "Trabajé",
+            "compré"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I bought a car.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Compré",
+            "un",
+            "coche"
+          ],
+          "words": [
+            "un",
+            "coche",
+            "Compré",
+            "fui"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": {
+      "en": "Future",
+      "es": "Futuro"
+    },
+    "description": {
+      "en": "Express future plans and actions.",
+      "es": "Expresa planes y acciones futuras."
+    },
+    "category": "grammar",
+    "level": "intermediate",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "will",
+        "en": "will (voy a)",
+        "es": "voy a"
+      },
+      {
+        "base_key": "going to",
+        "en": "going to",
+        "es": "iré a"
+      },
+      {
+        "base_key": "tomorrow",
+        "en": "tomorrow",
+        "es": "mañana"
+      },
+      {
+        "base_key": "next week",
+        "en": "next week",
+        "es": "la próxima semana"
+      },
+      {
+        "base_key": "soon",
+        "en": "soon",
+        "es": "pronto"
+      },
+      {
+        "base_key": "travel",
+        "en": "travel",
+        "es": "viajar"
+      },
+      {
+        "base_key": "visit",
+        "en": "visit",
+        "es": "visitar"
+      },
+      {
+        "base_key": "eat",
+        "en": "eat (future)",
+        "es": "comeré"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say 'I will travel tomorrow'?",
+          "es": "¿Cómo se dice 'I will travel tomorrow'?"
+        },
+        "data": {
+          "correct": "Voy a viajar mañana",
+          "options": [
+            "Voy a viajar mañana",
+            "Viajé mañana",
+            "Visito mañana"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Select the correct translation for 'soon'.",
+          "es": "Selecciona la traducción correcta para 'soon'."
+        },
+        "data": {
+          "correct": "pronto",
+          "options": [
+            "pronto",
+            "mañana",
+            "luego"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen and select what it means.",
+          "es": "Escucha y selecciona qué significa."
+        },
+        "data": {
+          "correct": "I will visit next week",
+          "audio_text": "Visitaré la próxima semana"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I am going to travel.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Yo voy a",
+          "correct": "viajar",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I will visit you soon.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Te voy a",
+          "correct": "visitar",
+          "text_after": "pronto."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: We will eat tomorrow.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Nosotros comeremos",
+          "correct": "mañana",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I will see you next week.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Te veré",
+          "correct": "la próxima semana",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: He is going to travel.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Él va a",
+          "correct": "viajar",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: They will arrive soon.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Llegarán",
+          "correct": "pronto",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I will travel tomorrow.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Voy a",
+            "viajar",
+            "mañana"
+          ],
+          "words": [
+            "viajar",
+            "mañana",
+            "Voy a",
+            "ayer"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: We will visit next week.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Vamos a",
+            "visitar",
+            "la próxima semana"
+          ],
+          "words": [
+            "la próxima semana",
+            "visitar",
+            "Vamos a",
+            "pronto"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I will eat soon.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Voy a",
+            "comer",
+            "pronto"
+          ],
+          "words": [
+            "comer",
+            "pronto",
+            "Voy a",
+            "mañana"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: She will travel soon.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Ella va a",
+            "viajar",
+            "pronto"
+          ],
+          "words": [
+            "pronto",
+            "Ella va a",
+            "viajar",
+            "visitar"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: They will visit tomorrow.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Ellos",
+            "visitarán",
+            "mañana"
+          ],
+          "words": [
+            "mañana",
+            "visitarán",
+            "Ellos",
+            "comerán"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I will go next week.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Iré",
+            "la",
+            "próxima semana"
+          ],
+          "words": [
+            "próxima semana",
+            "la",
+            "Iré",
+            "futuro"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": {
+      "en": "Modal verbs",
+      "es": "Verbos modales"
+    },
+    "description": {
+      "en": "Using common modal verbs for obligation, ability, and advice.",
+      "es": "Uso de verbos modales comunes para obligación, habilidad y consejo."
+    },
+    "category": "grammar",
+    "level": "intermediate",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "can",
+        "en": "can",
+        "es": "puedo"
+      },
+      {
+        "base_key": "must",
+        "en": "must",
+        "es": "debo"
+      },
+      {
+        "base_key": "should",
+        "en": "should",
+        "es": "debería"
+      },
+      {
+        "base_key": "could",
+        "en": "could",
+        "es": "podría"
+      },
+      {
+        "base_key": "would",
+        "en": "would",
+        "es": "haría"
+      },
+      {
+        "base_key": "help",
+        "en": "help",
+        "es": "ayudar"
+      },
+      {
+        "base_key": "learn",
+        "en": "learn",
+        "es": "aprender"
+      },
+      {
+        "base_key": "want",
+        "en": "want",
+        "es": "quiero"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say 'I can help'?",
+          "es": "¿Cómo se dice 'I can help'?"
+        },
+        "data": {
+          "correct": "Puedo ayudar",
+          "options": [
+            "Puedo ayudar",
+            "Debo ayudar",
+            "Podría ayudar"
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Select the correct translation for 'I should learn'.",
+          "es": "Selecciona la traducción correcta para 'I should learn'."
+        },
+        "data": {
+          "correct": "Debería aprender",
+          "options": [
+            "Debería aprender",
+            "Puedo aprender",
+            "Debo aprender"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen and select what it means.",
+          "es": "Escucha y selecciona qué significa."
+        },
+        "data": {
+          "correct": "I must help you.",
+          "audio_text": "Debo ayudarte."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I can do it.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Yo",
+          "correct": "puedo",
+          "text_after": "hacerlo."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I must go.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Yo",
+          "correct": "debo",
+          "text_after": "irme."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: You should eat.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Tú",
+          "correct": "deberías",
+          "text_after": "comer."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: Could you help me?",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "¿",
+          "correct": "Podrías",
+          "text_after": "ayudarme?"
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I would like to learn.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Me gustaría",
+          "correct": "aprender",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: Can I help?",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "¿",
+          "correct": "Puedo",
+          "text_after": "ayudar?"
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I can help.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Yo",
+            "puedo",
+            "ayudar"
+          ],
+          "words": [
+            "ayudar",
+            "puedo",
+            "Yo",
+            "aprender"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: You must learn.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Tú",
+            "debes",
+            "aprender"
+          ],
+          "words": [
+            "aprender",
+            "debes",
+            "Tú",
+            "ayudar"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I should sleep.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Yo",
+            "debería",
+            "dormir"
+          ],
+          "words": [
+            "dormir",
+            "debería",
+            "Yo",
+            "poder"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: Could we go?",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "¿Podríamos",
+            "ir",
+            "nosotros?"
+          ],
+          "words": [
+            "ir",
+            "nosotros?",
+            "¿Podríamos",
+            "deberíamos"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: They would like to help.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "A ellos",
+            "les gustaría",
+            "ayudar"
+          ],
+          "words": [
+            "ayudar",
+            "les gustaría",
+            "A ellos",
+            "pueden"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: We must work.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Nosotros",
+            "debemos",
+            "trabajar"
+          ],
+          "words": [
+            "trabajar",
+            "debemos",
+            "Nosotros",
+            "podemos"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": {
+      "en": "Opinions",
+      "es": "Opiniones"
+    },
+    "description": {
+      "en": "Expressing your thoughts and opinions.",
+      "es": "Expresando tus pensamientos y opiniones."
+    },
+    "category": "conversation",
+    "level": "intermediate",
+    "target_language": "es",
+    "source_language": "en",
+    "words": [
+      {
+        "base_key": "think",
+        "en": "think",
+        "es": "pienso que"
+      },
+      {
+        "base_key": "believe",
+        "en": "believe",
+        "es": "creo que"
+      },
+      {
+        "base_key": "guess",
+        "en": "guess",
+        "es": "supongo"
+      },
+      {
+        "base_key": "agree",
+        "en": "agree",
+        "es": "de acuerdo"
+      },
+      {
+        "base_key": "disagree",
+        "en": "disagree",
+        "es": "en desacuerdo"
+      },
+      {
+        "base_key": "idea",
+        "en": "idea",
+        "es": "idea"
+      },
+      {
+        "base_key": "maybe",
+        "en": "maybe",
+        "es": "tal vez"
+      },
+      {
+        "base_key": "opinion",
+        "en": "opinion",
+        "es": "opinión"
+      }
+    ],
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say 'I think that...'?",
+          "es": "¿Cómo se dice 'I think that...'?"
+        },
+        "data": {
+          "correct": "Pienso que...",
+          "options": [
+            "Pienso que...",
+            "Creo que...",
+            "En desacuerdo..."
+          ]
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "en": "Select the correct phrase for 'I agree'.",
+          "es": "Selecciona la frase correcta para 'I agree'."
+        },
+        "data": {
+          "correct": "Estoy de acuerdo",
+          "options": [
+            "Estoy de acuerdo",
+            "Tengo idea",
+            "Tal vez"
+          ]
+        }
+      },
+      {
+        "type": "listening",
+        "question": {
+          "en": "Listen and select what it means.",
+          "es": "Escucha y selecciona qué significa."
+        },
+        "data": {
+          "correct": "It is a good idea.",
+          "audio_text": "Es una buena idea."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I believe it is true.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Yo",
+          "correct": "creo",
+          "text_after": "que es verdad."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I agree with you.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Estoy",
+          "correct": "de acuerdo",
+          "text_after": "contigo."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: I disagree.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Estoy",
+          "correct": "en desacuerdo",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: It is a bad idea.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "Es una mala",
+          "correct": "idea",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: Maybe later.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "",
+          "correct": "Tal vez",
+          "text_after": "más tarde."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question": {
+          "en": "Fill in the blank: In my opinion.",
+          "es": "Completa el espacio."
+        },
+        "data": {
+          "text_before": "En mi",
+          "correct": "opinión",
+          "text_after": "."
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I think it's good.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Pienso",
+            "que",
+            "es bueno"
+          ],
+          "words": [
+            "es bueno",
+            "que",
+            "Pienso",
+            "acuerdo"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I agree with that.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Estoy",
+            "de acuerdo",
+            "con eso"
+          ],
+          "words": [
+            "con eso",
+            "de acuerdo",
+            "Estoy",
+            "idea"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: I disagree completely.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Estoy",
+            "en desacuerdo",
+            "totalmente"
+          ],
+          "words": [
+            "totalmente",
+            "en desacuerdo",
+            "Estoy",
+            "pienso"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: It's a great idea.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Es",
+            "una",
+            "gran idea"
+          ],
+          "words": [
+            "gran idea",
+            "una",
+            "Es",
+            "opinión"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: Maybe we can go.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "Tal vez",
+            "podemos",
+            "ir"
+          ],
+          "words": [
+            "ir",
+            "podemos",
+            "Tal vez",
+            "acuerdo"
+          ]
+        }
+      },
+      {
+        "type": "word_order",
+        "question": {
+          "en": "Form the sentence: In my opinion, yes.",
+          "es": "Forma la oración."
+        },
+        "data": {
+          "correct": [
+            "En",
+            "mi opinión",
+            "sí"
+          ],
+          "words": [
+            "sí",
+            "mi opinión",
+            "En",
+            "supongo"
+          ]
+        }
+      }
+    ]
+  }
+]
