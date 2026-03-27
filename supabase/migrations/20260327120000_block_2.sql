@@ -12,100 +12,100 @@ INSERT INTO public.scenario_translations (id, scenario_id, language, title, desc
 VALUES ('ee8533b6-d826-4db9-576b-6be0de87ca09', '063a9ff8-017c-71cb-def4-149748527027', 'es', 'Adjetivos', 'Aprende adjetivos básicos para describir cosas.')
 ON CONFLICT (scenario_id, language) DO UPDATE SET title = EXCLUDED.title, description = EXCLUDED.description;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('94bd1867-0337-6a71-d11d-eac73dc90c39', 'big', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('big', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('66cfa306-f0dd-747c-9db4-2c82ac1399b8', '94bd1867-0337-6a71-d11d-eac73dc90c39', 'en', 'big', 'big')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'big'), 'en', 'big', 'big')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('290742e6-ba0b-7312-a790-9caeeafccfd6', '94bd1867-0337-6a71-d11d-eac73dc90c39', 'es', 'grande', 'grande')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'big'), 'es', 'grande', 'grande')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('9fc0689a-58c6-46d4-8934-f5325bd1e6ac', 'small', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('small', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('9a0c779a-cf70-440a-cefe-157cabd31096', '9fc0689a-58c6-46d4-8934-f5325bd1e6ac', 'en', 'small', 'small')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'small'), 'en', 'small', 'small')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('f01a8b22-9cd1-4759-f225-d02f09be30f2', '9fc0689a-58c6-46d4-8934-f5325bd1e6ac', 'es', 'pequeño', 'pequeño')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'small'), 'es', 'pequeño', 'pequeño')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('cd81e8a2-abad-8584-3721-8b6903a219bd', 'good', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('good', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('27501caf-ab6b-5c26-4cae-3b2776e1e03e', 'cd81e8a2-abad-8584-3721-8b6903a219bd', 'en', 'good', 'good')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'good'), 'en', 'good', 'good')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('e7d18bcf-d8ce-26cf-3ea4-6b041de1a255', 'cd81e8a2-abad-8584-3721-8b6903a219bd', 'es', 'bueno', 'bueno')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'good'), 'es', 'bueno', 'bueno')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('7d4638d9-f538-fedc-f80e-08393b0cba72', 'bad', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('bad', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('f5931266-0e78-03c8-a981-be639a5e4981', '7d4638d9-f538-fedc-f80e-08393b0cba72', 'en', 'bad', 'bad')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'bad'), 'en', 'bad', 'bad')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('21a40095-9958-581e-7a24-84f184f45d00', '7d4638d9-f538-fedc-f80e-08393b0cba72', 'es', 'malo', 'malo')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'bad'), 'es', 'malo', 'malo')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('e4cc3f25-042a-a026-1d36-44db97a14d47', 'hot', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('hot', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('fd8c9f80-1ef6-f73b-462a-ef80b3e43e04', 'e4cc3f25-042a-a026-1d36-44db97a14d47', 'en', 'hot', 'hot')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'hot'), 'en', 'hot', 'hot')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('d26f848c-57f3-16b7-dbc3-e89f391c036a', 'e4cc3f25-042a-a026-1d36-44db97a14d47', 'es', 'caliente', 'caliente')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'hot'), 'es', 'caliente', 'caliente')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('03f5ae71-356c-64b6-31d7-8ea139d8937d', 'cold', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('cold', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('e3282fb0-9df5-78f4-535c-4ddbf978f362', '03f5ae71-356c-64b6-31d7-8ea139d8937d', 'en', 'cold', 'cold')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'cold'), 'en', 'cold', 'cold')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('245ad5e0-b075-1142-79d8-5a5cfde05ecf', '03f5ae71-356c-64b6-31d7-8ea139d8937d', 'es', 'frío', 'frío')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'cold'), 'es', 'frío', 'frío')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('dbaa7539-fe53-4ef6-ea55-fb959b6eb26f', 'beautiful', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('beautiful', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('d75484c4-295e-d3ac-481d-ca611d63acba', 'dbaa7539-fe53-4ef6-ea55-fb959b6eb26f', 'en', 'beautiful', 'beautiful')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'beautiful'), 'en', 'beautiful', 'beautiful')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('c21d9bb3-1cb4-7601-5708-06dbc437c5f2', 'dbaa7539-fe53-4ef6-ea55-fb959b6eb26f', 'es', 'hermoso', 'hermoso')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'beautiful'), 'es', 'hermoso', 'hermoso')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('f1cc8a52-deaf-4d14-784f-ab21ccd39b84', 'ugly', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('ugly', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('6ea6be5e-ae97-dd18-4777-83c3f399380b', 'f1cc8a52-deaf-4d14-784f-ab21ccd39b84', 'en', 'ugly', 'ugly')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'ugly'), 'en', 'ugly', 'ugly')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('01dcef7d-3ef5-3a0b-9119-216cd17ad769', 'f1cc8a52-deaf-4d14-784f-ab21ccd39b84', 'es', 'feo', 'feo')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'ugly'), 'es', 'feo', 'feo')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
 INSERT INTO public.questions (id, scenario_id, type, question_text, sort_order, data, source_language, target_language)
@@ -315,100 +315,100 @@ INSERT INTO public.scenario_translations (id, scenario_id, language, title, desc
 VALUES ('dfbb7d72-31f2-693b-9a50-a57ef328267a', '516ee08e-e023-ad9e-10f0-88a9743358e5', 'es', 'Preguntas', 'Aprende a hacer preguntas básicas.')
 ON CONFLICT (scenario_id, language) DO UPDATE SET title = EXCLUDED.title, description = EXCLUDED.description;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('0a517aa6-0ad5-14ff-6900-ff4ec52578c1', 'what', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('what', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('ccbf0d47-cbf6-e668-6185-fe9f7a64a490', '0a517aa6-0ad5-14ff-6900-ff4ec52578c1', 'en', 'what', 'what')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'what'), 'en', 'what', 'what')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('800bb296-16aa-feda-a730-f3eaee7c75e1', '0a517aa6-0ad5-14ff-6900-ff4ec52578c1', 'es', 'qué', 'qué')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'what'), 'es', 'qué', 'qué')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('b1a827fd-faa7-73dd-be98-ca341b01435c', 'where', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('where', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('4304dac3-f0da-80f2-7c03-91fd8158a13c', 'b1a827fd-faa7-73dd-be98-ca341b01435c', 'en', 'where', 'where')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'where'), 'en', 'where', 'where')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('81402b4d-442a-8cd3-71f4-4620f0a09b6f', 'b1a827fd-faa7-73dd-be98-ca341b01435c', 'es', 'dónde', 'dónde')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'where'), 'es', 'dónde', 'dónde')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('276fbdf8-f6f6-5179-f8a9-9690599661ac', 'who', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('who', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('f4286b0c-47c7-8178-a0f4-36e828c9975a', '276fbdf8-f6f6-5179-f8a9-9690599661ac', 'en', 'who', 'who')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'who'), 'en', 'who', 'who')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('8f5038cd-033c-293f-a4e3-1985f28a6593', '276fbdf8-f6f6-5179-f8a9-9690599661ac', 'es', 'quién', 'quién')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'who'), 'es', 'quién', 'quién')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('5e7322c9-c93d-2e59-c453-4a4226940401', 'when', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('when', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('b57575dc-e963-0c77-1d74-d09b3fa8f58e', '5e7322c9-c93d-2e59-c453-4a4226940401', 'en', 'when', 'when')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'when'), 'en', 'when', 'when')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('655e4592-5a63-f2ef-62a2-f29c7bdea941', '5e7322c9-c93d-2e59-c453-4a4226940401', 'es', 'cuándo', 'cuándo')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'when'), 'es', 'cuándo', 'cuándo')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('2794e61b-f263-602f-dfc5-9600ce9cbe1a', 'why', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('why', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('0c3b4d37-3b5e-3e5b-71cc-aada5914ea45', '2794e61b-f263-602f-dfc5-9600ce9cbe1a', 'en', 'why', 'why')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'why'), 'en', 'why', 'why')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('00368986-0b78-a1fd-5441-bb72a3025eab', '2794e61b-f263-602f-dfc5-9600ce9cbe1a', 'es', 'por qué', 'por qué')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'why'), 'es', 'por qué', 'por qué')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('a907d813-fd4d-5e77-aa0b-93c2b79c3fd0', 'how', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('how', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('5079ce2d-6940-3691-b191-2453295b0094', 'a907d813-fd4d-5e77-aa0b-93c2b79c3fd0', 'en', 'how', 'how')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'how'), 'en', 'how', 'how')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('b426eac2-d9f2-5352-6bc1-7001edf225e9', 'a907d813-fd4d-5e77-aa0b-93c2b79c3fd0', 'es', 'cómo', 'cómo')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'how'), 'es', 'cómo', 'cómo')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('7d4ec318-f911-9bdf-5b6a-3fc737e0fa5d', 'which', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('which', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('1223ed4c-3cbc-b137-1ca3-088a1699e52e', '7d4ec318-f911-9bdf-5b6a-3fc737e0fa5d', 'en', 'which', 'which')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'which'), 'en', 'which', 'which')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('f037ec8f-e7be-8a56-fdfb-d9319a5243e3', '7d4ec318-f911-9bdf-5b6a-3fc737e0fa5d', 'es', 'cuál', 'cuál')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'which'), 'es', 'cuál', 'cuál')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('a1332a9c-37ec-d9d1-1f52-bd52abcd4b05', 'how_much', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('how_much', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('272d4ce7-aba2-b1f7-31d7-0fb3d6bb8ad1', 'a1332a9c-37ec-d9d1-1f52-bd52abcd4b05', 'en', 'how much', 'how much')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'how_much'), 'en', 'how much', 'how much')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('f43b1291-83e4-aeec-327c-747fb6e16eb0', 'a1332a9c-37ec-d9d1-1f52-bd52abcd4b05', 'es', 'cuánto', 'cuánto')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'how_much'), 'es', 'cuánto', 'cuánto')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
 INSERT INTO public.questions (id, scenario_id, type, question_text, sort_order, data, source_language, target_language)
@@ -618,100 +618,100 @@ INSERT INTO public.scenario_translations (id, scenario_id, language, title, desc
 VALUES ('23aa87b8-2a0d-6246-8150-4f7f04c22efb', '0fca953c-8bff-e618-280c-27634d870c72', 'es', 'Comida y Bebidas', 'Vocabulario sobre comida y bebidas diarias.')
 ON CONFLICT (scenario_id, language) DO UPDATE SET title = EXCLUDED.title, description = EXCLUDED.description;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('9a345c05-1bb1-bdde-3ce6-6d8186f7e262', 'water', 'daily_life', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('water', 'daily_life', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('351c30e6-331a-80f2-0c5e-4e2f25c01b0c', '9a345c05-1bb1-bdde-3ce6-6d8186f7e262', 'en', 'water', 'water')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'water'), 'en', 'water', 'water')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('6c4c76e7-c28c-9a1c-bf4b-41897fbaa960', '9a345c05-1bb1-bdde-3ce6-6d8186f7e262', 'es', 'agua', 'agua')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'water'), 'es', 'agua', 'agua')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('64162f43-4d1f-76d7-5676-80902797e748', 'coffee', 'daily_life', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('coffee', 'daily_life', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('bd70e36e-cfe3-4cf5-36e4-bccb5367442c', '64162f43-4d1f-76d7-5676-80902797e748', 'en', 'coffee', 'coffee')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'coffee'), 'en', 'coffee', 'coffee')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('de89841d-4311-5ca5-529e-8320ecae3dae', '64162f43-4d1f-76d7-5676-80902797e748', 'es', 'café', 'café')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'coffee'), 'es', 'café', 'café')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('d7a4ecdb-da6f-0140-2336-72c90c1c1112', 'bread', 'daily_life', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('bread', 'daily_life', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('54c19a3c-3df5-cc52-66c7-c150986c7798', 'd7a4ecdb-da6f-0140-2336-72c90c1c1112', 'en', 'bread', 'bread')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'bread'), 'en', 'bread', 'bread')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('8148944a-9dc5-4d78-e9d9-f3c9abe555c2', 'd7a4ecdb-da6f-0140-2336-72c90c1c1112', 'es', 'pan', 'pan')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'bread'), 'es', 'pan', 'pan')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('a08a59bd-7255-4201-f220-0b849e3854ff', 'chicken', 'daily_life', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('chicken', 'daily_life', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('a628d261-7487-2406-877f-8877dfbf425d', 'a08a59bd-7255-4201-f220-0b849e3854ff', 'en', 'chicken', 'chicken')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'chicken'), 'en', 'chicken', 'chicken')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('047833ab-22f6-1f25-5260-744009335375', 'a08a59bd-7255-4201-f220-0b849e3854ff', 'es', 'pollo', 'pollo')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'chicken'), 'es', 'pollo', 'pollo')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('28ebaef8-51d0-6431-7f9a-39f4f38ce8a7', 'apple', 'daily_life', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('apple', 'daily_life', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('aa61eadb-da0d-fe2b-503d-01885533e81d', '28ebaef8-51d0-6431-7f9a-39f4f38ce8a7', 'en', 'apple', 'apple')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'apple'), 'en', 'apple', 'apple')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('d9cabf2f-7b0f-537b-e823-58a9856501ce', '28ebaef8-51d0-6431-7f9a-39f4f38ce8a7', 'es', 'manzana', 'manzana')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'apple'), 'es', 'manzana', 'manzana')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('f556d49c-58d4-3b9b-6d0c-3f9d77ea3341', 'milk', 'daily_life', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('milk', 'daily_life', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('30ab92b5-9995-58ad-ea10-ca5d02d83835', 'f556d49c-58d4-3b9b-6d0c-3f9d77ea3341', 'en', 'milk', 'milk')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'milk'), 'en', 'milk', 'milk')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('55015755-66ee-9d73-698c-e27496d17fad', 'f556d49c-58d4-3b9b-6d0c-3f9d77ea3341', 'es', 'leche', 'leche')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'milk'), 'es', 'leche', 'leche')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('605c1a47-4a39-52df-a4f2-d7f263cc3772', 'meat', 'daily_life', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('meat', 'daily_life', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('1716b7cb-e989-9cd0-7f90-24a740f96a5b', '605c1a47-4a39-52df-a4f2-d7f263cc3772', 'en', 'meat', 'meat')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'meat'), 'en', 'meat', 'meat')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('999ead26-9a2b-7f8f-bd71-6acfca025f4f', '605c1a47-4a39-52df-a4f2-d7f263cc3772', 'es', 'carne', 'carne')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'meat'), 'es', 'carne', 'carne')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('7adce4ed-1db7-8a3c-fb04-3b322f54f3d6', 'cheese', 'daily_life', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('cheese', 'daily_life', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('11631eb3-f3f8-517d-93f1-1da86d4832dc', '7adce4ed-1db7-8a3c-fb04-3b322f54f3d6', 'en', 'cheese', 'cheese')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'cheese'), 'en', 'cheese', 'cheese')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('55069d9f-b7e1-c910-f51b-7421d7190dcd', '7adce4ed-1db7-8a3c-fb04-3b322f54f3d6', 'es', 'queso', 'queso')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'cheese'), 'es', 'queso', 'queso')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
 INSERT INTO public.questions (id, scenario_id, type, question_text, sort_order, data, source_language, target_language)
@@ -921,100 +921,100 @@ INSERT INTO public.scenario_translations (id, scenario_id, language, title, desc
 VALUES ('a514f052-0e2e-fa21-f8f1-9800e828e59b', '08a646f5-1f85-7a34-2e86-8247cd35fe6b', 'es', 'Familia y Personas', 'Aprende palabras para familiares y personas.')
 ON CONFLICT (scenario_id, language) DO UPDATE SET title = EXCLUDED.title, description = EXCLUDED.description;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('9328f2d7-6405-45b4-3c1a-5ae521f88edf', 'mother', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('mother', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('616efc5f-d81c-c1b5-9c4a-5c8e57179695', '9328f2d7-6405-45b4-3c1a-5ae521f88edf', 'en', 'mother', 'mother')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'mother'), 'en', 'mother', 'mother')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('1582c4d2-f1e2-9b3f-48a0-af14d600e115', '9328f2d7-6405-45b4-3c1a-5ae521f88edf', 'es', 'madre', 'madre')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'mother'), 'es', 'madre', 'madre')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('0a50e397-8dae-cf7e-9a72-edf06e1f359c', 'father', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('father', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('56be868c-43ff-0206-96af-dd022608d20a', '0a50e397-8dae-cf7e-9a72-edf06e1f359c', 'en', 'father', 'father')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'father'), 'en', 'father', 'father')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('78ecb0b6-0f43-7c50-932d-bc97558bc7c6', '0a50e397-8dae-cf7e-9a72-edf06e1f359c', 'es', 'padre', 'padre')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'father'), 'es', 'padre', 'padre')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('550306e1-1df9-2fb1-3750-98c8716b8c45', 'friend', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('friend', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('4d28cce4-e161-47e4-3cab-e75e1decd933', '550306e1-1df9-2fb1-3750-98c8716b8c45', 'en', 'friend', 'friend')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'friend'), 'en', 'friend', 'friend')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('18029166-499d-f3ff-6a9d-9d7472ab914f', '550306e1-1df9-2fb1-3750-98c8716b8c45', 'es', 'amigo', 'amigo')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'friend'), 'es', 'amigo', 'amigo')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('d8e92dc7-5a6b-fbca-7fc5-adb91c956576', 'brother', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('brother', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('ac2dc9e8-ceb4-108b-9b8c-594acdedc4dc', 'd8e92dc7-5a6b-fbca-7fc5-adb91c956576', 'en', 'brother', 'brother')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'brother'), 'en', 'brother', 'brother')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('20ae4ea4-81d7-e2b0-7d14-7a6b6288d412', 'd8e92dc7-5a6b-fbca-7fc5-adb91c956576', 'es', 'hermano', 'hermano')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'brother'), 'es', 'hermano', 'hermano')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('92d2037d-f6ae-1497-4e59-308ef8b304a2', 'sister', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('sister', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('7f9fefdf-8aa6-d82b-0adf-5e609eff8922', '92d2037d-f6ae-1497-4e59-308ef8b304a2', 'en', 'sister', 'sister')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'sister'), 'en', 'sister', 'sister')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('84139b7e-c125-f154-866a-10aafdf900c5', '92d2037d-f6ae-1497-4e59-308ef8b304a2', 'es', 'hermana', 'hermana')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'sister'), 'es', 'hermana', 'hermana')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('d18fecdd-cb9d-c652-f2dd-d5351de5149e', 'child', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('child', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('4283b671-2828-a99b-1c60-6d89037e72df', 'd18fecdd-cb9d-c652-f2dd-d5351de5149e', 'en', 'child', 'child')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'child'), 'en', 'child', 'child')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('46814320-ec51-2447-1167-7d6b81b7254f', 'd18fecdd-cb9d-c652-f2dd-d5351de5149e', 'es', 'niño', 'niño')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'child'), 'es', 'niño', 'niño')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('cc86ccc8-94d2-7988-afc8-365a6a9c2581', 'person', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('person', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('f63a9a12-db78-fc28-56a8-6000b66853a5', 'cc86ccc8-94d2-7988-afc8-365a6a9c2581', 'en', 'person', 'person')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'person'), 'en', 'person', 'person')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('09215f20-bb93-a003-abc0-54af8535915b', 'cc86ccc8-94d2-7988-afc8-365a6a9c2581', 'es', 'persona', 'persona')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'person'), 'es', 'persona', 'persona')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('8cadc976-8e8f-15a0-6ee0-920d98a23564', 'people', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('people', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('d6624406-b21c-77bf-8ff6-a4244ce560c1', '8cadc976-8e8f-15a0-6ee0-920d98a23564', 'en', 'people', 'people')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'people'), 'en', 'people', 'people')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('a0a8d35b-0167-1a8c-71ce-c541927ca4cb', '8cadc976-8e8f-15a0-6ee0-920d98a23564', 'es', 'gente', 'gente')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'people'), 'es', 'gente', 'gente')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
 INSERT INTO public.questions (id, scenario_id, type, question_text, sort_order, data, source_language, target_language)
@@ -1224,100 +1224,100 @@ INSERT INTO public.scenario_translations (id, scenario_id, language, title, desc
 VALUES ('ae9d79d3-67c5-1564-2475-484c9be94eed', '796bc90f-8fb8-f15b-e476-01f31e9adc05', 'es', 'Números y Tiempo', 'Aprende los números y cómo hablar sobre el tiempo.')
 ON CONFLICT (scenario_id, language) DO UPDATE SET title = EXCLUDED.title, description = EXCLUDED.description;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('83913715-d00e-ade6-c0d3-696db83a9255', 'one', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('one', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('a7eb1d07-ff98-cef6-056c-4e159e72ce36', '83913715-d00e-ade6-c0d3-696db83a9255', 'en', 'one', 'one')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'one'), 'en', 'one', 'one')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('9991969f-78c5-41ff-22c6-6bdc16f96bb7', '83913715-d00e-ade6-c0d3-696db83a9255', 'es', 'uno', 'uno')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'one'), 'es', 'uno', 'uno')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('2be4ce58-3f07-da54-722f-381be1554f77', 'two', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('two', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('384187cc-4602-1301-10ac-faa8c0cef730', '2be4ce58-3f07-da54-722f-381be1554f77', 'en', 'two', 'two')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'two'), 'en', 'two', 'two')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('a558438e-dc04-f6d6-72c8-113769462327', '2be4ce58-3f07-da54-722f-381be1554f77', 'es', 'dos', 'dos')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'two'), 'es', 'dos', 'dos')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('06578781-da57-6fdd-4bf5-33c38143cab4', 'three', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('three', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('c9710f88-ead2-e22b-613d-6630e3ace28f', '06578781-da57-6fdd-4bf5-33c38143cab4', 'en', 'three', 'three')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'three'), 'en', 'three', 'three')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('af6a0809-d47b-d627-e57e-6dc4575f01cc', '06578781-da57-6fdd-4bf5-33c38143cab4', 'es', 'tres', 'tres')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'three'), 'es', 'tres', 'tres')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('3e79e1ac-4bb0-1fad-8ba4-d6fc3d8afd6a', 'today', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('today', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('7ac65280-4e2f-acb6-b643-5afdf36aadec', '3e79e1ac-4bb0-1fad-8ba4-d6fc3d8afd6a', 'en', 'today', 'today')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'today'), 'en', 'today', 'today')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('578fa32c-4a2f-b48d-268f-ae6bb802bbeb', '3e79e1ac-4bb0-1fad-8ba4-d6fc3d8afd6a', 'es', 'hoy', 'hoy')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'today'), 'es', 'hoy', 'hoy')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('2f3a9e30-faab-93db-c59f-874abc62c5a1', 'now', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('now', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('e4657a15-eb5f-e823-06b4-ef8c7ce43ce4', '2f3a9e30-faab-93db-c59f-874abc62c5a1', 'en', 'now', 'now')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'now'), 'en', 'now', 'now')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('c271fd32-31a1-052e-7b68-cf0878b22920', '2f3a9e30-faab-93db-c59f-874abc62c5a1', 'es', 'ahora', 'ahora')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'now'), 'es', 'ahora', 'ahora')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('21c4f300-8403-839e-6df4-2972ac1a4618', 'tomorrow', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('tomorrow', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('bc9c79c8-6fa8-333c-ae4b-685e1165da49', '21c4f300-8403-839e-6df4-2972ac1a4618', 'en', 'tomorrow', 'tomorrow')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'tomorrow'), 'en', 'tomorrow', 'tomorrow')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('5b48becd-fa27-19aa-9367-f0af399fc1b1', '21c4f300-8403-839e-6df4-2972ac1a4618', 'es', 'mañana', 'mañana')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'tomorrow'), 'es', 'mañana', 'mañana')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('34c38c2b-9407-7b1b-72da-5b0a0e76b898', 'yesterday', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('yesterday', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('64f7875b-f72e-392f-091d-55378d2d9098', '34c38c2b-9407-7b1b-72da-5b0a0e76b898', 'en', 'yesterday', 'yesterday')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'yesterday'), 'en', 'yesterday', 'yesterday')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('ee7a9476-b511-3742-f52d-f1dde0f8ddd9', '34c38c2b-9407-7b1b-72da-5b0a0e76b898', 'es', 'ayer', 'ayer')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'yesterday'), 'es', 'ayer', 'ayer')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.words (id, base_key, category, level)
-VALUES ('8449ca89-17dc-46eb-068b-5240ddd47dfb', 'time', 'basics', 'beginner')
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.words (base_key, category, level)
+VALUES ('time', 'basics', 'beginner')
+ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('ce232302-b335-867b-b285-1ecd4dbcd2e8', '8449ca89-17dc-46eb-068b-5240ddd47dfb', 'en', 'time', 'time')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'time'), 'en', 'time', 'time')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
-INSERT INTO public.word_translations (id, word_id, language, text, audio_text)
-VALUES ('2bd6cbce-642c-ecd0-afb0-d5e5cc502158', '8449ca89-17dc-46eb-068b-5240ddd47dfb', 'es', 'tiempo', 'tiempo')
+INSERT INTO public.word_translations (word_id, language, text, audio_text)
+VALUES ((SELECT id FROM public.words WHERE base_key = 'time'), 'es', 'tiempo', 'tiempo')
 ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;
 
 INSERT INTO public.questions (id, scenario_id, type, question_text, sort_order, data, source_language, target_language)
