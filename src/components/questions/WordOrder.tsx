@@ -167,8 +167,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
       str.replace(/[.,!?¡¿""'']/g, '').toLowerCase().trim()
 
     const currentSentence = dropZone.map(d => sanitizeString(d.word)).join(' ')
-    const correctClean = sanitizeString(question.correct_answer || '').split(' ').join(' ') // ensuring multiple spaces are handled basically the same
-    
+      const correctClean = sanitizeString(question.correct_answer || '').split(' ').join(' ') // ensuring multiple spaces are handled basically the same
     const isCorrect = currentSentence === correctClean
     
     if (isCorrect) {

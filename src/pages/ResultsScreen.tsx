@@ -33,7 +33,9 @@ export default function ResultsScreen() {
   
   let earnedStars = 0
   if (isSuccess) {
-    earnedStars = Math.max(1, lives)
+    if (mistakes === 0) earnedStars = 3
+    else if (mistakes <= 2) earnedStars = 2
+    else earnedStars = 1
   }
 
   useEffect(() => {
@@ -92,21 +94,21 @@ export default function ResultsScreen() {
   }
 
   return (
-    <PageTransition className="bg-pb-bg text-pb-dark relative overflow-y-auto h-dvh">
+    <PageTransition className="bg-pb-bg overflow-x-hidden overflow-y-auto h-dvh">
       <div
-        className="max-w-lg mx-auto sm:px-6 px-5 w-full flex flex-col items-center gap-4 pt-8 pb-[max(1.5rem,env(safe-area-inset-bottom))] no-scrollbar"
+        className="max-w-lg mx-auto sm:px-6 px-5 w-full flex flex-col items-center justify-between py-4 sm:py-10 no-scrollbar"
         style={{ minHeight: '100%' }}
       >
         
         {/* Hero section */}
-        <div className="flex flex-col items-center gap-1 sm:gap-2 text-center mt-2">
-          <div className="mb-2 w-full flex justify-center origin-bottom">
+        <div className="flex flex-col items-center gap-1 sm:gap-2 text-center mt-2 grow justify-center">
+          <div className="mb-2 sm:mb-4 w-full flex justify-center scale-75 sm:scale-100 origin-bottom">
             <Mascot 
               mood={isSuccess ? 'celebrate' : 'sad'} 
               size="xl" 
             />
           </div>
-          <h1 className={`text-2xl sm:text-3xl font-black uppercase tracking-wide text-center mt-2 ${isSuccess ? 'text-pb-success' : 'text-pb-error'}`}>
+          <h1 className={`text-2xl sm:text-3xl font-black uppercase tracking-wide text-center ${isSuccess ? 'text-pb-success' : 'text-pb-error'}`}>
             {isSuccess ? '¡Excelente!' : '¡Sigue intentando!'}
           </h1>
           <p className="text-pb-text-light text-sm sm:text-base px-2">
@@ -115,7 +117,7 @@ export default function ResultsScreen() {
         </div>
 
         {/* Results Card */}
-        <Card className="w-full flex flex-col items-center gap-2 sm:gap-4 p-5 sm:p-8 relative overflow-hidden max-w-sm mt-3 border-2 border-b-4 border-slate-200/60 bg-white">
+        <Card className="w-full flex flex-col items-center gap-2 sm:gap-4 p-5 sm:p-8 relative overflow-hidden max-w-sm mt-2 mb-4 shrink-0 border-2 border-b-4 border-slate-200/60 bg-white">
           
           {/* Stars */}
           <div className="flex flex-col gap-1 sm:gap-2 items-center w-full mb-1 sm:mb-2">
@@ -147,8 +149,8 @@ export default function ResultsScreen() {
               <span className="text-[10px] sm:text-xs font-bold text-pb-text-light mt-1 text-center">
                 {mistakes === 0 
                   ? '¡Perfecto! Sin errores = 3 estrellas'
-                  : mistakes === 1
-                    ? '1 error = 2 estrellas'
+                  : mistakes <= 2
+                    ? `Solo ${mistakes} ${mistakes === 1 ? 'error' : 'errores'} = 2 estrellas`
                     : `Sobreviviente (${mistakes} errores) = 1 estrella`}
               </span>
             )}
@@ -189,7 +191,7 @@ export default function ResultsScreen() {
         </Card>
 
         {/* Action Buttons */}
-        <div className="w-full max-w-sm flex flex-col gap-3 mt-auto pt-4 shrink-0">
+        <div className="w-full max-w-sm flex flex-col gap-2 sm:gap-3 mt-auto mb-2 shrink-0">
           <Button size="lg" onClick={handlePlayAgain} className="py-3">
             <FontAwesomeIcon icon={faRotateRight} className="text-base" />
             Jugar de nuevo

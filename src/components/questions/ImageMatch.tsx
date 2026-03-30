@@ -76,7 +76,7 @@ export function ImageMatch({ question, onAnswer, onPlaySound, disabled }: Props)
   }
 
   const renderImage = () => {
-    const target = question.image_emoji || '?'
+    const target = question.image_emoji || question.question_text || '❓'
     
     if (target.includes('/') || target.includes('.')) {
       return <img src={target} alt="question image" className="w-40 h-40 object-contain drop-shadow-md" />
