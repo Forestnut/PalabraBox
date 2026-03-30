@@ -182,6 +182,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
 
             {/* BACKGROUND BACK FLAP (Drops behind the box for a 3D effect) */}
             <motion.path 
+              d={isClosed ? flapsPaths.backClosed : flapsPaths.backOpened}
               initial={false}
               animate={{ 
                 d: isClosed ? flapsPaths.backClosed : flapsPaths.backOpened,
@@ -275,6 +276,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
 
             {/* FOREGROUND BACK FLAP (Fades out when box is fully opened) */}
             <motion.path 
+              d={isClosed ? flapsPaths.backClosed : flapsPaths.backOpened}
               initial={false}
               animate={{ 
                 d: isClosed ? flapsPaths.backClosed : flapsPaths.backOpened,
@@ -286,6 +288,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
 
             {/* FRONT FLAP */}
             <motion.path 
+              d={isClosed ? flapsPaths.frontClosed : flapsPaths.frontOpened}
               animate={{ d: isClosed ? flapsPaths.frontClosed : flapsPaths.frontOpened }}
               fill="#FDBA74" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
               transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
@@ -293,6 +296,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
 
             {/* LEFT FLAP */}
             <motion.path 
+              d={isClosed ? flapsPaths.leftClosed : flapsPaths.leftOpened}
               animate={{ d: isClosed ? flapsPaths.leftClosed : flapsPaths.leftOpened }}
               fill="#FBBF24" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
               transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
@@ -300,6 +304,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
 
             {/* RIGHT FLAP */}
             <motion.path 
+              d={isClosed ? flapsPaths.rightClosed : flapsPaths.rightOpened}
               animate={{ d: isClosed ? flapsPaths.rightClosed : flapsPaths.rightOpened }}
               fill="#F59E0B" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
               transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}

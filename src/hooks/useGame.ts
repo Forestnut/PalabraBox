@@ -27,7 +27,16 @@ function normalizeWrongAnswers(value: unknown, correct: string): string[] {
 }
 
 function toRecord(value: unknown): Record<string, unknown> {
-  return value && typeof value === 'object' ? (value as Record<string, unknown>) : {}
+  if (!value) return {}
+  if (typeof value === 'string') {
+    try {
+      const parsed = JSON.parse(value)
+      return typeof parsed === 'object' && parsed !== null ? (parsed as Record<string, unknown>) : {}
+    } catch {
+      return {}
+    }
+  }
+  return typeof value === 'object' ? (value as Record<string, unknown>) : {}
 }
 
 export function useGame(scenarioId: string | undefined) {
@@ -109,7 +118,8 @@ export function useGame(scenarioId: string | undefined) {
           new Set(allQuestions.map(q => normalizeAnswer(q.correct_answer).trim()).filter(Boolean))
         );
         allQuestions.forEach(q => {
-          if (!q.wrong_answers || q.wrong_answers.length === 0) {
+          const needsWrongAnswers = ['multiple_choice', 'image_match', 'listening'].includes(q.type);
+          if (needsWrongAnswers && (!q.wrong_answers || q.wrong_answers.length === 0)) {
             const possibleWrongs = allCorrectAnswersPool.filter(ans => ans !== q.correct_answer);
             q.wrong_answers = shuffleArray([...possibleWrongs, 'option 1', 'option 2', 'option 3']).slice(0, 3);
           }
