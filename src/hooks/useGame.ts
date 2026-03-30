@@ -10,6 +10,7 @@ import { analyticsService } from '../services/analyticsService'
 import { shuffleArray } from '../utils/shuffle'
 
 function normalizeAnswer(value: unknown): string {
+  if (Array.isArray(value)) return value.filter(v => typeof v === 'string' || typeof v === 'number').join(' ')
   if (typeof value === 'string') return value
   if (typeof value === 'number' || typeof value === 'boolean') return String(value)
   return ''
@@ -20,7 +21,11 @@ function normalizeWrongAnswers(value: unknown, correct: string): string[] {
 
   const normalizedCorrect = correct.trim().toLowerCase()
   return value
-    .map(normalizeAnswer)
+    .map(ans => {
+      if (typeof ans === 'string') return ans
+      if (typeof ans === 'number' || typeof ans === 'boolean') return String(ans)
+      return ''
+    })
     .map(answer => answer.trim())
     .filter(answer => answer.length > 0)
     .filter(answer => answer.toLowerCase() !== normalizedCorrect)
@@ -96,8 +101,24 @@ export function useGame(scenarioId: string | undefined) {
           let wrongs = normalizeWrongAnswers(q.wrong_answers, correct);
           const imageEmojiCandidate = normalizeAnswer(qData.image_emoji ?? q.image_emoji).trim();
           const image_emoji = imageEmojiCandidate.length > 0 ? imageEmojiCandidate : null;
+          
           if (qData.options && Array.isArray(qData.options)) {
             wrongs = normalizeWrongAnswers(qData.options, correct);
+          } else if (qData.words && Array.isArray(qData.words)) {
+            // For word_order / fill_blank: `words` contains all words. We need to extract only distractors.
+            const correctWords = Array.isArray(qData.correct) 
+              ? qData.correct.map(String) 
+              : correct.split(/\s+/);
+            
+            const wordsList = qData.words.map(String);
+            const distractors = [...wordsList];
+            
+            for (const cw of correctWords) {
+              const idx = distractors.findIndex(d => d.toLowerCase() === cw.toLowerCase());
+              if (idx >= 0) distractors.splice(idx, 1);
+            }
+            
+            wrongs = distractors;
           }
 
           // Convert words with translation structures if present
