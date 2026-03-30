@@ -9,6 +9,27 @@ import { analyticsService } from '../services/analyticsService'
 
 import { shuffleArray } from '../utils/shuffle'
 
+function normalizeAnswer(value: unknown): string {
+  if (typeof value === 'string') return value
+  if (typeof value === 'number' || typeof value === 'boolean') return String(value)
+  return ''
+}
+
+function normalizeWrongAnswers(value: unknown, correct: string): string[] {
+  if (!Array.isArray(value)) return []
+
+  const normalizedCorrect = correct.trim().toLowerCase()
+  return value
+    .map(normalizeAnswer)
+    .map(answer => answer.trim())
+    .filter(answer => answer.length > 0)
+    .filter(answer => answer.toLowerCase() !== normalizedCorrect)
+}
+
+function toRecord(value: unknown): Record<string, unknown> {
+  return value && typeof value === 'object' ? (value as Record<string, unknown>) : {}
+}
+
 export function useGame(scenarioId: string | undefined) {
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
@@ -59,19 +80,21 @@ export function useGame(scenarioId: string | undefined) {
         // Fallback to a default if language isn't explicitly resolved by schema anymore
         setScenarioLanguage('english')
 
-        const allQuestions = (data as Question[]).map(q => {
+        const allQuestions = (data as Array<Question & { data?: unknown }>).map(q => {
           // Fallback legacy structure compatibility with new `data` jsonb
-          const qData = (q as any).data || {};
-          let correct = qData.correct || q.correct_answer || '';
-          let wrongs = q.wrong_answers || [];
-          let image_emoji = qData.image_emoji || q.image_emoji || null;
-
+          const qData = toRecord(q.data);
+          let correct = normalizeAnswer(qData.correct ?? q.correct_answer).trim();
+          let wrongs = normalizeWrongAnswers(q.wrong_answers, correct);
+          const imageEmojiCandidate = normalizeAnswer(qData.image_emoji ?? q.image_emoji).trim();
+          const image_emoji = imageEmojiCandidate.length > 0 ? imageEmojiCandidate : null;
           if (qData.options && Array.isArray(qData.options)) {
-            wrongs = qData.options.filter((o: string) => o !== correct);
+            wrongs = normalizeWrongAnswers(qData.options, correct);
           }
 
           // Convert words with translation structures if present
-          if (!correct && qData.translation_es) correct = qData.translation_es;
+          if (!correct) {
+            correct = normalizeAnswer(qData.translation_es ?? qData.translation_en).trim();
+          }
 
           return {
             ...q,
@@ -82,11 +105,13 @@ export function useGame(scenarioId: string | undefined) {
         });
 
         // Second pass: fill empty wrong_answers dynamically just in case database is missing them
-        const allCorrectAnswersPool = Array.from(new Set(allQuestions.map(q => q.correct_answer).filter(Boolean)));
+        const allCorrectAnswersPool = Array.from(
+          new Set(allQuestions.map(q => normalizeAnswer(q.correct_answer).trim()).filter(Boolean))
+        );
         allQuestions.forEach(q => {
           if (!q.wrong_answers || q.wrong_answers.length === 0) {
             const possibleWrongs = allCorrectAnswersPool.filter(ans => ans !== q.correct_answer);
-            q.wrong_answers = shuffleArray([...possibleWrongs, 'opción 1', 'opción 2', 'opción 3']).slice(0, 3);
+            q.wrong_answers = shuffleArray([...possibleWrongs, 'option 1', 'option 2', 'option 3']).slice(0, 3);
           }
         });
         
@@ -107,7 +132,8 @@ export function useGame(scenarioId: string | undefined) {
             const rIdx = Math.floor(Math.random() * group.length)
             const picked = group.splice(rIdx, 1)[0]
             selected.push(picked)
-            if (picked.correct_answer) usedAnswers.add(picked.correct_answer.toLowerCase())
+            const pickedAnswer = normalizeAnswer(picked.correct_answer).toLowerCase()
+            if (pickedAnswer) usedAnswers.add(pickedAnswer)
           }
         })
 
@@ -119,7 +145,7 @@ export function useGame(scenarioId: string | undefined) {
         // First pass: dynamically check if the question's answer is already used
         while (selected.length < 10 && remaining.length > 0) {
           const picked = remaining.pop()!
-          const ans = picked.correct_answer?.toLowerCase() || ''
+          const ans = normalizeAnswer(picked.correct_answer).toLowerCase()
           
           if (!ans || !usedAnswers.has(ans)) {
             selected.push(picked)
