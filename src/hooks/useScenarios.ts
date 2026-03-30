@@ -15,11 +15,11 @@ const scenariosCache: Record<string, Scenario[]> = {}
 
 const categoryEmojiMap: Record<string, string> = {
   colors: '🎨',
-  animals: '🐶',
+  animals: '🦁',
   food: '🍔',
-  family: '👪',
-  body: '🦵',
-  travel: '🧳',
+  family: '👨‍👩‍👧‍👦',
+  body: '🩺',
+  travel: '✈️',
   grammar: '📏',
   verbs: '🏃',
   vocabulary: '📚',
@@ -29,11 +29,22 @@ const categoryEmojiMap: Record<string, string> = {
   life: '🌱',
   shopping: '🛍️',
   work: '💼',
-  health: '🏥',
+  health: '🩺',
   home: '🏠',
   time: '⏳',
   numbers: '🔢',
-  basics: '🎓'
+  basics: '🎓',
+  // Polish mapped categories
+  'Zwierzęta': '🦁',
+  'Jedzenie': '🍔',
+  'Podróże': '✈️',
+  'Rodzina': '👨‍👩‍👧‍👦',
+  'Dom': '🏠',
+  'Pogoda': '☀️',
+  'Ciało i zdrowie': '🩺',
+  'Praca i kariera': '💼',
+  'Rozrywka i hobby': '🎨',
+  'Społeczeństwo': '🤝'
 }
 
 const idEmojiMap: Record<string, string> = {
@@ -163,7 +174,7 @@ export function useScenarios() {
               language: learningLanguage,
               level: scenario.level as Scenario['level'],
               description: translation?.description ?? null,
-              emoji: idEmojiMap[scenario.id] || categoryEmojiMap[scenario.category] || '📚',
+              emoji: idEmojiMap[scenario.id] || categoryEmojiMap[scenario.category] || '✨',
               category: scenario.category,
               sort_order: scenario.sort_order,
               created_at: '',

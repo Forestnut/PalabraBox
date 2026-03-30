@@ -11,7 +11,7 @@ export const FlagIcon: React.FC<FlagProps> = ({ countryCode, className }) => {
     <img
       src={`https://flagcdn.com/${countryCode.toLowerCase()}.svg`}
       alt={`Bandera de ${countryCode}`}
-      className={cn("inline-block w-10 min-w-10 aspect-4/3 rounded-sm object-cover shadow-sm shrink-0", className)}
+      className={cn("inline-block w-12 min-w-12 h-8 rounded-sm object-cover shadow-sm shrink-0", className)}
     />
   );
 };

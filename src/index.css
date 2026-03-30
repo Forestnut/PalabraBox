@@ -73,6 +73,14 @@ button, a, [role="button"] {
 }
 
 /* ─── Scrollbar ─── */
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;

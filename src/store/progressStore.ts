@@ -38,6 +38,10 @@ export interface ProgressState {
    * @param totalCount - Total numbers in the active category
    */
   updateCompletedTotal: (completedCount: number, totalCount: number) => void
+  /** Gets the current semantic level based on total points */
+  getLevel: () => number
+  /** Gets the percentage progress (0-100) towards the next level */
+  getLevelProgress: () => number
 }
 
 export const useProgressStore = create<ProgressState>()(
@@ -83,6 +87,14 @@ export const useProgressStore = create<ProgressState>()(
 
       updateCompletedTotal: (completedCount: number, totalCount: number) => {
         set({ completed: completedCount, total: totalCount })
+      },
+
+      getLevel: () => {
+        return Math.floor(get().points / 100) + 1
+      },
+
+      getLevelProgress: () => {
+        return (get().points % 100)
       }
     }),
     {

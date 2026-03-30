@@ -10,6 +10,8 @@ export function useQuickProgress() {
   const completed = useProgressStore(state => state.completed)
   const total = useProgressStore(state => state.total)
   const points = useProgressStore(state => state.points)
+  const getLevel = useProgressStore(state => state.getLevel)
+  const getLevelProgress = useProgressStore(state => state.getLevelProgress)
   const lastActiveDate = useProgressStore(state => state.lastActiveDate)
   const updateStreak = useProgressStore(state => state.updateStreak)
 
@@ -25,8 +27,13 @@ export function useQuickProgress() {
     return Math.round((completed / total) * 100)
   }, [completed, total])
 
+  const level = getLevel()
+  const levelProgressPercentage = getLevelProgress()
+
   return { 
     progress: { streakDays, completed, total, points, lastActiveDate }, 
-    percentage 
+    percentage,
+    level,
+    levelProgressPercentage
   }
 }

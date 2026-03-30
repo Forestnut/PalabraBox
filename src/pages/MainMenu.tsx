@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,25 +8,11 @@ import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import { Mascot } from '../components/ui/Mascot'
 import { useQuickProgress } from '../hooks/useQuickProgress'
-import { useScenarios } from '../hooks/useScenarios'
+
 
 export default function MainMenu() {
   const navigate = useNavigate()
-  const { progress } = useQuickProgress()
-  const { scenarios, loading } = useScenarios()
-
-  const { completed, total, percentage } = useMemo(() => {
-    if (!scenarios || scenarios.length === 0) {
-      return { completed: 0, total: 0, percentage: 0 }
-    }
-    const comp = scenarios.filter(s => s.stars > 0).length
-    const tot = scenarios.length
-    return {
-      completed: comp,
-      total: tot,
-      percentage: Math.round((comp / tot) * 100)
-    }
-  }, [scenarios])
+  const { progress, level, levelProgressPercentage } = useQuickProgress()
 
   return (
     <PageTransition className="bg-pb-bg text-pb-dark relative overflow-y-auto h-dvh">
@@ -106,20 +92,16 @@ export default function MainMenu() {
           <div className="grid grid-cols-2 gap-3 mt-2">
             <div className="flex flex-col items-center justify-center p-3 bg-indigo-50 border-2 border-b-4 border-indigo-200 rounded-2xl">
               <span className="text-[10px] sm:text-xs font-black text-indigo-600/60 uppercase tracking-widest text-center mb-1">
-                Completado
+                Nivel
               </span>
-              {loading ? (
-                <div className="h-7 sm:h-8 w-16 bg-indigo-200/50 animate-pulse rounded-md" />
-              ) : (
-                <span className="text-xl sm:text-2xl font-black text-indigo-500 drop-shadow-sm">
-                  {completed} / {total}
-                </span>
-              )}
+              <span className="text-xl sm:text-2xl font-black text-indigo-500 drop-shadow-sm">
+                {level}
+              </span>
               <div className="w-full h-2.5 bg-indigo-200/50 rounded-full mt-3 overflow-hidden">
                 <motion.div
                   className="h-full bg-linear-to-r from-indigo-400 to-indigo-500 rounded-full"
                   initial={{ width: 0 }}
-                  animate={{ width: `${percentage}%` }}
+                  animate={{ width: `${levelProgressPercentage}%` }}
                   transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
                 />
               </div>
