@@ -45,7 +45,7 @@ export const useProgressStore = create<ProgressState>()(
     (set, get) => ({
       streakDays: 0,
       completed: 0,
-      total: 12,
+      total: 0,
       points: 0,
       lastActiveDate: null,
 

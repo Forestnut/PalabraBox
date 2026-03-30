@@ -115,28 +115,47 @@ export default function GameScreen() {
 
   if (error) {
     return (
-      <ScreenWrapper>
-        <BackButton fallbackUrl="/scenarios" />
-        <p className="text-center text-pb-error py-8 font-bold">Error: {error}</p>
+      <ScreenWrapper className="flex flex-col relative min-h-[80vh]">
+        <div className="absolute top-4 left-4 z-10 w-full">
+          <BackButton fallbackUrl="/scenarios" />
+        </div>
+        <div className="flex flex-col items-center justify-center flex-1 w-full mt-20">
+          <Mascot mood="sad" size="xl" />
+          <p className="text-center text-pb-error mt-8 font-black text-2xl drop-shadow-sm">¡Oh no!</p>
+          <p className="text-center text-pb-text-light mt-2 font-bold max-w-[250px] leading-tight">Hubo un problema al cargar. Inténtalo de nuevo.</p>
+          <p className="text-center text-pb-error/60 mt-4 text-xs font-semibold max-w-[250px] truncate">{error}</p>
+        </div>
       </ScreenWrapper>
     )
   }
 
   if (status === 'finished') {
     return (
-      <ScreenWrapper>
-        <p className="text-center py-8 font-bold text-pb-text-light text-xl">
-          ¡Juego Terminado! Preparando resultados...
+      <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
+        <Mascot mood="celebrate" size="xl" />
+        <p className="text-center mt-8 font-black text-pb-dark text-2xl drop-shadow-sm animate-pulse">
+          ¡Completado!
         </p>
+        <p className="text-center mt-2 font-bold text-pb-text-light text-base">Preparando tus resultados...</p>
       </ScreenWrapper>
     )
   }
 
   if (!currentQuestion) {
     return (
-      <ScreenWrapper>
-        <BackButton fallbackUrl="/scenarios" />
-        <p className="text-center py-8 font-bold text-pb-text-light">No se encontraron preguntas.</p>
+      <ScreenWrapper className="flex flex-col relative min-h-[80vh]">
+        <div className="absolute top-4 left-4 z-10 w-full">
+          <BackButton fallbackUrl="/scenarios" />
+        </div>
+        <div className="flex flex-col items-center justify-center flex-1 w-full mt-20">
+          <Mascot mood="sleeping" size="xl" />
+          <p className="text-center mt-8 font-black text-pb-dark text-xl leading-tight drop-shadow-sm px-4">
+            No hay preguntas
+          </p>
+          <p className="text-center text-pb-text-light mt-2 font-bold text-sm max-w-[250px]">
+            Parece que este nivel aún no está listo. ¡Vuelve pronto!
+          </p>
+        </div>
       </ScreenWrapper>
     )
   }

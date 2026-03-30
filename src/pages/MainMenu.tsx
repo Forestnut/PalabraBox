@@ -28,8 +28,6 @@ export default function MainMenu() {
     }
   }, [scenarios])
 
-  const progressText = loading ? '...' : `${completed} / ${total}`
-
   return (
     <PageTransition className="bg-pb-bg text-pb-dark relative overflow-y-auto h-dvh">
       <div
@@ -110,7 +108,13 @@ export default function MainMenu() {
               <span className="text-[10px] sm:text-xs font-black text-indigo-600/60 uppercase tracking-widest text-center mb-1">
                 Completado
               </span>
-              <span className="text-xl sm:text-2xl font-black text-indigo-500 drop-shadow-sm">{progressText}</span>
+              {loading ? (
+                <div className="h-7 sm:h-8 w-16 bg-indigo-200/50 animate-pulse rounded-md" />
+              ) : (
+                <span className="text-xl sm:text-2xl font-black text-indigo-500 drop-shadow-sm">
+                  {completed} / {total}
+                </span>
+              )}
               <div className="w-full h-2.5 bg-indigo-200/50 rounded-full mt-3 overflow-hidden">
                 <motion.div
                   className="h-full bg-linear-to-r from-indigo-400 to-indigo-500 rounded-full"
