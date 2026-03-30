@@ -64,6 +64,12 @@ export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioL
 
   return (
     <div className="flex flex-col gap-4 w-full text-center flex-1 items-center">
+      <div className="flex items-center justify-center py-2">
+        <h2 className="text-xl sm:text-2xl font-black text-pb-dark leading-tight px-2 tracking-tight">
+          {question.question_text || '¿Qué escuchas?'}
+        </h2>
+      </div>
+
       <div className="flex flex-col items-center justify-center min-h-28 gap-3">
         <motion.button
           onClick={play}

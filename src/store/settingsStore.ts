@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 export type LearningLanguage = 'english'
 export type LearningLevel = 'beginner' | 'intermediate'
@@ -18,18 +19,25 @@ interface SettingsState {
   setLearningLevel: (level: LearningLevel) => void
 }
 
-export const useSettingsStore = create<SettingsState>((set) => ({
-  volume: {
-    sound: 1,
-    tts: 1,
-  },
-  speechSpeed: 1,
-  learningLanguage: null,
-  learningLevel: null,
+export const useSettingsStore = create<SettingsState>()(
+  persist(
+    (set) => ({
+      volume: {
+        sound: 1,
+        tts: 1,
+      },
+      speechSpeed: 1,
+      learningLanguage: null,
+      learningLevel: null,
 
-  setSoundVolume: (val) => set((state) => ({ volume: { ...state.volume, sound: val } })),
-  setTtsVolume: (val) => set((state) => ({ volume: { ...state.volume, tts: val } })),
-  setSpeechSpeed: (val) => set({ speechSpeed: val }),
-  setLearningLanguage: (lang) => set({ learningLanguage: lang }),
-  setLearningLevel: (level) => set({ learningLevel: level }),
-}))
+      setSoundVolume: (val) => set((state) => ({ volume: { ...state.volume, sound: val } })),
+      setTtsVolume: (val) => set((state) => ({ volume: { ...state.volume, tts: val } })),
+      setSpeechSpeed: (val) => set({ speechSpeed: val }),
+      setLearningLanguage: (lang) => set({ learningLanguage: lang }),
+      setLearningLevel: (level) => set({ learningLevel: level }),
+    }),
+    {
+      name: 'palabrabox-settings-storage',
+    }
+  )
+)

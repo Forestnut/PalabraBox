@@ -33,7 +33,7 @@ export default function MainMenu() {
   return (
     <PageTransition className="bg-pb-bg text-pb-dark relative overflow-y-auto h-dvh">
       <div
-        className="max-w-lg mx-auto sm:px-6 px-5 w-full flex flex-col items-center gap-5 pt-10 no-scrollbar pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(2.5rem,env(safe-area-inset-top))]"
+        className="max-w-lg mx-auto sm:px-6 px-5 w-full flex flex-col items-center gap-5 pt-10 no-scrollbar pb-[max(1.5rem,env(safe-area-inset-bottom))]"
         style={{ minHeight: '100%' }}
       >
 

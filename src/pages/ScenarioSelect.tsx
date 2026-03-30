@@ -39,9 +39,9 @@ export default function ScenarioSelect() {
         )}
         
         {loading && (
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-2">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-2 w-full">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="w-[calc(50%-0.375rem)] sm:w-[calc(50%-0.5rem)] animate-pulse flex flex-col items-center p-4 rounded-2xl bg-white/50 backdrop-blur-sm min-h-40">
+              <div key={i} className="animate-pulse flex flex-col items-center p-4 rounded-2xl bg-white/50 backdrop-blur-sm min-h-40">
                 <div className="w-14 h-14 bg-black/4 rounded-full mb-3" />
                 <div className="h-3.5 bg-black/4 rounded-md w-3/4 mb-2" />
                 <div className="h-2.5 bg-black/4 rounded-md w-1/2" />
@@ -57,11 +57,11 @@ export default function ScenarioSelect() {
         )}
 
         {!loading && !error && (
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-2">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-2 w-full">   
             {scenarios.map((scenario, index) => (
               <motion.div
                 key={scenario.id}
-                className="w-[calc(50%-0.375rem)] sm:w-[calc(50%-0.5rem)] flex"
+                className="flex w-full min-w-0" 
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.04, duration: 0.3, ease: 'easeOut' }}

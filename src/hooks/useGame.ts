@@ -126,8 +126,46 @@ export function useGame(scenarioId: string | undefined) {
             correct = normalizeAnswer(qData.translation_es ?? qData.translation_en).trim();
           }
 
+          let finalQuestionText = q.question_text;
+          
+          if (!finalQuestionText || finalQuestionText === 'undefined') {
+             if (q.type === 'multiple_choice') finalQuestionText = '¿Cuál es la respuesta correcta?';
+             else if (q.type === 'image_match') finalQuestionText = '¿Qué ves en la imagen?';
+             else if (q.type === 'listening') finalQuestionText = '¿Qué escuchas?';
+             else finalQuestionText = 'Elige la respuesta correcta';
+          } else if (finalQuestionText.includes('How do you say')) {
+             const match = finalQuestionText.match(/'([^']+)'/);
+             if (match) {
+                 finalQuestionText = `¿Cómo se dice '${match[1]}'?`;
+             } else {
+                 finalQuestionText = 'Elige la traducción correcta';
+             }
+          } else if (finalQuestionText.includes('What is the') && finalQuestionText.includes('word for')) {
+             const match = finalQuestionText.match(/'([^']+)'/);
+             if (match) {
+                 finalQuestionText = `¿Cuál es la traducción de '${match[1]}'?`;
+             } else {
+                 finalQuestionText = 'Elige la traducción correcta';
+             }
+          } else if (finalQuestionText.includes('Translate')) {
+             const match = finalQuestionText.match(/'([^']+)'/);
+             if (match) {
+                 finalQuestionText = `Traduce '${match[1]}'`;
+             } else {
+                 finalQuestionText = 'Traduce esto';
+             }
+          } else if (finalQuestionText.includes('Which word is')) {
+             const match = finalQuestionText.match(/'([^']+)'/);
+             if (match) {
+                 finalQuestionText = `¿Cuál es la palabra para '${match[1]}'?`;
+             } else {
+                 finalQuestionText = '¿Cuál es la palabra correcta?';
+             }
+          }
+
           return {
             ...q,
+            question_text: finalQuestionText,
             correct_answer: correct,
             wrong_answers: wrongs,
             image_emoji,
@@ -143,6 +181,14 @@ export function useGame(scenarioId: string | undefined) {
           if (needsWrongAnswers && (!q.wrong_answers || q.wrong_answers.length === 0)) {
             const possibleWrongs = allCorrectAnswersPool.filter(ans => ans !== q.correct_answer);
             q.wrong_answers = shuffleArray([...possibleWrongs, 'option 1', 'option 2', 'option 3']).slice(0, 3);
+          }
+          
+          if (q.type === 'word_order' && (!q.wrong_answers || q.wrong_answers.length === 0)) {
+            const allWordsInPool = allCorrectAnswersPool.flatMap(ans => ans.split(/\s+/));
+            const uniqueWords = Array.from(new Set(allWordsInPool));
+            const currentWords = q.correct_answer.split(/\s+/).map(w => w.toLowerCase());
+            const possibleDistractors = uniqueWords.filter(w => !currentWords.includes(w.toLowerCase()));
+            q.wrong_answers = shuffleArray([...possibleDistractors, 'el', 'la', 'con']).slice(0, 2);
           }
         });
         

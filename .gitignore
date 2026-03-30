@@ -34,3 +34,5 @@ build_out.txt
 lint_output.txt
 .vercel
 .env*.local
+.env.*
+!.env.example

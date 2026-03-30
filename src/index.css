@@ -81,25 +81,6 @@ button, a, [role="button"] {
   display: none;
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(86, 135, 109, 0.3) transparent;
-}
-
-*::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: rgba(86, 135, 109, 0.35);
-  border-radius: 999px;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
 ::selection {
   background: rgba(255, 164, 44, 0.3);
   color: #1f2a21;

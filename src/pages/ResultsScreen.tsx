@@ -33,9 +33,7 @@ export default function ResultsScreen() {
   
   let earnedStars = 0
   if (isSuccess) {
-    if (mistakes === 0) earnedStars = 3
-    else if (mistakes <= 2) earnedStars = 2
-    else earnedStars = 1
+    earnedStars = Math.max(1, lives)
   }
 
   useEffect(() => {
@@ -148,9 +146,9 @@ export default function ResultsScreen() {
             {isSuccess && (
               <span className="text-[10px] sm:text-xs font-bold text-pb-text-light mt-1 text-center">
                 {mistakes === 0 
-                  ? '¡Perfecto! Sin errores = 3 estrellas' 
-                  : mistakes <= 2 
-                    ? `Solo ${mistakes} ${mistakes === 1 ? 'error' : 'errores'} = 2 estrellas`
+                  ? '¡Perfecto! Sin errores = 3 estrellas'
+                  : mistakes === 1
+                    ? '1 error = 2 estrellas'
                     : `Sobreviviente (${mistakes} errores) = 1 estrella`}
               </span>
             )}

@@ -75,7 +75,10 @@ function SortableWord({ wordObj, onClick }: { wordObj: WordObj; onClick: () => v
 }
 
 export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioLanguage }: WordOrderProps) {
-  const correctWords = useMemo(() => question.correct_answer.split(' '), [question.correct_answer])
+  const correctWords = useMemo(() => {
+    if (!question.correct_answer) return []
+    return question.correct_answer.split(' ')
+  }, [question.correct_answer])
 
   const allWordObjects = useMemo<WordObj[]>(() => {
     const rawWords = shuffleArray([...correctWords, ...(question.wrong_answers || [])])
@@ -164,7 +167,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
       str.replace(/[.,!?¡¿""'']/g, '').toLowerCase().trim()
 
     const currentSentence = dropZone.map(d => sanitizeString(d.word)).join(' ')
-    const correctClean = sanitizeString(question.correct_answer).split(' ').join(' ') // ensuring multiple spaces are handled basically the same
+    const correctClean = sanitizeString(question.correct_answer || '').split(' ').join(' ') // ensuring multiple spaces are handled basically the same
     
     const isCorrect = currentSentence === correctClean
     
