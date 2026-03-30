@@ -108,37 +108,51 @@ export function useGame(scenarioId: string | undefined) {
         setScenarioLanguage('english')
 
         const allQuestions = (data as Array<Question & { data?: unknown }>).map(q => {
-          // Fallback legacy structure compatibility with new `data` jsonb
+          // Parse JSONB data
           const qData = toRecord(q.data);
-          let correct = normalizeAnswer(qData.correct ?? q.correct_answer).trim();
-          let wrongs = normalizeWrongAnswers(q.wrong_answers, correct);
-          const imageEmojiCandidate = normalizeAnswer(qData.image_emoji ?? q.image_emoji).trim();
-          let image_emoji = imageEmojiCandidate.length > 0 ? imageEmojiCandidate : null;
+          
+          // --- 1. Extract Correct Answer ---
+          let correct = normalizeAnswer(qData.correct).trim();
+          
+          // translation fallbacks if correct wasn't immediately found
+          if (!correct && (qData.translation_es || qData.translation_en)) {
+            correct = normalizeAnswer(qData.translation_es ?? qData.translation_en).trim();
+          }
+          if (!correct && q.correct_answer) {
+             correct = normalizeAnswer(q.correct_answer).trim(); // legacy fallback
+          }
 
+          // --- 2. Extract Wrong Answers ---
+          let wrongs: string[] = [];
+          
           if (qData.options && Array.isArray(qData.options)) {
             wrongs = normalizeWrongAnswers(qData.options, correct);
+          } else if (qData.distractors && Array.isArray(qData.distractors)) {
+            wrongs = normalizeWrongAnswers(qData.distractors, correct);
+          } else if (q.wrong_answers) {
+            wrongs = normalizeWrongAnswers(q.wrong_answers, correct); // legacy fallback
           } else if (qData.words && Array.isArray(qData.words)) {
-            // For word_order / fill_blank: `words` contains all words. We need to extract only distractors.
+            // legacy fallback for word_order
             const correctWords = Array.isArray(qData.correct) 
               ? qData.correct.map(String) 
               : correct.split(/\s+/);
             
-            const wordsList = qData.words.map(String);
-            const distractors = [...wordsList];
+            const distractors = [...qData.words.map(String)];
             
             for (const cw of correctWords) {
               const idx = distractors.findIndex(d => d.toLowerCase() === cw.toLowerCase());
               if (idx >= 0) distractors.splice(idx, 1);
             }
-            
-            wrongs = distractors;
+            wrongs = normalizeWrongAnswers(distractors, correct);
           }
 
-          // Convert words with translation structures if present
-          if (!correct) {
-            correct = normalizeAnswer(qData.translation_es ?? qData.translation_en).trim();
-          }
+          // --- 3. Extract Image Emoji ---
+          let image_emoji: string | null = null;
+          const emojiCandidate = normalizeAnswer(qData.image_emoji).trim();
+          if (emojiCandidate) image_emoji = emojiCandidate;
+          else if (q.image_emoji) image_emoji = q.image_emoji;
 
+          // --- 4. Final Formatting ---
           let finalQuestionText = q.question_text;
           
           if (!finalQuestionText || finalQuestionText === 'undefined') {
@@ -193,30 +207,39 @@ export function useGame(scenarioId: string | undefined) {
             image_emoji,
           };
         }).filter(q => {
-          // If the task is listening, but the correct answer to listen to is actually Spanish, skip it
-          // since this app is designed to learn English.
+          if (!q.correct_answer) {
+             console.warn(`[PalabraBox] Question ${q.id} dropped: no correct_answer parsed. Raw:`, q.data);
+             return false;
+          }
+
           if (q.type === 'listening' && isSpanishText(q.correct_answer)) {
+            console.warn(`[PalabraBox] Question ${q.id} dropped: listening target is Spanish.`);
             return false;
           }
           return true;
         });
 
-        // Second pass: fill empty wrong_answers dynamically just in case database is missing them
+        // Ensure we have fallback wrong answers only if absolutely needed for UI to not crash
         const allCorrectAnswersPool = Array.from(
-          new Set(allQuestions.map(q => normalizeAnswer(q.correct_answer).trim()).filter(Boolean))
+          new Set(allQuestions.map(q => q.correct_answer.trim()).filter(Boolean))
         );
         allQuestions.forEach(q => {
           const needsWrongAnswers = ['multiple_choice', 'image_match', 'listening'].includes(q.type);
           if (needsWrongAnswers && (!q.wrong_answers || q.wrong_answers.length === 0)) {
-            const possibleWrongs = allCorrectAnswersPool.filter(ans => ans !== q.correct_answer);
+            console.warn(`[PalabraBox] Fallback distractors injected for ${q.id}`);
+            const possibleWrongs = allCorrectAnswersPool.filter(ans => ans.toLowerCase() !== q.correct_answer.toLowerCase());
             q.wrong_answers = shuffleArray([...possibleWrongs, 'option 1', 'option 2', 'option 3']).slice(0, 3);
           }
           
           if (q.type === 'word_order' && (!q.wrong_answers || q.wrong_answers.length === 0)) {
-            // Re-fetch only answers that match the SAME target_language to prevent mixing ES and EN distractors
+            console.warn(`[PalabraBox] Fallback word distractors injected for ${q.id}`);
+            const currentQ = q as Question & { target_language?: string };
             const sameLangAnswers = allQuestions
-              .filter(other => (other as any).target_language === (q as any).target_language)
-              .map(other => normalizeAnswer(other.correct_answer).trim())
+              .filter(o => {
+                const other = o as Question & { target_language?: string };
+                return typeof other.target_language === 'string' && other.target_language === currentQ.target_language;
+              })
+              .map(o => o.correct_answer)
               .filter(Boolean);
             
             const allWordsInPool = sameLangAnswers.flatMap(ans => ans.split(/\s+/));
@@ -224,24 +247,34 @@ export function useGame(scenarioId: string | undefined) {
             const currentWords = q.correct_answer.split(/\s+/).map(w => w.toLowerCase());
             const possibleDistractors = uniqueWords.filter(w => !currentWords.includes(w.toLowerCase()));
             
-            const lang = (q as any).target_language;
+            const lang = currentQ.target_language;
             const defaultMocks = (lang === 'en' || lang === 'english') ? ['the', 'a', 'to', 'is', 'are'] : ['el', 'la', 'con', 'es', 'un'];
             
-            q.wrong_answers = shuffleArray([...possibleDistractors, ...defaultMocks]).slice(0, 2);
+            q.wrong_answers = shuffleArray([...possibleDistractors, ...defaultMocks]).slice(0, 3);
           }
         });
+
+        // Deduplicate questions by text and answer to prevent repeats
+        const uniqueQuestionsMap = new Map<string, Question>();
+        allQuestions.forEach(q => {
+          const key = `${q.type}|${q.question_text}|${q.correct_answer}`;
+          if (!uniqueQuestionsMap.has(key)) {
+            uniqueQuestionsMap.set(key, q);
+          }
+        });
+        const deduplicatedQuestions = Array.from(uniqueQuestionsMap.values());
         
         // Group by type to ensure variety
         const questionsByType: Record<string, Question[]> = {}
-        allQuestions.forEach(q => {
+        deduplicatedQuestions.forEach(q => {
           if (!questionsByType[q.type]) questionsByType[q.type] = []
           questionsByType[q.type].push(q)
-        })
+        });
 
         const selected: Question[] = []
         const usedAnswers = new Set<string>()
         
-        // Pick one of each type first to ensure variety
+        // Pick one of each available type first
         Object.keys(questionsByType).forEach(type => {
           const group = questionsByType[type]
           if (group.length > 0) {
@@ -251,14 +284,13 @@ export function useGame(scenarioId: string | undefined) {
             const pickedAnswer = normalizeAnswer(picked.correct_answer).toLowerCase()
             if (pickedAnswer) usedAnswers.add(pickedAnswer)
           }
-        })
+        });
 
-        // Fill remaining up to 10 with other random questions
-        // Prioritize questions with unique correct answers to avoid repeating words
+        // Fill remaining up to 10
         const remaining = shuffleArray(Object.values(questionsByType).flat())
         const nonUniqueRemaining: Question[] = []
         
-        // First pass: dynamically check if the question's answer is already used
+        // Prefer questions whose answers haven't been asked yet
         while (selected.length < 10 && remaining.length > 0) {
           const picked = remaining.pop()!
           const ans = normalizeAnswer(picked.correct_answer).toLowerCase()
@@ -271,7 +303,7 @@ export function useGame(scenarioId: string | undefined) {
           }
         }
 
-        // If we still need more to reach 10, fallback to reusing words
+        // Fill via non-unique if needed
         while (selected.length < 10 && nonUniqueRemaining.length > 0) {
           selected.push(nonUniqueRemaining.pop()!)
         }
