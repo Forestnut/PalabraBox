@@ -16,7 +16,7 @@ export function ScenarioCard({ scenario, onClick }: Props) {
       onClick={() => !isLocked && onClick(scenario)}
       disabled={isLocked}
       className={cn(
-        "relative flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl transition-all duration-200 min-h-40 sm:min-h-44 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber",
+        "w-full h-full relative flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl transition-all duration-200 min-h-40 sm:min-h-44 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber",
         isLocked 
           ? "bg-white/30 backdrop-blur-sm opacity-60 cursor-not-allowed" 
           : "bg-white/75 backdrop-blur-xl ring-1 ring-black/4 shadow-glass cursor-pointer hover:shadow-elevated hover:-translate-y-1 active:translate-y-0.5 active:shadow-soft group"

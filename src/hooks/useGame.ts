@@ -59,7 +59,36 @@ export function useGame(scenarioId: string | undefined) {
         // Fallback to a default if language isn't explicitly resolved by schema anymore
         setScenarioLanguage('english')
 
-        const allQuestions = data as Question[]
+        const allQuestions = (data as Question[]).map(q => {
+          // Fallback legacy structure compatibility with new `data` jsonb
+          const qData = (q as any).data || {};
+          let correct = qData.correct || q.correct_answer || '';
+          let wrongs = q.wrong_answers || [];
+          let image_emoji = qData.image_emoji || q.image_emoji || null;
+
+          if (qData.options && Array.isArray(qData.options)) {
+            wrongs = qData.options.filter((o: string) => o !== correct);
+          }
+
+          // Convert words with translation structures if present
+          if (!correct && qData.translation_es) correct = qData.translation_es;
+
+          return {
+            ...q,
+            correct_answer: correct,
+            wrong_answers: wrongs,
+            image_emoji,
+          };
+        });
+
+        // Second pass: fill empty wrong_answers dynamically just in case database is missing them
+        const allCorrectAnswersPool = Array.from(new Set(allQuestions.map(q => q.correct_answer).filter(Boolean)));
+        allQuestions.forEach(q => {
+          if (!q.wrong_answers || q.wrong_answers.length === 0) {
+            const possibleWrongs = allCorrectAnswersPool.filter(ans => ans !== q.correct_answer);
+            q.wrong_answers = shuffleArray([...possibleWrongs, 'opción 1', 'opción 2', 'opción 3']).slice(0, 3);
+          }
+        });
         
         // Group by type to ensure variety
         const questionsByType: Record<string, Question[]> = {}
