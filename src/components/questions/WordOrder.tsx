@@ -232,7 +232,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >
-      <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-2xl mx-auto h-full px-1 sm:px-4 flex-1 no-scrollbar overflow-hidden">
+      <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-2xl mx-auto h-full px-1 sm:px-4 flex-1 overflow-y-auto no-scrollbar pb-6">
         
         {/* QUESTION HEADER (outside dropzone like Duolingo) */}
         <div className="w-full flex flex-col mb-1 sm:mb-2 pt-4 px-2">
@@ -250,16 +250,12 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
         </div>
 
         {/* DROP ZONE */}
-        <div className="w-full relative min-h-30 sm:min-h-35 flex flex-col justify-start mt-2">
-          {/* Decorative background lines to look like notebook */}
-          <div className="absolute inset-x-0 top-0 pointer-events-none flex flex-col gap-[3.8rem] sm:gap-[4.2rem] mt-12.5 sm:mt-15 px-2">
-            <div className="w-full border-b-2 border-slate-200"></div>
-            <div className="w-full border-b-2 border-slate-200"></div>
-            <div className="w-full border-b-2 border-slate-200 hidden sm:block"></div>
-          </div>
+        <div className="w-full relative min-h-32 sm:min-h-40 flex flex-col justify-start mt-2">
+          {/* Subtle drop zone background instead of fixed lines that overlap */}
+          <div className="absolute inset-0 bg-slate-100/40 rounded-3xl border-2 border-slate-200 border-dashed pointer-events-none" />
 
           <SortableContext items={dropZone.map(d => d.id)} strategy={rectSortingStrategy}>
-            <div className="flex flex-wrap gap-2.5 sm:gap-3 w-full min-h-25 items-start justify-start content-start relative z-10 px-2 py-2">
+            <div className="flex flex-wrap gap-2.5 sm:gap-3 w-full min-h-32 items-start justify-start content-start relative z-10 px-4 py-4">
               {dropZone.map((item) => (
                  <SortableWord 
                    key={item.id} 
@@ -272,7 +268,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
         </div>
 
         {/* BANK - Click to add to dropZone or Drag to move back */}
-        <div ref={setBankNodeRef} className="flex flex-col gap-3 sm:gap-4 mt-2 pb-2">
+        <div ref={setBankNodeRef} className="flex flex-col gap-3 sm:gap-4 mt-auto pt-2 pb-2 shrink-0">
           <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 min-h-24 content-center p-2 border-t-2 border-slate-100 pt-4">
             <AnimatePresence>
               {bank.map((item, i) => (

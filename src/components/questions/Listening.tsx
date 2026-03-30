@@ -7,6 +7,7 @@ import { cn } from '../../utils/cn'
 import { shuffleArray } from '../../utils/shuffle'
 import { speechService } from '../../services/speechService'
 import { useSettingsStore } from '../../store/settingsStore'
+import { Button } from '../ui/Button'
 
 interface Props {
   question: Question
@@ -39,18 +40,26 @@ export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioL
   const handleSelect = (answer: string) => {
     if (answered || disabled) return
     setSelectedAnswer(answer)
+    onPlaySound?.('click')
+  }
+
+  const handleComprobar = () => {
+    if (!selectedAnswer || answered || disabled) return
     setAnswered(true)
 
-    const correct = answer === question.correct_answer
+    const correct = selectedAnswer === question.correct_answer
     onPlaySound?.(correct ? 'correct' : 'wrong')
 
     setTimeout(() => {
       onAnswer(correct)
-    }, 900)
+    }, 1500)
   }
 
   const getOptionStyle = (option: string) => {
     if (!answered) {
+      if (option === selectedAnswer) {
+        return 'bg-pb-amber/10 border-2 border-b-4 border-pb-amber text-pb-amber'
+      }
       return 'bg-white border-2 border-b-4 border-slate-200 text-pb-dark hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] cursor-pointer'
     }
     if (option === question.correct_answer) {
@@ -124,6 +133,16 @@ export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioL
             </span>
           </motion.button>
         ))}
+      </div>
+
+      <div className="mt-4 w-full max-w-sm mx-auto">
+        <Button
+          onClick={handleComprobar}
+          disabled={!selectedAnswer || answered || disabled}
+          className="w-full text-lg shadow-soft"
+        >
+          COMPROBAR
+        </Button>
       </div>
     </div>
   )
