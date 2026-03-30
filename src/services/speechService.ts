@@ -66,7 +66,12 @@ class SpeechService {
     // Set voice based on provided language or fall back to default
     if (lang) {
       const voices = this.synth.getVoices();
-      utterance.voice = voices.find((v) => v.lang.startsWith(lang)) || this.voice;
+      const prefix = lang.split('-')[0];
+      utterance.voice = 
+        voices.find((v) => v.lang === lang) || 
+        voices.find((v) => v.lang.startsWith(lang)) || 
+        voices.find((v) => v.lang.startsWith(prefix)) || 
+        this.voice;
       utterance.lang = lang;
     } else {
       utterance.voice = this.voice;

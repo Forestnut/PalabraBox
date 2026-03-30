@@ -31,6 +31,19 @@ function normalizeWrongAnswers(value: unknown, correct: string): string[] {
     .filter(answer => answer.toLowerCase() !== normalizedCorrect)
 }
 
+function isSpanishText(text: string): boolean {
+  if (!text) return false;
+  const spanishChars = /[¿¡áéíóúñÁÉÍÓÚÑ]/;
+  if (spanishChars.test(text)) return true;
+  const words = text.toLowerCase().replace(/[.,!?]/g, '').split(/\s+/);
+  const spanishWords = ['el', 'la', 'los', 'las', 'un', 'una', 'es', 'está', 'son', 'yo', 'tú', 'él', 'ella', 'nosotros', 'ellos', 'mi', 'tu', 'su', 'qué', 'como', 'con', 'por', 'para', 'gracias', 'hola', 'adiós', 'bien', 'mal', 'muy', 'siento', 'perdon', 'ropa', 'comida', 'agua', 'libro', 'casa', 'perro', 'gato'];
+  let matchCount = 0;
+  for (const w of words) {
+    if (spanishWords.includes(w)) matchCount++;
+  }
+  return matchCount > 0 && matchCount >= (words.length / 2);
+}
+
 function toRecord(value: unknown): Record<string, unknown> {
   if (!value) return {}
   if (typeof value === 'string') {
@@ -100,8 +113,8 @@ export function useGame(scenarioId: string | undefined) {
           let correct = normalizeAnswer(qData.correct ?? q.correct_answer).trim();
           let wrongs = normalizeWrongAnswers(q.wrong_answers, correct);
           const imageEmojiCandidate = normalizeAnswer(qData.image_emoji ?? q.image_emoji).trim();
-          const image_emoji = imageEmojiCandidate.length > 0 ? imageEmojiCandidate : null;
-          
+          let image_emoji = imageEmojiCandidate.length > 0 ? imageEmojiCandidate : null;
+
           if (qData.options && Array.isArray(qData.options)) {
             wrongs = normalizeWrongAnswers(qData.options, correct);
           } else if (qData.words && Array.isArray(qData.words)) {
@@ -147,6 +160,15 @@ export function useGame(scenarioId: string | undefined) {
              } else {
                  finalQuestionText = 'Elige la traducción correcta';
              }
+          } else if (finalQuestionText.includes('Which word represents')) {
+             const emojiMatch = finalQuestionText.match(/represents\s*(.+)\s*\??$/);
+             if (emojiMatch) {
+                 const extractedEmoji = emojiMatch[1].replace('?', '').trim();
+                 if (extractedEmoji && !image_emoji) {
+                     image_emoji = extractedEmoji;
+                 }
+             }
+             finalQuestionText = '¿Qué palabra representa la imagen?';
           } else if (finalQuestionText.includes('Translate')) {
              const match = finalQuestionText.match(/'([^']+)'/);
              if (match) {
@@ -170,6 +192,13 @@ export function useGame(scenarioId: string | undefined) {
             wrong_answers: wrongs,
             image_emoji,
           };
+        }).filter(q => {
+          // If the task is listening, but the correct answer to listen to is actually Spanish, skip it
+          // since this app is designed to learn English.
+          if (q.type === 'listening' && isSpanishText(q.correct_answer)) {
+            return false;
+          }
+          return true;
         });
 
         // Second pass: fill empty wrong_answers dynamically just in case database is missing them
@@ -184,11 +213,21 @@ export function useGame(scenarioId: string | undefined) {
           }
           
           if (q.type === 'word_order' && (!q.wrong_answers || q.wrong_answers.length === 0)) {
-            const allWordsInPool = allCorrectAnswersPool.flatMap(ans => ans.split(/\s+/));
+            // Re-fetch only answers that match the SAME target_language to prevent mixing ES and EN distractors
+            const sameLangAnswers = allQuestions
+              .filter(other => (other as any).target_language === (q as any).target_language)
+              .map(other => normalizeAnswer(other.correct_answer).trim())
+              .filter(Boolean);
+            
+            const allWordsInPool = sameLangAnswers.flatMap(ans => ans.split(/\s+/));
             const uniqueWords = Array.from(new Set(allWordsInPool));
             const currentWords = q.correct_answer.split(/\s+/).map(w => w.toLowerCase());
             const possibleDistractors = uniqueWords.filter(w => !currentWords.includes(w.toLowerCase()));
-            q.wrong_answers = shuffleArray([...possibleDistractors, 'el', 'la', 'con']).slice(0, 2);
+            
+            const lang = (q as any).target_language;
+            const defaultMocks = (lang === 'en' || lang === 'english') ? ['the', 'a', 'to', 'is', 'are'] : ['el', 'la', 'con', 'es', 'un'];
+            
+            q.wrong_answers = shuffleArray([...possibleDistractors, ...defaultMocks]).slice(0, 2);
           }
         });
         
