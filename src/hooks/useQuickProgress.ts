@@ -14,6 +14,8 @@ export function useQuickProgress() {
   const getLevelProgress = useProgressStore(state => state.getLevelProgress)
   const lastActiveDate = useProgressStore(state => state.lastActiveDate)
   const updateStreak = useProgressStore(state => state.updateStreak)
+  const ownedStars = useProgressStore(state => state.ownedStars || 0)
+  const possibleStars = useProgressStore(state => state.possibleStars || 0)
 
   useEffect(() => {
     // Determine streak continuously safely mounted
@@ -33,6 +35,8 @@ export function useQuickProgress() {
   return { 
     progress: { streakDays, completed, total, points, lastActiveDate }, 
     percentage,
+    ownedStars,
+    possibleStars,
     level,
     levelProgressPercentage
   }

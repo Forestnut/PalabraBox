@@ -75,7 +75,9 @@ export function useGame(scenarioId: string | undefined) {
     currentQuestionIndex,
     lives,
     maxLives,
-    score
+    score,
+    sessionBlacklist,
+    addToBlacklist
   } = useGameStore()
 
   useEffect(() => {
@@ -154,12 +156,18 @@ export function useGame(scenarioId: string | undefined) {
 
           // --- 4. Final Formatting ---
           let finalQuestionText = q.question_text;
-          
+
+          const sourceText = qData.sentence || qData.phrase || qData.word || qData.translation_es || qData.translation_en;
+
           if (!finalQuestionText || finalQuestionText === 'undefined') {
-             if (q.type === 'multiple_choice') finalQuestionText = '¿Cuál es la respuesta correcta?';
-             else if (q.type === 'image_match') finalQuestionText = '¿Qué ves en la imagen?';
-             else if (q.type === 'listening') finalQuestionText = '¿Qué escuchas?';
-             else finalQuestionText = 'Elige la respuesta correcta';
+             if (sourceText) {
+                 finalQuestionText = typeof sourceText === 'string' ? sourceText.trim() : String(sourceText).trim();
+             } else {
+                 if (q.type === 'multiple_choice') finalQuestionText = '¿Cuál es la respuesta correcta?';
+                 else if (q.type === 'image_match') finalQuestionText = '¿Qué ves en la imagen?';
+                 else if (q.type === 'listening') finalQuestionText = '¿Qué escuchas?';
+                 else finalQuestionText = 'Elige la respuesta correcta';
+             }
           } else if (finalQuestionText.includes('How do you say')) {
              const match = finalQuestionText.match(/'([^']+)'/);
              if (match) {
@@ -207,8 +215,8 @@ export function useGame(scenarioId: string | undefined) {
             image_emoji,
           };
         }).filter(q => {
-          if (!q.correct_answer) {
-             console.warn(`[PalabraBox] Question ${q.id} dropped: no correct_answer parsed. Raw:`, q.data);
+          if (!q.correct_answer || !q.question_text || q.question_text === 'undefined' || q.question_text.trim() === '') {
+             console.info(`[PalabraBox] Question ${q.id} dropped: missing correct_answer or source question_text. Raw:`, q.data);
              return false;
           }
 
@@ -309,9 +317,15 @@ export function useGame(scenarioId: string | undefined) {
         }
         
         // Final shuffle before serving
-        const shuffled = shuffleArray(selected)
+        let finalSelected = selected.filter(q => !sessionBlacklist.includes(q.id))
+        if (finalSelected.length < 5) {
+           console.info('[PalabraBox] Running low on available questions, ignoring session blacklist.')
+           finalSelected = selected
+        }
+        const shuffled = shuffleArray(finalSelected)
+        shuffled.forEach(q => addToBlacklist(q.id))
         setQuestions(shuffled)
-        
+
         startGame(shuffled.length) // Reset store state for new game
       } catch (err) {
         setError(err instanceof Error ? err.message : String(err))
@@ -325,6 +339,7 @@ export function useGame(scenarioId: string | undefined) {
     return () => {
       ignore = true;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scenarioId, startGame])
 
   const currentQuestion = questions[currentQuestionIndex]

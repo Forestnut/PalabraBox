@@ -252,10 +252,14 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
         {/* DROP ZONE */}
         <div className="w-full relative min-h-32 sm:min-h-40 flex flex-col justify-start mt-2">
           {/* Subtle drop zone background instead of fixed lines that overlap */}
-          <div className="absolute inset-0 bg-slate-100/40 rounded-3xl border-2 border-slate-200 border-dashed pointer-events-none" />
+          <div className="absolute inset-x-2 top-0 bottom-0 pointer-events-none flex flex-col pt-[3.4rem] sm:pt-[3.8rem] gap-[3.4rem] sm:gap-[3.8rem]">
+            <div className="w-full border-b-2 border-slate-200"></div>
+            <div className="w-full border-b-2 border-slate-200"></div>
+            <div className="w-full border-b-2 border-slate-200"></div>
+          </div>
 
           <SortableContext items={dropZone.map(d => d.id)} strategy={rectSortingStrategy}>
-            <div className="flex flex-wrap gap-2.5 sm:gap-3 w-full min-h-32 items-start justify-start content-start relative z-10 px-4 py-4">
+            <div className="flex flex-wrap gap-x-2 sm:gap-x-3 gap-y-4 sm:gap-y-6 w-full min-h-32 items-start justify-start content-start relative z-10 px-2 py-2">
               {dropZone.map((item) => (
                  <SortableWord 
                    key={item.id} 

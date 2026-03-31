@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay, faLayerGroup, faGear, faFire, faBolt } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faLayerGroup, faGear, faFire } from '@fortawesome/free-solid-svg-icons'
 import { PageTransition } from '../components/layout/PageTransition'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
@@ -12,7 +12,7 @@ import { useQuickProgress } from '../hooks/useQuickProgress'
 
 export default function MainMenu() {
   const navigate = useNavigate()
-  const { progress, level, levelProgressPercentage } = useQuickProgress()
+  const { progress, ownedStars, possibleStars } = useQuickProgress()
 
   return (
     <PageTransition className="bg-pb-bg text-pb-dark relative overflow-y-auto h-dvh">
@@ -89,30 +89,24 @@ export default function MainMenu() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mt-2">
-            <div className="flex flex-col items-center justify-center p-3 bg-indigo-50 border-2 border-b-4 border-indigo-200 rounded-2xl">
+          <div className="mt-2">
+            <div className="flex flex-col items-center justify-center p-4 bg-indigo-50 border-2 border-b-4 border-indigo-200 rounded-2xl relative overflow-hidden">
               <span className="text-[10px] sm:text-xs font-black text-indigo-600/60 uppercase tracking-widest text-center mb-1">
-                Nivel
-              </span>
-              <span className="text-xl sm:text-2xl font-black text-indigo-500 drop-shadow-sm">
-                {level}
-              </span>
-              <div className="w-full h-2.5 bg-indigo-200/50 rounded-full mt-3 overflow-hidden">
-                <motion.div
-                  className="h-full bg-linear-to-r from-indigo-400 to-indigo-500 rounded-full"
-                  initial={{ width: 0 }}
-                  animate={{ width: `${levelProgressPercentage}%` }}
-                  transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
-                />
-              </div>
-            </div>
-            <div className="flex flex-col items-center justify-center p-3 bg-amber-50 border-2 border-b-4 border-amber-200 rounded-2xl">
-              <span className="text-[10px] sm:text-xs font-black text-amber-600/60 uppercase tracking-widest text-center mb-1">
-                Puntos
+                Postęp Globalny
               </span>
               <div className="flex items-center gap-1.5 mt-0.5">
-                <FontAwesomeIcon icon={faBolt} className="text-amber-500 text-lg sm:text-xl drop-shadow-sm" />
-                <span className="text-xl sm:text-2xl font-black text-amber-500 drop-shadow-sm">{progress.points}</span>
+                <FontAwesomeIcon icon={faStar} className="text-amber-400 text-lg sm:text-xl drop-shadow-sm" />
+                <span className="text-xl sm:text-2xl font-black text-indigo-500 drop-shadow-sm">
+                  {ownedStars} <span className="text-indigo-300 text-sm">/ {possibleStars || 150}</span>
+                </span>
+              </div>
+              <div className="w-full h-2.5 bg-indigo-200/50 rounded-full mt-3 overflow-hidden shadow-inner">
+                <motion.div
+                  className="h-full bg-linear-to-r from-amber-400 to-amber-500 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: possibleStars > 0 ? `${(ownedStars / possibleStars) * 100}%` : '0%' }}
+                  transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
+                />
               </div>
             </div>
           </div>
