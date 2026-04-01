@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+﻿import { useEffect, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import type { Question } from '../types'
@@ -36,7 +36,17 @@ function isSpanishText(text: string): boolean {
   const spanishChars = /[¿¡áéíóúñÁÉÍÓÚÑ]/;
   if (spanishChars.test(text)) return true;
   const words = text.toLowerCase().replace(/[.,!?]/g, '').split(/\s+/);
-  const spanishWords = ['el', 'la', 'los', 'las', 'un', 'una', 'es', 'está', 'son', 'yo', 'tú', 'él', 'ella', 'nosotros', 'ellos', 'mi', 'tu', 'su', 'qué', 'como', 'con', 'por', 'para', 'gracias', 'hola', 'adiós', 'bien', 'mal', 'muy', 'siento', 'perdon', 'ropa', 'comida', 'agua', 'libro', 'casa', 'perro', 'gato'];
+  const spanishWords = [
+    'el', 'la', 'los', 'las', 'un', 'una', 'es', 'está', 'son', 'soy', 'eres',
+    'yo', 'tú', 'él', 'ella', 'nosotros', 'ellos', 'mi', 'tu', 'su',
+    'qué', 'como', 'con', 'por', 'para', 'gracias', 'hola', 'adiós',
+    'bien', 'mal', 'muy', 'siento', 'perdon', 'ropa', 'comida', 'agua',
+    'libro', 'casa', 'perro', 'gato', 'blanco', 'negro', 'rojo', 'azul',
+    'verde', 'amarillo', 'grande', 'pequeño', 'bueno', 'malo', 'nuevo',
+    'viejo', 'hombre', 'mujer', 'niño', 'niña', 'hoy', 'ayer', 'mañana',
+    'siempre', 'nunca', 'dinero', 'precio', 'tienda', 'comprar', 'pagar',
+    'restaurante', 'hotel', 'aeropuerto', 'tren', 'boleto'
+  ];
   let matchCount = 0;
   for (const w of words) {
     if (spanishWords.includes(w)) matchCount++;
@@ -159,51 +169,67 @@ export function useGame(scenarioId: string | undefined) {
 
           const sourceText = qData.sentence || qData.phrase || qData.word || qData.translation_es || qData.translation_en;
 
-          if (!finalQuestionText || finalQuestionText === 'undefined') {
-             if (sourceText) {
-                 finalQuestionText = typeof sourceText === 'string' ? sourceText.trim() : String(sourceText).trim();
+          let rawFinalQuestionText = finalQuestionText;
+          // Fix previous encoding corruption just in case
+          if (typeof rawFinalQuestionText === 'string') {
+              rawFinalQuestionText = rawFinalQuestionText.replace(/Âż/g, '¿').replace(/CĂłmo/g, 'Cómo').replace(/Ăˇ/g, 'á').replace(/Ăł/g, 'ó').replace(/Ă±/g, 'ñ');
+          }
+          let sourceTextStr = typeof sourceText === 'string' ? sourceText : String(sourceText || '');
+          sourceTextStr = sourceTextStr.replace(/Âż/g, '¿').replace(/CĂłmo/g, 'Cómo').replace(/Ăˇ/g, 'á').replace(/Ăł/g, 'ó').replace(/Ă±/g, 'ñ');
+
+          if (!rawFinalQuestionText || rawFinalQuestionText === 'undefined') {
+             if (sourceTextStr) {
+                 finalQuestionText = sourceTextStr.replace(/['"]/g, '').replace(/in english/gi, '').trim();
              } else {
                  if (q.type === 'multiple_choice') finalQuestionText = '¿Cuál es la respuesta correcta?';
                  else if (q.type === 'image_match') finalQuestionText = '¿Qué ves en la imagen?';
                  else if (q.type === 'listening') finalQuestionText = '¿Qué escuchas?';
                  else finalQuestionText = 'Elige la respuesta correcta';
              }
-          } else if (finalQuestionText.includes('How do you say')) {
-             const match = finalQuestionText.match(/'([^']+)'/);
-             if (match) {
-                 finalQuestionText = `¿Cómo se dice '${match[1]}'?`;
-             } else {
-                 finalQuestionText = 'Elige la traducción correcta';
-             }
-          } else if (finalQuestionText.includes('What is the') && finalQuestionText.includes('word for')) {
-             const match = finalQuestionText.match(/'([^']+)'/);
-             if (match) {
-                 finalQuestionText = `¿Cuál es la traducción de '${match[1]}'?`;
-             } else {
-                 finalQuestionText = 'Elige la traducción correcta';
-             }
-          } else if (finalQuestionText.includes('Which word represents')) {
-             const emojiMatch = finalQuestionText.match(/represents\s*(.+)\s*\??$/);
-             if (emojiMatch) {
-                 const extractedEmoji = emojiMatch[1].replace('?', '').trim();
-                 if (extractedEmoji && !image_emoji) {
-                     image_emoji = extractedEmoji;
+          } else {
+             // Helper for matched words
+             const cleanMatch = (str: string) => str.replace(/['"]/g, '').replace(/in english/gi, '').trim();
+
+             if (rawFinalQuestionText.includes('How do you say')) {
+                 const match = rawFinalQuestionText.match(/'([^']+)'/) || rawFinalQuestionText.match(/"([^"]+)"/) || rawFinalQuestionText.match(/say\s+(.*?)(?:\s+in English)?\??$/i);
+                 if (match) {
+                     finalQuestionText = `¿Cómo se dice '${cleanMatch(match[1])}'?`;
+                 } else if (sourceTextStr) {
+                     finalQuestionText = `¿Cómo se dice '${cleanMatch(sourceTextStr)}'?`;
                  }
-             }
-             finalQuestionText = '¿Qué palabra representa la imagen?';
-          } else if (finalQuestionText.includes('Translate')) {
-             const match = finalQuestionText.match(/'([^']+)'/);
-             if (match) {
-                 finalQuestionText = `Traduce '${match[1]}'`;
+             } else if (rawFinalQuestionText.includes('What is the') && rawFinalQuestionText.includes('word for')) {
+                 const match = rawFinalQuestionText.match(/'([^']+)'/) || rawFinalQuestionText.match(/"([^"]+)"/) || rawFinalQuestionText.match(/word for\s+(.*?)(?:\s+in English)?\??$/i);
+                 if (match) {
+                     finalQuestionText = `¿Cuál es la traducción de '${cleanMatch(match[1])}'?`;
+                 } else if (sourceTextStr) {
+                     finalQuestionText = `¿Cuál es la traducción de '${cleanMatch(sourceTextStr)}'?`;
+                 }
+             } else if (rawFinalQuestionText.includes('Which word represents')) {
+                 const emojiMatch = rawFinalQuestionText.match(/represents\s*(.+)\s*\??$/);
+                 if (emojiMatch) {
+                     const extractedEmoji = emojiMatch[1].replace('?', '').trim();
+                     if (extractedEmoji && !image_emoji) {
+                         image_emoji = extractedEmoji;
+                     }
+                 }
+                 finalQuestionText = '¿Qué palabra representa la imagen?';
+             } else if (rawFinalQuestionText.includes('Translate')) {
+                 const match = rawFinalQuestionText.match(/'([^']+)'/) || rawFinalQuestionText.match(/"([^"]+)"/) || rawFinalQuestionText.match(/Translate\s+(.*?)(?:\s+in English)?\??$/i);
+                 if (match) {
+                     finalQuestionText = `Traduce '${cleanMatch(match[1])}'`;
+                 } else if (sourceTextStr) {
+                     finalQuestionText = `Traduce '${cleanMatch(sourceTextStr)}'`;
+                 }
+             } else if (rawFinalQuestionText.includes('Which word is')) {
+                 const match = rawFinalQuestionText.match(/'([^']+)'/) || rawFinalQuestionText.match(/"([^"]+)"/) || rawFinalQuestionText.match(/word is\s+(.*?)(?:\s+in English)?\??$/i);
+                 if (match) {
+                     finalQuestionText = `¿Cuál es la palabra para '${cleanMatch(match[1])}'?`;
+                 } else if (sourceTextStr) {
+                     finalQuestionText = `¿Cuál es la palabra para '${cleanMatch(sourceTextStr)}'?`;
+                 }
              } else {
-                 finalQuestionText = 'Traduce esto';
-             }
-          } else if (finalQuestionText.includes('Which word is')) {
-             const match = finalQuestionText.match(/'([^']+)'/);
-             if (match) {
-                 finalQuestionText = `¿Cuál es la palabra para '${match[1]}'?`;
-             } else {
-                 finalQuestionText = '¿Cuál es la palabra correcta?';
+                 finalQuestionText = rawFinalQuestionText.replace(/['"]/g, '').replace(/in english/gi, '').trim();
+                 finalQuestionText = finalQuestionText.charAt(0).toUpperCase() + finalQuestionText.slice(1);
              }
           }
 
@@ -402,4 +428,5 @@ export function useGame(scenarioId: string | undefined) {
     scenarioLanguage
   }
 }
+
 
