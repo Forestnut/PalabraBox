@@ -189,7 +189,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
                 opacity: isClosed ? 0 : 1 
               }}
               fill="#D97706" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
-              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
             />
 
             {/* BOX INSIDE & INNER SHADOW */}
@@ -283,31 +283,34 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
                 opacity: isClosed ? 1 : 0 
               }}
               fill="#FBBF24" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
-              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
             />
 
             {/* FRONT FLAP */}
             <motion.path 
+              initial={false}
               d={isClosed ? flapsPaths.frontClosed : flapsPaths.frontOpened}
               animate={{ d: isClosed ? flapsPaths.frontClosed : flapsPaths.frontOpened }}
               fill="#FDBA74" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
-              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
             />
 
             {/* LEFT FLAP */}
             <motion.path 
+              initial={false}
               d={isClosed ? flapsPaths.leftClosed : flapsPaths.leftOpened}
               animate={{ d: isClosed ? flapsPaths.leftClosed : flapsPaths.leftOpened }}
               fill="#FBBF24" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
-              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
             />
 
             {/* RIGHT FLAP */}
             <motion.path 
+              initial={false}
               d={isClosed ? flapsPaths.rightClosed : flapsPaths.rightOpened}
               animate={{ d: isClosed ? flapsPaths.rightClosed : flapsPaths.rightOpened }}
               fill="#F59E0B" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
-              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
             />
 
             {/* --- PACKING TAPE --- */}

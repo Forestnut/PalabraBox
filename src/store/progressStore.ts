@@ -42,6 +42,10 @@ export interface ProgressState {
   getLevel: () => number
   /** Gets the percentage progress (0-100) towards the next level */
   getLevelProgress: () => number
+  
+  ownedStars: number
+  possibleStars: number
+  updateStars: (owned: number, possible: number) => void
 }
 
 export const useProgressStore = create<ProgressState>()(
@@ -50,8 +54,14 @@ export const useProgressStore = create<ProgressState>()(
       streakDays: 0,
       completed: 0,
       total: 0,
+      ownedStars: 0,
+      possibleStars: 0,
       points: 0,
       lastActiveDate: null,
+
+      updateStars: (owned: number, possible: number) => {
+        set({ ownedStars: owned, possibleStars: possible })
+      },
 
       updateStreak: () => {
         const today = new Date().toISOString().split('T')[0]

@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay, faLayerGroup, faGear, faFire } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faLayerGroup, faGear, faFire, faStar } from '@fortawesome/free-solid-svg-icons'
 import { PageTransition } from '../components/layout/PageTransition'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
@@ -17,7 +17,7 @@ export default function MainMenu() {
   return (
     <PageTransition className="bg-pb-bg text-pb-dark relative overflow-y-auto h-dvh">
       <div
-        className="max-w-lg mx-auto sm:px-6 px-5 w-full flex flex-col items-center gap-5 pt-10 no-scrollbar pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(2.5rem,env(safe-area-inset-top))]"
+        className="max-w-lg mx-auto sm:px-6 px-5 w-full flex flex-col items-center gap-5 pt-10 no-scrollbar pb-[max(1.5rem,env(safe-area-inset-bottom))]"
         style={{ minHeight: '100%' }}
       >
 
@@ -92,7 +92,7 @@ export default function MainMenu() {
           <div className="mt-2">
             <div className="flex flex-col items-center justify-center p-4 bg-indigo-50 border-2 border-b-4 border-indigo-200 rounded-2xl relative overflow-hidden">
               <span className="text-[10px] sm:text-xs font-black text-indigo-600/60 uppercase tracking-widest text-center mb-1">
-                Postęp Globalny
+                Progreso Global
               </span>
               <div className="flex items-center gap-1.5 mt-0.5">
                 <FontAwesomeIcon icon={faStar} className="text-amber-400 text-lg sm:text-xl drop-shadow-sm" />

@@ -34,7 +34,7 @@ export default function ResultsScreen() {
   let earnedStars = 0
   if (isSuccess) {
     if (mistakes === 0) earnedStars = 3
-    else if (mistakes <= 2) earnedStars = 2
+    else if (mistakes === 1) earnedStars = 2
     else earnedStars = 1
   }
 
