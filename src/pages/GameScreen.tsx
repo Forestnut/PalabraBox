@@ -122,8 +122,8 @@ export default function GameScreen() {
         <div className="flex flex-col items-center justify-center flex-1 w-full mt-20">
           <Mascot mood="sad" size="xl" />
           <p className="text-center text-pb-error mt-8 font-black text-2xl drop-shadow-sm">¡Oh no!</p>
-          <p className="text-center text-pb-text-light mt-2 font-bold max-w-[250px] leading-tight">Hubo un problema al cargar. Inténtalo de nuevo.</p>
-          <p className="text-center text-pb-error/60 mt-4 text-xs font-semibold max-w-[250px] truncate">{error}</p>
+          <p className="text-center text-pb-text-light mt-2 font-bold max-w-64 leading-tight">Hubo un problema al cargar. Inténtalo de nuevo.</p>
+          <p className="text-center text-pb-error/60 mt-4 text-xs font-semibold max-w-64 truncate">{error}</p>
         </div>
       </ScreenWrapper>
     )
@@ -152,7 +152,7 @@ export default function GameScreen() {
           <p className="text-center mt-8 font-black text-pb-dark text-xl leading-tight drop-shadow-sm px-4">
             No hay preguntas
           </p>
-          <p className="text-center text-pb-text-light mt-2 font-bold text-sm max-w-[250px]">
+          <p className="text-center text-pb-text-light mt-2 font-bold text-sm max-w-64">
             Parece que este nivel aún no está listo. ¡Vuelve pronto!
           </p>
         </div>

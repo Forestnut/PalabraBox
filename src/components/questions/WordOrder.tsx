@@ -23,6 +23,7 @@ import { CSS } from '@dnd-kit/utilities'
 
 import type { Question } from '../../types'
 import { Button } from '../ui/Button'
+import { QuestionHeader } from './QuestionHeader'
 import { SortableItemUI } from './SortableItemUI'
 import { shuffleArray } from '../../utils/shuffle'
 import { speechService } from '../../services/speechService'
@@ -200,30 +201,6 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
     }),
   }
 
-  // Extract quoted text if present to highlight it better
-  const renderQuestionText = () => {
-    const text = question.question_text || "Ordena la frase"
-    const match = text.match(/^(.*?):\s*"(.*?)"$/)
-    
-    if (match) {
-      return (
-        <div className="flex flex-col items-start w-full">
-          <span className="text-xl sm:text-2xl font-black text-pb-dark leading-tight sm:leading-snug wrap-break-word w-full">
-            {match[2]}
-          </span>
-        </div>
-      )
-    }
-    
-    return (
-      <div className="flex flex-col items-start w-full">
-        <span className="text-lg sm:text-xl font-bold text-pb-dark leading-tight sm:leading-snug wrap-break-word w-full">
-          {text}
-        </span>
-      </div>
-    )
-  }
-
   return (
     <DndContext
       sensors={sensors}
@@ -236,17 +213,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
         
         {/* QUESTION HEADER (outside dropzone like Duolingo) */}
         <div className="w-full flex flex-col mb-1 sm:mb-2 pt-4 px-2">
-          <span className="text-sm sm:text-base font-bold text-slate-400 mb-1.5 sm:mb-2">
-            Traduce esta frase
-          </span>
-          {renderQuestionText()}
-          {question.hint && (
-            <div className="mt-3 flex justify-start w-full">
-              <span className="text-[12px] sm:text-sm font-bold text-pb-primary uppercase tracking-wider bg-indigo-50/80 px-3.5 py-1.5 rounded-xl border border-indigo-100/50 shadow-sm">
-                {question.hint}
-              </span>
-            </div>
-          )}
+          <QuestionHeader question={question} />
         </div>
 
         {/* DROP ZONE */}
