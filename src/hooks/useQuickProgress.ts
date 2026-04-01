@@ -14,7 +14,18 @@ export function useQuickProgress() {
   const getLevelProgress = useProgressStore(state => state.getLevelProgress)
   const lastActiveDate = useProgressStore(state => state.lastActiveDate)
   const updateStreak = useProgressStore(state => state.updateStreak)
-  const ownedStars = useProgressStore(state => state.ownedStars || 0)
+
+  // Dynamically compute global stars directly from source of truth on every render 
+  let ownedStars = 0;
+  if (typeof localStorage !== 'undefined') {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key?.startsWith('pb_stars_')) {
+        ownedStars += parseInt(localStorage.getItem(key) || '0', 10);
+      }
+    }
+  }
+  
   const possibleStars = useProgressStore(state => state.possibleStars || 0)
 
   useEffect(() => {

@@ -172,7 +172,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
     const isCorrect = currentSentence === correctClean
     
     if (isCorrect) {
-      const ttsLang = scenarioLanguage === 'english' ? 'en-US' : 'es-ES'
+      const ttsLang = (scenarioLanguage === 'english' || scenarioLanguage === 'en' || scenarioLanguage?.startsWith('en')) ? 'en-US' : 'es-ES'
       speechService.speak(question.question_text_tts || currentSentence, ttsLang, 1, 1, () => {
         // Wait for speech to complete
         setTimeout(() => {

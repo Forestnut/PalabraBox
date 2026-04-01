@@ -8,6 +8,7 @@ import { shuffleArray } from '../../utils/shuffle'
 import { speechService } from '../../services/speechService'
 import { useSettingsStore } from '../../store/settingsStore'
 import { Button } from '../ui/Button'
+import { QuestionHeader } from './QuestionHeader'
 
 interface Props {
   question: Question
@@ -31,7 +32,7 @@ export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioL
     if (isPlaying) return
     setIsPlaying(true)
     const text = question.question_text_tts || question.correct_answer
-    const lang = scenarioLanguage === 'english' ? 'en-US' : 'es-ES'
+    const lang = (scenarioLanguage === 'english' || scenarioLanguage === 'en' || scenarioLanguage?.startsWith('en')) ? 'en-US' : 'es-ES'
     speechService.speak(text, lang, speechSpeed)
     // Approximate speech duration
     setTimeout(() => setIsPlaying(false), Math.max(1500, text.length * 80))
@@ -73,11 +74,7 @@ export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioL
 
   return (
     <div className="flex flex-col gap-4 w-full text-center flex-1 items-center">
-      <div className="flex items-center justify-center py-2">
-        <h2 className="text-xl sm:text-2xl font-black text-pb-dark leading-tight px-2 tracking-tight">
-          {question.question_text || '¿Qué escuchas?'}
-        </h2>
-      </div>
+      <QuestionHeader question={question} />
 
       <div className="flex flex-col items-center justify-center min-h-28 gap-3">
         <motion.button

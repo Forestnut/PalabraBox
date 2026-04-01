@@ -17,7 +17,7 @@ export function FlashCard({ word }: FlashCardProps) {
 
   const handlePlayAudio = (e: React.MouseEvent, side: 'front' | 'back') => {
     e.stopPropagation()
-    const isFrontSpanish = word.language === 'spanish'
+    const isFrontSpanish = word.language === 'spanish' || (word.language as string) === 'es' || word.language?.startsWith('es')
     
     if (side === 'front') {
       const text = word.audio_text || word.word
