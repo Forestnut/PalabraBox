@@ -79,7 +79,7 @@ export default function MainMenu() {
         </a>
 
         {/* Progress Dashboard */}
-        <div className="w-full mt-2 bg-gradient-to-b from-white to-slate-50 rounded-2xl shadow-sm ring-1 ring-slate-200/60 p-4 pb-5 flex flex-col gap-3">
+        <div className="w-full mt-2 bg-linear-to-b from-white to-slate-50 rounded-2xl shadow-sm ring-1 ring-slate-200/60 p-4 pb-5 flex flex-col gap-3">
           <div className="flex items-center justify-between px-1">
             <h2 className="text-lg font-black text-pb-dark tracking-tight">Tu Progreso</h2>
           </div>
@@ -95,7 +95,10 @@ export default function MainMenu() {
                 <span className="font-bold text-pb-amber text-sm relative z-10">Racha</span>
               </div>
               <span className="font-black text-pb-dark text-xl relative z-10">
-                {progress.streakDays} <span className="text-xs font-bold text-pb-text-light/70 uppercase tracking-widest">días</span>
+                {progress.streakDays}{' '}
+                <span className="text-xs font-bold text-pb-text-light/70 uppercase tracking-widest">
+                  {progress.streakDays === 1 ? 'día' : 'días'}
+                </span>
               </span>
             </div>
 
@@ -137,7 +140,7 @@ export default function MainMenu() {
             
             <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden shadow-inner">
               <motion.div
-                className="h-full bg-gradient-to-r from-indigo-400 via-indigo-500 to-purple-500 rounded-full relative"
+                className="h-full bg-linear-to-r from-indigo-400 via-indigo-500 to-purple-500 rounded-full relative"
                 initial={{ width: 0 }}
                 animate={{ width: `${levelProgressPercentage}%` }}
                 transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}

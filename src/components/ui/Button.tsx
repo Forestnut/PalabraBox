@@ -14,13 +14,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary: [
-    'bg-gradient-to-b from-[#FFB347] to-pb-amber text-white',
+    'bg-linear-to-b from-[#FFB347] to-pb-amber text-white',
     'shadow-[0_4px_0_0_#c97a1a,0_6px_16px_-2px_rgba(255,164,44,0.35)]',
     'hover:shadow-[0_5px_0_0_#c97a1a,0_8px_20px_-2px_rgba(255,164,44,0.4)]',
     'active:shadow-[0_1px_0_0_#c97a1a,0_2px_4px_rgba(255,164,44,0.2)] active:translate-y-[3px]',
   ].join(' '),
   secondary: [
-    'bg-gradient-to-b from-[#0a8a5e] to-pb-emerald text-white',
+    'bg-linear-to-b from-[#0a8a5e] to-pb-emerald text-white',
     'shadow-[0_4px_0_0_#035c3a,0_6px_16px_-2px_rgba(4,114,77,0.3)]',
     'hover:shadow-[0_5px_0_0_#035c3a,0_8px_20px_-2px_rgba(4,114,77,0.35)]',
     'active:shadow-[0_1px_0_0_#035c3a,0_2px_4px_rgba(4,114,77,0.2)] active:translate-y-[3px]',
@@ -32,7 +32,7 @@ const variantStyles: Record<ButtonVariant, string> = {
     'active:bg-white/60 active:translate-y-[1px]',
   ].join(' '),
   danger: [
-    'bg-gradient-to-b from-[#f87171] to-pb-error text-white',
+    'bg-linear-to-b from-[#f87171] to-pb-error text-white',
     'shadow-[0_4px_0_0_#b91c1c,0_6px_16px_-2px_rgba(239,68,68,0.3)]',
     'hover:shadow-[0_5px_0_0_#b91c1c,0_8px_20px_-2px_rgba(239,68,68,0.35)]',
     'active:shadow-[0_1px_0_0_#b91c1c,0_2px_4px_rgba(239,68,68,0.2)] active:translate-y-[3px]',
