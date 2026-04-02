@@ -106,7 +106,7 @@ export default function GameScreen() {
 
   if (loading) {
     return (
-      <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
+      <ScreenWrapper className="flex flex-col items-center justify-center flex-1 w-full h-full">
         <Mascot mood="idle" size="lg" />
         <h2 className="text-xl font-bold mt-6 text-pb-dark animate-pulse">Cargando partida...</h2>
       </ScreenWrapper>
@@ -115,7 +115,7 @@ export default function GameScreen() {
 
   if (error) {
     return (
-      <ScreenWrapper className="flex flex-col relative min-h-[80vh]">
+      <ScreenWrapper className="flex flex-col relative flex-1 w-full h-full">
         <div className="absolute top-4 left-4 z-10 w-full">
           <BackButton fallbackUrl="/scenarios" />
         </div>
@@ -131,7 +131,7 @@ export default function GameScreen() {
 
   if (status === 'finished') {
     return (
-      <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
+      <ScreenWrapper className="flex flex-col items-center justify-center flex-1 w-full h-full">
         <Mascot mood="celebrate" size="xl" />
         <p className="text-center mt-8 font-black text-pb-dark text-2xl drop-shadow-sm animate-pulse">
           ¡Completado!
@@ -143,7 +143,7 @@ export default function GameScreen() {
 
   if (!currentQuestion) {
     return (
-      <ScreenWrapper className="flex flex-col relative min-h-[80vh]">
+      <ScreenWrapper className="flex flex-col relative flex-1 w-full h-full">
         <div className="absolute top-4 left-4 z-10 w-full">
           <BackButton fallbackUrl="/scenarios" />
         </div>
@@ -163,7 +163,7 @@ export default function GameScreen() {
   if (showIntermission) {
     return (
       <PageTransition>
-        <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
+        <ScreenWrapper className="flex flex-col flex-1 w-full h-full items-center justify-center">
           <Mascot mood={intermissionMood} size="xl" />
           <h2 className="text-2xl sm:text-3xl font-black text-center text-pb-dark mb-4 mt-8 px-4 leading-tight">
             {intermissionText}
