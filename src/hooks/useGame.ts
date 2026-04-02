@@ -189,50 +189,40 @@ export function useGame(scenarioId: string | undefined) {
           } else {
              // Helper for matched words
              const cleanMatch = (str: string) => str.replace(/['"]/g, '').replace(/in english/gi, '').trim();
+               let targetWord = '';
 
-             if (rawFinalQuestionText.includes('How do you say')) {
-                 const match = rawFinalQuestionText.match(/'([^']+)'/) || rawFinalQuestionText.match(/"([^"]+)"/) || rawFinalQuestionText.match(/say\s+(.*?)(?:\s+in English)?\??$/i);
-                 if (match) {
-                     finalQuestionText = `¿Cómo se dice '${cleanMatch(match[1])}'?`;
-                 } else if (sourceTextStr) {
-                     finalQuestionText = `¿Cómo se dice '${cleanMatch(sourceTextStr)}'?`;
-                 }
-             } else if (rawFinalQuestionText.includes('What is the') && rawFinalQuestionText.includes('word for')) {
-                 const match = rawFinalQuestionText.match(/'([^']+)'/) || rawFinalQuestionText.match(/"([^"]+)"/) || rawFinalQuestionText.match(/word for\s+(.*?)(?:\s+in English)?\??$/i);
-                 if (match) {
-                     finalQuestionText = `¿Cuál es la traducción de '${cleanMatch(match[1])}'?`;
-                 } else if (sourceTextStr) {
-                     finalQuestionText = `¿Cuál es la traducción de '${cleanMatch(sourceTextStr)}'?`;
-                 }
-             } else if (rawFinalQuestionText.includes('Which word represents')) {
-                 const emojiMatch = rawFinalQuestionText.match(/represents\s*(.+)\s*\??$/);
-                 if (emojiMatch) {
-                     const extractedEmoji = emojiMatch[1].replace('?', '').trim();
-                     if (extractedEmoji && !image_emoji) {
-                         image_emoji = extractedEmoji;
-                     }
-                 }
-                 finalQuestionText = '¿Qué palabra representa la imagen?';
-             } else if (rawFinalQuestionText.includes('Translate')) {
-                 const match = rawFinalQuestionText.match(/'([^']+)'/) || rawFinalQuestionText.match(/"([^"]+)"/) || rawFinalQuestionText.match(/Translate\s+(.*?)(?:\s+in English)?\??$/i);
-                 if (match) {
-                     finalQuestionText = `Traduce '${cleanMatch(match[1])}'`;
-                 } else if (sourceTextStr) {
-                     finalQuestionText = `Traduce '${cleanMatch(sourceTextStr)}'`;
-                 }
-             } else if (rawFinalQuestionText.includes('Which word is')) {
-                 const match = rawFinalQuestionText.match(/'([^']+)'/) || rawFinalQuestionText.match(/"([^"]+)"/) || rawFinalQuestionText.match(/word is\s+(.*?)(?:\s+in English)?\??$/i);
-                 if (match) {
-                     finalQuestionText = `¿Cuál es la palabra para '${cleanMatch(match[1])}'?`;
-                 } else if (sourceTextStr) {
-                     finalQuestionText = `¿Cuál es la palabra para '${cleanMatch(sourceTextStr)}'?`;
-                 }
-             } else {
-                 finalQuestionText = rawFinalQuestionText.replace(/['"]/g, '').replace(/in english/gi, '').trim();
-                 finalQuestionText = finalQuestionText.charAt(0).toUpperCase() + finalQuestionText.slice(1);
-             }
-          }
+               if (rawFinalQuestionText.includes('How do you say')) {
+                   const match = rawFinalQuestionText.match(/'([^']+)'/) || rawFinalQuestionText.match(/"([^"]+)"/) || rawFinalQuestionText.match(/say\s+(.*?)(?:\s+in English)?\??$/i);
+                   if (match) targetWord = cleanMatch(match[1]);
+               } else if (rawFinalQuestionText.includes('What is the') && rawFinalQuestionText.includes('word for')) {
+                   const match = rawFinalQuestionText.match(/'([^']+)'/) || rawFinalQuestionText.match(/"([^"]+)"/) || rawFinalQuestionText.match(/word for\s+(.*?)(?:\s+in English)?\??$/i);
+                   if (match) targetWord = cleanMatch(match[1]);
+               } else if (rawFinalQuestionText.includes('Translate')) {
+                   const match = rawFinalQuestionText.match(/'([^']+)'/) || rawFinalQuestionText.match(/"([^"]+)"/) || rawFinalQuestionText.match(/Translate\s+(.*?)(?:\s+in English)?\??$/i);
+                   if (match) targetWord = cleanMatch(match[1]);
+               } else if (rawFinalQuestionText.includes('Which word is')) {
+                   const match = rawFinalQuestionText.match(/'([^']+)'/) || rawFinalQuestionText.match(/"([^"]+)"/) || rawFinalQuestionText.match(/word is\s+(.*?)(?:\s+in English)?\??$/i);
+                   if (match) targetWord = cleanMatch(match[1]);
+               } else if (rawFinalQuestionText.includes('Which word represents')) {
+                   const emojiMatch = rawFinalQuestionText.match(/represents\s*(.+)\s*\??$/);
+                   if (emojiMatch) {
+                       const extractedEmoji = emojiMatch[1].replace('?', '').trim();
+                       if (extractedEmoji && !image_emoji) {
+                           image_emoji = extractedEmoji;
+                       }
+                   }
+                   finalQuestionText = '¿Qué palabra representa la imagen?';
+               }
 
+               if (targetWord) {
+                   finalQuestionText = `¿Cómo se dice '${targetWord}'?`;
+               } else if (!rawFinalQuestionText.includes('Which word represents')) {
+                   if (sourceTextStr) {
+                       finalQuestionText = `¿Cómo se dice '${cleanMatch(sourceTextStr)}'?`;
+                   } else {
+                       finalQuestionText = rawFinalQuestionText.replace(/['"]/g, '').replace(/in english/gi, '').trim();
+                       finalQuestionText = finalQuestionText.charAt(0).toUpperCase() + finalQuestionText.slice(1);
+                   }
           return {
             ...q,
             question_text: finalQuestionText,
