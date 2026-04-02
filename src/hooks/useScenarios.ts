@@ -34,17 +34,7 @@ const categoryEmojiMap: Record<string, string> = {
   time: '⏳',
   numbers: '🔢',
   basics: '🎓',
-  // Polish mapped categories
-  'Zwierzęta': '🦁',
-  'Jedzenie': '🍔',
-  'Podróże': '✈️',
-  'Rodzina': '👨‍👩‍👧‍👦',
-  'Dom': '🏠',
-  'Pogoda': '☀️',
-  'Ciało i zdrowie': '🩺',
-  'Praca i kariera': '💼',
-  'Rozrywka i hobby': '🎨',
-  'Społeczeństwo': '🤝'
+
 }
 
 const idEmojiMap: Record<string, string> = {
