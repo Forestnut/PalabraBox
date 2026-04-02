@@ -18,11 +18,13 @@
     "@fortawesome/react-fontawesome": "^3.3.0",
     "@supabase/supabase-js": "2.99.2",
     "canvas-confetti": "1.9.4",
+    "clsx": "^2.1.1",
     "framer-motion": "12.38.0",
     "howler": "2.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-router-dom": "7.13.1",
+    "tailwind-merge": "^3.5.0",
     "vercel": "^50.35.0",
     "zustand": "^5.0.12"
   },
