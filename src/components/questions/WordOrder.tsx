@@ -217,12 +217,24 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
         </div>
 
         {/* DROP ZONE */}
-        <div className="w-full relative min-h-32 sm:min-h-40 flex flex-col justify-start mt-2">
-          {/* Subtle drop zone background instead of fixed lines that overlap */}
-          <div className="absolute inset-x-2 top-0 bottom-0 pointer-events-none flex flex-col pt-[3.4rem] sm:pt-[3.8rem] gap-[3.4rem] sm:gap-[3.8rem]">
-            <div className="w-full border-b-2 border-slate-200"></div>
-            <div className="w-full border-b-2 border-slate-200"></div>
-            <div className="w-full border-b-2 border-slate-200"></div>
+        <div className="w-full relative min-h-32 sm:min-h-40 flex flex-col justify-start mt-2 mb-10">
+          {/* Background Drop Slots */}
+          <div className="absolute inset-0 flex flex-wrap gap-x-2 sm:gap-x-3 gap-y-4 sm:gap-y-6 items-start content-start z-0 px-2 py-2">
+            <AnimatePresence>
+              {correctWords.map((word, i) => {
+                // If a word is already occupying this slot logically, we can fade out the slot or keep a subtle line
+                const isOccupied = i < dropZone.length
+                return (
+                  <motion.div
+                    key={`slot-${i}`}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: isOccupied ? 0.3 : 1, scale: 1 }}
+                    className="border-b-2 border-slate-300 bg-slate-100/30 rounded-sm"
+                    style={{ width: `max(3.5rem, ${word.length}ch + 2rem)`, height: '3.5rem' }}
+                  />
+                )
+              })}
+            </AnimatePresence>
           </div>
 
           <SortableContext items={dropZone.map(d => d.id)} strategy={rectSortingStrategy}>
