@@ -70,6 +70,13 @@ export function Button({
       // Release lock safely without an artificial 300ms blockage layer
       // This empowers power users by prioritizing function resolution timing.
       setIsClickLocked(false)
+    }
+  }
+
+  return (
+    <button
+      className={cn(
+        'relative inline-flex items-center justify-center font-bold tracking-wide transition-all select-none',
         variantStyles[variant],
         sizeStyles[size],
         (disabled || isClickLocked) && 'opacity-50 pointer-events-none grayscale',
