@@ -64,7 +64,9 @@ export const useProgressStore = create<ProgressState>()(
       },
 
       updateStreak: () => {
-        const today = new Date().toISOString().split('T')[0]
+        // Get local date properly considering timezones to prevent streak breaks due to UTC shifts
+        const now = new Date()
+        const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
         const state = get()
 
         if (state.lastActiveDate === today) {
