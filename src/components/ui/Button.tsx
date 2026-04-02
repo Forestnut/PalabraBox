@@ -67,20 +67,9 @@ export function Button({
     try {
       await onClick?.(e)
     } finally {
-      setTimeout(() => {
-        setIsClickLocked(false)
-      }, 300)
-    }
-  }
-
-  return (
-    <button
-      className={cn(
-        'inline-flex items-center justify-center gap-2',
-        'font-bold',
-        'transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] cursor-pointer select-none',
-        'hover:-translate-y-0.5',
-        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber',
+      // Release lock safely without an artificial 300ms blockage layer
+      // This empowers power users by prioritizing function resolution timing.
+      setIsClickLocked(false)
         variantStyles[variant],
         sizeStyles[size],
         (disabled || isClickLocked) && 'opacity-50 pointer-events-none grayscale',
