@@ -223,6 +223,8 @@ export function useGame(scenarioId: string | undefined) {
                        finalQuestionText = rawFinalQuestionText.replace(/['"]/g, '').replace(/in english/gi, '').trim();
                        finalQuestionText = finalQuestionText.charAt(0).toUpperCase() + finalQuestionText.slice(1);
                    }
+               }
+          }
           return {
             ...q,
             question_text: finalQuestionText,
