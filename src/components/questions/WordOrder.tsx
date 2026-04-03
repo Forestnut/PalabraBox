@@ -23,6 +23,7 @@ import { CSS } from '@dnd-kit/utilities'
 
 import type { Question } from '../../types'
 import { Button } from '../ui/Button'
+import { QuestionHeader } from './QuestionHeader'
 import { SortableItemUI } from './SortableItemUI'
 import { shuffleArray } from '../../utils/shuffle'
 import { speechService } from '../../services/speechService'
@@ -75,7 +76,10 @@ function SortableWord({ wordObj, onClick }: { wordObj: WordObj; onClick: () => v
 }
 
 export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioLanguage }: WordOrderProps) {
-  const correctWords = useMemo(() => question.correct_answer.split(' '), [question.correct_answer])
+  const correctWords = useMemo(() => {
+    if (!question.correct_answer) return []
+    return question.correct_answer.split(' ')
+  }, [question.correct_answer])
 
   const allWordObjects = useMemo<WordObj[]>(() => {
     const rawWords = shuffleArray([...correctWords, ...(question.wrong_answers || [])])
@@ -164,21 +168,26 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
       str.replace(/[.,!?¡¿""'']/g, '').toLowerCase().trim()
 
     const currentSentence = dropZone.map(d => sanitizeString(d.word)).join(' ')
-    const correctClean = sanitizeString(question.correct_answer).split(' ').join(' ') // ensuring multiple spaces are handled basically the same
-    
+      const correctClean = sanitizeString(question.correct_answer || '').split(' ').join(' ') // ensuring multiple spaces are handled basically the same
     const isCorrect = currentSentence === correctClean
     
     if (isCorrect) {
-      const ttsLang = scenarioLanguage === 'english' ? 'en-US' : 'es-ES'
-      speechService.speak(question.question_text_tts || currentSentence, ttsLang)
+      const ttsLang = (scenarioLanguage === 'english' || scenarioLanguage === 'en' || scenarioLanguage?.startsWith('en')) ? 'en-US' : 'es-ES'
+      speechService.speak(question.question_text_tts || currentSentence, ttsLang, 1, 1, () => {
+        // Wait for speech to complete
+        setTimeout(() => {
+          onAnswer(isCorrect)
+          setIsChecking(false)
+        }, 500)
+      })
+      onPlaySound?.('correct')
+    } else {
+      onPlaySound?.('wrong')
+      setTimeout(() => {
+        onAnswer(isCorrect)
+        setIsChecking(false)
+      }, 1500)
     }
-
-    onPlaySound?.(isCorrect ? 'correct' : 'wrong')
-    
-    setTimeout(() => {
-      onAnswer(isCorrect)
-      setIsChecking(false)
-    }, 1500)
   }
 
   const activeWordObj = useMemo(
@@ -192,30 +201,6 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
     }),
   }
 
-  // Extract quoted text if present to highlight it better
-  const renderQuestionText = () => {
-    const text = question.question_text || "Ordena la frase"
-    const match = text.match(/^(.*?):\s*"(.*?)"$/)
-    
-    if (match) {
-      return (
-        <div className="flex flex-col items-start w-full">
-          <span className="text-xl sm:text-2xl font-black text-pb-dark leading-tight sm:leading-snug wrap-break-word w-full">
-            {match[2]}
-          </span>
-        </div>
-      )
-    }
-    
-    return (
-      <div className="flex flex-col items-start w-full">
-        <span className="text-lg sm:text-xl font-bold text-pb-dark leading-tight sm:leading-snug wrap-break-word w-full">
-          {text}
-        </span>
-      </div>
-    )
-  }
-
   return (
     <DndContext
       sensors={sensors}
@@ -224,34 +209,24 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >
-      <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-2xl mx-auto h-full px-1 sm:px-4 flex-1 no-scrollbar overflow-hidden">
+      <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-2xl mx-auto h-full px-1 sm:px-4 flex-1 overflow-y-auto no-scrollbar pb-6">
         
         {/* QUESTION HEADER (outside dropzone like Duolingo) */}
         <div className="w-full flex flex-col mb-1 sm:mb-2 pt-4 px-2">
-          <span className="text-sm sm:text-base font-bold text-slate-400 mb-1.5 sm:mb-2">
-            Traduce esta frase
-          </span>
-          {renderQuestionText()}
-          {question.hint && (
-            <div className="mt-3 flex justify-start w-full">
-              <span className="text-[12px] sm:text-sm font-bold text-pb-primary uppercase tracking-wider bg-indigo-50/80 px-3.5 py-1.5 rounded-xl border border-indigo-100/50 shadow-sm">
-                {question.hint}
-              </span>
-            </div>
-          )}
+          <QuestionHeader question={question} />
         </div>
 
         {/* DROP ZONE */}
-        <div className="w-full relative min-h-30 sm:min-h-35 flex flex-col justify-start mt-2">
-          {/* Decorative background lines to look like notebook */}
-          <div className="absolute inset-x-0 top-0 pointer-events-none flex flex-col gap-[3.8rem] sm:gap-[4.2rem] mt-12.5 sm:mt-15 px-2">
-            <div className="w-full border-b-2 border-slate-200"></div>
-            <div className="w-full border-b-2 border-slate-200"></div>
-            <div className="w-full border-b-2 border-slate-200 hidden sm:block"></div>
+        <div className="w-full relative min-h-32 sm:min-h-40 flex flex-col justify-start mt-2 mb-10">
+          {/* Background Drop Slots (Classic Lines) */}
+          <div className="absolute inset-0 flex flex-col gap-[3rem] sm:gap-[3.5rem] items-center pt-10 sm:pt-12 -z-10 px-2 pointer-events-none">
+            {[1, 2, 3].map((_, i) => (
+               <div key={`line-${i}`} className="w-full border-b-2 border-slate-200" />
+            ))}
           </div>
 
           <SortableContext items={dropZone.map(d => d.id)} strategy={rectSortingStrategy}>
-            <div className="flex flex-wrap gap-2.5 sm:gap-3 w-full min-h-25 items-start justify-start content-start relative z-10 px-2 py-2">
+            <div className="flex flex-wrap gap-x-2 sm:gap-x-3 gap-y-3 sm:gap-y-4 w-full min-h-32 items-start justify-start content-start relative z-10 px-2 py-2">
               {dropZone.map((item) => (
                  <SortableWord 
                    key={item.id} 
@@ -264,7 +239,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
         </div>
 
         {/* BANK - Click to add to dropZone or Drag to move back */}
-        <div ref={setBankNodeRef} className="flex flex-col gap-3 sm:gap-4 mt-2 pb-2">
+        <div ref={setBankNodeRef} className="flex flex-col gap-3 sm:gap-4 mt-auto pt-2 pb-2 shrink-0">
           <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 min-h-24 content-center p-2 border-t-2 border-slate-100 pt-4">
             <AnimatePresence>
               {bank.map((item, i) => (

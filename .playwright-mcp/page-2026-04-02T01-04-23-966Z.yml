@@ -1,0 +1,27 @@
+- generic [ref=e81]:
+  - generic [ref=e82]:
+    - button "Volver" [ref=e83] [cursor=pointer]:
+      - img [ref=e84]
+    - heading "Seleccionar Idioma" [level=1] [ref=e86]
+  - paragraph [ref=e87]: Elige el idioma que quieres aprender. Entorno optimizado para hispanohablantes.
+  - generic [ref=e88]:
+    - button "Bandera de us Inglés" [active] [ref=e90] [cursor=pointer]:
+      - generic [ref=e92]:
+        - generic [ref=e93]:
+          - img "Bandera de us" [ref=e95]
+          - heading "Inglés" [level=3] [ref=e96]
+        - img [ref=e99]
+    - generic:
+      - button "Bandera de pl Polaco(Próximamente)":
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - img "Bandera de pl"
+              - heading "Polaco(Próximamente)" [level=3]
+  - generic [ref=e97]:
+    - button "Cancelar" [ref=e98]
+    - button "Continuar" [ref=e101]:
+      - text: Continuar
+      - img [ref=e102]
+  - paragraph [ref=e104]: "Seleccionado: Inglés"

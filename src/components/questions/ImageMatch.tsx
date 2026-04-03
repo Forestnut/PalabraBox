@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import type { Question } from '../../types'
 import { cn } from '../../utils/cn'
 import { shuffleArray } from '../../utils/shuffle'
+import { Button } from '../ui/Button'
+import { QuestionHeader } from './QuestionHeader'
 
 interface Props {
   question: Question
@@ -17,7 +19,8 @@ const FEEDBACK_DELAY_MS = {
 }
 
 export function ImageMatch({ question, onAnswer, onPlaySound, disabled }: Props) {
-  const [selected, setSelected] = useState<string | null>(null)
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
+  const [answered, setAnswered] = useState(false)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
   const timeoutRef = useRef<number | null>(null)
 
@@ -34,30 +37,34 @@ export function ImageMatch({ question, onAnswer, onPlaySound, disabled }: Props)
   }, [])
 
   const handleSelect = (option: string) => {
-    if (disabled || selected) return
-
-    const isCorrect = option === question.correct_answer
-    setSelected(option)
-    setFeedback(isCorrect ? 'correct' : 'wrong')
-
+    if (answered || disabled) return
+    setSelectedAnswer(option)
     onPlaySound?.('click')
+  }
+
+  const handleComprobar = () => {
+    if (!selectedAnswer || answered || disabled) return
+    setAnswered(true)
+
+    const isCorrect = selectedAnswer === question.correct_answer
+    setFeedback(isCorrect ? 'correct' : 'wrong')
     onPlaySound?.(isCorrect ? 'correct' : 'wrong')
 
     timeoutRef.current = window.setTimeout(() => {
       onAnswer(isCorrect)
-      setSelected(null)
-      setFeedback(null)
-      timeoutRef.current = null
     }, FEEDBACK_DELAY_MS[isCorrect ? 'correct' : 'wrong'])
   }
 
   const getOptionStyle = (option: string) => {
     const base = 'py-5 px-3 rounded-2xl text-sm sm:text-base font-bold transition-all duration-200'
-    if (!selected) {
+    if (!answered) {
+      if (option === selectedAnswer) {
+        return cn(base, 'bg-pb-amber/10 border-2 border-b-4 border-pb-amber text-pb-amber')
+      }
       return cn(base, 'bg-white border-2 border-b-4 border-slate-200 text-pb-dark hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] cursor-pointer')
     }
     
-    const isSelected = option === selected
+    const isSelected = option === selectedAnswer
     const isCorrect = option === question.correct_answer
 
     if (isSelected && feedback === 'correct') {
@@ -98,9 +105,7 @@ export function ImageMatch({ question, onAnswer, onPlaySound, disabled }: Props)
     <div className="flex flex-col gap-6 w-full max-w-sm mx-auto flex-1">
       {question.question_text && question.image_emoji && (
         <div className="w-full text-center mb-2">
-          <h2 className="text-xl sm:text-2xl font-black text-pb-dark leading-tight">
-            {question.question_text}
-          </h2>
+          <QuestionHeader question={question} />
         </div>
       )}
 
@@ -123,13 +128,23 @@ export function ImageMatch({ question, onAnswer, onPlaySound, disabled }: Props)
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.06, duration: 0.25 }}
               onClick={() => handleSelect(option)}
-              disabled={!!selected || disabled}
+              disabled={answered || disabled}
               className={getOptionStyle(option)}
             >
               {option}
             </motion.button>
           ))}
         </AnimatePresence>
+      </div>
+
+      <div className="mt-4 w-full">
+        <Button
+          onClick={handleComprobar}
+          disabled={!selectedAnswer || answered || disabled}
+          className="w-full text-lg shadow-soft"
+        >
+          COMPROBAR
+        </Button>
       </div>
     </div>
   )

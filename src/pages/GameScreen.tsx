@@ -106,7 +106,7 @@ export default function GameScreen() {
 
   if (loading) {
     return (
-      <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
+      <ScreenWrapper className="flex flex-col items-center justify-center flex-1 w-full h-full">
         <Mascot mood="idle" size="lg" />
         <h2 className="text-xl font-bold mt-6 text-pb-dark animate-pulse">Cargando partida...</h2>
       </ScreenWrapper>
@@ -115,28 +115,47 @@ export default function GameScreen() {
 
   if (error) {
     return (
-      <ScreenWrapper>
-        <BackButton fallbackUrl="/scenarios" />
-        <p className="text-center text-pb-error py-8 font-bold">Error: {error}</p>
+      <ScreenWrapper className="flex flex-col relative flex-1 w-full h-full">
+        <div className="absolute top-4 left-4 z-10 w-full">
+          <BackButton fallbackUrl="/scenarios" />
+        </div>
+        <div className="flex flex-col items-center justify-center flex-1 w-full mt-20">
+          <Mascot mood="sad" size="xl" />
+          <p className="text-center text-pb-error mt-8 font-black text-2xl drop-shadow-sm">¡Oh no!</p>
+          <p className="text-center text-pb-text-light mt-2 font-bold max-w-64 leading-tight">Hubo un problema al cargar. Inténtalo de nuevo.</p>
+          <p className="text-center text-pb-error/60 mt-4 text-xs font-semibold max-w-64 truncate">{error}</p>
+        </div>
       </ScreenWrapper>
     )
   }
 
   if (status === 'finished') {
     return (
-      <ScreenWrapper>
-        <p className="text-center py-8 font-bold text-pb-text-light text-xl">
-          ¡Juego Terminado! Preparando resultados...
+      <ScreenWrapper className="flex flex-col items-center justify-center flex-1 w-full h-full">
+        <Mascot mood="celebrate" size="xl" />
+        <p className="text-center mt-8 font-black text-pb-dark text-2xl drop-shadow-sm animate-pulse">
+          ¡Completado!
         </p>
+        <p className="text-center mt-2 font-bold text-pb-text-light text-base">Preparando tus resultados...</p>
       </ScreenWrapper>
     )
   }
 
   if (!currentQuestion) {
     return (
-      <ScreenWrapper>
-        <BackButton fallbackUrl="/scenarios" />
-        <p className="text-center py-8 font-bold text-pb-text-light">No se encontraron preguntas.</p>
+      <ScreenWrapper className="flex flex-col relative flex-1 w-full h-full">
+        <div className="absolute top-4 left-4 z-10 w-full">
+          <BackButton fallbackUrl="/scenarios" />
+        </div>
+        <div className="flex flex-col items-center justify-center flex-1 w-full mt-20">
+          <Mascot mood="sleeping" size="xl" />
+          <p className="text-center mt-8 font-black text-pb-dark text-xl leading-tight drop-shadow-sm px-4">
+            No hay preguntas
+          </p>
+          <p className="text-center text-pb-text-light mt-2 font-bold text-sm max-w-64">
+            Parece que este nivel aún no está listo. ¡Vuelve pronto!
+          </p>
+        </div>
       </ScreenWrapper>
     )
   }
@@ -144,7 +163,7 @@ export default function GameScreen() {
   if (showIntermission) {
     return (
       <PageTransition>
-        <ScreenWrapper className="flex flex-col items-center justify-center min-h-[80vh]">
+        <ScreenWrapper className="flex flex-col flex-1 w-full h-full items-center justify-center">
           <Mascot mood={intermissionMood} size="xl" />
           <h2 className="text-2xl sm:text-3xl font-black text-center text-pb-dark mb-4 mt-8 px-4 leading-tight">
             {intermissionText}
@@ -228,15 +247,35 @@ export default function GameScreen() {
                 let text = '¡Prepárate para el siguiente reto!'
                 let moodToSet: MascotMood = 'idle'
                 
-                // Check streak first (already updated by handlePlaySound).
-                if (streakRef.current > 0 && streakRef.current % 3 === 0) {
-                  text = '¡Vas con todo! ¡Sigue así!'
-                  moodToSet = 'celebrate'
-                } else {
-                  // If no streak milestone, show a hint based on the next question type.
-                  const nextQ = questions[currentQuestionIndex + 1]
-                  if (nextQ && typePhrases[nextQ.type]) {
+                const currentStreak = streakRef.current
+                const nextQ = questions[currentQuestionIndex + 1]
+                const currQ = questions[currentQuestionIndex]
+                
+                if (isCorrect) {
+                  moodToSet = 'happy'
+                  if (currentStreak > 0 && currentStreak % 3 === 0) {
+                    text = '¡Vas con todo! ¡Sigue así!'
+                    moodToSet = 'celebrate'
+                  } else if (nextQ?.type === 'listening') {
+                    text = '¡Excelente! Ahora afina tu oído para el siguiente.'
+                  } else if (currQ.type === 'listening') {
+                    text = '¡Tienes muy buen oído! Sigamos.'
+                  } else if (nextQ && typePhrases[nextQ.type]) {
                     text = typePhrases[nextQ.type]
+                  } else {
+                    const praises = ['¡Muy bien!', '¡Perfecto!', '¡Sigue así!', '¡Excelente!']
+                    text = praises[Math.floor(Math.random() * praises.length)] + (nextQ && typePhrases[nextQ.type] ? ' ' + typePhrases[nextQ.type] : '')
+                  }
+                } else {
+                  moodToSet = 'sad'
+                  if (currQ.type === 'listening') {
+                    text = 'Tranquilo, la escucha puede ser difícil. ¡Inténtalo de nuevo!'
+                  } else if (nextQ?.type === 'listening') {
+                    text = 'No te desanimes. Vamos a probar con un reto de escuchar.'
+                  } else if (nextQ && typePhrases[nextQ.type]) {
+                    text = '¡No pasa nada! ' + typePhrases[nextQ.type]
+                  } else {
+                    text = '¡Ups! Sigue intentándolo.'
                   }
                 }
                 

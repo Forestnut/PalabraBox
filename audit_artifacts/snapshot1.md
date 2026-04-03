@@ -1,0 +1,47 @@
+- generic [ref=e4]:
+  - button "Configuración" [ref=e5] [cursor=pointer]:
+    - img [ref=e6]
+  - generic [ref=e8]:
+    - img [ref=e14] [cursor=pointer]
+    - generic [ref=e29]:
+      - heading "PalabraBox" [level=1] [ref=e30]
+      - paragraph [ref=e31]: Aprende idiomas jugando
+  - generic [ref=e32]:
+    - button "JUGAR" [ref=e33] [cursor=pointer]:
+      - img [ref=e34]
+      - text: JUGAR
+    - button "TARJETAS" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]
+      - text: TARJETAS
+  - link "Asociación Arrabal" [ref=e39] [cursor=pointer]:
+    - /url: https://www.asociacionarrabal.org
+    - generic [ref=e40]: Con el apoyo de
+    - img "Asociación Arrabal" [ref=e41]
+  - generic [ref=e42]:
+    - heading "Tu Progreso" [level=2] [ref=e44]
+    - generic [ref=e45]:
+      - generic [ref=e46]:
+        - img [ref=e48]
+        - generic [ref=e50]:
+          - img [ref=e51]
+          - generic [ref=e53]: Racha
+        - generic [ref=e54]: 1 días
+      - generic [ref=e55]:
+        - img [ref=e57]
+        - generic [ref=e59]:
+          - img [ref=e60]
+          - generic [ref=e62]: Estrellas
+        - generic [ref=e63]:
+          - text: "0"
+          - generic [ref=e64]: / 150
+    - generic [ref=e66]:
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - img [ref=e69]
+          - generic [ref=e71]: Nivel 1
+        - generic [ref=e72]: 0 XP
+      - generic [ref=e73]:
+        - generic [ref=e74]: Próximo Nivel
+        - generic [ref=e75]:
+          - img [ref=e76]
+          - text: 100 XP

@@ -7,6 +7,8 @@ import { cn } from '../../utils/cn'
 import { shuffleArray } from '../../utils/shuffle'
 import { speechService } from '../../services/speechService'
 import { useSettingsStore } from '../../store/settingsStore'
+import { Button } from '../ui/Button'
+import { QuestionHeader } from './QuestionHeader'
 
 interface Props {
   question: Question
@@ -30,7 +32,7 @@ export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioL
     if (isPlaying) return
     setIsPlaying(true)
     const text = question.question_text_tts || question.correct_answer
-    const lang = scenarioLanguage === 'english' ? 'en-US' : 'es-ES'
+    const lang = (scenarioLanguage === 'english' || scenarioLanguage === 'en' || scenarioLanguage?.startsWith('en')) ? 'en-US' : 'es-ES'
     speechService.speak(text, lang, speechSpeed)
     // Approximate speech duration
     setTimeout(() => setIsPlaying(false), Math.max(1500, text.length * 80))
@@ -39,18 +41,26 @@ export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioL
   const handleSelect = (answer: string) => {
     if (answered || disabled) return
     setSelectedAnswer(answer)
+    onPlaySound?.('click')
+  }
+
+  const handleComprobar = () => {
+    if (!selectedAnswer || answered || disabled) return
     setAnswered(true)
 
-    const correct = answer === question.correct_answer
+    const correct = selectedAnswer === question.correct_answer
     onPlaySound?.(correct ? 'correct' : 'wrong')
 
     setTimeout(() => {
       onAnswer(correct)
-    }, 900)
+    }, 1500)
   }
 
   const getOptionStyle = (option: string) => {
     if (!answered) {
+      if (option === selectedAnswer) {
+        return 'bg-pb-amber/10 border-2 border-b-4 border-pb-amber text-pb-amber'
+      }
       return 'bg-white border-2 border-b-4 border-slate-200 text-pb-dark hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] cursor-pointer'
     }
     if (option === question.correct_answer) {
@@ -64,6 +74,8 @@ export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioL
 
   return (
     <div className="flex flex-col gap-4 w-full text-center flex-1 items-center">
+      <QuestionHeader question={question} />
+
       <div className="flex flex-col items-center justify-center min-h-28 gap-3">
         <motion.button
           onClick={play}
@@ -118,6 +130,16 @@ export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioL
             </span>
           </motion.button>
         ))}
+      </div>
+
+      <div className="mt-4 w-full max-w-sm mx-auto">
+        <Button
+          onClick={handleComprobar}
+          disabled={!selectedAnswer || answered || disabled}
+          className="w-full text-lg shadow-soft"
+        >
+          COMPROBAR
+        </Button>
       </div>
     </div>
   )

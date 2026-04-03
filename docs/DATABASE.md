@@ -1,141 +1,145 @@
-# 🗄️ Database Design (Supabase)
+# 🗄️ Dokumentacja Bazy Danych PalabraBox (Supabase)
 
-## Schema Overview
-
-All scenario and question data is stored in Supabase (PostgreSQL). For MVP, we don't have user authentication, so progress is only in `localStorage`.
-
-### 1. `scenarios` table
-
-Defines a set of questions (e.g., "Colors", "Numbers").
-
-| Column | Type | Description |
-| --- | --- | --- |
-| `id` | `UUID` | Primary Key (gen_random_uuid) |
-| `title` | `TEXT` | Internal name (e.g. "Colors") |
-| `title_display` | `TEXT` | Display name (e.g. "Colores") |
-| `language` | `TEXT` | 'english' or 'spanish' |
-| `level` | `TEXT` | 'beginner' or 'intermediate' |
-| `description` | `TEXT` | Short help text |
-| `emoji` | `TEXT` | Icon shown on the grid box (e.g. "🎨") |
-| `category` | `TEXT` | Used to link with word bank |
-| `sort_order` | `INTEGER` | Display order in the grid |
-| `created_at` | `TIMESTAMPTZ` | Auto-timestamp |
+Dokument opisuje strukturę i zasady działania bazy danych dla projektu PalabraBox po refaktoryzacji (marzec 2026). Struktura jest w pełni zoptymalizowana pod wiele języków, AI oraz minimalizację powielania danych.
 
 ---
 
-### 2. `questions` table
+## 🏗️ Architektura Ogólna
 
-The core content of each scenario.
+Baza danych opiera się na znormalizowanej strukturze pięciu głównych tabel w schemacie `public`:
 
-| Column | Type | Description |
-| --- | --- | --- |
-| `id` | `UUID` | Primary Key |
-| `scenario_id` | `UUID` | FK to `scenarios.id` |
-| `type` | `TEXT` | 'multiple_choice', 'image_match', 'listening', etc. |
-| `question_text` | `TEXT` | Question to display |
-| `question_text_tts` | `TEXT` | Text to read aloud (for listening) |
-| `correct_answer` | `TEXT` | The right choice |
-| `wrong_answers` | `TEXT[]` | 3 wrong choices (array) |
-| `hint` | `TEXT` | Optional hint |
-| `image_emoji` | `TEXT` | Emoji for Image Match |
-| `sort_order` | `INTEGER` | Order within the scenario |
+1. **`scenarios` & `scenario_translations`**: Scenariusze z uniwersalnymi danymi oraz tłumaczeniami (tytuły, opisy).
+2. **`words` & `word_translations`**: Słowa kluczowe (fiszki) rozdzielone na klucz główny i tłumaczenia dla poszczególnych języków.
+3. **`questions`**: Pytania i zadania w elastycznym formacie opartym na kolumnie `JSONB`, umożliwiającym różne warianty zadań.
 
----
+### Diagram ERD (Uproszczony)
 
-### 3. `words` table
-
-Word bank used for flashcards and shared across scenarios.
-
-| Column | Type | Description |
-| --- | --- | --- |
-| `id` | `UUID` | Primary Key |
-| `word` | `TEXT` | The foreign word |
-| `language` | `TEXT` | 'english' or 'spanish' |
-| `level` | `TEXT` | 'beginner' or 'intermediate' |
-| `category` | `TEXT` | e.g. 'colors', 'animals' |
-| `translation_es` | `TEXT` | Spanish translation |
-| `translation_en` | `TEXT` | English translation |
-| `image_emoji` | `TEXT` | Associated icon |
-| `audio_text` | `TEXT` | Text for TTS |
-
----
-
-## Content Plan (MVP)
-
-Target: **12 scenarios** (3 languages × 2 levels × 2 scenarios), ~120 questions.
-
-| Language | Level | Scenario | Category | Questions |
-| --- | --- | --- | --- | --- |
-| English | Beginner | Colors & Shapes | colors | 10 |
-| English | Beginner | Numbers 1-20 | numbers | 10 |
-| English | Intermediate | At the Airport | travel | 10 |
-| English | Intermediate | Ordering Food | food | 10 |
-| Spanish | Beginner | Los Colores | colors | 10 |
-| Spanish | Beginner | Los Animales | animals | 10 |
-
----
-
-## Setup Instructions
-
-1. Create Table Scenarios:
-
-   ```sql
-   CREATE TABLE scenarios (
-     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-     title TEXT NOT NULL,
-     title_display TEXT NOT NULL,
-     language TEXT NOT NULL CHECK (language IN ('english', 'spanish')),
-     level TEXT NOT NULL CHECK (level IN ('beginner', 'intermediate')),
-     description TEXT,
-     emoji TEXT,
-     category TEXT NOT NULL,
-     sort_order INTEGER DEFAULT 0,
-     created_at TIMESTAMPTZ DEFAULT NOW()
-   );
-   ```
-
-2. Create Table Questions:
-
-   ```sql
-   CREATE TABLE questions (
-     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-     scenario_id UUID REFERENCES scenarios(id) ON DELETE CASCADE,
-     type TEXT NOT NULL,
-     question_text TEXT NOT NULL,
-     question_text_tts TEXT,
-     correct_answer TEXT NOT NULL,
-     wrong_answers TEXT[] NOT NULL,
-     hint TEXT,
-     image_emoji TEXT,
-     sort_order INTEGER DEFAULT 0,
-     created_at TIMESTAMPTZ DEFAULT NOW()
-   );
-   ```
-
-3. RLS Policies:
-   For MVP, enable Read Access for everyone.
-
-   ```sql
-   ALTER TABLE scenarios ENABLE ROW LEVEL SECURITY;
-   CREATE POLICY "Allow public read" ON scenarios FOR SELECT TO public USING (true);
-   ```
-
-## Required Queries
-
-```ts
-// Fetch all scenarios for selection screen
-const { data: scenarios } = await supabase
-  .from('scenarios')
-  .select('*')
-  .eq('language', currentLang)
-  .eq('level', currentLevel)
-  .order('sort_order');
-
-// Fetch 10 questions for a game session
-const { data: questions } = await supabase
-  .from('questions')
-  .select('*')
-  .eq('scenario_id', scenarioId)
-  .order('sort_order')
-  .limit(10);
+```mermaid
+erDiagram
+    SCENARIOS ||--|{ SCENARIO_TRANSLATIONS : "has translations"
+    SCENARIOS ||--o{ QUESTIONS : "contains"
+    
+    WORDS ||--|{ WORD_TRANSLATIONS : "has translations"
+    WORDS ||--o{ QUESTIONS : "referenced by"
+    
+    QUESTIONS {
+        uuid scenario_id
+        uuid word_id
+        jsonb data
+    }
 ```
+
+---
+
+## 📊 Tabele
+
+### 1. `scenarios`
+
+Główna tabela scenariuszy (niezależna od języka).
+
+| Kolumna | Typ | Opis |
+| :--- | :--- | :--- |
+| `id` | `uuid` | Klucz główny (PK), domyślnie `gen_random_uuid()` |
+| `category` | `text` | Kategoria tematyczna (np. 'travel', 'food') |
+| `level` | `text` | Poziom trudności: `beginner` \| `intermediate` |
+| `sort_order` | `integer` | Kolejność wyświetlania (rosnąco) |
+
+### 1a. `scenario_translations`
+
+Tłumaczenia interfejsu (tytułów i opisów) dla scenariuszy.
+
+| Kolumna | Typ | Opis |
+| :--- | :--- | :--- |
+| `id` | `uuid` | Klucz główny (PK) |
+| `scenario_id` | `uuid` | Klucz obcy (FK) do `scenarios.id` na usuwanie kaskadowe |
+| `language` | `text` | Język tłumaczenia (np. `en`, `es`, `pl`) |
+| `title` | `text` | Przetłumaczony tytuł (np. "Lotnisko") |
+| `description` | `text` | Przetłumaczony opis |
+
+*Unikalny indeks na: `(scenario_id, language)`*
+
+### 2. `words`
+
+Główny rejestr słówek.
+
+| Kolumna | Typ | Opis |
+| :--- | :--- | :--- |
+| `id` | `uuid` | Klucz główny (PK) |
+| `base_key` | `text` | Unikalny klucz/słowo bazowe (np. 'apple') |
+| `category` | `text` | Kategoria / Tematyka |
+| `level` | `text` | Poziom językowy |
+
+### 2a. `word_translations`
+
+Tłumaczenia danego słowa na konkretne języki.
+
+| Kolumna | Typ | Opis |
+| :--- | :--- | :--- |
+| `id` | `uuid` | Klucz główny (PK) |
+| `word_id` | `uuid` | Klucz obcy (FK) do `words.id` na usuwanie kaskadowe |
+| `language` | `text` | Kod języka (np. `en`, `es`) |
+| `text` | `text` | Przetłumaczone słowo |
+| `audio_text` | `text` | Fragment przeznaczony dla Text-To-Speech |
+
+*Unikalny indeks na: `(word_id, language)`*
+
+### 3. `questions`
+
+Przechowuje zadania wewnątrz scenariuszy. Dzięki formatowi `JSONB` jest niezwykle elastyczna.
+
+| Kolumna | Typ | Opis |
+| :--- | :--- | :--- |
+| `id` | `uuid` | Klucz główny (PK) |
+| `scenario_id` | `uuid` | FK do `scenarios.id` (Wymagane) |
+| `word_id` | `uuid` | Opcjonalny FK do centralnego rejestru `words.id` |
+| `type` | `text` | Typ zadania (np. `multiple_choice`, `image_match`) |
+| `question_text` | `text` | Treść pytania bazowa (Wymagane) |
+| `question_text_tts`| `text` | Tekst dla syntezatora mowy (TTS) |
+| `hint` | `text` | Opcjonalna podpowiedź w UI gry |
+| `sort_order` | `integer` | Kolejność zadań w danym podejściu |
+| `data` | `jsonb` | Zmienna, dynamiczna treść specyficzna dla typu pytania |
+| `source_language` | `text` | Język bazowy pytania (np. `en`) |
+| `target_language` | `text` | Język którego dotyczy pytanie (np. `es`) |
+
+#### Pola zależne (kolumna `data JSONB`)
+Dawniej twarde kolumny. Obecnie obiekt zależny od `type`. Przykłady co tam może siedzieć:
+* Dla typu **`multiple_choice`**: `{"correct": "rojo", "options": ["rojo", "blanco", "verde", "azul"]}`
+* Dla typu **`image_match`**: `{"correct": "coche", "image_emoji": "🚗", "options": ["coche", "bicicleta", "avión"]}`
+
+---
+
+## 🏷️ Typy Wyliczeniowe (Enums / Logic)
+
+### Poziomy (`level`)
+- `beginner`: Podstawy, predefiniowane dla nowych.
+- `intermediate`: Średniozaawansowany.
+
+### Języki (`language` / `source_language` / `target_language`)
+- Bazowo używamy dwuliterowych kodów np. `en`, `es`, choć legacy korzysta także z pełnych nazw wg potrzeby UI.
+
+### Typy Pytań (`type`)
+1. `multiple_choice`: Wybór ABCD.
+2. `image_match`: Dopasowanie tekstu do ikony.
+3. `listening`: Słuchanko -> odpowiedź.
+4. `fill_blank`: Puste miejsca w zdaniu.
+5. `word_order`: Kolejność układania z puzzli.
+
+---
+
+## 🔒 Bezpieczeństwo (RLS)
+
+- **Public Read (SELECT)**: Dostęp odczytu jest włączony publicznie (MVP nie wymaga logowania po stronie gracza).
+- Politiki RLS:
+  - `Allow public read - scenarios`
+  - `Allow public read - scenario_translations`
+  - `Allow public read - words`
+  - `Allow public read - word_translations`
+  - `Allow public read - questions`
+
+---
+
+## 🚀 Wskazówki Dla Programistów i Skryptów AI
+
+- **Generowanie UUID**: Nadal używaj `gen_random_uuid()` po stronie Supabase lub deterministycznych identyfikatorów z zewnątrz przez skrypty w Pythonie, jeżeli zachodzi wymóg sztywnej relacji i seedu.
+- **Wstawianie Seedów (`seed.sql`)**: Ze względu na relacyjne klucze `word_id` do tłumaczeń bierzemy metodę *UPSERT*: `ON CONFLICT (base_key) DO NOTHING` a tabele tłumaczeń połączyć na `ON CONFLICT (word_id, language) DO NOTHING`.
+- **Typowanie Questions.data**: Po stronie frontendu należy utworzyć odpowiednie modele T-S dla obiektów przypisanych wewnątrz klucza `data` dla każdego rodzaju `question.type`. 

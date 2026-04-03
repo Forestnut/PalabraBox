@@ -97,6 +97,7 @@ Check out the `docs/` folder for in-depth architecture:
 - [ARCHITECTURE.md](./docs/ARCHITECTURE.md) - Deep dive into routing & hooks
 - [GAME_MECHANICS.md](./docs/GAME_MECHANICS.md) - How scoring and hearts are calculated
 - [DATABASE.md](./docs/DATABASE.md) - Supabase schema and RLS policies
+- [PRODUCTION_RECOVERY.md](./docs/PRODUCTION_RECOVERY.md) - Step-by-step production recovery and deploy workflow for Supabase + Vercel
 
 ---
 

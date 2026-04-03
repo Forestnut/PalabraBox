@@ -38,6 +38,14 @@ export interface ProgressState {
    * @param totalCount - Total numbers in the active category
    */
   updateCompletedTotal: (completedCount: number, totalCount: number) => void
+  /** Gets the current semantic level based on total points */
+  getLevel: () => number
+  /** Gets the percentage progress (0-100) towards the next level */
+  getLevelProgress: () => number
+  
+  ownedStars: number
+  possibleStars: number
+  updateStars: (owned: number, possible: number) => void
 }
 
 export const useProgressStore = create<ProgressState>()(
@@ -45,12 +53,20 @@ export const useProgressStore = create<ProgressState>()(
     (set, get) => ({
       streakDays: 0,
       completed: 0,
-      total: 12,
+      total: 0,
+      ownedStars: 0,
+      possibleStars: 0,
       points: 0,
       lastActiveDate: null,
 
+      updateStars: (owned: number, possible: number) => {
+        set({ ownedStars: owned, possibleStars: possible })
+      },
+
       updateStreak: () => {
-        const today = new Date().toISOString().split('T')[0]
+        // Get local date properly considering timezones to prevent streak breaks due to UTC shifts
+        const now = new Date()
+        const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
         const state = get()
 
         if (state.lastActiveDate === today) {
@@ -83,6 +99,14 @@ export const useProgressStore = create<ProgressState>()(
 
       updateCompletedTotal: (completedCount: number, totalCount: number) => {
         set({ completed: completedCount, total: totalCount })
+      },
+
+      getLevel: () => {
+        return Math.floor(get().points / 100) + 1
+      },
+
+      getLevelProgress: () => {
+        return (get().points % 100)
       }
     }),
     {

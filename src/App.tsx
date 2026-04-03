@@ -45,8 +45,8 @@ export default function App() {
         const didReset = await runMigrations();
         if (didReset) {
           console.log('App state was reset for new version.');
-          // You could potentially trigger a full reload here: window.location.reload();
-          // but react state will initialize fresh anyway.
+          window.location.reload();
+          return;
         }
         
         await audioService.preloadSounds()

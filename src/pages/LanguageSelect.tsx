@@ -8,12 +8,13 @@ import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { BackButton } from '../components/layout/BackButton'
 import { Button } from '../components/ui/Button'
 import { SelectableCard } from '../components/ui/SelectableCard'
+import { FlagIcon } from '../components/ui/FlagIcon'
 import { useSettingsStore } from '../store/settingsStore'
 import type { LearningLanguage } from '../store/settingsStore'
 
-const languages: Array<{ key: LearningLanguage | 'polish'; label: string; emoji: string; disabled?: boolean }> = [
-  { key: 'english', label: 'Inglés', emoji: '🇺🇸' },
-  { key: 'polish', label: 'Polaco(Próximamente)', emoji: '🇵🇱', disabled: true },
+const languages: Array<{ key: LearningLanguage | 'polish'; label: string; icon: React.ReactNode; disabled?: boolean }> = [
+  { key: 'english', label: 'Inglés', icon: <FlagIcon countryCode="us" /> },
+  { key: 'polish', label: 'Polaco(Próximamente)', icon: <FlagIcon countryCode="pl" />, disabled: true },
 ]
 
 export default function LanguageSelect() {
@@ -41,7 +42,7 @@ export default function LanguageSelect() {
             <div key={language.key} className={language.disabled ? "opacity-50 pointer-events-none" : ""}>
               <SelectableCard
                 title={language.label}
-                icon={language.emoji}
+                icon={language.icon}
                 selected={learningLanguage === language.key}
                 onClick={() => {
                   if (!language.disabled) {

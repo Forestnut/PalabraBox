@@ -10,8 +10,23 @@ export function useQuickProgress() {
   const completed = useProgressStore(state => state.completed)
   const total = useProgressStore(state => state.total)
   const points = useProgressStore(state => state.points)
+  const getLevel = useProgressStore(state => state.getLevel)
+  const getLevelProgress = useProgressStore(state => state.getLevelProgress)
   const lastActiveDate = useProgressStore(state => state.lastActiveDate)
   const updateStreak = useProgressStore(state => state.updateStreak)
+
+  // Dynamically compute global stars directly from source of truth on every render 
+  let ownedStars = 0;
+  if (typeof localStorage !== 'undefined') {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key?.startsWith('pb_stars_')) {
+        ownedStars += parseInt(localStorage.getItem(key) || '0', 10);
+      }
+    }
+  }
+  
+  const possibleStars = useProgressStore(state => state.possibleStars || 0)
 
   useEffect(() => {
     // Determine streak continuously safely mounted
@@ -25,8 +40,15 @@ export function useQuickProgress() {
     return Math.round((completed / total) * 100)
   }, [completed, total])
 
+  const level = getLevel()
+  const levelProgressPercentage = getLevelProgress()
+
   return { 
     progress: { streakDays, completed, total, points, lastActiveDate }, 
-    percentage 
+    percentage,
+    ownedStars,
+    possibleStars,
+    level,
+    levelProgressPercentage
   }
 }

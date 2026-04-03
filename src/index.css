@@ -51,6 +51,15 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   letter-spacing: -0.01em;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input, textarea {
+  user-select: auto;
+  -webkit-user-select: auto;
+  -webkit-touch-callout: default;
 }
 
 #root {
@@ -64,31 +73,20 @@ button, a, [role="button"] {
 }
 
 /* ─── Scrollbar ─── */
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(86, 135, 109, 0.3) transparent;
-}
-
-*::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: rgba(86, 135, 109, 0.35);
-  border-radius: 999px;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
 }
 
 ::selection {

@@ -106,31 +106,89 @@ export default function SettingsScreen() {
           
           <div className="grid grid-cols-2 gap-2 mt-1">
             <button
-              className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-linear-to-b from-[#FFB347] to-pb-amber text-white shadow-[0_3px_0_0_#c97a1a] scale-105"
+              className="py-3 px-2 flex items-center justify-center gap-2 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-linear-to-b from-[#FFB347] to-pb-amber text-white shadow-[0_3px_0_0_#c97a1a] scale-105"
             >
-              🇪🇸 Español
+              <img src="https://flagcdn.com/es.svg" alt="Español" className="w-5 h-5 rounded-sm object-cover" loading="lazy" />
+              Español
             </button>
             <button
               disabled
-              className="py-3 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-white/40 text-pb-text-light opacity-50 cursor-not-allowed"
+              className="py-3 px-2 flex items-center justify-center gap-2 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-white/40 text-pb-text-light opacity-50 cursor-not-allowed"
             >
-              🇵🇱 Polaco(Próximamente)
+              <img src="https://flagcdn.com/pl.svg" alt="Polaco" className="w-5 h-5 rounded-sm object-cover" loading="lazy" />
+              Polaco
             </button>
           </div>
         </Card>
 
-        {/* Credits */}
-        <div className="mt-auto pt-8 flex flex-col items-center justify-center text-center gap-2 opacity-60">
-          <Mascot mood="idle" size="sm" className="mb-1" />
-          <p className="font-bold text-pb-dark text-sm">
-            PalabraBox <span className="text-xs font-normal text-pb-text-light">v1.0.0</span>
-          </p>
-          <p className="text-[11px] text-pb-text-light font-medium max-w-52 leading-relaxed">
-            Diseñado y desarrollado por <br/>
-            <span className="text-pb-amber font-bold">Equipo PalabraBox</span>
-          </p>
+        {/* Acerca de */}
+        <Card className="flex flex-col gap-4">
+          <h2 className="text-sm font-bold text-pb-text-light uppercase tracking-wider">Acerca de</h2>
+          
+          <div className="flex flex-col items-center gap-3 py-1">
+            <a
+              href="https://www.asociacionarrabal.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Asociación Arrabal"
+              className="opacity-80 hover:opacity-100 transition-opacity duration-200"
+            >
+              <img
+                src="/ArrabalLogo.png"
+                alt="Asociación Arrabal"
+                className="h-10 w-auto object-contain"
+                loading="lazy"
+              />
+            </a>
+            <p className="text-xs text-pb-text-light font-semibold text-center">
+              Asociación Arrabal
+            </p>
+          </div>
+
+          <div className="h-px bg-black/4" />
+
+          <div className="flex flex-col gap-1.5">
+            <p className="text-[11px] text-pb-text-light font-bold uppercase tracking-wider mb-1">Autores</p>
+            <div className="flex flex-col gap-2">
+              <a
+                href="https://www.linkedin.com/in/blazejgoliszek/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm font-bold text-pb-dark hover:text-pb-amber transition-colors duration-200"
+              >
+                <div className="w-6 h-6 flex items-center justify-center shrink-0 text-[#0A66C2]">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-full h-full" fill="currentColor">
+                    <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
+                  </svg>
+                </div>
+                Błażej Goliszek
+              </a>
+              <a
+                href="https://www.linkedin.com/in/jakub-laskowski-dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm font-bold text-pb-dark hover:text-pb-amber transition-colors duration-200"
+              >
+                <div className="w-6 h-6 flex items-center justify-center shrink-0 text-[#0A66C2]">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-full h-full" fill="currentColor">
+                    <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
+                  </svg>
+                </div>
+                Jakub Laskowski
+              </a>
+            </div>
+          </div>
+        </Card>
+
+        {/* Version footer */}
+        <div className="mt-auto pt-2 flex items-center justify-center gap-1.5 opacity-40">
+          <Mascot mood="idle" size="sm" />
+          <span className="font-bold text-pb-dark text-xs">
+            PalabraBox <span className="font-normal text-pb-text-light">v1.0.0</span>
+          </span>
         </div>
       </ScreenWrapper>
     </PageTransition>
   )
 }
+
