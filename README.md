@@ -101,4 +101,4 @@ Check out the `docs/` folder for in-depth architecture:
 
 ---
 
-<p align="center">Made with ❤️ in Málaga, 2026</p>
+<p align="center">Made with ❤️ in Málaga | 2026</p>
