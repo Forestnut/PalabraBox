@@ -39,25 +39,13 @@ export default function App() {
   const [isInitializing, setIsInitializing] = useState(true)
 
   useEffect(() => {
-    // Simulate real initialization process (e.g. fetching user session, caching sounds)
-    const initApp = async () => {
-      try {
-        const didReset = await runMigrations()
-        if (didReset) {
-          console.log('App state was reset for new version.')
-          window.location.reload()
-          return
-        }
+    // Versioned, non-destructive local state migrations (never wipes progress)
+    runMigrations()
+    sfxService.preload()
 
-        sfxService.preload()
-        // Use a longer timeout so the LoaderOverlay acts as the primary splash screen
-        await new Promise((resolve) => setTimeout(resolve, 1600))
-      } finally {
-        setIsInitializing(false)
-      }
-    }
-
-    initApp()
+    // Brief splash so the LoaderOverlay can act as the loading screen
+    const timeout = window.setTimeout(() => setIsInitializing(false), 1600)
+    return () => window.clearTimeout(timeout)
   }, [])
 
   return (
