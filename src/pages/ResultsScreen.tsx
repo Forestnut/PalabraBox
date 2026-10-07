@@ -45,7 +45,7 @@ export default function ResultsScreen() {
       setStars(earnedStars)
 
       // Play result sound effect
-      playSound(isSuccess ? 'correct' : 'wrong')
+      playSound(isSuccess ? 'celebration' : 'wrong')
       
       if (isSuccess) {
         const duration = 2500

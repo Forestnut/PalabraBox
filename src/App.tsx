@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'motion/react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { audioService } from './services/audioService'
+import { sfxService } from './services/sfxService'
 import { runMigrations } from './services/migrationService'
 
 import { LoaderOverlay } from './components/ui/LoaderOverlay'
@@ -49,7 +49,7 @@ export default function App() {
           return;
         }
         
-        await audioService.preloadSounds()
+        sfxService.preload()
         // Use a longer timeout so the LoaderOverlay acts as the primary splash screen
         await new Promise(resolve => setTimeout(resolve, 1600))
       } finally {
