@@ -43,6 +43,10 @@ playwright-report/
 supabase/.temp/
 supabase/.branches/
 
+# Supabase dumps/backups at the repo root (reference snapshots live in supabase/archive/)
+/backup_data_*.sql
+/prod_schema_*.sql
+
 # Misc artifacts
 lint_output*
 build_out.txt
