@@ -1,108 +1,154 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              colors: {
-                "primary": "#ffa42e",
-                "background-light": "#f8f7f5",
-                "background-dark": "#231a0f",
-              },
-              fontFamily: {
-                "display": ["Plus Jakarta Sans", "sans-serif"]
-              },
-              borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#ffa42e',
+              'background-light': '#f8f7f5',
+              'background-dark': '#231a0f',
             },
+            fontFamily: {
+              display: ['Plus Jakarta Sans', 'sans-serif'],
+            },
+            borderRadius: { DEFAULT: '0.5rem', lg: '1rem', xl: '1.5rem', full: '9999px' },
           },
-        }
+        },
+      }
     </script>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
   </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
-<div class="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden border-x border-primary/10">
-<!-- Top Navigation -->
-<div class="flex items-center p-4 pb-2 justify-between">
-<div class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center cursor-pointer">
-<span class="material-symbols-outlined text-[24px]">close</span>
-</div>
-<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">PalabraBox</h2>
-<div class="flex w-12 items-center justify-end">
-<p class="text-primary text-base font-bold leading-normal tracking-widest shrink-0">❤️❤️❤️</p>
-</div>
-</div>
-<!-- Progress Section -->
-<div class="flex flex-col gap-3 p-4">
-<div class="flex gap-6 justify-between">
-<p class="text-slate-900 dark:text-slate-100 text-base font-bold leading-normal">Score: 1200</p>
-</div>
-<div class="rounded bg-primary/20 h-3 w-full overflow-hidden">
-<div class="h-full rounded bg-primary" style="width: 60%;"></div>
-</div>
-</div>
-<!-- Question Header -->
-<h2 class="text-slate-900 dark:text-slate-100 tracking-tight text-[28px] font-extrabold leading-tight px-6 text-center pb-6 pt-8">
-            ¿Qué animal es este?
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen"
+  >
+    <div
+      class="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden border-x border-primary/10"
+    >
+      <!-- Top Navigation -->
+      <div class="flex items-center p-4 pb-2 justify-between">
+        <div
+          class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center cursor-pointer"
+        >
+          <span class="material-symbols-outlined text-[24px]">close</span>
+        </div>
+        <h2
+          class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center"
+        >
+          PalabraBox
         </h2>
-<!-- Image Match Component -->
-<div class="flex flex-col items-center justify-center p-6 mb-4">
-<div class="w-full aspect-square max-w-70 bg-white dark:bg-slate-800 rounded-xl shadow-lg border-4 border-primary/20 flex items-center justify-center relative group overflow-hidden">
-<!-- Abstract pattern background for the emoji container -->
-<div class="absolute inset-0 opacity-10" data-alt="Subtle orange dot pattern background" style="background-image: radial-gradient(circle at 2px 2px, #ffa42e 1px, transparent 0); background-size: 24px 24px;"></div>
-<span class="text-[120px] z-10">🐱</span>
-</div>
-</div>
-<!-- Options Container -->
-<div class="px-6 py-4 mt-auto">
-<div class="grid grid-cols-2 gap-4">
-<!-- Option 1: Dog -->
-<label class="group cursor-pointer">
-<input class="hidden peer" name="animal-match" type="radio"/>
-<div class="flex h-16 items-center justify-center rounded-xl bg-white dark:bg-slate-800 border-2 border-primary/10 peer-checked:border-primary peer-checked:bg-primary/10 text-slate-700 dark:text-slate-300 peer-checked:text-primary font-bold text-lg transition-all shadow-sm">
-                        Dog
-                    </div>
-</label>
-<!-- Option 2: Cat (Checked) -->
-<label class="group cursor-pointer">
-<input checked="" class="hidden peer" name="animal-match" type="radio"/>
-<div class="flex h-16 items-center justify-center rounded-xl bg-white dark:bg-slate-800 border-2 border-primary peer-checked:border-primary peer-checked:bg-primary/10 text-slate-700 dark:text-slate-300 peer-checked:text-primary font-bold text-lg transition-all shadow-md ring-2 ring-primary/20">
-                        Cat
-                        <span class="material-symbols-outlined ml-2 text-primary">check_circle</span>
-</div>
-</label>
-<!-- Option 3: Bird -->
-<label class="group cursor-pointer">
-<input class="hidden peer" name="animal-match" type="radio"/>
-<div class="flex h-16 items-center justify-center rounded-xl bg-white dark:bg-slate-800 border-2 border-primary/10 peer-checked:border-primary peer-checked:bg-primary/10 text-slate-700 dark:text-slate-300 peer-checked:text-primary font-bold text-lg transition-all shadow-sm">
-                        Bird
-                    </div>
-</label>
-<!-- Option 4: Fish -->
-<label class="group cursor-pointer">
-<input class="hidden peer" name="animal-match" type="radio"/>
-<div class="flex h-16 items-center justify-center rounded-xl bg-white dark:bg-slate-800 border-2 border-primary/10 peer-checked:border-primary peer-checked:bg-primary/10 text-slate-700 dark:text-slate-300 peer-checked:text-primary font-bold text-lg transition-all shadow-sm">
-                        Fish
-                    </div>
-</label>
-</div>
-</div>
-<!-- Footer Action -->
-<div class="p-6 pt-2 pb-10">
-<button class="w-full bg-primary hover:bg-primary/90 text-slate-900 font-extrabold text-lg py-4 rounded-xl shadow-[0_4px_0_0_#d97706] active:translate-y-1 active:shadow-none transition-all uppercase tracking-wider">
-                Comprobar
-            </button>
-</div>
-</div>
-</body></html>
+        <div class="flex w-12 items-center justify-end">
+          <p class="text-primary text-base font-bold leading-normal tracking-widest shrink-0">
+            ❤️❤️❤️
+          </p>
+        </div>
+      </div>
+      <!-- Progress Section -->
+      <div class="flex flex-col gap-3 p-4">
+        <div class="flex gap-6 justify-between">
+          <p class="text-slate-900 dark:text-slate-100 text-base font-bold leading-normal">
+            Score: 1200
+          </p>
+        </div>
+        <div class="rounded bg-primary/20 h-3 w-full overflow-hidden">
+          <div class="h-full rounded bg-primary" style="width: 60%"></div>
+        </div>
+      </div>
+      <!-- Question Header -->
+      <h2
+        class="text-slate-900 dark:text-slate-100 tracking-tight text-[28px] font-extrabold leading-tight px-6 text-center pb-6 pt-8"
+      >
+        ¿Qué animal es este?
+      </h2>
+      <!-- Image Match Component -->
+      <div class="flex flex-col items-center justify-center p-6 mb-4">
+        <div
+          class="w-full aspect-square max-w-70 bg-white dark:bg-slate-800 rounded-xl shadow-lg border-4 border-primary/20 flex items-center justify-center relative group overflow-hidden"
+        >
+          <!-- Abstract pattern background for the emoji container -->
+          <div
+            class="absolute inset-0 opacity-10"
+            data-alt="Subtle orange dot pattern background"
+            style="
+              background-image: radial-gradient(circle at 2px 2px, #ffa42e 1px, transparent 0);
+              background-size: 24px 24px;
+            "
+          ></div>
+          <span class="text-[120px] z-10">🐱</span>
+        </div>
+      </div>
+      <!-- Options Container -->
+      <div class="px-6 py-4 mt-auto">
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Option 1: Dog -->
+          <label class="group cursor-pointer">
+            <input class="hidden peer" name="animal-match" type="radio" />
+            <div
+              class="flex h-16 items-center justify-center rounded-xl bg-white dark:bg-slate-800 border-2 border-primary/10 peer-checked:border-primary peer-checked:bg-primary/10 text-slate-700 dark:text-slate-300 peer-checked:text-primary font-bold text-lg transition-all shadow-sm"
+            >
+              Dog
+            </div>
+          </label>
+          <!-- Option 2: Cat (Checked) -->
+          <label class="group cursor-pointer">
+            <input checked="" class="hidden peer" name="animal-match" type="radio" />
+            <div
+              class="flex h-16 items-center justify-center rounded-xl bg-white dark:bg-slate-800 border-2 border-primary peer-checked:border-primary peer-checked:bg-primary/10 text-slate-700 dark:text-slate-300 peer-checked:text-primary font-bold text-lg transition-all shadow-md ring-2 ring-primary/20"
+            >
+              Cat
+              <span class="material-symbols-outlined ml-2 text-primary">check_circle</span>
+            </div>
+          </label>
+          <!-- Option 3: Bird -->
+          <label class="group cursor-pointer">
+            <input class="hidden peer" name="animal-match" type="radio" />
+            <div
+              class="flex h-16 items-center justify-center rounded-xl bg-white dark:bg-slate-800 border-2 border-primary/10 peer-checked:border-primary peer-checked:bg-primary/10 text-slate-700 dark:text-slate-300 peer-checked:text-primary font-bold text-lg transition-all shadow-sm"
+            >
+              Bird
+            </div>
+          </label>
+          <!-- Option 4: Fish -->
+          <label class="group cursor-pointer">
+            <input class="hidden peer" name="animal-match" type="radio" />
+            <div
+              class="flex h-16 items-center justify-center rounded-xl bg-white dark:bg-slate-800 border-2 border-primary/10 peer-checked:border-primary peer-checked:bg-primary/10 text-slate-700 dark:text-slate-300 peer-checked:text-primary font-bold text-lg transition-all shadow-sm"
+            >
+              Fish
+            </div>
+          </label>
+        </div>
+      </div>
+      <!-- Footer Action -->
+      <div class="p-6 pt-2 pb-10">
+        <button
+          class="w-full bg-primary hover:bg-primary/90 text-slate-900 font-extrabold text-lg py-4 rounded-xl shadow-[0_4px_0_0_#d97706] active:translate-y-1 active:shadow-none transition-all uppercase tracking-wider"
+        >
+          Comprobar
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

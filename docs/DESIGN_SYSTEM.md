@@ -17,38 +17,38 @@ Using a **60/30/10** distribution:
 
 ### Primary Colors
 
-| Name | Hex | CSS Variable | Usage (%) | Purpose |
-| --- | --- | --- | --- | --- |
-| **Dark** | `#080C08` | `--pb-dark` | 60% | Text, headings, dark backgrounds |
-| **Green** | `#56876D` | `--pb-green` | 30% | Secondary sections, card backgrounds |
-| **Amber** | `#FFA42C` | `--pb-amber` | 10% | CTA buttons, highlights, important accents |
+| Name      | Hex       | CSS Variable | Usage (%) | Purpose                                    |
+| --------- | --------- | ------------ | --------- | ------------------------------------------ |
+| **Dark**  | `#080C08` | `--pb-dark`  | 60%       | Text, headings, dark backgrounds           |
+| **Green** | `#56876D` | `--pb-green` | 30%       | Secondary sections, card backgrounds       |
+| **Amber** | `#FFA42C` | `--pb-amber` | 10%       | CTA buttons, highlights, important accents |
 
 ### Supporting Colors
 
-| Name | Hex | CSS Variable | Purpose |
-| --- | --- | --- | --- |
-| **Emerald** | `#04724D` | `--pb-emerald` | Secondary buttons, links, progress bar start |
-| **Background** | `#F0F5F1` | `--pb-bg` | Page background |
-| **Surface** | `#FFFFFF` | — | Cards, tiles |
-| **Success** | `#10B981` | `--pb-success` | Correct answer feedback |
-| **Error** | `#EF4444` | `--pb-error` | Wrong answer feedback |
-| **Text Light** | `#6B7B71` | `--pb-text-light` | Secondary text, descriptions |
-| **Text on Dark** | `#F0F5F1` | — | Light text on dark backgrounds |
+| Name             | Hex       | CSS Variable      | Purpose                                      |
+| ---------------- | --------- | ----------------- | -------------------------------------------- |
+| **Emerald**      | `#04724D` | `--pb-emerald`    | Secondary buttons, links, progress bar start |
+| **Background**   | `#F0F5F1` | `--pb-bg`         | Page background                              |
+| **Surface**      | `#FFFFFF` | —                 | Cards, tiles                                 |
+| **Success**      | `#10B981` | `--pb-success`    | Correct answer feedback                      |
+| **Error**        | `#EF4444` | `--pb-error`      | Wrong answer feedback                        |
+| **Text Light**   | `#6B7B71` | `--pb-text-light` | Secondary text, descriptions                 |
+| **Text on Dark** | `#F0F5F1` | —                 | Light text on dark backgrounds               |
 
 ### Usage Guide
 
-| Element | Color | Tailwind Class |
-| --- | --- | --- |
-| Page background | Light gray-green | `bg-pb-bg` |
-| Main headings | Dark | `text-pb-dark` |
-| Cards/tiles | White + shadow | `bg-white shadow-box` |
-| Primary CTA (Play) | Amber | `bg-pb-amber text-white` |
-| Secondary button | Emerald | `bg-pb-emerald text-white` |
-| Progress bar | Gradient | `from-pb-emerald to-pb-amber` |
-| Section backgrounds | Green | `bg-pb-green` |
-| Correct answer | Green | `bg-pb-success` |
-| Wrong answer | Red | `bg-pb-error` |
-| Locked scenario | Gray | `bg-gray-200 opacity-60` |
+| Element             | Color            | Tailwind Class                |
+| ------------------- | ---------------- | ----------------------------- |
+| Page background     | Light gray-green | `bg-pb-bg`                    |
+| Main headings       | Dark             | `text-pb-dark`                |
+| Cards/tiles         | White + shadow   | `bg-white shadow-box`         |
+| Primary CTA (Play)  | Amber            | `bg-pb-amber text-white`      |
+| Secondary button    | Emerald          | `bg-pb-emerald text-white`    |
+| Progress bar        | Gradient         | `from-pb-emerald to-pb-amber` |
+| Section backgrounds | Green            | `bg-pb-green`                 |
+| Correct answer      | Green            | `bg-pb-success`               |
+| Wrong answer        | Red              | `bg-pb-error`                 |
+| Locked scenario     | Gray             | `bg-gray-200 opacity-60`      |
 
 ## Typography
 
@@ -59,19 +59,22 @@ Using a **60/30/10** distribution:
 - Weights: 400 (Regular), 600 (SemiBold), 700 (Bold), 800 (ExtraBold)
 
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 ### Text Scale
 
-| Element | Size | Weight | Example |
-| --- | --- | --- | --- |
-| Screen title | `text-3xl` | ExtraBold (800) | "Seleccionar idioma" |
-| Question text | `text-xl` | Bold (700) | "¿Cómo se dice 'gato'?" |
-| Answer options | `text-lg` | SemiBold (600) | "cat" |
-| Secondary text | `text-sm` | Regular (400) | "Principiante · A1" |
-| Score display | `text-2xl` | ExtraBold (800) | "80/100" |
-| Button text | `text-lg` | Bold (700) | "JUGAR" |
+| Element        | Size       | Weight          | Example                 |
+| -------------- | ---------- | --------------- | ----------------------- |
+| Screen title   | `text-3xl` | ExtraBold (800) | "Seleccionar idioma"    |
+| Question text  | `text-xl`  | Bold (700)      | "¿Cómo se dice 'gato'?" |
+| Answer options | `text-lg`  | SemiBold (600)  | "cat"                   |
+| Secondary text | `text-sm`  | Regular (400)   | "Principiante · A1"     |
+| Score display  | `text-2xl` | ExtraBold (800) | "80/100"                |
+| Button text    | `text-lg`  | Bold (700)      | "JUGAR"                 |
 
 ## Component Styles
 
@@ -119,12 +122,12 @@ Every card/tile in the app uses this base style for the elevated box look:
 
 ## Button Variants
 
-| Variant | Background | Text | Usage |
-| --- | --- | --- | --- |
-| **primary** | `pb-amber` | White | Main CTA — "Jugar", "Siguiente" |
-| **secondary** | `pb-emerald` | White | Important actions — "Tarjetas", "Comprobar" |
-| **ghost** | Transparent | `pb-dark` | Back buttons, subtle actions |
-| **danger** | `pb-error` | White | Destructive actions (if any) |
+| Variant       | Background   | Text      | Usage                                       |
+| ------------- | ------------ | --------- | ------------------------------------------- |
+| **primary**   | `pb-amber`   | White     | Main CTA — "Jugar", "Siguiente"             |
+| **secondary** | `pb-emerald` | White     | Important actions — "Tarjetas", "Comprobar" |
+| **ghost**     | Transparent  | `pb-dark` | Back buttons, subtle actions                |
+| **danger**    | `pb-error`   | White     | Destructive actions (if any)                |
 
 All buttons include: `shadow-box`, `rounded-box`, hover lift, active press, `transition-all duration-150`.
 
@@ -132,36 +135,36 @@ Sizes: `sm` (py-2 px-4), `md` (py-3 px-6), `lg` (py-4 px-8, text-lg).
 
 ## Answer Card States
 
-| State | Background | Text | Icon | Animation |
-| --- | --- | --- | --- | --- |
-| **Default** | White | Dark | — | — |
-| **Hover** | White | Dark | — | Lift up |
-| **Selected Correct** | `pb-success` | White | ✅ | Bounce (scale 1→1.05→1) |
-| **Selected Wrong** | `pb-error` | White | ❌ | Shake (x: 0→-6→6→-6→6→0) |
-| **Revealed Correct** | `pb-success/80` | White | ✅ | Fade in |
-| **Disabled** | White | Gray | — | opacity-50 |
+| State                | Background      | Text  | Icon | Animation                |
+| -------------------- | --------------- | ----- | ---- | ------------------------ |
+| **Default**          | White           | Dark  | —    | —                        |
+| **Hover**            | White           | Dark  | —    | Lift up                  |
+| **Selected Correct** | `pb-success`    | White | ✅   | Bounce (scale 1→1.05→1)  |
+| **Selected Wrong**   | `pb-error`      | White | ❌   | Shake (x: 0→-6→6→-6→6→0) |
+| **Revealed Correct** | `pb-success/80` | White | ✅   | Fade in                  |
+| **Disabled**         | White           | Gray  | —    | opacity-50               |
 
 ## Animations (Framer Motion)
 
-| Animation | Trigger | Properties | Duration |
-| --- | --- | --- | --- |
-| Page enter | Route change | `opacity: 0→1, y: 20→0` | 250ms |
-| Page exit | Route change | `opacity: 1→0, y: 0→-20` | 250ms |
-| Correct answer | Right selection | `scale: 1→1.05→1` | 300ms |
-| Wrong answer | Wrong selection | `x: 0, -6, 6, -6, 6, 0` | 400ms |
-| Heart loss | Life lost | `scale: 1→0, opacity: 1→0` | 300ms |
-| Progress bar | Question advance | `width: smooth transition` | 500ms |
-| Card flip | Flashcard tap | `rotateY: 0→180` | 400ms |
-| Results stars | Results shown | Staggered scale-in | 300ms each |
+| Animation      | Trigger          | Properties                 | Duration   |
+| -------------- | ---------------- | -------------------------- | ---------- |
+| Page enter     | Route change     | `opacity: 0→1, y: 20→0`    | 250ms      |
+| Page exit      | Route change     | `opacity: 1→0, y: 0→-20`   | 250ms      |
+| Correct answer | Right selection  | `scale: 1→1.05→1`          | 300ms      |
+| Wrong answer   | Wrong selection  | `x: 0, -6, 6, -6, 6, 0`    | 400ms      |
+| Heart loss     | Life lost        | `scale: 1→0, opacity: 1→0` | 300ms      |
+| Progress bar   | Question advance | `width: smooth transition` | 500ms      |
+| Card flip      | Flashcard tap    | `rotateY: 0→180`           | 400ms      |
+| Results stars  | Results shown    | Staggered scale-in         | 300ms each |
 
 ## Responsive Breakpoints
 
-| Screen | Width | Layout Adjustments |
-| --- | --- | --- |
-| **Small mobile** | < 375px | Stack language cards vertically |
-| **Mobile** | 375–640px | Default layout, max-w-lg |
-| **Tablet** | 640–1024px | Centered, larger cards |
-| **Desktop** | > 1024px | Centered, max-w-lg, decorative margins |
+| Screen           | Width      | Layout Adjustments                     |
+| ---------------- | ---------- | -------------------------------------- |
+| **Small mobile** | < 375px    | Stack language cards vertically        |
+| **Mobile**       | 375–640px  | Default layout, max-w-lg               |
+| **Tablet**       | 640–1024px | Centered, larger cards                 |
+| **Desktop**      | > 1024px   | Centered, max-w-lg, decorative margins |
 
 **Critical mobile rules:**
 

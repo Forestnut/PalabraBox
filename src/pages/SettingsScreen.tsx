@@ -26,7 +26,9 @@ function RangeSlider({ label, value, onChange, icon }: RangeSliderProps) {
           <FontAwesomeIcon icon={icon} className="text-sm text-pb-dark/40" />
           {label}
         </span>
-        <span className="text-pb-amber font-bold text-sm tabular-nums">{Math.round(value * 100)}%</span>
+        <span className="text-pb-amber font-bold text-sm tabular-nums">
+          {Math.round(value * 100)}%
+        </span>
       </div>
       <input
         type="range"
@@ -55,8 +57,10 @@ export default function SettingsScreen() {
         </div>
 
         <Card className="flex flex-col gap-5">
-          <h2 className="text-sm font-bold text-pb-text-light uppercase tracking-wider">Sonido y Audio</h2>
-          
+          <h2 className="text-sm font-bold text-pb-text-light uppercase tracking-wider">
+            Sonido y Audio
+          </h2>
+
           <RangeSlider
             label="Efectos de Sonido"
             value={volume.sound}
@@ -79,17 +83,17 @@ export default function SettingsScreen() {
             <FontAwesomeIcon icon={faBolt} className="text-sm text-pb-dark/40" />
             Velocidad del Lector
           </div>
-          
+
           <div className="grid grid-cols-5 gap-2 mt-1">
             {speeds.map((s) => (
               <button
                 key={s}
                 onClick={() => setSpeechSpeed(s)}
                 className={cn(
-                  "py-3 rounded-xl font-black text-xs sm:text-sm transition-all duration-200 focus:outline-none cursor-pointer",
+                  'py-3 rounded-xl font-black text-xs sm:text-sm transition-all duration-200 focus:outline-none cursor-pointer',
                   speechSpeed === s
-                    ? "bg-linear-to-b from-[#FFB347] to-pb-amber text-white shadow-[0_3px_0_0_#c97a1a] scale-105"
-                    : "bg-white/60 text-pb-text-light ring-1 ring-black/4 hover:bg-white active:scale-95"
+                    ? 'bg-linear-to-b from-[#FFB347] to-pb-amber text-white shadow-[0_3px_0_0_#c97a1a] scale-105'
+                    : 'bg-white/60 text-pb-text-light ring-1 ring-black/4 hover:bg-white active:scale-95',
                 )}
               >
                 {s}x
@@ -103,19 +107,27 @@ export default function SettingsScreen() {
             <FontAwesomeIcon icon={faGlobe} className="text-sm text-pb-dark/40" />
             Idioma de la Aplicación
           </div>
-          
+
           <div className="grid grid-cols-2 gap-2 mt-1">
-            <button
-              className="py-3 px-2 flex items-center justify-center gap-2 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-linear-to-b from-[#FFB347] to-pb-amber text-white shadow-[0_3px_0_0_#c97a1a] scale-105"
-            >
-              <img src="https://flagcdn.com/es.svg" alt="Español" className="w-5 h-5 rounded-sm object-cover" loading="lazy" />
+            <button className="py-3 px-2 flex items-center justify-center gap-2 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-linear-to-b from-[#FFB347] to-pb-amber text-white shadow-[0_3px_0_0_#c97a1a] scale-105">
+              <img
+                src="https://flagcdn.com/es.svg"
+                alt="Español"
+                className="w-5 h-5 rounded-sm object-cover"
+                loading="lazy"
+              />
               Español
             </button>
             <button
               disabled
               className="py-3 px-2 flex items-center justify-center gap-2 rounded-xl font-black text-xs sm:text-sm transition-all focus:outline-none bg-white/40 text-pb-text-light opacity-50 cursor-not-allowed"
             >
-              <img src="https://flagcdn.com/pl.svg" alt="Polaco" className="w-5 h-5 rounded-sm object-cover" loading="lazy" />
+              <img
+                src="https://flagcdn.com/pl.svg"
+                alt="Polaco"
+                className="w-5 h-5 rounded-sm object-cover"
+                loading="lazy"
+              />
               Polaco
             </button>
           </div>
@@ -123,8 +135,10 @@ export default function SettingsScreen() {
 
         {/* Acerca de */}
         <Card className="flex flex-col gap-4">
-          <h2 className="text-sm font-bold text-pb-text-light uppercase tracking-wider">Acerca de</h2>
-          
+          <h2 className="text-sm font-bold text-pb-text-light uppercase tracking-wider">
+            Acerca de
+          </h2>
+
           <div className="flex flex-col items-center gap-3 py-1">
             <a
               href="https://www.asociacionarrabal.org"
@@ -148,7 +162,9 @@ export default function SettingsScreen() {
           <div className="h-px bg-black/4" />
 
           <div className="flex flex-col gap-1.5">
-            <p className="text-[11px] text-pb-text-light font-bold uppercase tracking-wider mb-1">Autores</p>
+            <p className="text-[11px] text-pb-text-light font-bold uppercase tracking-wider mb-1">
+              Autores
+            </p>
             <div className="flex flex-col gap-2">
               <a
                 href="https://www.linkedin.com/in/blazejgoliszek/"
@@ -157,7 +173,12 @@ export default function SettingsScreen() {
                 className="flex items-center gap-2 text-sm font-bold text-pb-dark hover:text-pb-amber transition-colors duration-200"
               >
                 <div className="w-6 h-6 flex items-center justify-center shrink-0 text-[#0A66C2]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-full h-full" fill="currentColor">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                    className="w-full h-full"
+                    fill="currentColor"
+                  >
                     <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
                   </svg>
                 </div>
@@ -170,7 +191,12 @@ export default function SettingsScreen() {
                 className="flex items-center gap-2 text-sm font-bold text-pb-dark hover:text-pb-amber transition-colors duration-200"
               >
                 <div className="w-6 h-6 flex items-center justify-center shrink-0 text-[#0A66C2]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-full h-full" fill="currentColor">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                    className="w-full h-full"
+                    fill="currentColor"
+                  >
                     <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
                   </svg>
                 </div>
@@ -191,4 +217,3 @@ export default function SettingsScreen() {
     </PageTransition>
   )
 }
-

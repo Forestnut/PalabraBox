@@ -38,6 +38,6 @@ export const useSettingsStore = create<SettingsState>()(
     }),
     {
       name: 'palabrabox-settings-storage',
-    }
-  )
+    },
+  ),
 )

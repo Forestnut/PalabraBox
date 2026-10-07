@@ -63,11 +63,7 @@
         },
         "data": {
           "correct": "Prefiero este",
-          "options": [
-            "Prefiero este",
-            "Odio este",
-            "Mejor este"
-          ]
+          "options": ["Prefiero este", "Odio este", "Mejor este"]
         }
       },
       {
@@ -78,11 +74,7 @@
         },
         "data": {
           "correct": "libro favorito",
-          "options": [
-            "libro favorito",
-            "libro peor",
-            "libro más"
-          ]
+          "options": ["libro favorito", "libro peor", "libro más"]
         }
       },
       {
@@ -175,19 +167,8 @@
           "es": "Preferiría ir a casa."
         },
         "data": {
-          "correct": [
-            "Preferiría",
-            "ir",
-            "a",
-            "casa."
-          ],
-          "words": [
-            "Preferiría",
-            "ir",
-            "a",
-            "casa.",
-            "odio"
-          ]
+          "correct": ["Preferiría", "ir", "a", "casa."],
+          "words": ["Preferiría", "ir", "a", "casa.", "odio"]
         }
       },
       {
@@ -197,17 +178,8 @@
           "es": "Me gusta mucho."
         },
         "data": {
-          "correct": [
-            "Me",
-            "gusta",
-            "mucho."
-          ],
-          "words": [
-            "Me",
-            "gusta",
-            "mucho.",
-            "peor"
-          ]
+          "correct": ["Me", "gusta", "mucho."],
+          "words": ["Me", "gusta", "mucho.", "peor"]
         }
       },
       {
@@ -217,19 +189,8 @@
           "es": "Ella prefiere el café."
         },
         "data": {
-          "correct": [
-            "Ella",
-            "prefiere",
-            "el",
-            "café."
-          ],
-          "words": [
-            "Ella",
-            "prefiere",
-            "el",
-            "café.",
-            "agua"
-          ]
+          "correct": ["Ella", "prefiere", "el", "café."],
+          "words": ["Ella", "prefiere", "el", "café.", "agua"]
         }
       },
       {
@@ -239,19 +200,8 @@
           "es": "No es el mejor."
         },
         "data": {
-          "correct": [
-            "No",
-            "es",
-            "el",
-            "mejor."
-          ],
-          "words": [
-            "No",
-            "es",
-            "el",
-            "mejor.",
-            "favorito"
-          ]
+          "correct": ["No", "es", "el", "mejor."],
+          "words": ["No", "es", "el", "mejor.", "favorito"]
         }
       },
       {
@@ -261,17 +211,8 @@
           "es": "Odiamos el frío."
         },
         "data": {
-          "correct": [
-            "Odiamos",
-            "el",
-            "frío."
-          ],
-          "words": [
-            "Odiamos",
-            "el",
-            "frío.",
-            "calor"
-          ]
+          "correct": ["Odiamos", "el", "frío."],
+          "words": ["Odiamos", "el", "frío.", "calor"]
         }
       },
       {
@@ -281,17 +222,8 @@
           "es": "Mi película favorita."
         },
         "data": {
-          "correct": [
-            "Mi",
-            "película",
-            "favorita."
-          ],
-          "words": [
-            "Mi",
-            "película",
-            "favorita.",
-            "libro"
-          ]
+          "correct": ["Mi", "película", "favorita."],
+          "words": ["Mi", "película", "favorita.", "libro"]
         }
       }
     ]
@@ -360,11 +292,7 @@
         },
         "data": {
           "correct": "enojado",
-          "options": [
-            "enojado",
-            "feliz",
-            "triste"
-          ]
+          "options": ["enojado", "feliz", "triste"]
         }
       },
       {
@@ -375,11 +303,7 @@
         },
         "data": {
           "correct": "cansada",
-          "options": [
-            "cansada",
-            "asustada",
-            "sorprendida"
-          ]
+          "options": ["cansada", "asustada", "sorprendida"]
         }
       },
       {
@@ -472,21 +396,8 @@
           "es": "Ellos están muy cansados hoy."
         },
         "data": {
-          "correct": [
-            "Ellos",
-            "están",
-            "muy",
-            "cansados",
-            "hoy."
-          ],
-          "words": [
-            "Ellos",
-            "están",
-            "muy",
-            "cansados",
-            "hoy.",
-            "felices"
-          ]
+          "correct": ["Ellos", "están", "muy", "cansados", "hoy."],
+          "words": ["Ellos", "están", "muy", "cansados", "hoy.", "felices"]
         }
       },
       {
@@ -496,17 +407,8 @@
           "es": "No estés triste."
         },
         "data": {
-          "correct": [
-            "No",
-            "estés",
-            "triste."
-          ],
-          "words": [
-            "No",
-            "estés",
-            "triste.",
-            "feliz"
-          ]
+          "correct": ["No", "estés", "triste."],
+          "words": ["No", "estés", "triste.", "feliz"]
         }
       },
       {
@@ -516,17 +418,8 @@
           "es": "Estoy tan enojado."
         },
         "data": {
-          "correct": [
-            "Estoy",
-            "tan",
-            "enojado."
-          ],
-          "words": [
-            "Estoy",
-            "tan",
-            "enojado.",
-            "asustado"
-          ]
+          "correct": ["Estoy", "tan", "enojado."],
+          "words": ["Estoy", "tan", "enojado.", "asustado"]
         }
       },
       {
@@ -536,21 +429,8 @@
           "es": "Estamos emocionados por el viaje."
         },
         "data": {
-          "correct": [
-            "Estamos",
-            "emocionados",
-            "por",
-            "el",
-            "viaje."
-          ],
-          "words": [
-            "Estamos",
-            "emocionados",
-            "por",
-            "el",
-            "viaje.",
-            "tristes"
-          ]
+          "correct": ["Estamos", "emocionados", "por", "el", "viaje."],
+          "words": ["Estamos", "emocionados", "por", "el", "viaje.", "tristes"]
         }
       },
       {
@@ -560,19 +440,8 @@
           "es": "Se sorprendió al verla."
         },
         "data": {
-          "correct": [
-            "Se",
-            "sorprendió",
-            "al",
-            "verla."
-          ],
-          "words": [
-            "Se",
-            "sorprendió",
-            "al",
-            "verla.",
-            "nervioso"
-          ]
+          "correct": ["Se", "sorprendió", "al", "verla."],
+          "words": ["Se", "sorprendió", "al", "verla.", "nervioso"]
         }
       },
       {
@@ -582,23 +451,8 @@
           "es": "Ella está asustada de los perros."
         },
         "data": {
-          "correct": [
-            "Ella",
-            "está",
-            "asustada",
-            "de",
-            "los",
-            "perros."
-          ],
-          "words": [
-            "Ella",
-            "está",
-            "asustada",
-            "de",
-            "los",
-            "perros.",
-            "gatos"
-          ]
+          "correct": ["Ella", "está", "asustada", "de", "los", "perros."],
+          "words": ["Ella", "está", "asustada", "de", "los", "perros.", "gatos"]
         }
       }
     ]
@@ -667,11 +521,7 @@
         },
         "data": {
           "correct": "lentamente",
-          "options": [
-            "lentamente",
-            "perdón",
-            "ayudar"
-          ]
+          "options": ["lentamente", "perdón", "ayudar"]
         }
       },
       {
@@ -682,11 +532,7 @@
         },
         "data": {
           "correct": "entiendo",
-          "options": [
-            "entiendo",
-            "pregunto",
-            "repito"
-          ]
+          "options": ["entiendo", "pregunto", "repito"]
         }
       },
       {
@@ -779,19 +625,8 @@
           "es": "¿Puedes ayudarme por favor?"
         },
         "data": {
-          "correct": [
-            "¿Puedes",
-            "ayudarme",
-            "por",
-            "favor?"
-          ],
-          "words": [
-            "¿Puedes",
-            "ayudarme",
-            "por",
-            "favor?",
-            "preguntar"
-          ]
+          "correct": ["¿Puedes", "ayudarme", "por", "favor?"],
+          "words": ["¿Puedes", "ayudarme", "por", "favor?", "preguntar"]
         }
       },
       {
@@ -801,21 +636,8 @@
           "es": "Por favor habla más lentamente."
         },
         "data": {
-          "correct": [
-            "Por",
-            "favor",
-            "habla",
-            "más",
-            "lentamente."
-          ],
-          "words": [
-            "Por",
-            "favor",
-            "habla",
-            "más",
-            "lentamente.",
-            "rápido"
-          ]
+          "correct": ["Por", "favor", "habla", "más", "lentamente."],
+          "words": ["Por", "favor", "habla", "más", "lentamente.", "rápido"]
         }
       },
       {
@@ -825,19 +647,8 @@
           "es": "¿Qué significa esa palabra?"
         },
         "data": {
-          "correct": [
-            "¿Qué",
-            "significa",
-            "esa",
-            "palabra?"
-          ],
-          "words": [
-            "¿Qué",
-            "significa",
-            "esa",
-            "palabra?",
-            "diálogo"
-          ]
+          "correct": ["¿Qué", "significa", "esa", "palabra?"],
+          "words": ["¿Qué", "significa", "esa", "palabra?", "diálogo"]
         }
       },
       {
@@ -847,17 +658,8 @@
           "es": "Necesito preguntarte algo."
         },
         "data": {
-          "correct": [
-            "Necesito",
-            "preguntarte",
-            "algo."
-          ],
-          "words": [
-            "Necesito",
-            "preguntarte",
-            "algo.",
-            "entender"
-          ]
+          "correct": ["Necesito", "preguntarte", "algo."],
+          "words": ["Necesito", "preguntarte", "algo.", "entender"]
         }
       },
       {
@@ -867,19 +669,8 @@
           "es": "Perdón, no te escuché."
         },
         "data": {
-          "correct": [
-            "Perdón,",
-            "no",
-            "te",
-            "escuché."
-          ],
-          "words": [
-            "Perdón,",
-            "no",
-            "te",
-            "escuché.",
-            "repetir"
-          ]
+          "correct": ["Perdón,", "no", "te", "escuché."],
+          "words": ["Perdón,", "no", "te", "escuché.", "repetir"]
         }
       },
       {
@@ -889,19 +680,8 @@
           "es": "¿Puedes repetir la pregunta?"
         },
         "data": {
-          "correct": [
-            "¿Puedes",
-            "repetir",
-            "la",
-            "pregunta?"
-          ],
-          "words": [
-            "¿Puedes",
-            "repetir",
-            "la",
-            "pregunta?",
-            "lentamente"
-          ]
+          "correct": ["¿Puedes", "repetir", "la", "pregunta?"],
+          "words": ["¿Puedes", "repetir", "la", "pregunta?", "lentamente"]
         }
       }
     ]
@@ -970,11 +750,7 @@
         },
         "data": {
           "correct": "puerta",
-          "options": [
-            "puerta",
-            "aduana",
-            "equipaje"
-          ]
+          "options": ["puerta", "aduana", "equipaje"]
         }
       },
       {
@@ -985,11 +761,7 @@
         },
         "data": {
           "correct": "retraso",
-          "options": [
-            "retraso",
-            "pasaporte",
-            "boleto"
-          ]
+          "options": ["retraso", "pasaporte", "boleto"]
         }
       },
       {
@@ -1082,21 +854,8 @@
           "es": "Estamos esperando en la puerta."
         },
         "data": {
-          "correct": [
-            "Estamos",
-            "esperando",
-            "en",
-            "la",
-            "puerta."
-          ],
-          "words": [
-            "Estamos",
-            "esperando",
-            "en",
-            "la",
-            "puerta.",
-            "vuelo"
-          ]
+          "correct": ["Estamos", "esperando", "en", "la", "puerta."],
+          "words": ["Estamos", "esperando", "en", "la", "puerta.", "vuelo"]
         }
       },
       {
@@ -1106,23 +865,8 @@
           "es": "El vuelo tiene un largo retraso."
         },
         "data": {
-          "correct": [
-            "El",
-            "vuelo",
-            "tiene",
-            "un",
-            "largo",
-            "retraso."
-          ],
-          "words": [
-            "El",
-            "vuelo",
-            "tiene",
-            "un",
-            "largo",
-            "retraso.",
-            "equipaje"
-          ]
+          "correct": ["El", "vuelo", "tiene", "un", "largo", "retraso."],
+          "words": ["El", "vuelo", "tiene", "un", "largo", "retraso.", "equipaje"]
         }
       },
       {
@@ -1132,23 +876,8 @@
           "es": "Aquí está mi pase de embarque."
         },
         "data": {
-          "correct": [
-            "Aquí",
-            "está",
-            "mi",
-            "pase",
-            "de",
-            "embarque."
-          ],
-          "words": [
-            "Aquí",
-            "está",
-            "mi",
-            "pase",
-            "de",
-            "embarque.",
-            "aduana"
-          ]
+          "correct": ["Aquí", "está", "mi", "pase", "de", "embarque."],
+          "words": ["Aquí", "está", "mi", "pase", "de", "embarque.", "aduana"]
         }
       },
       {
@@ -1158,21 +887,8 @@
           "es": "Muestre su pasaporte y boleto."
         },
         "data": {
-          "correct": [
-            "Muestre",
-            "su",
-            "pasaporte",
-            "y",
-            "boleto."
-          ],
-          "words": [
-            "Muestre",
-            "su",
-            "pasaporte",
-            "y",
-            "boleto.",
-            "retraso"
-          ]
+          "correct": ["Muestre", "su", "pasaporte", "y", "boleto."],
+          "words": ["Muestre", "su", "pasaporte", "y", "boleto.", "retraso"]
         }
       },
       {
@@ -1182,23 +898,8 @@
           "es": "Revisaron nuestro equipaje en la aduana."
         },
         "data": {
-          "correct": [
-            "Revisaron",
-            "nuestro",
-            "equipaje",
-            "en",
-            "la",
-            "aduana."
-          ],
-          "words": [
-            "Revisaron",
-            "nuestro",
-            "equipaje",
-            "en",
-            "la",
-            "aduana.",
-            "puerta"
-          ]
+          "correct": ["Revisaron", "nuestro", "equipaje", "en", "la", "aduana."],
+          "words": ["Revisaron", "nuestro", "equipaje", "en", "la", "aduana.", "puerta"]
         }
       },
       {
@@ -1208,21 +909,8 @@
           "es": "El vuelo sale al mediodía."
         },
         "data": {
-          "correct": [
-            "El",
-            "vuelo",
-            "sale",
-            "al",
-            "mediodía."
-          ],
-          "words": [
-            "El",
-            "vuelo",
-            "sale",
-            "al",
-            "mediodía.",
-            "boleto"
-          ]
+          "correct": ["El", "vuelo", "sale", "al", "mediodía."],
+          "words": ["El", "vuelo", "sale", "al", "mediodía.", "boleto"]
         }
       }
     ]
@@ -1291,11 +979,7 @@
         },
         "data": {
           "correct": "reunión",
-          "options": [
-            "reunión",
-            "examen",
-            "proyecto"
-          ]
+          "options": ["reunión", "examen", "proyecto"]
         }
       },
       {
@@ -1306,11 +990,7 @@
         },
         "data": {
           "correct": "jefe",
-          "options": [
-            "jefe",
-            "profesor",
-            "escritorio"
-          ]
+          "options": ["jefe", "profesor", "escritorio"]
         }
       },
       {
@@ -1403,21 +1083,8 @@
           "es": "Necesito hablar con mi jefe."
         },
         "data": {
-          "correct": [
-            "Necesito",
-            "hablar",
-            "con",
-            "mi",
-            "jefe."
-          ],
-          "words": [
-            "Necesito",
-            "hablar",
-            "con",
-            "mi",
-            "jefe.",
-            "profesor"
-          ]
+          "correct": ["Necesito", "hablar", "con", "mi", "jefe."],
+          "words": ["Necesito", "hablar", "con", "mi", "jefe.", "profesor"]
         }
       },
       {
@@ -1427,21 +1094,8 @@
           "es": "El nuevo proyecto empieza hoy."
         },
         "data": {
-          "correct": [
-            "El",
-            "nuevo",
-            "proyecto",
-            "empieza",
-            "hoy."
-          ],
-          "words": [
-            "El",
-            "nuevo",
-            "proyecto",
-            "empieza",
-            "hoy.",
-            "examen"
-          ]
+          "correct": ["El", "nuevo", "proyecto", "empieza", "hoy."],
+          "words": ["El", "nuevo", "proyecto", "empieza", "hoy.", "examen"]
         }
       },
       {
@@ -1451,23 +1105,8 @@
           "es": "Perdimos la fecha límite del proyecto."
         },
         "data": {
-          "correct": [
-            "Perdimos",
-            "la",
-            "fecha",
-            "límite",
-            "del",
-            "proyecto."
-          ],
-          "words": [
-            "Perdimos",
-            "la",
-            "fecha",
-            "límite",
-            "del",
-            "proyecto.",
-            "reunión"
-          ]
+          "correct": ["Perdimos", "la", "fecha", "límite", "del", "proyecto."],
+          "words": ["Perdimos", "la", "fecha", "límite", "del", "proyecto.", "reunión"]
         }
       },
       {
@@ -1477,23 +1116,8 @@
           "es": "Tus papeles están en el escritorio."
         },
         "data": {
-          "correct": [
-            "Tus",
-            "papeles",
-            "están",
-            "en",
-            "el",
-            "escritorio."
-          ],
-          "words": [
-            "Tus",
-            "papeles",
-            "están",
-            "en",
-            "el",
-            "escritorio.",
-            "oficina"
-          ]
+          "correct": ["Tus", "papeles", "están", "en", "el", "escritorio."],
+          "words": ["Tus", "papeles", "están", "en", "el", "escritorio.", "oficina"]
         }
       },
       {
@@ -1503,21 +1127,8 @@
           "es": "El profesor calificó nuestros exámenes."
         },
         "data": {
-          "correct": [
-            "El",
-            "profesor",
-            "calificó",
-            "nuestros",
-            "exámenes."
-          ],
-          "words": [
-            "El",
-            "profesor",
-            "calificó",
-            "nuestros",
-            "exámenes.",
-            "proyectos"
-          ]
+          "correct": ["El", "profesor", "calificó", "nuestros", "exámenes."],
+          "words": ["El", "profesor", "calificó", "nuestros", "exámenes.", "proyectos"]
         }
       },
       {
@@ -1527,23 +1138,8 @@
           "es": "Ella trabaja en una oficina grande."
         },
         "data": {
-          "correct": [
-            "Ella",
-            "trabaja",
-            "en",
-            "una",
-            "oficina",
-            "grande."
-          ],
-          "words": [
-            "Ella",
-            "trabaja",
-            "en",
-            "una",
-            "oficina",
-            "grande.",
-            "jefe"
-          ]
+          "correct": ["Ella", "trabaja", "en", "una", "oficina", "grande."],
+          "words": ["Ella", "trabaja", "en", "una", "oficina", "grande.", "jefe"]
         }
       }
     ]

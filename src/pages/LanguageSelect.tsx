@@ -12,9 +12,19 @@ import { FlagIcon } from '../components/ui/FlagIcon'
 import { useSettingsStore } from '../store/settingsStore'
 import type { LearningLanguage } from '../store/settingsStore'
 
-const languages: Array<{ key: LearningLanguage | 'polish'; label: string; icon: React.ReactNode; disabled?: boolean }> = [
+const languages: Array<{
+  key: LearningLanguage | 'polish'
+  label: string
+  icon: React.ReactNode
+  disabled?: boolean
+}> = [
   { key: 'english', label: 'Inglés', icon: <FlagIcon countryCode="us" /> },
-  { key: 'polish', label: 'Polaco(Próximamente)', icon: <FlagIcon countryCode="pl" />, disabled: true },
+  {
+    key: 'polish',
+    label: 'Polaco(Próximamente)',
+    icon: <FlagIcon countryCode="pl" />,
+    disabled: true,
+  },
 ]
 
 export default function LanguageSelect() {
@@ -39,7 +49,10 @@ export default function LanguageSelect() {
 
         <div className="grid grid-cols-1 gap-3">
           {languages.map((language) => (
-            <div key={language.key} className={language.disabled ? "opacity-50 pointer-events-none" : ""}>
+            <div
+              key={language.key}
+              className={language.disabled ? 'opacity-50 pointer-events-none' : ''}
+            >
               <SelectableCard
                 title={language.label}
                 icon={language.icon}
@@ -55,12 +68,7 @@ export default function LanguageSelect() {
         </div>
 
         <div className="mt-6 flex justify-end gap-2">
-          <Button
-            variant="ghost"
-            size="md"
-            onClick={() => navigate('/menu')}
-            className="w-28"
-          >
+          <Button variant="ghost" size="md" onClick={() => navigate('/menu')} className="w-28">
             Cancelar
           </Button>
           <Button

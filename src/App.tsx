@@ -1,7 +1,7 @@
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'motion/react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { audioService } from './services/audioService'
+import { sfxService } from './services/sfxService'
 import { runMigrations } from './services/migrationService'
 
 import { LoaderOverlay } from './components/ui/LoaderOverlay'
@@ -42,21 +42,21 @@ export default function App() {
     // Simulate real initialization process (e.g. fetching user session, caching sounds)
     const initApp = async () => {
       try {
-        const didReset = await runMigrations();
+        const didReset = await runMigrations()
         if (didReset) {
-          console.log('App state was reset for new version.');
-          window.location.reload();
-          return;
+          console.log('App state was reset for new version.')
+          window.location.reload()
+          return
         }
-        
-        await audioService.preloadSounds()
+
+        sfxService.preload()
         // Use a longer timeout so the LoaderOverlay acts as the primary splash screen
-        await new Promise(resolve => setTimeout(resolve, 1600))
+        await new Promise((resolve) => setTimeout(resolve, 1600))
       } finally {
         setIsInitializing(false)
       }
     }
-    
+
     initApp()
   }, [])
 

@@ -1,5 +1,5 @@
-import { useEffect, useCallback } from 'react';
-import { audioService, type SoundEffectType } from '../services/audioService';
+import { useEffect, useCallback } from 'react'
+import { sfxService, type SoundEffectType } from '../services/sfxService'
 
 /**
  * A handy hook to play sound effects anywhere in a component
@@ -7,24 +7,19 @@ import { audioService, type SoundEffectType } from '../services/audioService';
 export function useAudio() {
   useEffect(() => {
     // Ensure sounds are preloaded exactly once when this hook is first used
-    audioService.preloadSounds();
-  }, []);
+    sfxService.preload()
+  }, [])
 
   const playSound = useCallback((effect: SoundEffectType) => {
-    audioService.play(effect);
-  }, []);
-
-  const stopSound = useCallback((effect: SoundEffectType) => {
-    audioService.stop(effect);
-  }, []);
+    sfxService.play(effect)
+  }, [])
 
   const stopAllSounds = useCallback(() => {
-    audioService.stopAll();
-  }, []);
+    sfxService.stopAll()
+  }, [])
 
   return {
     playSound,
-    stopSound,
     stopAllSounds,
-  };
+  }
 }

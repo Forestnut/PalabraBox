@@ -139,11 +139,11 @@ Use `@dnd-kit` for drag & drop. **Fallback:** click-to-place (click word on bott
 
 ## Scoring System
 
-| Action | Points |
-| --- | --- |
-| Correct answer | +10 |
-| Wrong answer | 0 (lose 1 heart) |
-| Max per scenario (10 questions) | 100 |
+| Action                          | Points           |
+| ------------------------------- | ---------------- |
+| Correct answer                  | +10              |
+| Wrong answer                    | 0 (lose 1 heart) |
+| Max per scenario (10 questions) | 100              |
 
 ## Lives System (Vidas)
 
@@ -156,12 +156,12 @@ Use `@dnd-kit` for drag & drop. **Fallback:** click-to-place (click word on bott
 
 Stars are awarded based on percentage of correct answers:
 
-| Score | Stars | Unlocks next? |
-| --- | --- | --- |
-| < 50% (0–4/10) | ☆☆☆ (0) | ❌ No |
-| ≥ 50% (5–6/10) | ⭐☆☆ (1) | ✅ Yes |
-| ≥ 70% (7–8/10) | ⭐⭐☆ (2) | ✅ Yes |
-| ≥ 90% (9–10/10) | ⭐⭐⭐ (3) | ✅ Yes |
+| Score           | Stars      | Unlocks next? |
+| --------------- | ---------- | ------------- |
+| < 50% (0–4/10)  | ☆☆☆ (0)    | ❌ No         |
+| ≥ 50% (5–6/10)  | ⭐☆☆ (1)   | ✅ Yes        |
+| ≥ 70% (7–8/10)  | ⭐⭐☆ (2)  | ✅ Yes        |
+| ≥ 90% (9–10/10) | ⭐⭐⭐ (3) | ✅ Yes        |
 
 If the player gets Game Over (0 hearts before finishing), score is calculated from answers given before game over.
 
@@ -183,13 +183,13 @@ interface UserProgress {
     scenarioId: string
     language: 'english' | 'spanish'
     level: 'beginner' | 'intermediate'
-    bestScore: number      // 0-100
-    stars: number          // 0-3
-    completedAt: string    // ISO date
+    bestScore: number // 0-100
+    stars: number // 0-3
+    completedAt: string // ISO date
   }[]
-  totalScore: number       // sum of all best scores
+  totalScore: number // sum of all best scores
   streak: {
-    count: number          // consecutive days
+    count: number // consecutive days
     lastPlayedDate: string // "2026-03-17"
   }
 }
@@ -219,15 +219,15 @@ Flashcards use data from the `words` table, filtered by language + level + categ
 - ← → arrows (+ keyboard support)
 - Counter: "3 / 15"
 
-| Feature | Priority |
-| --- | --- |
-| Browsing cards (← →) | 🔴 MVP |
-| Flip animation | 🔴 MVP |
-| TTS on front | 🔴 MVP |
-| TTS on back | 🟡 Important |
-| Counter | 🔴 MVP |
-| Emoji on back | 🟢 Nice-to-have |
-| Swipe gesture | 🟢 Nice-to-have |
+| Feature              | Priority        |
+| -------------------- | --------------- |
+| Browsing cards (← →) | 🔴 MVP          |
+| Flip animation       | 🔴 MVP          |
+| TTS on front         | 🔴 MVP          |
+| TTS on back          | 🟡 Important    |
+| Counter              | 🔴 MVP          |
+| Emoji on back        | 🟢 Nice-to-have |
+| Swipe gesture        | 🟢 Nice-to-have |
 
 ---
 
@@ -235,13 +235,13 @@ Flashcards use data from the `words` table, filtered by language + level + categ
 
 5 sound files needed (short, 1–3 seconds each):
 
-| Sound | File | When played |
-| --- | --- | --- |
-| Correct | `correct.mp3` | Correct answer selected |
-| Wrong | `wrong.mp3` | Wrong answer selected |
-| Click | `click.mp3` | Button/tile tapped |
+| Sound          | File                 | When played                    |
+| -------------- | -------------------- | ------------------------------ |
+| Correct        | `correct.mp3`        | Correct answer selected        |
+| Wrong          | `wrong.mp3`          | Wrong answer selected          |
+| Click          | `click.mp3`          | Button/tile tapped             |
 | Level Complete | `level-complete.mp3` | Scenario finished successfully |
-| Game Over | `game-over.mp3` | 0 hearts remaining |
+| Game Over      | `game-over.mp3`      | 0 hearts remaining             |
 
 Source: free sounds from [mixkit.co](https://mixkit.co/free-sound-effects/) or similar.
 
@@ -253,12 +253,12 @@ Volume controlled by settings slider (0–100%), persisted in localStorage.
 
 Uses the **Web Speech API** (SpeechSynthesis) — built into browsers, free, no API key.
 
-| Where | What it reads | Language |
-| --- | --- | --- |
-| Listening question | Word/phrase to guess | Learning language (en/es) |
-| Flashcard — front | Foreign word | Learning language |
-| Flashcard — back | Translation | Interface language (es) |
-| SpeakButton 🔊 | Word on the answer tile | Learning language |
+| Where              | What it reads           | Language                  |
+| ------------------ | ----------------------- | ------------------------- |
+| Listening question | Word/phrase to guess    | Learning language (en/es) |
+| Flashcard — front  | Foreign word            | Learning language         |
+| Flashcard — back   | Translation             | Interface language (es)   |
+| SpeakButton 🔊     | Word on the answer tile | Learning language         |
 
 **Settings:**
 

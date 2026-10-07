@@ -12,11 +12,11 @@ Wraps the Web Speech API (SpeechSynthesis) for pronunciation features.
 
 **Exports:**
 
-| Function | Parameters | Returns | Description |
-| --- | --- | --- | --- |
-| `speak` | `text: string, language: 'en' \| 'es', rate?: number, volume?: number` | `Promise<void>` | Reads text aloud using browser TTS |
-| `stopSpeaking` | — | `void` | Cancels any ongoing speech |
-| `isSpeechSupported` | — | `boolean` | Checks if browser supports TTS |
+| Function            | Parameters                                                             | Returns         | Description                        |
+| ------------------- | ---------------------------------------------------------------------- | --------------- | ---------------------------------- |
+| `speak`             | `text: string, language: 'en' \| 'es', rate?: number, volume?: number` | `Promise<void>` | Reads text aloud using browser TTS |
+| `stopSpeaking`      | —                                                                      | `void`          | Cancels any ongoing speech         |
+| `isSpeechSupported` | —                                                                      | `boolean`       | Checks if browser supports TTS     |
 
 **Behavior:**
 
@@ -34,20 +34,20 @@ Wraps Howler.js for game sound effects.
 
 **Sound library:**
 
-| Key | File | Trigger |
-| --- | --- | --- |
-| `correct` | `/sounds/correct.mp3` | Correct answer |
-| `wrong` | `/sounds/wrong.mp3` | Wrong answer |
-| `click` | `/sounds/click.mp3` | Button/tile tap |
+| Key             | File                         | Trigger            |
+| --------------- | ---------------------------- | ------------------ |
+| `correct`       | `/sounds/correct.mp3`        | Correct answer     |
+| `wrong`         | `/sounds/wrong.mp3`          | Wrong answer       |
+| `click`         | `/sounds/click.mp3`          | Button/tile tap    |
 | `levelComplete` | `/sounds/level-complete.mp3` | Scenario completed |
-| `gameOver` | `/sounds/game-over.mp3` | 0 hearts game over |
+| `gameOver`      | `/sounds/game-over.mp3`      | 0 hearts game over |
 
 **Exports:**
 
-| Function | Parameters | Description |
-| --- | --- | --- |
-| `playSound` | `name: 'correct' \| 'wrong' \| 'click' \| 'levelComplete' \| 'gameOver'` | Plays the specified sound at current settings volume |
-| `setSoundVolume` | `volume: number (0-1)` | Updates volume for all sounds |
+| Function         | Parameters                                                               | Description                                          |
+| ---------------- | ------------------------------------------------------------------------ | ---------------------------------------------------- |
+| `playSound`      | `name: 'correct' \| 'wrong' \| 'click' \| 'levelComplete' \| 'gameOver'` | Plays the specified sound at current settings volume |
+| `setSoundVolume` | `volume: number (0-1)`                                                   | Updates volume for all sounds                        |
 
 **Behavior:**
 
@@ -68,15 +68,15 @@ Manages user progress in `localStorage`.
 
 **Exports:**
 
-| Function | Parameters | Returns | Description |
-| --- | --- | --- | --- |
-| `getProgress` | — | `UserProgress` | Gets saved progress (or returns defaults) |
-| `saveProgress` | `progress: UserProgress` | `void` | Saves progress to localStorage |
-| `saveScenarioResult` | `scenarioId, language, level, score, stars` | `void` | Saves/updates scenario completion |
-| `updateStreak` | — | `void` | Updates daily play streak |
-| `isScenarioUnlocked` | `scenarioId, allScenarios, progress` | `boolean` | Checks if a scenario is unlocked |
-| `getSettings` | — | `Settings` | Gets saved settings |
-| `saveSettings` | `settings: Settings` | `void` | Saves settings to localStorage |
+| Function             | Parameters                                  | Returns        | Description                               |
+| -------------------- | ------------------------------------------- | -------------- | ----------------------------------------- |
+| `getProgress`        | —                                           | `UserProgress` | Gets saved progress (or returns defaults) |
+| `saveProgress`       | `progress: UserProgress`                    | `void`         | Saves progress to localStorage            |
+| `saveScenarioResult` | `scenarioId, language, level, score, stars` | `void`         | Saves/updates scenario completion         |
+| `updateStreak`       | —                                           | `void`         | Updates daily play streak                 |
+| `isScenarioUnlocked` | `scenarioId, allScenarios, progress`        | `boolean`      | Checks if a scenario is unlocked          |
+| `getSettings`        | —                                           | `Settings`     | Gets saved settings                       |
+| `saveSettings`       | `settings: Settings`                        | `void`         | Saves settings to localStorage            |
 
 ---
 
@@ -88,27 +88,27 @@ Central state for the active game session.
 
 **State fields:**
 
-| Field | Type | Default | Description |
-| --- | --- | --- | --- |
-| `language` | `'english' \| 'spanish'` | `'english'` | Selected learning language |
-| `level` | `'beginner' \| 'intermediate'` | `'beginner'` | Selected difficulty |
-| `score` | `number` | `0` | Current score (0-100) |
-| `lives` | `number` | `3` | Remaining hearts |
-| `currentQuestionIndex` | `number` | `0` | Current question (0-based) |
-| `questions` | `Question[]` | `[]` | Loaded questions |
-| `status` | `'idle' \| 'playing' \| 'game_over' \| 'completed'` | `'idle'` | Game state |
-| `answers` | `{ questionId, isCorrect }[]` | `[]` | Answer history |
+| Field                  | Type                                                | Default      | Description                |
+| ---------------------- | --------------------------------------------------- | ------------ | -------------------------- |
+| `language`             | `'english' \| 'spanish'`                            | `'english'`  | Selected learning language |
+| `level`                | `'beginner' \| 'intermediate'`                      | `'beginner'` | Selected difficulty        |
+| `score`                | `number`                                            | `0`          | Current score (0-100)      |
+| `lives`                | `number`                                            | `3`          | Remaining hearts           |
+| `currentQuestionIndex` | `number`                                            | `0`          | Current question (0-based) |
+| `questions`            | `Question[]`                                        | `[]`         | Loaded questions           |
+| `status`               | `'idle' \| 'playing' \| 'game_over' \| 'completed'` | `'idle'`     | Game state                 |
+| `answers`              | `{ questionId, isCorrect }[]`                       | `[]`         | Answer history             |
 
 **Actions:**
 
-| Action | Parameters | Effect |
-| --- | --- | --- |
-| `setLanguage` | `language` | Sets selected language |
-| `setLevel` | `level` | Sets selected level |
-| `startGame` | `questions: Question[]` | Resets game state, loads questions |
+| Action           | Parameters              | Effect                                          |
+| ---------------- | ----------------------- | ----------------------------------------------- |
+| `setLanguage`    | `language`              | Sets selected language                          |
+| `setLevel`       | `level`                 | Sets selected level                             |
+| `startGame`      | `questions: Question[]` | Resets game state, loads questions              |
 | `answerQuestion` | `isCorrect, questionId` | Updates score, lives, answers; checks game_over |
-| `nextQuestion` | — | Advances to next question or sets `completed` |
-| `resetGame` | — | Resets to idle state |
+| `nextQuestion`   | —                       | Advances to next question or sets `completed`   |
+| `resetGame`      | —                       | Resets to idle state                            |
 
 ### settingsStore.ts — App Settings
 
@@ -116,12 +116,12 @@ Persisted settings with localStorage sync.
 
 **Fields:**
 
-| Field | Type | Default | Description |
-| --- | --- | --- | --- |
-| `language` | `'es'` | `'es'` | App UI language |
-| `soundVolume` | `number` | `0.8` | Sound effects volume (0-1) |
-| `ttsVolume` | `number` | `0.6` | TTS volume (0-1) |
-| `ttsSpeed` | `number` | `0.9` | TTS speed (0.6, 0.9, 1.2) |
+| Field         | Type     | Default | Description                |
+| ------------- | -------- | ------- | -------------------------- |
+| `language`    | `'es'`   | `'es'`  | App UI language            |
+| `soundVolume` | `number` | `0.8`   | Sound effects volume (0-1) |
+| `ttsVolume`   | `number` | `0.6`   | TTS volume (0-1)           |
+| `ttsSpeed`    | `number` | `0.9`   | TTS speed (0.6, 0.9, 1.2)  |
 
 ---
 
@@ -135,17 +135,17 @@ Orchestrates the entire game session for a given scenario.
 
 **Returns:**
 
-| Property | Type | Description |
-| --- | --- | --- |
-| `currentQuestion` | `Question \| null` | Current question object |
-| `questionNumber` | `number` | Human-readable (1-based) |
-| `totalQuestions` | `number` | Total (usually 10) |
-| `score` | `number` | Current score |
-| `lives` | `number` | Remaining hearts |
-| `status` | `string` | 'loading' / 'playing' / 'game_over' / 'completed' |
-| `progress` | `number` | 0-100 percentage |
-| `handleAnswer` | `(isCorrect: boolean) => void` | Called when player answers |
-| `handleNext` | `() => void` | Advance to next question |
+| Property          | Type                           | Description                                       |
+| ----------------- | ------------------------------ | ------------------------------------------------- |
+| `currentQuestion` | `Question \| null`             | Current question object                           |
+| `questionNumber`  | `number`                       | Human-readable (1-based)                          |
+| `totalQuestions`  | `number`                       | Total (usually 10)                                |
+| `score`           | `number`                       | Current score                                     |
+| `lives`           | `number`                       | Remaining hearts                                  |
+| `status`          | `string`                       | 'loading' / 'playing' / 'game_over' / 'completed' |
+| `progress`        | `number`                       | 0-100 percentage                                  |
+| `handleAnswer`    | `(isCorrect: boolean) => void` | Called when player answers                        |
+| `handleNext`      | `() => void`                   | Advance to next question                          |
 
 **Logic:**
 
@@ -192,40 +192,40 @@ All interfaces live in `src/types/index.ts`:
 
 ```ts
 // Languages and levels
-type Language = 'english' | 'spanish';
-type Level = 'beginner' | 'intermediate';
-type QuestionType = 'multiple_choice' | 'image_match' | 'listening' | 'fill_blank' | 'word_order';
-type GameStatus = 'idle' | 'loading' | 'playing' | 'game_over' | 'completed';
+type Language = 'english' | 'spanish'
+type Level = 'beginner' | 'intermediate'
+type QuestionType = 'multiple_choice' | 'image_match' | 'listening' | 'fill_blank' | 'word_order'
+type GameStatus = 'idle' | 'loading' | 'playing' | 'game_over' | 'completed'
 
 // App state
 interface UserProgress {
-  completedScenarios: CompletedScenario[];
-  totalScore: number;
+  completedScenarios: CompletedScenario[]
+  totalScore: number
   streak: {
-    count: number;
-    lastPlayedDate: string;
-  };
+    count: number
+    lastPlayedDate: string
+  }
 }
 
 interface CompletedScenario {
-  scenarioId: string;
-  language: Language;
-  level: Level;
-  bestScore: number;
-  stars: number;
-  completedAt: string;
+  scenarioId: string
+  language: Language
+  level: Level
+  bestScore: number
+  stars: number
+  completedAt: string
 }
 
 interface Settings {
-  language: 'es' | 'pl' | 'en';
-  soundVolume: number;
-  ttsVolume: number;
-  ttsSpeed: number;
+  language: 'es' | 'pl' | 'en'
+  soundVolume: number
+  ttsVolume: number
+  ttsSpeed: number
 }
 
 interface GameAnswer {
-  questionId: string;
-  isCorrect: boolean;
+  questionId: string
+  isCorrect: boolean
 }
 ```
 

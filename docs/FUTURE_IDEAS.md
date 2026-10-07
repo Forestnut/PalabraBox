@@ -64,14 +64,14 @@ This document lists potential features and improvements for **PalabraBox** beyon
 
 ## Effort Estimates
 
-| Feature | Effort | Benefit | Priority |
-| --- | --- | --- | --- |
-| User Auth | Medium | High | High |
-| Leaderboards | Medium | Medium | Medium |
-| SRS Logic | High | High | Medium |
-| Dark Mode | Low | Low | Low |
-| AI Generation | High | High | Medium |
-| Native App | High | High | Low |
+| Feature       | Effort | Benefit | Priority |
+| ------------- | ------ | ------- | -------- |
+| User Auth     | Medium | High    | High     |
+| Leaderboards  | Medium | Medium  | Medium   |
+| SRS Logic     | High   | High    | Medium   |
+| Dark Mode     | Low    | Low     | Low      |
+| AI Generation | High   | High    | Medium   |
+| Native App    | High   | High    | Low      |
 
 ---
 

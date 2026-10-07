@@ -1,196 +1,269 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#ffa42e",
-                        "deep-green": "#04724D",
-                        "medium-green": "#56876D",
-                        "background-light": "#f0f5f1",
-                        "background-dark": "#231a0f",
-                        "dark-text": "#080C08",
-                    },
-                    fontFamily: {
-                        "display": ["Plus Jakarta Sans", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "12px",
-                        "lg": "1rem",
-                        "xl": "1.5rem",
-                        "full": "9999px"
-                    },
-                    boxShadow: {
-                        "box": "0 4px 0 0 rgba(0,0,0,0.05)",
-                    }
-                },
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#ffa42e',
+              'deep-green': '#04724D',
+              'medium-green': '#56876D',
+              'background-light': '#f0f5f1',
+              'background-dark': '#231a0f',
+              'dark-text': '#080C08',
             },
-        }
+            fontFamily: {
+              display: ['Plus Jakarta Sans', 'sans-serif'],
+            },
+            borderRadius: {
+              DEFAULT: '12px',
+              lg: '1rem',
+              xl: '1.5rem',
+              full: '9999px',
+            },
+            boxShadow: {
+              box: '0 4px 0 0 rgba(0,0,0,0.05)',
+            },
+          },
+        },
+      }
     </script>
-<style>
-        body {
-            font-family: "Plus Jakarta Sans", sans-serif;
-            background-color: #f0f5f1;
-        }
-        .slider-thumb::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 24px;
-            height: 24px;
-            background: #ffa42e;
-            cursor: pointer;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .slider-thumb::-moz-range-thumb {
-            width: 24px;
-            height: 24px;
-            background: #ffa42e;
-            cursor: pointer;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #f0f5f1;
+      }
+      .slider-thumb::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        background: #ffa42e;
+        cursor: pointer;
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .slider-thumb::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+        background: #ffa42e;
+        cursor: pointer;
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
   </head>
-<body class="bg-background-light dark:bg-background-dark text-dark-text dark:text-slate-100 min-h-screen flex justify-center">
-<div class="relative flex h-full min-h-screen w-full max-w-md flex-col bg-background-light dark:bg-background-dark overflow-x-hidden pb-24">
-<!-- Header -->
-<header class="sticky top-0 z-10 flex items-center justify-between bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 border-b border-medium-green/10">
-<button class="flex size-10 items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-box text-deep-green hover:bg-primary/10 transition-colors">
-<span class="material-symbols-outlined">arrow_back</span>
-</button>
-<h1 class="text-xl font-extrabold tracking-tight text-dark-text dark:text-slate-100">AJUSTES</h1>
-<div class="size-10"></div> <!-- Spacer for centering -->
-</header>
-<main class="flex flex-col gap-6 p-4">
-<!-- Section: IDIOMA -->
-<section class="flex flex-col gap-3">
-<h3 class="px-2 text-xs font-bold uppercase tracking-widest text-medium-green">Idioma de la App</h3>
-<div class="flex flex-col gap-2 rounded-xl bg-white dark:bg-slate-800 p-2 shadow-box">
-<div class="flex items-center justify-between p-3 rounded-lg bg-primary/10 border-2 border-primary/20">
-<div class="flex items-center gap-3">
-<span class="text-2xl">🇪🇸</span>
-<p class="font-bold text-dark-text dark:text-slate-100">Español</p>
-</div>
-<span class="material-symbols-outlined text-primary font-bold">check_circle</span>
-</div>
-<div class="flex items-center justify-between p-3 rounded-lg opacity-60 bg-slate-50 dark:bg-slate-900 border-2 border-transparent">
-<div class="flex items-center gap-3">
-<span class="text-2xl grayscale">🇵🇱</span>
-<p class="font-medium text-dark-text dark:text-slate-400">Polaco</p>
-</div>
-<span class="rounded-full bg-slate-200 dark:bg-slate-700 px-2 py-1 text-[10px] font-bold uppercase text-slate-500">Próximamente</span>
-</div>
-</div>
-</section>
-<!-- Section: SONIDO -->
-<section class="flex flex-col gap-3">
-<h3 class="px-2 text-xs font-bold uppercase tracking-widest text-medium-green">Sonido</h3>
-<div class="rounded-xl bg-white dark:bg-slate-800 p-5 shadow-box">
-<div class="flex flex-col gap-4">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-deep-green">volume_up</span>
-<p class="font-bold text-dark-text dark:text-slate-100">Efectos de sonido</p>
-</div>
-<span class="text-sm font-bold text-primary">80%</span>
-</div>
-<input class="slider-thumb h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 dark:bg-slate-700 accent-primary" max="100" min="0" type="range" value="80"/>
-</div>
-</div>
-</section>
-<!-- Section: PRONUNCIACIÓN -->
-<section class="flex flex-col gap-3">
-<h3 class="px-2 text-xs font-bold uppercase tracking-widest text-medium-green">Pronunciación</h3>
-<div class="rounded-xl bg-white dark:bg-slate-800 p-5 shadow-box flex flex-col gap-8">
-<!-- TTS Volume -->
-<div class="flex flex-col gap-4">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-deep-green">record_voice_over</span>
-<p class="font-bold text-dark-text dark:text-slate-100">Volumen TTS</p>
-</div>
-<span class="text-sm font-bold text-primary">100%</span>
-</div>
-<input class="slider-thumb h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 dark:bg-slate-700 accent-primary" max="100" min="0" type="range" value="100"/>
-</div>
-<!-- TTS Speed -->
-<div class="flex flex-col gap-4">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-deep-green">speed</span>
-<p class="font-bold text-dark-text dark:text-slate-100">Velocidad TTS</p>
-</div>
-</div>
-<input class="slider-thumb h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 dark:bg-slate-700 accent-primary" max="2" min="0" step="1" type="range" value="1"/>
-<div class="flex justify-between px-1 text-[10px] font-bold uppercase text-medium-green">
-<span>Lento</span>
-<span>Normal</span>
-<span>Rápido</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Section: INFORMACIÓN -->
-<section class="flex flex-col gap-3">
-<h3 class="px-2 text-xs font-bold uppercase tracking-widest text-medium-green">Información</h3>
-<div class="rounded-xl bg-linear-to-br from-deep-green to-medium-green p-5 shadow-box text-white">
-<div class="flex items-start justify-between mb-4">
-<div>
-<h4 class="text-xl font-black">PalabraBox</h4>
-<p class="text-xs opacity-80">Versión 1.0 (Stable)</p>
-</div>
-<div class="rounded-lg bg-white/20 p-2 backdrop-blur-sm">
-<span class="material-symbols-outlined">info</span>
-</div>
-</div>
-<div class="space-y-3">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary">engineering</span>
-<p class="text-sm">Desarrollado por <span class="font-bold">Jakub Laskowski &amp; Partner</span></p>
-</div>
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary">location_on</span>
-<p class="text-sm leading-snug">Prácticas en <span class="font-bold">Arrabal, Málaga 2025</span></p>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Bottom Navigation Bar (Matching Component Style) -->
-<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md border-t border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-4 pb-6 pt-3 flex items-center justify-around">
-<a class="flex flex-col items-center gap-1 text-medium-green opacity-60 hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">home</span>
-<p class="text-[10px] font-bold uppercase tracking-wider">Inicio</p>
-</a>
-<a class="flex flex-col items-center gap-1 text-medium-green opacity-60 hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">sports_esports</span>
-<p class="text-[10px] font-bold uppercase tracking-wider">Jugar</p>
-</a>
-<a class="flex flex-col items-center gap-1 text-medium-green opacity-60 hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">bar_chart</span>
-<p class="text-[10px] font-bold uppercase tracking-wider">Progreso</p>
-</a>
-<a class="flex flex-col items-center gap-1 text-primary transition-all" href="#">
-<span class="material-symbols-outlined fill-1">settings</span>
-<p class="text-[10px] font-bold uppercase tracking-wider">Ajustes</p>
-</a>
-</nav>
-</div>
-</body></html>
+  <body
+    class="bg-background-light dark:bg-background-dark text-dark-text dark:text-slate-100 min-h-screen flex justify-center"
+  >
+    <div
+      class="relative flex h-full min-h-screen w-full max-w-md flex-col bg-background-light dark:bg-background-dark overflow-x-hidden pb-24"
+    >
+      <!-- Header -->
+      <header
+        class="sticky top-0 z-10 flex items-center justify-between bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 border-b border-medium-green/10"
+      >
+        <button
+          class="flex size-10 items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-box text-deep-green hover:bg-primary/10 transition-colors"
+        >
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <h1 class="text-xl font-extrabold tracking-tight text-dark-text dark:text-slate-100">
+          AJUSTES
+        </h1>
+        <div class="size-10"></div>
+        <!-- Spacer for centering -->
+      </header>
+      <main class="flex flex-col gap-6 p-4">
+        <!-- Section: IDIOMA -->
+        <section class="flex flex-col gap-3">
+          <h3 class="px-2 text-xs font-bold uppercase tracking-widest text-medium-green">
+            Idioma de la App
+          </h3>
+          <div class="flex flex-col gap-2 rounded-xl bg-white dark:bg-slate-800 p-2 shadow-box">
+            <div
+              class="flex items-center justify-between p-3 rounded-lg bg-primary/10 border-2 border-primary/20"
+            >
+              <div class="flex items-center gap-3">
+                <span class="text-2xl">🇪🇸</span>
+                <p class="font-bold text-dark-text dark:text-slate-100">Español</p>
+              </div>
+              <span class="material-symbols-outlined text-primary font-bold">check_circle</span>
+            </div>
+            <div
+              class="flex items-center justify-between p-3 rounded-lg opacity-60 bg-slate-50 dark:bg-slate-900 border-2 border-transparent"
+            >
+              <div class="flex items-center gap-3">
+                <span class="text-2xl grayscale">🇵🇱</span>
+                <p class="font-medium text-dark-text dark:text-slate-400">Polaco</p>
+              </div>
+              <span
+                class="rounded-full bg-slate-200 dark:bg-slate-700 px-2 py-1 text-[10px] font-bold uppercase text-slate-500"
+                >Próximamente</span
+              >
+            </div>
+          </div>
+        </section>
+        <!-- Section: SONIDO -->
+        <section class="flex flex-col gap-3">
+          <h3 class="px-2 text-xs font-bold uppercase tracking-widest text-medium-green">Sonido</h3>
+          <div class="rounded-xl bg-white dark:bg-slate-800 p-5 shadow-box">
+            <div class="flex flex-col gap-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-deep-green">volume_up</span>
+                  <p class="font-bold text-dark-text dark:text-slate-100">Efectos de sonido</p>
+                </div>
+                <span class="text-sm font-bold text-primary">80%</span>
+              </div>
+              <input
+                class="slider-thumb h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 dark:bg-slate-700 accent-primary"
+                max="100"
+                min="0"
+                type="range"
+                value="80"
+              />
+            </div>
+          </div>
+        </section>
+        <!-- Section: PRONUNCIACIÓN -->
+        <section class="flex flex-col gap-3">
+          <h3 class="px-2 text-xs font-bold uppercase tracking-widest text-medium-green">
+            Pronunciación
+          </h3>
+          <div class="rounded-xl bg-white dark:bg-slate-800 p-5 shadow-box flex flex-col gap-8">
+            <!-- TTS Volume -->
+            <div class="flex flex-col gap-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-deep-green">record_voice_over</span>
+                  <p class="font-bold text-dark-text dark:text-slate-100">Volumen TTS</p>
+                </div>
+                <span class="text-sm font-bold text-primary">100%</span>
+              </div>
+              <input
+                class="slider-thumb h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 dark:bg-slate-700 accent-primary"
+                max="100"
+                min="0"
+                type="range"
+                value="100"
+              />
+            </div>
+            <!-- TTS Speed -->
+            <div class="flex flex-col gap-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-deep-green">speed</span>
+                  <p class="font-bold text-dark-text dark:text-slate-100">Velocidad TTS</p>
+                </div>
+              </div>
+              <input
+                class="slider-thumb h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 dark:bg-slate-700 accent-primary"
+                max="2"
+                min="0"
+                step="1"
+                type="range"
+                value="1"
+              />
+              <div
+                class="flex justify-between px-1 text-[10px] font-bold uppercase text-medium-green"
+              >
+                <span>Lento</span>
+                <span>Normal</span>
+                <span>Rápido</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Section: INFORMACIÓN -->
+        <section class="flex flex-col gap-3">
+          <h3 class="px-2 text-xs font-bold uppercase tracking-widest text-medium-green">
+            Información
+          </h3>
+          <div
+            class="rounded-xl bg-linear-to-br from-deep-green to-medium-green p-5 shadow-box text-white"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <h4 class="text-xl font-black">PalabraBox</h4>
+                <p class="text-xs opacity-80">Versión 1.0 (Stable)</p>
+              </div>
+              <div class="rounded-lg bg-white/20 p-2 backdrop-blur-sm">
+                <span class="material-symbols-outlined">info</span>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">engineering</span>
+                <p class="text-sm">
+                  Desarrollado por <span class="font-bold">Jakub Laskowski &amp; Partner</span>
+                </p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-primary">location_on</span>
+                <p class="text-sm leading-snug">
+                  Prácticas en <span class="font-bold">Arrabal, Málaga 2025</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <!-- Bottom Navigation Bar (Matching Component Style) -->
+      <nav
+        class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md border-t border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-4 pb-6 pt-3 flex items-center justify-around"
+      >
+        <a
+          class="flex flex-col items-center gap-1 text-medium-green opacity-60 hover:opacity-100 transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">home</span>
+          <p class="text-[10px] font-bold uppercase tracking-wider">Inicio</p>
+        </a>
+        <a
+          class="flex flex-col items-center gap-1 text-medium-green opacity-60 hover:opacity-100 transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">sports_esports</span>
+          <p class="text-[10px] font-bold uppercase tracking-wider">Jugar</p>
+        </a>
+        <a
+          class="flex flex-col items-center gap-1 text-medium-green opacity-60 hover:opacity-100 transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">bar_chart</span>
+          <p class="text-[10px] font-bold uppercase tracking-wider">Progreso</p>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-primary transition-all" href="#">
+          <span class="material-symbols-outlined fill-1">settings</span>
+          <p class="text-[10px] font-bold uppercase tracking-wider">Ajustes</p>
+        </a>
+      </nav>
+    </div>
+  </body>
+</html>

@@ -1,7 +1,5 @@
-import { useState } from 'react'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import { cn } from '../../utils/cn'
-import { audioService } from '../../services/audioService'
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger'
 type ButtonSize = 'sm' | 'md' | 'lg'
@@ -51,42 +49,19 @@ export function Button({
   children,
   className,
   disabled,
-  onClick,
   ...props
 }: ButtonProps) {
-  const [isClickLocked, setIsClickLocked] = useState(false)
-
-  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (disabled || isClickLocked) {
-      e.preventDefault()
-      return
-    }
-    
-    setIsClickLocked(true)
-    
-    try {
-      await onClick?.(e)
-    } finally {
-      // Release lock safely without an artificial 300ms blockage layer
-      // This empowers power users by prioritizing function resolution timing.
-      setIsClickLocked(false)
-    }
-  }
-
   return (
     <button
       className={cn(
-        'relative inline-flex items-center justify-center font-bold tracking-wide transition-all select-none',
+        'relative inline-flex items-center justify-center font-bold tracking-wide transition-all select-none cursor-pointer',
+        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pb-amber',
         variantStyles[variant],
         sizeStyles[size],
-        (disabled || isClickLocked) && 'opacity-50 pointer-events-none grayscale',
+        disabled && 'opacity-50 pointer-events-none grayscale',
         className,
       )}
-      disabled={disabled || isClickLocked}
-      onClick={(e) => {
-        audioService.play('click')
-        return handleClick(e)
-      }}
+      disabled={disabled}
       {...props}
     >
       {children}
