@@ -1,0 +1,37 @@
+name: ✨ Feature request
+description: Suggest a new feature or improvement
+labels: [feature]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Who is it for and what does it unlock? (Duolingo-style learning for Spanish speakers)
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the behavior you'd like. Sketches/screenshots welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered (optional)
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Area
+      options:
+        - Game / exercises
+        - Flashcards
+        - Audio / TTS
+        - Progress & accounts
+        - Content (questions/words)
+        - Design / UX
+        - Infrastructure (CI, deploy, database)
+        - Other
+    validations:
+      required: true
