@@ -8,11 +8,14 @@ export default defineConfig({
     chunkSizeWarningLimit: 900,
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom', 'react-router-dom'],
-          animation: ['framer-motion'],
-          dnd: ['@dnd-kit/core', '@dnd-kit/sortable', '@dnd-kit/utilities'],
-          supabase: ['@supabase/supabase-js'],
+        // Vite 8 uses Rolldown — object-form manualChunks is no longer available.
+        advancedChunks: {
+          groups: [
+            { name: 'react', test: /[\\/]node_modules[\\/](react|react-dom|react-router|scheduler)[\\/]/ },
+            { name: 'animation', test: /[\\/]node_modules[\\/](framer-motion|motion)[\\/]/ },
+            { name: 'dnd', test: /[\\/]node_modules[\\/]@dnd-kit[\\/]/ },
+            { name: 'supabase', test: /[\\/]node_modules[\\/](@supabase)[\\/]/ },
+          ],
         },
       },
     },

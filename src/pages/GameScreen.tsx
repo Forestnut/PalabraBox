@@ -244,8 +244,8 @@ export default function GameScreen() {
               
               const nextLives = isCorrect ? lives : lives - 1
               if (currentQuestionIndex + 1 < questions.length && nextLives > 0) {
-                let text = '¡Prepárate para el siguiente reto!'
-                let moodToSet: MascotMood = 'idle'
+                let text: string
+                let moodToSet: MascotMood
                 
                 const currentStreak = streakRef.current
                 const nextQ = questions[currentQuestionIndex + 1]
