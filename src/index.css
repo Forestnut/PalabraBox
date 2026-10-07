@@ -1,30 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* ─── PalabraBox Design Tokens (Tailwind CSS 4) ─── */
 @theme {
   /* Typography */
-  --font-sans: "Nunito", system-ui, sans-serif;
+  --font-sans: 'Nunito', system-ui, sans-serif;
 
   /* Colors — keeping the core palette, adding surface variants */
-  --color-pb-dark: #080C08;
-  --color-pb-green: #56876D;
-  --color-pb-emerald: #04724D;
-  --color-pb-amber: #FFA42C;
-  --color-pb-bg: #F0F5F1;
-  --color-pb-success: #10B981;
-  --color-pb-error: #EF4444;
-  --color-pb-text-light: #6B7B71;
+  --color-pb-dark: #080c08;
+  --color-pb-green: #56876d;
+  --color-pb-emerald: #04724d;
+  --color-pb-amber: #ffa42c;
+  --color-pb-bg: #f0f5f1;
+  --color-pb-success: #10b981;
+  --color-pb-error: #ef4444;
+  --color-pb-text-light: #6b7b71;
   --color-pb-surface: rgba(255, 255, 255, 0.72);
-  --color-pb-surface-solid: #FFFFFF;
+  --color-pb-surface-solid: #ffffff;
 
   /* Border Radius */
   --radius-box: 16px;
   --radius-box-lg: 22px;
 
   /* Box Shadows — layered depth */
-  --shadow-box: 0 1px 2px rgba(8, 12, 8, 0.06), 0 4px 0 0 rgba(8, 12, 8, 0.08), 0 8px 16px -4px rgba(8, 12, 8, 0.12);
-  --shadow-box-hover: 0 1px 3px rgba(8, 12, 8, 0.08), 0 5px 0 0 rgba(8, 12, 8, 0.1), 0 12px 24px -6px rgba(8, 12, 8, 0.18);
+  --shadow-box:
+    0 1px 2px rgba(8, 12, 8, 0.06), 0 4px 0 0 rgba(8, 12, 8, 0.08),
+    0 8px 16px -4px rgba(8, 12, 8, 0.12);
+  --shadow-box-hover:
+    0 1px 3px rgba(8, 12, 8, 0.08), 0 5px 0 0 rgba(8, 12, 8, 0.1),
+    0 12px 24px -6px rgba(8, 12, 8, 0.18);
   --shadow-box-pressed: 0 0 0 0 transparent;
   --shadow-soft: 0 2px 8px rgba(8, 12, 8, 0.05), 0 1px 2px rgba(8, 12, 8, 0.04);
   --shadow-glass: 0 4px 24px rgba(8, 12, 8, 0.06), 0 1px 2px rgba(8, 12, 8, 0.03);
@@ -32,7 +36,8 @@
 }
 
 /* ─── Global Styles ─── */
-html, body {
+html,
+body {
   overflow-x: hidden;
   max-width: 100vw;
   scroll-behavior: smooth;
@@ -56,7 +61,8 @@ body {
   -webkit-touch-callout: none;
 }
 
-input, textarea {
+input,
+textarea {
   user-select: auto;
   -webkit-user-select: auto;
   -webkit-touch-callout: default;
@@ -68,7 +74,9 @@ input, textarea {
 }
 
 /* Ensure all interactive elements have minimum touch target */
-button, a, [role="button"] {
+button,
+a,
+[role='button'] {
   min-height: 44px;
 }
 
@@ -116,35 +124,78 @@ button, a, [role="button"] {
 /* ─── Boxi Mascot Animations ─── */
 
 @keyframes boxiBlink {
-  0%, 90%, 100% { transform: scaleY(1); }
-  93%           { transform: scaleY(0.05); }
+  0%,
+  90%,
+  100% {
+    transform: scaleY(1);
+  }
+  93% {
+    transform: scaleY(0.05);
+  }
 }
 
 @keyframes boxiBob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 @keyframes boxiHappy {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  20%      { transform: translateY(-12px) rotate(-3deg); }
-  50%      { transform: translateY(-16px) rotate(3deg); }
-  70%      { transform: translateY(-8px) rotate(-2deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-12px) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(3deg);
+  }
+  70% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
 }
 
 @keyframes boxiShake {
-  0%, 100% { transform: translateX(0); }
-  15%      { transform: translateX(-6px) rotate(-3deg); }
-  35%      { transform: translateX(6px) rotate(3deg); }
-  55%      { transform: translateX(-4px) rotate(-2deg); }
-  75%      { transform: translateX(4px) rotate(2deg); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-6px) rotate(-3deg);
+  }
+  35% {
+    transform: translateX(6px) rotate(3deg);
+  }
+  55% {
+    transform: translateX(-4px) rotate(-2deg);
+  }
+  75% {
+    transform: translateX(4px) rotate(2deg);
+  }
 }
 
 @keyframes boxiHeartPop {
-  0%   { opacity: 0; transform: translateY(0) scale(0.5); }
-  30%  { opacity: 1; transform: translateY(-12px) scale(1.1); }
-  70%  { opacity: 0.7; transform: translateY(-24px) scale(1); }
-  100% { opacity: 0; transform: translateY(-36px) scale(0.8); }
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-12px) scale(1.1);
+  }
+  70% {
+    opacity: 0.7;
+    transform: translateY(-24px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-36px) scale(0.8);
+  }
 }
 
 /* Utility animation classes (consumed by Mascot.tsx) */
@@ -171,12 +222,18 @@ button, a, [role="button"] {
   animation: scaleIn 0.2s ease-out both;
 }
 @keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.85); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* ─── Range Input Styling ─── */
-input[type="range"] {
+input[type='range'] {
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
@@ -184,13 +241,13 @@ input[type="range"] {
   height: 28px;
 }
 
-input[type="range"]::-webkit-slider-runnable-track {
+input[type='range']::-webkit-slider-runnable-track {
   height: 6px;
   border-radius: 999px;
   background: rgba(86, 135, 109, 0.12);
 }
 
-input[type="range"]::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 24px;
@@ -198,30 +255,38 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
   background: var(--color-pb-amber);
   margin-top: -9px;
-  box-shadow: 0 2px 8px rgba(255, 164, 44, 0.35), 0 0 0 3px rgba(255, 255, 255, 0.9);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow:
+    0 2px 8px rgba(255, 164, 44, 0.35),
+    0 0 0 3px rgba(255, 255, 255, 0.9);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
-input[type="range"]::-webkit-slider-thumb:hover {
+input[type='range']::-webkit-slider-thumb:hover {
   transform: scale(1.15);
 }
 
-input[type="range"]::-webkit-slider-thumb:active {
+input[type='range']::-webkit-slider-thumb:active {
   transform: scale(0.95);
-  box-shadow: 0 1px 4px rgba(255, 164, 44, 0.3), 0 0 0 3px rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 1px 4px rgba(255, 164, 44, 0.3),
+    0 0 0 3px rgba(255, 255, 255, 0.9);
 }
 
-input[type="range"]::-moz-range-track {
+input[type='range']::-moz-range-track {
   height: 6px;
   border-radius: 999px;
   background: rgba(86, 135, 109, 0.12);
 }
 
-input[type="range"]::-moz-range-thumb {
+input[type='range']::-moz-range-thumb {
   width: 24px;
   height: 24px;
   border-radius: 50%;
   border: none;
   background: var(--color-pb-amber);
-  box-shadow: 0 2px 8px rgba(255, 164, 44, 0.35), 0 0 0 3px rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 2px 8px rgba(255, 164, 44, 0.35),
+    0 0 0 3px rgba(255, 255, 255, 0.9);
 }

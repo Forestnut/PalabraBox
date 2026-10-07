@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { PageTransition } from '../components/layout/PageTransition'
 import { Mascot } from '../components/ui/Mascot'
 
@@ -40,7 +40,7 @@ export default function SplashScreen() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          {[0, 1, 2].map(i => (
+          {[0, 1, 2].map((i) => (
             <motion.div
               key={i}
               className="w-2 h-2 rounded-full bg-pb-amber"

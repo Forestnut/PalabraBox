@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { useEffect, useState, useId } from 'react'
 import { cn } from '../../utils/cn'
 
@@ -22,23 +22,23 @@ const sizeMap: Record<MascotSize, string> = {
 
 export function Mascot({ mood = 'idle', size = 'md', className, message }: MascotProps) {
   const [isBlinking, setIsBlinking] = useState(false)
-  
+
   // Interactive state - allows the mascot to dynamically react to user actions
   const [interactionMood, setInteractionMood] = useState<MascotMood | null>(null)
-  
+
   const uniqueId = useId()
   const safeUniqueId = uniqueId.replace(/:/g, '')
   const gId1 = `frontGrad-${safeUniqueId}`
   const gId2 = `rightGrad-${safeUniqueId}`
   const tapeId = `tapeGrad-${safeUniqueId}`
-  
+
   // Calculate active mood (interaction overrides the base prop)
   const currentMood = interactionMood || mood
   const isClosed = currentMood !== 'happy' && currentMood !== 'celebrate'
-  
+
   // Hide message if the mascot is woken up from sleeping
-  const currentMessage = (mood === 'sleeping' && currentMood !== 'sleeping') ? null : message
-  
+  const currentMessage = mood === 'sleeping' && currentMood !== 'sleeping' ? null : message
+
   // Blinking logic (only active when idle or happy)
   useEffect(() => {
     if (currentMood !== 'idle' && currentMood !== 'happy') {
@@ -51,16 +51,19 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
     let cancelled = false
 
     const scheduleBlink = () => {
-      blinkTimeout = setTimeout(() => {
-        if (cancelled) return
-        setIsBlinking(true)
-
-        resetTimeout = setTimeout(() => {
+      blinkTimeout = setTimeout(
+        () => {
           if (cancelled) return
-          setIsBlinking(false)
-          scheduleBlink()
-        }, 160)
-      }, Math.random() * 3000 + 2200)
+          setIsBlinking(true)
+
+          resetTimeout = setTimeout(() => {
+            if (cancelled) return
+            setIsBlinking(false)
+            scheduleBlink()
+          }, 160)
+        },
+        Math.random() * 3000 + 2200,
+      )
     }
 
     scheduleBlink()
@@ -74,33 +77,77 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
 
   // --- Animations Maps (DRY Pattern) ---
   const bodyAnimations = {
-    idle: { y: [0, -3, 0], scaleY: [1, 0.98, 1], scaleX: [1, 1.01, 1], transition: { repeat: Infinity, duration: 3, ease: "easeInOut" as const } },
-    happy: { y: [0, -15, 0], scaleY: [1, 1.08, 0.92, 1], transition: { repeat: 2, duration: 0.5, ease: "easeOut" as const } },
+    idle: {
+      y: [0, -3, 0],
+      scaleY: [1, 0.98, 1],
+      scaleX: [1, 1.01, 1],
+      transition: { repeat: Infinity, duration: 3, ease: 'easeInOut' as const },
+    },
+    happy: {
+      y: [0, -15, 0],
+      scaleY: [1, 1.08, 0.92, 1],
+      transition: { repeat: 2, duration: 0.5, ease: 'easeOut' as const },
+    },
     wrong: { x: [0, -8, 8, -8, 8, 0], transition: { duration: 0.4 } },
-    celebrate: { y: [0, -22, 0], scale: [1, 1.05, 0.95, 1], rotate: [0, -5, 5, 0], transition: { repeat: Infinity, duration: 0.7, ease: "easeInOut" as const } },
-    sad: { y: [0, 8, 0], scaleY: [1, 0.9, 1], scaleX: [1, 1.05, 1], transition: { repeat: 2, duration: 2, ease: "easeInOut" as const } },
-    sleeping: { y: [0, -3, 0], scaleY: [1, 1.03, 1], scaleX: [1, 1.02, 1], transition: { repeat: Infinity, duration: 3, ease: "easeInOut" as const } }
+    celebrate: {
+      y: [0, -22, 0],
+      scale: [1, 1.05, 0.95, 1],
+      rotate: [0, -5, 5, 0],
+      transition: { repeat: Infinity, duration: 0.7, ease: 'easeInOut' as const },
+    },
+    sad: {
+      y: [0, 8, 0],
+      scaleY: [1, 0.9, 1],
+      scaleX: [1, 1.05, 1],
+      transition: { repeat: 2, duration: 2, ease: 'easeInOut' as const },
+    },
+    sleeping: {
+      y: [0, -3, 0],
+      scaleY: [1, 1.03, 1],
+      scaleX: [1, 1.02, 1],
+      transition: { repeat: Infinity, duration: 3, ease: 'easeInOut' as const },
+    },
   }
 
   const shadowAnimations = {
-    idle: { scaleX: [1, 0.97, 1], opacity: [0.16, 0.13, 0.16], transition: { repeat: Infinity, duration: 3, ease: "easeInOut" as const } },
-    happy: { scaleX: [1, 0.78, 1], opacity: [0.16, 0.09, 0.16], transition: { repeat: 2, duration: 0.5, ease: "easeOut" as const } },
+    idle: {
+      scaleX: [1, 0.97, 1],
+      opacity: [0.16, 0.13, 0.16],
+      transition: { repeat: Infinity, duration: 3, ease: 'easeInOut' as const },
+    },
+    happy: {
+      scaleX: [1, 0.78, 1],
+      opacity: [0.16, 0.09, 0.16],
+      transition: { repeat: 2, duration: 0.5, ease: 'easeOut' as const },
+    },
     wrong: { x: [0, -4, 4, -4, 4, 0], transition: { duration: 0.4 } },
-    celebrate: { scaleX: [1, 0.72, 1], opacity: [0.16, 0.08, 0.16], transition: { repeat: Infinity, duration: 0.7, ease: "easeInOut" as const } },
-    sad: { scaleX: [1, 1.04, 1], opacity: [0.16, 0.18, 0.16], transition: { repeat: 2, duration: 2, ease: "easeInOut" as const } },
-    sleeping: { scaleX: [1, 0.98, 1], opacity: [0.16, 0.12, 0.16], transition: { repeat: Infinity, duration: 3, ease: "easeInOut" as const } }
+    celebrate: {
+      scaleX: [1, 0.72, 1],
+      opacity: [0.16, 0.08, 0.16],
+      transition: { repeat: Infinity, duration: 0.7, ease: 'easeInOut' as const },
+    },
+    sad: {
+      scaleX: [1, 1.04, 1],
+      opacity: [0.16, 0.18, 0.16],
+      transition: { repeat: 2, duration: 2, ease: 'easeInOut' as const },
+    },
+    sleeping: {
+      scaleX: [1, 0.98, 1],
+      opacity: [0.16, 0.12, 0.16],
+      transition: { repeat: Infinity, duration: 3, ease: 'easeInOut' as const },
+    },
   }
 
   // --- Flap Geometries ---
   const flapsPaths = {
-    backOpened: "M 120 40 L 40 40 L 35 68 L 115 68 Z", // Drops fully down behind the box
-    backClosed: "M 40 40 L 120 40 L 100 50 L 60 50 Z",
-    frontOpened: "M 20 60 L 100 60 L 92 83 L 12 83 Z", // Balanced drop, doesn't cover eyes
-    frontClosed: "M 20 60 L 100 60 L 80 50 L 40 50 Z",
-    leftOpened: "M 20 60 L 40 40 L 10 60 L -10 80 Z",
-    leftClosed: "M 20 60 L 40 40 L 80 40 L 60 60 Z",
-    rightOpened: "M 100 60 L 120 40 L 150 60 L 130 80 Z",
-    rightClosed: "M 100 60 L 120 40 L 80 40 L 60 60 Z",
+    backOpened: 'M 120 40 L 40 40 L 35 68 L 115 68 Z', // Drops fully down behind the box
+    backClosed: 'M 40 40 L 120 40 L 100 50 L 60 50 Z',
+    frontOpened: 'M 20 60 L 100 60 L 92 83 L 12 83 Z', // Balanced drop, doesn't cover eyes
+    frontClosed: 'M 20 60 L 100 60 L 80 50 L 40 50 Z',
+    leftOpened: 'M 20 60 L 40 40 L 10 60 L -10 80 Z',
+    leftClosed: 'M 20 60 L 40 40 L 80 40 L 60 60 Z',
+    rightOpened: 'M 100 60 L 120 40 L 150 60 L 130 80 Z',
+    rightClosed: 'M 100 60 L 120 40 L 80 40 L 60 60 Z',
   }
 
   // --- Interaction Handlers ---
@@ -112,7 +159,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
     } else if (mood === 'sad') {
       setInteractionMood('idle') // Cheer up slightly
     }
-    
+
     // Force a micro blink on interaction (unless going to sleep)
     if (mood !== 'sleeping') {
       setIsBlinking(true)
@@ -126,8 +173,11 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
   }
 
   return (
-    <div 
-      className={cn('relative inline-flex flex-col items-center justify-end select-none cursor-pointer', className)}
+    <div
+      className={cn(
+        'relative inline-flex flex-col items-center justify-end select-none cursor-pointer',
+        className,
+      )}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleMouseEnter}
@@ -148,7 +198,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
 
       {/* MASCOT BODY */}
       <motion.div
-        className={cn(sizeMap[size], "relative")}
+        className={cn(sizeMap[size], 'relative')}
         whileHover={{ y: -1, scale: 1.01 }}
         whileTap={{ scale: 0.98, y: 1 }}
       >
@@ -159,8 +209,8 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
           style={{ transformOrigin: '50% 50%' }}
         />
 
-        <motion.div 
-          animate={bodyAnimations[currentMood]} 
+        <motion.div
+          animate={bodyAnimations[currentMood]}
           className="relative z-10 h-full w-full"
           style={{ transformOrigin: '50% 100%' }}
         >
@@ -181,30 +231,58 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
             </defs>
 
             {/* BACKGROUND BACK FLAP (Drops behind the box for a 3D effect) */}
-            <motion.path 
+            <motion.path
               initial={false}
               d={isClosed ? flapsPaths.backClosed : flapsPaths.backOpened}
-              animate={{ 
+              animate={{
                 d: isClosed ? flapsPaths.backClosed : flapsPaths.backOpened,
-                opacity: isClosed ? 0 : 1 
+                opacity: isClosed ? 0 : 1,
               }}
-              fill="#D97706" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
-              transition={{ duration: 0.6, ease: "easeInOut" }}
+              fill="#D97706"
+              stroke="#4A1E00"
+              strokeWidth="5"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              transition={{ duration: 0.6, ease: 'easeInOut' }}
             />
 
             {/* BOX INSIDE & INNER SHADOW */}
-            <path d="M 20 60 L 100 60 L 120 40 L 40 40 Z" fill="#290F02" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" />
+            <path
+              d="M 20 60 L 100 60 L 120 40 L 40 40 Z"
+              fill="#290F02"
+              stroke="#4A1E00"
+              strokeWidth="5"
+              strokeLinejoin="round"
+            />
 
             {/* RIGHT FACE */}
-            <path d="M 100 60 L 120 40 L 120 110 L 100 130 Z" fill={`url(#${gId2})`} stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" />
+            <path
+              d="M 100 60 L 120 40 L 120 110 L 100 130 Z"
+              fill={`url(#${gId2})`}
+              stroke="#4A1E00"
+              strokeWidth="5"
+              strokeLinejoin="round"
+            />
 
             {/* FRONT FACE */}
-            <path d="M 20 60 L 100 60 L 100 130 L 20 130 Z" fill={`url(#${gId1})`} stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" />
-            <path d="M 24 64 L 96 64" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.25" fill="none" />
+            <path
+              d="M 20 60 L 100 60 L 100 130 L 20 130 Z"
+              fill={`url(#${gId1})`}
+              stroke="#4A1E00"
+              strokeWidth="5"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M 24 64 L 96 64"
+              stroke="white"
+              strokeWidth="3"
+              strokeLinecap="round"
+              opacity="0.25"
+              fill="none"
+            />
 
             {/* --- FACE ELEMENTS --- */}
             <g transform="translate(60, 95)">
-              
               {/* SWEAT DROP (Wrong / Sad) */}
               <AnimatePresence>
                 {(currentMood === 'wrong' || currentMood === 'sad') && (
@@ -212,10 +290,13 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
                     key="sweat-drop"
                     initial={{ opacity: 0, y: -20, x: 25, scale: 0 }}
                     animate={{ opacity: [0, 1, 0], y: [-20, 15, 25], scale: [0, 1.2, 1] }}
-                    transition={{ repeat: Infinity, duration: 1.2, ease: "easeIn" }}
+                    transition={{ repeat: Infinity, duration: 1.2, ease: 'easeIn' }}
                     exit={{ opacity: 0 }}
                   >
-                    <path d="M 0 0 C 0 0 -5 7 -5 10 C -5 13 0 15 0 15 C 0 15 5 13 5 10 C 5 7 0 0 0 0 Z" fill="#60A5FA" />
+                    <path
+                      d="M 0 0 C 0 0 -5 7 -5 10 C -5 13 0 15 0 15 C 0 15 5 13 5 10 C 5 7 0 0 0 0 Z"
+                      fill="#60A5FA"
+                    />
                   </motion.g>
                 )}
               </AnimatePresence>
@@ -230,26 +311,64 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
 
               {/* LEFT EYE */}
               {currentMood === 'happy' || currentMood === 'celebrate' ? (
-                <path d="M -25 -2 Q -15 -10 -5 -2" fill="none" stroke="#290F02" strokeWidth="6" strokeLinecap="round" />
+                <path
+                  d="M -25 -2 Q -15 -10 -5 -2"
+                  fill="none"
+                  stroke="#290F02"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                />
               ) : currentMood === 'wrong' || currentMood === 'sad' ? (
                 <path d="M -25 2 L -10 -4" stroke="#290F02" strokeWidth="6" strokeLinecap="round" />
               ) : currentMood === 'sleeping' ? (
-                <path d="M -25 0 Q -15 8 -5 0" fill="none" stroke="#290F02" strokeWidth="6" strokeLinecap="round" />
+                <path
+                  d="M -25 0 Q -15 8 -5 0"
+                  fill="none"
+                  stroke="#290F02"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                />
               ) : (
-                <motion.ellipse cx="-15" cy="0" rx="6" ry={isBlinking ? 0.5 : 8} fill="#290F02" transition={{ duration: 0.1 }} />
+                <motion.ellipse
+                  cx="-15"
+                  cy="0"
+                  rx="6"
+                  ry={isBlinking ? 0.5 : 8}
+                  fill="#290F02"
+                  transition={{ duration: 0.1 }}
+                />
               )}
 
               {/* RIGHT EYE */}
               {currentMood === 'happy' || currentMood === 'celebrate' ? (
-                <path d="M 5 -2 Q 15 -10 25 -2" fill="none" stroke="#290F02" strokeWidth="6" strokeLinecap="round" />
+                <path
+                  d="M 5 -2 Q 15 -10 25 -2"
+                  fill="none"
+                  stroke="#290F02"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                />
               ) : currentMood === 'wrong' ? (
                 <path d="M 25 2 L 10 -4" stroke="#290F02" strokeWidth="6" strokeLinecap="round" />
               ) : currentMood === 'sad' ? (
                 <path d="M 5 -4 L 20 2" stroke="#290F02" strokeWidth="6" strokeLinecap="round" />
               ) : currentMood === 'sleeping' ? (
-                <path d="M 5 0 Q 15 8 25 0" fill="none" stroke="#290F02" strokeWidth="6" strokeLinecap="round" />
+                <path
+                  d="M 5 0 Q 15 8 25 0"
+                  fill="none"
+                  stroke="#290F02"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                />
               ) : (
-                <motion.ellipse cx="15" cy="0" rx="6" ry={isBlinking ? 0.5 : 8} fill="#290F02" transition={{ duration: 0.1 }} />
+                <motion.ellipse
+                  cx="15"
+                  cy="0"
+                  rx="6"
+                  ry={isBlinking ? 0.5 : 8}
+                  fill="#290F02"
+                  transition={{ duration: 0.1 }}
+                />
               )}
 
               {/* EYE SHINE (Only for idle/awake) */}
@@ -262,55 +381,95 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
 
               {/* MOUTH */}
               {currentMood === 'happy' || currentMood === 'celebrate' ? (
-                <path d="M -8 10 Q 0 25 8 10 Z" fill="#290F02" stroke="#290F02" strokeWidth="4" strokeLinejoin="round" />
+                <path
+                  d="M -8 10 Q 0 25 8 10 Z"
+                  fill="#290F02"
+                  stroke="#290F02"
+                  strokeWidth="4"
+                  strokeLinejoin="round"
+                />
               ) : currentMood === 'wrong' ? (
-                <path d="M -8 15 Q 0 8 8 15" fill="none" stroke="#290F02" strokeWidth="6" strokeLinecap="round" />
+                <path
+                  d="M -8 15 Q 0 8 8 15"
+                  fill="none"
+                  stroke="#290F02"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                />
               ) : currentMood === 'sad' ? (
-                <path d="M -8 12 Q 0 5 8 12" fill="none" stroke="#290F02" strokeWidth="6" strokeLinecap="round" />
+                <path
+                  d="M -8 12 Q 0 5 8 12"
+                  fill="none"
+                  stroke="#290F02"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                />
               ) : currentMood === 'sleeping' ? (
                 <circle cx="0" cy="10" r="4" fill="#290F02" />
               ) : (
-                <path d="M -5 10 Q 0 13 5 10" fill="none" stroke="#290F02" strokeWidth="6" strokeLinecap="round" />
+                <path
+                  d="M -5 10 Q 0 13 5 10"
+                  fill="none"
+                  stroke="#290F02"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                />
               )}
             </g>
 
             {/* FOREGROUND BACK FLAP (Fades out when box is fully opened) */}
-            <motion.path 
+            <motion.path
               initial={false}
               d={isClosed ? flapsPaths.backClosed : flapsPaths.backOpened}
-              animate={{ 
+              animate={{
                 d: isClosed ? flapsPaths.backClosed : flapsPaths.backOpened,
-                opacity: isClosed ? 1 : 0 
+                opacity: isClosed ? 1 : 0,
               }}
-              fill="#FBBF24" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              fill="#FBBF24"
+              stroke="#4A1E00"
+              strokeWidth="5"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
             />
 
             {/* FRONT FLAP */}
-            <motion.path 
+            <motion.path
               initial={false}
               d={isClosed ? flapsPaths.frontClosed : flapsPaths.frontOpened}
               animate={{ d: isClosed ? flapsPaths.frontClosed : flapsPaths.frontOpened }}
-              fill="#FDBA74" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              fill="#FDBA74"
+              stroke="#4A1E00"
+              strokeWidth="5"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
             />
 
             {/* LEFT FLAP */}
-            <motion.path 
+            <motion.path
               initial={false}
               d={isClosed ? flapsPaths.leftClosed : flapsPaths.leftOpened}
               animate={{ d: isClosed ? flapsPaths.leftClosed : flapsPaths.leftOpened }}
-              fill="#FBBF24" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              fill="#FBBF24"
+              stroke="#4A1E00"
+              strokeWidth="5"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
             />
 
             {/* RIGHT FLAP */}
-            <motion.path 
+            <motion.path
               initial={false}
               d={isClosed ? flapsPaths.rightClosed : flapsPaths.rightOpened}
               animate={{ d: isClosed ? flapsPaths.rightClosed : flapsPaths.rightOpened }}
-              fill="#F59E0B" stroke="#4A1E00" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round"
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              fill="#F59E0B"
+              stroke="#4A1E00"
+              strokeWidth="5"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
             />
 
             {/* --- PACKING TAPE --- */}
@@ -321,11 +480,7 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
             */}
             <AnimatePresence>
               {isClosed && (
-                <motion.g
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
+                <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                   <path
                     d="M 76 40 L 84 40 L 64 60 L 64 73 L 62 70 L 60 73 L 58 70 L 56 73 L 56 60 Z"
                     fill={`url(#${tapeId})`}
@@ -341,12 +496,18 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
                 {[0, 1, 2].map((z) => (
                   <motion.text
                     key={`z-${z}`}
-                    x="100" y="30"
+                    x="100"
+                    y="30"
                     fontSize="24"
                     fontWeight="900"
                     fill="#60A5FA"
                     initial={{ opacity: 0, y: 30, x: 80, scale: 0.5 }}
-                    animate={{ opacity: [0, 1, 0], y: -10 - (z * 15), x: 100 + (z * 10), scale: [0.5, 1.5, 2] }}
+                    animate={{
+                      opacity: [0, 1, 0],
+                      y: -10 - z * 15,
+                      x: 100 + z * 10,
+                      scale: [0.5, 1.5, 2],
+                    }}
                     transition={{ repeat: Infinity, duration: 2.5, delay: z * 0.8 }}
                   >
                     z
@@ -359,40 +520,47 @@ export function Mascot({ mood = 'idle', size = 'md', className, message }: Masco
             {currentMood === 'celebrate' && (
               <g key="confetti-effect">
                 {[
-                  { c: '#EF4444' }, { c: '#3B82F6' },
-                  { c: '#10B981' }, { c: '#F59E0B' },
-                  { c: '#8B5CF6' }, { c: '#EC4899' }
+                  { c: '#EF4444' },
+                  { c: '#3B82F6' },
+                  { c: '#10B981' },
+                  { c: '#F59E0B' },
+                  { c: '#8B5CF6' },
+                  { c: '#EC4899' },
                 ].map((conf, i) => {
-                  const startX = 60 + ((i * 13) % 20 - 10);
-                  const startY = 55;
-                  const peakY = startY - 40 - ((i * 7) % 20);
-                  const endY = startY + 60;
-                  const endX = startX + ((i % 2 ? -1 : 1) * (15 + ((i * 11) % 20)));
+                  const startX = 60 + (((i * 13) % 20) - 10)
+                  const startY = 55
+                  const peakY = startY - 40 - ((i * 7) % 20)
+                  const endY = startY + 60
+                  const endX = startX + (i % 2 ? -1 : 1) * (15 + ((i * 11) % 20))
 
                   return (
                     <motion.rect
                       key={`c-${i}`}
-                      x="0" y="0" width="8" height="8" fill={conf.c} rx="2"
+                      x="0"
+                      y="0"
+                      width="8"
+                      height="8"
+                      fill={conf.c}
+                      rx="2"
                       initial={{ x: startX, y: startY, scale: 0, opacity: 0 }}
-                      animate={{ 
+                      animate={{
                         y: [startY, peakY, endY],
                         x: [startX, startX + (endX - startX) * 0.5, endX],
                         rotate: [0, 180, 720],
                         scale: [0, 1.2, 0.8, 0],
-                        opacity: [0, 1, 1, 0]
+                        opacity: [0, 1, 1, 0],
                       }}
-                      transition={{ 
-                        duration: 1.5 + (i % 3) * 0.2, 
-                        ease: "easeOut", 
-                        repeat: Infinity, 
-                        delay: 0.3 + i * 0.1 
+                      transition={{
+                        duration: 1.5 + (i % 3) * 0.2,
+                        ease: 'easeOut',
+                        repeat: Infinity,
+                        delay: 0.3 + i * 0.1,
                       }}
                     />
-                  );
+                  )
                 })}
               </g>
             )}
-
           </svg>
         </motion.div>
       </motion.div>

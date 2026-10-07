@@ -1,137 +1,204 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#ffa42e",
-                        "background-light": "#f8f7f5",
-                        "background-dark": "#231a0f",
-                        "success": "#4CAF50",
-                    },
-                    fontFamily: {
-                        "display": ["Plus Jakarta Sans"],
-                        "nunito": ["Nunito", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.5rem",
-                        "lg": "1rem",
-                        "xl": "1.5rem",
-                        "full": "9999px"
-                    },
-                },
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Nunito:wght@400;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#ffa42e',
+              'background-light': '#f8f7f5',
+              'background-dark': '#231a0f',
+              success: '#4CAF50',
             },
-        }
+            fontFamily: {
+              display: ['Plus Jakarta Sans'],
+              nunito: ['Nunito', 'sans-serif'],
+            },
+            borderRadius: {
+              DEFAULT: '0.5rem',
+              lg: '1rem',
+              xl: '1.5rem',
+              full: '9999px',
+            },
+          },
+        },
+      }
     </script>
-<style>
-        body {
-            font-family: 'Nunito', sans-serif;
-        }
-        .boxy-shadow {
-            box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.1);
-        }
-        .boxy-shadow-active {
-            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
-            transform: translateY(2px);
-        }
+    <style>
+      body {
+        font-family: 'Nunito', sans-serif;
+      }
+      .boxy-shadow {
+        box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.1);
+      }
+      .boxy-shadow-active {
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+        transform: translateY(2px);
+      }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
   </head>
-<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col">
-<!-- Top Navigation Bar -->
-<header class="w-full max-w-md mx-auto px-4 py-4 flex items-center justify-between bg-background-light dark:bg-background-dark">
-<button class="text-slate-900 dark:text-slate-100 flex items-center justify-center p-2 rounded-lg hover:bg-primary/10 transition-colors">
-<span class="material-symbols-outlined">close</span>
-</button>
-<h1 class="font-nunito font-800 text-xl text-slate-900 dark:text-slate-100 tracking-tight">PalabraBox</h1>
-<div class="flex items-center gap-3">
-<div class="flex items-center gap-1 bg-white dark:bg-slate-800 px-3 py-1 rounded-full border-2 border-slate-100 dark:border-slate-700 shadow-sm">
-<span class="text-red-500 material-symbols-outlined text-xl fill-current" style="font-variation-settings: 'FILL' 1">favorite</span>
-<span class="font-bold text-slate-700 dark:text-slate-200">3</span>
-</div>
-<div class="flex items-center gap-1 bg-white dark:bg-slate-800 px-3 py-1 rounded-full border-2 border-slate-100 dark:border-slate-700 shadow-sm">
-<span class="text-primary material-symbols-outlined text-xl fill-current" style="font-variation-settings: 'FILL' 1">emoji_events</span>
-<span class="font-bold text-slate-700 dark:text-slate-200">30</span>
-</div>
-</div>
-</header>
-<!-- Progress Section -->
-<div class="w-full max-w-md mx-auto px-6 py-2">
-<div class="flex items-center gap-4">
-<div class="flex-1 h-4 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden p-1">
-<div class="h-full bg-primary rounded-full" style="width: 40%;"></div>
-</div>
-<span class="font-nunito font-bold text-slate-500 dark:text-slate-400 text-sm">4/10</span>
-</div>
-</div>
-<!-- Main Question Area -->
-<main class="flex-1 w-full max-w-md mx-auto px-6 flex flex-col justify-center py-8">
-<div class="text-center mb-10">
-<p class="text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest text-xs mb-3">TRADUCE ESTA PALABRA</p>
-<h2 class="font-nunito font-800 text-3xl text-slate-900 dark:text-slate-100 leading-tight">
-                ¿Cómo se dice <span class="text-primary">'rojo'</span> en inglés?
-            </h2>
-</div>
-<!-- Answer Options -->
-<div class="grid grid-cols-1 gap-4">
-<!-- Option 1: Blue -->
-<button class="flex items-center justify-between p-4 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl boxy-shadow hover:border-primary/50 transition-all group">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 font-bold text-slate-500 dark:text-slate-400 group-hover:text-primary">1</div>
-<span class="font-nunito font-bold text-lg text-slate-700 dark:text-slate-200">blue</span>
-</div>
-</button>
-<!-- Option 2: Red (Correct/Selected) -->
-<button class="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 border-2 border-success rounded-xl boxy-shadow-active relative">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 flex items-center justify-center rounded-lg bg-success text-white font-bold">2</div>
-<span class="font-nunito font-extrabold text-lg text-success">red</span>
-</div>
-<div class="flex items-center justify-center bg-success text-white rounded-full p-1">
-<span class="material-symbols-outlined text-lg">check</span>
-</div>
-</button>
-<!-- Option 3: Green -->
-<button class="flex items-center justify-between p-4 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl boxy-shadow hover:border-primary/50 transition-all group">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 font-bold text-slate-500 dark:text-slate-400 group-hover:text-primary">3</div>
-<span class="font-nunito font-bold text-lg text-slate-700 dark:text-slate-200">green</span>
-</div>
-</button>
-<!-- Option 4: Yellow -->
-<button class="flex items-center justify-between p-4 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl boxy-shadow hover:border-primary/50 transition-all group">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 font-bold text-slate-500 dark:text-slate-400 group-hover:text-primary">4</div>
-<span class="font-nunito font-bold text-lg text-slate-700 dark:text-slate-200">yellow</span>
-</div>
-</button>
-</div>
-</main>
-<!-- Bottom Action Bar -->
-<footer class="w-full max-w-md mx-auto p-6 bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700">
-<div class="flex flex-col gap-4">
-<div class="flex items-center justify-between mb-2">
-<div class="flex items-center gap-2 text-success">
-<span class="material-symbols-outlined fill-current">check_circle</span>
-<span class="font-nunito font-800 text-lg">¡Excelente trabajo!</span>
-</div>
-</div>
-<button class="w-full py-4 bg-primary hover:bg-primary/90 text-white font-nunito font-800 text-lg rounded-xl boxy-shadow uppercase tracking-wider transition-all active:translate-y-1 active:shadow-none">
-                Continuar
-            </button>
-</div>
-</footer>
-</body></html>
+  <body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col">
+    <!-- Top Navigation Bar -->
+    <header
+      class="w-full max-w-md mx-auto px-4 py-4 flex items-center justify-between bg-background-light dark:bg-background-dark"
+    >
+      <button
+        class="text-slate-900 dark:text-slate-100 flex items-center justify-center p-2 rounded-lg hover:bg-primary/10 transition-colors"
+      >
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <h1 class="font-nunito font-800 text-xl text-slate-900 dark:text-slate-100 tracking-tight">
+        PalabraBox
+      </h1>
+      <div class="flex items-center gap-3">
+        <div
+          class="flex items-center gap-1 bg-white dark:bg-slate-800 px-3 py-1 rounded-full border-2 border-slate-100 dark:border-slate-700 shadow-sm"
+        >
+          <span
+            class="text-red-500 material-symbols-outlined text-xl fill-current"
+            style="font-variation-settings: 'FILL' 1"
+            >favorite</span
+          >
+          <span class="font-bold text-slate-700 dark:text-slate-200">3</span>
+        </div>
+        <div
+          class="flex items-center gap-1 bg-white dark:bg-slate-800 px-3 py-1 rounded-full border-2 border-slate-100 dark:border-slate-700 shadow-sm"
+        >
+          <span
+            class="text-primary material-symbols-outlined text-xl fill-current"
+            style="font-variation-settings: 'FILL' 1"
+            >emoji_events</span
+          >
+          <span class="font-bold text-slate-700 dark:text-slate-200">30</span>
+        </div>
+      </div>
+    </header>
+    <!-- Progress Section -->
+    <div class="w-full max-w-md mx-auto px-6 py-2">
+      <div class="flex items-center gap-4">
+        <div class="flex-1 h-4 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden p-1">
+          <div class="h-full bg-primary rounded-full" style="width: 40%"></div>
+        </div>
+        <span class="font-nunito font-bold text-slate-500 dark:text-slate-400 text-sm">4/10</span>
+      </div>
+    </div>
+    <!-- Main Question Area -->
+    <main class="flex-1 w-full max-w-md mx-auto px-6 flex flex-col justify-center py-8">
+      <div class="text-center mb-10">
+        <p
+          class="text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest text-xs mb-3"
+        >
+          TRADUCE ESTA PALABRA
+        </p>
+        <h2 class="font-nunito font-800 text-3xl text-slate-900 dark:text-slate-100 leading-tight">
+          ¿Cómo se dice <span class="text-primary">'rojo'</span> en inglés?
+        </h2>
+      </div>
+      <!-- Answer Options -->
+      <div class="grid grid-cols-1 gap-4">
+        <!-- Option 1: Blue -->
+        <button
+          class="flex items-center justify-between p-4 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl boxy-shadow hover:border-primary/50 transition-all group"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 font-bold text-slate-500 dark:text-slate-400 group-hover:text-primary"
+            >
+              1
+            </div>
+            <span class="font-nunito font-bold text-lg text-slate-700 dark:text-slate-200"
+              >blue</span
+            >
+          </div>
+        </button>
+        <!-- Option 2: Red (Correct/Selected) -->
+        <button
+          class="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 border-2 border-success rounded-xl boxy-shadow-active relative"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="w-10 h-10 flex items-center justify-center rounded-lg bg-success text-white font-bold"
+            >
+              2
+            </div>
+            <span class="font-nunito font-extrabold text-lg text-success">red</span>
+          </div>
+          <div class="flex items-center justify-center bg-success text-white rounded-full p-1">
+            <span class="material-symbols-outlined text-lg">check</span>
+          </div>
+        </button>
+        <!-- Option 3: Green -->
+        <button
+          class="flex items-center justify-between p-4 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl boxy-shadow hover:border-primary/50 transition-all group"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 font-bold text-slate-500 dark:text-slate-400 group-hover:text-primary"
+            >
+              3
+            </div>
+            <span class="font-nunito font-bold text-lg text-slate-700 dark:text-slate-200"
+              >green</span
+            >
+          </div>
+        </button>
+        <!-- Option 4: Yellow -->
+        <button
+          class="flex items-center justify-between p-4 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl boxy-shadow hover:border-primary/50 transition-all group"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 font-bold text-slate-500 dark:text-slate-400 group-hover:text-primary"
+            >
+              4
+            </div>
+            <span class="font-nunito font-bold text-lg text-slate-700 dark:text-slate-200"
+              >yellow</span
+            >
+          </div>
+        </button>
+      </div>
+    </main>
+    <!-- Bottom Action Bar -->
+    <footer
+      class="w-full max-w-md mx-auto p-6 bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700"
+    >
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2 text-success">
+            <span class="material-symbols-outlined fill-current">check_circle</span>
+            <span class="font-nunito font-800 text-lg">¡Excelente trabajo!</span>
+          </div>
+        </div>
+        <button
+          class="w-full py-4 bg-primary hover:bg-primary/90 text-white font-nunito font-800 text-lg rounded-xl boxy-shadow uppercase tracking-wider transition-all active:translate-y-1 active:shadow-none"
+        >
+          Continuar
+        </button>
+      </div>
+    </footer>
+  </body>
+</html>

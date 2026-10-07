@@ -1,104 +1,113 @@
 <div align="center">
-  <img src="public/PalabraBoxHappy.png" alt="PalabraBox Logo" width="150" height="auto" />
-  <h1>📦 PalabraBox</h1>
-  <p><em>Learn English by Playing!</em></p>
-  <p><strong>Created by the PalabraBox Team</strong></p>
-  <p>
-    <a href="https://palabrabox.vercel.app"><strong>Play Live on Vercel »</strong></a>
-  </p>
+
+<img src="public/favicon.svg" alt="PalabraBox logo" width="110" height="110" />
+
+# 📦 PalabraBox
+
+**Free, Duolingo-style web app for Spanish speakers learning English.**
+
+Flashcards, quizzes and mini-games with a friendly mascot — installable as a PWA, 100% free tier.
+
+[![CI](https://github.com/Forestnut/PalabraBox/actions/workflows/ci.yml/badge.svg)](https://github.com/Forestnut/PalabraBox/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-04724D.svg)](LICENSE)
+
+**[▶ Play live](https://palabrabox.vercel.app)**
+
 </div>
 
 ---
 
-**PalabraBox** is an interactive web game designed for learners aged **6–15 years old**. With a beautiful, Duolingo-inspired "box/cardboard" UI, it teaches English and Spanish vocabulary through interactive minigames, flashcards, and quizzes.
+## ✨ Features
 
-## 🌟 Key Features
+- 🎮 **Progressive scenarios** — thematic modules in two levels (beginner / intermediate), unlocked by earning stars
+- ❓ **5 exercise types** — multiple choice, image match (emoji), listening (TTS), fill in the blank, sentence ordering (drag & drop)
+- 🃏 **Flashcards mode** — 3D-flip deck with text-to-speech on both sides, personalized towards your weakest words
+- ❤️ **Game mechanics** — lives, score, stars, daily streak, XP levels
+- 🦁 **Boxi the mascot** — reacts to your answers and streaks
+- 📱 **Offline-ready PWA** — install from the browser, practice without a network
 
-*   **Offline-Ready PWA:** Install PalabraBox on your phone directly from the browser! It caches words and assets so you can practice vocabulary without an internet connection.
-*   **Progressive Scenarios:** 12 thematic modules across 2 difficulty levels (Beginner, Intermediate).
-*   **Interactive Exercises:** 
-    *   *Multiple Choice*
-    *   *Image Match*
-    *   *Listening* (Uses built-in Text-to-Speech)
-    *   *Fill in the Blank*
-    *   *Sentence Ordering* (Drag and Drop)
-*   **Game Mechanics:** Earn points, 3 lives system, and collect up to 3 stars per scenario. Statistics are securely saved locally.
-*   **Flashcards Mode:** A responsive 3D-flip deck to study your worst-performing words or browse by category.
+The UI is in Spanish by design; the learning direction is **Spanish → English** (more languages planned: see `docs/`).
 
----
+## 🛠 Tech stack
 
-## 📱 How to Play & Install (PWA)
+| Layer       | Choice                    |
+| ----------- | ------------------------- |
+| Framework   | React 19 + TypeScript     |
+| Build       | Vite                      |
+| Styling     | Tailwind CSS 4            |
+| State       | Zustand (persisted)       |
+| Animation   | Motion (Framer Motion)    |
+| Drag & drop | dnd-kit                   |
+| Backend     | Supabase (Postgres + RLS) |
+| Hosting     | Vercel (Hobby)            |
 
-PalabraBox is a **Progressive Web App (PWA)**, meaning you don't need an App Store to install it!
+Everything runs on **free tiers only**.
 
-**On iOS (Safari):**
-1. Navigate to [palabrabox.vercel.app](https://palabrabox.vercel.app).
-2. Tap the **Share** button (the square with an arrow pointing up) at the bottom.
-3. Scroll down and tap **"Add to Home Screen"**.
-4. The game will now behave like a native iOS app, running fullscreen and completely smooth.
+## 🚀 Quick start
 
-**On Android / Chrome (Mobile & Desktop):**
-1. Navigate to the website.
-2. An **"Install App"** prompt should appear automatically at the bottom, or you can find the "Add to Home screen" option in the browser menu (three dots).
-3. Confirm installation. The app will be available in your app drawer.
+Prerequisites: **Node.js ≥ 22** and a free [Supabase](https://supabase.com) project.
 
-**Offline Mode:** Once loaded at least once, your scenarios and vocabulary are cached. You can open the app in airplane mode and study flashcards anywhere!
-
----
-
-## 🛠 For Developers 
-
-Want to run PalabraBox locally, modify the UI, or add new languages? Here's how:
-
-### 1. Prerequisites
-*   [Node.js](https://nodejs.org/) (v18.x or newer)
-*   A [Supabase](https://supabase.com) account (for database syncing) or you can run mock data.
-
-### 2. Local Setup
 ```bash
-# Clone the repository
-git clone https://github.com/your-org/palabrabox.git
-cd palabrabox
-
-# Install strict dependencies
+git clone https://github.com/Forestnut/PalabraBox.git
+cd PalabraBox
 npm install
 
-# Create environment variables (Reach out to admins for keys)
-echo "VITE_SUPABASE_URL=your_project_url" > .env.local
-echo "VITE_SUPABASE_ANON_KEY=your_anon_key" >> .env.local
+# Configure environment (values from Supabase Dashboard → Settings → API)
+cp .env.example .env.local
+#   VITE_SUPABASE_URL=https://<project-ref>.supabase.co
+#   VITE_SUPABASE_ANON_KEY=sb_publishable_...
 
-# Start the dev server
-npm run dev
+npm run dev        # → http://localhost:5173
 ```
 
-### 3. Build & Production
-To build the optimized application locally:
-```bash
-npm run build
-npm run preview # Test the built version locally
+### Scripts
+
+| Command              | Description                     |
+| -------------------- | ------------------------------- |
+| `npm run dev`        | Dev server                      |
+| `npm run build`      | Type-check + production build   |
+| `npm run preview`    | Preview the production build    |
+| `npm run lint`       | ESLint                          |
+| `npm run typecheck`  | TypeScript project check        |
+| `npm run test`       | Unit tests (Vitest, single run) |
+| `npm run test:watch` | Unit tests in watch mode        |
+
+## 🗄 Database
+
+Schema and content live in SQL migrations under `supabase/migrations/` (applied with the Supabase CLI — see [docs/DATABASE.md](docs/DATABASE.md) for the schema, RLS policies and the content-generation workflow).
+
+## 📂 Project structure
+
+```
+src/
+  components/   # UI building blocks (questions, cards, layout, ui)
+  pages/        # route-level screens
+  hooks/        # data-fetching & app logic (useGame, useScenarios, useWords…)
+  store/        # Zustand stores (game, progress, settings)
+  services/     # integrations (Supabase, speech/TTS, audio, analytics)
+  types/        # TypeScript types (generated from DB schema where possible)
+supabase/
+  migrations/   # versioned SQL migrations
+scripts/        # tooling (content generation from content_blocks JSON)
+docs/           # documentation hub (see docs/PLAN.md for current work)
+designs/        # original HTML design mockups (reference only)
 ```
 
-*Note: The project includes a `vercel.json` meaning push-to-main automatically deploys to Vercel perfectly routing the Single Page Application (SPA).*
+## 📖 Documentation
 
-### 4. Technical Architecture
-*   **Core:** React 19 + TypeScript, Vite 7
-*   **Styling:** Tailwind CSS 4 with custom `Box shadow` UI patterns.
-*   **State:** Zustand (persisted where needed).
-*   **Animations:** Framer Motion (@12).
-*   **Drag & Drop:** `@dnd-kit/core` with touch-sensors for mobile safety.
-*   **Backend:** Supabase (fetching scenarios via simple queries, cached locally).
+- [AUDIT.md](docs/AUDIT.md) — full project audit (2026-10), the starting point for the current refactor
+- [PLAN.md](docs/PLAN.md) — work plan with task status
+- [ARCHITECTURE.md](docs/ARCHITECTURE.md) · [DATABASE.md](docs/DATABASE.md) · [SETUP.md](docs/SETUP.md)
+- [adr/](docs/adr/) — architecture decision records
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). PRs welcome — `main` is protected, work happens in feature branches.
+
+## 📄 License
+
+[MIT](LICENSE) · © 2026 Jakub Laskowski & Błażej Goliszek
 
 ---
 
-## 📂 Documentation Hub
-
-Check out the `docs/` folder for in-depth architecture:
-- [TASKS.md](./docs/TASKS.md) - History of development & schedule
-- [ARCHITECTURE.md](./docs/ARCHITECTURE.md) - Deep dive into routing & hooks
-- [GAME_MECHANICS.md](./docs/GAME_MECHANICS.md) - How scoring and hearts are calculated
-- [DATABASE.md](./docs/DATABASE.md) - Supabase schema and RLS policies
-- [PRODUCTION_RECOVERY.md](./docs/PRODUCTION_RECOVERY.md) - Step-by-step production recovery and deploy workflow for Supabase + Vercel
-
----
-
-<p align="center">Made with ❤️ in Málaga | 2026</p>
+<p align="center">Made with ❤️ during an Erasmus internship in Málaga</p>

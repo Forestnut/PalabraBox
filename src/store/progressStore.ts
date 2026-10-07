@@ -19,11 +19,11 @@ export interface ProgressState {
   points: number
   /** Standardized ISO date string of last activity */
   lastActiveDate: string | null
-  
-  /** 
+
+  /**
    * Compares the current date with lastActiveDate.
    * If gap is exactly 1 day, increments streak.
-   * If gap > 1 day, resets streak to 1. 
+   * If gap > 1 day, resets streak to 1.
    */
   updateStreak: () => void
   /**
@@ -34,7 +34,7 @@ export interface ProgressState {
   /**
    * Enforces strict syncing of scenario counts across the whole application.
    * This is generally called by the useScenarios hook using truthy data from DB + stars.
-   * @param completedCount - Number of scenarios completed 
+   * @param completedCount - Number of scenarios completed
    * @param totalCount - Total numbers in the active category
    */
   updateCompletedTotal: (completedCount: number, totalCount: number) => void
@@ -42,7 +42,7 @@ export interface ProgressState {
   getLevel: () => number
   /** Gets the percentage progress (0-100) towards the next level */
   getLevelProgress: () => number
-  
+
   ownedStars: number
   possibleStars: number
   updateStars: (owned: number, possible: number) => void
@@ -106,11 +106,11 @@ export const useProgressStore = create<ProgressState>()(
       },
 
       getLevelProgress: () => {
-        return (get().points % 100)
-      }
+        return get().points % 100
+      },
     }),
     {
       name: 'palabrabox-progress-storage', // unique name
-    }
-  )
+    },
+  ),
 )

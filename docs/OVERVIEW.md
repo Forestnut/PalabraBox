@@ -14,17 +14,17 @@ The entire user interface is in **Spanish** (with i18n prepared for future trans
 
 The box/cardboard metaphor runs through the entire application:
 
-| Element | Box Metaphor |
-| --- | --- |
-| **Logo** | Stylized open box 📦 with "PB" emerging from it |
-| **Scenario tiles** | Look like 3D cardboard boxes (with shadow depth) |
-| **Locked scenario** | Closed box with lock 🔒 |
-| **Unlocked scenario** | Closed box ready to open |
-| **Completed scenario** | Open box with stars ⭐ on top |
-| **Answer cards** | Small rounded "box" tiles |
-| **Flashcards** | Cards that flip like pulling a word from a box |
-| **Results screen** | "¡Has abierto la caja del conocimiento!" |
-| **Confetti animation** | Stars/confetti flying out from an opening box |
+| Element                | Box Metaphor                                     |
+| ---------------------- | ------------------------------------------------ |
+| **Logo**               | Stylized open box 📦 with "PB" emerging from it  |
+| **Scenario tiles**     | Look like 3D cardboard boxes (with shadow depth) |
+| **Locked scenario**    | Closed box with lock 🔒                          |
+| **Unlocked scenario**  | Closed box ready to open                         |
+| **Completed scenario** | Open box with stars ⭐ on top                    |
+| **Answer cards**       | Small rounded "box" tiles                        |
+| **Flashcards**         | Cards that flip like pulling a word from a box   |
+| **Results screen**     | "¡Has abierto la caja del conocimiento!"         |
+| **Confetti animation** | Stars/confetti flying out from an opening box    |
 
 ### Mascot — "Boxi"
 
@@ -36,13 +36,13 @@ A friendly, simple cardboard box character (inspired by Duolingo's owl but as a 
 
 ## Target Audience
 
-| Feature | Younger (6–10 years) | Older (11–15 years) |
-| --- | --- | --- |
-| **Level** | Principiante (A1) | Intermedio (A2–B1) |
-| **Question types** | Images, quiz, listening | Sentences, fill-blanks, word ordering |
-| **Topics** | Colors, animals, food, numbers | Travel, shopping, real situations |
-| **Complexity** | Single words, simple phrases | Full sentences, short dialogues |
-| **UI** | Bigger buttons, more emoji | Smaller elements, more text |
+| Feature            | Younger (6–10 years)           | Older (11–15 years)                   |
+| ------------------ | ------------------------------ | ------------------------------------- |
+| **Level**          | Principiante (A1)              | Intermedio (A2–B1)                    |
+| **Question types** | Images, quiz, listening        | Sentences, fill-blanks, word ordering |
+| **Topics**         | Colors, animals, food, numbers | Travel, shopping, real situations     |
+| **Complexity**     | Single words, simple phrases   | Full sentences, short dialogues       |
+| **UI**             | Bigger buttons, more emoji     | Smaller elements, more text           |
 
 ## User Flow
 
@@ -70,21 +70,21 @@ Main Menu → Tarjetas → Select Language → Select Level → Select Scenario 
 
 ## Team
 
-| Person | Role | Skills |
-| --- | --- | --- |
-| **Core Team** | Game engine, Backend, Data | Fullstack |
+| Person           | Role                          | Skills    |
+| ---------------- | ----------------------------- | --------- |
+| **Core Team**    | Game engine, Backend, Data    | Fullstack |
 | **Product Team** | UI/UX, Components, Animations | Fullstack |
 
 Both work together on: testing, deployment, README, demo preparation.
 
 ## Timeline
 
-| Milestone | Date | Days |
-| --- | --- | --- |
-| **Project start** | March 17, 2026 | Day 1 |
-| **MVP ready** | March 23, 2026 | Day 7 |
-| **Polish & testing** | March 24–25 | Days 8–9 |
-| **Deploy & presentation** | March 26, 2026 | Day 10 |
+| Milestone                 | Date           | Days     |
+| ------------------------- | -------------- | -------- |
+| **Project start**         | March 17, 2026 | Day 1    |
+| **MVP ready**             | March 23, 2026 | Day 7    |
+| **Polish & testing**      | March 24–25    | Days 8–9 |
+| **Deploy & presentation** | March 26, 2026 | Day 10   |
 
 ## Context
 

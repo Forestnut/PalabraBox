@@ -2,17 +2,17 @@
 
 ## Screen List
 
-| # | Screen | Route | Description |
-| --- | --- | --- | --- |
-| 1 | Splash Screen | `/` | Logo animation, auto-redirect |
-| 2 | Main Menu | `/menu` | Play, Cards, Settings |
-| 3 | Language Select | `/select-language` | English or Spanish |
-| 4 | Level Select | `/select-level` | Principiante or Intermedio |
-| 5 | Scenario Select | `/scenarios` | Grid of scenarios with locks/stars |
-| 6 | Game Screen | `/game/:scenarioId` | Main gameplay (10 questions) |
-| 7 | Results Screen | `/results` | Score, stars, next steps |
-| 8 | Flashcard Deck | `/cards/:scenarioId` | Card viewer with flip |
-| 9 | Settings | `/settings` | Sound, TTS, app info |
+| #   | Screen          | Route                | Description                        |
+| --- | --------------- | -------------------- | ---------------------------------- |
+| 1   | Splash Screen   | `/`                  | Logo animation, auto-redirect      |
+| 2   | Main Menu       | `/menu`              | Play, Cards, Settings              |
+| 3   | Language Select | `/select-language`   | English or Spanish                 |
+| 4   | Level Select    | `/select-level`      | Principiante or Intermedio         |
+| 5   | Scenario Select | `/scenarios`         | Grid of scenarios with locks/stars |
+| 6   | Game Screen     | `/game/:scenarioId`  | Main gameplay (10 questions)       |
+| 7   | Results Screen  | `/results`           | Score, stars, next steps           |
+| 8   | Flashcard Deck  | `/cards/:scenarioId` | Card viewer with flip              |
+| 9   | Settings        | `/settings`          | Sound, TTS, app info               |
 
 ---
 

@@ -8,11 +8,17 @@ export default defineConfig({
     chunkSizeWarningLimit: 900,
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom', 'react-router-dom'],
-          animation: ['framer-motion'],
-          dnd: ['@dnd-kit/core', '@dnd-kit/sortable', '@dnd-kit/utilities'],
-          supabase: ['@supabase/supabase-js'],
+        // Vite 8 uses Rolldown — object-form manualChunks is no longer available.
+        advancedChunks: {
+          groups: [
+            {
+              name: 'react',
+              test: /[\\/]node_modules[\\/](react|react-dom|react-router|scheduler)[\\/]/,
+            },
+            { name: 'animation', test: /[\\/]node_modules[\\/]motion[\\/]/ },
+            { name: 'dnd', test: /[\\/]node_modules[\\/]@dnd-kit[\\/]/ },
+            { name: 'supabase', test: /[\\/]node_modules[\\/](@supabase)[\\/]/ },
+          ],
         },
       },
     },
@@ -58,12 +64,12 @@ export default defineConfig({
               cacheName: 'google-fonts-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // <== 365 days
+                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
               },
               cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
+                statuses: [0, 200],
+              },
+            },
           },
           {
             urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
@@ -72,12 +78,12 @@ export default defineConfig({
               cacheName: 'gstatic-fonts-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // <== 365 days
+                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
               },
               cacheableResponse: {
-                statuses: [0, 200]
+                statuses: [0, 200],
               },
-            }
+            },
           },
           {
             urlPattern: /^https:\/\/.*\.supabase\.co\/rest\/v1\/(words|scenarios|questions).*/i,

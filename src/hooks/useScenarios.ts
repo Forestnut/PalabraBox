@@ -34,7 +34,6 @@ const categoryEmojiMap: Record<string, string> = {
   time: '⏳',
   numbers: '🔢',
   basics: '🎓',
-
 }
 
 const idEmojiMap: Record<string, string> = {
@@ -67,7 +66,7 @@ const idEmojiMap: Record<string, string> = {
   '862f54f8-4b7c-35e6-f6ab-34ef09d005d2': '🎭',
   '0eea0585-0041-eb51-550d-2d830b8e3d65': '💬',
   'c222a766-f685-0d79-5014-9e04c23d8b57': '🗺️',
-  '92581f31-6c8f-e2c0-9436-4aceb36c6f12': '💼'
+  '92581f31-6c8f-e2c0-9436-4aceb36c6f12': '💼',
 }
 
 function getErrorMessage(err: unknown): string {
@@ -87,14 +86,14 @@ function getErrorMessage(err: unknown): string {
 /**
  * Custom hook to fetch and manage scenarios for the current learning language and level.
  * Connects to Supabase for data and relies on local storage for progression states.
- * 
+ *
  * @returns Object containing the scenarios array, loading boolean, and error string.
  */
 export function useScenarios() {
   const learningLanguage = useSettingsStore((state) => state.learningLanguage) || 'english'
   const learningLevel = useSettingsStore((state) => state.learningLevel) || 'beginner'
-  const updateCompletedTotal = useProgressStore(state => state.updateCompletedTotal)
-  const updateStars = useProgressStore(state => state.updateStars)
+  const updateCompletedTotal = useProgressStore((state) => state.updateCompletedTotal)
+  const updateStars = useProgressStore((state) => state.updateStars)
   const translationLanguage = 'en'
 
   const cacheKey = `${learningLanguage}-${learningLevel}`
@@ -104,7 +103,7 @@ export function useScenarios() {
     return rawData.map((scenario, index) => {
       const stars = getScenarioStars(scenario.id)
       const isLocked = index === 0 ? false : !prevUnlocked
-      
+
       if (stars === 0) prevUnlocked = false
 
       return { ...scenario, stars, isLocked }
@@ -125,7 +124,7 @@ export function useScenarios() {
       // If cached, sync store but don't show loading
       if (scenariosCache[cacheKey]) {
         const enriched = getEnriched(scenariosCache[cacheKey])
-        const completedCount = enriched.filter(e => e.stars > 0).length
+        const completedCount = enriched.filter((e) => e.stars > 0).length
         const totalStarsOwned = enriched.reduce((sum, e) => sum + e.stars, 0)
         updateStars(totalStarsOwned, enriched.length * 3)
         updateCompletedTotal(completedCount, enriched.length)
@@ -138,7 +137,9 @@ export function useScenarios() {
         setLoading(true)
         const { data: normalizedData, error: normalizedError } = await supabase
           .from('scenarios')
-          .select('id, category, level, sort_order, scenario_translations!inner(language, title, description)')
+          .select(
+            'id, category, level, sort_order, scenario_translations!inner(language, title, description)',
+          )
           .eq('level', learningLevel)
           .eq('scenario_translations.language', translationLanguage)
           .order('sort_order', { ascending: true })
@@ -146,17 +147,19 @@ export function useScenarios() {
         let rawData: Scenario[] = []
 
         if (!normalizedError && normalizedData && normalizedData.length > 0) {
-          rawData = ((normalizedData ?? []) as Array<{
-            id: string
-            category: string
-            level: string
-            sort_order: number
-            scenario_translations: Array<{
-              language: string
-              title: string
-              description: string | null
+          rawData = (
+            (normalizedData ?? []) as Array<{
+              id: string
+              category: string
+              level: string
+              sort_order: number
+              scenario_translations: Array<{
+                language: string
+                title: string
+                description: string | null
+              }>
             }>
-          }>).map((scenario) => {
+          ).map((scenario) => {
             const translation = scenario.scenario_translations?.[0]
             const title = translation?.title ?? scenario.category
 
@@ -192,8 +195,8 @@ export function useScenarios() {
         scenariosCache[cacheKey] = rawData
 
         const enriched = getEnriched(rawData)
-        const completedCount = enriched.filter(e => e.stars > 0).length
-        
+        const completedCount = enriched.filter((e) => e.stars > 0).length
+
         const totalStarsOwned = enriched.reduce((sum, e) => sum + e.stars, 0)
         updateStars(totalStarsOwned, rawData.length * 3)
         updateCompletedTotal(completedCount, rawData.length)
@@ -211,5 +214,3 @@ export function useScenarios() {
 
   return { scenarios, loading, error }
 }
-
-

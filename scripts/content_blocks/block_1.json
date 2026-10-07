@@ -63,11 +63,7 @@
         },
         "data": {
           "correct": "hola",
-          "options": [
-            "adiós",
-            "hola",
-            "gracias"
-          ]
+          "options": ["adiós", "hola", "gracias"]
         }
       },
       {
@@ -78,11 +74,7 @@
         },
         "data": {
           "correct": "por favor y gracias",
-          "options": [
-            "sí y no",
-            "hola y adiós",
-            "por favor y gracias"
-          ]
+          "options": ["sí y no", "hola y adiós", "por favor y gracias"]
         }
       },
       {
@@ -175,18 +167,8 @@
           "es": "Construye: 'Hello, yes please.'"
         },
         "data": {
-          "correct": [
-            "hola",
-            "sí",
-            "por favor"
-          ],
-          "words": [
-            "hola",
-            "sí",
-            "por favor",
-            "no",
-            "gracias"
-          ]
+          "correct": ["hola", "sí", "por favor"],
+          "words": ["hola", "sí", "por favor", "no", "gracias"]
         }
       },
       {
@@ -196,16 +178,8 @@
           "es": "Construye: 'No, thanks.'"
         },
         "data": {
-          "correct": [
-            "no",
-            "gracias"
-          ],
-          "words": [
-            "no",
-            "gracias",
-            "sí",
-            "hola"
-          ]
+          "correct": ["no", "gracias"],
+          "words": ["no", "gracias", "sí", "hola"]
         }
       },
       {
@@ -215,16 +189,8 @@
           "es": "Construye: 'Sorry, goodbye.'"
         },
         "data": {
-          "correct": [
-            "lo siento",
-            "adiós"
-          ],
-          "words": [
-            "lo siento",
-            "adiós",
-            "por favor",
-            "hola"
-          ]
+          "correct": ["lo siento", "adiós"],
+          "words": ["lo siento", "adiós", "por favor", "hola"]
         }
       },
       {
@@ -234,18 +200,8 @@
           "es": "Construye: 'Yes and no.'"
         },
         "data": {
-          "correct": [
-            "sí",
-            "y",
-            "no"
-          ],
-          "words": [
-            "sí",
-            "y",
-            "no",
-            "hola",
-            "gracias"
-          ]
+          "correct": ["sí", "y", "no"],
+          "words": ["sí", "y", "no", "hola", "gracias"]
         }
       },
       {
@@ -255,18 +211,8 @@
           "es": "Construye: 'Hello and goodbye.'"
         },
         "data": {
-          "correct": [
-            "hola",
-            "y",
-            "adiós"
-          ],
-          "words": [
-            "hola",
-            "y",
-            "adiós",
-            "por favor",
-            "sí"
-          ]
+          "correct": ["hola", "y", "adiós"],
+          "words": ["hola", "y", "adiós", "por favor", "sí"]
         }
       },
       {
@@ -276,16 +222,8 @@
           "es": "Construye: 'Please, thanks.'"
         },
         "data": {
-          "correct": [
-            "por favor",
-            "gracias"
-          ],
-          "words": [
-            "por favor",
-            "gracias",
-            "lo siento",
-            "no"
-          ]
+          "correct": ["por favor", "gracias"],
+          "words": ["por favor", "gracias", "lo siento", "no"]
         }
       }
     ]
@@ -359,11 +297,7 @@
         },
         "data": {
           "correct": "yo estoy feliz",
-          "options": [
-            "tú estás feliz",
-            "yo estoy feliz",
-            "ella está cansada"
-          ]
+          "options": ["tú estás feliz", "yo estoy feliz", "ella está cansada"]
         }
       },
       {
@@ -374,11 +308,7 @@
         },
         "data": {
           "correct": "tú estás cansado",
-          "options": [
-            "él está feliz",
-            "tú estás cansado",
-            "yo estoy cansado"
-          ]
+          "options": ["él está feliz", "tú estás cansado", "yo estoy cansado"]
         }
       },
       {
@@ -471,18 +401,8 @@
           "es": "Construye: 'I am happy.'"
         },
         "data": {
-          "correct": [
-            "yo",
-            "estoy",
-            "feliz"
-          ],
-          "words": [
-            "yo",
-            "estoy",
-            "feliz",
-            "tú",
-            "cansado"
-          ]
+          "correct": ["yo", "estoy", "feliz"],
+          "words": ["yo", "estoy", "feliz", "tú", "cansado"]
         }
       },
       {
@@ -492,18 +412,8 @@
           "es": "Construye: 'You are tired.'"
         },
         "data": {
-          "correct": [
-            "tú",
-            "estás",
-            "cansado"
-          ],
-          "words": [
-            "tú",
-            "estás",
-            "cansado",
-            "él",
-            "feliz"
-          ]
+          "correct": ["tú", "estás", "cansado"],
+          "words": ["tú", "estás", "cansado", "él", "feliz"]
         }
       },
       {
@@ -513,18 +423,8 @@
           "es": "Construye: 'He is happy.'"
         },
         "data": {
-          "correct": [
-            "él",
-            "está",
-            "feliz"
-          ],
-          "words": [
-            "él",
-            "está",
-            "feliz",
-            "ella",
-            "estoy"
-          ]
+          "correct": ["él", "está", "feliz"],
+          "words": ["él", "está", "feliz", "ella", "estoy"]
         }
       },
       {
@@ -534,18 +434,8 @@
           "es": "Construye: 'She is tired.'"
         },
         "data": {
-          "correct": [
-            "ella",
-            "está",
-            "cansada"
-          ],
-          "words": [
-            "ella",
-            "está",
-            "cansada",
-            "yo",
-            "feliz"
-          ]
+          "correct": ["ella", "está", "cansada"],
+          "words": ["ella", "está", "cansada", "yo", "feliz"]
         }
       },
       {
@@ -555,19 +445,8 @@
           "es": "Construye: 'Hello, I am tired.'"
         },
         "data": {
-          "correct": [
-            "hola",
-            "yo",
-            "estoy",
-            "cansado"
-          ],
-          "words": [
-            "hola",
-            "yo",
-            "estoy",
-            "cansado",
-            "feliz"
-          ]
+          "correct": ["hola", "yo", "estoy", "cansado"],
+          "words": ["hola", "yo", "estoy", "cansado", "feliz"]
         }
       },
       {
@@ -577,19 +456,8 @@
           "es": "Construye: 'Yes, she is happy.'"
         },
         "data": {
-          "correct": [
-            "sí",
-            "ella",
-            "está",
-            "feliz"
-          ],
-          "words": [
-            "sí",
-            "ella",
-            "está",
-            "feliz",
-            "cansado"
-          ]
+          "correct": ["sí", "ella", "está", "feliz"],
+          "words": ["sí", "ella", "está", "feliz", "cansado"]
         }
       }
     ]
@@ -658,11 +526,7 @@
         },
         "data": {
           "correct": "mi nombre es",
-          "options": [
-            "yo soy",
-            "mi nombre es",
-            "yo estoy"
-          ]
+          "options": ["yo soy", "mi nombre es", "yo estoy"]
         }
       },
       {
@@ -673,11 +537,7 @@
         },
         "data": {
           "correct": "mucho gusto",
-          "options": [
-            "mucho gusto",
-            "mi nombre es",
-            "hola adiós"
-          ]
+          "options": ["mucho gusto", "mi nombre es", "hola adiós"]
         }
       },
       {
@@ -770,19 +630,8 @@
           "es": "Construye: 'My name is Carlos.'"
         },
         "data": {
-          "correct": [
-            "mi",
-            "nombre",
-            "es",
-            "Carlos"
-          ],
-          "words": [
-            "mi",
-            "nombre",
-            "es",
-            "Carlos",
-            "soy"
-          ]
+          "correct": ["mi", "nombre", "es", "Carlos"],
+          "words": ["mi", "nombre", "es", "Carlos", "soy"]
         }
       },
       {
@@ -792,19 +641,8 @@
           "es": "Construye: 'I am from Spain.'"
         },
         "data": {
-          "correct": [
-            "yo",
-            "soy",
-            "de",
-            "España"
-          ],
-          "words": [
-            "yo",
-            "soy",
-            "de",
-            "España",
-            "estoy"
-          ]
+          "correct": ["yo", "soy", "de", "España"],
+          "words": ["yo", "soy", "de", "España", "estoy"]
         }
       },
       {
@@ -814,21 +652,8 @@
           "es": "Construye: 'Hello, my name is Ana.'"
         },
         "data": {
-          "correct": [
-            "hola",
-            "mi",
-            "nombre",
-            "es",
-            "Ana"
-          ],
-          "words": [
-            "hola",
-            "mi",
-            "nombre",
-            "es",
-            "Ana",
-            "de"
-          ]
+          "correct": ["hola", "mi", "nombre", "es", "Ana"],
+          "words": ["hola", "mi", "nombre", "es", "Ana", "de"]
         }
       },
       {
@@ -838,16 +663,8 @@
           "es": "Construye: 'Nice to meet you.'"
         },
         "data": {
-          "correct": [
-            "mucho",
-            "gusto"
-          ],
-          "words": [
-            "mucho",
-            "gusto",
-            "hola",
-            "adiós"
-          ]
+          "correct": ["mucho", "gusto"],
+          "words": ["mucho", "gusto", "hola", "adiós"]
         }
       },
       {
@@ -857,19 +674,8 @@
           "es": "Construye: 'He is from Mexico.'"
         },
         "data": {
-          "correct": [
-            "él",
-            "es",
-            "de",
-            "México"
-          ],
-          "words": [
-            "él",
-            "es",
-            "de",
-            "México",
-            "soy"
-          ]
+          "correct": ["él", "es", "de", "México"],
+          "words": ["él", "es", "de", "México", "soy"]
         }
       },
       {
@@ -879,24 +685,8 @@
           "es": "Construye: 'Yes, I am Ana. Nice to meet you.'"
         },
         "data": {
-          "correct": [
-            "sí",
-            "yo",
-            "soy",
-            "Ana",
-            "mucho",
-            "gusto"
-          ],
-          "words": [
-            "sí",
-            "yo",
-            "soy",
-            "Ana",
-            "mucho",
-            "gusto",
-            "es",
-            "estoy"
-          ]
+          "correct": ["sí", "yo", "soy", "Ana", "mucho", "gusto"],
+          "words": ["sí", "yo", "soy", "Ana", "mucho", "gusto", "es", "estoy"]
         }
       }
     ]
@@ -970,11 +760,7 @@
         },
         "data": {
           "correct": "comer",
-          "options": [
-            "beber",
-            "comer",
-            "ir"
-          ]
+          "options": ["beber", "comer", "ir"]
         }
       },
       {
@@ -985,11 +771,7 @@
         },
         "data": {
           "correct": "necesito beber",
-          "options": [
-            "quiero comer",
-            "necesito beber",
-            "quiero ir"
-          ]
+          "options": ["quiero comer", "necesito beber", "quiero ir"]
         }
       },
       {
@@ -1082,18 +864,8 @@
           "es": "Construye: 'I want to eat.'"
         },
         "data": {
-          "correct": [
-            "yo",
-            "quiero",
-            "comer"
-          ],
-          "words": [
-            "yo",
-            "quiero",
-            "comer",
-            "necesito",
-            "beber"
-          ]
+          "correct": ["yo", "quiero", "comer"],
+          "words": ["yo", "quiero", "comer", "necesito", "beber"]
         }
       },
       {
@@ -1103,18 +875,8 @@
           "es": "Construye: 'I need to go.'"
         },
         "data": {
-          "correct": [
-            "yo",
-            "necesito",
-            "ir"
-          ],
-          "words": [
-            "yo",
-            "necesito",
-            "ir",
-            "quiero",
-            "comer"
-          ]
+          "correct": ["yo", "necesito", "ir"],
+          "words": ["yo", "necesito", "ir", "quiero", "comer"]
         }
       },
       {
@@ -1124,16 +886,8 @@
           "es": "Construye: 'I want to drink.'"
         },
         "data": {
-          "correct": [
-            "quiero",
-            "beber"
-          ],
-          "words": [
-            "quiero",
-            "beber",
-            "necesito",
-            "ir"
-          ]
+          "correct": ["quiero", "beber"],
+          "words": ["quiero", "beber", "necesito", "ir"]
         }
       },
       {
@@ -1143,18 +897,8 @@
           "es": "Construye: 'Please, I need to eat.'"
         },
         "data": {
-          "correct": [
-            "por favor",
-            "necesito",
-            "comer"
-          ],
-          "words": [
-            "por favor",
-            "necesito",
-            "comer",
-            "quiero",
-            "beber"
-          ]
+          "correct": ["por favor", "necesito", "comer"],
+          "words": ["por favor", "necesito", "comer", "quiero", "beber"]
         }
       },
       {
@@ -1164,18 +908,8 @@
           "es": "Construye: 'Yes, I want to go.'"
         },
         "data": {
-          "correct": [
-            "sí",
-            "quiero",
-            "ir"
-          ],
-          "words": [
-            "sí",
-            "quiero",
-            "ir",
-            "yo",
-            "comer"
-          ]
+          "correct": ["sí", "quiero", "ir"],
+          "words": ["sí", "quiero", "ir", "yo", "comer"]
         }
       },
       {
@@ -1185,16 +919,8 @@
           "es": "Construye: 'I need to have.'"
         },
         "data": {
-          "correct": [
-            "necesito",
-            "tener"
-          ],
-          "words": [
-            "necesito",
-            "tener",
-            "quiero",
-            "ir"
-          ]
+          "correct": ["necesito", "tener"],
+          "words": ["necesito", "tener", "quiero", "ir"]
         }
       }
     ]
@@ -1268,11 +994,7 @@
         },
         "data": {
           "correct": "el perro",
-          "options": [
-            "la casa",
-            "el perro",
-            "un coche"
-          ]
+          "options": ["la casa", "el perro", "un coche"]
         }
       },
       {
@@ -1283,11 +1005,7 @@
         },
         "data": {
           "correct": "un libro",
-          "options": [
-            "el libro",
-            "una casa",
-            "un libro"
-          ]
+          "options": ["el libro", "una casa", "un libro"]
         }
       },
       {
@@ -1380,19 +1098,8 @@
           "es": "Construye: 'I want the car.'"
         },
         "data": {
-          "correct": [
-            "yo",
-            "quiero",
-            "el",
-            "coche"
-          ],
-          "words": [
-            "yo",
-            "quiero",
-            "el",
-            "coche",
-            "la"
-          ]
+          "correct": ["yo", "quiero", "el", "coche"],
+          "words": ["yo", "quiero", "el", "coche", "la"]
         }
       },
       {
@@ -1402,18 +1109,8 @@
           "es": "Construye: 'I need a house.'"
         },
         "data": {
-          "correct": [
-            "necesito",
-            "una",
-            "casa"
-          ],
-          "words": [
-            "necesito",
-            "una",
-            "casa",
-            "un",
-            "coche"
-          ]
+          "correct": ["necesito", "una", "casa"],
+          "words": ["necesito", "una", "casa", "un", "coche"]
         }
       },
       {
@@ -1423,19 +1120,8 @@
           "es": "Construye: 'The dog is happy.'"
         },
         "data": {
-          "correct": [
-            "el",
-            "perro",
-            "está",
-            "feliz"
-          ],
-          "words": [
-            "el",
-            "perro",
-            "está",
-            "feliz",
-            "cansado"
-          ]
+          "correct": ["el", "perro", "está", "feliz"],
+          "words": ["el", "perro", "está", "feliz", "cansado"]
         }
       },
       {
@@ -1445,19 +1131,8 @@
           "es": "Construye: 'I want a book please.'"
         },
         "data": {
-          "correct": [
-            "quiero",
-            "un",
-            "libro",
-            "por favor"
-          ],
-          "words": [
-            "quiero",
-            "un",
-            "libro",
-            "por favor",
-            "una"
-          ]
+          "correct": ["quiero", "un", "libro", "por favor"],
+          "words": ["quiero", "un", "libro", "por favor", "una"]
         }
       },
       {
@@ -1467,21 +1142,8 @@
           "es": "Construye: 'The house and the car.'"
         },
         "data": {
-          "correct": [
-            "la",
-            "casa",
-            "y",
-            "el",
-            "coche"
-          ],
-          "words": [
-            "la",
-            "casa",
-            "y",
-            "el",
-            "coche",
-            "un"
-          ]
+          "correct": ["la", "casa", "y", "el", "coche"],
+          "words": ["la", "casa", "y", "el", "coche", "un"]
         }
       },
       {
@@ -1491,18 +1153,8 @@
           "es": "Construye: 'I need a pen.'"
         },
         "data": {
-          "correct": [
-            "necesito",
-            "un",
-            "bolígrafo"
-          ],
-          "words": [
-            "necesito",
-            "un",
-            "bolígrafo",
-            "el",
-            "casa"
-          ]
+          "correct": ["necesito", "un", "bolígrafo"],
+          "words": ["necesito", "un", "bolígrafo", "el", "casa"]
         }
       }
     ]

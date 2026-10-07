@@ -1,0 +1,42 @@
+name: 🐛 Bug report
+description: Something is broken or behaves unexpectedly
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug. If applicable, add a screenshot.
+      placeholder: The listening exercise did not play any audio…
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to …
+        2. Click …
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser + version, OS, device (or "local dev" / "palabrabox.vercel.app")
+      placeholder: Chrome 141, Windows 11 — palabrabox.vercel.app
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console output (optional)
+      description: Output of the browser DevTools console, if available.
+      render: shell

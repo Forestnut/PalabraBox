@@ -1,6 +1,0 @@
-# TODO
-
-- napraw scrollowanie na Result Screen [x]
-- dodaj sound effect wygranej lub przegranej na Result Screen [x]
-- wywal pasek scrollowania z zadań Drag & Drop [x]
-- napraw responsywność zadań Drag & Drop [x]

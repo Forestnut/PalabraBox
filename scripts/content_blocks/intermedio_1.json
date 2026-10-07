@@ -63,11 +63,7 @@
         },
         "data": {
           "correct": "Fui ayer",
-          "options": [
-            "Fui ayer",
-            "Voy ayer",
-            "Comí ayer"
-          ]
+          "options": ["Fui ayer", "Voy ayer", "Comí ayer"]
         }
       },
       {
@@ -78,11 +74,7 @@
         },
         "data": {
           "correct": "Vi",
-          "options": [
-            "Vi",
-            "Fui",
-            "Veo"
-          ]
+          "options": ["Vi", "Fui", "Veo"]
         }
       },
       {
@@ -175,17 +167,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Fui",
-            "a la tienda",
-            "ayer"
-          ],
-          "words": [
-            "ayer",
-            "a la tienda",
-            "Fui",
-            "voy"
-          ]
+          "correct": ["Fui", "a la tienda", "ayer"],
+          "words": ["ayer", "a la tienda", "Fui", "voy"]
         }
       },
       {
@@ -195,17 +178,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Comí",
-            "manzanas",
-            "la semana pasada"
-          ],
-          "words": [
-            "la semana pasada",
-            "Comí",
-            "manzanas",
-            "veo"
-          ]
+          "correct": ["Comí", "manzanas", "la semana pasada"],
+          "words": ["la semana pasada", "Comí", "manzanas", "veo"]
         }
       },
       {
@@ -215,17 +189,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Vi",
-            "a mi",
-            "amigo"
-          ],
-          "words": [
-            "amigo",
-            "Vi",
-            "a mi",
-            "jugué"
-          ]
+          "correct": ["Vi", "a mi", "amigo"],
+          "words": ["amigo", "Vi", "a mi", "jugué"]
         }
       },
       {
@@ -235,17 +200,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Jugué",
-            "al",
-            "fútbol"
-          ],
-          "words": [
-            "al",
-            "fútbol",
-            "Jugué",
-            "trabajé"
-          ]
+          "correct": ["Jugué", "al", "fútbol"],
+          "words": ["al", "fútbol", "Jugué", "trabajé"]
         }
       },
       {
@@ -255,17 +211,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Trabajé",
-            "mucho",
-            "ayer"
-          ],
-          "words": [
-            "mucho",
-            "ayer",
-            "Trabajé",
-            "compré"
-          ]
+          "correct": ["Trabajé", "mucho", "ayer"],
+          "words": ["mucho", "ayer", "Trabajé", "compré"]
         }
       },
       {
@@ -275,17 +222,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Compré",
-            "un",
-            "coche"
-          ],
-          "words": [
-            "un",
-            "coche",
-            "Compré",
-            "fui"
-          ]
+          "correct": ["Compré", "un", "coche"],
+          "words": ["un", "coche", "Compré", "fui"]
         }
       }
     ]
@@ -354,11 +292,7 @@
         },
         "data": {
           "correct": "Voy a viajar mañana",
-          "options": [
-            "Voy a viajar mañana",
-            "Viajé mañana",
-            "Visito mañana"
-          ]
+          "options": ["Voy a viajar mañana", "Viajé mañana", "Visito mañana"]
         }
       },
       {
@@ -369,11 +303,7 @@
         },
         "data": {
           "correct": "pronto",
-          "options": [
-            "pronto",
-            "mañana",
-            "luego"
-          ]
+          "options": ["pronto", "mañana", "luego"]
         }
       },
       {
@@ -466,17 +396,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Voy a",
-            "viajar",
-            "mañana"
-          ],
-          "words": [
-            "viajar",
-            "mañana",
-            "Voy a",
-            "ayer"
-          ]
+          "correct": ["Voy a", "viajar", "mañana"],
+          "words": ["viajar", "mañana", "Voy a", "ayer"]
         }
       },
       {
@@ -486,17 +407,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Vamos a",
-            "visitar",
-            "la próxima semana"
-          ],
-          "words": [
-            "la próxima semana",
-            "visitar",
-            "Vamos a",
-            "pronto"
-          ]
+          "correct": ["Vamos a", "visitar", "la próxima semana"],
+          "words": ["la próxima semana", "visitar", "Vamos a", "pronto"]
         }
       },
       {
@@ -506,17 +418,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Voy a",
-            "comer",
-            "pronto"
-          ],
-          "words": [
-            "comer",
-            "pronto",
-            "Voy a",
-            "mañana"
-          ]
+          "correct": ["Voy a", "comer", "pronto"],
+          "words": ["comer", "pronto", "Voy a", "mañana"]
         }
       },
       {
@@ -526,17 +429,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Ella va a",
-            "viajar",
-            "pronto"
-          ],
-          "words": [
-            "pronto",
-            "Ella va a",
-            "viajar",
-            "visitar"
-          ]
+          "correct": ["Ella va a", "viajar", "pronto"],
+          "words": ["pronto", "Ella va a", "viajar", "visitar"]
         }
       },
       {
@@ -546,17 +440,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Ellos",
-            "visitarán",
-            "mañana"
-          ],
-          "words": [
-            "mañana",
-            "visitarán",
-            "Ellos",
-            "comerán"
-          ]
+          "correct": ["Ellos", "visitarán", "mañana"],
+          "words": ["mañana", "visitarán", "Ellos", "comerán"]
         }
       },
       {
@@ -566,17 +451,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Iré",
-            "la",
-            "próxima semana"
-          ],
-          "words": [
-            "próxima semana",
-            "la",
-            "Iré",
-            "futuro"
-          ]
+          "correct": ["Iré", "la", "próxima semana"],
+          "words": ["próxima semana", "la", "Iré", "futuro"]
         }
       }
     ]
@@ -645,11 +521,7 @@
         },
         "data": {
           "correct": "Puedo ayudar",
-          "options": [
-            "Puedo ayudar",
-            "Debo ayudar",
-            "Podría ayudar"
-          ]
+          "options": ["Puedo ayudar", "Debo ayudar", "Podría ayudar"]
         }
       },
       {
@@ -660,11 +532,7 @@
         },
         "data": {
           "correct": "Debería aprender",
-          "options": [
-            "Debería aprender",
-            "Puedo aprender",
-            "Debo aprender"
-          ]
+          "options": ["Debería aprender", "Puedo aprender", "Debo aprender"]
         }
       },
       {
@@ -757,17 +625,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Yo",
-            "puedo",
-            "ayudar"
-          ],
-          "words": [
-            "ayudar",
-            "puedo",
-            "Yo",
-            "aprender"
-          ]
+          "correct": ["Yo", "puedo", "ayudar"],
+          "words": ["ayudar", "puedo", "Yo", "aprender"]
         }
       },
       {
@@ -777,17 +636,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Tú",
-            "debes",
-            "aprender"
-          ],
-          "words": [
-            "aprender",
-            "debes",
-            "Tú",
-            "ayudar"
-          ]
+          "correct": ["Tú", "debes", "aprender"],
+          "words": ["aprender", "debes", "Tú", "ayudar"]
         }
       },
       {
@@ -797,17 +647,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Yo",
-            "debería",
-            "dormir"
-          ],
-          "words": [
-            "dormir",
-            "debería",
-            "Yo",
-            "poder"
-          ]
+          "correct": ["Yo", "debería", "dormir"],
+          "words": ["dormir", "debería", "Yo", "poder"]
         }
       },
       {
@@ -817,17 +658,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "¿Podríamos",
-            "ir",
-            "nosotros?"
-          ],
-          "words": [
-            "ir",
-            "nosotros?",
-            "¿Podríamos",
-            "deberíamos"
-          ]
+          "correct": ["¿Podríamos", "ir", "nosotros?"],
+          "words": ["ir", "nosotros?", "¿Podríamos", "deberíamos"]
         }
       },
       {
@@ -837,17 +669,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "A ellos",
-            "les gustaría",
-            "ayudar"
-          ],
-          "words": [
-            "ayudar",
-            "les gustaría",
-            "A ellos",
-            "pueden"
-          ]
+          "correct": ["A ellos", "les gustaría", "ayudar"],
+          "words": ["ayudar", "les gustaría", "A ellos", "pueden"]
         }
       },
       {
@@ -857,17 +680,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Nosotros",
-            "debemos",
-            "trabajar"
-          ],
-          "words": [
-            "trabajar",
-            "debemos",
-            "Nosotros",
-            "podemos"
-          ]
+          "correct": ["Nosotros", "debemos", "trabajar"],
+          "words": ["trabajar", "debemos", "Nosotros", "podemos"]
         }
       }
     ]
@@ -936,11 +750,7 @@
         },
         "data": {
           "correct": "Pienso que...",
-          "options": [
-            "Pienso que...",
-            "Creo que...",
-            "En desacuerdo..."
-          ]
+          "options": ["Pienso que...", "Creo que...", "En desacuerdo..."]
         }
       },
       {
@@ -951,11 +761,7 @@
         },
         "data": {
           "correct": "Estoy de acuerdo",
-          "options": [
-            "Estoy de acuerdo",
-            "Tengo idea",
-            "Tal vez"
-          ]
+          "options": ["Estoy de acuerdo", "Tengo idea", "Tal vez"]
         }
       },
       {
@@ -1048,17 +854,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Pienso",
-            "que",
-            "es bueno"
-          ],
-          "words": [
-            "es bueno",
-            "que",
-            "Pienso",
-            "acuerdo"
-          ]
+          "correct": ["Pienso", "que", "es bueno"],
+          "words": ["es bueno", "que", "Pienso", "acuerdo"]
         }
       },
       {
@@ -1068,17 +865,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Estoy",
-            "de acuerdo",
-            "con eso"
-          ],
-          "words": [
-            "con eso",
-            "de acuerdo",
-            "Estoy",
-            "idea"
-          ]
+          "correct": ["Estoy", "de acuerdo", "con eso"],
+          "words": ["con eso", "de acuerdo", "Estoy", "idea"]
         }
       },
       {
@@ -1088,17 +876,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Estoy",
-            "en desacuerdo",
-            "totalmente"
-          ],
-          "words": [
-            "totalmente",
-            "en desacuerdo",
-            "Estoy",
-            "pienso"
-          ]
+          "correct": ["Estoy", "en desacuerdo", "totalmente"],
+          "words": ["totalmente", "en desacuerdo", "Estoy", "pienso"]
         }
       },
       {
@@ -1108,17 +887,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Es",
-            "una",
-            "gran idea"
-          ],
-          "words": [
-            "gran idea",
-            "una",
-            "Es",
-            "opinión"
-          ]
+          "correct": ["Es", "una", "gran idea"],
+          "words": ["gran idea", "una", "Es", "opinión"]
         }
       },
       {
@@ -1128,17 +898,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "Tal vez",
-            "podemos",
-            "ir"
-          ],
-          "words": [
-            "ir",
-            "podemos",
-            "Tal vez",
-            "acuerdo"
-          ]
+          "correct": ["Tal vez", "podemos", "ir"],
+          "words": ["ir", "podemos", "Tal vez", "acuerdo"]
         }
       },
       {
@@ -1148,17 +909,8 @@
           "es": "Forma la oración."
         },
         "data": {
-          "correct": [
-            "En",
-            "mi opinión",
-            "sí"
-          ],
-          "words": [
-            "sí",
-            "mi opinión",
-            "En",
-            "supongo"
-          ]
+          "correct": ["En", "mi opinión", "sí"],
+          "words": ["sí", "mi opinión", "En", "supongo"]
         }
       }
     ]

@@ -1,7 +1,10 @@
 [
   {
     "title": { "en": "Shopping", "es": "De compras" },
-    "description": { "en": "Learn essential vocabulary for shopping.", "es": "Aprende vocabulario esencial para ir de compras." },
+    "description": {
+      "en": "Learn essential vocabulary for shopping.",
+      "es": "Aprende vocabulario esencial para ir de compras."
+    },
     "category": "simple_situations",
     "level": "beginner",
     "target_language": "es",
@@ -13,13 +16,24 @@
       { "base_key": "buy", "en": "to buy", "es": "comprar" }
     ],
     "questions": [
-      { "type": "multiple_choice", "question_text": "How do you say 'price' in Spanish?", "data": { "options": ["dinero", "precio", "tienda", "comprar"], "correct": "precio" } },
-      { "type": "multiple_choice", "question_text": "Translate 'money' to Spanish.", "data": { "options": ["precio", "tienda", "comprar", "dinero"], "correct": "dinero" } }
+      {
+        "type": "multiple_choice",
+        "question_text": "How do you say 'price' in Spanish?",
+        "data": { "options": ["dinero", "precio", "tienda", "comprar"], "correct": "precio" }
+      },
+      {
+        "type": "multiple_choice",
+        "question_text": "Translate 'money' to Spanish.",
+        "data": { "options": ["precio", "tienda", "comprar", "dinero"], "correct": "dinero" }
+      }
     ]
   },
   {
     "title": { "en": "Restaurant", "es": "Restaurante" },
-    "description": { "en": "Basic words and phrases for eating out.", "es": "Palabras y frases básicas para salir a comer." },
+    "description": {
+      "en": "Basic words and phrases for eating out.",
+      "es": "Palabras y frases básicas para salir a comer."
+    },
     "category": "simple_situations",
     "level": "beginner",
     "target_language": "es",
@@ -31,13 +45,24 @@
       { "base_key": "water_2", "en": "water", "es": "agua" }
     ],
     "questions": [
-      { "type": "multiple_choice", "question_text": "What is the Spanish word for 'menu'?", "data": { "options": ["comida", "agua", "pedir", "menú"], "correct": "menú" } },
-      { "type": "multiple_choice", "question_text": "How do you say 'to order' (as in a restaurant) in Spanish?", "data": { "options": ["pedir", "menú", "agua", "comida"], "correct": "pedir" } }
+      {
+        "type": "multiple_choice",
+        "question_text": "What is the Spanish word for 'menu'?",
+        "data": { "options": ["comida", "agua", "pedir", "menú"], "correct": "menú" }
+      },
+      {
+        "type": "multiple_choice",
+        "question_text": "How do you say 'to order' (as in a restaurant) in Spanish?",
+        "data": { "options": ["pedir", "menú", "agua", "comida"], "correct": "pedir" }
+      }
     ]
   },
   {
     "title": { "en": "Travel Basics", "es": "Viajes Básico" },
-    "description": { "en": "Essential words for navigating a trip.", "es": "Palabras esenciales para navegar en un viaje." },
+    "description": {
+      "en": "Essential words for navigating a trip.",
+      "es": "Palabras esenciales para navegar en un viaje."
+    },
     "category": "simple_situations",
     "level": "beginner",
     "target_language": "es",
@@ -49,8 +74,16 @@
       { "base_key": "train", "en": "train", "es": "tren" }
     ],
     "questions": [
-      { "type": "multiple_choice", "question_text": "How do you say 'hotel' in Spanish?", "data": { "options": ["boleto", "aeropuerto", "tren", "hotel"], "correct": "hotel" } },
-      { "type": "multiple_choice", "question_text": "What is the Spanish word for 'ticket'?", "data": { "options": ["tren", "boleto", "hotel", "aeropuerto"], "correct": "boleto" } }
+      {
+        "type": "multiple_choice",
+        "question_text": "How do you say 'hotel' in Spanish?",
+        "data": { "options": ["boleto", "aeropuerto", "tren", "hotel"], "correct": "hotel" }
+      },
+      {
+        "type": "multiple_choice",
+        "question_text": "What is the Spanish word for 'ticket'?",
+        "data": { "options": ["tren", "boleto", "hotel", "aeropuerto"], "correct": "boleto" }
+      }
     ]
   }
 ]

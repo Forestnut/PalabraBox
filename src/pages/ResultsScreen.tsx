@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import confetti from 'canvas-confetti'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faBolt, faHeart, faRotateRight, faHouse } from '@fortawesome/free-solid-svg-icons'
@@ -15,14 +15,14 @@ import { useAudio } from '../hooks/useAudio'
 
 export default function ResultsScreen() {
   const navigate = useNavigate()
-  
+
   const store = useGameStore()
   const [results] = useState({
     score: store.score,
     lives: store.lives,
-    maxLives: store.maxLives || 3
+    maxLives: store.maxLives || 3,
   })
-  
+
   const { score, lives, maxLives } = results
   const { progress } = useQuickProgress()
   const { playSound } = useAudio()
@@ -30,7 +30,7 @@ export default function ResultsScreen() {
 
   const isSuccess = lives > 0
   const mistakes = maxLives - lives
-  
+
   let earnedStars = 0
   if (isSuccess) {
     if (mistakes === 0) earnedStars = 3
@@ -45,8 +45,8 @@ export default function ResultsScreen() {
       setStars(earnedStars)
 
       // Play result sound effect
-      playSound(isSuccess ? 'correct' : 'wrong')
-      
+      playSound(isSuccess ? 'celebration' : 'wrong')
+
       if (isSuccess) {
         const duration = 2500
         const animationEnd = Date.now() + duration
@@ -69,7 +69,7 @@ export default function ResultsScreen() {
               particleCount,
               origin: { x: Math.random(), y: Math.random() - 0.2 },
               colors: ['#FBBF24', '#34D399', '#F87171', '#60A5FA'],
-            })
+            }),
           )
         }, 250)
       }
@@ -95,19 +95,15 @@ export default function ResultsScreen() {
 
   return (
     <PageTransition className="bg-pb-bg h-dvh flex flex-col overflow-hidden">
-      <div
-        className="max-w-lg mx-auto sm:px-6 px-5 w-full flex flex-col items-center justify-between py-4 sm:py-8 flex-1"
-      >
-        
+      <div className="max-w-lg mx-auto sm:px-6 px-5 w-full flex flex-col items-center justify-between py-4 sm:py-8 flex-1">
         {/* Hero section */}
         <div className="flex flex-col items-center gap-1 sm:gap-2 text-center mt-2 justify-center">
           <div className="mb-1 sm:mb-4 w-full flex justify-center scale-[0.6] sm:scale-90 origin-bottom">
-            <Mascot 
-              mood={isSuccess ? 'celebrate' : 'sad'} 
-              size="xl" 
-            />
+            <Mascot mood={isSuccess ? 'celebrate' : 'sad'} size="xl" />
           </div>
-          <h1 className={`text-2xl sm:text-3xl font-black uppercase tracking-wide text-center ${isSuccess ? 'text-pb-success' : 'text-pb-error'}`}>
+          <h1
+            className={`text-2xl sm:text-3xl font-black uppercase tracking-wide text-center ${isSuccess ? 'text-pb-success' : 'text-pb-error'}`}
+          >
             {isSuccess ? '¡Excelente!' : '¡Sigue intentando!'}
           </h1>
           <p className="text-pb-text-light text-sm sm:text-base px-2">
@@ -117,7 +113,6 @@ export default function ResultsScreen() {
 
         {/* Results Card */}
         <Card className="w-full flex flex-col items-center gap-2 sm:gap-4 p-5 sm:p-8 relative overflow-hidden max-w-sm mt-2 mb-4 shrink-0 border-2 border-b-4 border-slate-200/60 bg-white">
-          
           {/* Stars */}
           <div className="flex flex-col gap-1 sm:gap-2 items-center w-full mb-1 sm:mb-2">
             <div className="flex gap-2 sm:gap-3">
@@ -125,16 +120,17 @@ export default function ResultsScreen() {
                 <motion.div
                   key={starIdx}
                   initial={{ scale: 0, rotate: -30 }}
-                  animate={starIdx <= stars 
-                    ? { scale: 1, rotate: 0, opacity: 1 } 
-                    : { scale: 0.8, rotate: 0, opacity: 0.15 }
+                  animate={
+                    starIdx <= stars
+                      ? { scale: 1, rotate: 0, opacity: 1 }
+                      : { scale: 0.8, rotate: 0, opacity: 0.15 }
                   }
-                  transition={{ 
-                    delay: starIdx * 0.2, 
-                    duration: 0.5, 
-                    type: 'spring', 
-                    stiffness: 300, 
-                    damping: 12 
+                  transition={{
+                    delay: starIdx * 0.2,
+                    duration: 0.5,
+                    type: 'spring',
+                    stiffness: 300,
+                    damping: 12,
                   }}
                 >
                   <FontAwesomeIcon
@@ -146,7 +142,7 @@ export default function ResultsScreen() {
             </div>
             {isSuccess && (
               <span className="text-[10px] sm:text-xs font-bold text-pb-text-light mt-1 text-center">
-                {mistakes === 0 
+                {mistakes === 0
                   ? '¡Perfecto! Sin errores = 3 estrellas'
                   : mistakes <= 2
                     ? `Solo ${mistakes} ${mistakes === 1 ? 'error' : 'errores'} = 2 estrellas`
@@ -173,14 +169,18 @@ export default function ResultsScreen() {
           {/* Stats grid */}
           <div className="w-full grid grid-cols-2 gap-3 mt-4">
             <div className="flex flex-col items-center p-3 bg-amber-50 border-2 border-b-4 border-amber-200 rounded-2xl">
-              <span className="text-[10px] sm:text-xs font-black text-amber-600/60 uppercase tracking-widest text-center mb-1">Total Puntos</span>
+              <span className="text-[10px] sm:text-xs font-black text-amber-600/60 uppercase tracking-widest text-center mb-1">
+                Total Puntos
+              </span>
               <span className="text-xl sm:text-2xl font-black text-amber-500 flex items-center gap-1.5 drop-shadow-sm">
                 <FontAwesomeIcon icon={faBolt} className="text-amber-500 text-lg" />
                 {progress.points}
               </span>
             </div>
             <div className="flex flex-col items-center p-3 bg-rose-50 border-2 border-b-4 border-rose-200 rounded-2xl">
-              <span className="text-[10px] sm:text-xs font-black text-rose-600/60 uppercase tracking-widest text-center mb-1">Vidas</span>
+              <span className="text-[10px] sm:text-xs font-black text-rose-600/60 uppercase tracking-widest text-center mb-1">
+                Vidas
+              </span>
               <span className="text-xl sm:text-2xl font-black text-rose-500 flex items-center gap-1.5 drop-shadow-sm">
                 <FontAwesomeIcon icon={faHeart} className="text-rose-500 text-lg" />
                 {lives} <span className="text-sm text-rose-400 opacity-70">/ {maxLives}</span>

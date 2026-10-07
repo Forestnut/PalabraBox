@@ -57,12 +57,7 @@ export function SelectableCard({
             {icon && <div className="text-3xl">{icon}</div>}
             <h3 className="text-lg font-bold">{title}</h3>
           </div>
-          {selected && (
-            <FontAwesomeIcon
-              icon={faCircleCheck}
-              className="text-pb-emerald text-xl"
-            />
-          )}
+          {selected && <FontAwesomeIcon icon={faCircleCheck} className="text-pb-emerald text-xl" />}
         </div>
         {description && <p className="text-sm text-pb-text-light leading-relaxed">{description}</p>}
       </Card>

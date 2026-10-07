@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import {
   DndContext,
   closestCenter,
@@ -17,7 +17,7 @@ import {
   SortableContext,
   sortableKeyboardCoordinates,
   rectSortingStrategy,
-  useSortable
+  useSortable,
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
@@ -42,14 +42,9 @@ interface WordObj {
 }
 
 function SortableWord({ wordObj, onClick }: { wordObj: WordObj; onClick: () => void }) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id: wordObj.id })
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id: wordObj.id,
+  })
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -61,21 +56,27 @@ function SortableWord({ wordObj, onClick }: { wordObj: WordObj; onClick: () => v
   return (
     <div ref={setNodeRef} style={style} className="relative group">
       <div {...attributes} {...listeners}>
-        <SortableItemUI 
-          word={wordObj.word} 
-          isDragging={isDragging} 
+        <SortableItemUI
+          word={wordObj.word}
+          isDragging={isDragging}
           onClick={() => {
             if (!isDragging) {
-               onClick()
+              onClick()
             }
-          }} 
+          }}
         />
       </div>
     </div>
   )
 }
 
-export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioLanguage }: WordOrderProps) {
+export function WordOrder({
+  question,
+  onAnswer,
+  onPlaySound,
+  disabled,
+  scenarioLanguage,
+}: WordOrderProps) {
   const correctWords = useMemo(() => {
     if (!question.correct_answer) return []
     return question.correct_answer.split(' ')
@@ -109,7 +110,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
     }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   )
 
   const handleMoveToDropZone = (item: WordObj, index: number) => {
@@ -133,12 +134,15 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
     onPlaySound?.('click')
   }
 
-  const handleDragEnd = (event: { active: { id: string | number }; over: { id: string | number } | null }) => {
+  const handleDragEnd = (event: {
+    active: { id: string | number }
+    over: { id: string | number } | null
+  }) => {
     const { active, over } = event
     setActiveId(null)
 
     if (!over || over.id === 'bank-droppable') {
-      const draggedItem = dropZone.find(i => i.id === active.id)
+      const draggedItem = dropZone.find((i) => i.id === active.id)
       if (draggedItem) {
         handleMoveToBank(draggedItem)
       }
@@ -162,17 +166,27 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
   const handleCheck = () => {
     if (disabled || isChecking || dropZone.length === 0) return
     setIsChecking(true)
-    
-    // Ignore punctuation, casing and extra spaces 
-    const sanitizeString = (str: string) => 
-      str.replace(/[.,!?¡¿""'']/g, '').toLowerCase().trim()
 
-    const currentSentence = dropZone.map(d => sanitizeString(d.word)).join(' ')
-      const correctClean = sanitizeString(question.correct_answer || '').split(' ').join(' ') // ensuring multiple spaces are handled basically the same
+    // Ignore punctuation, casing and extra spaces
+    const sanitizeString = (str: string) =>
+      str
+        .replace(/[.,!?¡¿""'']/g, '')
+        .toLowerCase()
+        .trim()
+
+    const currentSentence = dropZone.map((d) => sanitizeString(d.word)).join(' ')
+    const correctClean = sanitizeString(question.correct_answer || '')
+      .split(' ')
+      .join(' ') // ensuring multiple spaces are handled basically the same
     const isCorrect = currentSentence === correctClean
-    
+
     if (isCorrect) {
-      const ttsLang = (scenarioLanguage === 'english' || scenarioLanguage === 'en' || scenarioLanguage?.startsWith('en')) ? 'en-US' : 'es-ES'
+      const ttsLang =
+        scenarioLanguage === 'english' ||
+        scenarioLanguage === 'en' ||
+        scenarioLanguage?.startsWith('en')
+          ? 'en-US'
+          : 'es-ES'
       speechService.speak(question.question_text_tts || currentSentence, ttsLang, 1, 1, () => {
         // Wait for speech to complete
         setTimeout(() => {
@@ -192,12 +206,12 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
 
   const activeWordObj = useMemo(
     () => dropZone.find((item) => item.id === activeId),
-    [activeId, dropZone]
+    [activeId, dropZone],
   )
 
   const dropAnimation = {
     sideEffects: defaultDropAnimationSideEffects({
-      styles: { active: { opacity: "0" } },
+      styles: { active: { opacity: '0' } },
     }),
   }
 
@@ -210,7 +224,6 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
       onDragCancel={handleDragCancel}
     >
       <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-2xl mx-auto h-full px-1 sm:px-4 flex-1 overflow-y-auto no-scrollbar pb-6">
-        
         {/* QUESTION HEADER (outside dropzone like Duolingo) */}
         <div className="w-full flex flex-col mb-1 sm:mb-2 pt-4 px-2">
           <QuestionHeader question={question} />
@@ -221,48 +234,44 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
           {/* Background Drop Slots (Classic Lines) */}
           <div className="absolute inset-0 flex flex-col gap-[3rem] sm:gap-[3.5rem] items-center pt-10 sm:pt-12 -z-10 px-2 pointer-events-none">
             {[1, 2, 3].map((_, i) => (
-               <div key={`line-${i}`} className="w-full border-b-2 border-slate-200" />
+              <div key={`line-${i}`} className="w-full border-b-2 border-slate-200" />
             ))}
           </div>
 
-          <SortableContext items={dropZone.map(d => d.id)} strategy={rectSortingStrategy}>
+          <SortableContext items={dropZone.map((d) => d.id)} strategy={rectSortingStrategy}>
             <div className="flex flex-wrap gap-x-2 sm:gap-x-3 gap-y-3 sm:gap-y-4 w-full min-h-32 items-start justify-start content-start relative z-10 px-2 py-2">
               {dropZone.map((item) => (
-                 <SortableWord 
-                   key={item.id} 
-                   wordObj={item} 
-                   onClick={() => handleMoveToBank(item)} 
-                 />
+                <SortableWord key={item.id} wordObj={item} onClick={() => handleMoveToBank(item)} />
               ))}
             </div>
           </SortableContext>
         </div>
 
         {/* BANK - Click to add to dropZone or Drag to move back */}
-        <div ref={setBankNodeRef} className="flex flex-col gap-3 sm:gap-4 mt-auto pt-2 pb-2 shrink-0">
+        <div
+          ref={setBankNodeRef}
+          className="flex flex-col gap-3 sm:gap-4 mt-auto pt-2 pb-2 shrink-0"
+        >
           <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 min-h-24 content-center p-2 border-t-2 border-slate-100 pt-4">
             <AnimatePresence>
               {bank.map((item, i) => (
-                <motion.div 
-                  layoutId={item.id} 
+                <motion.div
+                  layoutId={item.id}
                   key={item.id}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                 >
-                  <SortableItemUI 
-                    word={item.word} 
-                    onClick={() => handleMoveToDropZone(item, i)}
-                  />
+                  <SortableItemUI word={item.word} onClick={() => handleMoveToDropZone(item, i)} />
                 </motion.div>
               ))}
             </AnimatePresence>
           </div>
-          
-          <Button 
-            size="lg" 
-            disabled={isChecking || dropZone.length === 0} 
+
+          <Button
+            size="lg"
+            disabled={isChecking || dropZone.length === 0}
             onClick={handleCheck}
             className="w-full shadow-sm hover:shadow-md transition-shadow"
           >
@@ -270,11 +279,9 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
           </Button>
         </div>
       </div>
-      
+
       <DragOverlay dropAnimation={dropAnimation}>
-        {activeWordObj ? (
-          <SortableItemUI word={activeWordObj.word} isDragging={true} /> 
-        ) : null}
+        {activeWordObj ? <SortableItemUI word={activeWordObj.word} isDragging={true} /> : null}
       </DragOverlay>
     </DndContext>
   )

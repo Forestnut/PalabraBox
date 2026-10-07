@@ -63,11 +63,7 @@
         },
         "data": {
           "correct": "grande",
-          "options": [
-            "grande",
-            "pequeño",
-            "bueno"
-          ]
+          "options": ["grande", "pequeño", "bueno"]
         }
       },
       {
@@ -78,11 +74,7 @@
         },
         "data": {
           "correct": "El café está caliente",
-          "options": [
-            "El café está caliente",
-            "El té está frío",
-            "El café es malo"
-          ]
+          "options": ["El café está caliente", "El té está frío", "El café es malo"]
         }
       },
       {
@@ -175,18 +167,8 @@
           "es": "Traduce 'A good book'"
         },
         "data": {
-          "correct": [
-            "Un",
-            "libro",
-            "bueno"
-          ],
-          "words": [
-            "Un",
-            "libro",
-            "bueno",
-            "malo",
-            "grande"
-          ]
+          "correct": ["Un", "libro", "bueno"],
+          "words": ["Un", "libro", "bueno", "malo", "grande"]
         }
       },
       {
@@ -196,18 +178,8 @@
           "es": "Traduce 'The hot coffee'"
         },
         "data": {
-          "correct": [
-            "El",
-            "café",
-            "caliente"
-          ],
-          "words": [
-            "El",
-            "café",
-            "caliente",
-            "frío",
-            "es"
-          ]
+          "correct": ["El", "café", "caliente"],
+          "words": ["El", "café", "caliente", "frío", "es"]
         }
       },
       {
@@ -217,20 +189,8 @@
           "es": "Traduce 'It is a small house'"
         },
         "data": {
-          "correct": [
-            "Es",
-            "una",
-            "casa",
-            "pequeña"
-          ],
-          "words": [
-            "Es",
-            "una",
-            "casa",
-            "pequeña",
-            "un",
-            "grande"
-          ]
+          "correct": ["Es", "una", "casa", "pequeña"],
+          "words": ["Es", "una", "casa", "pequeña", "un", "grande"]
         }
       },
       {
@@ -240,20 +200,8 @@
           "es": "Traduce 'The food is bad'"
         },
         "data": {
-          "correct": [
-            "La",
-            "comida",
-            "es",
-            "mala"
-          ],
-          "words": [
-            "La",
-            "comida",
-            "es",
-            "mala",
-            "buena",
-            "el"
-          ]
+          "correct": ["La", "comida", "es", "mala"],
+          "words": ["La", "comida", "es", "mala", "buena", "el"]
         }
       },
       {
@@ -263,18 +211,8 @@
           "es": "Traduce 'A beautiful city'"
         },
         "data": {
-          "correct": [
-            "Una",
-            "ciudad",
-            "hermosa"
-          ],
-          "words": [
-            "Una",
-            "ciudad",
-            "hermosa",
-            "un",
-            "feo"
-          ]
+          "correct": ["Una", "ciudad", "hermosa"],
+          "words": ["Una", "ciudad", "hermosa", "un", "feo"]
         }
       },
       {
@@ -284,20 +222,8 @@
           "es": "Traduce 'The weather is cold'"
         },
         "data": {
-          "correct": [
-            "El",
-            "clima",
-            "es",
-            "frío"
-          ],
-          "words": [
-            "El",
-            "clima",
-            "es",
-            "frío",
-            "caliente",
-            "la"
-          ]
+          "correct": ["El", "clima", "es", "frío"],
+          "words": ["El", "clima", "es", "frío", "caliente", "la"]
         }
       }
     ]
@@ -366,11 +292,7 @@
         },
         "data": {
           "correct": "¿Dónde está el hotel?",
-          "options": [
-            "¿Dónde está el hotel?",
-            "¿Qué es el hotel?",
-            "¿Cuándo es el hotel?"
-          ]
+          "options": ["¿Dónde está el hotel?", "¿Qué es el hotel?", "¿Cuándo es el hotel?"]
         }
       },
       {
@@ -381,11 +303,7 @@
         },
         "data": {
           "correct": "why",
-          "options": [
-            "why",
-            "what",
-            "how"
-          ]
+          "options": ["why", "what", "how"]
         }
       },
       {
@@ -478,20 +396,8 @@
           "es": "Traduce 'What do you want?'"
         },
         "data": {
-          "correct": [
-            "¿",
-            "Qué",
-            "quieres",
-            "?"
-          ],
-          "words": [
-            "¿",
-            "Qué",
-            "quieres",
-            "?",
-            "Dónde",
-            "cómo"
-          ]
+          "correct": ["¿", "Qué", "quieres", "?"],
+          "words": ["¿", "Qué", "quieres", "?", "Dónde", "cómo"]
         }
       },
       {
@@ -501,24 +407,8 @@
           "es": "Traduce 'Where is my book?'"
         },
         "data": {
-          "correct": [
-            "¿",
-            "Dónde",
-            "está",
-            "mi",
-            "libro",
-            "?"
-          ],
-          "words": [
-            "¿",
-            "Dónde",
-            "está",
-            "mi",
-            "libro",
-            "?",
-            "Qué",
-            "es"
-          ]
+          "correct": ["¿", "Dónde", "está", "mi", "libro", "?"],
+          "words": ["¿", "Dónde", "está", "mi", "libro", "?", "Qué", "es"]
         }
       },
       {
@@ -528,22 +418,8 @@
           "es": "Traduce 'Who are you?'"
         },
         "data": {
-          "correct": [
-            "¿",
-            "Quién",
-            "eres",
-            "tú",
-            "?"
-          ],
-          "words": [
-            "¿",
-            "Quién",
-            "eres",
-            "tú",
-            "?",
-            "Cuándo",
-            "estás"
-          ]
+          "correct": ["¿", "Quién", "eres", "tú", "?"],
+          "words": ["¿", "Quién", "eres", "tú", "?", "Cuándo", "estás"]
         }
       },
       {
@@ -553,20 +429,8 @@
           "es": "Traduce 'How are you?'"
         },
         "data": {
-          "correct": [
-            "¿",
-            "Cómo",
-            "estás",
-            "?"
-          ],
-          "words": [
-            "¿",
-            "Cómo",
-            "estás",
-            "?",
-            "Qué",
-            "eres"
-          ]
+          "correct": ["¿", "Cómo", "estás", "?"],
+          "words": ["¿", "Cómo", "estás", "?", "Qué", "eres"]
         }
       },
       {
@@ -576,20 +440,8 @@
           "es": "Traduce 'When is it?'"
         },
         "data": {
-          "correct": [
-            "¿",
-            "Cuándo",
-            "es",
-            "?"
-          ],
-          "words": [
-            "¿",
-            "Cuándo",
-            "es",
-            "?",
-            "Dónde",
-            "está"
-          ]
+          "correct": ["¿", "Cuándo", "es", "?"],
+          "words": ["¿", "Cuándo", "es", "?", "Dónde", "está"]
         }
       },
       {
@@ -599,23 +451,8 @@
           "es": "Traduce 'Why is it big?'"
         },
         "data": {
-          "correct": [
-            "¿",
-            "Por",
-            "qué",
-            "es",
-            "grande",
-            "?"
-          ],
-          "words": [
-            "¿",
-            "Por",
-            "qué",
-            "es",
-            "grande",
-            "?",
-            "pequeño"
-          ]
+          "correct": ["¿", "Por", "qué", "es", "grande", "?"],
+          "words": ["¿", "Por", "qué", "es", "grande", "?", "pequeño"]
         }
       }
     ]
@@ -684,11 +521,7 @@
         },
         "data": {
           "correct": "pan",
-          "options": [
-            "pan",
-            "pollo",
-            "leche"
-          ]
+          "options": ["pan", "pollo", "leche"]
         }
       },
       {
@@ -699,11 +532,7 @@
         },
         "data": {
           "correct": "water",
-          "options": [
-            "water",
-            "milk",
-            "coffee"
-          ]
+          "options": ["water", "milk", "coffee"]
         }
       },
       {
@@ -796,18 +625,8 @@
           "es": "Traduce 'I want to drink water'"
         },
         "data": {
-          "correct": [
-            "Quiero",
-            "beber",
-            "agua"
-          ],
-          "words": [
-            "Quiero",
-            "beber",
-            "agua",
-            "comer",
-            "pan"
-          ]
+          "correct": ["Quiero", "beber", "agua"],
+          "words": ["Quiero", "beber", "agua", "comer", "pan"]
         }
       },
       {
@@ -817,18 +636,8 @@
           "es": "Traduce 'A hot coffee'"
         },
         "data": {
-          "correct": [
-            "Un",
-            "café",
-            "caliente"
-          ],
-          "words": [
-            "Un",
-            "café",
-            "caliente",
-            "agua",
-            "fría"
-          ]
+          "correct": ["Un", "café", "caliente"],
+          "words": ["Un", "café", "caliente", "agua", "fría"]
         }
       },
       {
@@ -838,24 +647,8 @@
           "es": "Traduce 'Where is the milk?'"
         },
         "data": {
-          "correct": [
-            "¿",
-            "Dónde",
-            "está",
-            "la",
-            "leche",
-            "?"
-          ],
-          "words": [
-            "¿",
-            "Dónde",
-            "está",
-            "la",
-            "leche",
-            "?",
-            "el",
-            "agua"
-          ]
+          "correct": ["¿", "Dónde", "está", "la", "leche", "?"],
+          "words": ["¿", "Dónde", "está", "la", "leche", "?", "el", "agua"]
         }
       },
       {
@@ -865,20 +658,8 @@
           "es": "Traduce 'The meat is good'"
         },
         "data": {
-          "correct": [
-            "La",
-            "carne",
-            "es",
-            "buena"
-          ],
-          "words": [
-            "La",
-            "carne",
-            "es",
-            "buena",
-            "el",
-            "mala"
-          ]
+          "correct": ["La", "carne", "es", "buena"],
+          "words": ["La", "carne", "es", "buena", "el", "mala"]
         }
       },
       {
@@ -888,22 +669,8 @@
           "es": "Traduce 'I eat bread and cheese'"
         },
         "data": {
-          "correct": [
-            "Yo",
-            "como",
-            "pan",
-            "y",
-            "queso"
-          ],
-          "words": [
-            "Yo",
-            "como",
-            "pan",
-            "y",
-            "queso",
-            "bebo",
-            "agua"
-          ]
+          "correct": ["Yo", "como", "pan", "y", "queso"],
+          "words": ["Yo", "como", "pan", "y", "queso", "bebo", "agua"]
         }
       },
       {
@@ -913,18 +680,8 @@
           "es": "Traduce 'A big apple'"
         },
         "data": {
-          "correct": [
-            "Una",
-            "manzana",
-            "grande"
-          ],
-          "words": [
-            "Una",
-            "manzana",
-            "grande",
-            "un",
-            "pequeña"
-          ]
+          "correct": ["Una", "manzana", "grande"],
+          "words": ["Una", "manzana", "grande", "un", "pequeña"]
         }
       }
     ]
@@ -993,11 +750,7 @@
         },
         "data": {
           "correct": "amigo",
-          "options": [
-            "amigo",
-            "hermano",
-            "padre"
-          ]
+          "options": ["amigo", "hermano", "padre"]
         }
       },
       {
@@ -1008,11 +761,7 @@
         },
         "data": {
           "correct": "mother",
-          "options": [
-            "mother",
-            "sister",
-            "person"
-          ]
+          "options": ["mother", "sister", "person"]
         }
       },
       {
@@ -1105,24 +854,8 @@
           "es": "Traduce 'My father is a good person'"
         },
         "data": {
-          "correct": [
-            "Mi",
-            "padre",
-            "es",
-            "una",
-            "buena",
-            "persona"
-          ],
-          "words": [
-            "Mi",
-            "padre",
-            "es",
-            "una",
-            "buena",
-            "persona",
-            "mal",
-            "niño"
-          ]
+          "correct": ["Mi", "padre", "es", "una", "buena", "persona"],
+          "words": ["Mi", "padre", "es", "una", "buena", "persona", "mal", "niño"]
         }
       },
       {
@@ -1132,24 +865,8 @@
           "es": "Traduce 'Where is your brother?'"
         },
         "data": {
-          "correct": [
-            "¿",
-            "Dónde",
-            "está",
-            "tu",
-            "hermano",
-            "?"
-          ],
-          "words": [
-            "¿",
-            "Dónde",
-            "está",
-            "tu",
-            "hermano",
-            "?",
-            "qué",
-            "madre"
-          ]
+          "correct": ["¿", "Dónde", "está", "tu", "hermano", "?"],
+          "words": ["¿", "Dónde", "está", "tu", "hermano", "?", "qué", "madre"]
         }
       },
       {
@@ -1159,20 +876,8 @@
           "es": "Traduce 'She is my sister'"
         },
         "data": {
-          "correct": [
-            "Ella",
-            "es",
-            "mi",
-            "hermana"
-          ],
-          "words": [
-            "Ella",
-            "es",
-            "mi",
-            "hermana",
-            "él",
-            "amigo"
-          ]
+          "correct": ["Ella", "es", "mi", "hermana"],
+          "words": ["Ella", "es", "mi", "hermana", "él", "amigo"]
         }
       },
       {
@@ -1182,18 +887,8 @@
           "es": "Traduce 'The beautiful people'"
         },
         "data": {
-          "correct": [
-            "La",
-            "gente",
-            "hermosa"
-          ],
-          "words": [
-            "La",
-            "gente",
-            "hermosa",
-            "las",
-            "grandes"
-          ]
+          "correct": ["La", "gente", "hermosa"],
+          "words": ["La", "gente", "hermosa", "las", "grandes"]
         }
       },
       {
@@ -1203,18 +898,8 @@
           "es": "Traduce 'A small child'"
         },
         "data": {
-          "correct": [
-            "Un",
-            "niño",
-            "pequeño"
-          ],
-          "words": [
-            "Un",
-            "niño",
-            "pequeño",
-            "grande",
-            "padre"
-          ]
+          "correct": ["Un", "niño", "pequeño"],
+          "words": ["Un", "niño", "pequeño", "grande", "padre"]
         }
       },
       {
@@ -1224,24 +909,8 @@
           "es": "Traduce 'Who is your friend?'"
         },
         "data": {
-          "correct": [
-            "¿",
-            "Quién",
-            "es",
-            "tu",
-            "amigo",
-            "?"
-          ],
-          "words": [
-            "¿",
-            "Quién",
-            "es",
-            "tu",
-            "amigo",
-            "?",
-            "Dónde",
-            "madre"
-          ]
+          "correct": ["¿", "Quién", "es", "tu", "amigo", "?"],
+          "words": ["¿", "Quién", "es", "tu", "amigo", "?", "Dónde", "madre"]
         }
       }
     ]
@@ -1310,11 +979,7 @@
         },
         "data": {
           "correct": "mañana",
-          "options": [
-            "mañana",
-            "ayer",
-            "hoy"
-          ]
+          "options": ["mañana", "ayer", "hoy"]
         }
       },
       {
@@ -1325,11 +990,7 @@
         },
         "data": {
           "correct": "two",
-          "options": [
-            "two",
-            "one",
-            "three"
-          ]
+          "options": ["two", "one", "three"]
         }
       },
       {
@@ -1422,18 +1083,8 @@
           "es": "Traduce 'I want it today'"
         },
         "data": {
-          "correct": [
-            "Lo",
-            "quiero",
-            "hoy"
-          ],
-          "words": [
-            "Lo",
-            "quiero",
-            "hoy",
-            "ayer",
-            "mañana"
-          ]
+          "correct": ["Lo", "quiero", "hoy"],
+          "words": ["Lo", "quiero", "hoy", "ayer", "mañana"]
         }
       },
       {
@@ -1443,22 +1094,8 @@
           "es": "Traduce 'Where are you now?'"
         },
         "data": {
-          "correct": [
-            "¿",
-            "Dónde",
-            "estás",
-            "ahora",
-            "?"
-          ],
-          "words": [
-            "¿",
-            "Dónde",
-            "estás",
-            "ahora",
-            "?",
-            "mañana",
-            "quién"
-          ]
+          "correct": ["¿", "Dónde", "estás", "ahora", "?"],
+          "words": ["¿", "Dónde", "estás", "ahora", "?", "mañana", "quién"]
         }
       },
       {
@@ -1468,22 +1105,8 @@
           "es": "Traduce 'One bread and two coffees'"
         },
         "data": {
-          "correct": [
-            "Un",
-            "pan",
-            "y",
-            "dos",
-            "cafés"
-          ],
-          "words": [
-            "Un",
-            "pan",
-            "y",
-            "dos",
-            "cafés",
-            "tres",
-            "agua"
-          ]
+          "correct": ["Un", "pan", "y", "dos", "cafés"],
+          "words": ["Un", "pan", "y", "dos", "cafés", "tres", "agua"]
         }
       },
       {
@@ -1493,18 +1116,8 @@
           "es": "Traduce 'Tomorrow is good'"
         },
         "data": {
-          "correct": [
-            "Mañana",
-            "es",
-            "bueno"
-          ],
-          "words": [
-            "Mañana",
-            "es",
-            "bueno",
-            "ayer",
-            "malo"
-          ]
+          "correct": ["Mañana", "es", "bueno"],
+          "words": ["Mañana", "es", "bueno", "ayer", "malo"]
         }
       },
       {
@@ -1514,18 +1127,8 @@
           "es": "Traduce 'I have three apples'"
         },
         "data": {
-          "correct": [
-            "Tengo",
-            "tres",
-            "manzanas"
-          ],
-          "words": [
-            "Tengo",
-            "tres",
-            "manzanas",
-            "dos",
-            "pollos"
-          ]
+          "correct": ["Tengo", "tres", "manzanas"],
+          "words": ["Tengo", "tres", "manzanas", "dos", "pollos"]
         }
       },
       {
@@ -1535,18 +1138,8 @@
           "es": "Traduce 'Yesterday I drank milk'"
         },
         "data": {
-          "correct": [
-            "Ayer",
-            "bebí",
-            "leche"
-          ],
-          "words": [
-            "Ayer",
-            "bebí",
-            "leche",
-            "hoy",
-            "agua"
-          ]
+          "correct": ["Ayer", "bebí", "leche"],
+          "words": ["Ayer", "bebí", "leche", "hoy", "agua"]
         }
       }
     ]

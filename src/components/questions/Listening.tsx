@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeHigh, faPlay } from '@fortawesome/free-solid-svg-icons'
 import type { Question } from '../../types'
@@ -32,7 +32,12 @@ export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioL
     if (isPlaying) return
     setIsPlaying(true)
     const text = question.question_text_tts || question.correct_answer
-    const lang = (scenarioLanguage === 'english' || scenarioLanguage === 'en' || scenarioLanguage?.startsWith('en')) ? 'en-US' : 'es-ES'
+    const lang =
+      scenarioLanguage === 'english' ||
+      scenarioLanguage === 'en' ||
+      scenarioLanguage?.startsWith('en')
+        ? 'en-US'
+        : 'es-ES'
     speechService.speak(text, lang, speechSpeed)
     // Approximate speech duration
     setTimeout(() => setIsPlaying(false), Math.max(1500, text.length * 80))
@@ -84,10 +89,7 @@ export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioL
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <FontAwesomeIcon
-            icon={isPlaying ? faVolumeHigh : faPlay}
-            className="text-3xl"
-          />
+          <FontAwesomeIcon icon={isPlaying ? faVolumeHigh : faPlay} className="text-3xl" />
           {isPlaying && (
             <>
               <motion.div
