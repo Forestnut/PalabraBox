@@ -56,4 +56,26 @@ describe('gameStore', () => {
 
     expect(useGameStore.getState().sessionBlacklist).toEqual(['q1', 'q2'])
   })
+
+  it('stores the last game result and clears it on reset', () => {
+    useGameStore.getState().setLastResult({
+      scenarioId: 'abc',
+      score: 90,
+      lives: 2,
+      maxLives: 3,
+      stars: 2,
+    })
+
+    expect(useGameStore.getState().lastResult).toEqual({
+      scenarioId: 'abc',
+      score: 90,
+      lives: 2,
+      maxLives: 3,
+      stars: 2,
+    })
+
+    useGameStore.getState().resetGame()
+
+    expect(useGameStore.getState().lastResult).toBeNull()
+  })
 })
