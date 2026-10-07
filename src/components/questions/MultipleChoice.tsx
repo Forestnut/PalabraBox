@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import type { Question } from '../../types'
 import { cn } from '../../utils/cn'
 import { shuffleArray } from '../../utils/shuffle'

@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeHigh, faPlay } from '@fortawesome/free-solid-svg-icons'
 import type { Question } from '../../types'

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import confetti from 'canvas-confetti'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faBolt, faHeart, faRotateRight, faHouse } from '@fortawesome/free-solid-svg-icons'

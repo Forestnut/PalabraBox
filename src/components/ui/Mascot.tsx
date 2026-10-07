@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { useEffect, useState, useId } from 'react'
 import { cn } from '../../utils/cn'
 

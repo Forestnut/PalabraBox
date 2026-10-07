@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { PageTransition } from '../components/layout/PageTransition'
 import { Mascot } from '../components/ui/Mascot'
 
