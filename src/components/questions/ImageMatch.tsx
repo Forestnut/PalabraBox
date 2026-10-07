@@ -50,9 +50,12 @@ export function ImageMatch({ question, onAnswer, onPlaySound, disabled }: Props)
     setFeedback(isCorrect ? 'correct' : 'wrong')
     onPlaySound?.(isCorrect ? 'correct' : 'wrong')
 
-    timeoutRef.current = window.setTimeout(() => {
-      onAnswer(isCorrect)
-    }, FEEDBACK_DELAY_MS[isCorrect ? 'correct' : 'wrong'])
+    timeoutRef.current = window.setTimeout(
+      () => {
+        onAnswer(isCorrect)
+      },
+      FEEDBACK_DELAY_MS[isCorrect ? 'correct' : 'wrong'],
+    )
   }
 
   const getOptionStyle = (option: string) => {
@@ -61,9 +64,12 @@ export function ImageMatch({ question, onAnswer, onPlaySound, disabled }: Props)
       if (option === selectedAnswer) {
         return cn(base, 'bg-pb-amber/10 border-2 border-b-4 border-pb-amber text-pb-amber')
       }
-      return cn(base, 'bg-white border-2 border-b-4 border-slate-200 text-pb-dark hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] cursor-pointer')
+      return cn(
+        base,
+        'bg-white border-2 border-b-4 border-slate-200 text-pb-dark hover:bg-slate-50 active:border-b-2 active:translate-y-[2px] cursor-pointer',
+      )
     }
-    
+
     const isSelected = option === selectedAnswer
     const isCorrect = option === question.correct_answer
 
@@ -84,11 +90,17 @@ export function ImageMatch({ question, onAnswer, onPlaySound, disabled }: Props)
 
   const renderImage = () => {
     const target = question.image_emoji || question.question_text || '❓'
-    
+
     if (target.includes('/') || target.includes('.')) {
-      return <img src={target} alt="question image" className="w-40 h-40 object-contain drop-shadow-md" />
+      return (
+        <img
+          src={target}
+          alt="question image"
+          className="w-40 h-40 object-contain drop-shadow-md"
+        />
+      )
     }
-    
+
     return (
       <motion.span
         className="text-7xl sm:text-8xl drop-shadow-md"
@@ -115,7 +127,9 @@ export function ImageMatch({ question, onAnswer, onPlaySound, disabled }: Props)
 
       {question.hint && (
         <div className="w-full text-center mb-6">
-           <p className="text-sm font-bold text-pb-amber uppercase tracking-widest">{question.hint}</p>
+          <p className="text-sm font-bold text-pb-amber uppercase tracking-widest">
+            {question.hint}
+          </p>
         </div>
       )}
 

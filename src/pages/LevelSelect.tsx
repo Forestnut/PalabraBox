@@ -66,12 +66,7 @@ export default function LevelSelect() {
         </div>
 
         <div className="mt-6 flex justify-end gap-2">
-          <Button
-            variant="ghost"
-            size="md"
-            onClick={() => navigate('/language')}
-            className="w-28"
-          >
+          <Button variant="ghost" size="md" onClick={() => navigate('/language')} className="w-28">
             Atrás
           </Button>
           <Button

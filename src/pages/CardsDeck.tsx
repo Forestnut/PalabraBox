@@ -14,8 +14,6 @@ export default function CardsDeck() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0) // -1 left, 1 right
 
-
-
   const prev = useCallback(() => {
     if (currentIndex <= 0) return
     setDirection(-1)

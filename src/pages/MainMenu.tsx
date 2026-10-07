@@ -1,13 +1,19 @@
-
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay, faLayerGroup, faGear, faFire, faStar, faTrophy, faBolt } from '@fortawesome/free-solid-svg-icons'
+import {
+  faPlay,
+  faLayerGroup,
+  faGear,
+  faFire,
+  faStar,
+  faTrophy,
+  faBolt,
+} from '@fortawesome/free-solid-svg-icons'
 import { PageTransition } from '../components/layout/PageTransition'
 import { Button } from '../components/ui/Button'
 import { Mascot } from '../components/ui/Mascot'
 import { useQuickProgress } from '../hooks/useQuickProgress'
-
 
 export default function MainMenu() {
   const navigate = useNavigate()
@@ -19,7 +25,6 @@ export default function MainMenu() {
         className="max-w-lg mx-auto sm:px-6 px-5 w-full flex flex-col items-center gap-5 pt-10 no-scrollbar pb-[max(1.5rem,env(safe-area-inset-bottom))]"
         style={{ minHeight: '100%' }}
       >
-
         {/* Settings button */}
         <motion.button
           onClick={() => navigate('/settings')}
@@ -91,7 +96,10 @@ export default function MainMenu() {
                 <FontAwesomeIcon icon={faFire} className="text-5xl" />
               </div>
               <div className="flex items-center gap-1.5 mb-0.5">
-                <FontAwesomeIcon icon={faFire} className="text-pb-amber text-xl drop-shadow-sm relative z-10" />
+                <FontAwesomeIcon
+                  icon={faFire}
+                  className="text-pb-amber text-xl drop-shadow-sm relative z-10"
+                />
                 <span className="font-bold text-pb-amber text-sm relative z-10">Racha</span>
               </div>
               <span className="font-black text-pb-dark text-xl relative z-10">
@@ -108,11 +116,17 @@ export default function MainMenu() {
                 <FontAwesomeIcon icon={faStar} className="text-5xl" />
               </div>
               <div className="flex items-center gap-1.5 mb-0.5">
-                <FontAwesomeIcon icon={faStar} className="text-amber-400 text-xl drop-shadow-sm relative z-10" />
+                <FontAwesomeIcon
+                  icon={faStar}
+                  className="text-amber-400 text-xl drop-shadow-sm relative z-10"
+                />
                 <span className="font-bold text-indigo-500 text-sm relative z-10">Estrellas</span>
               </div>
               <span className="font-black text-pb-dark text-xl relative z-10">
-                {ownedStars} <span className="text-xs font-bold text-indigo-300 ml-0.5">/ {possibleStars || 150}</span>
+                {ownedStars}{' '}
+                <span className="text-xs font-bold text-indigo-300 ml-0.5">
+                  / {possibleStars || 150}
+                </span>
               </span>
             </div>
           </div>
@@ -130,14 +144,16 @@ export default function MainMenu() {
                 </div>
               </div>
               <div className="text-right">
-                <span className="text-[10px] font-bold text-pb-text-light uppercase tracking-widest block mb-1">Próximo Nivel</span>
+                <span className="text-[10px] font-bold text-pb-text-light uppercase tracking-widest block mb-1">
+                  Próximo Nivel
+                </span>
                 <div className="font-black text-indigo-400 text-sm leading-none flex items-center justify-end gap-1">
                   <FontAwesomeIcon icon={faBolt} className="text-xs" />
                   {100 - levelProgressPercentage} XP
                 </div>
               </div>
             </div>
-            
+
             <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden shadow-inner">
               <motion.div
                 className="h-full bg-linear-to-r from-indigo-400 via-indigo-500 to-purple-500 rounded-full relative"
@@ -145,7 +161,7 @@ export default function MainMenu() {
                 animate={{ width: `${levelProgressPercentage}%` }}
                 transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
               >
-                 <div className="absolute inset-0 bg-white/20 h-1/2 rounded-t-full" />
+                <div className="absolute inset-0 bg-white/20 h-1/2 rounded-t-full" />
               </motion.div>
             </div>
           </div>

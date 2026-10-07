@@ -2,21 +2,21 @@
 
 ## Technology Stack
 
-| Layer | Technology | Purpose |
-| --- | --- | --- |
-| **Framework** | React 19 + TypeScript | Component-based UI with type safety |
-| **Build tool** | Vite 8 | Fast dev server, HMR, optimized builds |
-| **Styling** | Tailwind CSS 4 | Utility-first CSS, custom design tokens |
-| **State** | Zustand | Lightweight global state (game state, settings) |
-| **Routing** | React Router v7 | Client-side navigation between screens |
-| **Animations** | Framer Motion | Page transitions, answer feedback, card flip |
-| **Database** | Supabase (PostgreSQL) | Scenarios, questions, words storage |
-| **TTS** | Web Speech API | Built-in browser text-to-speech (free) |
-| **Audio** | Howler.js | Sound effects (correct, wrong, click, etc.) |
-| **Drag & Drop** | @dnd-kit | Word ordering questions (Intermedio level) |
-| **Confetti** | canvas-confetti | Celebration effect on great results |
-| **PWA** | vite-plugin-pwa | Installable on mobile, offline-ready shell |
-| **Hosting** | Vercel | Deployment, environment variables |
+| Layer           | Technology            | Purpose                                         |
+| --------------- | --------------------- | ----------------------------------------------- |
+| **Framework**   | React 19 + TypeScript | Component-based UI with type safety             |
+| **Build tool**  | Vite 8                | Fast dev server, HMR, optimized builds          |
+| **Styling**     | Tailwind CSS 4        | Utility-first CSS, custom design tokens         |
+| **State**       | Zustand               | Lightweight global state (game state, settings) |
+| **Routing**     | React Router v7       | Client-side navigation between screens          |
+| **Animations**  | Framer Motion         | Page transitions, answer feedback, card flip    |
+| **Database**    | Supabase (PostgreSQL) | Scenarios, questions, words storage             |
+| **TTS**         | Web Speech API        | Built-in browser text-to-speech (free)          |
+| **Audio**       | Howler.js             | Sound effects (correct, wrong, click, etc.)     |
+| **Drag & Drop** | @dnd-kit              | Word ordering questions (Intermedio level)      |
+| **Confetti**    | canvas-confetti       | Celebration effect on great results             |
+| **PWA**         | vite-plugin-pwa       | Installable on mobile, offline-ready shell      |
+| **Hosting**     | Vercel                | Deployment, environment variables               |
 
 ## Project Structure
 
@@ -125,20 +125,20 @@ palabrabox/
 
 ## Routing Map
 
-| Path | Component | Description |
-| --- | --- | --- |
-| `/` | `SplashScreen` | Logo animation, auto-redirect to /menu |
-| `/menu` | `MainMenu` | Play, Flashcards, Settings buttons |
-| `/select-language` | `LanguageSelect` | English or Spanish |
-| `/select-level` | `LevelSelect` | Principiante or Intermedio |
-| `/scenarios` | `ScenarioSelect` | Grid of scenario tiles |
-| `/game/:scenarioId` | `GameScreen` | Main gameplay (10 questions) |
-| `/results` | `ResultsScreen` | Stars, score, retry/next |
-| `/cards/select-language` | `CardsLanguageSelect` | Language for flashcards |
-| `/cards/select-level` | `CardsLevelSelect` | Level for flashcards |
-| `/cards/select-scenario` | `CardsScenarioSelect` | Scenario for flashcards |
-| `/cards/:scenarioId` | `CardsDeck` | Flashcard viewer |
-| `/settings` | `SettingsScreen` | Sound, TTS, app info |
+| Path                     | Component             | Description                            |
+| ------------------------ | --------------------- | -------------------------------------- |
+| `/`                      | `SplashScreen`        | Logo animation, auto-redirect to /menu |
+| `/menu`                  | `MainMenu`            | Play, Flashcards, Settings buttons     |
+| `/select-language`       | `LanguageSelect`      | English or Spanish                     |
+| `/select-level`          | `LevelSelect`         | Principiante or Intermedio             |
+| `/scenarios`             | `ScenarioSelect`      | Grid of scenario tiles                 |
+| `/game/:scenarioId`      | `GameScreen`          | Main gameplay (10 questions)           |
+| `/results`               | `ResultsScreen`       | Stars, score, retry/next               |
+| `/cards/select-language` | `CardsLanguageSelect` | Language for flashcards                |
+| `/cards/select-level`    | `CardsLevelSelect`    | Level for flashcards                   |
+| `/cards/select-scenario` | `CardsScenarioSelect` | Scenario for flashcards                |
+| `/cards/:scenarioId`     | `CardsDeck`           | Flashcard viewer                       |
+| `/settings`              | `SettingsScreen`      | Sound, TTS, app info                   |
 
 ## Data Flow
 

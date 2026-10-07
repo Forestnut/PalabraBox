@@ -11,12 +11,12 @@ database schema or plans.
 
 ## Current sources of truth
 
-| Topic | Document |
-|---|---|
-| Audit (state as of 2026-10) | [docs/AUDIT.md](../AUDIT.md) |
-| Work plan & task status | [docs/PLAN.md](../PLAN.md) |
-| Architecture | [docs/ARCHITECTURE.md](../ARCHITECTURE.md) (rewrite pending — see PLAN.md, task I2) |
-| Database | [docs/DATABASE.md](../DATABASE.md) (rewrite pending — see PLAN.md, task E9) |
-| Setup | [docs/SETUP.md](../SETUP.md) (rewrite pending — see PLAN.md, task I3) |
+| Topic                       | Document                                                                            |
+| --------------------------- | ----------------------------------------------------------------------------------- |
+| Audit (state as of 2026-10) | [docs/AUDIT.md](../AUDIT.md)                                                        |
+| Work plan & task status     | [docs/PLAN.md](../PLAN.md)                                                          |
+| Architecture                | [docs/ARCHITECTURE.md](../ARCHITECTURE.md) (rewrite pending — see PLAN.md, task I2) |
+| Database                    | [docs/DATABASE.md](../DATABASE.md) (rewrite pending — see PLAN.md, task E9)         |
+| Setup                       | [docs/SETUP.md](../SETUP.md) (rewrite pending — see PLAN.md, task I3)               |
 
 Do not link to files in this folder from the application or CI.

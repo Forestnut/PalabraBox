@@ -18,15 +18,15 @@ Thanks for helping improve PalabraBox! 📦
 
 2. Make **small, focused commits** using [Conventional Commits](https://www.conventionalcommits.org/):
 
-   | Prefix | Use for |
-   |---|---|
-   | `feat:` | new feature |
-   | `fix:` | bug fix |
+   | Prefix      | Use for                                  |
+   | ----------- | ---------------------------------------- |
+   | `feat:`     | new feature                              |
+   | `fix:`      | bug fix                                  |
    | `refactor:` | code change that is neither feat nor fix |
-   | `test:` | adding/adjusting tests |
-   | `docs:` | documentation only |
-   | `chore:` | tooling, deps, config |
-   | `perf:` | performance improvement |
+   | `test:`     | adding/adjusting tests                   |
+   | `docs:`     | documentation only                       |
+   | `chore:`    | tooling, deps, config                    |
+   | `perf:`     | performance improvement                  |
 
    Example: `feat(tts): segment mixed-language sentences per voice`
 

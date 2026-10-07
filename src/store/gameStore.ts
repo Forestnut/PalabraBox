@@ -28,14 +28,23 @@ export const useGameStore = create<GameState>((set) => ({
   totalQuestions: 0,
   sessionBlacklist: [],
 
-  startGame: (total) => set({ status: 'playing', score: 0, lives: 3, currentQuestionIndex: 0, totalQuestions: total ?? 0 }),
+  startGame: (total) =>
+    set({
+      status: 'playing',
+      score: 0,
+      lives: 3,
+      currentQuestionIndex: 0,
+      totalQuestions: total ?? 0,
+    }),
   answerCorrect: () => set((state) => ({ score: state.score + 10 })),
   answerWrong: () => set((state) => ({ lives: Math.max(0, state.lives - 1) })),
   nextQuestion: () => set((state) => ({ currentQuestionIndex: state.currentQuestionIndex + 1 })),
   endGame: () => set({ status: 'finished' }),
-  resetGame: () => set({ status: 'idle', score: 0, lives: 3, currentQuestionIndex: 0, totalQuestions: 0 }),
-  addToBlacklist: (id) => set((state) => {
-    if (state.sessionBlacklist.includes(id)) return state;
-    return { sessionBlacklist: [...state.sessionBlacklist, id] };
-  })
+  resetGame: () =>
+    set({ status: 'idle', score: 0, lives: 3, currentQuestionIndex: 0, totalQuestions: 0 }),
+  addToBlacklist: (id) =>
+    set((state) => {
+      if (state.sessionBlacklist.includes(id)) return state
+      return { sessionBlacklist: [...state.sessionBlacklist, id] }
+    }),
 }))

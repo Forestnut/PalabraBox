@@ -2,7 +2,8 @@
 
 export type Language = 'english' | 'spanish'
 export type Level = 'beginner' | 'intermediate'
-export type QuestionType = 'multiple_choice' | 'image_match' | 'listening' | 'fill_blank' | 'word_order'
+export type QuestionType =
+  'multiple_choice' | 'image_match' | 'listening' | 'fill_blank' | 'word_order'
 
 export interface Scenario {
   id: string

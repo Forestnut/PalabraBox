@@ -42,21 +42,21 @@ export default function App() {
     // Simulate real initialization process (e.g. fetching user session, caching sounds)
     const initApp = async () => {
       try {
-        const didReset = await runMigrations();
+        const didReset = await runMigrations()
         if (didReset) {
-          console.log('App state was reset for new version.');
-          window.location.reload();
-          return;
+          console.log('App state was reset for new version.')
+          window.location.reload()
+          return
         }
-        
+
         sfxService.preload()
         // Use a longer timeout so the LoaderOverlay acts as the primary splash screen
-        await new Promise(resolve => setTimeout(resolve, 1600))
+        await new Promise((resolve) => setTimeout(resolve, 1600))
       } finally {
         setIsInitializing(false)
       }
     }
-    
+
     initApp()
   }, [])
 

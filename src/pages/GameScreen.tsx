@@ -59,8 +59,8 @@ export default function GameScreen() {
 
     const resetSleepTimer = () => {
       if (sleepTimeoutRef.current) window.clearTimeout(sleepTimeoutRef.current)
-      setBoxiMood(current => current === 'sleeping' ? 'idle' : current)
-      
+      setBoxiMood((current) => (current === 'sleeping' ? 'idle' : current))
+
       sleepTimeoutRef.current = window.setTimeout(() => {
         setBoxiMood('sleeping')
       }, 15000)
@@ -81,28 +81,31 @@ export default function GameScreen() {
   }, [status, showIntermission, currentQuestionIndex])
 
   // Intermission logic is now handled in onAnswered to ensure it batches with goToNext() and prevents the next question from briefly mounting
-  const handlePlaySound = useCallback((type: 'click' | 'correct' | 'wrong') => {
-    playSound(type)
-    if (type === 'correct') {
-      streakRef.current += 1
-      setBoxiMood('happy')
-      setBoxiMessage('¡Genial!')
-      if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
-      boxiTimeoutRef.current = window.setTimeout(() => {
-        setBoxiMood('idle')
-        setBoxiMessage(null)
-      }, 1500)
-    } else if (type === 'wrong') {
-      streakRef.current = 0
-      setBoxiMood('wrong')
-      setBoxiMessage('¡Ups!')
-      if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
-      boxiTimeoutRef.current = window.setTimeout(() => {
-        setBoxiMood('idle')
-        setBoxiMessage(null)
-      }, 1200)
-    }
-  }, [playSound])
+  const handlePlaySound = useCallback(
+    (type: 'click' | 'correct' | 'wrong') => {
+      playSound(type)
+      if (type === 'correct') {
+        streakRef.current += 1
+        setBoxiMood('happy')
+        setBoxiMessage('¡Genial!')
+        if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
+        boxiTimeoutRef.current = window.setTimeout(() => {
+          setBoxiMood('idle')
+          setBoxiMessage(null)
+        }, 1500)
+      } else if (type === 'wrong') {
+        streakRef.current = 0
+        setBoxiMood('wrong')
+        setBoxiMessage('¡Ups!')
+        if (boxiTimeoutRef.current) window.clearTimeout(boxiTimeoutRef.current)
+        boxiTimeoutRef.current = window.setTimeout(() => {
+          setBoxiMood('idle')
+          setBoxiMessage(null)
+        }, 1200)
+      }
+    },
+    [playSound],
+  )
 
   if (loading) {
     return (
@@ -121,9 +124,15 @@ export default function GameScreen() {
         </div>
         <div className="flex flex-col items-center justify-center flex-1 w-full mt-20">
           <Mascot mood="sad" size="xl" />
-          <p className="text-center text-pb-error mt-8 font-black text-2xl drop-shadow-sm">¡Oh no!</p>
-          <p className="text-center text-pb-text-light mt-2 font-bold max-w-64 leading-tight">Hubo un problema al cargar. Inténtalo de nuevo.</p>
-          <p className="text-center text-pb-error/60 mt-4 text-xs font-semibold max-w-64 truncate">{error}</p>
+          <p className="text-center text-pb-error mt-8 font-black text-2xl drop-shadow-sm">
+            ¡Oh no!
+          </p>
+          <p className="text-center text-pb-text-light mt-2 font-bold max-w-64 leading-tight">
+            Hubo un problema al cargar. Inténtalo de nuevo.
+          </p>
+          <p className="text-center text-pb-error/60 mt-4 text-xs font-semibold max-w-64 truncate">
+            {error}
+          </p>
         </div>
       </ScreenWrapper>
     )
@@ -136,7 +145,9 @@ export default function GameScreen() {
         <p className="text-center mt-8 font-black text-pb-dark text-2xl drop-shadow-sm animate-pulse">
           ¡Completado!
         </p>
-        <p className="text-center mt-2 font-bold text-pb-text-light text-base">Preparando tus resultados...</p>
+        <p className="text-center mt-2 font-bold text-pb-text-light text-base">
+          Preparando tus resultados...
+        </p>
       </ScreenWrapper>
     )
   }
@@ -169,8 +180,8 @@ export default function GameScreen() {
             {intermissionText}
           </h2>
           <div className="w-12 h-1.5 bg-pb-amber rounded-full animate-pulse mt-3" />
-          
-          <button 
+
+          <button
             onClick={() => setShowIntermission(false)}
             className="mt-8 px-8 py-3 bg-linear-to-b from-[#FFB347] to-pb-amber text-white font-bold rounded-2xl shadow-[0_4px_0_#c97a1a] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
           >
@@ -214,7 +225,9 @@ export default function GameScreen() {
                 >
                   <FontAwesomeIcon
                     icon={faHeart}
-                    className={i < lives ? 'text-pb-error text-sm' : 'text-pb-text-light/30 text-sm'}
+                    className={
+                      i < lives ? 'text-pb-error text-sm' : 'text-pb-text-light/30 text-sm'
+                    }
                   />
                 </motion.span>
               ))}
@@ -241,16 +254,16 @@ export default function GameScreen() {
             scenarioLanguage={scenarioLanguage}
             onAnswered={(isCorrect) => {
               handleAnswer(isCorrect)
-              
+
               const nextLives = isCorrect ? lives : lives - 1
               if (currentQuestionIndex + 1 < questions.length && nextLives > 0) {
                 let text: string
                 let moodToSet: MascotMood
-                
+
                 const currentStreak = streakRef.current
                 const nextQ = questions[currentQuestionIndex + 1]
                 const currQ = questions[currentQuestionIndex]
-                
+
                 if (isCorrect) {
                   moodToSet = 'happy'
                   if (currentStreak > 0 && currentStreak % 3 === 0) {
@@ -264,7 +277,9 @@ export default function GameScreen() {
                     text = typePhrases[nextQ.type]
                   } else {
                     const praises = ['¡Muy bien!', '¡Perfecto!', '¡Sigue así!', '¡Excelente!']
-                    text = praises[Math.floor(Math.random() * praises.length)] + (nextQ && typePhrases[nextQ.type] ? ' ' + typePhrases[nextQ.type] : '')
+                    text =
+                      praises[Math.floor(Math.random() * praises.length)] +
+                      (nextQ && typePhrases[nextQ.type] ? ' ' + typePhrases[nextQ.type] : '')
                   }
                 } else {
                   moodToSet = 'sad'
@@ -278,12 +293,12 @@ export default function GameScreen() {
                     text = '¡Ups! Sigue intentándolo.'
                   }
                 }
-                
+
                 setIntermissionText(text)
                 setIntermissionMood(moodToSet)
                 setShowIntermission(true)
               }
-              
+
               goToNext()
             }}
             onPlaySound={handlePlaySound}

@@ -1,4 +1,3 @@
-
 import type { Question } from '../../types'
 import { MultipleChoice } from './MultipleChoice'
 import { ImageMatch } from './ImageMatch'

@@ -1,5 +1,3 @@
-
-
 # 📦 PalabraBox — Finalny Plan Projektu
 
 ---
@@ -101,18 +99,18 @@ Nazwa **PalabraBox** łączy hiszpańskie „Palabra" (słowo) z angielskim „B
 
 ### Gdzie pojawia się „Box"
 
-| Element | Zastosowanie motywu pudełka |
-|---------|---------------------------|
-| **Logo** | Stylizowane pudełko 📦 z literą „P" lub słowem „PB" wyłaniającym się z otwartego kartonu |
-| **Maskotka** | Mały, uśmiechnięty kartonik z oczami i rączkami — pojawia się na splash screenie, w pustych stanach, przy gratulacjach. Prosty, geometryczny, narysowany w CSS/SVG — nie wymaga grafika |
-| **Kafelki scenariuszy** | Wyglądają jak pudełka/kartony — lekko trójwymiarowe (cień na dole i prawej stronie), „otwierają się" po kliknięciu (animacja pokrywki) |
-| **Karty odpowiedzi** | Kafelki z zaokrąglonymi rogami wyglądające jak małe pudełeczka |
-| **Fiszki (Tarjetas)** | Karty odwracają się jak wkładanie/wyjmowanie słówka z pudełka |
-| **Ekran wyników** | „¡Has abierto la caja del conocimiento!" (Otworzyłeś pudełko wiedzy!) |
-| **Ukończenie scenariusza** | Animacja — pudełko się otwiera i wylatują z niego gwiazdki/confetti |
-| **Zablokowany scenariusz** | Zamknięte pudełko z kłódką 🔒 |
-| **Odblokowany, nieukończony** | Zamknięte pudełko bez kłódki (gotowe do otwarcia) |
-| **Ukończony scenariusz** | Otwarte pudełko ze gwiazdkami ⭐ na wierzchu |
+| Element                       | Zastosowanie motywu pudełka                                                                                                                                                             |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Logo**                      | Stylizowane pudełko 📦 z literą „P" lub słowem „PB" wyłaniającym się z otwartego kartonu                                                                                                |
+| **Maskotka**                  | Mały, uśmiechnięty kartonik z oczami i rączkami — pojawia się na splash screenie, w pustych stanach, przy gratulacjach. Prosty, geometryczny, narysowany w CSS/SVG — nie wymaga grafika |
+| **Kafelki scenariuszy**       | Wyglądają jak pudełka/kartony — lekko trójwymiarowe (cień na dole i prawej stronie), „otwierają się" po kliknięciu (animacja pokrywki)                                                  |
+| **Karty odpowiedzi**          | Kafelki z zaokrąglonymi rogami wyglądające jak małe pudełeczka                                                                                                                          |
+| **Fiszki (Tarjetas)**         | Karty odwracają się jak wkładanie/wyjmowanie słówka z pudełka                                                                                                                           |
+| **Ekran wyników**             | „¡Has abierto la caja del conocimiento!" (Otworzyłeś pudełko wiedzy!)                                                                                                                   |
+| **Ukończenie scenariusza**    | Animacja — pudełko się otwiera i wylatują z niego gwiazdki/confetti                                                                                                                     |
+| **Zablokowany scenariusz**    | Zamknięte pudełko z kłódką 🔒                                                                                                                                                           |
+| **Odblokowany, nieukończony** | Zamknięte pudełko bez kłódki (gotowe do otwarcia)                                                                                                                                       |
+| **Ukończony scenariusz**      | Otwarte pudełko ze gwiazdkami ⭐ na wierzchu                                                                                                                                            |
 
 ### Maskotka — „Boxi"
 
@@ -129,6 +127,7 @@ Prosta maskotka którą można zrobić w CSS/SVG bez grafika:
 ```
 
 **Gdzie pojawia się Boxi:**
+
 - Splash screen — Boxi się otwiera (animacja)
 - Pusty ekran postępu — Boxi mówi „¡Empieza a jugar!" (Zacznij grać!)
 - Poprawna odpowiedź — Boxi jest szczęśliwy (pokrywka się podnosi)
@@ -144,21 +143,23 @@ Prosta maskotka którą można zrobić w CSS/SVG bez grafika:
 
 ### Podział wiekowy
 
-| Cecha | Młodsze dzieci (6–10 lat) | Starsza młodzież (11–15 lat) |
-|-------|---------------------------|------------------------------|
-| **Poziom** | Principiante (A1) | Intermedio (A2–B1) |
-| **Typy pytań** | Obrazki, quiz, słuchanie | Układanie zdań, uzupełnianie luk, słuchanie |
-| **Tematyka** | Kolory, zwierzęta, jedzenie, liczby | Podróże, zakupy, sytuacje życiowe |
-| **Złożoność** | Pojedyncze słowa, proste frazy | Całe zdania, krótkie dialogi |
-| **UI** | Większe przyciski, więcej emoji | Mniejsze elementy, więcej tekstu |
+| Cecha          | Młodsze dzieci (6–10 lat)           | Starsza młodzież (11–15 lat)                |
+| -------------- | ----------------------------------- | ------------------------------------------- |
+| **Poziom**     | Principiante (A1)                   | Intermedio (A2–B1)                          |
+| **Typy pytań** | Obrazki, quiz, słuchanie            | Układanie zdań, uzupełnianie luk, słuchanie |
+| **Tematyka**   | Kolory, zwierzęta, jedzenie, liczby | Podróże, zakupy, sytuacje życiowe           |
+| **Złożoność**  | Pojedyncze słowa, proste frazy      | Całe zdania, krótkie dialogi                |
+| **UI**         | Większe przyciski, więcej emoji     | Mniejsze elementy, więcej tekstu            |
 
 ### Poziom Principiante (A1)
+
 - **Słownictwo:** podstawowe 200–300 słów
 - **Kategorie:** kolory, liczby 1–20, zwierzęta, jedzenie, rodzina
 - **Typy pytań:** Multiple choice, Image match, Listening
 - **Mechanika:** 3 serca, 10 pytań na scenariusz
 
 ### Poziom Intermedio (A2–B1)
+
 - **Słownictwo:** 500–800 słów + frazy
 - **Kategorie:** podróże, kawiarnia, lotnisko, zakupy
 - **Typy pytań:** Wszystkie z Principiante + Fill in the blank + Drag & Drop (Word Order)
@@ -189,19 +190,19 @@ Text light:        #6B7B71  — szaro-zielony (tekst drugorzędny)
 
 ### Jak używać kolorów
 
-| Element | Kolor | Kod |
-|---------|-------|-----|
-| Tło strony | Jasny szaro-zielony | `bg-[#F0F5F1]` |
-| Nagłówki, tekst główny | Ciemny | `text-[#080C08]` |
-| Karty, kafelki | Biały z cieniem | `bg-white shadow-md` |
-| Główny przycisk (CTA) | Amber/pomarańczowy | `bg-[#FFA42C] text-white` |
-| Przyciski drugorzędne | Głęboki zielony | `bg-[#04724D] text-white` |
-| Pasek postępu | Szmaragd → amber gradient | `from-[#04724D] to-[#FFA42C]` |
-| Tło sekcji/nagłówka gry | Stonowany zielony | `bg-[#56876D]` |
-| Hover na kartach | Lekki zielony | `hover:bg-[#56876D]/10` |
-| Poprawna odpowiedź | Zielony | `bg-[#10B981]` |
-| Błędna odpowiedź | Czerwony | `bg-[#EF4444]` |
-| Zablokowany scenariusz | Szary | `bg-gray-200 opacity-60` |
+| Element                 | Kolor                     | Kod                           |
+| ----------------------- | ------------------------- | ----------------------------- |
+| Tło strony              | Jasny szaro-zielony       | `bg-[#F0F5F1]`                |
+| Nagłówki, tekst główny  | Ciemny                    | `text-[#080C08]`              |
+| Karty, kafelki          | Biały z cieniem           | `bg-white shadow-md`          |
+| Główny przycisk (CTA)   | Amber/pomarańczowy        | `bg-[#FFA42C] text-white`     |
+| Przyciski drugorzędne   | Głęboki zielony           | `bg-[#04724D] text-white`     |
+| Pasek postępu           | Szmaragd → amber gradient | `from-[#04724D] to-[#FFA42C]` |
+| Tło sekcji/nagłówka gry | Stonowany zielony         | `bg-[#56876D]`                |
+| Hover na kartach        | Lekki zielony             | `hover:bg-[#56876D]/10`       |
+| Poprawna odpowiedź      | Zielony                   | `bg-[#10B981]`                |
+| Błędna odpowiedź        | Czerwony                  | `bg-[#EF4444]`                |
+| Zablokowany scenariusz  | Szary                     | `bg-gray-200 opacity-60`      |
 
 ### Konfiguracja Tailwind
 
@@ -227,11 +228,11 @@ export default {
         sans: ['Nunito', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
-        'box': '12px',      // zaokrąglenie "pudełkowe"
+        box: '12px', // zaokrąglenie "pudełkowe"
         'box-lg': '16px',
       },
       boxShadow: {
-        'box': '0 4px 0 0 rgba(8, 12, 8, 0.15), 0 2px 8px rgba(8, 12, 8, 0.08)',
+        box: '0 4px 0 0 rgba(8, 12, 8, 0.15), 0 2px 8px rgba(8, 12, 8, 0.08)',
         'box-hover': '0 6px 0 0 rgba(8, 12, 8, 0.15), 0 4px 12px rgba(8, 12, 8, 0.12)',
         'box-pressed': '0 2px 0 0 rgba(8, 12, 8, 0.15), 0 1px 4px rgba(8, 12, 8, 0.08)',
       },
@@ -246,24 +247,28 @@ export default {
 ### Typografia
 
 **Font: Nunito** (Google Fonts)
+
 - Zaokrąglony, ciepły, przyjazny dla dzieci
 - Czytelny na małych ekranach
 - Wagi: 400 (Regular), 600 (SemiBold), 700 (Bold), 800 (ExtraBold)
 
 ```html
 <!-- index.html -->
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 **Rozmiary tekstu:**
 
-| Element | Klasa Tailwind | Przykład |
-|---------|---------------|---------|
-| Tytuł ekranu | `text-3xl font-extrabold` | "Seleccionar idioma" |
-| Tekst pytania | `text-xl font-bold` | "¿Cómo se dice 'gato'?" |
-| Odpowiedzi | `text-lg font-semibold` | "cat" |
-| Tekst drugorzędny | `text-sm text-pb-text-light` | "Principiante · A1" |
-| Wynik | `text-2xl font-extrabold` | "80/100" |
+| Element           | Klasa Tailwind               | Przykład                |
+| ----------------- | ---------------------------- | ----------------------- |
+| Tytuł ekranu      | `text-3xl font-extrabold`    | "Seleccionar idioma"    |
+| Tekst pytania     | `text-xl font-bold`          | "¿Cómo se dice 'gato'?" |
+| Odpowiedzi        | `text-lg font-semibold`      | "cat"                   |
+| Tekst drugorzędny | `text-sm text-pb-text-light` | "Principiante · A1"     |
+| Wynik             | `text-2xl font-extrabold`    | "80/100"                |
 
 ### Styl komponentów — "pudełkowy"
 
@@ -271,7 +276,8 @@ Każdy kafelek/karta w aplikacji ma wyglądać jak mini pudełko:
 
 ```tsx
 // Bazowy styl "pudełkowy"
-<div className="
+<div
+  className="
   bg-white 
   rounded-box 
   shadow-box 
@@ -279,12 +285,14 @@ Każdy kafelek/karta w aplikacji ma wyglądać jak mini pudełko:
   transition-all duration-150
   hover:shadow-box-hover hover:-translate-y-0.5
   active:shadow-box-pressed active:translate-y-0.5
-">
+"
+>
   {/* content */}
 </div>
 ```
 
 Ten styl daje efekt:
+
 - Lekko uniesiona karta (cień na dole)
 - Przy hoverze: karta unosi się bardziej
 - Przy kliknięciu: karta "opada" (wciśnięcie)
@@ -315,6 +323,7 @@ Ten styl daje efekt:
 ```
 
 **Elementy:**
+
 - Logo/maskotka Boxi na środku (animacja: pudełko się otwiera)
 - Nazwa "PalabraBox" — duży, bold
 - Podtytuł: "Aprende idiomas jugando" (Ucz się języków grając)
@@ -323,11 +332,12 @@ Ten styl daje efekt:
 - Czas wyświetlania: 1.5–2 sekundy
 
 **Animacja wejścia (Framer Motion):**
+
 ```tsx
 <motion.div
   initial={{ y: 30, opacity: 0, scale: 0.9 }}
   animate={{ y: 0, opacity: 1, scale: 1 }}
-  transition={{ duration: 0.6, ease: "easeOut" }}
+  transition={{ duration: 0.6, ease: 'easeOut' }}
 >
   {/* Logo + tekst */}
 </motion.div>
@@ -366,6 +376,7 @@ Ten styl daje efekt:
 ```
 
 **Elementy:**
+
 - **⚙️ Ajustes** — ikona zębatki w prawym górnym rogu → nawiguje do ustawień
 - **Logo Boxi + PalabraBox** — na górze
 - **JUGAR** — główny przycisk, kolor amber (`pb-amber`), duży, wyraźny
@@ -377,6 +388,7 @@ Ten styl daje efekt:
 - **v1.0** — wersja na samym dole (drobny tekst)
 
 **Interakcje:**
+
 - JUGAR → `/select-language`
 - TARJETAS → `/cards/select-language`
 - ⚙️ → `/settings`
@@ -405,6 +417,7 @@ Ten styl daje efekt:
 ```
 
 **Elementy:**
+
 - Strzałka wstecz ← w lewym górnym rogu
 - Pytanie: "¿Qué idioma quieres aprender?" (Jakiego języka chcesz się uczyć?)
 - Dwie duże karty obok siebie (na telefonie również obok siebie, lub jedna pod drugą jeśli ekran bardzo wąski)
@@ -446,6 +459,7 @@ Ten styl daje efekt:
 ```
 
 **Elementy:**
+
 - Strzałka wstecz + aktualny język w nagłówku
 - Dwie karty z opisami poziomów
 - Przycisk Principiante: border-left amber (aktywny, zachęcający)
@@ -480,6 +494,7 @@ Ten styl daje efekt:
 ```
 
 **Elementy:**
+
 - Nagłówek: język + poziom + strzałka wstecz
 - **Mini panel postępu**: "Completado: 1/3 · ⭐ 2" + pasek procentowy
 - Grid kafelków 2 kolumny
@@ -492,6 +507,7 @@ Ten styl daje efekt:
   - Kolejne: wymagają minimum 1 gwiazdki (≥50% wyniku) w poprzednim
 
 **Interakcje:**
+
 - Kliknięcie ukończonego scenariusza → gra (ponownie)
 - Kliknięcie dostępnego → gra
 - Kliknięcie zablokowanego → nic (lub krótki shake + tooltip "Completa el escenario anterior")
@@ -552,15 +568,16 @@ Ten styl daje efekt:
 
 **Stany odpowiedzi (po kliknięciu):**
 
-| Stan | Wygląd | Czas trwania |
-|------|--------|-------------|
-| Domyślny | Białe tło, ciemny tekst, `shadow-box` | — |
-| Hover | Lekkie przesunięcie w górę, `shadow-box-hover` | — |
-| Wybrana poprawna | Zielone tło (`pb-success`), biały tekst, ikona ✅ | 1.2s |
-| Wybrana błędna | Czerwone tło (`pb-error`), biały tekst, ikona ❌ + poprawna się podświetla na zielono | 1.5s |
-| Zablokowana | Wszystkie kafelki `pointer-events-none`, opacity na niewybranych | Podczas animacji |
+| Stan             | Wygląd                                                                                | Czas trwania     |
+| ---------------- | ------------------------------------------------------------------------------------- | ---------------- |
+| Domyślny         | Białe tło, ciemny tekst, `shadow-box`                                                 | —                |
+| Hover            | Lekkie przesunięcie w górę, `shadow-box-hover`                                        | —                |
+| Wybrana poprawna | Zielone tło (`pb-success`), biały tekst, ikona ✅                                     | 1.2s             |
+| Wybrana błędna   | Czerwone tło (`pb-error`), biały tekst, ikona ❌ + poprawna się podświetla na zielono | 1.5s             |
+| Zablokowana      | Wszystkie kafelki `pointer-events-none`, opacity na niewybranych                      | Podczas animacji |
 
 **Animacje odpowiedzi:**
+
 - **Poprawna:** kafelek lekko się powiększa (`scale: 1.03`), krótki bounce
 - **Błędna:** kafelek się trzęsie (`x: [0, -6, 6, -6, 6, 0]`), serce "wylatuje" i zmienia się na szare
 - **Przejście do następnego pytania:** fade out pytania + fade in nowego (0.3s)
@@ -600,6 +617,7 @@ Ten styl daje efekt:
 ```
 
 **Elementy:**
+
 - Animacja pudełka otwierającego się + gwiazdki wylatujące (przy ≥50%)
 - Confetti (przy ⭐⭐⭐) — prosta animacja z canvas-confetti
 - Gwiazdki: ⭐ (≥50%), ⭐⭐ (≥70%), ⭐⭐⭐ (≥90%)
@@ -613,6 +631,7 @@ Ten styl daje efekt:
   - ESCENARIOS — powrót do listy scenariuszy
 
 **Przy Game Over (0 serc):**
+
 ```
 ┌──────────────────────────────┐
 │                              │
@@ -666,6 +685,7 @@ Ten styl daje efekt:
 ```
 
 **Po kliknięciu karty (odwrócenie):**
+
 ```
 ┌──────────────────────────────┐
 │  ←    Colores · Inglés       │
@@ -689,6 +709,7 @@ Ten styl daje efekt:
 ```
 
 **Funkcjonalność:**
+
 - Karta się odwraca (animacja flip 3D w CSS/Framer Motion)
 - **Przód:** słowo w języku obcym + przycisk 🔊 (TTS)
 - **Tył:** tłumaczenie (na język pytania) + emoji/obrazek + przycisk 🔊
@@ -697,6 +718,7 @@ Ten styl daje efekt:
 - Skąd dane: z tabeli `words` filtrowane po scenariuszu/kategorii
 
 **Animacja odwracania:**
+
 ```tsx
 <motion.div
   animate={{ rotateY: isFlipped ? 180 : 0 }}
@@ -747,6 +769,7 @@ Ten styl daje efekt:
 ```
 
 **Funkcjonalności:**
+
 1. **Idioma de la app (Język aplikacji):**
    - Español: aktywne (✅)
    - Polski: placeholder z etykietą "Próximamente" (wkrótce), wyszarzone, nieklikalne
@@ -771,13 +794,14 @@ Ten styl daje efekt:
    - Kontekst: praktyki w Maladze, Arrabal
 
 **Zapisywanie ustawień:**
+
 ```ts
 // Wszystko w localStorage pod jednym kluczem
 const settings = {
-  language: 'es',           // na razie zawsze 'es'
-  soundVolume: 0.8,         // 0-1
-  ttsVolume: 0.6,           // 0-1
-  ttsSpeed: 0.9,            // 0.6, 0.9, lub 1.2
+  language: 'es', // na razie zawsze 'es'
+  soundVolume: 0.8, // 0-1
+  ttsVolume: 0.6, // 0-1
+  ttsSpeed: 0.9, // 0.6, 0.9, lub 1.2
 }
 localStorage.setItem('palabrabox-settings', JSON.stringify(settings))
 ```
@@ -792,18 +816,21 @@ localStorage.setItem('palabrabox-settings', JSON.stringify(settings))
 **Opis:** 4 kafelki, jedna poprawna odpowiedź
 
 **Przykład (nauka angielskiego):**
+
 ```
 Pregunta: "¿Cómo se dice 'rojo' en inglés?"
 Opciones: [blue] [red ✅] [green] [yellow]
 ```
 
 **Przykład (nauka hiszpańskiego):**
+
 ```
 Pregunta: "¿Cómo se dice 'cat' en español?"
 Opciones: [perro] [gato ✅] [pájaro] [pez]
 ```
 
 **Logika komponentu:**
+
 1. Otrzymuje `question: Question` jako props
 2. Miesza odpowiedzi: `[correct_answer, ...wrong_answers]` → `shuffleArray()`
 3. Renderuje 4 kafelki
@@ -816,6 +843,7 @@ Opciones: [perro] [gato ✅] [pájaro] [pez]
    - Po 1.2s (poprawna) lub 1.5s (błędna) → wywołuje `onAnswer(isCorrect)`
 
 **Props:**
+
 ```ts
 interface QuestionComponentProps {
   question: Question
@@ -832,6 +860,7 @@ interface QuestionComponentProps {
 **Opis:** Duży obrazek/emoji na górze, 4 opcje tekstowe pod spodem
 
 **Przykład:**
+
 ```
 Imagen: 🐱 (duży emoji, text-7xl)
 Pregunta: "¿Qué animal es este?"
@@ -839,6 +868,7 @@ Opciones: [dog] [cat ✅] [bird] [fish]
 ```
 
 **Różnica vs Multiple Choice:**
+
 - Na górze jest duży obrazek/emoji
 - Reszta logiki identyczna
 - Jeśli `question.image_url` jest ustawiony → `<img>`, jeśli nie → emoji z `question.question_text`
@@ -851,6 +881,7 @@ Opciones: [dog] [cat ✅] [bird] [fish]
 **Opis:** Gracz odsłuchuje słowo/zdanie i wybiera poprawne tłumaczenie
 
 **Przykład (Principiante):**
+
 ```
 [🔊 Escuchar] → TTS czyta: "green"
 Pregunta: "¿Qué significa esta palabra?"
@@ -858,6 +889,7 @@ Opciones: [rojo] [azul] [verde ✅] [amarillo]
 ```
 
 **Przykład (Intermedio):**
+
 ```
 [🔊 Escuchar] → TTS czyta: "I would like a coffee, please"
 Pregunta: "¿Qué significa esta frase?"
@@ -865,6 +897,7 @@ Opciones: [Me gustaría un café, por favor ✅] [Quiero un té] [No me gusta el
 ```
 
 **Logika:**
+
 1. Na górze: duży przycisk 🔊 "Escuchar"
 2. Kliknięcie → `speak(question.question_text_tts, language)`
 3. Podczas odtwarzania: przycisk pulsuje (animacja), tekst zmienia się na "Reproduciendo..."
@@ -879,12 +912,14 @@ Opciones: [Me gustaría un café, por favor ✅] [Quiero un té] [No me gusta el
 **Opis:** Zdanie z luką, gracz wybiera słowo
 
 **Przykład:**
+
 ```
 Frase: "I ___ to school every day."
 Opciones: [go ✅] [eat] [sleep] [run]
 ```
 
 **Wyświetlanie:**
+
 ```
 ┌──────────────────────────────┐
 │                              │
@@ -904,6 +939,7 @@ Opciones: [go ✅] [eat] [sleep] [run]
 ```
 
 **Logika:**
+
 - Zdanie z `___` (placeholder luki)
 - 4 opcje jako mniejsze kafelki (grid 2x2)
 - Po wybraniu: słowo "wskakuje" w lukę (animacja)
@@ -917,6 +953,7 @@ Opciones: [go ✅] [eat] [sleep] [run]
 **Opis:** Słowa w losowej kolejności, gracz przeciąga je w poprawną kolejność
 
 **Przykład:**
+
 ```
 Pista: "Me gusta comer pizza" (tłumaczenie/podpowiedź)
 Palabras desordenadas: [pizza] [like] [eating] [I]
@@ -924,6 +961,7 @@ Respuesta correcta: [I] [like] [eating] [pizza]
 ```
 
 **Wyświetlanie:**
+
 ```
 ┌──────────────────────────────┐
 │                              │
@@ -953,6 +991,7 @@ Respuesta correcta: [I] [like] [eating] [pizza]
 ```
 
 **Logika (z @dnd-kit):**
+
 1. Słowa w losowej kolejności na dole ("Palabras disponibles")
 2. Strefa budowania zdania na górze ("Tu frase")
 3. Gracz przeciąga słowa z dołu do góry (lub klika — fallback)
@@ -963,6 +1002,7 @@ Respuesta correcta: [I] [like] [eating] [pizza]
 
 **Fallback bez drag & drop:**
 Jeśli `@dnd-kit` będzie za trudny, implementujemy klikanie:
+
 - Gracz klika słowo na dole → słowo przesuwa się na górę (na koniec zdania)
 - Kliknięcie słowa na górze → wraca na dół
 - Ta sama logika sprawdzania
@@ -976,6 +1016,7 @@ Jeśli `@dnd-kit` będzie za trudny, implementujemy klikanie:
 ### Skąd biorą się fiszki?
 
 Fiszki używają danych z tabeli `words` w Supabase. Każde słówko ma:
+
 - `word` — słowo w języku obcym
 - `translation_es` — tłumaczenie hiszpańskie (lub `translation_en` jeśli uczymy się hiszpańskiego)
 - `category` — kategoria (pokrywająca się ze scenariuszem)
@@ -989,14 +1030,14 @@ Menú → TARJETAS → Seleccionar idioma → Seleccionar nivel → Seleccionar 
 
 ### Funkcjonalności fiszek
 
-| Funkcja | Opis | Priorytet |
-|---------|------|-----------|
-| Przeglądanie kart | Strzałki ←→ lub swipe | 🔴 MVP |
-| Odwracanie karty | Klik → flip animation | 🔴 MVP |
-| TTS na przodzie | 🔊 wymowa słowa obcego | 🔴 MVP |
-| TTS na tyle | 🔊 wymowa tłumaczenia | 🟡 Ważne |
-| Licznik | "3 / 15" | 🔴 MVP |
-| Emoji/obrazek na tyle | Wizualna podpowiedź | 🟢 Nice-to-have |
+| Funkcja               | Opis                   | Priorytet       |
+| --------------------- | ---------------------- | --------------- |
+| Przeglądanie kart     | Strzałki ←→ lub swipe  | 🔴 MVP          |
+| Odwracanie karty      | Klik → flip animation  | 🔴 MVP          |
+| TTS na przodzie       | 🔊 wymowa słowa obcego | 🔴 MVP          |
+| TTS na tyle           | 🔊 wymowa tłumaczenia  | 🟡 Ważne        |
+| Licznik               | "3 / 15"               | 🔴 MVP          |
+| Emoji/obrazek na tyle | Wizualna podpowiedź    | 🟢 Nice-to-have |
 
 ---
 
@@ -1013,7 +1054,7 @@ export function speak(
   text: string,
   language: 'en' | 'es',
   rate: number = 0.9,
-  volume: number = 1.0
+  volume: number = 1.0,
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     if (!('speechSynthesis' in window)) {
@@ -1039,17 +1080,18 @@ export function speak(
 
 ### Gdzie używamy TTS
 
-| Miejsce | Co czyta | Język |
-|---------|---------|-------|
-| Pytanie Listening | Słowo/zdanie do odgadnięcia | Język nauki (en/es) |
-| Fiszka — przód | Słowo w języku obcym | Język nauki |
-| Fiszka — tył | Tłumaczenie | Język interfejsu (es) |
-| SpeakButton (🔊) przy odpowiedziach | Słowo na kafelku | Język nauki |
-| Ekran wyników — powtórka słówek | Słowa z ukończonego scenariusza | Język nauki |
+| Miejsce                             | Co czyta                        | Język                 |
+| ----------------------------------- | ------------------------------- | --------------------- |
+| Pytanie Listening                   | Słowo/zdanie do odgadnięcia     | Język nauki (en/es)   |
+| Fiszka — przód                      | Słowo w języku obcym            | Język nauki           |
+| Fiszka — tył                        | Tłumaczenie                     | Język interfejsu (es) |
+| SpeakButton (🔊) przy odpowiedziach | Słowo na kafelku                | Język nauki           |
+| Ekran wyników — powtórka słówek     | Słowa z ukończonego scenariusza | Język nauki           |
 
 ### Ustawienia TTS
 
 Pobierane z `localStorage` (ekran Ajustes):
+
 ```ts
 const settings = getSettings()
 speak(text, language, settings.ttsSpeed, settings.ttsVolume)
@@ -1061,11 +1103,11 @@ speak(text, language, settings.ttsSpeed, settings.ttsVolume)
 
 ### Punktacja
 
-| Akcja | Punkty |
-|-------|--------|
-| Poprawna odpowiedź | +10 pts |
-| Błędna odpowiedź | 0 pts (tracisz serce) |
-| Maksimum za scenariusz (10 pytań) | 100 pts |
+| Akcja                             | Punkty                |
+| --------------------------------- | --------------------- |
+| Poprawna odpowiedź                | +10 pts               |
+| Błędna odpowiedź                  | 0 pts (tracisz serce) |
+| Maksimum za scenariusz (10 pytań) | 100 pts               |
 
 ### System żyć (vidas)
 
@@ -1078,12 +1120,12 @@ speak(text, language, settings.ttsSpeed, settings.ttsVolume)
 
 Przyznawane na ekranie wyników na podstawie % poprawnych odpowiedzi:
 
-| Wynik | Gwiazdki | Warunek odblokowania następnego |
-|-------|----------|-------------------------------|
-| < 50% (0–4/10) | ☆☆☆ (0 gwiazdek) | ❌ Nie odblokowuje |
-| ≥ 50% (5–6/10) | ⭐☆☆ (1 gwiazdka) | ✅ Odblokowuje następny |
-| ≥ 70% (7–8/10) | ⭐⭐☆ (2 gwiazdki) | ✅ |
-| ≥ 90% (9–10/10) | ⭐⭐⭐ (3 gwiazdki) | ✅ |
+| Wynik           | Gwiazdki            | Warunek odblokowania następnego |
+| --------------- | ------------------- | ------------------------------- |
+| < 50% (0–4/10)  | ☆☆☆ (0 gwiazdek)    | ❌ Nie odblokowuje              |
+| ≥ 50% (5–6/10)  | ⭐☆☆ (1 gwiazdka)   | ✅ Odblokowuje następny         |
+| ≥ 70% (7–8/10)  | ⭐⭐☆ (2 gwiazdki)  | ✅                              |
+| ≥ 90% (9–10/10) | ⭐⭐⭐ (3 gwiazdki) | ✅                              |
 
 **Uwaga:** Jeśli gracz ma Game Over (0 serc), wynik jest liczony na podstawie odpowiedzi udzielonych przed game over.
 
@@ -1095,13 +1137,13 @@ interface UserProgress {
     scenarioId: string
     language: 'english' | 'spanish'
     level: 'beginner' | 'intermediate'
-    bestScore: number      // najlepszy wynik (0-100)
-    stars: number          // 0-3
-    completedAt: string    // ISO date
+    bestScore: number // najlepszy wynik (0-100)
+    stars: number // 0-3
+    completedAt: string // ISO date
   }[]
-  totalScore: number       // suma najlepszych wyników ze wszystkich scenariuszy
+  totalScore: number // suma najlepszych wyników ze wszystkich scenariuszy
   streak: {
-    count: number          // ile dni z rzędu
+    count: number // ile dni z rzędu
     lastPlayedDate: string // "2025-01-15"
   }
 }
@@ -1110,6 +1152,7 @@ interface UserProgress {
 ### Gdzie wyświetlamy postęp
 
 1. **Menú principal — mini panel:**
+
    ```
    Completado: 4/12 escenarios
    Puntos: 350
@@ -1125,7 +1168,7 @@ interface UserProgress {
 
 ```ts
 function updateStreak(): void {
-  const today = new Date().toISOString().split('T')[0]  // "2025-01-15"
+  const today = new Date().toISOString().split('T')[0] // "2025-01-15"
   const progress = getProgress()
 
   if (progress.streak.lastPlayedDate === today) {
@@ -1161,6 +1204,7 @@ function updateStreak(): void {
 **Vite** — narzędzie budujące. Start projektu w <1s, natychmiastowy hot reload.
 
 **Tworzenie projektu:**
+
 ```bash
 npm create vite@latest palabrabox -- --template react-ts
 ```
@@ -1170,11 +1214,14 @@ npm create vite@latest palabrabox -- --template react-ts
 ### Tailwind CSS
 
 Utility-first CSS. Style pisane bezpośrednio w JSX:
+
 ```tsx
-<button className="bg-pb-amber text-white font-bold py-3 px-6 rounded-box shadow-box
+<button
+  className="bg-pb-amber text-white font-bold py-3 px-6 rounded-box shadow-box
                    hover:shadow-box-hover hover:-translate-y-0.5
                    active:shadow-box-pressed active:translate-y-0.5
-                   transition-all duration-150">
+                   transition-all duration-150"
+>
   Jugar
 </button>
 ```
@@ -1224,37 +1271,41 @@ export const useGameStore = create<GameState>((set, get) => ({
   setLanguage: (language) => set({ language }),
   setLevel: (level) => set({ level }),
 
-  startGame: (questions) => set({
-    questions,
-    score: 0,
-    lives: 3,
-    currentQuestionIndex: 0,
-    status: 'playing',
-    answers: [],
-  }),
+  startGame: (questions) =>
+    set({
+      questions,
+      score: 0,
+      lives: 3,
+      currentQuestionIndex: 0,
+      status: 'playing',
+      answers: [],
+    }),
 
-  answerQuestion: (isCorrect, questionId) => set((state) => ({
-    score: isCorrect ? state.score + 10 : state.score,
-    lives: isCorrect ? state.lives : state.lives - 1,
-    status: state.lives - (isCorrect ? 0 : 1) <= 0 ? 'game_over' : state.status,
-    answers: [...state.answers, { questionId, isCorrect }],
-  })),
+  answerQuestion: (isCorrect, questionId) =>
+    set((state) => ({
+      score: isCorrect ? state.score + 10 : state.score,
+      lives: isCorrect ? state.lives : state.lives - 1,
+      status: state.lives - (isCorrect ? 0 : 1) <= 0 ? 'game_over' : state.status,
+      answers: [...state.answers, { questionId, isCorrect }],
+    })),
 
-  nextQuestion: () => set((state) => {
-    const nextIndex = state.currentQuestionIndex + 1
-    if (nextIndex >= state.questions.length) {
-      return { status: 'completed', currentQuestionIndex: nextIndex }
-    }
-    return { currentQuestionIndex: nextIndex }
-  }),
+  nextQuestion: () =>
+    set((state) => {
+      const nextIndex = state.currentQuestionIndex + 1
+      if (nextIndex >= state.questions.length) {
+        return { status: 'completed', currentQuestionIndex: nextIndex }
+      }
+      return { currentQuestionIndex: nextIndex }
+    }),
 
-  resetGame: () => set({
-    score: 0,
-    lives: 3,
-    currentQuestionIndex: 0,
-    status: 'idle',
-    answers: [],
-  }),
+  resetGame: () =>
+    set({
+      score: 0,
+      lives: 3,
+      currentQuestionIndex: 0,
+      status: 'idle',
+      answers: [],
+    }),
 }))
 ```
 
@@ -1289,6 +1340,7 @@ Używamy umiarkowanie — subtelne, przyjemne animacje bez przesady:
 ```
 
 **Lista animacji w MVP:**
+
 1. Przejście między stronami (fade + slide)
 2. Poprawna odpowiedź (bounce)
 3. Błędna odpowiedź (shake)
@@ -1298,6 +1350,7 @@ Używamy umiarkowanie — subtelne, przyjemne animacje bez przesady:
 7. Wejście elementów na ekranie wyników (staggered)
 
 **NIE robimy:**
+
 - Złożonych animacji cząsteczek
 - Animacji maskotki (poza prostym emoji)
 - Skomplikowanych przejść 3D
@@ -1327,6 +1380,7 @@ export function playSound(name: keyof typeof sounds) {
 ```
 
 **Pliki dźwiękowe do pobrania (5 plików z mixkit.co):**
+
 1. `correct.mp3` — szukaj "correct answer ding"
 2. `wrong.mp3` — szukaj "wrong buzzer soft"
 3. `click.mp3` — szukaj "button click"
@@ -1343,11 +1397,12 @@ import { createClient } from '@supabase/supabase-js'
 
 export const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
+  import.meta.env.VITE_SUPABASE_ANON_KEY,
 )
 ```
 
 **Zapytania których potrzebujemy:**
+
 ```ts
 // Pobierz scenariusze dla danego języka i poziomu
 const { data: scenarios } = await supabase
@@ -1485,6 +1540,7 @@ CREATE INDEX idx_questions_scenario ON questions(scenario_id);
 ```
 
 **Uwagi:**
+
 - Używamy `image_emoji` (np. "🐱") zamiast `image_url` — prostsze, zero hostingu obrazków
 - `translation_es` jest wymagane (bo interfejs po hiszpańsku), `translation_en` opcjonalne
 - `category` w `words` łączy słówka ze scenariuszami (np. category='colors' → scenariusz "Colores")
@@ -1598,12 +1654,14 @@ palabrabox/
 ## 13. Konfiguracja środowiska — od zera
 
 ### Krok 1: Node.js
+
 ```bash
 node -v   # wymagane ≥ 18
 npm -v
 ```
 
 ### Krok 2: Projekt
+
 ```bash
 npm create vite@latest palabrabox -- --template react-ts
 cd palabrabox
@@ -1611,6 +1669,7 @@ npm install
 ```
 
 ### Krok 3: Biblioteki
+
 ```bash
 # Tailwind
 npm install -D tailwindcss @tailwindcss/vite
@@ -1642,8 +1701,9 @@ npm install -D @types/canvas-confetti
 ### Krok 4: Konfiguracja plików
 
 **`src/index.css`:**
+
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 ```
 
 **`vite.config.ts`:** (z sekcji technologie)
@@ -1651,17 +1711,20 @@ npm install -D @types/canvas-confetti
 **`tailwind.config.ts`:** (z sekcji design)
 
 **`.env.local`:**
+
 ```
 VITE_SUPABASE_URL=https://xxx.supabase.co
 VITE_SUPABASE_ANON_KEY=eyJ...
 ```
 
 ### Krok 5: Supabase
+
 1. supabase.com → nowy projekt
 2. SQL Editor → wklejenie schematu tabel
 3. Settings → API → skopiowanie URL i klucza
 
 ### Krok 6: Git + GitHub
+
 ```bash
 git init
 git remote add origin https://github.com/USER/palabrabox.git
@@ -1672,6 +1735,7 @@ git push -u origin dev
 ```
 
 ### Krok 7: Vercel
+
 ```bash
 npm install -g vercel
 vercel login
@@ -1680,6 +1744,7 @@ vercel
 ```
 
 ### Krok 8: VSCode Extensions
+
 - ESLint
 - Prettier
 - Tailwind CSS IntelliSense
@@ -1699,6 +1764,7 @@ vercel
 #### Jakub Laskowski — Backend & dane (4-5h)
 
 **1. Supabase setup (2h):**
+
 - Utworzenie konta i projektu na supabase.com
 - Uruchomienie SQL (tworzenie tabel words, scenarios, questions)
 - Wrzucenie testowych danych:
@@ -1707,28 +1773,30 @@ vercel
 - Przetestowanie zapytań w SQL Editor
 
 **2. Klient Supabase + typy (2h):**
+
 - `src/lib/supabase.ts` — klient Supabase
 - `src/types/index.ts` — wszystkie interfejsy:
   ```ts
-  Word, Scenario, Question, QuestionType,
-  Language, Level, GameState, UserProgress,
-  Settings
+  ;(Word, Scenario, Question, QuestionType, Language, Level, GameState, UserProgress, Settings)
   ```
 - Prosty test: komponent testowy pobierający dane z Supabase → console.log
 - Plik `.env.local` z kluczami
 
 **3. Store (30min):**
+
 - `src/store/settingsStore.ts` — ustawienia (głośność, TTS)
 - Odczyt/zapis z localStorage
 
 #### Kolega — Frontend & config (4-5h)
 
 **1. Inicjalizacja (1h):**
+
 - `npm create vite@latest palabrabox -- --template react-ts`
 - Instalacja WSZYSTKICH bibliotek (pełna lista)
 - Sprawdzenie że `npm run dev` działa
 
 **2. Tailwind + design system (1.5h):**
+
 - `tailwind.config.ts` z paletą PalabraBox (pb-dark, pb-green, pb-emerald, pb-amber, pb-bg)
 - Customowe shadow-box, rounded-box
 - Import fonta Nunito w `index.html`
@@ -1736,6 +1804,7 @@ vercel
 - Test: strona z kolorami palety i fontami — upewnienie się że wszystko wygląda dobrze
 
 **3. React Router (1h):**
+
 - `App.tsx` z BrowserRouter i Routes
 - Puste komponenty dla WSZYSTKICH stron (placeholder z nazwą strony):
   ```
@@ -1747,21 +1816,25 @@ vercel
 - Nawigacja między nimi (przyciski "Siguiente" na każdej stronie)
 
 **4. PWA + utils (30min):**
+
 - `vite.config.ts` z VitePWA
 - Placeholder ikony (192px i 512px) — mogą być proste kolorowe kwadraty z "PB"
 - `src/utils/cn.ts`, `shuffleArray.ts`, `calculateStars.ts`
 
 **5. GitHub (30min):**
+
 - Utworzenie repo `palabrabox`
 - Push pierwszego commita
 - Dodanie kolegi jako collaborator
 
 #### Razem na koniec dnia (30min):
+
 - Sprawdzenie: `npm run dev` działa u obu
 - Połączenie kodu (merge)
 - Sprawdzenie: nawigacja działa, Supabase odpowiada (dane w konsoli)
 
 #### ✅ Deliverable dnia 1:
+
 - Projekt działa lokalnie
 - Tailwind z paletą PalabraBox
 - Routing z pustymi stronami
@@ -1778,6 +1851,7 @@ vercel
 #### Jakub Laskowski — Store & logika (4-5h)
 
 **1. Zustand gameStore (2h):**
+
 - `src/store/gameStore.ts` z pełną implementacją:
   - Pola: language, level, score, lives, currentQuestionIndex, questions, status, answers
   - Akcje: setLanguage, setLevel, startGame, answerQuestion, nextQuestion, resetGame
@@ -1785,18 +1859,21 @@ vercel
 - Test: ręczne wywołanie akcji w konsoli przeglądarki
 
 **2. Services (2h):**
+
 - `src/services/speechService.ts` — TTS (speak, isSpeechSupported)
 - `src/services/audioService.ts` — Howler.js setup (na razie z placeholder dźwiękami lub bez plików — samo przygotowanie kodu)
 - `src/services/progressService.ts` — localStorage (saveProgress, getProgress, updateStreak)
 - Test TTS: przycisk "Mów" → czyta "Hola, bienvenido a PalabraBox"
 
 **3. Hooks — szkielety (30min):**
+
 - `src/hooks/useScenarios.ts` — pobieranie scenariuszy z Supabase (szablon)
 - `src/hooks/useGame.ts` — szablon hooka gry
 
 #### Kolega — UI ekranów (4-5h)
 
 **1. Komponenty bazowe UI (2h):**
+
 - `Button.tsx`:
   - Warianty: primary (amber), secondary (emerald), ghost (przezroczysty), danger (czerwony)
   - Rozmiary: sm, md, lg
@@ -1813,11 +1890,13 @@ vercel
   - Pozycja: lewy górny róg
 
 **2. SplashScreen (30min):**
+
 - Logo 📦 + "PalabraBox" + "Aprende idiomas jugando"
 - Auto-redirect do /menu po 2 sekundach
 - Animacja wejścia (Framer Motion: fade + scale)
 
 **3. MainMenu (1h):**
+
 - Logo + nazwa
 - Przycisk JUGAR (amber, duży)
 - Przycisk TARJETAS (emerald)
@@ -1825,21 +1904,25 @@ vercel
 - Ikona ⚙️ w prawym górnym rogu
 
 **4. LanguageSelect (30min):**
+
 - "¿Qué idioma quieres aprender?"
 - Dwie karty: 🇬🇧 Inglés, 🇪🇸 Español
 - Kliknięcie → zapis do store + nawigacja do /select-level
 
 **5. LevelSelect (30min):**
+
 - Nagłówek z wybranym językiem
 - Dwie karty z opisami: Principiante / Intermedio
 - Kliknięcie → zapis do store + nawigacja do /scenarios
 
 #### Razem na koniec dnia (30min):
+
 - Podłączenie store do ekranów (LanguageSelect zapisuje, LevelSelect czyta)
 - Przetestowanie flow: Splash → Menu → Język → Poziom → (placeholder scenariuszy)
 - Animacje przejść (PageTransition z AnimatePresence)
 
 #### ✅ Deliverable dnia 2:
+
 - Ładne menu główne z designem PalabraBox
 - Wybór języka i poziomu z zapisem w store
 - Splash screen z animacją
@@ -1856,11 +1939,13 @@ vercel
 #### Jakub Laskowski — Silnik gry (4-5h)
 
 **1. Hook useScenarios (1h):**
+
 - Pobieranie scenariuszy z Supabase (filtrowane po language + level ze store)
 - Loading state, error state
 - Cache (useState — raz pobrane, nie pobieraj ponownie)
 
 **2. Hook useGame (3h):**
+
 ```ts
 function useGame(scenarioId: string) {
   // 1. Pobierz pytania z Supabase
@@ -1868,23 +1953,25 @@ function useGame(scenarioId: string) {
   // 3. Dla każdego pytania przetasuj odpowiedzi
   // 4. Zwróć:
   return {
-    currentQuestion,    // aktualne pytanie
-    questionNumber,     // np. 3
-    totalQuestions,     // np. 10
-    score,              // np. 30
-    lives,              // np. 2
-    status,             // 'loading' | 'playing' | 'game_over' | 'completed'
-    progress,           // 0-100 (procent)
-    handleAnswer,       // (isCorrect: boolean) => void
-    handleNext,         // () => void — następne pytanie
+    currentQuestion, // aktualne pytanie
+    questionNumber, // np. 3
+    totalQuestions, // np. 10
+    score, // np. 30
+    lives, // np. 2
+    status, // 'loading' | 'playing' | 'game_over' | 'completed'
+    progress, // 0-100 (procent)
+    handleAnswer, // (isCorrect: boolean) => void
+    handleNext, // () => void — następne pytanie
   }
 }
 ```
+
 - Podłączenie do Zustand store
 - Obsługa game over (lives <= 0)
 - Obsługa completed (wszystkie pytania odpowiedziane)
 
 **3. Logika odblokowywania scenariuszy (30min):**
+
 - Funkcja `isScenarioUnlocked(scenarioId, allScenarios, progress)`
 - Pierwszy scenariusz (sort_order = 1): zawsze odblokowany
 - Kolejne: sprawdzenie czy poprzedni ma ≥ 1 gwiazdkę w progressService
@@ -1892,6 +1979,7 @@ function useGame(scenarioId: string) {
 #### Kolega — UI ekranów gry (4-5h)
 
 **1. ScenarioSelect (2h):**
+
 - Pobieranie scenariuszy z hooka useScenarios
 - Grid 2 kolumny
 - 3 stany kafelków:
@@ -1903,6 +1991,7 @@ function useGame(scenarioId: string) {
 - Podłączenie do progressService
 
 **2. GameScreen — layout (2h):**
+
 - GameHeader:
   - Hearts (serca — ❤️ aktywne, 🩶 stracone)
   - Nazwa scenariusza (środek)
@@ -1913,22 +2002,26 @@ function useGame(scenarioId: string) {
 - Modal Game Over: "¡Se acabó el juego!" + przyciski
 
 **3. Komponent Hearts (30min):**
+
 - Przyjmuje `lives: number` i `maxLives: number`
 - Renderuje ❤️ i 🩶
 - Animacja straty serca (serce się zmniejsza i zmienia kolor)
 
 **4. Komponent ProgressBar (30min):**
+
 - Przyjmuje `progress: number` (0-100)
 - Gradient fill
 - `transition-all duration-500` dla płynnego wypełniania
 
 #### Razem na koniec dnia (30min):
+
 - Podłączenie useGame do GameScreen
 - Test flow: Scenariusze → kliknij → GameScreen z headerem + paskiem
 - Placeholder przycisk "Respuesta correcta" / "Respuesta incorrecta" → zmiana punktów i żyć
 - Test Game Over (kliknij 3x "incorrecta")
 
 #### ✅ Deliverable dnia 3:
+
 - Ekran scenariuszy z gwiazdkami i kłódkami
 - GameScreen z działającym silnikiem (serca, pasek, punkty)
 - Game Over modal
@@ -1943,6 +2036,7 @@ function useGame(scenarioId: string) {
 #### Jakub Laskowski — Multiple Choice (4-5h)
 
 **1. QuestionRenderer (30min):**
+
 ```tsx
 // Komponent który na podstawie question.type renderuje odpowiedni komponent
 function QuestionRenderer({ question, onAnswer, language }: Props) {
@@ -1957,6 +2051,7 @@ function QuestionRenderer({ question, onAnswer, language }: Props) {
 ```
 
 **2. MultipleChoice.tsx (3h):**
+
 - Treść pytania na górze
 - 4 kafelki odpowiedzi (shadow-box style)
 - Logika:
@@ -1968,18 +2063,21 @@ function QuestionRenderer({ question, onAnswer, language }: Props) {
 - Animacja: bounce (correct) / shake (wrong)
 
 **3. Podłączenie do GameScreen (1h):**
+
 - GameScreen renderuje QuestionRenderer z aktualnym pytaniem
 - onAnswer → handleAnswer z useGame
 - Po odpowiedzi: auto przejście do następnego pytania (handleNext po delay)
 - Po ostatnim pytaniu → ResultsScreen
 
 **4. Dodanie testowych danych (30min):**
+
 - 10 pytań multiple_choice do scenariusza "Colors" w Supabase
 - Sprawdzenie że ładują się poprawnie
 
 #### Kolega — Image Match + AnswerCard (4-5h)
 
 **1. AnswerCard.tsx — reużywalny kafelek odpowiedzi (1.5h):**
+
 ```tsx
 interface AnswerCardProps {
   text: string
@@ -1987,6 +2085,7 @@ interface AnswerCardProps {
   onClick: () => void
 }
 ```
+
 - Style dla każdego stanu:
   - default: biały, shadow-box, hover effect
   - selected_correct: zielone tło, biały tekst, ikona ✅
@@ -1996,29 +2095,34 @@ interface AnswerCardProps {
 - Animacje Framer Motion
 
 **2. ImageMatch.tsx (2h):**
+
 - Duży emoji na górze (question.image_emoji → np. `<span className="text-7xl">🐱</span>`)
 - Pod spodem: "¿Qué es esto?" / "What is this?"
 - 4 kafelki AnswerCard
 - Ta sama logika co MultipleChoice (może nawet współdzielić kod)
 
 **3. AnswerFeedback.tsx (1h):**
+
 - Overlay który pojawia się po odpowiedzi
 - Poprawna: krótki ✅ z tekstem "¡Correcto!" (zielony)
 - Błędna: krótki ❌ z tekstem "Incorrecto" + "La respuesta era: X" (czerwony)
 - Auto-hide po 1.2-1.5s
 
 **4. SpeakButton.tsx (30min):**
+
 - Mały przycisk 🔊
 - Kliknięcie → speak(text, language)
 - Pulsowanie podczas odtwarzania
 - Dodanie do MultipleChoice i ImageMatch (obok poprawnej odpowiedzi po udzieleniu odpowiedzi)
 
 #### Razem na koniec dnia (30min):
+
 - Pełny test: Scenariusz → 10 pytań → odpowiadanie → punkty → serca
 - Sprawdzenie animacji i dźwięków
 - Poprawki UX na podstawie wrażeń z grania
 
 #### ✅ Deliverable dnia 4:
+
 - MultipleChoice działa z feedbackiem i animacjami
 - ImageMatch działa
 - AnswerCard reużywalny
@@ -2034,6 +2138,7 @@ interface AnswerCardProps {
 #### Jakub Laskowski — Listening + Fill Blank (4-5h)
 
 **1. Listening.tsx (2.5h):**
+
 - Duży przycisk "🔊 Escuchar"
 - Kliknięcie → `speak(question.question_text_tts, language)`
 - Animacja pulsowania podczas odtwarzania
@@ -2043,6 +2148,7 @@ interface AnswerCardProps {
 - Test: pytania listening w Supabase
 
 **2. FillBlank.tsx (2h):**
+
 - Wyświetlanie zdania z `_______` (luką)
 - Pod spodem: grid 2x2 z 4 opcjami (mniejsze kafelki)
 - Po wybraniu: słowo animuje się do luki (Framer Motion: element przesuwa się z grida do pozycji luki)
@@ -2050,11 +2156,13 @@ interface AnswerCardProps {
 - Test: pytania fill_blank w Supabase
 
 **3. Dodanie pytań Listening + FillBlank do Supabase (30min):**
+
 - Minimum 3 pytania listening + 3 fill_blank do testowego scenariusza
 
 #### Kolega — Word Order + integracja (4-5h)
 
 **1. WordOrder.tsx z @dnd-kit (3.5h):**
+
 - Dwa obszary:
   - Góra ("Tu frase:"): strefa budowania zdania (droppable)
   - Dół ("Palabras:"): dostępne słowa (draggable)
@@ -2065,24 +2173,29 @@ interface AnswerCardProps {
 
 **⚠️ FALLBACK (jeśli drag & drop za trudny po 2h):**
 Zamiana na klikanie:
+
 - Słowa na dole jako kafelki
 - Kliknięcie → słowo przesuwa się na górę (dodaje się do zdania)
 - Kliknięcie słowa na górze → wraca na dół
 - Reszta logiki taka sama
 
 **2. Integracja wszystkich typów pytań (1h):**
+
 - QuestionRenderer obsługuje wszystkie 5 typów
 - Mieszany scenariusz testowy: różne typy pytań w jednym scenariuszu
 - Sprawdzenie przejść między typami (fade animation)
 
 **3. Dodanie pytań word_order do Supabase (30min):**
+
 - Minimum 3 pytania word_order
 
 #### Razem na koniec dnia (30min):
+
 - Test pełnego scenariusza z mieszanymi typami pytań
 - Sprawdzenie edge cases: szybkie klikanie, TTS podczas przejścia pytań
 
 #### ✅ Deliverable dnia 5:
+
 - Wszystkie 5 typów pytań działa
 - TTS w pytaniach listening
 - Drag & drop (lub fallback klikanie) w word order
@@ -2098,25 +2211,27 @@ Zamiana na klikanie:
 
 **1. Content angielski — Beginner (1.5h):**
 
-| Scenariusz | Pytania | Typy |
-|-----------|---------|------|
-| Colors (🎨) | 10 | 4x multiple_choice, 3x image_match, 3x listening |
-| Numbers (🔢) | 10 | 4x multiple_choice, 3x listening, 3x image_match |
-| Animals (🐾) | 10 | 3x multiple_choice, 4x image_match, 3x listening |
+| Scenariusz   | Pytania | Typy                                             |
+| ------------ | ------- | ------------------------------------------------ |
+| Colors (🎨)  | 10      | 4x multiple_choice, 3x image_match, 3x listening |
+| Numbers (🔢) | 10      | 4x multiple_choice, 3x listening, 3x image_match |
+| Animals (🐾) | 10      | 3x multiple_choice, 4x image_match, 3x listening |
 
 **2. Content angielski — Intermedio (1.5h):**
 
-| Scenariusz | Pytania | Typy |
-|-----------|---------|------|
-| At the Café (☕) | 10 | 3x multiple_choice, 2x listening, 2x fill_blank, 3x word_order |
-| At the Airport (✈️) | 10 | 3x multiple_choice, 2x listening, 3x fill_blank, 2x word_order |
-| Shopping (🛍️) | 10 | 2x multiple_choice, 3x listening, 3x fill_blank, 2x word_order |
+| Scenariusz          | Pytania | Typy                                                           |
+| ------------------- | ------- | -------------------------------------------------------------- |
+| At the Café (☕)    | 10      | 3x multiple_choice, 2x listening, 2x fill_blank, 3x word_order |
+| At the Airport (✈️) | 10      | 3x multiple_choice, 2x listening, 3x fill_blank, 2x word_order |
+| Shopping (🛍️)       | 10      | 2x multiple_choice, 3x listening, 3x fill_blank, 2x word_order |
 
 **3. Słówka do fiszek — angielski (30min):**
+
 - Minimum 10-15 słówek per kategoria (colors, numbers, animals, cafe, airport, shopping)
 - Tabela `words` w Supabase
 
 **4. Zapis postępu w progressService (1h):**
+
 - Po ukończeniu scenariusza: zapisz wynik, gwiazdki do localStorage
 - Logika: porównaj z bestScore, zapisz lepszy
 - updateStreak() po każdej ukończonej grze
@@ -2126,21 +2241,22 @@ Zamiana na klikanie:
 
 **1. Content hiszpański — Principiante (1.5h):**
 
-| Scenariusz | Pytania | Typy |
-|-----------|---------|------|
-| Colores (🎨) | 10 | 4x multiple_choice, 3x image_match, 3x listening |
-| Números (🔢) | 10 | 4x multiple_choice, 3x listening, 3x image_match |
-| Animales (🐾) | 10 | 3x multiple_choice, 4x image_match, 3x listening |
+| Scenariusz    | Pytania | Typy                                             |
+| ------------- | ------- | ------------------------------------------------ |
+| Colores (🎨)  | 10      | 4x multiple_choice, 3x image_match, 3x listening |
+| Números (🔢)  | 10      | 4x multiple_choice, 3x listening, 3x image_match |
+| Animales (🐾) | 10      | 3x multiple_choice, 4x image_match, 3x listening |
 
 **2. Content hiszpański — Intermedio (1.5h):**
 
-| Scenariusz | Pytania | Typy |
-|-----------|---------|------|
-| En la Cafetería (☕) | 10 | 3x multiple_choice, 2x listening, 2x fill_blank, 3x word_order |
-| En el Aeropuerto (✈️) | 10 | 3x multiple_choice, 2x listening, 3x fill_blank, 2x word_order |
-| De Compras (🛍️) | 10 | 2x multiple_choice, 3x listening, 3x fill_blank, 2x word_order |
+| Scenariusz            | Pytania | Typy                                                           |
+| --------------------- | ------- | -------------------------------------------------------------- |
+| En la Cafetería (☕)  | 10      | 3x multiple_choice, 2x listening, 2x fill_blank, 3x word_order |
+| En el Aeropuerto (✈️) | 10      | 3x multiple_choice, 2x listening, 3x fill_blank, 2x word_order |
+| De Compras (🛍️)       | 10      | 2x multiple_choice, 3x listening, 3x fill_blank, 2x word_order |
 
 **3. ResultsScreen (1.5h):**
+
 - Layout z sekcji 5.7:
   - Pudełko animacja (📦✨ lub 📦😢)
   - "¡Escenario completado!" lub "¡Se acabó el juego!"
@@ -2152,11 +2268,13 @@ Zamiana na klikanie:
 - Zapis postępu przy wyświetleniu ekranu
 
 #### Razem na koniec dnia (30min):
+
 - Przejście pełnego scenariusza → ekran wyników → zapis
 - Sprawdzenie: wynik zapisuje się, gwiazdki pojawiają się na liście scenariuszy
 - Sprawdzenie: odblokowywanie następnego scenariusza działa
 
 #### ✅ Deliverable dnia 6:
+
 - 12 scenariuszy, ~120 pytań w Supabase
 - ~60-90 słówek do fiszek
 - Ekran wyników z gwiazdkami i confetti
@@ -2172,6 +2290,7 @@ Zamiana na klikanie:
 #### Jakub Laskowski — Audio (3-4h)
 
 **1. Pobranie dźwięków (30min):**
+
 - Wejście na [mixkit.co/free-sound-effects/](https://mixkit.co/free-sound-effects/)
 - Pobranie 5 plików (max po 2-3 sekundy):
   - correct, wrong, click, level-complete, game-over
@@ -2179,6 +2298,7 @@ Zamiana na klikanie:
 - Wrzucenie do `public/sounds/`
 
 **2. AudioService — podłączenie (1.5h):**
+
 - Inicjalizacja Howler.js z prawdziwymi plikami
 - Podłączenie do gameStore: poprawna odpowiedź → playCorrect(), błędna → playWrong()
 - Podłączenie do przycisków: playClick()
@@ -2186,16 +2306,19 @@ Zamiana na klikanie:
 - Podłączenie do ustawień: głośność z settingsStore
 
 **3. TTS — podłączenie do ustawień (1h):**
+
 - speechService czyta szybkość i głośność z settingsStore
 - Test: zmiana ustawień → zmiana TTS
 
 **4. Hook useWords (30min):**
+
 - Pobieranie słówek z Supabase filtrowane po language + level + category
 - Zwracanie: words, loading, error
 
 #### Kolega — Fiszki (3-4h)
 
 **1. FlashCard.tsx (2h):**
+
 - Karta z animacją flip (Framer Motion rotateY)
 - Przód:
   - Słowo w języku obcym (duży font)
@@ -2209,6 +2332,7 @@ Zamiana na klikanie:
 - Styl pudełkowy (shadow-box)
 
 **2. CardDeck.tsx (1.5h):**
+
 - Pobieranie słówek przez useWords
 - Nawigacja ← → (przyciski lub klawiatura)
 - Licznik "3 / 15"
@@ -2216,16 +2340,19 @@ Zamiana na klikanie:
 - Animacja przejścia między kartami (slide)
 
 **3. Flow fiszek — strony (30min):**
+
 - CardsLanguageSelect, CardsLevelSelect, CardsScenarioSelect
 - Mogą reużywać komponenty z flow gry (LanguageSelect, LevelSelect)
 - Różnica: nawigują do `/cards/:scenarioId` zamiast `/game/:scenarioId`
 
 #### Razem na koniec dnia (30min):
+
 - Test fiszek: wybrać scenariusz → przeglądać karty → flip → TTS
 - Test dźwięków: gra ze wszystkimi dźwiękami
 - Sprawdzenie głośności ustawień
 
 #### ✅ Deliverable dnia 7:
+
 - Tryb fiszek działa (flip, nawigacja, TTS)
 - Dźwięki podłączone w całej grze
 - Ustawienia TTS działają
@@ -2239,6 +2366,7 @@ Zamiana na klikanie:
 #### Jakub Laskowski — Ustawienia + postęp w menu (4h)
 
 **1. SettingsScreen (2h):**
+
 - Sekcja "Idioma de la app":
   - 🇪🇸 Español (aktywne, ✅)
   - 🇵🇱 Polski (wyszarzone, "Próximamente")
@@ -2256,6 +2384,7 @@ Zamiana na klikanie:
 - Komponent Slider.tsx (reużywalny)
 
 **2. Postęp w MainMenu (1.5h):**
+
 - Panel "Progreso rápido":
   - "Completado: X/12 escenarios"
   - "Puntos totales: XXX"
@@ -2264,6 +2393,7 @@ Zamiana na klikanie:
 - Ładny styl: karta z pb-green/10 tłem, ikony
 
 **3. Postęp w ScenarioSelect (30min):**
+
 - Pasek "Completado: 2/3 · ⭐ 5" na górze
 - Gwiazdki i wynik przy każdym ukończonym scenariuszu
 - Sprawdzenie że odblokowywanie działa poprawnie
@@ -2273,6 +2403,7 @@ Zamiana na klikanie:
 **1. Testy responsywności KAŻDEGO ekranu (3h):**
 
 Chrome DevTools → Ctrl+Shift+M → przetestować na:
+
 - iPhone SE (375px)
 - iPhone 14 (390px)
 - Samsung Galaxy (360px)
@@ -2280,6 +2411,7 @@ Chrome DevTools → Ctrl+Shift+M → przetestować na:
 - Desktop (1440px)
 
 **Checklist per ekran:**
+
 - [ ] SplashScreen — logo widoczne, tekst czytelny
 - [ ] MainMenu — przyciski pełna szerokość na mobile
 - [ ] LanguageSelect — karty obok siebie (lub pod sobą na < 350px)
@@ -2291,6 +2423,7 @@ Chrome DevTools → Ctrl+Shift+M → przetestować na:
 - [ ] SettingsScreen — slidery działają dotykiem
 
 **Poprawki:**
+
 ```tsx
 // Wrapper na każdą stronę
 <div className="w-full max-w-lg mx-auto px-4 py-6 min-h-screen">
@@ -2305,22 +2438,26 @@ Chrome DevTools → Ctrl+Shift+M → przetestować na:
 ```
 
 **2. PageTransition (30min):**
+
 - Wrapper AnimatePresence na wszystkie strony
 - Fade + slide (y: 20 → 0)
 - Czas: 0.25s
 
 **3. ScreenWrapper.tsx (30min):**
+
 - Komponent opakowujący każdą stronę
 - Max width, padding, min-height
 - BackButton (opcjonalny)
 - Tytuł (opcjonalny)
 
 #### Razem na koniec dnia (30min):
+
 - Sprawdzenie PWA na telefonie: otwórz → "Dodaj do ekranu głównego" → działa?
 - Sprawdzenie: ustawienia zapisują się po zamknięciu i otwarciu gry
 - Sprawdzenie: postęp wyświetla się poprawnie w menu i scenariuszach
 
 #### ✅ Deliverable dnia 8:
+
 - Ustawienia działają (głośność, TTS, informacje)
 - Postęp widoczny w menu i scenariuszach
 - Gra wygląda dobrze na telefonie
@@ -2336,12 +2473,14 @@ Chrome DevTools → Ctrl+Shift+M → przetestować na:
 
 **Test 1: Pełne przejścia (1h)**
 4 kombinacje, każdą od początku do końca:
+
 - [ ] 🇬🇧 Inglés + Principiante → scenariusz 1 → 10 pytań → wynik
 - [ ] 🇬🇧 Inglés + Intermedio → scenariusz 1 → 10 pytań → wynik
 - [ ] 🇪🇸 Español + Principiante → scenariusz 1 → 10 pytań → wynik
 - [ ] 🇪🇸 Español + Intermedio → scenariusz 1 → 10 pytań → wynik
 
 **Test 2: Edge cases (1h)**
+
 - [ ] Podwójne kliknięcie w odpowiedź → nie liczy dwa razy
 - [ ] Game Over → Intentar de nuevo → gra resetuje się poprawnie
 - [ ] Przycisk wstecz przeglądarki → nie crashuje
@@ -2351,6 +2490,7 @@ Chrome DevTools → Ctrl+Shift+M → przetestować na:
 - [ ] Pusta baza → komunikat "No hay escenarios disponibles"
 
 **Test 3: Fiszki (30min)**
+
 - [ ] Przeglądanie kart → flip działa
 - [ ] TTS na przodzie i tyle → czyta poprawnym językiem
 - [ ] Nawigacja ← → → nie wychodzi poza zakres
@@ -2358,11 +2498,13 @@ Chrome DevTools → Ctrl+Shift+M → przetestować na:
 - [ ] Ostatnia karta → → nie robi nic (lub wraca do 1)
 
 **Test 4: Responsywność (30min)**
+
 - [ ] iPhone SE (375px) — wszystko widoczne
 - [ ] iPad (768px) — layout sensowny
 - [ ] Desktop (1440px) — wycentrowane, nie za szerokie
 
 **Test 5: Dźwięk i TTS (30min)**
+
 - [ ] Dźwięk correct/wrong gra
 - [ ] TTS angielski działa
 - [ ] TTS hiszpański działa
@@ -2370,6 +2512,7 @@ Chrome DevTools → Ctrl+Shift+M → przetestować na:
 - [ ] Zmiana szybkości TTS → faktycznie zmienia
 
 **Test 6: Postęp (30min)**
+
 - [ ] Ukończ scenariusz → gwiazdki się pojawiają
 - [ ] Ukończ z ≥50% → następny odblokowany
 - [ ] Ukończ z <50% → następny NIE odblokowany
@@ -2378,6 +2521,7 @@ Chrome DevTools → Ctrl+Shift+M → przetestować na:
 - [ ] Streak działa (symuluj zmianę daty w localStorage)
 
 #### Bugfixy i polish (RAZEM, 2-3h):
+
 - Poprawienie literówek w pytaniach
 - Poprawienie alignmentu UI
 - Poprawa animacji które się "zacinają"
@@ -2388,6 +2532,7 @@ Chrome DevTools → Ctrl+Shift+M → przetestować na:
 - Usunięcie `console.log` debugujących
 
 #### ✅ Deliverable dnia 9:
+
 - Zero znanych bugów
 - Gra przetestowana we wszystkich kombinacjach
 - Responsywność sprawdzona
@@ -2402,17 +2547,21 @@ Chrome DevTools → Ctrl+Shift+M → przetestować na:
 #### Zadania (RAZEM, 4-5h):
 
 **1. Final build (30min):**
+
 ```bash
 npm run build
 ```
+
 - Zero błędów TypeScript
 - Zero błędów budowania
 - Sprawdzenie rozmiaru `dist/` (powinien być < 5MB)
 
 **2. Deploy na Vercel (30min):**
+
 ```bash
 vercel --prod
 ```
+
 - Dodanie env variables w Vercel Dashboard:
   - `VITE_SUPABASE_URL`
   - `VITE_SUPABASE_ANON_KEY`
@@ -2420,11 +2569,13 @@ vercel --prod
 - Test na telefonie po deployu
 
 **3. PWA check (15min):**
+
 - Otwarcie na Androidzie → "Dodaj do ekranu głównego" → ikona
 - Otwarcie przez ikonę → pełnoekranowy tryb
 - Sprawdzenie: Manifest, Service Worker w DevTools → Application
 
 **4. README.md (1.5h):**
+
 ```markdown
 # 📦 PalabraBox — Aprende idiomas jugando
 
@@ -2432,12 +2583,15 @@ Juego interactivo para aprender inglés y español.
 Diseñado para niños y jóvenes de 6 a 15 años.
 
 ## 🎮 Jugar ahora
+
 [palabrabox.vercel.app](https://palabrabox.vercel.app)
 
 ## 📱 Instalar en el móvil
+
 Abre el enlace → "Añadir a pantalla de inicio"
 
 ## 🛠️ Tecnologías
+
 - React + TypeScript + Vite
 - Tailwind CSS
 - Supabase (PostgreSQL)
@@ -2447,6 +2601,7 @@ Abre el enlace → "Añadir a pantalla de inicio"
 - Zustand
 
 ## 📝 Cómo añadir contenido nuevo
+
 1. Entra en [supabase.com](https://supabase.com) → tu proyecto
 2. Abre Table Editor
 3. Selecciona la tabla `scenarios` → Insert Row
@@ -2454,24 +2609,29 @@ Abre el enlace → "Añadir a pantalla de inicio"
 5. ¡El contenido está disponible inmediatamente!
 
 ## 📝 Cómo añadir un nuevo escenario
+
 1. Añade un registro en `scenarios` con title, language, level, emoji, category, sort_order
 2. Añade 10 registros en `questions` con scenario_id del nuevo escenario
 3. Añade palabras en `words` con la misma category (para tarjetas)
 
 ## 👥 Equipo
+
 - Jakub Laskowski — game engine, Supabase, TTS, audio
 - [Kolega] — UI/UX, animaciones, responsividad
 
 ## 📍 Contexto
+
 Prácticas en Arrabal, Málaga 2025
 
 ## 📄 Licencia
+
 MIT
 ```
 
 **5. Przygotowanie demo (1h):**
 
 Scenariusz prezentacji (5-10 minut):
+
 1. Otwarcie gry na telefonie (PWA — z ikony na ekranie głównym)
 2. Splash screen → Menu główne
 3. Jugar → Inglés → Principiante
@@ -2484,16 +2644,19 @@ Scenariusz prezentacji (5-10 minut):
 10. Dashboard Supabase → pokazać jak dodawać nowe pytania (1 minuta)
 
 **Ustalenie:**
+
 - Kto prowadzi demo? (np. Jakub Laskowski pokazuje grę, Błażej Goliszek pokazuje Supabase)
 - Laptop + telefon do demonstracji
 - Upewnić się że internet działa (backup: nagranie screencast)
 
 **6. Opcjonalnie: screencast (30min):**
+
 - Nagranie 2-minutowego filmiku z gry
 - OBS Studio (darmowy) lub wbudowany screen recorder
 - Przydatne do portfolio
 
 #### ✅ Deliverable dnia 10:
+
 - ✅ Gra dostępna pod publicznym linkiem
 - ✅ PWA instalowalna na telefonie
 - ✅ README kompletne
@@ -2504,33 +2667,33 @@ Scenariusz prezentacji (5-10 minut):
 
 ## 15. Podział ról
 
-| Obszar | Jakub Laskowski | Błażej Goliszek |
-|--------|-------|--------|
-| Supabase (tabele, klient, zapytania) | ✅ | |
-| Typy TypeScript | ✅ | |
-| Zustand stores (game, settings) | ✅ | |
-| Game engine (useGame hook) | ✅ | |
-| TTS / speechService | ✅ | |
-| Audio / audioService | ✅ | |
-| progressService (localStorage) | ✅ | |
-| MultipleChoice, Listening, FillBlank | ✅ | |
-| Ustawienia (SettingsScreen) | ✅ | |
-| Komponenty UI (Button, Card, Hearts...) | | ✅ |
-| Ekrany menu (MainMenu, Language, Level) | | ✅ |
-| ScenarioSelect | | ✅ |
-| ResultsScreen | | ✅ |
-| ImageMatch, WordOrder | | ✅ |
-| Fiszki (FlashCard, CardDeck) | | ✅ |
-| Animacje Framer Motion | | ✅ |
-| Responsywność | | ✅ |
-| PWA | | ✅ |
-| PageTransition, ScreenWrapper | | ✅ |
-| Content — angielski | ✅ | |
-| Content — hiszpański | | ✅ |
-| Testy | RAZEM | RAZEM |
-| Deploy | RAZEM | RAZEM |
-| README | RAZEM | RAZEM |
-| Demo | RAZEM | RAZEM |
+| Obszar                                  | Jakub Laskowski | Błażej Goliszek |
+| --------------------------------------- | --------------- | --------------- |
+| Supabase (tabele, klient, zapytania)    | ✅              |                 |
+| Typy TypeScript                         | ✅              |                 |
+| Zustand stores (game, settings)         | ✅              |                 |
+| Game engine (useGame hook)              | ✅              |                 |
+| TTS / speechService                     | ✅              |                 |
+| Audio / audioService                    | ✅              |                 |
+| progressService (localStorage)          | ✅              |                 |
+| MultipleChoice, Listening, FillBlank    | ✅              |                 |
+| Ustawienia (SettingsScreen)             | ✅              |                 |
+| Komponenty UI (Button, Card, Hearts...) |                 | ✅              |
+| Ekrany menu (MainMenu, Language, Level) |                 | ✅              |
+| ScenarioSelect                          |                 | ✅              |
+| ResultsScreen                           |                 | ✅              |
+| ImageMatch, WordOrder                   |                 | ✅              |
+| Fiszki (FlashCard, CardDeck)            |                 | ✅              |
+| Animacje Framer Motion                  |                 | ✅              |
+| Responsywność                           |                 | ✅              |
+| PWA                                     |                 | ✅              |
+| PageTransition, ScreenWrapper           |                 | ✅              |
+| Content — angielski                     | ✅              |                 |
+| Content — hiszpański                    |                 | ✅              |
+| Testy                                   | RAZEM           | RAZEM           |
+| Deploy                                  | RAZEM           | RAZEM           |
+| README                                  | RAZEM           | RAZEM           |
+| Demo                                    | RAZEM           | RAZEM           |
 
 ---
 
@@ -2540,28 +2703,29 @@ Scenariusz prezentacji (5-10 minut):
 
 To jest absolutne minimum żeby gra działała i wyglądała dobrze na prezentacji:
 
-| # | Funkcja | Dzień |
-|---|---------|-------|
-| 1 | Setup projektu (Vite, Tailwind, Supabase, Router) | 1 |
-| 2 | Zustand store | 2 |
-| 3 | Menu główne | 2 |
-| 4 | Wybór języka | 2 |
-| 5 | Wybór poziomu | 2 |
-| 6 | Ekran scenariuszy (z kłódkami) | 3 |
-| 7 | GameScreen (header, serca, pasek, wynik) | 3 |
-| 8 | Multiple Choice (quiz) | 4 |
-| 9 | Image Match (obrazek + quiz) | 4 |
-| 10 | Listening (TTS + quiz) | 5 |
-| 11 | Fill in the Blank | 5 |
-| 12 | Content (min 6 scenariuszy, 60 pytań) | 6 |
-| 13 | Ekran wyników (gwiazdki, statystyki) | 6 |
-| 14 | Zapis postępu (localStorage) | 6 |
-| 15 | Dźwięki (correct, wrong, click) | 7 |
-| 16 | Responsywność na telefonie | 8 |
-| 17 | Deploy na Vercel | 10 |
-| 18 | README | 10 |
+| #   | Funkcja                                           | Dzień |
+| --- | ------------------------------------------------- | ----- |
+| 1   | Setup projektu (Vite, Tailwind, Supabase, Router) | 1     |
+| 2   | Zustand store                                     | 2     |
+| 3   | Menu główne                                       | 2     |
+| 4   | Wybór języka                                      | 2     |
+| 5   | Wybór poziomu                                     | 2     |
+| 6   | Ekran scenariuszy (z kłódkami)                    | 3     |
+| 7   | GameScreen (header, serca, pasek, wynik)          | 3     |
+| 8   | Multiple Choice (quiz)                            | 4     |
+| 9   | Image Match (obrazek + quiz)                      | 4     |
+| 10  | Listening (TTS + quiz)                            | 5     |
+| 11  | Fill in the Blank                                 | 5     |
+| 12  | Content (min 6 scenariuszy, 60 pytań)             | 6     |
+| 13  | Ekran wyników (gwiazdki, statystyki)              | 6     |
+| 14  | Zapis postępu (localStorage)                      | 6     |
+| 15  | Dźwięki (correct, wrong, click)                   | 7     |
+| 16  | Responsywność na telefonie                        | 8     |
+| 17  | Deploy na Vercel                                  | 10    |
+| 18  | README                                            | 10    |
 
 **Po ukończeniu MVP gra jest:**
+
 - Grywalna (4 typy pytań)
 - Ładna (design PalabraBox)
 - Funkcjonalna (wybór języka/poziomu/scenariusza, punkty, serca, gwiazdki)
@@ -2570,30 +2734,30 @@ To jest absolutne minimum żeby gra działała i wyglądała dobrze na prezentac
 
 ### 🟡 Ważne (Should-Have — dodajemy po MVP)
 
-| # | Funkcja | Dzień | Czas |
-|---|---------|-------|------|
-| 19 | Word Order (drag & drop) | 5 | 3-4h |
-| 20 | Animacje odpowiedzi (bounce, shake) | 4-5 | wplecione |
-| 21 | Fiszki (Tarjetas) | 7 | 3-4h |
-| 22 | Ustawienia (slidery, TTS) | 8 | 2h |
-| 23 | Postęp w menu + scenariuszach | 8 | 2h |
-| 24 | PWA | 1+8 | 1h |
-| 25 | Pełny content (12 scenariuszy, 120 pytań) | 6 | wplecione |
-| 26 | Game Over modal | 3 | 30min |
-| 27 | Animacje przejść między stronami | 2+8 | 1h |
-| 28 | Confetti na ekranie wyników | 6 | 30min |
-| 29 | SpeakButton 🔊 przy odpowiedziach | 4 | 30min |
+| #   | Funkcja                                   | Dzień | Czas      |
+| --- | ----------------------------------------- | ----- | --------- |
+| 19  | Word Order (drag & drop)                  | 5     | 3-4h      |
+| 20  | Animacje odpowiedzi (bounce, shake)       | 4-5   | wplecione |
+| 21  | Fiszki (Tarjetas)                         | 7     | 3-4h      |
+| 22  | Ustawienia (slidery, TTS)                 | 8     | 2h        |
+| 23  | Postęp w menu + scenariuszach             | 8     | 2h        |
+| 24  | PWA                                       | 1+8   | 1h        |
+| 25  | Pełny content (12 scenariuszy, 120 pytań) | 6     | wplecione |
+| 26  | Game Over modal                           | 3     | 30min     |
+| 27  | Animacje przejść między stronami          | 2+8   | 1h        |
+| 28  | Confetti na ekranie wyników               | 6     | 30min     |
+| 29  | SpeakButton 🔊 przy odpowiedziach         | 4     | 30min     |
 
 ### 🟢 Nice-to-Have (dodajemy jeśli jest czas)
 
-| # | Funkcja | Czas | Priorytet |
-|---|---------|------|-----------|
-| 30 | Maskotka Boxi (SVG/CSS) | 2-3h | Niski |
-| 31 | Animacja pudełka otwierającego się | 1-2h | Niski |
-| 32 | Streak display (🔥 3 días) | 1h | Średni |
-| 33 | Splash screen animacja | 30min | Niski |
-| 34 | Ciemny motyw (dark mode) | 2h | Niski |
-| 35 | Swipe na fiszkach | 1h | Średni |
+| #   | Funkcja                            | Czas  | Priorytet |
+| --- | ---------------------------------- | ----- | --------- |
+| 30  | Maskotka Boxi (SVG/CSS)            | 2-3h  | Niski     |
+| 31  | Animacja pudełka otwierającego się | 1-2h  | Niski     |
+| 32  | Streak display (🔥 3 días)         | 1h    | Średni    |
+| 33  | Splash screen animacja             | 30min | Niski     |
+| 34  | Ciemny motyw (dark mode)           | 2h    | Niski     |
+| 35  | Swipe na fiszkach                  | 1h    | Średni    |
 
 ---
 
@@ -2602,6 +2766,7 @@ To jest absolutne minimum żeby gra działała i wyglądała dobrze na prezentac
 Rzeczy do dodania PO praktykach lub jeśli zostanie czas:
 
 ### 🔐 Logowanie użytkowników (Priorytet: WYSOKI na przyszłość)
+
 - Logowanie przez Google (Supabase Auth — darmowe)
 - Postęp zapisywany w Supabase zamiast localStorage
 - Gracz może kontynuować na innym urządzeniu
@@ -2609,6 +2774,7 @@ Rzeczy do dodania PO praktykach lub jeśli zostanie czas:
 - **Czas:** 4-6h
 
 ### 🏆 Leaderboard — tabela wyników (Priorytet: ŚREDNI)
+
 ```sql
 CREATE TABLE scores (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -2619,12 +2785,14 @@ CREATE TABLE scores (
   created_at TIMESTAMP DEFAULT NOW()
 );
 ```
+
 - Po ukończeniu scenariusza: modal "¿Cómo te llamas?" → zapis
 - Top 10 per scenariusz
 - **Trudność:** 2/10
 - **Czas:** 2-3h
 
 ### 🌙 Tryb ciemny / Dark Mode (Priorytet: NISKI)
+
 - Toggle w ustawieniach
 - Tailwind `dark:` klasy
 - Zapisywanie w localStorage
@@ -2632,6 +2800,7 @@ CREATE TABLE scores (
 - **Czas:** 2-3h
 
 ### 🌐 Wielojęzyczny interfejs / i18n (Priorytet: ŚREDNI)
+
 - Interfejs w 3 językach: ES, PL, EN
 - Plik z tłumaczeniami (JSON per język)
 - Context/hook do zmiany języka
@@ -2639,6 +2808,7 @@ CREATE TABLE scores (
 - **Czas:** 4-6h (tłumaczenie wszystkich tekstów)
 
 ### 📖 Tryb powtórki po scenariuszu (Priorytet: ŚREDNI)
+
 - Po wyniku: przycisk "Repasar palabras" (Powtórz słówka)
 - Lista wszystkich słówek z scenariusza z TTS
 - Podświetlenie słówek których gracz nie znał
@@ -2646,6 +2816,7 @@ CREATE TABLE scores (
 - **Czas:** 2-3h
 
 ### 🏅 System odznak / Achievements (Priorytet: NISKI)
+
 - "Primera partida!" (Pierwsza gra)
 - "10 escenarios completados!"
 - "100% en un escenario!"
@@ -2654,6 +2825,7 @@ CREATE TABLE scores (
 - **Czas:** 3-4h
 
 ### 📊 Zaawansowane statystyki (Priorytet: NISKI)
+
 - Procent poprawnych odpowiedzi per typ pytania
 - Najczęściej mylone słówka
 - Wykres postępu w czasie
@@ -2661,6 +2833,7 @@ CREATE TABLE scores (
 - **Czas:** 4-6h
 
 ### 🎓 Poziom zaawansowany B1+ (Priorytet: ŚREDNI)
+
 - Nowy poziom: "Avanzado"
 - Dłuższe teksty, dialogi, gramatyka
 - Nowe typy pytań: tłumaczenie zdań, uzupełnianie dialogów
@@ -2668,12 +2841,14 @@ CREATE TABLE scores (
 - **Czas:** 4-8h (głównie content)
 
 ### 🔊 Nagrywanie głosu / Speech Recognition (Priorytet: NISKI)
+
 - Gracz mówi słowo → przeglądarka sprawdza wymowę
 - Web Speech API SpeechRecognition
 - **Trudność:** 5/10 (API jest niestabilne w niektórych przeglądarkach)
 - **Czas:** 4-6h
 
 ### 👥 Tryb wieloosobowy / Multiplayer (Priorytet: NISKI)
+
 - Dwóch graczy na jednym urządzeniu
 - Naprzemienne odpowiadanie na pytania
 - Kto więcej punktów → wygrywa
@@ -2681,12 +2856,14 @@ CREATE TABLE scores (
 - **Czas:** 6-8h
 
 ### 📱 Natywna aplikacja mobilna (Priorytet: NISKI)
+
 - React Native lub Capacitor
 - Publikacja w Google Play / App Store
 - **Trudność:** 6/10
 - **Czas:** 2-3 tygodnie
 
 ### 🤖 AI-generowane pytania (Priorytet: NISKI)
+
 - Integracja z OpenAI API
 - Automatyczne generowanie nowych pytań na podstawie istniejących
 - **Trudność:** 4/10

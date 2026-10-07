@@ -37,7 +37,7 @@ export function LoaderOverlay({ isLoading }: LoaderOverlayProps) {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            {[0, 1, 2].map(i => (
+            {[0, 1, 2].map((i) => (
               <motion.div
                 key={i}
                 className="w-2 h-2 rounded-full bg-pb-amber"

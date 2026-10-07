@@ -10,7 +10,10 @@ function renderFormattedText(str: string) {
     if (part.startsWith("'") && part.endsWith("'")) {
       const innerMatch = part.slice(1, -1)
       return (
-        <span key={i} className="font-extrabold text-blue-600 underline decoration-2 underline-offset-4 decoration-blue-200">
+        <span
+          key={i}
+          className="font-extrabold text-blue-600 underline decoration-2 underline-offset-4 decoration-blue-200"
+        >
           '{innerMatch}'
         </span>
       )

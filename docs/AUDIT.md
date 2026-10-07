@@ -23,19 +23,19 @@
 
 Katalog `src/` jest w miarę sensowny (pages/components/hooks/store/services/utils/types), ale reszta repo to śmietnik:
 
-| Śmieć | Problem |
-|---|---|
-| `.playwright-mcp/*.yml` | zrzuty sesji Playwright MCP wplecione w repo |
-| `audit_artifacts/` | artefakty dawnego audytu (PNG, snapshoty). `.gitignore` próbuje je ignorować, ale **pliki są już śledzone**, więc ignorowanie nie działa |
-| `test-dupes.cjs`, `test-useGame.cjs`, `test-useGame2.cjs`, `test-scenarios.cjs`, `test-wordorder.cjs`, `test-playwright.mjs`, `test-results/` | jednorazowe skrypty debugowe w rootcie, zero wartości jako testy |
-| `check.mjs`, `delete.sql` | skrypt debugowy i ad-hoc SQL do kasowania wierszy po wartości tekstowej — niebezpieczny śmietnik |
-| `audit_report_es.md` | **pusty plik (0 B)**; w historii (`jacob`) istnieje jego skorumpowana wersja (UTF-16 + mojibake) — stary raport z audytu jest nienaprawialny |
-| `PLAN.md` (2711 linii), `improvement_plan.md`, `TODO.md`, `docs/TASKS.md`, `docs/TASKS2.md` | pięć nakładających się, przestarzałych dokumentów planistycznych; brak jednoznacznego źródła prawdy |
-| `designs/` (1,9 MB) | 13 katalogów z HTML-owymi makietami ekranów (mieszana nomenklatura polsko-hiszpańska: `listening_s_uchanie`, `uzupe_nianie_luk_luki`) — do decyzji: przenieść do folderu `design/` jako referencja, albo usunąć |
-| `.env.vercel`, `.env.vercel.prod` | **pliki środowiskowe wcommittowane do repo** (szczegóły w §1.3) |
-| `.agents/rules/GEMINI.md`, `.github/instructions/system-instructions.instructions.md` | instrukcje dla agentów AI, które każą traktować przestarzały `docs/TASKS.md` jako „źródło prawdy" — będą kolidować z nowym porządkiem |
-| `.github/prompts/pelny-audyt-aplikacji-es.prompt.md` | prompt użyty do dawnego audytu — do usunięcia/zarchiwizowania |
-| `src/**/.gitkeep` × 8 | puste znaczniki katalogów zbędne, gdy katalogi mają pliki |
+| Śmieć                                                                                                                                         | Problem                                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.playwright-mcp/*.yml`                                                                                                                       | zrzuty sesji Playwright MCP wplecione w repo                                                                                                                                                                    |
+| `audit_artifacts/`                                                                                                                            | artefakty dawnego audytu (PNG, snapshoty). `.gitignore` próbuje je ignorować, ale **pliki są już śledzone**, więc ignorowanie nie działa                                                                        |
+| `test-dupes.cjs`, `test-useGame.cjs`, `test-useGame2.cjs`, `test-scenarios.cjs`, `test-wordorder.cjs`, `test-playwright.mjs`, `test-results/` | jednorazowe skrypty debugowe w rootcie, zero wartości jako testy                                                                                                                                                |
+| `check.mjs`, `delete.sql`                                                                                                                     | skrypt debugowy i ad-hoc SQL do kasowania wierszy po wartości tekstowej — niebezpieczny śmietnik                                                                                                                |
+| `audit_report_es.md`                                                                                                                          | **pusty plik (0 B)**; w historii (`jacob`) istnieje jego skorumpowana wersja (UTF-16 + mojibake) — stary raport z audytu jest nienaprawialny                                                                    |
+| `PLAN.md` (2711 linii), `improvement_plan.md`, `TODO.md`, `docs/TASKS.md`, `docs/TASKS2.md`                                                   | pięć nakładających się, przestarzałych dokumentów planistycznych; brak jednoznacznego źródła prawdy                                                                                                             |
+| `designs/` (1,9 MB)                                                                                                                           | 13 katalogów z HTML-owymi makietami ekranów (mieszana nomenklatura polsko-hiszpańska: `listening_s_uchanie`, `uzupe_nianie_luk_luki`) — do decyzji: przenieść do folderu `design/` jako referencja, albo usunąć |
+| `.env.vercel`, `.env.vercel.prod`                                                                                                             | **pliki środowiskowe wcommittowane do repo** (szczegóły w §1.3)                                                                                                                                                 |
+| `.agents/rules/GEMINI.md`, `.github/instructions/system-instructions.instructions.md`                                                         | instrukcje dla agentów AI, które każą traktować przestarzały `docs/TASKS.md` jako „źródło prawdy" — będą kolidować z nowym porządkiem                                                                           |
+| `.github/prompts/pelny-audyt-aplikacji-es.prompt.md`                                                                                          | prompt użyty do dawnego audytu — do usunięcia/zarchiwizowania                                                                                                                                                   |
+| `src/**/.gitkeep` × 8                                                                                                                         | puste znaczniki katalogów zbędne, gdy katalogi mają pliki                                                                                                                                                       |
 
 ### 1.3. Pliki wrażliwe
 
@@ -75,52 +75,40 @@ Katalog `src/` jest w miarę sensowny (pages/components/hooks/store/services/uti
 
 ### 2.2. Wersje bibliotek (repo vs rejestr npm, 2026-10-07)
 
-| Pakiet | W repo | Latest | Uwagi |
-|---|---|---|---|
-| `vite` | 7.0.0 | **8.3.3** | 1 wersja główna za |
-| `typescript` | 5.9.3 | **7.0.2** | TS 7 = przeportowanie na Go („tsgo"); migracja nieodzowna, ale ryzykowna — wymaga ADR |
-| `eslint` / `@eslint/js` | 9.39.4 | **10.12** | 1 wersja główna za |
-| `typescript-eslint` | 8.56.1 | 8.71.1 | pod ESLint 10 potrzebna wersja kompatybilna |
-| `vite-plugin-pwa` | 1.2.0 | **2.0.0** | major |
-| `@vitejs/plugin-react` | 5.0.0 | **6.1.2** | major |
-| `framer-motion` | 12.38.0 | 14.0.0 | pakiet przemianowany na **`motion`** — rebrand + 2 majory za |
-| `react` / `react-dom` | 19.2.4 | 19.3.0 | drobne |
-| `react-router-dom` | 7.13.1 | 7.18.4 | drobne |
-| `@supabase/supabase-js` | 2.99.2 | 2.117.3 | drobne |
-| `tailwindcss` / `@tailwindcss/vite` | 4.2.1 | 4.3.3 | drobne |
-| `zustand` | 5.0.12 | 5.0.15 | OK |
-| `@dnd-kit/*` | core 6.3.1 / sortable 10.0.0 | równe | OK, aktywnie używane |
-| `canvas-confetti` | 1.9.4 | 1.9.4 | OK |
-| `howler` | 2.2.4 | 2.2.4 | **ostatnia publikacja 2023-09 — biblioteka uśpiona**; do rozważenia zastąpienie natywnym `Audio` |
-| `vercel` | ^50.35.0 | 62.7.0 | **nie powinno być w dependencies** (patrz §2.1) |
-| `playwright` | 1.58.2 | 1.63.0 | nieużywany devDep (brak testów) |
-| `supabase` (CLI) | 2.81.3 | 2.120.0 | OK jako devDep, ale jego postinstall bywa kruchy |
+| Pakiet                              | W repo                       | Latest    | Uwagi                                                                                            |
+| ----------------------------------- | ---------------------------- | --------- | ------------------------------------------------------------------------------------------------ |
+| `vite`                              | 7.0.0                        | **8.3.3** | 1 wersja główna za                                                                               |
+| `typescript`                        | 5.9.3                        | **7.0.2** | TS 7 = przeportowanie na Go („tsgo"); migracja nieodzowna, ale ryzykowna — wymaga ADR            |
+| `eslint` / `@eslint/js`             | 9.39.4                       | **10.12** | 1 wersja główna za                                                                               |
+| `typescript-eslint`                 | 8.56.1                       | 8.71.1    | pod ESLint 10 potrzebna wersja kompatybilna                                                      |
+| `vite-plugin-pwa`                   | 1.2.0                        | **2.0.0** | major                                                                                            |
+| `@vitejs/plugin-react`              | 5.0.0                        | **6.1.2** | major                                                                                            |
+| `framer-motion`                     | 12.38.0                      | 14.0.0    | pakiet przemianowany na **`motion`** — rebrand + 2 majory za                                     |
+| `react` / `react-dom`               | 19.2.4                       | 19.3.0    | drobne                                                                                           |
+| `react-router-dom`                  | 7.13.1                       | 7.18.4    | drobne                                                                                           |
+| `@supabase/supabase-js`             | 2.99.2                       | 2.117.3   | drobne                                                                                           |
+| `tailwindcss` / `@tailwindcss/vite` | 4.2.1                        | 4.3.3     | drobne                                                                                           |
+| `zustand`                           | 5.0.12                       | 5.0.15    | OK                                                                                               |
+| `@dnd-kit/*`                        | core 6.3.1 / sortable 10.0.0 | równe     | OK, aktywnie używane                                                                             |
+| `canvas-confetti`                   | 1.9.4                        | 1.9.4     | OK                                                                                               |
+| `howler`                            | 2.2.4                        | 2.2.4     | **ostatnia publikacja 2023-09 — biblioteka uśpiona**; do rozważenia zastąpienie natywnym `Audio` |
+| `vercel`                            | ^50.35.0                     | 62.7.0    | **nie powinno być w dependencies** (patrz §2.1)                                                  |
+| `playwright`                        | 1.58.2                       | 1.63.0    | nieużywany devDep (brak testów)                                                                  |
+| `supabase` (CLI)                    | 2.81.3                       | 2.120.0   | OK jako devDep, ale jego postinstall bywa kruchy                                                 |
 
 Wnioski: stack (React 19 + Vite + Tailwind 4 + Zustand + Supabase) jest zasadniczo zgodny z dobrymi praktykami 2026; wymagane są: aktualizacje major (Vite 8, ESLint 10, plugin-react 6, PWA 2), migracja `framer-motion`→`motion`, decyzja ADR o TS 7, usunięcie `vercel` z deps i rozstrzygnięcie losu Howlera.
 
 ### 2.3. Przestarzałe wzorce, martwy kod, duplikacje, bugi
 
 **Krytyczne (funkcjonalność):**
+
 1. **Fiszki są zepsute względem obecnego schematu bazy.** `useWords.ts` odpytuje `words` z filtrami `.eq('language', ...)` i polega na kolumnach `word, translation_es, translation_en, image_emoji` — po migracji `20260327100000_refactor_schema.sql` tabela `words` ma już tylko `(id, base_key, category, level)`, a tłumaczenia służą w `word_translations`. Zapytanie zwróci błąd 400 („column words.language does not exist") → ekran „No se encontraron tarjetas" / błąd. `types/index.ts` (`Word`, `Scenario`, `Question`) opisuje **stary** schemat.
 2. **Brakujące dźwięki**: `audioService` mapuje `click` i `celebration` na pliki `/sounds/click.mp3`, `/sounds/celebration.mp3`, których **nie ma** w `public/sounds/` (są tylko `correct.mp3`, `wrong.mp3`). Każdy klik w `Button` (= każdy przycisk w aplikacji) generuje 404 + tworzony jest przy każdej próbie nowy obiekt `Howl` (leak). Efekt: klik i fanfary są **cicho martwe**.
 3. **`question_text` w bazie to często literalny string `'undefined'`** — generator `scripts/generate-sql.mjs` czyta `question.question_text`, a JSON treści ma pole `question` (bez `_text`); `escapeSql(undefined)` wstawia `'undefined'` do SQL. Dlatego `useGame.ts` ma cały podsystem ratunkowy (heurystyka `isSpanishText`, regexy „How do you say…", naprawa mojibake `Âż→¿`), który odbudowuje teksty pytań **w runtime**. To najpoważniejszy dług techniczny: logika prezentacji danych powinna żyć w danych, nie w kodzie klienckim.
 4. **Kierunek nauki w treściach jest odwrócony/niespójny.** Aplikacja deklaruje naukę **angielskiego dla Hiszpanów**, ale w blokach treści `word_order` buduje zdania **po hiszpańsku** („Form the sentence: I went to the store yesterday" → poprawna odpowiedź `["Fui","a la tienda","ayer"]`), a `listening` ma `audio_text` po hiszpańsku z angielską odpowiedzią. Refaktoryzująca migracja dodatkowo ustawiła wszystkim pytaniom `source_language='es', target_language='en'` (bug w migracji — patrz §3.3). Zawartość wymaga audytu merytorycznego i decyzji, co jest źródłem prawdy.
 5. **Pytania `listening` z bloków nie mają opcji odpowiedzi** (`data` = tylko `correct` + `audio_text`) → `useGame` dosztukowuje distraktory z innych pytań, a w ostateczności **`'option 1', 'option 2', 'option 3'` jako widoczne odpowiedzi**.
 
-**Ważne (jakość/utrzymanie):**
-6. `useGame.ts` (424 linie) — monolit: fetch + 5 strategii fallbacku distraktorów + deduplikacja + selekcja 10 pytań + nawigacja + zapis gwiazdek. Do rozbicia na moduły (fetch/normalizacja/selekcja), po naprawie danych większość fallbacków znika.
-7. `useScenarios.ts`: `translationLanguage = 'en'` **zahardkodowane** — tytuły scenariuszy pobierane są wyłącznie po angielsku w aplikacji, której UI jest po hiszpańsku (a tłumaczenia `es` w bazie są!). Do decyzji: język tytułów = język UI (es) — zakładam, że tak.
-8. `useScenarios.ts` trzyma **31 UUID-ów scenariuszy z emoji w kodzie** (`idEmojiMap`) — dane w kodzie zamiast w bazie (kolumna `emoji` została wyrzucona z tabeli `scenarios` podczas refaktoru).
-9. `App.tsx` + `migrationService.ts`: przy zmianie `pb_app_version` (hardcode `'1.0.0'`) aplikacja **kasuje cały localStorage `pb_*` i `palabrabox_*` (czyli gwiazdki i postęp!) oraz wyrejestrowywuje SW i cache**. Każda zmiana wersji = reset postępów użytkownika. Do przeprojektowania (wersjonowanie stanu zamiast formatowania dysku).
-10. `lib/supabase.ts`: fallback `'http://localhost:54321'` + `'placeholder-key-to-prevent-crash'` — brak envów w produkcji objawia się cichymi strzałami na localhost z przeglądarki użytkownika. Lepiej: twardy, widoczny błąd konfiguracji.
-11. `ResultsScreen.tsx`: `useState({score: store.score, ...})` — snapshot stanu w momencie montażu; wejście na `/results` bez końca gry pokazuje zera; **logika gwiazdek zdublowana** względem `useGame` (dwie definicje prawdy).
-12. `useQuickProgress.ts`: liczenie `ownedStars` pętlą po całym localStorage **w ciele renderu** (niereaktywne, nieefektywne).
-13. `GameScreen.tsx`: `boxiTimeoutRef` bez czyszczenia w unmount (wyciek timera); `status==='finished'` i „no questions" to martwe stany pośrednio nieosiągalne w praktyce.
-14. Martwy kod: `CardsFlowPages.tsx` (3 puste strony niepodpięte do routingu), `SplashScreen.tsx` (nieużywany — rolę splash pełni `LoaderOverlay`), legacy fallback w `useScenarios` (po `drop_legacy_columns` nie ma już schematu z kolumną `language` na `scenarios`), pole `question_text_tts` w bazie nigdy nie wypełniane przez generator.
-15. `Button.tsx`: `isClickLocked` + async `handleClick` — nadmiarowy mechanizm; `audioService.play('click')` odpalany globalnie przy każdym przycisku (patrz bug #2).
-16. Brak **ErrorBoundary**; brak lazy-loadingu tras; fonty Google ładowane **dwukrotnie** (`<link>` w `index.html` + `@import` w `index.css` — ten drugi blokuje render CSS).
-17. `PWA`: runtime caching `CacheFirst` na REST Supabase (`words|scenarios|questions`) przez **7 dni** — treści aktualizują się z opóźnieniem tygodnia; koliduje to też z debugowaniem. Zalecane `NetworkFirst`/`StaleWhileRevalidate`.
-18. Literówka w `supabase/migrations/20260324000000_add_missing_questions.sql` — plik zawiera tylko komentarze (świadomie pusty, „migration" nic nie robi).
+**Ważne (jakość/utrzymanie):** 6. `useGame.ts` (424 linie) — monolit: fetch + 5 strategii fallbacku distraktorów + deduplikacja + selekcja 10 pytań + nawigacja + zapis gwiazdek. Do rozbicia na moduły (fetch/normalizacja/selekcja), po naprawie danych większość fallbacków znika. 7. `useScenarios.ts`: `translationLanguage = 'en'` **zahardkodowane** — tytuły scenariuszy pobierane są wyłącznie po angielsku w aplikacji, której UI jest po hiszpańsku (a tłumaczenia `es` w bazie są!). Do decyzji: język tytułów = język UI (es) — zakładam, że tak. 8. `useScenarios.ts` trzyma **31 UUID-ów scenariuszy z emoji w kodzie** (`idEmojiMap`) — dane w kodzie zamiast w bazie (kolumna `emoji` została wyrzucona z tabeli `scenarios` podczas refaktoru). 9. `App.tsx` + `migrationService.ts`: przy zmianie `pb_app_version` (hardcode `'1.0.0'`) aplikacja **kasuje cały localStorage `pb_*` i `palabrabox_*` (czyli gwiazdki i postęp!) oraz wyrejestrowywuje SW i cache**. Każda zmiana wersji = reset postępów użytkownika. Do przeprojektowania (wersjonowanie stanu zamiast formatowania dysku). 10. `lib/supabase.ts`: fallback `'http://localhost:54321'` + `'placeholder-key-to-prevent-crash'` — brak envów w produkcji objawia się cichymi strzałami na localhost z przeglądarki użytkownika. Lepiej: twardy, widoczny błąd konfiguracji. 11. `ResultsScreen.tsx`: `useState({score: store.score, ...})` — snapshot stanu w momencie montażu; wejście na `/results` bez końca gry pokazuje zera; **logika gwiazdek zdublowana** względem `useGame` (dwie definicje prawdy). 12. `useQuickProgress.ts`: liczenie `ownedStars` pętlą po całym localStorage **w ciele renderu** (niereaktywne, nieefektywne). 13. `GameScreen.tsx`: `boxiTimeoutRef` bez czyszczenia w unmount (wyciek timera); `status==='finished'` i „no questions" to martwe stany pośrednio nieosiągalne w praktyce. 14. Martwy kod: `CardsFlowPages.tsx` (3 puste strony niepodpięte do routingu), `SplashScreen.tsx` (nieużywany — rolę splash pełni `LoaderOverlay`), legacy fallback w `useScenarios` (po `drop_legacy_columns` nie ma już schematu z kolumną `language` na `scenarios`), pole `question_text_tts` w bazie nigdy nie wypełniane przez generator. 15. `Button.tsx`: `isClickLocked` + async `handleClick` — nadmiarowy mechanizm; `audioService.play('click')` odpalany globalnie przy każdym przycisku (patrz bug #2). 16. Brak **ErrorBoundary**; brak lazy-loadingu tras; fonty Google ładowane **dwukrotnie** (`<link>` w `index.html` + `@import` w `index.css` — ten drugi blokuje render CSS). 17. `PWA`: runtime caching `CacheFirst` na REST Supabase (`words|scenarios|questions`) przez **7 dni** — treści aktualizują się z opóźnieniem tygodnia; koliduje to też z debugowaniem. Zalecane `NetworkFirst`/`StaleWhileRevalidate`. 18. Literówka w `supabase/migrations/20260324000000_add_missing_questions.sql` — plik zawiera tylko komentarze (świadomie pusty, „migration" nic nie robi).
 
 ### 2.4. Wydajność
 
@@ -146,13 +134,13 @@ Wnioski: stack (React 19 + Vite + Tailwind 4 + Zustand + Supabase) jest zasadnic
 
 Tabele w `public` po wszystkich migracjach:
 
-| Tabela | Kolumny (istotne) | Relacje | Indeksy |
-|---|---|---|---|
-| `scenarios` | `id uuid PK`, `category`, `level` (CHECK beginner/intermediate), `sort_order` | 1—N `questions`, `scenario_translations` | tylko PK; **brak indeksu na (`level`,`sort_order`)** |
-| `scenario_translations` | `scenario_id FK`, `language`, `title`, `description` | FK ON DELETE CASCADE | UNIQUE(`scenario_id`,`language`) |
-| `words` | `id uuid PK`, `base_key` UNIQUE, `category`, `level` | 1—N `word_translations`, 0—N `questions.word_id` | UNIQUE(`base_key`) |
-| `word_translations` | `word_id FK`, `language`, `text`, `audio_text` | FK ON DELETE CASCADE | UNIQUE(`word_id`,`language`) |
-| `questions` | `id`, `scenario_id FK NOT NULL`, `word_id?`, `type` (CHECK 5 typów), `question_text NOT NULL`, `question_text_tts?`, `hint?`, `sort_order`, `data jsonb`, `source_language`, `target_language` | FK do `scenarios` ON DELETE CASCADE | `idx_questions_scenario` (jeden) |
+| Tabela                  | Kolumny (istotne)                                                                                                                                                                              | Relacje                                          | Indeksy                                              |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------- |
+| `scenarios`             | `id uuid PK`, `category`, `level` (CHECK beginner/intermediate), `sort_order`                                                                                                                  | 1—N `questions`, `scenario_translations`         | tylko PK; **brak indeksu na (`level`,`sort_order`)** |
+| `scenario_translations` | `scenario_id FK`, `language`, `title`, `description`                                                                                                                                           | FK ON DELETE CASCADE                             | UNIQUE(`scenario_id`,`language`)                     |
+| `words`                 | `id uuid PK`, `base_key` UNIQUE, `category`, `level`                                                                                                                                           | 1—N `word_translations`, 0—N `questions.word_id` | UNIQUE(`base_key`)                                   |
+| `word_translations`     | `word_id FK`, `language`, `text`, `audio_text`                                                                                                                                                 | FK ON DELETE CASCADE                             | UNIQUE(`word_id`,`language`)                         |
+| `questions`             | `id`, `scenario_id FK NOT NULL`, `word_id?`, `type` (CHECK 5 typów), `question_text NOT NULL`, `question_text_tts?`, `hint?`, `sort_order`, `data jsonb`, `source_language`, `target_language` | FK do `scenarios` ON DELETE CASCADE              | `idx_questions_scenario` (jeden)                     |
 
 **Brak**: funkcji, triggerów, widoków, tabel użytkownika/postępu (auth nie istnieje w bazie), `updated_at`, bundle z `base_key`/`language` nie ma odrębnych indeksów FK (`word_translations.word_id`, `scenario_translations.scenario_id` — Postgres nie tworzy automatycznie indeksów na FK).
 
@@ -215,24 +203,24 @@ Tabele w `public` po wszystkich migracjach:
 
 ## 5. Funkcje: zachować / poprawić / usunąć
 
-| Funkcja | Stan | Decyzja (propozycja) |
-|---|---|---|
-| Flow gry: wybór języka → poziom → scenariusz → gra → wyniki | działa | **zachować**; uporządkować routing |
-| 5 typów pytań (MC, image_match, listening, fill_blank, word_order) | działają, ale dane padły (image_match bez treści, listening bez opcji) | **zachować**; naprawić dane + selekcję pytań |
-| Życia (3), punkty, gwiazdki, streak, XP/poziom | działa; logika gwiazdek zdublowana; reset postępu przy zmianie wersji | **zachować, poprawić** (jedno źródło prawdy; wersjonowanie bez kasowania) |
-| Blokada scenariuszy do zdobycia gwiazdek | działa | **zachować** |
-| Fiszki 3D flip + personalizacja po najgorszych wynikach | **zepsute** (schemat bazy) | **naprawić** (query po `word_translations`) |
-| TTS (Web Speech) | działa częściowo; jeden akcent, brak degradacji | **przebudować** (§4.4) |
-| Efekty dźwiękowe (Howler) | 2 z 4 plików istnieją | **naprawić** (dodać pliki lub usunąć mapping; rozważyć zastąpienie Howlera) |
-| PWA (manifest, SW, offline cache) | działa; strategia cache myląca | **zachować, poprawić** (strategie cache, self-host fontów) |
-| Ustawienia (głośność, prędkość TTS) | suwak TTS martwy | **naprawić** |
-| Mascotka „Boxi" + komunikaty między pytaniami | działa | **zachować** (intermission do decyzji UX — każda odpowiedź = przerwa) |
-| Confetti na wynikach | działa | **zachować** |
-| Wybór języka nauki (polski „próximamente") | UI-zabawka; baza i treści tylko EN | **zachować EN; decyzja czy zostawić disabled PL** |
-| `CardsFlowPages.tsx`, `SplashScreen.tsx` | martwy kod | **usunąć** |
-| `migrationService` (kasowanie stanu) | groźny hack | **przeprojektować** |
-| `scripts/generate-sql.mjs` + `content_blocks` | buggowany pipeline treści | **naprawić** (walidacja schematem, poprawne pole `question`, escape, deterministyczne ID) |
-| Integracja Vercel (`vercel-ignore.sh`, `vercel` w deps) | kruche | **usunąć/przepisać** |
+| Funkcja                                                            | Stan                                                                   | Decyzja (propozycja)                                                                      |
+| ------------------------------------------------------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Flow gry: wybór języka → poziom → scenariusz → gra → wyniki        | działa                                                                 | **zachować**; uporządkować routing                                                        |
+| 5 typów pytań (MC, image_match, listening, fill_blank, word_order) | działają, ale dane padły (image_match bez treści, listening bez opcji) | **zachować**; naprawić dane + selekcję pytań                                              |
+| Życia (3), punkty, gwiazdki, streak, XP/poziom                     | działa; logika gwiazdek zdublowana; reset postępu przy zmianie wersji  | **zachować, poprawić** (jedno źródło prawdy; wersjonowanie bez kasowania)                 |
+| Blokada scenariuszy do zdobycia gwiazdek                           | działa                                                                 | **zachować**                                                                              |
+| Fiszki 3D flip + personalizacja po najgorszych wynikach            | **zepsute** (schemat bazy)                                             | **naprawić** (query po `word_translations`)                                               |
+| TTS (Web Speech)                                                   | działa częściowo; jeden akcent, brak degradacji                        | **przebudować** (§4.4)                                                                    |
+| Efekty dźwiękowe (Howler)                                          | 2 z 4 plików istnieją                                                  | **naprawić** (dodać pliki lub usunąć mapping; rozważyć zastąpienie Howlera)               |
+| PWA (manifest, SW, offline cache)                                  | działa; strategia cache myląca                                         | **zachować, poprawić** (strategie cache, self-host fontów)                                |
+| Ustawienia (głośność, prędkość TTS)                                | suwak TTS martwy                                                       | **naprawić**                                                                              |
+| Mascotka „Boxi" + komunikaty między pytaniami                      | działa                                                                 | **zachować** (intermission do decyzji UX — każda odpowiedź = przerwa)                     |
+| Confetti na wynikach                                               | działa                                                                 | **zachować**                                                                              |
+| Wybór języka nauki (polski „próximamente")                         | UI-zabawka; baza i treści tylko EN                                     | **zachować EN; decyzja czy zostawić disabled PL**                                         |
+| `CardsFlowPages.tsx`, `SplashScreen.tsx`                           | martwy kod                                                             | **usunąć**                                                                                |
+| `migrationService` (kasowanie stanu)                               | groźny hack                                                            | **przeprojektować**                                                                       |
+| `scripts/generate-sql.mjs` + `content_blocks`                      | buggowany pipeline treści                                              | **naprawić** (walidacja schematem, poprawne pole `question`, escape, deterministyczne ID) |
+| Integracja Vercel (`vercel-ignore.sh`, `vercel` w deps)            | kruche                                                                 | **usunąć/przepisać**                                                                      |
 
 ---
 
@@ -262,4 +250,4 @@ Tabele w `public` po wszystkich migracjach:
 
 ---
 
-*Audytor: agent Arena.ai (Etap 1). Dokument utworzony bez zmian w kodzie, bazie i ustawieniach repozytorium; jedyny artefakt lokalny: nieśledzony `.env.local` (wartości już publiczne z repo) na potrzeby podglądu deweloperskiego.*
+_Audytor: agent Arena.ai (Etap 1). Dokument utworzony bez zmian w kodzie, bazie i ustawieniach repozytorium; jedyny artefakt lokalny: nieśledzony `.env.local` (wartości już publiczne z repo) na potrzeby podglądu deweloperskiego._

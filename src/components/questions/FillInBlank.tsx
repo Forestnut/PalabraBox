@@ -53,11 +53,15 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: Props
       <div className="flex items-center justify-center min-h-24 py-4">
         <h2 className="text-xl sm:text-2xl font-black text-pb-dark leading-relaxed px-2 tracking-tight flex flex-wrap items-baseline justify-center gap-x-1">
           {parts[0]}
-          <span className={cn(
-            'inline-flex items-center justify-center min-w-32 py-1.5 px-3 rounded-2xl border-2 border-b-4 transition-all duration-300 text-lg sm:text-xl mx-2 shadow-sm',
-            selectedWord ? 'border-pb-amber bg-amber-50' : 'border-slate-300 bg-slate-100 border-dashed',
-            blankFeedback
-          )}>
+          <span
+            className={cn(
+              'inline-flex items-center justify-center min-w-32 py-1.5 px-3 rounded-2xl border-2 border-b-4 transition-all duration-300 text-lg sm:text-xl mx-2 shadow-sm',
+              selectedWord
+                ? 'border-pb-amber bg-amber-50'
+                : 'border-slate-300 bg-slate-100 border-dashed',
+              blankFeedback,
+            )}
+          >
             <AnimatePresence mode="wait">
               {selectedWord ? (
                 <motion.span
@@ -102,11 +106,7 @@ export function FillInBlank({ question, onAnswer, onPlaySound, disabled }: Props
       </div>
 
       <div className="mt-auto pt-4 w-full">
-        <Button
-          onClick={handleSubmit}
-          disabled={!selectedWord || answered}
-          className="w-full"
-        >
+        <Button onClick={handleSubmit} disabled={!selectedWord || answered} className="w-full">
           COMPROBAR
         </Button>
       </div>

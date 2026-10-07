@@ -30,16 +30,16 @@ The UI is in Spanish by design; the learning direction is **Spanish → English*
 
 ## 🛠 Tech stack
 
-| Layer | Choice |
-|---|---|
-| Framework | React 19 + TypeScript |
-| Build | Vite |
-| Styling | Tailwind CSS 4 |
-| State | Zustand (persisted) |
-| Animation | Motion (Framer Motion) |
-| Drag & drop | dnd-kit |
-| Backend | Supabase (Postgres + RLS) |
-| Hosting | Vercel (Hobby) |
+| Layer       | Choice                    |
+| ----------- | ------------------------- |
+| Framework   | React 19 + TypeScript     |
+| Build       | Vite                      |
+| Styling     | Tailwind CSS 4            |
+| State       | Zustand (persisted)       |
+| Animation   | Motion (Framer Motion)    |
+| Drag & drop | dnd-kit                   |
+| Backend     | Supabase (Postgres + RLS) |
+| Hosting     | Vercel (Hobby)            |
 
 Everything runs on **free tiers only**.
 
@@ -62,15 +62,15 @@ npm run dev        # → http://localhost:5173
 
 ### Scripts
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Dev server |
-| `npm run build` | Type-check + production build |
-| `npm run preview` | Preview the production build |
-| `npm run lint` | ESLint |
-| `npm run typecheck` | TypeScript project check |
-| `npm run test` | Unit tests (Vitest, single run) |
-| `npm run test:watch` | Unit tests in watch mode |
+| Command              | Description                     |
+| -------------------- | ------------------------------- |
+| `npm run dev`        | Dev server                      |
+| `npm run build`      | Type-check + production build   |
+| `npm run preview`    | Preview the production build    |
+| `npm run lint`       | ESLint                          |
+| `npm run typecheck`  | TypeScript project check        |
+| `npm run test`       | Unit tests (Vitest, single run) |
+| `npm run test:watch` | Unit tests in watch mode        |
 
 ## 🗄 Database
 

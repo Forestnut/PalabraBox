@@ -3,6 +3,7 @@
 Niniejszy plan stanowi kompleksową strategię rozwiązania zgłoszonych problemów z danymi, UI oraz systemem progresji. Plan skupia się na jakości danych (AI data extraction) oraz estetyce interfejsu.
 
 ## 1. Drag & Drop: Estetyka i Stabilność (`WordOrder.tsx`)
+
 Celem jest powrót do klasycznego wyglądu "linii" (underscores) przy zachowaniu pełnej responsywności.
 
 - **Przywrócenie Slotów**: Zamiast jednego bloku, każda sekcja w strefie `dropZone` będzie wizualnie reprezentowana przez poziomą linię (border-b-2) o szerokości dopasowanej do słowa.
@@ -11,6 +12,7 @@ Celem jest powrót do klasycznego wyglądu "linii" (underscores) przy zachowaniu
 - **Hover/Active States**: Dodanie subtelnych animacji (`framer-motion`) przy "wskakiwaniu" słowa na linię, aby UX był "premium".
 
 ## 2. Poprawa Jakości i Deduplikacji Pytań (`useGame.ts`)
+
 Rozwiązanie problemu powtarzających się i pustych pytań.
 
 - **Inteligentna Ekstrakcja JSONB**:
@@ -24,6 +26,7 @@ Rozwiązanie problemu powtarzających się i pustych pytań.
   - Przy losowaniu, pytania z czarnej listy są pomijane, dopóki baza nie zostanie wyczerpana.
 
 ## 3. Nowy System Progresji: Gwiazdki (`progressStore.ts` & `MainMenu.tsx`)
+
 Zastąpienie punktów i poziomów (Nivel) rzetelnym licznikiem postępu scenariuszy.
 
 - **Logika Gwiazdek**:
@@ -36,9 +39,11 @@ Zastąpienie punktów i poziomów (Nivel) rzetelnym licznikiem postępu scenariu
   - Pasek postępu pod licznikiem, pokazujący procentową drogę do ukończenia całego kursu.
 
 ## 4. Przegląd i Czyszczenie Kodu (QA)
+
 - **Logowanie Błędów**: Dodanie `console.info` przy odrzucaniu pustych pytań, aby ułatwić debugowanie bazy danych w przyszłości.
 - **Weryfikacja Typów**: Pełny przebieg `npx tsc` po zmianach struktury `gameStore`.
 
 ---
+
 > [!NOTE]
-> Zgodnie z instrukcją, powyższy plan został tylko zapisany jako dokumentacja i **nie został jeszcze wykonany**. 
+> Zgodnie z instrukcją, powyższy plan został tylko zapisany jako dokumentacja i **nie został jeszcze wykonany**.

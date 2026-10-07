@@ -17,8 +17,11 @@ export function FlashCard({ word }: FlashCardProps) {
 
   const handlePlayAudio = (e: React.MouseEvent, side: 'front' | 'back') => {
     e.stopPropagation()
-    const isFrontSpanish = word.language === 'spanish' || (word.language as string) === 'es' || word.language?.startsWith('es')
-    
+    const isFrontSpanish =
+      word.language === 'spanish' ||
+      (word.language as string) === 'es' ||
+      word.language?.startsWith('es')
+
     if (side === 'front') {
       const text = word.audio_text || word.word
       const lang = isFrontSpanish ? 'es-ES' : 'en-US'
@@ -55,7 +58,7 @@ export function FlashCard({ word }: FlashCardProps) {
           style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
         >
           {emoji && <span className="text-5xl sm:text-6xl mb-2">{emoji}</span>}
-          
+
           <h2 className="text-3xl sm:text-4xl font-black text-pb-dark tracking-tight text-center">
             {word.word}
           </h2>
@@ -83,9 +86,15 @@ export function FlashCard({ word }: FlashCardProps) {
             'shadow-elevated',
             'flex flex-col items-center justify-center gap-4',
           )}
-          style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+          style={{
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            transform: 'rotateY(180deg)',
+          }}
         >
-          {emoji && <span className="text-4xl sm:text-5xl mb-2 opacity-90 drop-shadow-sm">{emoji}</span>}
+          {emoji && (
+            <span className="text-4xl sm:text-5xl mb-2 opacity-90 drop-shadow-sm">{emoji}</span>
+          )}
 
           <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight text-center drop-shadow-sm">
             {translation}
