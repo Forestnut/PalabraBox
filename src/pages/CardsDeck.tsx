@@ -83,6 +83,7 @@ export default function CardsDeck() {
         <div className="flex items-center justify-center gap-6 mt-4 mb-2">
           <button
             onClick={prev}
+            aria-label="Tarjeta anterior"
             disabled={currentIndex <= 0}
             className="w-16 h-16 rounded-full flex items-center justify-center bg-white border-2 border-b-4 border-slate-200 text-pb-dark transition-all hover:bg-slate-50 active:border-b-2 active:translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
@@ -91,6 +92,7 @@ export default function CardsDeck() {
 
           <button
             onClick={next}
+            aria-label="Tarjeta siguiente"
             disabled={currentIndex >= words.length - 1}
             className="w-16 h-16 rounded-full flex items-center justify-center bg-white border-2 border-b-4 border-slate-200 text-pb-dark transition-all hover:bg-slate-50 active:border-b-2 active:translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
