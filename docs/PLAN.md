@@ -150,45 +150,54 @@ Wygenerowanie `click.wav`/`celebration.wav` (skryptem, deterministycznie) lub us
 **DoD:** klik dźwiękowy tylko tam, gdzie ma sens (opcja `sound`); brak blokady podwójnego kliknięcia awaryjnej logiką.
 
 ### D3 — ErrorBoundary + lazy loading tras — **M**
+> ✅ **UKOŃCZONE** — lazy: GameScreen/CardsDeck/Results/Settings jako osobne chunki; ErrorBoundary z ekranem błędu i resetem
 
 **DoD:** błąd renderu pokazuje ekran błędu z retry, nie biały ekran; `GameScreen`/`ResultsScreen` lazy; Suspense z fallbackiem.
 
 ### D4 — Usunięcie martwego kodu — **S**
+> ✅ **UKOŃCZONE**
 
 `CardsFlowPages.tsx`, `SplashScreen.tsx`, legacy fallback w `useScenarios` (stary schemat), nieużywane eksporty.
 **DoD:** brak ślepych importów; `tsc`/eslint czysto.
 
 ### D5 — `migrationService` bez destrukcyjnego resetu — **M**
+> ✅ **UKOŃCZONE** — migrationService: rejestr migracji stanu, zero kasowania danych; testy 6 scenariuszy
 
 Wersjonowanie stanu (rejestr migracji stanu) zamiast kasowania `pb_*`; migracja starych kluczy do nowych; **nigdy** nie czyścimy postępu użytkownika przy zmianie wersji.
 **DoD:** test jednostkowy: upgrade wersji zachowuje gwiazdki/punkty/streak.
 
 ### D6 — Gwiazdki: jedno źródło prawdy — **S/M**
+> ✅ **UKOŃCZONE** — starsByScenario w progressStore + migracja v1→v2 importująca stare klucze pb_stars_*; useQuickProgress reaktywne
 
 Stan gwiazdek w `progressStore` (nie pętla po localStorage w renderze); `useQuickProgress` reaktywny.
 **DoD:** brak skanowania localStorage w ciele komponentu; test store'u.
 
 ### D7 — Wynik gry: jedno źródło prawdy — **S/M**
+> ✅ **UKOŃCZONE** — gameStore.lastResult zapisywane raz w useGame; ResultsScreen czyta tylko store, redirect bez gry
 
 `gameStore` przechowuje wynik sesji (scenarioId, stars, score, lives) wyliczany raz; `ResultsScreen` czyta ze store'u.
 **DoD:** wejście na `/results` po odświeżeniu nie pokazuje zmyślonych danych (redirect); usunięta duplikacja logiki gwiazdek.
 
 ### D8 — Dostępność (a11y) — **M**
+> ✅ **UKOŃCZONE** — zoom przywrócony, fiszka obsługiwana klawiaturą (Enter/Space), aria-label nawigacji i audio, etykiety suwaków
 
 Zoom włączony (`maximum-scale`/`user-scalable` usunięte), fiszka obsługiwana z klawiatury (role/tabIndex/Enter), `aria-label` nawigacji fiszek, poprawne etykiety suwaków, przegląd kontrastu tokenów.
 **DoD:** nawigacja klawiaturą przez fiszki działa; axe-devtools bez błędów krytycznych (przegląd).
 
 ### D9 — Fonty self-host — **S**
+> ✅ **UKOŃCZONE** — @fontsource-variable/nunito; Google Fonts CDN usunięte (HTML+CSS); CSP zawężone
 
 `@fontsource-variable/nunito`, usunięcie Google Fonts z `index.html` i `@import` z `index.css`.
 **DoD:** zero zewnętrznych żądań fontów; PWA działa offline z fontami.
 
 ### D10 — PWA cache: jedna strategia — **S/M**
+> ✅ **UKOŃCZONE** — NetworkFirst dla REST Supabase; usunięty drugi poziom cache localStorage w useWords
 
 REST Supabase `NetworkFirst` (zastąpienie `CacheFirst` 7-dniowego); usunięcie dublującego cache localStorage w `useWords`.
 **DoD:** treści odświeżają się po deployu; offline dalej działa (fallback do cache).
 
 ### D11 — Klient Supabase: fail-fast — **S**
+> ✅ **UKOŃCZONE** — isSupabaseConfigured + czytelny błąd w useGame/useScenarios/useWords; koniec z fallbackiem localhost
 
 Brak placeholder URL/klucza; czytelny błąd konfiguracji.
 **DoD:** brak envów ⇒ widoczny ekran/diagnostyka, nie ciche strzały na localhost.
