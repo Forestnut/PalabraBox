@@ -7,7 +7,7 @@
 ## Jak korzystać z planu
 
 - Status zadania: `[ ]` do zrobienia · `[~]` w toku · `[x]` ukończone · `(⏸)` odroczone.
-- Każde zadanie = osobny, mały commit (Conventional Commits) na branchu sesji `arena/46d7e90e-palabrabox`; w kamieniach milowych otwieram PR do `main` — merge wyłącznie po Twojej akceptacji.
+- Każde zadanie = osobny, mały commit (Conventional Commits) na branchu sesji `arena/7e29fed4-palabrabox`; w kamieniach milowych otwieram PR do `main` — merge wyłącznie po Twojej akceptacji.
 - Złożoność: **S** ≤ 2 h · **M** ≤ 1 dzień · **L** ≤ 2–3 dni.
 - Zadania wymagające Twojej akcji oznaczone 🙋.
 - Zasada stała: **każde zadanie kończy się aktualizacją dokumentacji**, której dotyczy.
@@ -391,7 +391,7 @@ Usunięcie/aktualizacja `SCREENS.md`, `SERVICES.md`, `GAME_MECHANICS.md`, `DESIG
 
 ## Otwarte kwestie (nieblokujące)
 
-- 🙋 Plik `20261007203525_remote_schema.sql` z Twojego `db pull` — wypchnij na branch lub wklej (E0).
+- 🙋 E0: wyniki `scripts/db/verify.sql` (SQL Editor) + dumpy produkcji — `npx supabase db dump --linked -f prod_schema_20261008.sql` (schemat → `supabase/archive/`) oraz `npx supabase db dump --linked --data-only -f backup_data_20261008.sql` (backup przed wipe treści — nie commitujemy, zostaje lokalnie).
 - 🙋 Potwierdzenie MIT po ujrzeniu LICENSE (A3) — zmiana to jeden commit.
 - 🙋 Supabase Auth: włączenie magic link + Google w dashboardzie (G2) i ewentualne skonfigurowanie protection URLi.
 - Vercel Hobby = 1 miejsce w zespole — dla Błażeja wystarczy workflow PR (merge do main deployuje), więc bez zmian planu.

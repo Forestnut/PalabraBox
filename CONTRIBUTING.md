@@ -45,6 +45,17 @@ Thanks for helping improve PalabraBox! 📦
 - **Database**: schema/content changes go through SQL migrations in `supabase/migrations/` — never edit the remote DB by hand.
 - **Dependencies**: adding a dependency requires justification in the PR (actively maintained, free, no dupes).
 
+## Naming conventions
+
+One convention for the whole project — no exceptions:
+
+- **Migrations**: `YYYYMMDDHHMMSS_snake_case.sql` (UTC timestamp + snake_case name), e.g. `20261008120000_baseline.sql`.
+- **Files and directories**: lowercase, `kebab-case` (preferred for new files) or `snake_case` where an existing convention applies (e.g. `scripts/content_blocks/`, `scripts/generate-sql.mjs`).
+- **Code and database identifiers**: English (`camelCase` in TypeScript, `snake_case` in SQL).
+- **Language codes**: `en` / `es` / `pl` everywhere (database, content, settings).
+- **Comments and docs**: English preferred, applied consistently within a file.
+- **Commits**: English, Conventional Commits (see above).
+
 ## Committing content (questions/words)
 
 Content is generated from JSON blocks in `scripts/content_blocks/` via `scripts/generate-sql.mjs` — see [docs/DATABASE.md](./docs/DATABASE.md). Do not hand-edit generated migrations.
