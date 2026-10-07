@@ -2,6 +2,15 @@ import { create } from 'zustand'
 
 export type GameStatus = 'idle' | 'playing' | 'finished'
 
+export interface GameResult {
+  scenarioId: string | null
+  score: number
+  lives: number
+  maxLives: number
+  /** 0 when lost, otherwise equals remaining lives (min 1) */
+  stars: number
+}
+
 interface GameState {
   status: GameStatus
   score: number
@@ -10,6 +19,8 @@ interface GameState {
   currentQuestionIndex: number
   totalQuestions: number
   sessionBlacklist: string[]
+  /** Result of the last finished game — consumed by the results screen. */
+  lastResult: GameResult | null
   startGame: (total?: number) => void
   answerCorrect: () => void
   answerWrong: () => void
@@ -17,6 +28,7 @@ interface GameState {
   nextQuestion: () => void
   endGame: () => void
   addToBlacklist: (id: string) => void
+  setLastResult: (result: GameResult) => void
 }
 
 export const useGameStore = create<GameState>((set) => ({
@@ -27,6 +39,7 @@ export const useGameStore = create<GameState>((set) => ({
   currentQuestionIndex: 0,
   totalQuestions: 0,
   sessionBlacklist: [],
+  lastResult: null,
 
   startGame: (total) =>
     set({
@@ -41,10 +54,18 @@ export const useGameStore = create<GameState>((set) => ({
   nextQuestion: () => set((state) => ({ currentQuestionIndex: state.currentQuestionIndex + 1 })),
   endGame: () => set({ status: 'finished' }),
   resetGame: () =>
-    set({ status: 'idle', score: 0, lives: 3, currentQuestionIndex: 0, totalQuestions: 0 }),
+    set({
+      status: 'idle',
+      score: 0,
+      lives: 3,
+      currentQuestionIndex: 0,
+      totalQuestions: 0,
+      lastResult: null,
+    }),
   addToBlacklist: (id) =>
     set((state) => {
       if (state.sessionBlacklist.includes(id)) return state
       return { sessionBlacklist: [...state.sessionBlacklist, id] }
     }),
+  setLastResult: (result) => set({ lastResult: result }),
 }))
