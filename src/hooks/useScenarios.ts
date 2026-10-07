@@ -93,7 +93,7 @@ export function useScenarios() {
   const learningLanguage = useSettingsStore((state) => state.learningLanguage) || 'english'
   const learningLevel = useSettingsStore((state) => state.learningLevel) || 'beginner'
   const updateCompletedTotal = useProgressStore((state) => state.updateCompletedTotal)
-  const updateStars = useProgressStore((state) => state.updateStars)
+  const setPossibleStars = useProgressStore((state) => state.setPossibleStars)
   const translationLanguage = 'en'
 
   const cacheKey = `${learningLanguage}-${learningLevel}`
@@ -131,8 +131,7 @@ export function useScenarios() {
       if (scenariosCache[cacheKey]) {
         const enriched = getEnriched(scenariosCache[cacheKey])
         const completedCount = enriched.filter((e) => e.stars > 0).length
-        const totalStarsOwned = enriched.reduce((sum, e) => sum + e.stars, 0)
-        updateStars(totalStarsOwned, enriched.length * 3)
+        setPossibleStars(enriched.length * 3)
         updateCompletedTotal(completedCount, enriched.length)
         setScenarios(enriched)
         setLoading(false)
@@ -187,8 +186,7 @@ export function useScenarios() {
         const enriched = getEnriched(rawData)
         const completedCount = enriched.filter((e) => e.stars > 0).length
 
-        const totalStarsOwned = enriched.reduce((sum, e) => sum + e.stars, 0)
-        updateStars(totalStarsOwned, rawData.length * 3)
+        setPossibleStars(rawData.length * 3)
         updateCompletedTotal(completedCount, rawData.length)
         setScenarios(enriched)
       } catch (err) {

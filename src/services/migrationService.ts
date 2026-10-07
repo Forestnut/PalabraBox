@@ -14,14 +14,37 @@
  * - NEVER delete user progress (stars, points, streak, word stats).
  */
 
+import { useProgressStore } from '../store/progressStore'
+
 const STATE_VERSION_KEY = 'pb_state_version'
-const CURRENT_STATE_VERSION = 1
+export const CURRENT_STATE_VERSION = 2
 
 type StateMigration = () => void
 
+/**
+ * v1 → v2: stars used to live in scattered `pb_stars_<scenarioId>` keys.
+ * Import them into the progress store (single source of truth).
+ * Idempotent: setScenarioStars never downgrades, so re-runs are safe.
+ */
+function importLegacyScenarioStars(): void {
+  const { setScenarioStars } = useProgressStore.getState()
+
+  for (let i = 0; i < window.localStorage.length; i++) {
+    const key = window.localStorage.key(i)
+    if (!key?.startsWith('pb_stars_')) continue
+
+    const scenarioId = key.slice('pb_stars_'.length)
+    const stars = Number.parseInt(window.localStorage.getItem(key) ?? '', 10)
+
+    if (scenarioId.length > 0 && Number.isFinite(stars)) {
+      setScenarioStars(scenarioId, stars)
+    }
+  }
+}
+
 /** Registry of state migrations: key N migrates state from version N to N+1. */
 const migrations: Record<number, StateMigration> = {
-  // 1: () => { ... } // example: migrate stars from scattered pb_stars_* keys
+  1: importLegacyScenarioStars,
 }
 
 export function getStateVersion(): number {
