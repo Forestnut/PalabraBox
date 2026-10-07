@@ -46,3 +46,7 @@ supabase/.branches/
 # Misc artifacts
 lint_output*
 build_out.txt
+
+# Local
+local_*
+local/
