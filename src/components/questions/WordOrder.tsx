@@ -219,7 +219,7 @@ export function WordOrder({ question, onAnswer, onPlaySound, disabled, scenarioL
         {/* DROP ZONE */}
         <div className="w-full relative min-h-32 sm:min-h-40 flex flex-col justify-start mt-2 mb-10">
           {/* Background Drop Slots (Classic Lines) */}
-          <div className="absolute inset-0 flex flex-col gap-[3rem] sm:gap-[3.5rem] items-center pt-10 sm:pt-12 -z-10 px-2 pointer-events-none">
+          <div className="absolute inset-0 flex flex-col gap-12 sm:gap-14 items-center pt-10 sm:pt-12 -z-10 px-2 pointer-events-none">
             {[1, 2, 3].map((_, i) => (
                <div key={`line-${i}`} className="w-full border-b-2 border-slate-200" />
             ))}
