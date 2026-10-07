@@ -38,8 +38,18 @@ export function FlashCard({ word }: FlashCardProps) {
 
   return (
     <div
-      className="w-full max-w-sm mx-auto perspective-midrange cursor-pointer select-none"
+      role="button"
+      tabIndex={0}
+      aria-pressed={flipped}
+      aria-label={`Tarjeta: ${word.word}. Activar para girar`}
+      className="w-full max-w-sm mx-auto perspective-midrange cursor-pointer select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pb-amber rounded-3xl"
       onClick={() => setFlipped(!flipped)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          setFlipped(!flipped)
+        }
+      }}
     >
       <motion.div
         className="relative w-full aspect-4/5 preserve-3d"
@@ -65,6 +75,7 @@ export function FlashCard({ word }: FlashCardProps) {
 
           <motion.button
             onClick={(e) => handlePlayAudio(e, 'front')}
+            aria-label={`Escuchar "${word.word}"`}
             className="mt-2 w-14 h-14 rounded-full bg-linear-to-b from-[#0a8a5e] to-pb-emerald text-white flex items-center justify-center shadow-[0_4px_0_0_#035c3a] active:shadow-[0_1px_0_0_#035c3a] active:translate-y-0.75 transition-all cursor-pointer"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
@@ -102,6 +113,7 @@ export function FlashCard({ word }: FlashCardProps) {
 
           <motion.button
             onClick={(e) => handlePlayAudio(e, 'back')}
+            aria-label={`Escuchar "${translation}"`}
             className="mt-2 w-12 h-12 rounded-full bg-white text-pb-amber flex items-center justify-center shadow-[0_4px_0_0_#d86c00] active:shadow-[0_1px_0_0_#d86c00] active:translate-y-0.75 transition-all cursor-pointer"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}

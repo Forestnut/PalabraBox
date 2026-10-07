@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import { useProgressStore } from './progressStore'
+import { useProgressStore, selectOwnedStars } from './progressStore'
 
 function fakeDate(iso: string) {
   vi.useFakeTimers()
@@ -10,11 +10,11 @@ describe('progressStore', () => {
   beforeEach(() => {
     window.localStorage.clear()
     useProgressStore.setState({
+      starsByScenario: {},
       streakDays: 0,
       completed: 0,
       total: 0,
       points: 0,
-      ownedStars: 0,
       possibleStars: 0,
       lastActiveDate: null,
     })
@@ -68,5 +68,20 @@ describe('progressStore', () => {
     expect(state.points).toBe(100)
     expect(state.getLevel()).toBe(2) // 100 points → level 2
     expect(state.getLevelProgress()).toBe(0) // exactly at the level boundary
+  })
+
+  it('records scenario stars and never downgrades them', () => {
+    const id = '11111111-1111-1111-1111-111111111111'
+    useProgressStore.getState().setScenarioStars(id, 2)
+    useProgressStore.getState().setScenarioStars(id, 1)
+
+    expect(useProgressStore.getState().starsByScenario[id]).toBe(2)
+  })
+
+  it('sums owned stars across scenarios', () => {
+    useProgressStore.getState().setScenarioStars('11111111-1111-1111-1111-111111111111', 3)
+    useProgressStore.getState().setScenarioStars('22222222-2222-2222-2222-222222222222', 1)
+
+    expect(selectOwnedStars(useProgressStore.getState())).toBe(4)
   })
 })

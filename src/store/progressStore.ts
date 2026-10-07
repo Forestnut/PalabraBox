@@ -1,6 +1,10 @@
 /**
- * Store managing the user's overall progress (streak, total points, and total completed scenarios).
+ * Store managing the user's overall progress (stars, streak, points, completions).
  * Uses Zustand's persist middleware for robust local storage persistence.
+ *
+ * Single source of truth for scenario stars: `starsByScenario`. Legacy
+ * `pb_stars_*` localStorage keys are imported once by the state migration
+ * (see services/migrationService.ts).
  */
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
@@ -9,6 +13,10 @@ import { persist } from 'zustand/middleware'
  * Core interface for the game's progression tracking
  */
 export interface ProgressState {
+  /** Stars earned per scenario id (0–3). Never downgrades. */
+  starsByScenario: Record<string, number>
+  /** Total stars that could be earned in the currently known scenario set (×3) */
+  possibleStars: number
   /** The consecutive number of days the user has played */
   streakDays: number
   /** Amount of scenarios finished (stars > 0) */
@@ -20,6 +28,10 @@ export interface ProgressState {
   /** Standardized ISO date string of last activity */
   lastActiveDate: string | null
 
+  /** Records the best result for a scenario (keeps the higher star count). */
+  setScenarioStars: (scenarioId: string, stars: number) => void
+  /** Sets how many stars are achievable in total (scenario count × 3). */
+  setPossibleStars: (total: number) => void
   /**
    * Compares the current date with lastActiveDate.
    * If gap is exactly 1 day, increments streak.
@@ -42,25 +54,35 @@ export interface ProgressState {
   getLevel: () => number
   /** Gets the percentage progress (0-100) towards the next level */
   getLevelProgress: () => number
+}
 
-  ownedStars: number
-  possibleStars: number
-  updateStars: (owned: number, possible: number) => void
+/** Sums all earned stars (use outside React or as a plain selector helper). */
+export function selectOwnedStars(state: Pick<ProgressState, 'starsByScenario'>): number {
+  return Object.values(state.starsByScenario).reduce((sum, stars) => sum + stars, 0)
 }
 
 export const useProgressStore = create<ProgressState>()(
   persist(
     (set, get) => ({
+      starsByScenario: {},
+      possibleStars: 0,
       streakDays: 0,
       completed: 0,
       total: 0,
-      ownedStars: 0,
-      possibleStars: 0,
       points: 0,
       lastActiveDate: null,
 
-      updateStars: (owned: number, possible: number) => {
-        set({ ownedStars: owned, possibleStars: possible })
+      setScenarioStars: (scenarioId, stars) => {
+        const clamped = Math.max(0, Math.min(3, Math.round(stars)))
+        set((state) => {
+          const current = state.starsByScenario[scenarioId] ?? 0
+          if (clamped <= current) return state // never downgrade
+          return { starsByScenario: { ...state.starsByScenario, [scenarioId]: clamped } }
+        })
+      },
+
+      setPossibleStars: (total) => {
+        set({ possibleStars: Math.max(0, total) })
       },
 
       updateStreak: () => {

@@ -1,9 +1,9 @@
 /**
  * Hook to quickly access user's core progress stats (streak, points, completions)
- * connected safely to persistent Zustand store.
+ * connected safely to the persistent Zustand store.
  */
 import { useMemo, useEffect } from 'react'
-import { useProgressStore } from '../store/progressStore'
+import { useProgressStore, selectOwnedStars } from '../store/progressStore'
 
 export function useQuickProgress() {
   const streakDays = useProgressStore((state) => state.streakDays)
@@ -14,25 +14,18 @@ export function useQuickProgress() {
   const getLevelProgress = useProgressStore((state) => state.getLevelProgress)
   const lastActiveDate = useProgressStore((state) => state.lastActiveDate)
   const updateStreak = useProgressStore((state) => state.updateStreak)
+  const starsByScenario = useProgressStore((state) => state.starsByScenario)
+  const possibleStars = useProgressStore((state) => state.possibleStars)
 
-  // Dynamically compute global stars directly from source of truth on every render
-  let ownedStars = 0
-  if (typeof localStorage !== 'undefined') {
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i)
-      if (key?.startsWith('pb_stars_')) {
-        ownedStars += parseInt(localStorage.getItem(key) || '0', 10)
-      }
-    }
-  }
-
-  const possibleStars = useProgressStore((state) => state.possibleStars || 0)
+  // Owned stars derived reactively from the store — no localStorage scanning
+  const ownedStars = useMemo(() => selectOwnedStars({ starsByScenario }), [starsByScenario])
 
   useEffect(() => {
     // Determine streak continuously safely mounted
-    setTimeout(() => {
+    const id = window.setTimeout(() => {
       updateStreak()
     }, 0)
+    return () => window.clearTimeout(id)
   }, [updateStreak])
 
   const percentage = useMemo(() => {

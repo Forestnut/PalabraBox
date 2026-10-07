@@ -1,19 +1,27 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
 
-// Dev-friendly warning if env vars are missing
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn(
-    '⚠️ Supabase URL or Anon Key is missing. Ensure you have created a .env.local file ' +
-      'with VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY defined. ' +
-      'Data fetching will fail until these are provided.',
-  )
+/**
+ * True when both required env vars are present.
+ * Hooks use this to surface a clear configuration error instead of firing
+ * doomed requests (no more silent localhost fallback).
+ */
+export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey)
+
+export const SUPABASE_CONFIG_ERROR =
+  'Error de configuración: faltan VITE_SUPABASE_URL y/o VITE_SUPABASE_ANON_KEY. ' +
+  'Copia .env.example a .env.local y rellénalo con los valores de tu proyecto.'
+
+if (!isSupabaseConfigured) {
+  // Loud and early — in dev this must be impossible to miss.
+  console.error(`[supabase] ${SUPABASE_CONFIG_ERROR}`)
 }
 
-// Create and export the Supabase client instance
+// createClient tolerates empty strings; requests would fail anyway.
+// Guarding here keeps the module import-safe for tests and storybook-like contexts.
 export const supabase = createClient(
-  supabaseUrl || 'http://localhost:54321', // Fallback to local dev if empty
-  supabaseAnonKey || 'placeholder-key-to-prevent-crash',
+  supabaseUrl ?? 'https://placeholder.invalid',
+  supabaseAnonKey ?? 'placeholder',
 )

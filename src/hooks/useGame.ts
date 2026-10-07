@@ -1,6 +1,6 @@
-﻿import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { supabase } from '../lib/supabase'
+import { isSupabaseConfigured, supabase, SUPABASE_CONFIG_ERROR } from '../lib/supabase'
 import type { Question } from '../types'
 import { useGameStore } from '../store/gameStore'
 import { saveScenarioStars } from '../utils/progress'
@@ -149,6 +149,7 @@ export function useGame(scenarioId: string | undefined) {
     answerWrong,
     nextQuestion,
     endGame,
+    setLastResult,
     status,
     currentQuestionIndex,
     lives,
@@ -163,6 +164,12 @@ export function useGame(scenarioId: string | undefined) {
     if (!scenarioId) return
 
     async function fetchQuestions() {
+      if (!isSupabaseConfigured) {
+        setError(SUPABASE_CONFIG_ERROR)
+        setLoading(false)
+        return
+      }
+
       try {
         setLoading(true)
         const { data, error: err } = await supabase
@@ -510,12 +517,14 @@ export function useGame(scenarioId: string | undefined) {
     if (isWin || isLoss) {
       endGame()
 
-      // Calculate stars if won (3 lives = 3 stars, less lives = less stars)
+      // Stars: 3 lives = 3 stars; a win always grants at least 1; a loss grants 0
+      const stars = isWin ? Math.max(1, lives) : 0
       if (isWin && scenarioId) {
-        const stars = Math.max(1, lives)
         saveScenarioStars(scenarioId, stars)
-        // Let useScenarios accurately recount the actual database completion state next screen
       }
+
+      // Record the session result once — the results screen reads only this
+      setLastResult({ scenarioId: scenarioId ?? null, score, lives, maxLives, stars })
 
       useProgressStore.getState().addPoints(score)
 
@@ -524,7 +533,18 @@ export function useGame(scenarioId: string | undefined) {
         navigate('/results')
       }, 500)
     }
-  }, [status, currentQuestionIndex, lives, questions.length, navigate, endGame, scenarioId, score])
+  }, [
+    status,
+    currentQuestionIndex,
+    lives,
+    maxLives,
+    questions.length,
+    navigate,
+    endGame,
+    setLastResult,
+    scenarioId,
+    score,
+  ])
 
   const handleAnswer = useCallback(
     (isCorrect: boolean) => {

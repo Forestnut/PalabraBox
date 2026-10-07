@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { motion } from 'motion/react'
 import confetti from 'canvas-confetti'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -16,29 +16,24 @@ import { useAudio } from '../hooks/useAudio'
 export default function ResultsScreen() {
   const navigate = useNavigate()
 
-  const store = useGameStore()
-  const [results] = useState({
-    score: store.score,
-    lives: store.lives,
-    maxLives: store.maxLives || 3,
-  })
+  const resetGame = useGameStore((state) => state.resetGame)
+  const lastResult = useGameStore((state) => state.lastResult)
 
-  const { score, lives, maxLives } = results
   const { progress } = useQuickProgress()
   const { playSound } = useAudio()
   const [stars, setStars] = useState(0)
 
+  // Derived from the single source of truth (gameStore.lastResult)
+  const score = lastResult?.score ?? 0
+  const lives = lastResult?.lives ?? 0
+  const maxLives = lastResult?.maxLives ?? 3
   const isSuccess = lives > 0
   const mistakes = maxLives - lives
-
-  let earnedStars = 0
-  if (isSuccess) {
-    if (mistakes === 0) earnedStars = 3
-    else if (mistakes === 1) earnedStars = 2
-    else earnedStars = 1
-  }
+  const earnedStars = lastResult?.stars ?? 0
 
   useEffect(() => {
+    if (!lastResult) return
+
     let intervalId: number | null = null
 
     const timer = setTimeout(() => {
@@ -81,15 +76,20 @@ export default function ResultsScreen() {
         clearInterval(intervalId)
       }
     }
-  }, [earnedStars, isSuccess, playSound])
+  }, [lastResult, earnedStars, isSuccess, playSound])
+
+  // No finished game in this session → nothing to show here
+  if (!lastResult) {
+    return <Navigate to="/menu" replace />
+  }
 
   const handleMenu = () => {
-    store.resetGame()
+    resetGame()
     navigate('/menu')
   }
 
   const handlePlayAgain = () => {
-    store.resetGame()
+    resetGame()
     navigate('/scenarios')
   }
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { supabase } from '../lib/supabase'
+import { isSupabaseConfigured, supabase, SUPABASE_CONFIG_ERROR } from '../lib/supabase'
 import type { Scenario } from '../types'
 import { useSettingsStore } from '../store/settingsStore'
 import { getScenarioStars } from '../utils/progress'
@@ -93,7 +93,7 @@ export function useScenarios() {
   const learningLanguage = useSettingsStore((state) => state.learningLanguage) || 'english'
   const learningLevel = useSettingsStore((state) => state.learningLevel) || 'beginner'
   const updateCompletedTotal = useProgressStore((state) => state.updateCompletedTotal)
-  const updateStars = useProgressStore((state) => state.updateStars)
+  const setPossibleStars = useProgressStore((state) => state.setPossibleStars)
   const translationLanguage = 'en'
 
   const cacheKey = `${learningLanguage}-${learningLevel}`
@@ -121,12 +121,17 @@ export function useScenarios() {
 
   useEffect(() => {
     async function fetchScenarios() {
+      if (!isSupabaseConfigured) {
+        setError(SUPABASE_CONFIG_ERROR)
+        setLoading(false)
+        return
+      }
+
       // If cached, sync store but don't show loading
       if (scenariosCache[cacheKey]) {
         const enriched = getEnriched(scenariosCache[cacheKey])
         const completedCount = enriched.filter((e) => e.stars > 0).length
-        const totalStarsOwned = enriched.reduce((sum, e) => sum + e.stars, 0)
-        updateStars(totalStarsOwned, enriched.length * 3)
+        setPossibleStars(enriched.length * 3)
         updateCompletedTotal(completedCount, enriched.length)
         setScenarios(enriched)
         setLoading(false)
@@ -135,7 +140,7 @@ export function useScenarios() {
 
       try {
         setLoading(true)
-        const { data: normalizedData, error: normalizedError } = await supabase
+        const { data, error: fetchError } = await supabase
           .from('scenarios')
           .select(
             'id, category, level, sort_order, scenario_translations!inner(language, title, description)',
@@ -144,61 +149,44 @@ export function useScenarios() {
           .eq('scenario_translations.language', translationLanguage)
           .order('sort_order', { ascending: true })
 
-        let rawData: Scenario[] = []
+        if (fetchError) throw fetchError
 
-        if (!normalizedError && normalizedData && normalizedData.length > 0) {
-          rawData = (
-            (normalizedData ?? []) as Array<{
-              id: string
-              category: string
-              level: string
-              sort_order: number
-              scenario_translations: Array<{
-                language: string
-                title: string
-                description: string | null
-              }>
+        const rawData: Scenario[] = (
+          (data ?? []) as Array<{
+            id: string
+            category: string
+            level: string
+            sort_order: number
+            scenario_translations: Array<{
+              language: string
+              title: string
+              description: string | null
             }>
-          ).map((scenario) => {
-            const translation = scenario.scenario_translations?.[0]
-            const title = translation?.title ?? scenario.category
+          }>
+        ).map((scenario) => {
+          const translation = scenario.scenario_translations?.[0]
+          const title = translation?.title ?? scenario.category
 
-            return {
-              id: scenario.id,
-              title,
-              title_display: title,
-              language: learningLanguage,
-              level: scenario.level as Scenario['level'],
-              description: translation?.description ?? null,
-              emoji: idEmojiMap[scenario.id] || categoryEmojiMap[scenario.category] || '✨',
-              category: scenario.category,
-              sort_order: scenario.sort_order,
-              created_at: '',
-            }
-          })
-        } else {
-          // Fallback for legacy schema: direct fields on scenarios
-          const { data: legacyData, error: legacyError } = await supabase
-            .from('scenarios')
-            .select('*')
-            .eq('language', learningLanguage)
-            .eq('level', learningLevel)
-            .order('sort_order', { ascending: true })
-
-          if (legacyError) {
-            throw normalizedError ?? legacyError
+          return {
+            id: scenario.id,
+            title,
+            title_display: title,
+            language: learningLanguage,
+            level: scenario.level as Scenario['level'],
+            description: translation?.description ?? null,
+            emoji: idEmojiMap[scenario.id] || categoryEmojiMap[scenario.category] || '✨',
+            category: scenario.category,
+            sort_order: scenario.sort_order,
+            created_at: '',
           }
-
-          rawData = (legacyData ?? []) as Scenario[]
-        }
+        })
 
         scenariosCache[cacheKey] = rawData
 
         const enriched = getEnriched(rawData)
         const completedCount = enriched.filter((e) => e.stars > 0).length
 
-        const totalStarsOwned = enriched.reduce((sum, e) => sum + e.stars, 0)
-        updateStars(totalStarsOwned, rawData.length * 3)
+        setPossibleStars(rawData.length * 3)
         updateCompletedTotal(completedCount, rawData.length)
         setScenarios(enriched)
       } catch (err) {

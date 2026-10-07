@@ -1,61 +1,79 @@
-export const APP_VERSION = '1.0.0'
+/**
+ * Versioned, non-destructive migrations for client-side persisted state.
+ *
+ * History: the previous implementation wiped every `pb_*` / `palabrabox_*`
+ * localStorage key (i.e. the user's stars, points and streak) whenever the
+ * app version changed. This module replaces that with a classic migration
+ * registry: each migration transforms old state in place and user progress
+ * is never destroyed.
+ *
+ * Rules:
+ * - One migration per state version step: `migrations[n]` moves state from
+ *   version `n` to `n+1`.
+ * - Migrations must be idempotent and safe to run on partially-migrated state.
+ * - NEVER delete user progress (stars, points, streak, word stats).
+ */
 
-export async function runMigrations() {
-  const currentVersion = localStorage.getItem('pb_app_version')
+import { useProgressStore } from '../store/progressStore'
 
-  if (currentVersion !== APP_VERSION) {
-    console.log(`Migrating app state from ${currentVersion} to ${APP_VERSION}...`)
+const STATE_VERSION_KEY = 'pb_state_version'
+export const CURRENT_STATE_VERSION = 2
 
-    // Clear old caches or state
+type StateMigration = () => void
 
-    // 1. Clear all local storage keys starting with pb_ or palabrabox_
-    const keysToRemove = []
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i)
-      if (key && (key.startsWith('pb_') || key.startsWith('palabrabox_'))) {
-        // Exclude the version key itself for now to be safe
-        if (key !== 'pb_app_version') {
-          keysToRemove.push(key)
-        }
-      }
+/**
+ * v1 → v2: stars used to live in scattered `pb_stars_<scenarioId>` keys.
+ * Import them into the progress store (single source of truth).
+ * Idempotent: setScenarioStars never downgrades, so re-runs are safe.
+ */
+function importLegacyScenarioStars(): void {
+  const { setScenarioStars } = useProgressStore.getState()
+
+  for (let i = 0; i < window.localStorage.length; i++) {
+    const key = window.localStorage.key(i)
+    if (!key?.startsWith('pb_stars_')) continue
+
+    const scenarioId = key.slice('pb_stars_'.length)
+    const stars = Number.parseInt(window.localStorage.getItem(key) ?? '', 10)
+
+    if (scenarioId.length > 0 && Number.isFinite(stars)) {
+      setScenarioStars(scenarioId, stars)
     }
+  }
+}
 
-    keysToRemove.forEach((key) => localStorage.removeItem(key))
+/** Registry of state migrations: key N migrates state from version N to N+1. */
+const migrations: Record<number, StateMigration> = {
+  1: importLegacyScenarioStars,
+}
 
-    // 2. Unregister service worker and clear Cache API (from workbox/PWA)
-    if ('caches' in window) {
+export function getStateVersion(): number {
+  if (typeof window === 'undefined') return CURRENT_STATE_VERSION
+  const raw = window.localStorage.getItem(STATE_VERSION_KEY)
+  const parsed = Number.parseInt(raw ?? '1', 10)
+  return Number.isFinite(parsed) && parsed >= 1 ? parsed : 1
+}
+
+/**
+ * Runs all pending state migrations exactly once per version step.
+ * Call synchronously during app bootstrap — no reloads needed.
+ */
+export function runMigrations(): void {
+  if (typeof window === 'undefined') return
+
+  const from = getStateVersion()
+
+  if (from < CURRENT_STATE_VERSION) {
+    for (let version = from; version < CURRENT_STATE_VERSION; version++) {
       try {
-        const cacheNames = await caches.keys()
-        await Promise.all(
-          cacheNames.map((cacheName) => {
-            console.log(`Deleting cache: ${cacheName}`)
-            return caches.delete(cacheName)
-          }),
-        )
+        migrations[version]?.()
       } catch (err) {
-        console.error('Failed to clear CacheStorage:', err)
+        // A failed migration must not brick the app — log and keep going.
+        console.error(`[migrations] state migration v${version} → v${version + 1} failed`, err)
       }
     }
-
-    if ('serviceWorker' in navigator) {
-      try {
-        const registrations = await navigator.serviceWorker.getRegistrations()
-        for (const registration of registrations) {
-          await registration.unregister()
-          console.log('Unregistered old service worker.')
-        }
-      } catch (err) {
-        console.error('Failed to unregister Service Worker:', err)
-      }
-    }
-
-    // Set new version
-    localStorage.setItem('pb_app_version', APP_VERSION)
-
-    // Optional: reload the page to ensure completely fresh start
-    // We'll just return true to indicate a hard reset happened
-    return true
   }
 
-  return false
+  // Always stamp the current version (also repairs a corrupted stamp)
+  window.localStorage.setItem(STATE_VERSION_KEY, String(CURRENT_STATE_VERSION))
 }

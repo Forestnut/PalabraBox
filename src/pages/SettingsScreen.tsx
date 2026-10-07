@@ -19,23 +19,30 @@ interface RangeSliderProps {
  * Reusable labeled slider used for audio-related preference controls.
  */
 function RangeSlider({ label, value, onChange, icon }: RangeSliderProps) {
+  const sliderId = `slider-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
+
   return (
     <div className="flex flex-col gap-3 w-full">
       <div className="flex justify-between items-center">
-        <span className="flex items-center gap-2 text-pb-text-light font-bold text-xs uppercase tracking-wider">
-          <FontAwesomeIcon icon={icon} className="text-sm text-pb-dark/40" />
+        <label
+          htmlFor={sliderId}
+          className="flex items-center gap-2 text-pb-text-light font-bold text-xs uppercase tracking-wider"
+        >
+          <FontAwesomeIcon icon={icon} className="text-sm text-pb-dark/40" aria-hidden="true" />
           {label}
-        </span>
-        <span className="text-pb-amber font-bold text-sm tabular-nums">
+        </label>
+        <span className="text-pb-amber font-bold text-sm tabular-nums" aria-hidden="true">
           {Math.round(value * 100)}%
         </span>
       </div>
       <input
+        id={sliderId}
         type="range"
         min={0}
         max={1}
         step={0.05}
         value={value}
+        aria-valuetext={`${Math.round(value * 100)}%`}
         onChange={(e) => onChange(parseFloat(e.target.value))}
         className="w-full"
       />
