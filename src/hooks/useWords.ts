@@ -61,7 +61,6 @@ export function useWords(category?: string) {
     }
 
     fetchWords()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [learningLanguage, learningLevel, category, refreshTrigger])
 
   /**
