@@ -12,7 +12,7 @@ export default defineConfig({
         advancedChunks: {
           groups: [
             { name: 'react', test: /[\\/]node_modules[\\/](react|react-dom|react-router|scheduler)[\\/]/ },
-            { name: 'animation', test: /[\\/]node_modules[\\/](framer-motion|motion)[\\/]/ },
+            { name: 'animation', test: /[\\/]node_modules[\\/]motion[\\/]/ },
             { name: 'dnd', test: /[\\/]node_modules[\\/]@dnd-kit[\\/]/ },
             { name: 'supabase', test: /[\\/]node_modules[\\/](@supabase)[\\/]/ },
           ],
