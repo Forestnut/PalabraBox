@@ -135,7 +135,7 @@ export function useScenarios() {
 
       try {
         setLoading(true)
-        const { data: normalizedData, error: normalizedError } = await supabase
+        const { data, error: fetchError } = await supabase
           .from('scenarios')
           .select(
             'id, category, level, sort_order, scenario_translations!inner(language, title, description)',
@@ -144,53 +144,37 @@ export function useScenarios() {
           .eq('scenario_translations.language', translationLanguage)
           .order('sort_order', { ascending: true })
 
-        let rawData: Scenario[] = []
+        if (fetchError) throw fetchError
 
-        if (!normalizedError && normalizedData && normalizedData.length > 0) {
-          rawData = (
-            (normalizedData ?? []) as Array<{
-              id: string
-              category: string
-              level: string
-              sort_order: number
-              scenario_translations: Array<{
-                language: string
-                title: string
-                description: string | null
-              }>
+        const rawData: Scenario[] = (
+          (data ?? []) as Array<{
+            id: string
+            category: string
+            level: string
+            sort_order: number
+            scenario_translations: Array<{
+              language: string
+              title: string
+              description: string | null
             }>
-          ).map((scenario) => {
-            const translation = scenario.scenario_translations?.[0]
-            const title = translation?.title ?? scenario.category
+          }>
+        ).map((scenario) => {
+          const translation = scenario.scenario_translations?.[0]
+          const title = translation?.title ?? scenario.category
 
-            return {
-              id: scenario.id,
-              title,
-              title_display: title,
-              language: learningLanguage,
-              level: scenario.level as Scenario['level'],
-              description: translation?.description ?? null,
-              emoji: idEmojiMap[scenario.id] || categoryEmojiMap[scenario.category] || '✨',
-              category: scenario.category,
-              sort_order: scenario.sort_order,
-              created_at: '',
-            }
-          })
-        } else {
-          // Fallback for legacy schema: direct fields on scenarios
-          const { data: legacyData, error: legacyError } = await supabase
-            .from('scenarios')
-            .select('*')
-            .eq('language', learningLanguage)
-            .eq('level', learningLevel)
-            .order('sort_order', { ascending: true })
-
-          if (legacyError) {
-            throw normalizedError ?? legacyError
+          return {
+            id: scenario.id,
+            title,
+            title_display: title,
+            language: learningLanguage,
+            level: scenario.level as Scenario['level'],
+            description: translation?.description ?? null,
+            emoji: idEmojiMap[scenario.id] || categoryEmojiMap[scenario.category] || '✨',
+            category: scenario.category,
+            sort_order: scenario.sort_order,
+            created_at: '',
           }
-
-          rawData = (legacyData ?? []) as Scenario[]
-        }
+        })
 
         scenariosCache[cacheKey] = rawData
 
