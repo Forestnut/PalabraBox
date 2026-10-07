@@ -35,10 +35,11 @@ export function useWords(category?: string) {
         setLoading(true)
         setError(null)
 
-        let query = supabase.from('words').select('*').eq('language', learningLanguage).eq(
-          'level',
-          learningLevel,
-        )
+        let query = supabase
+          .from('words')
+          .select('*')
+          .eq('language', learningLanguage)
+          .eq('level', learningLevel)
 
         if (category) {
           query = query.eq('category', category)

@@ -44,91 +44,107 @@ F0 Fundamenty (repo, CI, zależności)
 ## Faza 0 — Fundamenty: repozytorium, GitHub, tooling, zależności
 
 ### A1 — `.gitignore`, śmieci, archiwum dokumentów — **S**
+
 > ✅ **UKOŃCZONE**
 
 Usunięcie z repo: `.env.vercel*`, `audit_artifacts/`, `.playwright-mcp/`, `test-*.cjs`, `test-*.mjs`, `test-results/`, `check.mjs`, `delete.sql`, `audit_report_es.md` (pusty), `src/**/.gitkeep`, przestarzałych instrukcji agentów (`.agents/`, `.github/instructions/`, `.github/prompts/`). Przeniesienie historycznych dokumentów planistycznych (`PLAN.md`, `TODO.md`, `improvement_plan.md`, `docs/TASKS*.md`) do `docs/archive/` z README wyjaśniającym status. Przepisanie `.gitignore` od zera (poprawny UTF-8, `.env*` poza `.example`, `test-results/`, `coverage/`, artefakty Playwright).
 **DoD:** świeży klon przechodzi `npm install && npm run build`; `git ls-files` nie zawiera żadnego z wymienionych śmieci; `git check-ignore .env.local` działa.
 
 ### A2 — Archiwizacja historii + porządki w branchach i ustawieniach repo — **S**
+
 > ✅ **UKOŃCZONE** — tagi i sprzątanie branchy gotowe; ustawienia repo (opis, auto-delete) wymagają uprawnień admina — instrukcja przekazana
 
 Tagi `archive/2026-06-blaze`, `archive/2026-03-jacob`, `archive/2026-03-copilot` → usunięcie branchey `blaze`, `jacob`, `copilot/vscode-mn4hr331-whe0`, `docs/project-audit`. Ustawienia repo przez API: opis, tematy, `delete_branch_on_merge=true`, squash jako domyślny merge.
 **DoD:** tagi wypchnięte, branche usunięte (restorowalne z tagów), ustawienia zapisane lub — jeśli token nie ma uprawnień — instrukcja klik-by-klik dla Ciebie 🙋.
 
 ### A3 — LICENSE (MIT) + nowy README — **S**
+
 > ✅ **UKOŃCZONE**
 
 **DoD:** LICENSE z prawami „Jakub Laskowski, Błażej Goliszek"; README prawdziwe (opis, quick start, zmienne środowiskowe, workflow bazodanowy, struktura katalogów, linki do docs/, badge CI); zerwanie z martwymi odnośnikami (np. `PalabraBoxHappy.png`).
 
 ### A4 — Szablony GitHub: issue, PR, CODEOWNERS — **S**
+
 > ✅ **UKOŃCZONE**
 
 **DoD:** `.github/ISSUE_TEMPLATE/bug.yml`, `feature.yml`, `.github/PULL_REQUEST_TEMPLATE.md`, `.github/CODEOWNERS`; checklisty PR zawierają wymogi testów i aktualizacji docs.
 
 ### A5 — Ochrona brancha `main` — **S** 🙋
+
 > ✅ **UKOŃCZONE** — BLOKADA: token integracji bez uprawnień admina — do skonfigurowania przez właściciela (instrukcja przekazana)
 
 Wymagany PR + zaliczone checki CI + fresh branches; bez wymogu aprovals (praca solo/2 osoby). Próba przez API; przy braku uprawnień — instrukcja dla Ciebie.
 **DoD:** `main` przyjmuje zmiany wyłącznie przez PR z zielonym CI.
 
 ### A6 — Dependabot — **S**
+
 > ✅ **UKOŃCZONE**
 
 **DoD:** `.github/dependabot.yml` (npm + github-actions, tygodniowo, grupowane minor/patch, limit 5 PR).
 
 ### A7 — CI (GitHub Actions) — **M**
+
 > ✅ **UKOŃCZONE** — plik .github/workflows/ci.yml gotowy w workspace, ale token integracji nie ma uprawnienia `workflows` — właściciel musi dodać plik sam (instrukcja przekazana)
 
 Workflow `ci.yml`: `npm ci` → lint → typecheck → test → build; Node 24; trigger: PR + push `main` + `workflow_dispatch`.
 **DoD:** zielony przebieg na PR; blokada merge przy czerwonym buildzie (razem z A5).
 
 ### A8 — Vercel: deploy i nagłówki bezpieczeństwa — **S**
+
 > ✅ **UKOŃCZONE**
 
 Usunięcie `scripts/vercel-ignore.sh` i `ignoreBuildStep`; nagłówki w `vercel.json`: `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options`, CSP (self + fonts + flagcdn + supabase).
 **DoD:** `vercel.json` bez skryptu autoryzacyjnego; nagłówki widoczne na deploju 🙋 (weryfikacja po pierwszym deployu z main).
 
 ### B1 — Vitest + pierwsze testy — **M**
+
 > ✅ **UKOŃCZONE** — 20 testów, 5 plików
 
 `vitest.config.ts` (jsdom), skrypty `test`/`test:run`; testy: `shuffle`, `progress`, `analyticsService`, `gameStore`, `progressStore` (logika streak z `vi.setSystemTime`).
 **DoD:** `npm run test:run` przechodzi; testy w CI (z A7).
 
 ### B2 — Prettier — **S**
+
 > ✅ **UKOŃCZONE**
 
 `.prettierrc`, skrypt `format`, check w CI, jednorazowy format kodu w osobnym commicie.
 **DoD:** `npm run format:check` czysty.
 
 ### C1 — Usunięcie zbędnych zależności — **S**
+
 > ✅ **UKOŃCZONE** — usunięto też CLI `supabase` z devDeps (postinstall pobierał binarkę; używać `npx supabase`)
 
 `vercel` z dependencies (psuje `npm install`), nieużywany `playwright` z devDependencies.
 **DoD:** czyste `npm install` bez `--ignore-scripts`; `package.json` bez obu pakietów.
 
 ### C2 — Aktualizacje minor/patch — **S**
+
 > ✅ **UKOŃCZONE**
 
 React 19.3, router 7.18, supabase-js 2.117, tailwind 4.3, zustand 5.0.15, globals, `@types/*`, Font Awesome 7.3, CLI supabase 2.120.
 **DoD:** `npm outdated` puste dla minor/patch; testy i build zielone.
 
 ### C3 — Aktualizacje major toolingu — **M**
+
 > ✅ **UKOŃCZONE** — manualChunks -> advancedChunks (Rolldown); naprawiono 2 błędy no-useless-assignment
 
 Vite 8, `@vitejs/plugin-react` 6, `vite-plugin-pwa` 2, ESLint 10 (+ `@eslint/js` 10, typescript-eslint 8.71, react-hooks 7.1, react-refresh 0.5.7). Weryfikacja konfiguracji po każdej zmianie.
 **DoD:** lint/build/dev na nowych wersjach; ADR-0001 (stack 2026-10).
 
 ### C4 — `framer-motion` → `motion` — **S/M**
+
 > ✅ **UKOŃCZONE** — 16 plików na motion/react
 
 Pakiet `motion@14`, importy `motion/react`. **DoD:** brak `framer-motion` w drzewie zależności; animacje działają (przegląd PR).
 
 ### C5 — ADR: TypeScript 7 odroczony — **S**
+
 > ✅ **UKOŃCZONE** — ADR-0001 + ADR-0002
 
 ADR-0002: zostajemy na TS 5.9 do czasu wsparcia typescript-eslint. **DoD:** `docs/adr/0002*` istnieje.
 
 ### C6 — Howler → natywny `Audio` — **M**
+
 > ✅ **UKOŃCZONE** — razem z D1 (wygenerowane click.wav/celebration.wav) i D2 (Button bez globalnego kliknięcia); ADR-0003
 
 Wrapper `sfxService` na HTMLAudioElement (4 dźwięki, mute, preloading); usunięcie howler + @types/howler; ADR-0003.
@@ -139,64 +155,75 @@ Wrapper `sfxService` na HTMLAudioElement (4 dźwięki, mute, preloading); usuni�
 ## Faza 1 — Stabilizacja kodu
 
 ### D1 — Dźwięki SFX: brakujące pliki — **S**
+
 > ✅ **UKOŃCZONE** — zrealizowane wraz z C6 — scripts/generate-sfx.py
 
 Wygenerowanie `click.wav`/`celebration.wav` (skryptem, deterministycznie) lub usunięcie martwych mappingów; obsługa błędów ładowania (bez leaku obiektów audio).
 **DoD:** brak 404 na dźwięki; każdy efekt mapowany na istniejący plik.
 
 ### D2 — `Button`: usunięcie globalnego dźwięku klik i `isClickLocked` — **S**
+
 > ✅ **UKOŃCZONE** — zrealizowane wraz z C6
 
 **DoD:** klik dźwiękowy tylko tam, gdzie ma sens (opcja `sound`); brak blokady podwójnego kliknięcia awaryjnej logiką.
 
 ### D3 — ErrorBoundary + lazy loading tras — **M**
+
 > ✅ **UKOŃCZONE** — lazy: GameScreen/CardsDeck/Results/Settings jako osobne chunki; ErrorBoundary z ekranem błędu i resetem
 
 **DoD:** błąd renderu pokazuje ekran błędu z retry, nie biały ekran; `GameScreen`/`ResultsScreen` lazy; Suspense z fallbackiem.
 
 ### D4 — Usunięcie martwego kodu — **S**
+
 > ✅ **UKOŃCZONE**
 
 `CardsFlowPages.tsx`, `SplashScreen.tsx`, legacy fallback w `useScenarios` (stary schemat), nieużywane eksporty.
 **DoD:** brak ślepych importów; `tsc`/eslint czysto.
 
 ### D5 — `migrationService` bez destrukcyjnego resetu — **M**
+
 > ✅ **UKOŃCZONE** — migrationService: rejestr migracji stanu, zero kasowania danych; testy 6 scenariuszy
 
 Wersjonowanie stanu (rejestr migracji stanu) zamiast kasowania `pb_*`; migracja starych kluczy do nowych; **nigdy** nie czyścimy postępu użytkownika przy zmianie wersji.
 **DoD:** test jednostkowy: upgrade wersji zachowuje gwiazdki/punkty/streak.
 
 ### D6 — Gwiazdki: jedno źródło prawdy — **S/M**
+
 > ✅ **UKOŃCZONE** — starsByScenario w progressStore + migracja v1→v2 importująca stare klucze pb_stars_*; useQuickProgress reaktywne
 
 Stan gwiazdek w `progressStore` (nie pętla po localStorage w renderze); `useQuickProgress` reaktywny.
 **DoD:** brak skanowania localStorage w ciele komponentu; test store'u.
 
 ### D7 — Wynik gry: jedno źródło prawdy — **S/M**
+
 > ✅ **UKOŃCZONE** — gameStore.lastResult zapisywane raz w useGame; ResultsScreen czyta tylko store, redirect bez gry
 
 `gameStore` przechowuje wynik sesji (scenarioId, stars, score, lives) wyliczany raz; `ResultsScreen` czyta ze store'u.
 **DoD:** wejście na `/results` po odświeżeniu nie pokazuje zmyślonych danych (redirect); usunięta duplikacja logiki gwiazdek.
 
 ### D8 — Dostępność (a11y) — **M**
+
 > ✅ **UKOŃCZONE** — zoom przywrócony, fiszka obsługiwana klawiaturą (Enter/Space), aria-label nawigacji i audio, etykiety suwaków
 
 Zoom włączony (`maximum-scale`/`user-scalable` usunięte), fiszka obsługiwana z klawiatury (role/tabIndex/Enter), `aria-label` nawigacji fiszek, poprawne etykiety suwaków, przegląd kontrastu tokenów.
 **DoD:** nawigacja klawiaturą przez fiszki działa; axe-devtools bez błędów krytycznych (przegląd).
 
 ### D9 — Fonty self-host — **S**
+
 > ✅ **UKOŃCZONE** — @fontsource-variable/nunito; Google Fonts CDN usunięte (HTML+CSS); CSP zawężone
 
 `@fontsource-variable/nunito`, usunięcie Google Fonts z `index.html` i `@import` z `index.css`.
 **DoD:** zero zewnętrznych żądań fontów; PWA działa offline z fontami.
 
 ### D10 — PWA cache: jedna strategia — **S/M**
+
 > ✅ **UKOŃCZONE** — NetworkFirst dla REST Supabase; usunięty drugi poziom cache localStorage w useWords
 
 REST Supabase `NetworkFirst` (zastąpienie `CacheFirst` 7-dniowego); usunięcie dublującego cache localStorage w `useWords`.
 **DoD:** treści odświeżają się po deployu; offline dalej działa (fallback do cache).
 
 ### D11 — Klient Supabase: fail-fast — **S**
+
 > ✅ **UKOŃCZONE** — isSupabaseConfigured + czytelny błąd w useGame/useScenarios/useWords; koniec z fallbackiem localhost
 
 Brak placeholder URL/klucza; czytelny błąd konfiguracji.
