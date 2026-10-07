@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { supabase } from '../lib/supabase'
+import { isSupabaseConfigured, supabase, SUPABASE_CONFIG_ERROR } from '../lib/supabase'
 import type { Scenario } from '../types'
 import { useSettingsStore } from '../store/settingsStore'
 import { getScenarioStars } from '../utils/progress'
@@ -121,6 +121,12 @@ export function useScenarios() {
 
   useEffect(() => {
     async function fetchScenarios() {
+      if (!isSupabaseConfigured) {
+        setError(SUPABASE_CONFIG_ERROR)
+        setLoading(false)
+        return
+      }
+
       // If cached, sync store but don't show loading
       if (scenariosCache[cacheKey]) {
         const enriched = getEnriched(scenariosCache[cacheKey])

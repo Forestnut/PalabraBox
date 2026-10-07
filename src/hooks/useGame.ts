@@ -1,6 +1,6 @@
-﻿import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { supabase } from '../lib/supabase'
+import { isSupabaseConfigured, supabase, SUPABASE_CONFIG_ERROR } from '../lib/supabase'
 import type { Question } from '../types'
 import { useGameStore } from '../store/gameStore'
 import { saveScenarioStars } from '../utils/progress'
@@ -163,6 +163,12 @@ export function useGame(scenarioId: string | undefined) {
     if (!scenarioId) return
 
     async function fetchQuestions() {
+      if (!isSupabaseConfigured) {
+        setError(SUPABASE_CONFIG_ERROR)
+        setLoading(false)
+        return
+      }
+
       try {
         setLoading(true)
         const { data, error: err } = await supabase

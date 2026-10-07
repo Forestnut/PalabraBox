@@ -1,19 +1,18 @@
 import { useEffect, useState, useCallback } from 'react'
-import { supabase } from '../lib/supabase'
+import { isSupabaseConfigured, supabase, SUPABASE_CONFIG_ERROR } from '../lib/supabase'
 import type { Word } from '../types'
 import { useSettingsStore } from '../store/settingsStore'
 import { analyticsService } from '../services/analyticsService'
 
-const CACHE_KEY_PREFIX = 'palabrabox_words_'
-const CACHE_TTL_MS = 24 * 60 * 60 * 1000 // 24 hours
-
-interface WordsCache {
-  timestamp: number
-  data: Word[]
-}
-
 /**
- * Provides cached and personalized word collections for flashcards and exercises.
+ * Provides word collections for flashcards and exercises.
+ *
+ * Offline support is handled by the PWA service worker (runtime caching of
+ * Supabase REST responses) — there is deliberately no second localStorage
+ * cache layer here.
+ *
+ * TODO(E7 in docs/PLAN.md): query the normalized schema (words + word_translations)
+ * using generated types once the DB baseline lands.
  */
 export function useWords(category?: string) {
   const [words, setWords] = useState<Word[]>([])
@@ -26,39 +25,20 @@ export function useWords(category?: string) {
 
   useEffect(() => {
     async function fetchWords() {
+      if (!isSupabaseConfigured) {
+        setError(SUPABASE_CONFIG_ERROR)
+        setLoading(false)
+        return
+      }
+
       try {
         setLoading(true)
         setError(null)
 
-        const cacheKey = `${CACHE_KEY_PREFIX}${learningLanguage}_${learningLevel}${category ? `_${category}` : ''}`
-
-        // 1. Check offline cache
-        const cachedItem = localStorage.getItem(cacheKey)
-        if (cachedItem) {
-          try {
-            const parsedCache: WordsCache = JSON.parse(cachedItem)
-            const isExpired = Date.now() - parsedCache.timestamp > CACHE_TTL_MS
-
-            if (!isExpired && Array.isArray(parsedCache.data)) {
-              setWords(parsedCache.data)
-
-              // If we are completely offline and have valid cache, just return
-              if (typeof navigator !== 'undefined' && !navigator.onLine) {
-                setLoading(false)
-                return
-              }
-            }
-          } catch (e) {
-            console.warn('Failed to parse cache for words', e)
-          }
-        }
-
-        // 2. Fetch fresh data from Supabase
-        let query = supabase
-          .from('words')
-          .select('*')
-          .eq('language', learningLanguage)
-          .eq('level', learningLevel)
+        let query = supabase.from('words').select('*').eq('language', learningLanguage).eq(
+          'level',
+          learningLevel,
+        )
 
         if (category) {
           query = query.eq('category', category)
@@ -67,27 +47,10 @@ export function useWords(category?: string) {
         const { data, error: sbError } = await query
 
         if (sbError) {
-          // If network failed but we have cached words (maybe expired), keep them on screen
-          if (words.length > 0) {
-            console.warn('Failed to fetch from Supabase, using stale cache', sbError)
-            return
-          }
           throw new Error(sbError.message)
         }
 
-        if (data) {
-          const freshWords = data as Word[]
-          setWords(freshWords)
-
-          // 3. Save to LocalStorage cache
-          localStorage.setItem(
-            cacheKey,
-            JSON.stringify({
-              timestamp: Date.now(),
-              data: freshWords,
-            } as WordsCache),
-          )
-        }
+        setWords((data as Word[]) ?? [])
       } catch (err: unknown) {
         setError(err instanceof Error ? err.message : String(err))
         console.error('Error fetching words:', err)
@@ -101,7 +64,7 @@ export function useWords(category?: string) {
   }, [learningLanguage, learningLevel, category, refreshTrigger])
 
   /**
-   * Forcefully fetches fresh words from the database, bypassing cache TTL.
+   * Forcefully fetches fresh words from the database.
    */
   const refreshWords = () => {
     setRefreshTrigger((prev) => prev + 1)
