@@ -4,6 +4,64 @@ Dokument opisuje strukturę i zasady działania bazy danych dla projektu Palabra
 
 ---
 
+## Production verification — 2026-10-10 (E0)
+
+Verified against full dumps of the production database taken before the migration baseline (reference snapshots in `supabase/archive/`):
+
+- `prod_schema_20261008.sql` — full schema dump
+- `backup_data_20261008.sql` — data-only dump, kept as the **pre-wipe content backup**
+
+### Schema: migrations + known drift
+
+Production matches what the historical migrations produce, plus drift left over from keeping the live app working:
+
+| Drift                                                                                                                   | Detail                                                                                                                                                                      |
+| :---------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `questions.correct_answer`, `questions.wrong_answers`, `questions.image_emoji`                                          | legacy columns re-added outside migrations (87 old-seed rows still use them)                                                                                                |
+| `words.word`, `words.language`, `words.translation_es`, `words.translation_en`, `words.image_emoji`, `words.audio_text` | same — 96 old-seed words live only in these columns                                                                                                                         |
+| `words.base_key` nullable                                                                                               | migrations declare `NOT NULL`                                                                                                                                               |
+| constraint names                                                                                                        | `scenarios_new_pkey`, `words_new_pkey`, `scenarios_new_level_check`, `words_new_level_check`, `words_new_base_key_key` leak the table rename inside the 2026-03-27 refactor |
+
+Removal plan: the vestige columns are dropped **only after E7 is deployed** (the live app still reads them) by a dedicated `drop_legacy_columns` migration, which also restores `NOT NULL` on `words.base_key`. Constraint renames happen in E3.
+
+### Content inventory
+
+| Table                   | Rows | Notes                                                                                                                                                                                                                                                                                        |
+| :---------------------- | :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `scenarios`             | 36   | 30 from content blocks + 6 old-seed scenarios (colors/animals/food/family/body/travel), duplicated, without translations                                                                                                                                                                     |
+| `scenario_translations` | 60   | 30 `en` + 30 `es` (block scenarios only)                                                                                                                                                                                                                                                     |
+| `words`                 | 359  | 263 block words (`base_key`) + 96 old-seed words (vestige columns only, `base_key IS NULL`)                                                                                                                                                                                                  |
+| `word_translations`     | 479  | 263 `en` + 216 `es`                                                                                                                                                                                                                                                                          |
+| `questions`             | 783  | 360 with `question_text = 'undefined'` (generator bug, AUDIT §2.3.3); mixed direction (`source_language`: 366 `en` / 330 `es` / 87 NULL); 139 choice-type questions without usable `options` (85 `image_match` with empty `data`, 38 `listening`, 16 `multiple_choice`); old seed duplicated |
+
+### Decision (owner, 2026-10-08)
+
+Production content is not worth migrating. The E5 content migration wipes all content tables and loads normalized content (es→en) generated from `scripts/content_blocks/`. `backup_data_20261008.sql` is the pre-wipe backup.
+
+---
+
+## Migration workflow (E2)
+
+The 10 historical migrations (2026-03-18 … 2026-03-30) are squashed into a single baseline: `supabase/migrations/20260318000000_baseline.sql`. The version deliberately keeps the earliest historical timestamp so the production migration history already records it.
+
+**Local:** `npx supabase db reset` rebuilds the schema from the baseline alone; content arrives via the content migration (E5), and `seed.sql` stays a documented no-op (E8).
+
+**Production (one-time, owner action):** first read the `migrations` section of `scripts/db/verify.sql` (SQL Editor) to confirm which versions are recorded, then:
+
+```bash
+# 1. mark the superseded migrations as reverted
+#    (the baseline keeps version 20260318000000 — only revert if it is missing)
+npx supabase migration repair --status reverted 20260324000000 20260327100000 20260327110000 20260327120000 20260327130000 20260327140000 20260327150000 20260327160000 20260330173417
+npx supabase migration repair --status applied 20260318000000
+
+# 2. verify: push must be a no-op
+npx supabase db push
+```
+
+After the repair, `npx supabase db pull` should report **only the known drift** (vestige columns, `base_key` nullability, constraint names) — if it reports anything else, stop and investigate. The generated diff file is expected; review it and delete it, do not commit (only `supabase/migrations/` is applied by the CLI).
+
+---
+
 ## 🏗️ Architektura Ogólna
 
 Baza danych opiera się na znormalizowanej strukturze pięciu głównych tabel w schemacie `public`:

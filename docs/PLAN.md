@@ -14,19 +14,21 @@
 
 ## Decyzje przyjęte (na podstawie odpowiedzi z 2026-10-07)
 
-| Obszar        | Decyzja                                                                                                                                                                                                      |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Historia Git  | Zostaje zgnieciony `main`; pełna historia zarchiwizowana tagami `archive/*`; branche `blaze`, `jacob`, `copilot/*`, `docs/project-audit` usuwane po otagowaniu                                               |
-| Licencja      | **MIT** (projekt portfolio; zmiana później jest trywialna)                                                                                                                                                   |
-| Języki        | Docelowo 3 języki nauki i 3 języki UI (`en`/`es`/`pl`); dziś produkt: Hiszpan uczy się angielskiego; schemat wielojęzyczny od początku (kody języków jako `en`/`es`/`pl`)                                    |
-| Deploy        | Vercel Hobby (darmowy) + integracja GitHub; deploy z `main` po merge PR; `vercel-ignore.sh` do usunięcia                                                                                                     |
-| TTS           | Segmentacja tekstu po języku, wybór głosu per segment, feature detection; brak głosu EN ⇒ zadania Listening wypadają z puli (z komunikatem); brak TTS ⇒ widoczny komunikat + pokazanie tekstu                |
-| Auth          | Tryb gościa domyślny (localStorage); konto (Supabase Auth: magic link + Google) = synchronizacja postępu między urządzeniami, streak, statystyki słówek; modale zachęty z przyciskiem „continuar sin cuenta" |
-| Ranking       | Nie w tym zakresie; model danych projektowany tak, by dało się go dodać bez migracji łamiących                                                                                                               |
-| `image_match` | Zostaje; treści oparte o emoji (`data.image_emoji` + opcje)                                                                                                                                                  |
-| Boxi          | Zostaje; system reakcji kontekstowych (typ pytania, streak, poprawność)                                                                                                                                      |
-| TypeScript    | Zostaje na 5.9 — TS 7 odroczone do czasu wsparcia w typescript-eslint (ADR-0002)                                                                                                                             |
-| Testy         | Vitest 5 + Testing Library (jednostkowe/komponentowe); Playwright e2e jako opcja na końcu                                                                                                                    |
+| Obszar             | Decyzja                                                                                                                                                                                                                                                |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Historia Git       | Zostaje zgnieciony `main`; pełna historia zarchiwizowana tagami `archive/*`; branche `blaze`, `jacob`, `copilot/*`, `docs/project-audit` usuwane po otagowaniu                                                                                         |
+| Licencja           | **MIT** (projekt portfolio; zmiana później jest trywialna)                                                                                                                                                                                             |
+| Języki             | Docelowo 3 języki nauki i 3 języki UI (`en`/`es`/`pl`); dziś produkt: Hiszpan uczy się angielskiego; schemat wielojęzyczny od początku (kody języków jako `en`/`es`/`pl`)                                                                              |
+| Deploy             | Vercel Hobby (darmowy) + integracja GitHub; deploy z `main` po merge PR; `vercel-ignore.sh` do usunięcia                                                                                                                                               |
+| TTS                | Segmentacja tekstu po języku, wybór głosu per segment, feature detection; brak głosu EN ⇒ zadania Listening wypadają z puli (z komunikatem); brak TTS ⇒ widoczny komunikat + pokazanie tekstu                                                          |
+| Auth               | Tryb gościa domyślny (localStorage); konto (Supabase Auth: magic link + Google) = synchronizacja postępu między urządzeniami, streak, statystyki słówek; modale zachęty z przyciskiem „continuar sin cuenta"                                           |
+| Ranking            | Nie w tym zakresie; model danych projektowany tak, by dało się go dodać bez migracji łamiących                                                                                                                                                         |
+| `image_match`      | Zostaje; treści oparte o emoji (`data.image_emoji` + opcje)                                                                                                                                                                                            |
+| Boxi               | Zostaje; system reakcji kontekstowych (typ pytania, streak, poprawność)                                                                                                                                                                                |
+| TypeScript         | Zostaje na 5.9 — TS 7 odroczone do czasu wsparcia w typescript-eslint (ADR-0002)                                                                                                                                                                       |
+| Testy              | Vitest 5 + Testing Library (jednostkowe/komponentowe); Playwright e2e jako opcja na końcu                                                                                                                                                              |
+| Treści produkcyjne | **Start od zera** — stara treść produkcyjna (init-seed + stare bloki) zostaje wycięta migracją, nowa znormalizowana treść (es→en) ładowana z bloków; przed wipe backup `npx supabase db dump --linked --data-only` (decyzja właściciela, 2026-10-08)   |
+| Nazewnictwo        | Jedna konwencja dla projektu (CONTRIBUTING.md): migracje `RRRRMMDDGGMMSS_snake_case.sql`, pliki/katalogi lowercase `kebab-case`/`snake_case`, kod i baza po angielsku, kody języków `en`/`es`/`pl`, komentarze/dokumentacja po angielsku (preferowane) |
 
 ## Mapa faz
 
@@ -235,6 +237,8 @@ Brak placeholder URL/klucza; czytelny błąd konfiguracji.
 
 ### E0 — Weryfikacja stanu produkcji — **S** 🙋
 
+> ✅ **UKOŃCZONE (2026-10-10)** — produkcja zweryfikowana przez pełne dumpy (`supabase/archive/prod_schema_20261008.sql` + `supabase/archive/backup_data_20261008.sql`): schemat = migracje + znany drift (vestige-kolumny na `questions`/`words`, `base_key` nullable, śmieciowe nazwy constraintów); treści = stary seed + bloki z błędami generatora (360× `'undefined'`). Wyniki w `docs/DATABASE.md`. `scripts/db/verify.sql` poprawiony (sekcja `migrations` odporna na wersje CLI) — sekcja historii migracji do odczytania przed `migration repair` (E2).
+
 Odebranie od Ciebie pliku `20261007203525_remote_schema.sql` (efekt Twojego `db pull`) + uruchomienie skryptu `scripts/db/verify.sql` (tylko odczyt: countery, sample, duplikaty) w SQL Editorze.
 **DoD:** potwierdzone, że produkcja = migracje + znany drift; wyniki zapisane w `docs/DATABASE.md`.
 
@@ -244,6 +248,8 @@ Konfiguracja lokalnego stacka (free tier, porty default).
 **DoD:** `supabase start` działa u Ciebie lokalnie 🙋; workflow opisany w SETUP.md.
 
 ### E2 — Baseline migracji od zera — **M** 🙋 (produkcja)
+
+> 🔄 **W TOKU (2026-10-10)** — baseline `supabase/migrations/20260318000000_baseline.sql` w repo (10 starych migracji usuniętych; wersja celowo = najstarszy historyczny timestamp). 🙋 Produkcja po Twoim zatwierdzeniu: `migration repair` wg instrukcji w `docs/DATABASE.md` (sekcja „Migration workflow”), potem weryfikacja `db push` = no-op. Wymaga sekcji `migrations` z `scripts/db/verify.sql` (SQL Editor).
 
 Jeden plik `0001_baseline.sql` ze świadomym, czystym schematem (zamiast 10 historycznych); na produkcji `supabase migration repair` wg instrukcji (Twoja akcja, po zatwierdzeniu). Stare pliki migracji usunięte.
 **DoD:** `supabase db reset` buduje identyczną bazę lokalnie; `db push` na produkcji to no-op po repair.
@@ -391,7 +397,8 @@ Usunięcie/aktualizacja `SCREENS.md`, `SERVICES.md`, `GAME_MECHANICS.md`, `DESIG
 
 ## Otwarte kwestie (nieblokujące)
 
-- 🙋 E0: wyniki `scripts/db/verify.sql` (SQL Editor) + dumpy produkcji — `npx supabase db dump --linked -f prod_schema_20261008.sql` (schemat → `supabase/archive/`) oraz `npx supabase db dump --linked --data-only -f backup_data_20261008.sql` (backup przed wipe treści — nie commitujemy, zostaje lokalnie).
+- 🙋 E2: sekcja `migrations` z `scripts/db/verify.sql` (SQL Editor) — historia migracji produkcji, potrzebna do `migration repair`; potem repair + weryfikacja `db push` = no-op (instrukcja w `docs/DATABASE.md`).
+- 🙋 E1: potwierdzenie `npx supabase start` + `npx supabase db reset` po `git pull` (poprzednia próba failowała przez `20261007203525_remote_schema.sql` w `migrations/` — już przeniesiony do `supabase/archive/`).
 - 🙋 Potwierdzenie MIT po ujrzeniu LICENSE (A3) — zmiana to jeden commit.
 - 🙋 Supabase Auth: włączenie magic link + Google w dashboardzie (G2) i ewentualne skonfigurowanie protection URLi.
 - Vercel Hobby = 1 miejsce w zespole — dla Błażeja wystarczy workflow PR (merge do main deployuje), więc bez zmian planu.
