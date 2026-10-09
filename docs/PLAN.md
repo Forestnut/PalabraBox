@@ -256,6 +256,8 @@ Jeden plik `0001_baseline.sql` ze świadomym, czystym schematem (zamiast 10 hist
 
 ### E3 — Schemat: języki, indeksy, emoji — **M**
 
+> 🔄 **W TOKU (2026-10-10)** — migracja `20261010000000_language_checks_indexes_emoji.sql` gotowa w repo (addytywna: CHECKi języków, `idx_scenarios_level_sort`, `idx_questions_word_id`, kolumna `scenarios.emoji`, renamy constraintów osłonięte DO-blokiem — działają na produkcji i lokalnie). 🙋 Push na produkcji przed deployem E7; dane produkcyjne przechodzą CHECKi (zweryfikowane 2026-10-10).
+
 CHECK na kodach języków (`en`/`es`/`pl`), indeks `(level, sort_order)` na scenarios, indeksy FK, kolumna `emoji` na `scenarios` (wycofuje `idEmojiMap` z kodu), spójne nazewnictwo.
 **DoD:** migracja + aktualizacja `docs/DATABASE.md` (diagram, tabele, RLS, indeksy).
 
