@@ -9,9 +9,11 @@
 
 SELECT section, item, value
 FROM (
-  -- Migration history recorded on the production database
-  SELECT 'migrations' AS section, version AS item, inserted_at::text AS value
-  FROM supabase_migrations.schema_migrations
+  -- Migration history recorded on the production database.
+  -- to_jsonb() keeps this robust across CLI versions (column sets differ;
+  -- 'statements' is dropped because it would flood the report).
+  SELECT 'migrations' AS section, version AS item, (to_jsonb(m) - 'statements')::text AS value
+  FROM supabase_migrations.schema_migrations m
 
   UNION ALL
   -- Row counters
@@ -139,6 +141,11 @@ FROM (
   FROM information_schema.columns
   WHERE table_schema = 'public'
     AND table_name IN ('scenarios', 'scenario_translations', 'words', 'word_translations', 'questions')
+
+  UNION ALL
+  SELECT 'columns', 'schema_migrations.' || column_name, data_type
+  FROM information_schema.columns
+  WHERE table_schema = 'supabase_migrations' AND table_name = 'schema_migrations'
 
   UNION ALL
   -- RLS policies
