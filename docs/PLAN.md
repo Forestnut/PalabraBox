@@ -244,12 +244,14 @@ Odebranie od Ciebie pliku `20261007203525_remote_schema.sql` (efekt Twojego `db 
 
 ### E1 — `supabase/config.toml` — **S**
 
+> ✅ **UKOŃCZONE (2026-10-10)** — właściciel potwierdził: `supabase start` + `supabase db reset` działają lokalnie (baseline + E3 aplikują się czysto, seed no-op). Ostrzeżenie CLI `[inbucket]` → `[local_smtp]` poprawione w configu.
+
 Konfiguracja lokalnego stacka (free tier, porty default).
 **DoD:** `supabase start` działa u Ciebie lokalnie 🙋; workflow opisany w SETUP.md.
 
 ### E2 — Baseline migracji od zera — **M** 🙋 (produkcja)
 
-> 🔄 **W TOKU (2026-10-10)** — baseline `supabase/migrations/20260318000000_baseline.sql` w repo (10 starych migracji usuniętych; wersja celowo = najstarszy historyczny timestamp). 🙋 Produkcja po Twoim zatwierdzeniu: `migration repair` wg instrukcji w `docs/DATABASE.md` (sekcja „Migration workflow”), potem weryfikacja `db push` = no-op. Wymaga sekcji `migrations` z `scripts/db/verify.sql` (SQL Editor).
+> 🔄 **W TOKU (2026-10-10)** — baseline w repo; historia migracji produkcji odczytana (11 wersji, w tym `20261007203525_remote_schema`). 🙋 Czekamy na akcję właściciela: dokładne komendy `migration repair` + `db push` (E3) w `docs/DATABASE.md` (sekcja „Migration workflow”).
 
 Jeden plik `0001_baseline.sql` ze świadomym, czystym schematem (zamiast 10 historycznych); na produkcji `supabase migration repair` wg instrukcji (Twoja akcja, po zatwierdzeniu). Stare pliki migracji usunięte.
 **DoD:** `supabase db reset` buduje identyczną bazę lokalnie; `db push` na produkcji to no-op po repair.
@@ -399,8 +401,7 @@ Usunięcie/aktualizacja `SCREENS.md`, `SERVICES.md`, `GAME_MECHANICS.md`, `DESIG
 
 ## Otwarte kwestie (nieblokujące)
 
-- 🙋 E2: sekcja `migrations` z `scripts/db/verify.sql` (SQL Editor) — historia migracji produkcji, potrzebna do `migration repair`; potem repair + weryfikacja `db push` = no-op (instrukcja w `docs/DATABASE.md`).
-- 🙋 E1: potwierdzenie `npx supabase start` + `npx supabase db reset` po `git pull` (poprzednia próba failowała przez `20261007203525_remote_schema.sql` w `migrations/` — już przeniesiony do `supabase/archive/`).
+- 🙋 E2: wykonaj na produkcji `migration repair` + `db push` (dokładne komendy w `docs/DATABASE.md`, sekcja „Migration workflow”) — czekamy na Twoje zatwierdzenie i wynik `migration list`.
 - 🙋 Potwierdzenie MIT po ujrzeniu LICENSE (A3) — zmiana to jeden commit.
 - 🙋 Supabase Auth: włączenie magic link + Google w dashboardzie (G2) i ewentualne skonfigurowanie protection URLi.
 - Vercel Hobby = 1 miejsce w zespole — dla Błażeja wystarczy workflow PR (merge do main deployuje), więc bez zmian planu.

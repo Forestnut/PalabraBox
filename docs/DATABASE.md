@@ -11,6 +11,11 @@ Verified against full dumps of the production database taken before the migratio
 - `prod_schema_20261008.sql` — full schema dump
 - `backup_data_20261008.sql` — data-only dump, kept as the **pre-wipe content backup**
 
+**Live verification (2026-10-10).** The read-only report from `scripts/db/verify.sql` (archived as `supabase/archive/verify_report_20261008.csv`) confirms the dump analysis against the live database — identical counters, drift and quality numbers. It adds two facts the dumps could not show:
+
+- **Migration history:** production records 11 versions — the 10 historical migrations **plus `20261007203525_remote_schema`**. The drift diff was pushed as a migration on 2026-10-07, which is exactly how the vestige columns landed in production.
+- `supabase_migrations.schema_migrations` has columns `version`, `name`, `statements` (no `inserted_at` on this project).
+
 ### Schema: migrations + known drift
 
 Production matches what the historical migrations produce, plus drift left over from keeping the live app working:
@@ -46,16 +51,17 @@ The 10 historical migrations (2026-03-18 … 2026-03-30) are squashed into a sin
 
 **Local:** `npx supabase db reset` rebuilds the schema from the baseline alone; content arrives via the content migration (E5), and `seed.sql` stays a documented no-op (E8).
 
-**Production (one-time, owner action):** first read the `migrations` section of `scripts/db/verify.sql` (SQL Editor) to confirm which versions are recorded, then:
+**Production (one-time, owner action).** The migration history is known (see above): 11 recorded versions, of which the baseline keeps `20260318000000`. Run:
 
 ```bash
-# 1. mark the superseded migrations as reverted
-#    (the baseline keeps version 20260318000000 — only revert if it is missing)
-npx supabase migration repair --status reverted 20260324000000 20260327100000 20260327110000 20260327120000 20260327130000 20260327140000 20260327150000 20260327160000 20260330173417
-npx supabase migration repair --status applied 20260318000000
+# 1. mark the 10 superseded versions as reverted (20260318000000 stays applied)
+npx supabase migration repair --status reverted 20260324000000 20260327100000 20260327110000 20260327120000 20260327130000 20260327140000 20260327150000 20260327160000 20260330173417 20261007203525
 
-# 2. verify: push must be a no-op
+# 2. push — expected to apply ONLY the new E3 migration, nothing else
 npx supabase db push
+
+# 3. confirm the clean state: baseline + E3 applied, nothing pending
+npx supabase migration list
 ```
 
 After the repair, `npx supabase db pull` should report **only the known drift** (vestige columns, `base_key` nullability, constraint names) — if it reports anything else, stop and investigate. The generated diff file is expected; review it and delete it, do not commit (only `supabase/migrations/` is applied by the CLI).
