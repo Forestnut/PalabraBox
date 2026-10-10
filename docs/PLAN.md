@@ -265,10 +265,14 @@ CHECK na kodach języków (`en`/`es`/`pl`), indeks `(level, sort_order)` na scen
 
 ### E4 — Generator treści: naprawa — **M**
 
+> ✅ **UKOŃCZONE (2026-10-10)** — pipeline treści: schema zod (`scripts/content-schema.mjs`), checki semantyczne (`content-checks.mjs`), przepisany generator (poprawne pole `question.es`, pełny escape, deterministyczne ID, `--wipe`, kierunek es→en, `question_text_tts` dla listening/word_order, `word_id` po base_key), `npm run content:generate` / `content:check`, 37 nowych testów (67 razem), zod jako devDependency.
+
 `scripts/generate-sql.mjs`: czyta właściwe pole (`question`), pełny escape, walidacja schematu bloków (zod), deterministyczne ID, sensowne nazwy plików wyjściowych.
 **DoD:** regeneracja bloków przechodzi walidację; zero `'undefined'` w `question_text`.
 
 ### E5 — Treści: normalizacja — **M/L**
+
+> ✅ **UKOŃCZONE (2026-10-10)** — treści znormalizowane (es→en): 24 scenariusze, 200 słów, 388 pytań (360 przepisanych + 28 `image_match` wygenerowanych). Kierunek: polecenie/zdanie po hiszpańsku, odpowiedź po angielsku; `listening` = audio EN + opcje ES; `word_order` = zdania EN (63 wyciągnięte z promptów + 81 autorskich); `fill_blank` = zdanie ES z luką `___` + odpowiedź EN; `data.tts: [{text, lang}]`; emoji per scenariusz i per słowo (nowa kolumna `words.emoji`); `block_4.json` wywalony (duplikat scenariuszy z block_3). Migracja `20261010130000_content_normalized.sql` (TRUNCATE + INSERT). `npm run content:check` = 0 błędów/ostrzeżeń. 🙋 próbki do przeglądu merytorycznego.
 
 Kierunek nauki es→en (pytanie po hiszpańsku, odpowiedź angielska), opcje odpowiedzi dla `listening`, treści `image_match` (emoji), deduplikacja, TTS jako struktura (`data.tts: [{text, lang}]`) dla F3.
 **DoD:** każdy scenariusz ma komplet pytań z opcjami; skrypt weryfikacyjny bez błędów; próbki przejrzane merytorycznie 🙋.
@@ -401,7 +405,8 @@ Usunięcie/aktualizacja `SCREENS.md`, `SERVICES.md`, `GAME_MECHANICS.md`, `DESIG
 
 ## Otwarte kwestie (nieblokujące)
 
-- 🙋 E2: wykonaj na produkcji `migration repair` + `db push` (dokładne komendy w `docs/DATABASE.md`, sekcja „Migration workflow”) — czekamy na Twoje zatwierdzenie i wynik `migration list`.
+- 🙋 E5: przejrzyj próbki treści (opis PR + sekcja „Content workflow” w `docs/DATABASE.md`); korekty = edycja bloków JSON + `npm run content:generate`.
+- 🙋 Produkcja po deployu E7: `db push` migracji `20261010120000_add_words_emoji` + `20261010130000_content_normalized` (pełny rebuild treści), potem `drop_legacy_columns` (powstanie w E7).
 - 🙋 Potwierdzenie MIT po ujrzeniu LICENSE (A3) — zmiana to jeden commit.
 - 🙋 Supabase Auth: włączenie magic link + Google w dashboardzie (G2) i ewentualne skonfigurowanie protection URLi.
 - Vercel Hobby = 1 miejsce w zespole — dla Błażeja wystarczy workflow PR (merge do main deployuje), więc bez zmian planu.

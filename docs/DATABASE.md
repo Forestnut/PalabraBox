@@ -68,6 +68,19 @@ After the repair, `npx supabase db pull` should report **only the known drift** 
 
 ---
 
+## Content workflow (E4/E5)
+
+Content lives in `scripts/content_blocks/*.json` — normalized to the product direction **es→en** (prompt in Spanish, answer in English). Never hand-edit the generated migration.
+
+1. Edit a block (or add a new `*.json`). The shape is validated by `scripts/content-schema.mjs` (zod).
+2. `npm run content:check` — schema + semantic checks: options completeness, learning direction, blank markers, `base_key` conflicts, tts sanity. Must pass with 0 errors.
+3. Regenerate the migration: `node scripts/generate-sql.mjs --wipe supabase/migrations/<timestamp>_content.sql` (use `--wipe` for full rebuilds).
+4. Commit the generated migration and push it with `npx supabase db push`. A full rebuild (wipe) is pushed **after the E7 deploy** — the live app keeps reading the legacy columns until then.
+
+Current content: 24 scenarios, 200 words, 388 questions (360 normalized + 28 generated `image_match`), delivered by `20261010130000_content_normalized.sql`.
+
+---
+
 ## 🏗️ Architektura Ogólna
 
 Baza danych opiera się na znormalizowanej strukturze pięciu głównych tabel w schemacie `public`:

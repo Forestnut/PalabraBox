@@ -10,8 +10,7 @@
     },
     "category": "grammar",
     "level": "intermediate",
-    "target_language": "es",
-    "source_language": "en",
+    "emoji": "⏪",
     "words": [
       {
         "base_key": "went",
@@ -58,172 +57,251 @@
       {
         "type": "multiple_choice",
         "question": {
-          "en": "How do you say 'I went yesterday'?",
-          "es": "¿Cómo se dice 'I went yesterday'?"
+          "es": "¿Cómo se dice 'Fui ayer' en inglés?",
+          "en": "How do you say 'Fui ayer' in English?"
         },
         "data": {
-          "correct": "Fui ayer",
-          "options": ["Fui ayer", "Voy ayer", "Comí ayer"]
+          "correct": "I went yesterday",
+          "options": ["I went yesterday", "delay", "gate", "meeting"],
+          "tts": [
+            {
+              "text": "I went yesterday",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "multiple_choice",
         "question": {
-          "en": "Select the correct translation for 'I saw'.",
-          "es": "Selecciona la traducción correcta para 'I saw'."
+          "es": "¿Cómo se dice 'Vi' en inglés?",
+          "en": "How do you say 'Vi' in English?"
         },
         "data": {
-          "correct": "Vi",
-          "options": ["Vi", "Fui", "Veo"]
+          "correct": "I saw",
+          "options": ["I saw", "gate", "meeting", "my favorite book"],
+          "tts": [
+            {
+              "text": "I saw",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "listening",
         "question": {
-          "en": "Listen and select what it means.",
-          "es": "Escucha y selecciona qué significa."
+          "es": "Escucha y selecciona el significado en español.",
+          "en": "Listen and select the Spanish meaning."
         },
         "data": {
-          "correct": "I played last week",
-          "audio_text": "Jugué la semana pasada"
+          "correct": "Jugué la semana pasada",
+          "options": ["Jugué la semana pasada", "trabajé", "vi", "ayer"],
+          "audio_text": "I played last week",
+          "tts": [
+            {
+              "text": "I played last week",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I ate a lot.",
-          "es": "Completa el espacio."
+          "es": "Yo ___ mucho."
         },
         "data": {
-          "text_before": "Yo",
-          "correct": "comí",
-          "text_after": "mucho."
+          "correct": "ate",
+          "options": ["ate", "played", "saw", "went"],
+          "tts": [
+            {
+              "text": "ate",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I worked yesterday.",
-          "es": "Completa el espacio."
+          "es": "Yo ___ ayer."
         },
         "data": {
-          "text_before": "Yo",
-          "correct": "trabajé",
-          "text_after": "ayer."
+          "correct": "worked",
+          "options": ["worked", "played", "saw", "went"],
+          "tts": [
+            {
+              "text": "worked",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I bought a shirt.",
-          "es": "Completa el espacio."
+          "es": "Yo ___ una camisa."
         },
         "data": {
-          "text_before": "Yo",
-          "correct": "compré",
-          "text_after": "una camisa."
+          "correct": "bought",
+          "options": ["bought", "went", "worked", "yesterday"],
+          "tts": [
+            {
+              "text": "bought",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I saw the movie.",
-          "es": "Completa el espacio."
+          "es": "Yo ___ la película."
         },
         "data": {
-          "text_before": "Yo",
-          "correct": "vi",
-          "text_after": "la película."
+          "correct": "saw",
+          "options": ["saw", "worked", "yesterday", "ate"],
+          "tts": [
+            {
+              "text": "saw",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I went to the park.",
-          "es": "Completa el espacio."
+          "es": "Yo ___ al parque."
         },
         "data": {
-          "text_before": "Yo",
-          "correct": "fui",
-          "text_after": "al parque."
+          "correct": "went",
+          "options": ["went", "yesterday", "ate", "bought"],
+          "tts": [
+            {
+              "text": "went",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I played tennis.",
-          "es": "Completa el espacio."
+          "es": "Yo ___ al tenis."
         },
         "data": {
-          "text_before": "Yo",
-          "correct": "jugué",
-          "text_after": "al tenis."
+          "correct": "played",
+          "options": ["played", "ate", "bought", "last week"],
+          "tts": [
+            {
+              "text": "played",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I went to the store yesterday.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I went to the store yesterday.'",
+          "en": "Arrange the words: 'I went to the store yesterday.'"
         },
         "data": {
-          "correct": ["Fui", "a la tienda", "ayer"],
-          "words": ["ayer", "a la tienda", "Fui", "voy"]
+          "correct": ["I", "went", "to", "the", "store", "yesterday."],
+          "words": ["I", "went", "to", "the", "store", "yesterday.", "bought", "last", "played"],
+          "tts": [
+            {
+              "text": "I went to the store yesterday.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I ate apples last week.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I ate apples last week.'",
+          "en": "Arrange the words: 'I ate apples last week.'"
         },
         "data": {
-          "correct": ["Comí", "manzanas", "la semana pasada"],
-          "words": ["la semana pasada", "Comí", "manzanas", "veo"]
+          "correct": ["I", "ate", "apples", "last", "week."],
+          "words": ["I", "ate", "apples", "last", "week.", "played", "saw", "went"],
+          "tts": [
+            {
+              "text": "I ate apples last week.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I saw my friend.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I saw my friend.'",
+          "en": "Arrange the words: 'I saw my friend.'"
         },
         "data": {
-          "correct": ["Vi", "a mi", "amigo"],
-          "words": ["amigo", "Vi", "a mi", "jugué"]
+          "correct": ["I", "saw", "my", "friend."],
+          "words": ["I", "saw", "my", "friend.", "worked", "yesterday", "ate"],
+          "tts": [
+            {
+              "text": "I saw my friend.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I played soccer.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I played soccer.'",
+          "en": "Arrange the words: 'I played soccer.'"
         },
         "data": {
-          "correct": ["Jugué", "al", "fútbol"],
-          "words": ["al", "fútbol", "Jugué", "trabajé"]
+          "correct": ["I", "played", "soccer."],
+          "words": ["I", "played", "soccer.", "yesterday", "ate", "bought"],
+          "tts": [
+            {
+              "text": "I played soccer.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I worked a lot yesterday.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I worked a lot yesterday.'",
+          "en": "Arrange the words: 'I worked a lot yesterday.'"
         },
         "data": {
-          "correct": ["Trabajé", "mucho", "ayer"],
-          "words": ["mucho", "ayer", "Trabajé", "compré"]
+          "correct": ["I", "worked", "a", "lot", "yesterday."],
+          "words": ["I", "worked", "a", "lot", "yesterday.", "last", "played", "saw"],
+          "tts": [
+            {
+              "text": "I worked a lot yesterday.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I bought a car.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I bought a car.'",
+          "en": "Arrange the words: 'I bought a car.'"
         },
         "data": {
-          "correct": ["Compré", "un", "coche"],
-          "words": ["un", "coche", "Compré", "fui"]
+          "correct": ["I", "bought", "a", "car."],
+          "words": ["I", "bought", "a", "car.", "last", "played", "saw"],
+          "tts": [
+            {
+              "text": "I bought a car.",
+              "lang": "en"
+            }
+          ]
         }
       }
     ]
@@ -239,12 +317,11 @@
     },
     "category": "grammar",
     "level": "intermediate",
-    "target_language": "es",
-    "source_language": "en",
+    "emoji": "⏩",
     "words": [
       {
         "base_key": "will",
-        "en": "will (voy a)",
+        "en": "will",
         "es": "voy a"
       },
       {
@@ -279,180 +356,270 @@
       },
       {
         "base_key": "eat",
-        "en": "eat (future)",
-        "es": "comeré"
+        "en": "eat",
+        "es": "comer"
       }
     ],
     "questions": [
       {
         "type": "multiple_choice",
         "question": {
-          "en": "How do you say 'I will travel tomorrow'?",
-          "es": "¿Cómo se dice 'I will travel tomorrow'?"
+          "es": "¿Cómo se dice 'Voy a viajar mañana' en inglés?",
+          "en": "How do you say 'Voy a viajar mañana' in English?"
         },
         "data": {
-          "correct": "Voy a viajar mañana",
-          "options": ["Voy a viajar mañana", "Viajé mañana", "Visito mañana"]
+          "correct": "I will travel tomorrow",
+          "options": ["I will travel tomorrow", "I agree", "I can help", "I prefer this"],
+          "tts": [
+            {
+              "text": "I will travel tomorrow",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "multiple_choice",
         "question": {
-          "en": "Select the correct translation for 'soon'.",
-          "es": "Selecciona la traducción correcta para 'soon'."
+          "es": "¿Cómo se dice 'pronto' en inglés?",
+          "en": "How do you say 'pronto' in English?"
         },
         "data": {
-          "correct": "pronto",
-          "options": ["pronto", "mañana", "luego"]
+          "correct": "soon",
+          "options": ["soon", "I can help", "I prefer this", "I saw"],
+          "tts": [
+            {
+              "text": "soon",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "listening",
         "question": {
-          "en": "Listen and select what it means.",
-          "es": "Escucha y selecciona qué significa."
+          "es": "Escucha y selecciona el significado en español.",
+          "en": "Listen and select the Spanish meaning."
         },
         "data": {
-          "correct": "I will visit next week",
-          "audio_text": "Visitaré la próxima semana"
+          "correct": "Visitaré la próxima semana",
+          "options": ["Visitaré la próxima semana", "visitar", "voy a", "comer"],
+          "audio_text": "I will visit next week",
+          "tts": [
+            {
+              "text": "I will visit next week",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I am going to travel.",
-          "es": "Completa el espacio."
+          "es": "Yo voy a ___."
         },
         "data": {
-          "text_before": "Yo voy a",
-          "correct": "viajar",
-          "text_after": "."
+          "correct": "travel",
+          "options": ["travel", "going to", "next week", "soon"],
+          "tts": [
+            {
+              "text": "travel",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I will visit you soon.",
-          "es": "Completa el espacio."
+          "es": "Te voy a ___ pronto."
         },
         "data": {
-          "text_before": "Te voy a",
-          "correct": "visitar",
-          "text_after": "pronto."
+          "correct": "visit",
+          "options": ["visit", "next week", "soon", "tomorrow"],
+          "tts": [
+            {
+              "text": "visit",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: We will eat tomorrow.",
-          "es": "Completa el espacio."
+          "es": "Nosotros comeremos ___."
         },
         "data": {
-          "text_before": "Nosotros comeremos",
-          "correct": "mañana",
-          "text_after": "."
+          "correct": "tomorrow",
+          "options": ["tomorrow", "soon", "travel", "visit"],
+          "tts": [
+            {
+              "text": "tomorrow",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I will see you next week.",
-          "es": "Completa el espacio."
+          "es": "Te veré ___."
         },
         "data": {
-          "text_before": "Te veré",
-          "correct": "la próxima semana",
-          "text_after": "."
+          "correct": "next week",
+          "options": ["next week", "travel", "visit", "will"],
+          "tts": [
+            {
+              "text": "next week",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: He is going to travel.",
-          "es": "Completa el espacio."
+          "es": "Él va a ___."
         },
         "data": {
-          "text_before": "Él va a",
-          "correct": "viajar",
-          "text_after": "."
+          "correct": "travel",
+          "options": ["travel", "visit", "will", "eat"],
+          "tts": [
+            {
+              "text": "travel",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: They will arrive soon.",
-          "es": "Completa el espacio."
+          "es": "Llegarán ___."
         },
         "data": {
-          "text_before": "Llegarán",
-          "correct": "pronto",
-          "text_after": "."
+          "correct": "soon",
+          "options": ["soon", "will", "eat", "going to"],
+          "tts": [
+            {
+              "text": "soon",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I will travel tomorrow.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I am going to travel tomorrow.'",
+          "en": "Arrange the words: 'I am going to travel tomorrow.'"
         },
         "data": {
-          "correct": ["Voy a", "viajar", "mañana"],
-          "words": ["viajar", "mañana", "Voy a", "ayer"]
+          "correct": ["I", "am", "going", "to", "travel", "tomorrow."],
+          "words": ["I", "am", "going", "to", "travel", "tomorrow.", "next", "soon", "visit"],
+          "tts": [
+            {
+              "text": "I am going to travel tomorrow.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: We will visit next week.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'We are going to visit next week.'",
+          "en": "Arrange the words: 'We are going to visit next week.'"
         },
         "data": {
-          "correct": ["Vamos a", "visitar", "la próxima semana"],
-          "words": ["la próxima semana", "visitar", "Vamos a", "pronto"]
+          "correct": ["We", "are", "going", "to", "visit", "next", "week."],
+          "words": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "visit",
+            "next",
+            "week.",
+            "eat",
+            "soon",
+            "tomorrow"
+          ],
+          "tts": [
+            {
+              "text": "We are going to visit next week.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I will eat soon.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I am going to eat soon.'",
+          "en": "Arrange the words: 'I am going to eat soon.'"
         },
         "data": {
-          "correct": ["Voy a", "comer", "pronto"],
-          "words": ["comer", "pronto", "Voy a", "mañana"]
+          "correct": ["I", "am", "going", "to", "eat", "soon."],
+          "words": ["I", "am", "going", "to", "eat", "soon.", "travel", "visit", "week"],
+          "tts": [
+            {
+              "text": "I am going to eat soon.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: She will travel soon.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'She is going to travel soon.'",
+          "en": "Arrange the words: 'She is going to travel soon.'"
         },
         "data": {
-          "correct": ["Ella va a", "viajar", "pronto"],
-          "words": ["pronto", "Ella va a", "viajar", "visitar"]
+          "correct": ["She", "is", "going", "to", "travel", "soon."],
+          "words": ["She", "is", "going", "to", "travel", "soon.", "visit", "week", "will"],
+          "tts": [
+            {
+              "text": "She is going to travel soon.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: They will visit tomorrow.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'They will visit tomorrow.'",
+          "en": "Arrange the words: 'They will visit tomorrow.'"
         },
         "data": {
-          "correct": ["Ellos", "visitarán", "mañana"],
-          "words": ["mañana", "visitarán", "Ellos", "comerán"]
+          "correct": ["They", "will", "visit", "tomorrow."],
+          "words": ["They", "will", "visit", "tomorrow.", "next", "soon", "to"],
+          "tts": [
+            {
+              "text": "They will visit tomorrow.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I will go next week.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I will go next week.'",
+          "en": "Arrange the words: 'I will go next week.'"
         },
         "data": {
-          "correct": ["Iré", "la", "próxima semana"],
-          "words": ["próxima semana", "la", "Iré", "futuro"]
+          "correct": ["I", "will", "go", "next", "week."],
+          "words": ["I", "will", "go", "next", "week.", "to", "tomorrow", "travel"],
+          "tts": [
+            {
+              "text": "I will go next week.",
+              "lang": "en"
+            }
+          ]
         }
       }
     ]
@@ -468,8 +635,7 @@
     },
     "category": "grammar",
     "level": "intermediate",
-    "target_language": "es",
-    "source_language": "en",
+    "emoji": "🤔",
     "words": [
       {
         "base_key": "can",
@@ -509,179 +675,258 @@
       {
         "base_key": "want",
         "en": "want",
-        "es": "quiero"
+        "es": "querer"
       }
     ],
     "questions": [
       {
         "type": "multiple_choice",
         "question": {
-          "en": "How do you say 'I can help'?",
-          "es": "¿Cómo se dice 'I can help'?"
+          "es": "¿Cómo se dice 'Puedo ayudar' en inglés?",
+          "en": "How do you say 'Puedo ayudar' in English?"
         },
         "data": {
-          "correct": "Puedo ayudar",
-          "options": ["Puedo ayudar", "Debo ayudar", "Podría ayudar"]
+          "correct": "I can help",
+          "options": ["I can help", "I agree", "I prefer this", "I saw"],
+          "tts": [
+            {
+              "text": "I can help",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "multiple_choice",
         "question": {
-          "en": "Select the correct translation for 'I should learn'.",
-          "es": "Selecciona la traducción correcta para 'I should learn'."
+          "es": "¿Cómo se dice 'Debería aprender' en inglés?",
+          "en": "How do you say 'Debería aprender' in English?"
         },
         "data": {
-          "correct": "Debería aprender",
-          "options": ["Debería aprender", "Puedo aprender", "Debo aprender"]
+          "correct": "I should learn",
+          "options": ["I should learn", "I can help", "I prefer this", "I saw"],
+          "tts": [
+            {
+              "text": "I should learn",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "listening",
         "question": {
-          "en": "Listen and select what it means.",
-          "es": "Escucha y selecciona qué significa."
+          "es": "Escucha y selecciona el significado en español.",
+          "en": "Listen and select the Spanish meaning."
         },
         "data": {
-          "correct": "I must help you.",
-          "audio_text": "Debo ayudarte."
+          "correct": "Debo ayudarte.",
+          "options": ["Debo ayudarte.", "debería", "debo", "haría"],
+          "audio_text": "I must help you.",
+          "tts": [
+            {
+              "text": "I must help you.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I can do it.",
-          "es": "Completa el espacio."
+          "es": "Yo ___ hacerlo."
         },
         "data": {
-          "text_before": "Yo",
-          "correct": "puedo",
-          "text_after": "hacerlo."
+          "correct": "can",
+          "options": ["can", "help", "learn", "must"],
+          "tts": [
+            {
+              "text": "can",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I must go.",
-          "es": "Completa el espacio."
+          "es": "Yo ___ irme."
         },
         "data": {
-          "text_before": "Yo",
-          "correct": "debo",
-          "text_after": "irme."
+          "correct": "must",
+          "options": ["must", "help", "learn", "should"],
+          "tts": [
+            {
+              "text": "must",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: You should eat.",
-          "es": "Completa el espacio."
+          "es": "Tú ___ comer."
         },
         "data": {
-          "text_before": "Tú",
-          "correct": "deberías",
-          "text_after": "comer."
+          "correct": "should",
+          "options": ["should", "learn", "must", "want"],
+          "tts": [
+            {
+              "text": "should",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: Could you help me?",
-          "es": "Completa el espacio."
+          "es": "¿___ ayudarme?"
         },
         "data": {
-          "text_before": "¿",
-          "correct": "Podrías",
-          "text_after": "ayudarme?"
+          "correct": "could",
+          "options": ["could", "should", "want", "would"],
+          "tts": [
+            {
+              "text": "could",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I would like to learn.",
-          "es": "Completa el espacio."
+          "es": "Me gustaría ___."
         },
         "data": {
-          "text_before": "Me gustaría",
-          "correct": "aprender",
-          "text_after": "."
+          "correct": "learn",
+          "options": ["learn", "want", "would", "can"],
+          "tts": [
+            {
+              "text": "learn",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: Can I help?",
-          "es": "Completa el espacio."
+          "es": "¿___ ayudar?"
         },
         "data": {
-          "text_before": "¿",
-          "correct": "Puedo",
-          "text_after": "ayudar?"
+          "correct": "can",
+          "options": ["can", "would", "could", "help"],
+          "tts": [
+            {
+              "text": "can",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I can help.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I can help.'",
+          "en": "Arrange the words: 'I can help.'"
         },
         "data": {
-          "correct": ["Yo", "puedo", "ayudar"],
-          "words": ["ayudar", "puedo", "Yo", "aprender"]
+          "correct": ["I", "can", "help."],
+          "words": ["I", "can", "help.", "should", "want", "would"],
+          "tts": [
+            {
+              "text": "I can help.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: You must learn.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'You must learn.'",
+          "en": "Arrange the words: 'You must learn.'"
         },
         "data": {
-          "correct": ["Tú", "debes", "aprender"],
-          "words": ["aprender", "debes", "Tú", "ayudar"]
+          "correct": ["You", "must", "learn."],
+          "words": ["You", "must", "learn.", "could", "help", "should"],
+          "tts": [
+            {
+              "text": "You must learn.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I should sleep.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I should sleep.'",
+          "en": "Arrange the words: 'I should sleep.'"
         },
         "data": {
-          "correct": ["Yo", "debería", "dormir"],
-          "words": ["dormir", "debería", "Yo", "poder"]
+          "correct": ["I", "should", "sleep."],
+          "words": ["I", "should", "sleep.", "want", "would", "can"],
+          "tts": [
+            {
+              "text": "I should sleep.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: Could we go?",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'Could we go?'",
+          "en": "Arrange the words: 'Could we go?'"
         },
         "data": {
-          "correct": ["¿Podríamos", "ir", "nosotros?"],
-          "words": ["ir", "nosotros?", "¿Podríamos", "deberíamos"]
+          "correct": ["Could", "we", "go?"],
+          "words": ["Could", "we", "go?", "would", "can", "help"],
+          "tts": [
+            {
+              "text": "Could we go?",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: They would like to help.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'They would like to help.'",
+          "en": "Arrange the words: 'They would like to help.'"
         },
         "data": {
-          "correct": ["A ellos", "les gustaría", "ayudar"],
-          "words": ["ayudar", "les gustaría", "A ellos", "pueden"]
+          "correct": ["They", "would", "like", "to", "help."],
+          "words": ["They", "would", "like", "to", "help.", "should", "want", "can"],
+          "tts": [
+            {
+              "text": "They would like to help.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: We must work.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'We must work.'",
+          "en": "Arrange the words: 'We must work.'"
         },
         "data": {
-          "correct": ["Nosotros", "debemos", "trabajar"],
-          "words": ["trabajar", "debemos", "Nosotros", "podemos"]
+          "correct": ["We", "must", "work."],
+          "words": ["We", "must", "work.", "could", "help", "learn"],
+          "tts": [
+            {
+              "text": "We must work.",
+              "lang": "en"
+            }
+          ]
         }
       }
     ]
@@ -697,8 +942,7 @@
     },
     "category": "conversation",
     "level": "intermediate",
-    "target_language": "es",
-    "source_language": "en",
+    "emoji": "💭",
     "words": [
       {
         "base_key": "think",
@@ -745,172 +989,251 @@
       {
         "type": "multiple_choice",
         "question": {
-          "en": "How do you say 'I think that...'?",
-          "es": "¿Cómo se dice 'I think that...'?"
+          "es": "¿Cómo se dice 'Pienso que...' en inglés?",
+          "en": "How do you say 'Pienso que...' in English?"
         },
         "data": {
-          "correct": "Pienso que...",
-          "options": ["Pienso que...", "Creo que...", "En desacuerdo..."]
+          "correct": "I think that...",
+          "options": ["I think that...", "I can help", "I prefer this", "I saw"],
+          "tts": [
+            {
+              "text": "I think that...",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "multiple_choice",
         "question": {
-          "en": "Select the correct phrase for 'I agree'.",
-          "es": "Selecciona la frase correcta para 'I agree'."
+          "es": "¿Cómo se dice 'Estoy de acuerdo' en inglés?",
+          "en": "How do you say 'Estoy de acuerdo' in English?"
         },
         "data": {
-          "correct": "Estoy de acuerdo",
-          "options": ["Estoy de acuerdo", "Tengo idea", "Tal vez"]
+          "correct": "I agree",
+          "options": ["I agree", "I saw", "I should learn", "I think that..."],
+          "tts": [
+            {
+              "text": "I agree",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "listening",
         "question": {
-          "en": "Listen and select what it means.",
-          "es": "Escucha y selecciona qué significa."
+          "es": "Escucha y selecciona el significado en español.",
+          "en": "Listen and select the Spanish meaning."
         },
         "data": {
-          "correct": "It is a good idea.",
-          "audio_text": "Es una buena idea."
+          "correct": "Es una buena idea.",
+          "options": ["Es una buena idea.", "en desacuerdo", "idea", "opinión"],
+          "audio_text": "It is a good idea.",
+          "tts": [
+            {
+              "text": "It is a good idea.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I believe it is true.",
-          "es": "Completa el espacio."
+          "es": "Yo ___ que es verdad."
         },
         "data": {
-          "text_before": "Yo",
-          "correct": "creo",
-          "text_after": "que es verdad."
+          "correct": "believe",
+          "options": ["believe", "agree", "disagree", "guess"],
+          "tts": [
+            {
+              "text": "believe",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I agree with you.",
-          "es": "Completa el espacio."
+          "es": "Estoy ___ contigo."
         },
         "data": {
-          "text_before": "Estoy",
-          "correct": "de acuerdo",
-          "text_after": "contigo."
+          "correct": "agree",
+          "options": ["agree", "disagree", "guess", "idea"],
+          "tts": [
+            {
+              "text": "agree",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: I disagree.",
-          "es": "Completa el espacio."
+          "es": "Estoy ___."
         },
         "data": {
-          "text_before": "Estoy",
-          "correct": "en desacuerdo",
-          "text_after": "."
+          "correct": "disagree",
+          "options": ["disagree", "guess", "idea", "maybe"],
+          "tts": [
+            {
+              "text": "disagree",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: It is a bad idea.",
-          "es": "Completa el espacio."
+          "es": "Es una mala ___."
         },
         "data": {
-          "text_before": "Es una mala",
           "correct": "idea",
-          "text_after": "."
+          "options": ["idea", "guess", "maybe", "opinion"],
+          "tts": [
+            {
+              "text": "idea",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: Maybe later.",
-          "es": "Completa el espacio."
+          "es": "___ más tarde."
         },
         "data": {
-          "text_before": "",
-          "correct": "Tal vez",
-          "text_after": "más tarde."
+          "correct": "maybe",
+          "options": ["maybe", "idea", "opinion", "think"],
+          "tts": [
+            {
+              "text": "maybe",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Fill in the blank: In my opinion.",
-          "es": "Completa el espacio."
+          "es": "En mi ___."
         },
         "data": {
-          "text_before": "En mi",
-          "correct": "opinión",
-          "text_after": "."
+          "correct": "opinion",
+          "options": ["opinion", "maybe", "think", "agree"],
+          "tts": [
+            {
+              "text": "opinion",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I think it's good.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I think it's good.'",
+          "en": "Arrange the words: 'I think it's good.'"
         },
         "data": {
-          "correct": ["Pienso", "que", "es bueno"],
-          "words": ["es bueno", "que", "Pienso", "acuerdo"]
+          "correct": ["I", "think", "it's", "good."],
+          "words": ["I", "think", "it's", "good.", "opinion", "agree", "believe"],
+          "tts": [
+            {
+              "text": "I think it's good.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I agree with that.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I agree with that.'",
+          "en": "Arrange the words: 'I agree with that.'"
         },
         "data": {
-          "correct": ["Estoy", "de acuerdo", "con eso"],
-          "words": ["con eso", "de acuerdo", "Estoy", "idea"]
+          "correct": ["I", "agree", "with", "that."],
+          "words": ["I", "agree", "with", "that.", "maybe", "opinion", "think"],
+          "tts": [
+            {
+              "text": "I agree with that.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: I disagree completely.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'I totally disagree.'",
+          "en": "Arrange the words: 'I totally disagree.'"
         },
         "data": {
-          "correct": ["Estoy", "en desacuerdo", "totalmente"],
-          "words": ["totalmente", "en desacuerdo", "Estoy", "pienso"]
+          "correct": ["I", "totally", "disagree."],
+          "words": ["I", "totally", "disagree.", "opinion", "think", "agree"],
+          "tts": [
+            {
+              "text": "I totally disagree.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: It's a great idea.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'It's a great idea.'",
+          "en": "Arrange the words: 'It's a great idea.'"
         },
         "data": {
-          "correct": ["Es", "una", "gran idea"],
-          "words": ["gran idea", "una", "Es", "opinión"]
+          "correct": ["It's", "a", "great", "idea."],
+          "words": ["It's", "a", "great", "idea.", "think", "agree", "believe"],
+          "tts": [
+            {
+              "text": "It's a great idea.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: Maybe we can go.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'Maybe we can go.'",
+          "en": "Arrange the words: 'Maybe we can go.'"
         },
         "data": {
-          "correct": ["Tal vez", "podemos", "ir"],
-          "words": ["ir", "podemos", "Tal vez", "acuerdo"]
+          "correct": ["Maybe", "we", "can", "go."],
+          "words": ["Maybe", "we", "can", "go.", "agree", "believe", "disagree"],
+          "tts": [
+            {
+              "text": "Maybe we can go.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Form the sentence: In my opinion, yes.",
-          "es": "Forma la oración."
+          "es": "Ordena las palabras: 'In my opinion yes.'",
+          "en": "Arrange the words: 'In my opinion yes.'"
         },
         "data": {
-          "correct": ["En", "mi opinión", "sí"],
-          "words": ["sí", "mi opinión", "En", "supongo"]
+          "correct": ["In", "my", "opinion", "yes."],
+          "words": ["In", "my", "opinion", "yes.", "believe", "disagree", "guess"],
+          "tts": [
+            {
+              "text": "In my opinion yes.",
+              "lang": "en"
+            }
+          ]
         }
       }
     ]
