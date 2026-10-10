@@ -1,16 +1,29 @@
+// Generates a Supabase content migration from scripts/content_blocks/*.json.
+//
+// Usage:
+//   node scripts/generate-sql.mjs [--wipe] [outputFile]
+//
+//   --wipe       prepend TRUNCATE of all content tables (full content rebuild)
+//   outputFile   target .sql file (default: supabase/migrations/<timestamp>_content_blocks.sql)
+//
+// Guarantees:
+//   - every block is validated with zod (scripts/content-schema.mjs) before
+//     a single statement is emitted — invalid content fails the run, never
+//     produces broken SQL
+//   - deterministic UUIDs (md5 of stable seeds) => re-running on unchanged
+//     blocks produces byte-identical SQL (idempotent regeneration)
+//   - all string literals are escaped ('' doubling); data is emitted as jsonb
+//   - learning direction is fixed: source_language='es', target_language='en'
+//
+// Do not hand-edit the generated file — change the JSON blocks and re-run.
+
 import fs from 'fs'
 import path from 'path'
 import crypto from 'crypto'
+import { parseBlock } from './content-schema.mjs'
 
-const inputDir = path.join(process.cwd(), 'scripts', 'content_blocks')
-
-const blockName = process.argv[2] || 'block_1.json'
-const outputFile = path.join(
-  process.cwd(),
-  'supabase',
-  'migrations',
-  `20260327000000_${blockName.replace('.json', '')}.sql`,
-)
+const CONTENT_DIR = path.join(process.cwd(), 'scripts', 'content_blocks')
+const MIGRATIONS_DIR = path.join(process.cwd(), 'supabase', 'migrations')
 
 function generateUUID(seed) {
   return crypto
@@ -20,86 +33,196 @@ function generateUUID(seed) {
     .replace(/(.{8})(.{4})(.{4})(.{4})(.{12})/, '$1-$2-$3-$4-$5')
 }
 
-function escapeSql(str) {
-  if (typeof str !== 'string') return str
-  return str.replace(/'/g, "''")
+function escapeSql(value) {
+  return String(value).replace(/'/g, "''")
 }
 
-let sql = `-- Migration auto-generated for content update\n\n`
-
-function processBlock(blockFile, sortStart) {
-  const data = JSON.parse(fs.readFileSync(blockFile, 'utf8'))
-
-  data.forEach((scenario, index) => {
-    const scenarioId = generateUUID(`scenario_${scenario.target_language}_${scenario.title.en}`)
-
-    // 1. Insert Scenario
-    sql += `INSERT INTO public.scenarios (id, category, level, sort_order)\n`
-    sql += `VALUES ('${scenarioId}', '${scenario.category}', '${scenario.level}', ${sortStart + index})\n`
-    sql += `ON CONFLICT (id) DO UPDATE SET sort_order = EXCLUDED.sort_order;\n\n`
-
-    // 2. Insert Translations for Scenario
-    Object.entries(scenario.title).forEach(([lang, title]) => {
-      const translationId = generateUUID(`scenario_trans_${scenarioId}_${lang}`)
-      const desc = escapeSql(scenario.description[lang] || scenario.description.en)
-      const safeTitle = escapeSql(title)
-
-      sql += `INSERT INTO public.scenario_translations (id, scenario_id, language, title, description)\n`
-      sql += `VALUES ('${translationId}', '${scenarioId}', '${lang}', '${safeTitle}', '${desc}')\n`
-      sql += `ON CONFLICT (scenario_id, language) DO UPDATE SET title = EXCLUDED.title, description = EXCLUDED.description;\n\n`
-    })
-
-    // 3. Insert words and translations
-    scenario.words.forEach((word) => {
-      // Upsert word without hardcoded ID so it merges with existing base_key and gets the DB ID
-      sql += `INSERT INTO public.words (base_key, category, level)\n`
-      sql += `VALUES ('${escapeSql(word.base_key)}', '${scenario.category}', '${scenario.level}')\n`
-      sql += `ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level;\n\n`
-
-      // English
-      if (word.en) {
-        sql += `INSERT INTO public.word_translations (word_id, language, text, audio_text)\n`
-        sql += `VALUES ((SELECT id FROM public.words WHERE base_key = '${escapeSql(word.base_key)}'), 'en', '${escapeSql(word.en)}', '${escapeSql(word.en)}')\n`
-        sql += `ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;\n\n`
-      }
-
-      // Spanish
-      if (word.es) {
-        sql += `INSERT INTO public.word_translations (word_id, language, text, audio_text)\n`
-        sql += `VALUES ((SELECT id FROM public.words WHERE base_key = '${escapeSql(word.base_key)}'), 'es', '${escapeSql(word.es)}', '${escapeSql(word.es)}')\n`
-        sql += `ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text;\n\n`
-      }
-    })
-
-    // 4. Insert questions
-    scenario.questions.forEach((question, qIdx) => {
-      let qText = question.question_text
-      if (typeof qText === 'object') qText = qText.es || qText.en || ''
-
-      const qId = generateUUID(`question_${scenarioId}_${qIdx}_${qText}`)
-      const dataStr = JSON.stringify(question.data).replace(/'/g, "''")
-
-      sql += `INSERT INTO public.questions (id, scenario_id, type, question_text, sort_order, data, source_language, target_language)\n`
-      sql += `VALUES (\n`
-      sql += `  '${qId}',\n`
-      sql += `  '${scenarioId}',\n`
-      sql += `  '${question.type}',\n`
-      sql += `  '${escapeSql(qText)}',\n`
-      sql += `  ${qIdx + 1},\n`
-      sql += `  '${dataStr}'::jsonb,\n`
-      sql += `  '${question.source_language || 'en'}',\n`
-      sql += `  '${question.target_language || 'es'}'\n`
-      sql += `)\n`
-      sql += `ON CONFLICT (id) DO UPDATE SET data = EXCLUDED.data, question_text = EXCLUDED.question_text;\n\n`
-    })
-  })
+function sqlString(value) {
+  return `'${escapeSql(value)}'`
 }
 
-// Determine sort start roughly based on block number if possible
-const blockNum = parseInt(blockName.match(/\d+/) || '1', 10)
-const isIntermedio = blockName.includes('intermedio')
-const sortStart = (isIntermedio ? 200 : 0) + blockNum * 100
-processBlock(path.join(inputDir, blockName), sortStart)
+function sqlNullable(value) {
+  return value === null || value === undefined ? 'NULL' : sqlString(value)
+}
 
-fs.writeFileSync(outputFile, sql)
-console.log(`Generated migration: ${outputFile}`)
+function loadBlocks() {
+  const files = fs
+    .readdirSync(CONTENT_DIR)
+    .filter((file) => file.endsWith('.json'))
+    .sort()
+  if (files.length === 0) {
+    throw new Error(`No content blocks found in ${CONTENT_DIR}`)
+  }
+  return files.map((file) => ({
+    name: file,
+    scenarios: parseBlock(JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, file), 'utf8')), file),
+  }))
+}
+
+/** The English word to link the question to (for word stats), per question type. */
+function linkedWordKey(question) {
+  switch (question.type) {
+    case 'multiple_choice':
+    case 'fill_blank':
+    case 'image_match':
+      return question.data.correct
+    case 'listening':
+      return question.data.audio_text
+    default:
+      return null
+  }
+}
+
+/**
+ * Pure SQL generator (exported for tests).
+ * @param {Array<{name: string, scenarios: Array<object>}>} blocks
+ * @param {{ wipe?: boolean }} options
+ * @returns {string}
+ */
+export function generateSql(blocks, { wipe = false } = {}) {
+  const lines = []
+  lines.push(
+    '-- PalabraBox content — AUTO-GENERATED by scripts/generate-sql.mjs. Do not edit by hand.',
+  )
+  lines.push(`-- Source: scripts/content_blocks/ (${blocks.map((b) => b.name).join(', ')})`)
+  lines.push('-- Direction: es -> en (Spanish speaker learning English).')
+  lines.push('')
+
+  if (wipe) {
+    lines.push('-- Full content rebuild: wipe all content tables first.')
+    lines.push(
+      'TRUNCATE public.questions, public.word_translations, public.words, public.scenario_translations, public.scenarios RESTART IDENTITY CASCADE;',
+    )
+    lines.push('')
+  }
+
+  // sort_order: per level, sequential in processing order
+  const levelCounters = { beginner: 100, intermediate: 200 }
+
+  for (const { name, scenarios } of blocks) {
+    for (const scenario of scenarios) {
+      const scenarioId = generateUUID(`scenario_${scenario.title.en}`)
+      const sortOrder = levelCounters[scenario.level]++
+
+      lines.push(
+        `-- ===== ${scenario.title.en} (${scenario.category}/${scenario.level}) [${name}] =====`,
+      )
+      lines.push('')
+      lines.push('INSERT INTO public.scenarios (id, category, level, sort_order, emoji)')
+      lines.push(
+        `VALUES (${sqlString(scenarioId)}, ${sqlString(scenario.category)}, ${sqlString(scenario.level)}, ${sortOrder}, ${sqlString(scenario.emoji)})`,
+      )
+      lines.push(
+        'ON CONFLICT (id) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level, sort_order = EXCLUDED.sort_order, emoji = EXCLUDED.emoji;',
+      )
+      lines.push('')
+
+      for (const lang of ['en', 'es']) {
+        const translationId = generateUUID(`scenario_trans_${scenarioId}_${lang}`)
+        lines.push(
+          'INSERT INTO public.scenario_translations (id, scenario_id, language, title, description)',
+        )
+        lines.push(
+          `VALUES (${sqlString(translationId)}, ${sqlString(scenarioId)}, ${sqlString(lang)}, ${sqlString(scenario.title[lang])}, ${sqlString(scenario.description[lang])})`,
+        )
+        lines.push(
+          'ON CONFLICT (scenario_id, language) DO UPDATE SET title = EXCLUDED.title, description = EXCLUDED.description;',
+        )
+        lines.push('')
+      }
+
+      for (const word of scenario.words) {
+        lines.push('INSERT INTO public.words (base_key, category, level, emoji)')
+        lines.push(
+          `VALUES (${sqlString(word.base_key)}, ${sqlString(scenario.category)}, ${sqlString(scenario.level)}, ${sqlNullable(word.emoji ?? null)})`,
+        )
+        lines.push(
+          'ON CONFLICT (base_key) DO UPDATE SET category = EXCLUDED.category, level = EXCLUDED.level, emoji = EXCLUDED.emoji;',
+        )
+        lines.push('')
+
+        for (const lang of ['en', 'es']) {
+          lines.push('INSERT INTO public.word_translations (word_id, language, text, audio_text)')
+          lines.push(
+            `SELECT w.id, ${sqlString(lang)}, ${sqlString(word[lang])}, ${sqlString(word[lang])} FROM public.words w WHERE w.base_key = ${sqlString(word.base_key)}`,
+          )
+          lines.push(
+            'ON CONFLICT (word_id, language) DO UPDATE SET text = EXCLUDED.text, audio_text = EXCLUDED.audio_text;',
+          )
+          lines.push('')
+        }
+      }
+
+      for (const [qIndex, question] of scenario.questions.entries()) {
+        const questionId = generateUUID(`question_${scenarioId}_${qIndex}`)
+        const { data } = question
+        const wordKey = linkedWordKey(question)
+        const wordIdSql = wordKey
+          ? `(SELECT id FROM public.words WHERE base_key = ${sqlString(wordKey)})`
+          : 'NULL'
+        // question_text_tts feeds the current Listening/WordOrder components;
+        // data.tts is the structured form for the TTS phase (F3).
+        const ttsColumn =
+          question.type === 'listening'
+            ? sqlString(data.audio_text)
+            : question.type === 'word_order'
+              ? sqlString(data.tts[0]?.text ?? data.correct.join(' '))
+              : 'NULL'
+        const dataJson = JSON.stringify(data).replace(/'/g, "''")
+
+        lines.push(
+          'INSERT INTO public.questions (id, scenario_id, word_id, type, question_text, question_text_tts, sort_order, data, source_language, target_language)',
+        )
+        lines.push('VALUES (')
+        lines.push(`  ${sqlString(questionId)},`)
+        lines.push(`  ${sqlString(scenarioId)},`)
+        lines.push(`  ${wordIdSql},`)
+        lines.push(`  ${sqlString(question.type)},`)
+        lines.push(`  ${sqlString(question.question.es)},`)
+        lines.push(`  ${ttsColumn},`)
+        lines.push(`  ${qIndex + 1},`)
+        lines.push(`  '${dataJson}'::jsonb,`)
+        lines.push(`  'es',`)
+        lines.push(`  'en'`)
+        lines.push(')')
+        lines.push(
+          'ON CONFLICT (id) DO UPDATE SET word_id = EXCLUDED.word_id, question_text = EXCLUDED.question_text, question_text_tts = EXCLUDED.question_text_tts, sort_order = EXCLUDED.sort_order, data = EXCLUDED.data;',
+        )
+        lines.push('')
+      }
+    }
+  }
+
+  return lines.join('\n')
+}
+
+function main() {
+  const args = process.argv.slice(2)
+  const wipe = args.includes('--wipe')
+  const positional = args.filter((arg) => !arg.startsWith('--'))
+  const outputFile =
+    positional[0] ??
+    path.join(
+      MIGRATIONS_DIR,
+      `${new Date().toISOString().slice(0, 10).replace(/-/g, '')}000000_content_blocks.sql`,
+    )
+
+  const blocks = loadBlocks()
+  const sql = generateSql(blocks, { wipe })
+
+  fs.mkdirSync(path.dirname(outputFile), { recursive: true })
+  fs.writeFileSync(outputFile, sql)
+
+  const questionCount = blocks.reduce(
+    (sum, block) => sum + block.scenarios.reduce((s, sc) => s + sc.questions.length, 0),
+    0,
+  )
+  console.log(`Generated ${outputFile}`)
+  console.log(
+    `  ${blocks.length} blocks, ${blocks.reduce((s, b) => s + b.scenarios.length, 0)} scenarios, ${questionCount} questions${wipe ? ' (with wipe)' : ''}`,
+  )
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main()
+}
