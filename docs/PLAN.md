@@ -279,6 +279,8 @@ Kierunek nauki es→en (pytanie po hiszpańsku, odpowiedź angielska), opcje odp
 
 ### E6 — Typy TS ze schematu — **S/M**
 
+> 🔄 **W TOKU (2026-10-10)** — `npm run db:types` (`supabase gen types --local`) podpięte; `src/types/db.ts` w repo (5 tabel, kształt zgodny z generatorem). 🙋 Właściciel regeneruje po `supabase start` / `db reset` i commituje ewentualne różnice — generator jest źródłem prawdy. Przepięcie importów + usunięcie ręcznych typów (`src/types/index.ts`) w E7.
+
 Skrypt `npm run db:types` (`supabase gen types`); `src/types/db.ts` generowany; ręczne typy usunięte.
 **DoD:** importy typów z `types/db`; `tsc` zielone.
 
@@ -405,6 +407,7 @@ Usunięcie/aktualizacja `SCREENS.md`, `SERVICES.md`, `GAME_MECHANICS.md`, `DESIG
 
 ## Otwarte kwestie (nieblokujące)
 
+- 🙋 E6: uruchom `npm run db:types` (po `supabase start` / `db reset`) i zakomituj wynik `src/types/db.ts` — generator jest źródłem prawdy.
 - 🙋 E5: przejrzyj próbki treści (opis PR + sekcja „Content workflow” w `docs/DATABASE.md`); korekty = edycja bloków JSON + `npm run content:generate`.
 - 🙋 Produkcja po deployu E7: `db push` migracji `20261010120000_add_words_emoji` + `20261010130000_content_normalized` (pełny rebuild treści), potem `drop_legacy_columns` (powstanie w E7).
 - 🙋 Potwierdzenie MIT po ujrzeniu LICENSE (A3) — zmiana to jeden commit.

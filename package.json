@@ -13,6 +13,7 @@
     "typecheck": "tsc -b",
     "content:generate": "node scripts/generate-sql.mjs",
     "content:check": "node scripts/verify-content.mjs",
+    "db:types": "npx supabase gen types typescript --local > src/types/db.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
