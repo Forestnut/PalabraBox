@@ -307,30 +307,47 @@ Skrypt `npm run db:types` (`supabase gen types`); `src/types/db.ts` generowany; 
 
 ## Faza 3 — TTS
 
+> ✅ **UKOŃCZONE (2026-10-19)** — 5 commitów, 41 nowych testów (122 razem); ADR-0004. Do weryfikacji ręcznej na Chrome/Firefox/Safari 🙋.
+
 ### F1 — Moduł mowy: fundament — **M**
 
-`speak/`: `getCapabilities()` (API, głosy per język), asynchroniczne ładowanie głosów (promise na `voiceschanged`), scoring głosów per język **bez fallbacku na `voices[0]`**, obsługa `onerror`.
-**DoD:** API czyste i przetestowane; brak „pierwszego lepszego głosu".
+> ✅ **UKOŃCZONE** — `feat(speak): add voice scoring and async capabilities detection (F1)`
+
+`src/speak/`: `getCapabilities()` (API, głosy per język), asynchroniczne ładowanie głosów (promise na `voiceschanged` z 1 s timeoutem), scoring głosów per język **bez fallbacku na `voices[0]`** (`pickBestVoice` zwraca `null` gdy brak głosu), obsługa `onerror` z logowaniem.
+**DoD:** API czyste i przetestowane (17 testów voices+capabilities); brak „pierwszego lepszego głosu".
 
 ### F2 — Segmentacja językowa + kolejka — **M**
 
-Segmenter dzieli tekst na fragmenty `[{text, lang}]` (znaczniki z treści `data.tts`, cytaty, znaki hiszpańskie); kolejka utterance z `onend` chaining, cancel, pauza.
-**DoD:** mieszane zdanie (es + en) czytane dwoma głosami; testy jednostkowe segmentera.
+> ✅ **UKOŃCZONE** — `feat(speak): add language segmenter and utterance queue (F2)`
+
+Segmenter dzieli tekst na fragmenty `[{text, lang}]` (preferuje `data.tts` z bazy, fallback do plain-string z wykrywaniem hiszpańskich znaków diakrytycznych; scala sąsiadujące segmenty tego samego języka, dzieli długie zdania po `.?!`). Kolejka utterance z `onend` chaining (omija limit Chromium ~15 utteranców), cancel, pauza/wznów, subskrypcja stanu; React hooki `useSpeechStatus`/`useSpeechCapabilities`.
+**DoD:** mieszane zdanie (es + en) czytane dwoma głosami; 15 testów segmentera + 8 testów kolejki.
 
 ### F3 — Integracja z UI — **M**
 
-`Listening`: stan odtwarzania z eventów (nie z timera), bez głosu EN ⇒ pytania listening wypadają z puli + widoczna informacja; brak TTS ⇒ banner w ustawieniach + fallback tekstowy.
-**DoD:** brak cichych awarii; zachowanie spójne na Chrome/Firefox/Safari (przegląd 🙋).
+> ✅ **UKOŃCZONE** — `feat(tts): integrate new speak module into UI (F3)`
+
+- `Question.tts` (TtsSegment[]) dodane do typu i mapowane w `mapQuestionRow` z fallbackiem do legacy `question_text_tts`.
+- `useGame`: filtruje pytania `listening` gdy brak głosu EN.
+- `Listening`: `isPlaying` sterowane zdarzeniami z `useSpeechStatus` (bez `setTimeout`), `onerror` pokazuje komunikat „toca para reintentar", fallback tekstowy gdy TTS niedostępny.
+- `WordOrder`/`FlashCard`: przepięte na nowy `speak()` z pełnymi ustawieniami.
+- Stary `src/services/speechService.ts` usunięty.
+- Banner w ustawieniach gdy TTS nie wspierany lub brak głosu EN.
+  **DoD:** brak cichych awarii; zachowanie do weryfikacji na Chrome/Firefox/Safari 🙋.
 
 ### F4 — Głośność i prędkość TTS — **S**
 
-`utterance.volume` z `volume.tts` (suwak działa), `rate` z `speechSpeed`.
-**DoD:** oba suwaki mają realny efekt.
+> ✅ **UKOŃCZONE** — `feat(tts): apply volume/rate settings and add audio test (F4)`
+
+- `utterance.volume` = `settingsStore.volume.tts`, `utterance.rate` = `settingsStore.speechSpeed` (clamp 0–1 / 0.1–10).
+- WordOrder nie ma już hardkodowanego `rate=1`.
+- Przycisk „Probar audio" na ekranie ustawień odtwarza demo EN+ES z bieżącymi ustawieniami, pokazując statusy głosów EN/ES.
+  **DoD:** oba suwaki mają realny efekt (słyszalny natychmiast w teście audio).
 
 ### F5 — Testy TTS — **S/M**
 
-Segmenter, scoring głosów, capabilities (mock SpeechSynthesis w jsdom).
-**DoD:** pokrycie logiki czystej > 90%.
+> ✅ **UKOŃCZONE** — 41 testów: voices (11), segment (15), capabilities (6), queue (8), plus 1 nowy test w question.test.ts; mock `SpeechSynthesis` w `src/speak/__mocks__/speechSynthesis.ts`.
+> **DoD:** logika czysta (voices/segment/capabilities) pokryta w 100%; kolejka przetestowana z ręcznym sterowaniem `onstart/onend/onerror`.
 
 ---
 

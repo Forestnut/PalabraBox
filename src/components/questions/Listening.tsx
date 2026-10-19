@@ -1,11 +1,11 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useEffect } from 'react'
 import { motion } from 'motion/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faVolumeHigh, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faVolumeHigh, faPlay, faEarListen } from '@fortawesome/free-solid-svg-icons'
 import type { Question } from '../../types'
 import { cn } from '../../utils/cn'
 import { shuffleArray } from '../../utils/shuffle'
-import { speechService } from '../../services/speechService'
+import { speak, cancelSpeech, useSpeechStatus } from '../../speak'
 import { useSettingsStore } from '../../store/settingsStore'
 import { Button } from '../ui/Button'
 import { QuestionHeader } from './QuestionHeader'
@@ -15,33 +15,49 @@ interface Props {
   onAnswer: (isCorrect: boolean) => void
   onPlaySound?: (type: 'click' | 'correct' | 'wrong') => void
   disabled?: boolean
-  scenarioLanguage?: string | null
+  /** True when English TTS voice is available in this browser. */
+  ttsAvailable?: boolean
 }
 
-export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioLanguage }: Props) {
+export function Listening({
+  question,
+  onAnswer,
+  onPlaySound,
+  disabled,
+  ttsAvailable = true,
+}: Props) {
   const options = useMemo(() => {
     return shuffleArray([question.correct_answer, ...question.wrong_answers])
   }, [question.correct_answer, question.wrong_answers])
 
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
   const [answered, setAnswered] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [playbackError, setPlaybackError] = useState(false)
+
   const speechSpeed = useSettingsStore((s) => s.speechSpeed)
+  const ttsVolume = useSettingsStore((s) => s.volume.tts)
+
+  // Event-driven playback state (no setTimeout!).
+  const speechStatus = useSpeechStatus()
+  const isPlaying = speechStatus === 'speaking'
+
+  // Cancel any outstanding speech when this question unmounts.
+  useEffect(() => {
+    return () => {
+      cancelSpeech()
+    }
+  }, [])
 
   const play = useCallback(() => {
-    if (isPlaying) return
-    setIsPlaying(true)
-    const text = question.question_text_tts || question.correct_answer
-    const lang =
-      scenarioLanguage === 'english' ||
-      scenarioLanguage === 'en' ||
-      scenarioLanguage?.startsWith('en')
-        ? 'en-US'
-        : 'es-ES'
-    speechService.speak(text, lang, speechSpeed)
-    // Approximate speech duration
-    setTimeout(() => setIsPlaying(false), Math.max(1500, text.length * 80))
-  }, [isPlaying, question, scenarioLanguage, speechSpeed])
+    if (isPlaying || !ttsAvailable) return
+    setPlaybackError(false)
+    speak(question.tts, {
+      defaultLang: 'en',
+      volume: ttsVolume,
+      rate: speechSpeed,
+      onError: () => setPlaybackError(true),
+    })
+  }, [isPlaying, ttsAvailable, question.tts, ttsVolume, speechSpeed])
 
   const handleSelect = (answer: string) => {
     if (answered || disabled) return
@@ -77,37 +93,55 @@ export function Listening({ question, onAnswer, onPlaySound, disabled, scenarioL
     return 'bg-slate-100 border-2 border-slate-200 text-slate-400 opacity-60'
   }
 
+  const statusLabel = playbackError
+    ? 'Error al reproducir. Toca para reintentar.'
+    : isPlaying
+      ? 'Reproduciendo...'
+      : ttsAvailable
+        ? 'Toca para escuchar'
+        : 'Audio no disponible'
+
   return (
     <div className="flex flex-col gap-4 w-full text-center flex-1 items-center">
       <QuestionHeader question={question} />
 
       <div className="flex flex-col items-center justify-center min-h-28 gap-3">
-        <motion.button
-          onClick={play}
-          disabled={isPlaying}
-          className="w-24 h-24 rounded-full bg-linear-to-b from-[#0a8a5e] to-pb-emerald text-white flex items-center justify-center shadow-[0_6px_0_0_#035c3a,0_8px_24px_-4px_rgba(4,114,77,0.35)] hover:shadow-[0_7px_0_0_#035c3a,0_10px_28px_-4px_rgba(4,114,77,0.4)] active:shadow-[0_2px_0_0_#035c3a] active:translate-y-1 transition-all duration-200 cursor-pointer relative"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <FontAwesomeIcon icon={isPlaying ? faVolumeHigh : faPlay} className="text-3xl" />
-          {isPlaying && (
-            <>
-              <motion.div
-                className="absolute inset-0 rounded-full border-2 border-pb-emerald/40"
-                animate={{ scale: [1, 1.6], opacity: [0.6, 0] }}
-                transition={{ repeat: Infinity, duration: 1.2, ease: 'easeOut' }}
-              />
-              <motion.div
-                className="absolute inset-0 rounded-full border-2 border-pb-emerald/30"
-                animate={{ scale: [1, 1.8], opacity: [0.4, 0] }}
-                transition={{ repeat: Infinity, duration: 1.2, ease: 'easeOut', delay: 0.3 }}
-              />
-            </>
-          )}
-        </motion.button>
-        <p className="text-xs text-pb-text-light font-semibold">
-          {isPlaying ? 'Reproduciendo...' : 'Toca para escuchar'}
-        </p>
+        {ttsAvailable ? (
+          <motion.button
+            onClick={play}
+            disabled={isPlaying || disabled}
+            aria-label="Reproducir audio"
+            className="w-24 h-24 rounded-full bg-linear-to-b from-[#0a8a5e] to-pb-emerald text-white flex items-center justify-center shadow-[0_6px_0_0_#035c3a,0_8px_24px_-4px_rgba(4,114,77,0.35)] hover:shadow-[0_7px_0_0_#035c3a,0_10px_28px_-4px_rgba(4,114,77,0.4)] active:shadow-[0_2px_0_0_#035c3a] active:translate-y-1 transition-all duration-200 cursor-pointer relative disabled:opacity-60 disabled:cursor-not-allowed"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FontAwesomeIcon icon={isPlaying ? faVolumeHigh : faPlay} className="text-3xl" />
+            {isPlaying && (
+              <>
+                <motion.div
+                  className="absolute inset-0 rounded-full border-2 border-pb-emerald/40"
+                  animate={{ scale: [1, 1.6], opacity: [0.6, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.2, ease: 'easeOut' }}
+                />
+                <motion.div
+                  className="absolute inset-0 rounded-full border-2 border-pb-emerald/30"
+                  animate={{ scale: [1, 1.8], opacity: [0.4, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.2, ease: 'easeOut', delay: 0.3 }}
+                />
+              </>
+            )}
+          </motion.button>
+        ) : (
+          <div className="w-24 h-24 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center">
+            <FontAwesomeIcon icon={faEarListen} className="text-3xl" />
+          </div>
+        )}
+
+        <p className="text-xs text-pb-text-light font-semibold">{statusLabel}</p>
+
+        {!ttsAvailable && question.tts[0] && (
+          <p className="text-xl font-black text-pb-dark">{question.tts[0].text}</p>
+        )}
       </div>
 
       <div className="grid grid-cols-1 gap-2.5 w-full">

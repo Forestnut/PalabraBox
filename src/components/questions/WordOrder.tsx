@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import {
   DndContext,
@@ -26,14 +26,14 @@ import { Button } from '../ui/Button'
 import { QuestionHeader } from './QuestionHeader'
 import { SortableItemUI } from './SortableItemUI'
 import { shuffleArray } from '../../utils/shuffle'
-import { speechService } from '../../services/speechService'
+import { speak, cancelSpeech } from '../../speak'
+import { useSettingsStore } from '../../store/settingsStore'
 
 interface WordOrderProps {
   question: Question
   onAnswer: (isCorrect: boolean) => void
   onPlaySound?: (type: 'click' | 'correct' | 'wrong') => void
   disabled?: boolean
-  scenarioLanguage?: string | null
 }
 
 interface WordObj {
@@ -70,13 +70,7 @@ function SortableWord({ wordObj, onClick }: { wordObj: WordObj; onClick: () => v
   )
 }
 
-export function WordOrder({
-  question,
-  onAnswer,
-  onPlaySound,
-  disabled,
-  scenarioLanguage,
-}: WordOrderProps) {
+export function WordOrder({ question, onAnswer, onPlaySound, disabled }: WordOrderProps) {
   const correctWords = useMemo(() => {
     if (!question.correct_answer) return []
     return question.correct_answer.split(' ')
@@ -91,6 +85,15 @@ export function WordOrder({
   const [dropZone, setDropZone] = useState<WordObj[]>([])
   const [isChecking, setIsChecking] = useState(false)
   const [activeId, setActiveId] = useState<string | null>(null)
+
+  const speechSpeed = useSettingsStore((s) => s.speechSpeed)
+  const ttsVolume = useSettingsStore((s) => s.volume.tts)
+
+  useEffect(() => {
+    return () => {
+      cancelSpeech()
+    }
+  }, [])
 
   const { setNodeRef: setBankNodeRef } = useDroppable({
     id: 'bank-droppable',
@@ -181,20 +184,27 @@ export function WordOrder({
     const isCorrect = currentSentence === correctClean
 
     if (isCorrect) {
-      const ttsLang =
-        scenarioLanguage === 'english' ||
-        scenarioLanguage === 'en' ||
-        scenarioLanguage?.startsWith('en')
-          ? 'en-US'
-          : 'es-ES'
-      speechService.speak(question.question_text_tts || currentSentence, ttsLang, 1, 1, () => {
-        // Wait for speech to complete
-        setTimeout(() => {
-          onAnswer(isCorrect)
-          setIsChecking(false)
-        }, 500)
-      })
       onPlaySound?.('correct')
+      // Speak the assembled sentence (structured data.tts from the DB, or the
+      // user's answer as a fallback). Volume and rate come from settings.
+      speak(question.tts.length > 0 ? question.tts : currentSentence, {
+        defaultLang: 'en',
+        volume: ttsVolume,
+        rate: speechSpeed,
+        onEnd: () => {
+          setTimeout(() => {
+            onAnswer(isCorrect)
+            setIsChecking(false)
+          }, 300)
+        },
+        onError: () => {
+          // If audio fails, still advance after a short delay.
+          setTimeout(() => {
+            onAnswer(isCorrect)
+            setIsChecking(false)
+          }, 500)
+        },
+      })
     } else {
       onPlaySound?.('wrong')
       setTimeout(() => {

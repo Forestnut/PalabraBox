@@ -31,12 +31,13 @@ function makeQuestion(partial: Partial<Question> & { id: string }): Question {
     correct_answer: `answer ${partial.id}`,
     wrong_answers: ['wrong a', 'wrong b'],
     image_emoji: null,
+    tts: [{ text: `answer ${partial.id}`, lang: 'en' as const }],
     ...partial,
   }
 }
 
 describe('mapQuestionRow', () => {
-  it('maps a multiple_choice row: options minus the correct answer', () => {
+  it('maps a multiple_choice row: options minus the correct answer, plus tts segments', () => {
     const row = makeRow({
       data: {
         correct: 'hello',
@@ -50,6 +51,16 @@ describe('mapQuestionRow', () => {
     expect(question!.wrong_answers).toEqual(['yes', 'goodbye', 'thanks'])
     expect(question!.question_text).toBe('¿Cómo se dice hola en inglés?')
     expect(question!.type).toBe('multiple_choice')
+    expect(question!.tts).toEqual([{ text: 'hello', lang: 'en' }])
+  })
+
+  it('falls back to legacy question_text_tts when structured data.tts is missing', () => {
+    const row = makeRow({
+      question_text_tts: 'water',
+      data: { correct: 'agua', options: ['agua', 'fuego'] },
+    })
+    const question = mapQuestionRow(row)
+    expect(question!.tts).toEqual([{ text: 'water', lang: 'en' }])
   })
 
   it('maps a listening row and keeps the Spanish answer with English audio', () => {
