@@ -79,6 +79,16 @@ Content lives in `scripts/content_blocks/*.json` — normalized to the product d
 
 Current content: 24 scenarios, 200 words, 388 questions (360 normalized + 28 generated `image_match`), delivered by `20261010130000_content_normalized.sql`.
 
+`seed.sql` is an intentional no-op (`SELECT 'seed skipped'`) — content lives in versioned migrations, so `supabase db reset` always rebuilds the full database (schema + content) from `supabase/migrations/` alone.
+
+### Production deployment choreography (once, at the end of phase 2)
+
+The live app still reads the legacy columns until the E7 build is deployed:
+
+1. `npx supabase db push` — applies `20261010120000_add_words_emoji` + `20261010130000_content_normalized` (full content rebuild)
+2. Deploy merged `main` (Vercel) — the app switches to the normalized schema
+3. `npx supabase db push` — applies `20261011000000_drop_legacy_columns` (vestige columns + `base_key NOT NULL`)
+
 ---
 
 ## 🏗️ Architektura Ogólna

@@ -279,17 +279,21 @@ Kierunek nauki es→en (pytanie po hiszpańsku, odpowiedź angielska), opcje odp
 
 ### E6 — Typy TS ze schematu — **S/M**
 
-> 🔄 **W TOKU (2026-10-10)** — `npm run db:types` (`supabase gen types --local`) podpięte; `src/types/db.ts` w repo (5 tabel, kształt zgodny z generatorem). 🙋 Właściciel regeneruje po `supabase start` / `db reset` i commituje ewentualne różnice — generator jest źródłem prawdy. Przepięcie importów + usunięcie ręcznych typów (`src/types/index.ts`) w E7.
+> ✅ **UKOŃCZONE (2026-10-10)** — właściciel zregenerował typy (`npm run db:types`, wynik zakomitowany) — generator jest źródłem prawdy; skrypt formatuje wynik przez prettier. Przepięcie importów + usunięcie ręcznych typów w E7.
 
 Skrypt `npm run db:types` (`supabase gen types`); `src/types/db.ts` generowany; ręczne typy usunięte.
 **DoD:** importy typów z `types/db`; `tsc` zielone.
 
 ### E7 — Warstwa danych na nowym schemacie — **L**
 
+> ✅ **UKOŃCZONE (2026-10-10)** — `useGame`/`useScenarios`/`useWords` przepisane na znormalizowany schemat (bez heurystyk ratunkowych — logika w `src/utils/question.ts` + 14 testów, 81 razem); `useScenarios` = tytuły ES + `emoji` z bazy (`idEmojiMap` wywalony); `useWords` = join `word_translations` (en/es); `FlashCard` = front EN / back ES; `settingsStore` = kod `en` (+ migracja persistu `english`→`en`); `createClient<Database>`; ręczne typy zastąpione UI-typami opartymi na `types/db`; migracja `20261011000000_drop_legacy_columns` czeka na push po deployu.
+
 `useWords` (join `word_translations`), `useScenarios` (emoji z bazy, język UI), `useGame` (usunięcie heurystyk ratunkowych: `isSpanishText`, regexy, naprawa mojibake), usunięcie `idEmojiMap`.
 **DoD:** fiszki działają; `useGame.ts` skrócone o logikę ratunkową; testy selekcji pytań.
 
 ### E8 — `seed.sql` dla lokalnego dev — **S**
+
+> ✅ **UKOŃCZONE (2026-10-10)** — właściciel zweryfikował: `supabase db reset` aplikuje baseline + E3 + `add_words_emoji` + `content_normalized` (pełna treść: 24 scenariusze / 200 słów / 388 pytań) + seed no-op (`SELECT 'seed skipped'` — celowo, treści żyją w migracjach; opisane w `docs/DATABASE.md`).
 
 **DoD:** `supabase db reset` daje lokalną bazę z pełną treścią.
 
@@ -407,9 +411,8 @@ Usunięcie/aktualizacja `SCREENS.md`, `SERVICES.md`, `GAME_MECHANICS.md`, `DESIG
 
 ## Otwarte kwestie (nieblokujące)
 
-- 🙋 E6: uruchom `npm run db:types` (po `supabase start` / `db reset`) i zakomituj wynik `src/types/db.ts` — generator jest źródłem prawdy.
 - 🙋 E5: przejrzyj próbki treści (opis PR + sekcja „Content workflow” w `docs/DATABASE.md`); korekty = edycja bloków JSON + `npm run content:generate`.
-- 🙋 Produkcja po deployu E7: `db push` migracji `20261010120000_add_words_emoji` + `20261010130000_content_normalized` (pełny rebuild treści), potem `drop_legacy_columns` (powstanie w E7).
+- 🙋 Produkcja po deployu E7 (kolejność w `docs/DATABASE.md` → „Content workflow”): `db push` `20261010120000_add_words_emoji` + `20261010130000_content_normalized`, deploy, potem `db push` `20261011000000_drop_legacy_columns`.
 - 🙋 Potwierdzenie MIT po ujrzeniu LICENSE (A3) — zmiana to jeden commit.
 - 🙋 Supabase Auth: włączenie magic link + Google w dashboardzie (G2) i ewentualne skonfigurowanie protection URLi.
 - Vercel Hobby = 1 miejsce w zespole — dla Błażeja wystarczy workflow PR (merge do main deployuje), więc bez zmian planu.
