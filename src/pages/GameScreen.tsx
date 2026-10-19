@@ -29,7 +29,7 @@ export default function GameScreen() {
     lives,
     maxLives,
     score,
-    scenarioLanguage,
+    listeningAvailable,
   } = useGame(scenarioId)
   const { status } = useGameStore()
   const { playSound } = useAudio()
@@ -251,7 +251,7 @@ export default function GameScreen() {
           <QuestionRenderer
             key={currentQuestion.id}
             question={currentQuestion}
-            scenarioLanguage={scenarioLanguage}
+            ttsAvailable={listeningAvailable}
             onAnswered={(isCorrect) => {
               handleAnswer(isCorrect)
 

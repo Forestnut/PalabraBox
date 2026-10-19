@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'motion/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeHigh, faRotate } from '@fortawesome/free-solid-svg-icons'
-import { speechService } from '../../services/speechService'
+import { speak, cancelSpeech } from '../../speak'
 import { useSettingsStore } from '../../store/settingsStore'
 import type { Word } from '../../types'
 import { cn } from '../../utils/cn'
@@ -18,19 +18,27 @@ interface FlashCardProps {
 export function FlashCard({ word }: FlashCardProps) {
   const [flipped, setFlipped] = useState(false)
   const speechSpeed = useSettingsStore((s) => s.speechSpeed)
+  const ttsVolume = useSettingsStore((s) => s.volume.tts)
 
   const frontText = word.en.text
   const backText = word.es.text
   const emoji = word.emoji
 
-  const handlePlayAudio = (e: React.MouseEvent, side: 'front' | 'back') => {
-    e.stopPropagation()
-    if (side === 'front') {
-      speechService.speak(word.en.audioText || frontText, 'en-US', speechSpeed)
-    } else {
-      speechService.speak(word.es.audioText || backText, 'es-ES', speechSpeed)
+  useEffect(() => {
+    return () => {
+      cancelSpeech()
     }
-  }
+  }, [])
+
+  const handlePlayAudio = useCallback(
+    (e: React.MouseEvent, side: 'front' | 'back') => {
+      e.stopPropagation()
+      const text = side === 'front' ? word.en.audioText || frontText : word.es.audioText || backText
+      const lang = side === 'front' ? ('en' as const) : ('es' as const)
+      speak(text, { defaultLang: lang, volume: ttsVolume, rate: speechSpeed })
+    },
+    [word, frontText, backText, ttsVolume, speechSpeed],
+  )
 
   return (
     <div

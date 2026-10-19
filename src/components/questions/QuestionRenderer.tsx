@@ -12,6 +12,8 @@ export interface QuestionRendererProps {
   onPlaySound?: (type: 'click' | 'correct' | 'wrong') => void
   disabled?: boolean
   scenarioLanguage?: string | null
+  /** True when English TTS is available in this browser. */
+  ttsAvailable?: boolean
 }
 
 export function QuestionRenderer({
@@ -20,6 +22,7 @@ export function QuestionRenderer({
   onPlaySound,
   disabled,
   scenarioLanguage,
+  ttsAvailable = true,
 }: QuestionRendererProps) {
   switch (question.type) {
     case 'multiple_choice':
@@ -47,7 +50,7 @@ export function QuestionRenderer({
           onAnswer={onAnswered}
           onPlaySound={onPlaySound}
           disabled={disabled}
-          scenarioLanguage={scenarioLanguage}
+          ttsAvailable={ttsAvailable}
         />
       )
     case 'fill_blank':
@@ -67,7 +70,6 @@ export function QuestionRenderer({
           onAnswer={onAnswered}
           onPlaySound={onPlaySound}
           disabled={disabled}
-          scenarioLanguage={scenarioLanguage}
         />
       )
 

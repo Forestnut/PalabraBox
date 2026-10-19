@@ -1,7 +1,7 @@
 // Pure question logic for the game: mapping DB rows onto the UI contract
 // and selecting a session's questions. No I/O, no store access — unit tested.
 
-import type { Question, QuestionRow, QuestionType } from '../types'
+import type { Question, QuestionRow, QuestionType, TtsSegment } from '../types'
 import { shuffleArray } from './shuffle'
 
 const QUESTION_TYPES: readonly QuestionType[] = [
@@ -19,6 +19,28 @@ function normalizeToken(value: string): string {
 function asStringArray(value: unknown): string[] {
   if (!Array.isArray(value)) return []
   return value.filter((item): item is string => typeof item === 'string' && item.trim().length > 0)
+}
+
+/** Parse the structured data.tts array, falling back to legacy sources when absent. */
+function parseTts(data: Record<string, unknown>, row: QuestionRow, correct: string): TtsSegment[] {
+  const rawTts = data.tts
+  if (Array.isArray(rawTts)) {
+    const out: TtsSegment[] = []
+    for (const raw of rawTts) {
+      if (!raw || typeof raw !== 'object') continue
+      const seg = raw as Partial<TtsSegment>
+      if (typeof seg.text !== 'string' || !seg.text.trim()) continue
+      const lang = seg.lang
+      if (lang !== 'en' && lang !== 'es' && lang !== 'pl') continue
+      out.push({ text: seg.text.trim(), lang })
+    }
+    if (out.length > 0) return out
+  }
+  // Fallback: legacy column or answer, using target_language.
+  const legacyText = row.question_text_tts?.trim() || correct.trim()
+  const target =
+    row.target_language === 'es' || row.target_language === 'pl' ? row.target_language : 'en'
+  return legacyText ? [{ text: legacyText, lang: target as TtsSegment['lang'] }] : []
 }
 
 /**
@@ -67,6 +89,7 @@ export function mapQuestionRow(row: QuestionRow): Question | null {
     wrong_answers: wrongAnswers,
     image_emoji:
       typeof data.image_emoji === 'string' && data.image_emoji.trim() ? data.image_emoji : null,
+    tts: parseTts(data, row, correct),
   }
 }
 

@@ -8,6 +8,7 @@ import { useProgressStore } from '../store/progressStore'
 import { analyticsService } from '../services/analyticsService'
 import { mapQuestionRow, selectQuestions } from '../utils/question'
 import { shuffleArray } from '../utils/shuffle'
+import { getCapabilities } from '../speak'
 
 /** Questions served per game session. */
 const QUESTIONS_PER_GAME = 10
@@ -26,6 +27,7 @@ export function useGame(scenarioId: string | undefined) {
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [listeningAvailable, setListeningAvailable] = useState(true)
 
   const navigate = useNavigate()
 
@@ -59,6 +61,14 @@ export function useGame(scenarioId: string | undefined) {
 
       try {
         setLoading(true)
+
+        // Load TTS capabilities before selecting questions — if there's no
+        // English voice, listening questions cannot function and we drop
+        // them from the pool instead of failing silently mid-game.
+        const caps = await getCapabilities()
+        const canPlayEn = caps.supported && caps.canPlay('en')
+        setListeningAvailable(canPlayEn)
+
         const { data, error: err } = await supabase
           .from('questions')
           .select('*')
@@ -70,7 +80,15 @@ export function useGame(scenarioId: string | undefined) {
 
         const mapped = (data ?? []).map(mapQuestionRow).filter((q): q is Question => q !== null)
 
-        const selected = selectQuestions(mapped, QUESTIONS_PER_GAME, sessionBlacklist, shuffleArray)
+        // Remove listening questions when we can't play English audio.
+        const playable = canPlayEn ? mapped : mapped.filter((q) => q.type !== 'listening')
+
+        const selected = selectQuestions(
+          playable,
+          QUESTIONS_PER_GAME,
+          sessionBlacklist,
+          shuffleArray,
+        )
         selected.forEach((q) => addToBlacklist(q.id))
 
         setQuestions(selected)
@@ -164,5 +182,6 @@ export function useGame(scenarioId: string | undefined) {
     score,
     currentQuestionIndex,
     scenarioLanguage: TARGET_LANGUAGE,
+    listeningAvailable,
   }
 }

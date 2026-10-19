@@ -11,6 +11,12 @@ export type Level = 'beginner' | 'intermediate'
 export type QuestionType =
   'multiple_choice' | 'image_match' | 'listening' | 'fill_blank' | 'word_order'
 
+/** TTS segment: text + BCP-47 short language code. */
+export interface TtsSegment {
+  text: string
+  lang: 'en' | 'es' | 'pl'
+}
+
 /** Component contract for a quiz question (mapped from a questions row in useGame). */
 export interface Question {
   id: string
@@ -18,7 +24,7 @@ export interface Question {
   type: QuestionType
   /** Prompt in the UI language (Spanish). */
   question_text: string
-  /** Audio for listening / assembled sentence for word_order (target language). */
+  /** Legacy audio column — kept for backwards compatibility but the UI reads `tts` (F3). */
   question_text_tts: string | null
   hint: string | null
   /** The answer: English word/phrase, Spanish meaning (listening), or joined tokens (word_order). */
@@ -26,6 +32,8 @@ export interface Question {
   /** Distractors: options without the correct answer, or extra word_order tokens. */
   wrong_answers: string[]
   image_emoji: string | null
+  /** Structured TTS segments from data.tts, normalized and prepared for play. */
+  tts: TtsSegment[]
 }
 
 export interface Scenario {
