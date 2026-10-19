@@ -333,7 +333,7 @@ Segmenter dzieli tekst na fragmenty `[{text, lang}]` (preferuje `data.tts` z baz
 - `WordOrder`/`FlashCard`: przepięte na nowy `speak()` z pełnymi ustawieniami.
 - Stary `src/services/speechService.ts` usunięty.
 - Banner w ustawieniach gdy TTS nie wspierany lub brak głosu EN.
-**DoD:** brak cichych awarii; zachowanie do weryfikacji na Chrome/Firefox/Safari 🙋.
+  **DoD:** brak cichych awarii; zachowanie do weryfikacji na Chrome/Firefox/Safari 🙋.
 
 ### F4 — Głośność i prędkość TTS — **S**
 
@@ -342,12 +342,12 @@ Segmenter dzieli tekst na fragmenty `[{text, lang}]` (preferuje `data.tts` z baz
 - `utterance.volume` = `settingsStore.volume.tts`, `utterance.rate` = `settingsStore.speechSpeed` (clamp 0–1 / 0.1–10).
 - WordOrder nie ma już hardkodowanego `rate=1`.
 - Przycisk „Probar audio" na ekranie ustawień odtwarza demo EN+ES z bieżącymi ustawieniami, pokazując statusy głosów EN/ES.
-**DoD:** oba suwaki mają realny efekt (słyszalny natychmiast w teście audio).
+  **DoD:** oba suwaki mają realny efekt (słyszalny natychmiast w teście audio).
 
 ### F5 — Testy TTS — **S/M**
 
 > ✅ **UKOŃCZONE** — 41 testów: voices (11), segment (15), capabilities (6), queue (8), plus 1 nowy test w question.test.ts; mock `SpeechSynthesis` w `src/speak/__mocks__/speechSynthesis.ts`.
-**DoD:** logika czysta (voices/segment/capabilities) pokryta w 100%; kolejka przetestowana z ręcznym sterowaniem `onstart/onend/onerror`.
+> **DoD:** logika czysta (voices/segment/capabilities) pokryta w 100%; kolejka przetestowana z ręcznym sterowaniem `onstart/onend/onerror`.
 
 ---
 

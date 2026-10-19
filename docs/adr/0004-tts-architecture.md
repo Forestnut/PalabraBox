@@ -19,8 +19,8 @@ had three structural problems that surfaced in QA:
    browsers return an empty list until the first `voiceschanged` event, so
    early calls to `speak()` could pick the wrong voice or no voice.
 
-The product direction for H2 is bilingual sentences such as *"¿Cómo se dice
-'water'?"* where the prompt is Spanish and the quoted word is English. The TTS
+The product direction for H2 is bilingual sentences such as _"¿Cómo se dice
+'water'?"_ where the prompt is Spanish and the quoted word is English. The TTS
 layer must support segmenting a single string across multiple voices.
 
 ## Decision
