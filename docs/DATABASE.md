@@ -1,6 +1,13 @@
-# 🗄️ Dokumentacja Bazy Danych PalabraBox (Supabase)
+# PalabraBox Database (Supabase)
 
-Dokument opisuje strukturę i zasady działania bazy danych dla projektu PalabraBox po refaktoryzacji (marzec 2026). Struktura jest w pełni zoptymalizowana pod wiele języków, AI oraz minimalizację powielania danych.
+Reference documentation for the PalabraBox database: schema, security, indexes,
+migration workflow, content workflow, and the production verification record.
+
+**Current state (2026-10-10, end of phase 2 in [PLAN.md](PLAN.md)):** the schema is
+defined by a single baseline migration plus incremental migrations; content is
+generated from `scripts/content_blocks/`; the data layer reads only the
+normalized schema. A legacy-column cleanup migration is ready to push after the
+E7 deploy (see the deployment choreography below).
 
 ---
 
@@ -45,11 +52,183 @@ Production content is not worth migrating. The E5 content migration wipes all co
 
 ---
 
+## Schema
+
+Five tables in the `public` schema. Language-independent entities (`scenarios`,
+`words`) are separated from their per-language translations, and all
+question-type-specific payload lives in one `jsonb` column.
+
+```mermaid
+erDiagram
+    SCENARIOS ||--|{ SCENARIO_TRANSLATIONS : "has translations"
+    SCENARIOS ||--o{ QUESTIONS : "contains"
+    WORDS ||--|{ WORD_TRANSLATIONS : "has translations"
+    WORDS ||--o{ QUESTIONS : "referenced by"
+
+    SCENARIOS {
+        uuid id PK
+        text category
+        text level "CHECK beginner|intermediate"
+        integer sort_order
+        text emoji
+    }
+    SCENARIO_TRANSLATIONS {
+        uuid id PK
+        uuid scenario_id FK
+        text language "CHECK en|es|pl"
+        text title
+        text description
+    }
+    WORDS {
+        uuid id PK
+        text base_key "UNIQUE NOT NULL"
+        text category
+        text level "CHECK beginner|intermediate"
+        text emoji
+    }
+    WORD_TRANSLATIONS {
+        uuid id PK
+        uuid word_id FK
+        text language "CHECK en|es|pl"
+        text text
+        text audio_text
+    }
+    QUESTIONS {
+        uuid id PK
+        uuid scenario_id FK
+        text type "CHECK 5 types"
+        text question_text
+        text question_text_tts
+        text hint
+        integer sort_order
+        timestamptz created_at
+        uuid word_id FK
+        jsonb data
+        text source_language "CHECK en|es|pl"
+        text target_language "CHECK en|es|pl"
+    }
+```
+
+### `scenarios`
+
+Language-independent scenario (lesson) registry.
+
+| Column       | Type      | Notes                                           |
+| :----------- | :-------- | :---------------------------------------------- |
+| `id`         | `uuid`    | PK, default `gen_random_uuid()`                 |
+| `category`   | `text`    | topic category (e.g. `travel`, `daily_life`)    |
+| `level`      | `text`    | `CHECK (level IN ('beginner', 'intermediate'))` |
+| `sort_order` | `integer` | display order within a level                    |
+| `emoji`      | `text`    | scenario icon (added in E3)                     |
+
+### `scenario_translations`
+
+UI-facing titles/descriptions per language.
+
+| Column        | Type   | Notes                                         |
+| :------------ | :----- | :-------------------------------------------- |
+| `id`          | `uuid` | PK                                            |
+| `scenario_id` | `uuid` | FK → `scenarios.id` `ON DELETE CASCADE`       |
+| `language`    | `text` | `CHECK (language IN ('en', 'es', 'pl'))` (E3) |
+| `title`       | `text` | translated title                              |
+| `description` | `text` | translated description, nullable              |
+
+Unique: `(scenario_id, language)`.
+
+### `words`
+
+Central vocabulary registry (flashcards).
+
+| Column     | Type   | Notes                                                      |
+| :--------- | :----- | :--------------------------------------------------------- |
+| `id`       | `uuid` | PK                                                         |
+| `base_key` | `text` | `UNIQUE NOT NULL` — natural key (e.g. `hello`)             |
+| `category` | `text` | topic category                                             |
+| `level`    | `text` | `CHECK (level IN ('beginner', 'intermediate'))`            |
+| `emoji`    | `text` | flashcard icon (added in `20261010120000_add_words_emoji`) |
+
+### `word_translations`
+
+Per-language word text + TTS fragment.
+
+| Column       | Type   | Notes                                         |
+| :----------- | :----- | :-------------------------------------------- |
+| `id`         | `uuid` | PK                                            |
+| `word_id`    | `uuid` | FK → `words.id` `ON DELETE CASCADE`           |
+| `language`   | `text` | `CHECK (language IN ('en', 'es', 'pl'))` (E3) |
+| `text`       | `text` | the word in this language                     |
+| `audio_text` | `text` | TTS fragment, nullable                        |
+
+Unique: `(word_id, language)`.
+
+### `questions`
+
+Quiz questions inside scenarios. Type-specific payload in `data` jsonb.
+
+| Column              | Type          | Notes                                                                                         |
+| :------------------ | :------------ | :-------------------------------------------------------------------------------------------- |
+| `id`                | `uuid`        | PK                                                                                            |
+| `scenario_id`       | `uuid`        | FK → `scenarios.id` `ON DELETE CASCADE`                                                       |
+| `type`              | `text`        | `CHECK (type IN ('multiple_choice', 'image_match', 'listening', 'fill_blank', 'word_order'))` |
+| `question_text`     | `text`        | prompt in the UI language (Spanish); for `fill_blank` it contains the `___` blank marker      |
+| `question_text_tts` | `text`        | audio for `listening`, assembled sentence for `word_order`                                    |
+| `hint`              | `text`        | optional in-game hint                                                                         |
+| `sort_order`        | `integer`     | question order inside a scenario                                                              |
+| `created_at`        | `timestamptz` | default `now()`                                                                               |
+| `word_id`           | `uuid`        | optional FK → `words.id` (word stats), nullable                                               |
+| `data`              | `jsonb`       | type-specific payload (see below)                                                             |
+| `source_language`   | `text`        | `CHECK (… IN ('en', 'es', 'pl'))` — always `es` (E3)                                          |
+| `target_language`   | `text`        | `CHECK (… IN ('en', 'es', 'pl'))` — always `en` (E3)                                          |
+
+#### The `data` jsonb contract (normalized, es→en)
+
+Product direction: **a Spanish speaker learns English** — the prompt is Spanish,
+the answer is English (except `listening`, where the audio is English and the
+answer is the Spanish meaning).
+
+| `type`            | `data` shape                                                                                                                                                                        |
+| :---------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `multiple_choice` | `{ "correct": "hello", "options": ["hello", "yes", …], "tts": [{"text": "hello", "lang": "en"}] }` — options are English, correct included                                          |
+| `listening`       | `{ "correct": "hola", "options": ["hola", "adiós", …], "audio_text": "hello", "tts": [{"text": "hello", "lang": "en"}] }` — audio English, options Spanish                          |
+| `fill_blank`      | `{ "correct": "water", "options": ["water", "milk", …], "tts": […] }` — `question_text` is the Spanish sentence with `___`                                                          |
+| `word_order`      | `{ "correct": ["I", "drink", "water."], "words": ["I", "drink", "water.", "milk", …], "tts": [{"text": "I drink water.", "lang": "en"}] }` — `words` = correct tokens + distractors |
+| `image_match`     | `{ "correct": "cat", "options": ["cat", "dog", …], "image_emoji": "🐱", "tts": […] }` — English words, emoji prompt                                                                 |
+
+Every question also carries `source_language = 'es'` and `target_language = 'en'`.
+The structured `tts` array (`[{text, lang}]`) is the input for the TTS phase (F3);
+`question_text_tts` is the legacy column the current components read.
+
+### Indexes
+
+| Index                             | Table.columns                          | Purpose                           |
+| :-------------------------------- | :------------------------------------- | :-------------------------------- |
+| `idx_questions_scenario`          | `questions(scenario_id)`               | questions per scenario (baseline) |
+| `idx_word_translations_word_lang` | `word_translations(word_id, language)` | translation lookup (baseline)     |
+| `idx_scenarios_level_sort`        | `scenarios(level, sort_order)`         | scenario list per level (E3)      |
+| `idx_questions_word_id`           | `questions(word_id)`                   | word stats join (E3)              |
+
+The remaining FK columns are covered by the composite unique indexes:
+`scenario_translations(scenario_id, language)` and `word_translations(word_id, language)`.
+
+### Row Level Security
+
+All five tables have RLS enabled with a single public-read policy each (the MVP
+has no player auth yet; writes stay restricted to `service_role` — dashboard and
+migrations):
+
+- `Allow public read - scenarios`
+- `Allow public read - scenario_translations`
+- `Allow public read - words`
+- `Allow public read - word_translations`
+- `Allow public read - questions`
+
+---
+
 ## Migration workflow (E2)
 
 The 10 historical migrations (2026-03-18 … 2026-03-30) are squashed into a single baseline: `supabase/migrations/20260318000000_baseline.sql`. The version deliberately keeps the earliest historical timestamp so the production migration history already records it.
 
-**Local:** `npx supabase db reset` rebuilds the schema from the baseline alone; content arrives via the content migration (E5), and `seed.sql` stays a documented no-op (E8).
+**Local:** `npx supabase db reset` rebuilds the full database (schema + content) from `supabase/migrations/` alone; `seed.sql` is a documented no-op (E8).
 
 **Production (one-time, owner action).** The migration history is known (see above): 11 recorded versions, of which the baseline keeps `20260318000000`. Run:
 
@@ -65,6 +244,11 @@ npx supabase migration list
 ```
 
 After the repair, `npx supabase db pull` should report **only the known drift** (vestige columns, `base_key` nullability, constraint names) — if it reports anything else, stop and investigate. The generated diff file is expected; review it and delete it, do not commit (only `supabase/migrations/` is applied by the CLI).
+
+Migration naming convention: `YYYYMMDDHHMMSS_snake_case.sql` (see
+[CONTRIBUTING.md](../CONTRIBUTING.md)). Never commit `db pull` output to
+`supabase/migrations/` — it breaks the shadow database; archive it in
+`supabase/archive/` instead.
 
 ---
 
@@ -91,147 +275,32 @@ The live app still reads the legacy columns until the E7 build is deployed:
 
 ---
 
-## 🏗️ Architektura Ogólna
+## TypeScript types (E6)
 
-Baza danych opiera się na znormalizowanej strukturze pięciu głównych tabel w schemacie `public`:
+Database types are generated, never hand-edited:
 
-1. **`scenarios` & `scenario_translations`**: Scenariusze z uniwersalnymi danymi oraz tłumaczeniami (tytuły, opisy).
-2. **`words` & `word_translations`**: Słowa kluczowe (fiszki) rozdzielone na klucz główny i tłumaczenia dla poszczególnych języków.
-3. **`questions`**: Pytania i zadania w elastycznym formacie opartym na kolumnie `JSONB`, umożliwiającym różne warianty zadań.
-
-### Diagram ERD (Uproszczony)
-
-```mermaid
-erDiagram
-    SCENARIOS ||--|{ SCENARIO_TRANSLATIONS : "has translations"
-    SCENARIOS ||--o{ QUESTIONS : "contains"
-
-    WORDS ||--|{ WORD_TRANSLATIONS : "has translations"
-    WORDS ||--o{ QUESTIONS : "referenced by"
-
-    QUESTIONS {
-        uuid scenario_id
-        uuid word_id
-        jsonb data
-    }
+```bash
+npm run db:types   # npx supabase gen types typescript --local | prettier > src/types/db.ts
 ```
 
----
-
-## 📊 Tabele
-
-### 1. `scenarios`
-
-Główna tabela scenariuszy (niezależna od języka).
-
-| Kolumna      | Typ       | Opis                                             |
-| :----------- | :-------- | :----------------------------------------------- |
-| `id`         | `uuid`    | Klucz główny (PK), domyślnie `gen_random_uuid()` |
-| `category`   | `text`    | Kategoria tematyczna (np. 'travel', 'food')      |
-| `level`      | `text`    | Poziom trudności: `beginner` \| `intermediate`   |
-| `sort_order` | `integer` | Kolejność wyświetlania (rosnąco)                 |
-
-### 1a. `scenario_translations`
-
-Tłumaczenia interfejsu (tytułów i opisów) dla scenariuszy.
-
-| Kolumna       | Typ    | Opis                                                    |
-| :------------ | :----- | :------------------------------------------------------ |
-| `id`          | `uuid` | Klucz główny (PK)                                       |
-| `scenario_id` | `uuid` | Klucz obcy (FK) do `scenarios.id` na usuwanie kaskadowe |
-| `language`    | `text` | Język tłumaczenia (np. `en`, `es`, `pl`)                |
-| `title`       | `text` | Przetłumaczony tytuł (np. "Lotnisko")                   |
-| `description` | `text` | Przetłumaczony opis                                     |
-
-_Unikalny indeks na: `(scenario_id, language)`_
-
-### 2. `words`
-
-Główny rejestr słówek.
-
-| Kolumna    | Typ    | Opis                                      |
-| :--------- | :----- | :---------------------------------------- |
-| `id`       | `uuid` | Klucz główny (PK)                         |
-| `base_key` | `text` | Unikalny klucz/słowo bazowe (np. 'apple') |
-| `category` | `text` | Kategoria / Tematyka                      |
-| `level`    | `text` | Poziom językowy                           |
-
-### 2a. `word_translations`
-
-Tłumaczenia danego słowa na konkretne języki.
-
-| Kolumna      | Typ    | Opis                                                |
-| :----------- | :----- | :-------------------------------------------------- |
-| `id`         | `uuid` | Klucz główny (PK)                                   |
-| `word_id`    | `uuid` | Klucz obcy (FK) do `words.id` na usuwanie kaskadowe |
-| `language`   | `text` | Kod języka (np. `en`, `es`)                         |
-| `text`       | `text` | Przetłumaczone słowo                                |
-| `audio_text` | `text` | Fragment przeznaczony dla Text-To-Speech            |
-
-_Unikalny indeks na: `(word_id, language)`_
-
-### 3. `questions`
-
-Przechowuje zadania wewnątrz scenariuszy. Dzięki formatowi `JSONB` jest niezwykle elastyczna.
-
-| Kolumna             | Typ       | Opis                                                   |
-| :------------------ | :-------- | :----------------------------------------------------- |
-| `id`                | `uuid`    | Klucz główny (PK)                                      |
-| `scenario_id`       | `uuid`    | FK do `scenarios.id` (Wymagane)                        |
-| `word_id`           | `uuid`    | Opcjonalny FK do centralnego rejestru `words.id`       |
-| `type`              | `text`    | Typ zadania (np. `multiple_choice`, `image_match`)     |
-| `question_text`     | `text`    | Treść pytania bazowa (Wymagane)                        |
-| `question_text_tts` | `text`    | Tekst dla syntezatora mowy (TTS)                       |
-| `hint`              | `text`    | Opcjonalna podpowiedź w UI gry                         |
-| `sort_order`        | `integer` | Kolejność zadań w danym podejściu                      |
-| `data`              | `jsonb`   | Zmienna, dynamiczna treść specyficzna dla typu pytania |
-| `source_language`   | `text`    | Język bazowy pytania (np. `en`)                        |
-| `target_language`   | `text`    | Język którego dotyczy pytanie (np. `es`)               |
-
-#### Pola zależne (kolumna `data JSONB`)
-
-Dawniej twarde kolumny. Obecnie obiekt zależny od `type`. Przykłady co tam może siedzieć:
-
-- Dla typu **`multiple_choice`**: `{"correct": "rojo", "options": ["rojo", "blanco", "verde", "azul"]}`
-- Dla typu **`image_match`**: `{"correct": "coche", "image_emoji": "🚗", "options": ["coche", "bicicleta", "avión"]}`
+Requires the local stack (`npx supabase start` / `npx supabase db reset`).
+The app maps rows onto UI types in `src/types/index.ts` (hooks do the mapping);
+`src/lib/supabase.ts` creates a typed client (`createClient<Database>`).
 
 ---
 
-## 🏷️ Typy Wyliczeniowe (Enums / Logic)
+## Developer notes
 
-### Poziomy (`level`)
-
-- `beginner`: Podstawy, predefiniowane dla nowych.
-- `intermediate`: Średniozaawansowany.
-
-### Języki (`language` / `source_language` / `target_language`)
-
-- Bazowo używamy dwuliterowych kodów np. `en`, `es`, choć legacy korzysta także z pełnych nazw wg potrzeby UI.
-
-### Typy Pytań (`type`)
-
-1. `multiple_choice`: Wybór ABCD.
-2. `image_match`: Dopasowanie tekstu do ikony.
-3. `listening`: Słuchanko -> odpowiedź.
-4. `fill_blank`: Puste miejsca w zdaniu.
-5. `word_order`: Kolejność układania z puzzli.
-
----
-
-## 🔒 Bezpieczeństwo (RLS)
-
-- **Public Read (SELECT)**: Dostęp odczytu jest włączony publicznie (MVP nie wymaga logowania po stronie gracza).
-- Politiki RLS:
-  - `Allow public read - scenarios`
-  - `Allow public read - scenario_translations`
-  - `Allow public read - words`
-  - `Allow public read - word_translations`
-  - `Allow public read - questions`
-
----
-
-## 🚀 Wskazówki Dla Programistów i Skryptów AI
-
-- **Generowanie UUID**: Nadal używaj `gen_random_uuid()` po stronie Supabase lub deterministycznych identyfikatorów z zewnątrz przez skrypty w Pythonie, jeżeli zachodzi wymóg sztywnej relacji i seedu.
-- **Wstawianie Seedów (`seed.sql`)**: Ze względu na relacyjne klucze `word_id` do tłumaczeń bierzemy metodę _UPSERT_: `ON CONFLICT (base_key) DO NOTHING` a tabele tłumaczeń połączyć na `ON CONFLICT (word_id, language) DO NOTHING`.
-- **Typowanie Questions.data**: Po stronie frontendu należy utworzyć odpowiednie modele T-S dla obiektów przypisanych wewnątrz klucza `data` dla każdego rodzaju `question.type`.
+- **Upserts:** words use `ON CONFLICT (base_key)`, translations use
+  `ON CONFLICT (word_id, language)` / `ON CONFLICT (scenario_id, language)`,
+  questions use `ON CONFLICT (id)` — the generator emits all of them.
+- **Deterministic IDs:** the content generator derives UUIDs from stable seeds
+  (md5), so regenerating unchanged blocks produces byte-identical SQL.
+- **Language codes:** always `en` / `es` / `pl` (CHECK-constrained since E3).
+- **Verification:** `scripts/db/verify.sql` is a read-only report for the live
+  production database (counters, migration history, drift, duplicates, RLS) —
+  run it in the Supabase SQL Editor and archive the result in `supabase/archive/`.
+- **Backups:** `npx supabase db dump --linked -f <file>.sql` (schema) and
+  `npx supabase db dump --linked --data-only -f <file>.sql` (data). Reference
+  snapshots live in `supabase/archive/`; ad-hoc dumps in the repo root are
+  git-ignored.

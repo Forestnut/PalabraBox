@@ -299,6 +299,8 @@ Skrypt `npm run db:types` (`supabase gen types`); `src/types/db.ts` generowany; 
 
 ### E9 — `docs/DATABASE.md` rewrite — **M**
 
+> ✅ **UKOŃCZONE (2026-10-10)** — pełny rewrite po angielsku: aktualny schemat (5 tabel + kolumny `emoji` + CHECKi języków + indeksy), kontrakt `data` jsonb per typ pytania (kierunek es→en), RLS, ERD, workflow migracji / treści / typów TS, sekcje weryfikacji E0 i choreografia deployu produkcji.
+
 **DoD:** dokumentacja schematu, RLS, workflow migracji i treści aktualna i zgodna ze stanem repo.
 
 ---
