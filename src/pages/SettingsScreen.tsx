@@ -1,5 +1,14 @@
+import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faCommentDots, faBolt, faGlobe } from '@fortawesome/free-solid-svg-icons'
+import {
+  faBell,
+  faCommentDots,
+  faBolt,
+  faGlobe,
+  faTriangleExclamation,
+  faCheckCircle,
+  faPlay,
+} from '@fortawesome/free-solid-svg-icons'
 import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { BackButton } from '../components/layout/BackButton'
@@ -7,12 +16,29 @@ import { Card } from '../components/ui/Card'
 import { useSettingsStore } from '../store/settingsStore'
 import { Mascot } from '../components/ui/Mascot'
 import { cn } from '../utils/cn'
+import { speak, getCapabilities, cancelSpeech, useSpeechStatus } from '../speak'
+import type { SpeechCapabilities } from '../speak'
 
 interface RangeSliderProps {
   label: string
   value: number
   onChange: (val: number) => void
   icon: typeof faBell
+}
+
+/** Small status pill shown next to each language in the audio test card. */
+function StatusBadge({ label, ok }: { label: string; ok: boolean }) {
+  return (
+    <span
+      className={cn(
+        'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black',
+        ok ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-600',
+      )}
+    >
+      <FontAwesomeIcon icon={ok ? faCheckCircle : faTriangleExclamation} />
+      {label}
+    </span>
+  )
 }
 
 /**
@@ -55,6 +81,46 @@ export default function SettingsScreen() {
 
   const speeds = [0.5, 0.75, 1, 1.25, 1.5]
 
+  const [caps, setCaps] = useState<SpeechCapabilities | null>(null)
+  const [testing, setTesting] = useState(false)
+  const speechStatus = useSpeechStatus()
+  const isSpeaking = speechStatus === 'speaking'
+
+  useEffect(() => {
+    let alive = true
+    void getCapabilities().then((c) => {
+      if (alive) setCaps(c)
+    })
+    return () => {
+      alive = false
+      cancelSpeech()
+    }
+  }, [])
+
+  const ttsSupported = caps?.supported ?? false
+  const enVoice = caps?.canPlay('en') ?? false
+  const esVoice = caps?.canPlay('es') ?? false
+
+  const handleTestAudio = () => {
+    if (testing || isSpeaking) return
+    setTesting(true)
+    // Demo: short EN phrase + short ES phrase using current settings.
+    speak(
+      [
+        { text: 'Hello, this is a test.', lang: 'en' as const },
+        { text: 'Hola, esto es una prueba.', lang: 'es' as const },
+      ],
+      {
+        volume: volume.tts,
+        rate: speechSpeed,
+        onEnd: () => setTesting(false),
+        onError: () => setTesting(false),
+      },
+    )
+  }
+
+  const showTtsBanner = caps && (!ttsSupported || !enVoice)
+
   return (
     <PageTransition>
       <ScreenWrapper className="flex flex-col gap-5 py-6 pb-12">
@@ -62,6 +128,51 @@ export default function SettingsScreen() {
           <BackButton fallbackUrl="/menu" />
           <h1 className="text-2xl font-black text-pb-dark tracking-tight">Opciones</h1>
         </div>
+
+        {showTtsBanner && (
+          <div className="bg-orange-50 border-2 border-orange-300 rounded-2xl p-4 flex gap-3 items-start">
+            <FontAwesomeIcon
+              icon={faTriangleExclamation}
+              className="text-orange-500 text-lg mt-0.5 shrink-0"
+            />
+            <div className="text-sm text-orange-900 font-semibold leading-relaxed">
+              {!ttsSupported
+                ? 'Tu navegador no admite lectura en voz alta (TTS). Los ejercicios funcionan en modo texto — prueba con Chrome o Edge para oír el audio.'
+                : !enVoice
+                  ? 'No hay voz en inglés disponible en este navegador. Los ejercicios de escucha se desactivaron; prueba en Chrome, Edge o instala un paquete de voz inglés en tu sistema.'
+                  : ''}
+            </div>
+          </div>
+        )}
+
+        <Card className="flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 text-pb-text-light font-bold text-xs uppercase tracking-wider">
+              <FontAwesomeIcon icon={faCommentDots} className="text-sm text-pb-dark/40" />
+              Prueba de audio
+            </div>
+            <div className="flex items-center gap-2 text-xs font-bold">
+              <StatusBadge label="EN" ok={enVoice} />
+              <StatusBadge label="ES" ok={esVoice} />
+            </div>
+          </div>
+          <p className="text-xs text-pb-text-light leading-relaxed -mt-1">
+            Reproduce una frase en inglés y español con la velocidad y el volumen actuales.
+          </p>
+          <button
+            onClick={handleTestAudio}
+            disabled={!ttsSupported || testing || isSpeaking}
+            className={cn(
+              'py-3 rounded-xl font-black text-sm transition-all flex items-center justify-center gap-2 cursor-pointer',
+              ttsSupported && !testing
+                ? 'bg-linear-to-b from-[#0a8a5e] to-pb-emerald text-white shadow-[0_3px_0_0_#035c3a] active:shadow-[0_1px_0_0_#035c3a] active:translate-y-0.5'
+                : 'bg-slate-200 text-slate-400 cursor-not-allowed',
+            )}
+          >
+            <FontAwesomeIcon icon={faPlay} />
+            {testing || isSpeaking ? 'Reproduciendo...' : 'Probar audio'}
+          </button>
+        </Card>
 
         <Card className="flex flex-col gap-5">
           <h2 className="text-sm font-bold text-pb-text-light uppercase tracking-wider">
