@@ -13,14 +13,14 @@ import { useSettingsStore } from '../store/settingsStore'
 import type { LearningLanguage } from '../store/settingsStore'
 
 const languages: Array<{
-  key: LearningLanguage | 'polish'
+  key: LearningLanguage | 'pl'
   label: string
   icon: React.ReactNode
   disabled?: boolean
 }> = [
-  { key: 'english', label: 'Inglés', icon: <FlagIcon countryCode="us" /> },
+  { key: 'en', label: 'Inglés', icon: <FlagIcon countryCode="us" /> },
   {
-    key: 'polish',
+    key: 'pl',
     label: 'Polaco(Próximamente)',
     icon: <FlagIcon countryCode="pl" />,
     disabled: true,

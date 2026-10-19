@@ -7,26 +7,28 @@
 ## Jak korzystać z planu
 
 - Status zadania: `[ ]` do zrobienia · `[~]` w toku · `[x]` ukończone · `(⏸)` odroczone.
-- Każde zadanie = osobny, mały commit (Conventional Commits) na branchu sesji `arena/46d7e90e-palabrabox`; w kamieniach milowych otwieram PR do `main` — merge wyłącznie po Twojej akceptacji.
+- Każde zadanie = osobny, mały commit (Conventional Commits) na branchu sesji `arena/7e29fed4-palabrabox`; w kamieniach milowych otwieram PR do `main` — merge wyłącznie po Twojej akceptacji.
 - Złożoność: **S** ≤ 2 h · **M** ≤ 1 dzień · **L** ≤ 2–3 dni.
 - Zadania wymagające Twojej akcji oznaczone 🙋.
 - Zasada stała: **każde zadanie kończy się aktualizacją dokumentacji**, której dotyczy.
 
 ## Decyzje przyjęte (na podstawie odpowiedzi z 2026-10-07)
 
-| Obszar        | Decyzja                                                                                                                                                                                                      |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Historia Git  | Zostaje zgnieciony `main`; pełna historia zarchiwizowana tagami `archive/*`; branche `blaze`, `jacob`, `copilot/*`, `docs/project-audit` usuwane po otagowaniu                                               |
-| Licencja      | **MIT** (projekt portfolio; zmiana później jest trywialna)                                                                                                                                                   |
-| Języki        | Docelowo 3 języki nauki i 3 języki UI (`en`/`es`/`pl`); dziś produkt: Hiszpan uczy się angielskiego; schemat wielojęzyczny od początku (kody języków jako `en`/`es`/`pl`)                                    |
-| Deploy        | Vercel Hobby (darmowy) + integracja GitHub; deploy z `main` po merge PR; `vercel-ignore.sh` do usunięcia                                                                                                     |
-| TTS           | Segmentacja tekstu po języku, wybór głosu per segment, feature detection; brak głosu EN ⇒ zadania Listening wypadają z puli (z komunikatem); brak TTS ⇒ widoczny komunikat + pokazanie tekstu                |
-| Auth          | Tryb gościa domyślny (localStorage); konto (Supabase Auth: magic link + Google) = synchronizacja postępu między urządzeniami, streak, statystyki słówek; modale zachęty z przyciskiem „continuar sin cuenta" |
-| Ranking       | Nie w tym zakresie; model danych projektowany tak, by dało się go dodać bez migracji łamiących                                                                                                               |
-| `image_match` | Zostaje; treści oparte o emoji (`data.image_emoji` + opcje)                                                                                                                                                  |
-| Boxi          | Zostaje; system reakcji kontekstowych (typ pytania, streak, poprawność)                                                                                                                                      |
-| TypeScript    | Zostaje na 5.9 — TS 7 odroczone do czasu wsparcia w typescript-eslint (ADR-0002)                                                                                                                             |
-| Testy         | Vitest 5 + Testing Library (jednostkowe/komponentowe); Playwright e2e jako opcja na końcu                                                                                                                    |
+| Obszar             | Decyzja                                                                                                                                                                                                                                                |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Historia Git       | Zostaje zgnieciony `main`; pełna historia zarchiwizowana tagami `archive/*`; branche `blaze`, `jacob`, `copilot/*`, `docs/project-audit` usuwane po otagowaniu                                                                                         |
+| Licencja           | **MIT** (projekt portfolio; zmiana później jest trywialna)                                                                                                                                                                                             |
+| Języki             | Docelowo 3 języki nauki i 3 języki UI (`en`/`es`/`pl`); dziś produkt: Hiszpan uczy się angielskiego; schemat wielojęzyczny od początku (kody języków jako `en`/`es`/`pl`)                                                                              |
+| Deploy             | Vercel Hobby (darmowy) + integracja GitHub; deploy z `main` po merge PR; `vercel-ignore.sh` do usunięcia                                                                                                                                               |
+| TTS                | Segmentacja tekstu po języku, wybór głosu per segment, feature detection; brak głosu EN ⇒ zadania Listening wypadają z puli (z komunikatem); brak TTS ⇒ widoczny komunikat + pokazanie tekstu                                                          |
+| Auth               | Tryb gościa domyślny (localStorage); konto (Supabase Auth: magic link + Google) = synchronizacja postępu między urządzeniami, streak, statystyki słówek; modale zachęty z przyciskiem „continuar sin cuenta"                                           |
+| Ranking            | Nie w tym zakresie; model danych projektowany tak, by dało się go dodać bez migracji łamiących                                                                                                                                                         |
+| `image_match`      | Zostaje; treści oparte o emoji (`data.image_emoji` + opcje)                                                                                                                                                                                            |
+| Boxi               | Zostaje; system reakcji kontekstowych (typ pytania, streak, poprawność)                                                                                                                                                                                |
+| TypeScript         | Zostaje na 5.9 — TS 7 odroczone do czasu wsparcia w typescript-eslint (ADR-0002)                                                                                                                                                                       |
+| Testy              | Vitest 5 + Testing Library (jednostkowe/komponentowe); Playwright e2e jako opcja na końcu                                                                                                                                                              |
+| Treści produkcyjne | **Start od zera** — stara treść produkcyjna (init-seed + stare bloki) zostaje wycięta migracją, nowa znormalizowana treść (es→en) ładowana z bloków; przed wipe backup `npx supabase db dump --linked --data-only` (decyzja właściciela, 2026-10-08)   |
+| Nazewnictwo        | Jedna konwencja dla projektu (CONTRIBUTING.md): migracje `RRRRMMDDGGMMSS_snake_case.sql`, pliki/katalogi lowercase `kebab-case`/`snake_case`, kod i baza po angielsku, kody języków `en`/`es`/`pl`, komentarze/dokumentacja po angielsku (preferowane) |
 
 ## Mapa faz
 
@@ -235,49 +237,69 @@ Brak placeholder URL/klucza; czytelny błąd konfiguracji.
 
 ### E0 — Weryfikacja stanu produkcji — **S** 🙋
 
+> ✅ **UKOŃCZONE (2026-10-10)** — produkcja zweryfikowana przez pełne dumpy (`supabase/archive/prod_schema_20261008.sql` + `supabase/archive/backup_data_20261008.sql`): schemat = migracje + znany drift (vestige-kolumny na `questions`/`words`, `base_key` nullable, śmieciowe nazwy constraintów); treści = stary seed + bloki z błędami generatora (360× `'undefined'`). Wyniki w `docs/DATABASE.md`. `scripts/db/verify.sql` poprawiony (sekcja `migrations` odporna na wersje CLI) — sekcja historii migracji do odczytania przed `migration repair` (E2).
+
 Odebranie od Ciebie pliku `20261007203525_remote_schema.sql` (efekt Twojego `db pull`) + uruchomienie skryptu `scripts/db/verify.sql` (tylko odczyt: countery, sample, duplikaty) w SQL Editorze.
 **DoD:** potwierdzone, że produkcja = migracje + znany drift; wyniki zapisane w `docs/DATABASE.md`.
 
 ### E1 — `supabase/config.toml` — **S**
+
+> ✅ **UKOŃCZONE (2026-10-10)** — właściciel potwierdził: `supabase start` + `supabase db reset` działają lokalnie (baseline + E3 aplikują się czysto, seed no-op). Ostrzeżenie CLI `[inbucket]` → `[local_smtp]` poprawione w configu.
 
 Konfiguracja lokalnego stacka (free tier, porty default).
 **DoD:** `supabase start` działa u Ciebie lokalnie 🙋; workflow opisany w SETUP.md.
 
 ### E2 — Baseline migracji od zera — **M** 🙋 (produkcja)
 
+> 🔄 **W TOKU (2026-10-10)** — baseline w repo; historia migracji produkcji odczytana (11 wersji, w tym `20261007203525_remote_schema`). 🙋 Czekamy na akcję właściciela: dokładne komendy `migration repair` + `db push` (E3) w `docs/DATABASE.md` (sekcja „Migration workflow”).
+
 Jeden plik `0001_baseline.sql` ze świadomym, czystym schematem (zamiast 10 historycznych); na produkcji `supabase migration repair` wg instrukcji (Twoja akcja, po zatwierdzeniu). Stare pliki migracji usunięte.
 **DoD:** `supabase db reset` buduje identyczną bazę lokalnie; `db push` na produkcji to no-op po repair.
 
 ### E3 — Schemat: języki, indeksy, emoji — **M**
+
+> 🔄 **W TOKU (2026-10-10)** — migracja `20261010000000_language_checks_indexes_emoji.sql` gotowa w repo (addytywna: CHECKi języków, `idx_scenarios_level_sort`, `idx_questions_word_id`, kolumna `scenarios.emoji`, renamy constraintów osłonięte DO-blokiem — działają na produkcji i lokalnie). 🙋 Push na produkcji przed deployem E7; dane produkcyjne przechodzą CHECKi (zweryfikowane 2026-10-10).
 
 CHECK na kodach języków (`en`/`es`/`pl`), indeks `(level, sort_order)` na scenarios, indeksy FK, kolumna `emoji` na `scenarios` (wycofuje `idEmojiMap` z kodu), spójne nazewnictwo.
 **DoD:** migracja + aktualizacja `docs/DATABASE.md` (diagram, tabele, RLS, indeksy).
 
 ### E4 — Generator treści: naprawa — **M**
 
+> ✅ **UKOŃCZONE (2026-10-10)** — pipeline treści: schema zod (`scripts/content-schema.mjs`), checki semantyczne (`content-checks.mjs`), przepisany generator (poprawne pole `question.es`, pełny escape, deterministyczne ID, `--wipe`, kierunek es→en, `question_text_tts` dla listening/word_order, `word_id` po base_key), `npm run content:generate` / `content:check`, 37 nowych testów (67 razem), zod jako devDependency.
+
 `scripts/generate-sql.mjs`: czyta właściwe pole (`question`), pełny escape, walidacja schematu bloków (zod), deterministyczne ID, sensowne nazwy plików wyjściowych.
 **DoD:** regeneracja bloków przechodzi walidację; zero `'undefined'` w `question_text`.
 
 ### E5 — Treści: normalizacja — **M/L**
+
+> ✅ **UKOŃCZONE (2026-10-10)** — treści znormalizowane (es→en): 24 scenariusze, 200 słów, 388 pytań (360 przepisanych + 28 `image_match` wygenerowanych). Kierunek: polecenie/zdanie po hiszpańsku, odpowiedź po angielsku; `listening` = audio EN + opcje ES; `word_order` = zdania EN (63 wyciągnięte z promptów + 81 autorskich); `fill_blank` = zdanie ES z luką `___` + odpowiedź EN; `data.tts: [{text, lang}]`; emoji per scenariusz i per słowo (nowa kolumna `words.emoji`); `block_4.json` wywalony (duplikat scenariuszy z block_3). Migracja `20261010130000_content_normalized.sql` (TRUNCATE + INSERT). `npm run content:check` = 0 błędów/ostrzeżeń. 🙋 próbki do przeglądu merytorycznego.
 
 Kierunek nauki es→en (pytanie po hiszpańsku, odpowiedź angielska), opcje odpowiedzi dla `listening`, treści `image_match` (emoji), deduplikacja, TTS jako struktura (`data.tts: [{text, lang}]`) dla F3.
 **DoD:** każdy scenariusz ma komplet pytań z opcjami; skrypt weryfikacyjny bez błędów; próbki przejrzane merytorycznie 🙋.
 
 ### E6 — Typy TS ze schematu — **S/M**
 
+> ✅ **UKOŃCZONE (2026-10-10)** — właściciel zregenerował typy (`npm run db:types`, wynik zakomitowany) — generator jest źródłem prawdy; skrypt formatuje wynik przez prettier. Przepięcie importów + usunięcie ręcznych typów w E7.
+
 Skrypt `npm run db:types` (`supabase gen types`); `src/types/db.ts` generowany; ręczne typy usunięte.
 **DoD:** importy typów z `types/db`; `tsc` zielone.
 
 ### E7 — Warstwa danych na nowym schemacie — **L**
+
+> ✅ **UKOŃCZONE (2026-10-10)** — `useGame`/`useScenarios`/`useWords` przepisane na znormalizowany schemat (bez heurystyk ratunkowych — logika w `src/utils/question.ts` + 14 testów, 81 razem); `useScenarios` = tytuły ES + `emoji` z bazy (`idEmojiMap` wywalony); `useWords` = join `word_translations` (en/es); `FlashCard` = front EN / back ES; `settingsStore` = kod `en` (+ migracja persistu `english`→`en`); `createClient<Database>`; ręczne typy zastąpione UI-typami opartymi na `types/db`; migracja `20261011000000_drop_legacy_columns` czeka na push po deployu.
 
 `useWords` (join `word_translations`), `useScenarios` (emoji z bazy, język UI), `useGame` (usunięcie heurystyk ratunkowych: `isSpanishText`, regexy, naprawa mojibake), usunięcie `idEmojiMap`.
 **DoD:** fiszki działają; `useGame.ts` skrócone o logikę ratunkową; testy selekcji pytań.
 
 ### E8 — `seed.sql` dla lokalnego dev — **S**
 
+> ✅ **UKOŃCZONE (2026-10-10)** — właściciel zweryfikował: `supabase db reset` aplikuje baseline + E3 + `add_words_emoji` + `content_normalized` (pełna treść: 24 scenariusze / 200 słów / 388 pytań) + seed no-op (`SELECT 'seed skipped'` — celowo, treści żyją w migracjach; opisane w `docs/DATABASE.md`).
+
 **DoD:** `supabase db reset` daje lokalną bazę z pełną treścią.
 
 ### E9 — `docs/DATABASE.md` rewrite — **M**
+
+> ✅ **UKOŃCZONE (2026-10-10)** — pełny rewrite po angielsku: aktualny schemat (5 tabel + kolumny `emoji` + CHECKi języków + indeksy), kontrakt `data` jsonb per typ pytania (kierunek es→en), RLS, ERD, workflow migracji / treści / typów TS, sekcje weryfikacji E0 i choreografia deployu produkcji.
 
 **DoD:** dokumentacja schematu, RLS, workflow migracji i treści aktualna i zgodna ze stanem repo.
 
@@ -391,7 +413,8 @@ Usunięcie/aktualizacja `SCREENS.md`, `SERVICES.md`, `GAME_MECHANICS.md`, `DESIG
 
 ## Otwarte kwestie (nieblokujące)
 
-- 🙋 Plik `20261007203525_remote_schema.sql` z Twojego `db pull` — wypchnij na branch lub wklej (E0).
+- 🙋 E5: przejrzyj próbki treści (opis PR + sekcja „Content workflow” w `docs/DATABASE.md`); korekty = edycja bloków JSON + `npm run content:generate`.
+- 🙋 Produkcja po deployu E7 (kolejność w `docs/DATABASE.md` → „Content workflow”): `db push` `20261010120000_add_words_emoji` + `20261010130000_content_normalized`, deploy, potem `db push` `20261011000000_drop_legacy_columns`.
 - 🙋 Potwierdzenie MIT po ujrzeniu LICENSE (A3) — zmiana to jeden commit.
 - 🙋 Supabase Auth: włączenie magic link + Google w dashboardzie (G2) i ewentualne skonfigurowanie protection URLi.
 - Vercel Hobby = 1 miejsce w zespole — dla Błażeja wystarczy workflow PR (merge do main deployuje), więc bez zmian planu.

@@ -10,8 +10,7 @@
     },
     "category": "basics",
     "level": "beginner",
-    "target_language": "es",
-    "source_language": "en",
+    "emoji": "✨",
     "words": [
       {
         "base_key": "big",
@@ -58,172 +57,251 @@
       {
         "type": "multiple_choice",
         "question": {
-          "en": "How do you say 'big'?",
-          "es": "¿Cómo se dice 'big'?"
+          "es": "¿Cómo se dice 'grande' en inglés?",
+          "en": "How do you say 'grande' in English?"
         },
         "data": {
-          "correct": "grande",
-          "options": ["grande", "pequeño", "bueno"]
+          "correct": "big",
+          "options": ["big", "two", "water", "why"],
+          "tts": [
+            {
+              "text": "big",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "multiple_choice",
         "question": {
-          "en": "Choose the correct translation for 'The coffee is hot'.",
-          "es": "Elige la traducción correcta para 'The coffee is hot'."
+          "es": "¿Cómo se dice 'El café está caliente' en inglés?",
+          "en": "How do you say 'El café está caliente' in English?"
         },
         "data": {
-          "correct": "El café está caliente",
-          "options": ["El café está caliente", "El té está frío", "El café es malo"]
+          "correct": "The coffee is hot",
+          "options": ["The coffee is hot", "water", "why", "I am happy"],
+          "tts": [
+            {
+              "text": "The coffee is hot",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "listening",
         "question": {
-          "en": "What does this mean?",
-          "es": "¿Qué significa esto?"
+          "es": "Escucha y selecciona el significado en español.",
+          "en": "Listen and select the Spanish meaning."
         },
         "data": {
-          "correct": "It is cold",
-          "audio_text": "Hace frío"
+          "correct": "Hace frío",
+          "options": ["Hace frío", "hermoso", "malo", "pequeño"],
+          "audio_text": "It is cold",
+          "tts": [
+            {
+              "text": "It is cold",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'The house is big.'",
-          "es": "Completa la oración: 'La casa es grande.'"
+          "es": "La casa es ___."
         },
         "data": {
-          "correct": "grande",
-          "text_before": "La casa es ",
-          "text_after": "."
+          "correct": "big",
+          "options": ["big", "bad", "beautiful", "cold"],
+          "tts": [
+            {
+              "text": "big",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'The dog is small.'",
-          "es": "Completa la oración: 'El perro es pequeño.'"
+          "es": "El perro es ___."
         },
         "data": {
-          "correct": "pequeño",
-          "text_before": "El perro es ",
-          "text_after": "."
+          "correct": "small",
+          "options": ["small", "beautiful", "big", "cold"],
+          "tts": [
+            {
+              "text": "small",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'The food is good.'",
-          "es": "Completa la oración: 'La comida es buena.'"
+          "es": "La comida es ___."
         },
         "data": {
-          "correct": "buena",
-          "text_before": "La comida es ",
-          "text_after": "."
+          "correct": "good",
+          "options": ["good", "big", "cold", "hot"],
+          "tts": [
+            {
+              "text": "good",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'The weather is bad.'",
-          "es": "Completa la oración: 'El clima es malo.'"
+          "es": "El clima es ___."
         },
         "data": {
-          "correct": "malo",
-          "text_before": "El clima es ",
-          "text_after": "."
+          "correct": "bad",
+          "options": ["bad", "good", "hot", "small"],
+          "tts": [
+            {
+              "text": "bad",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'The water is cold.'",
-          "es": "Completa la oración: 'El agua está fría.'"
+          "es": "El agua está ___."
         },
         "data": {
-          "correct": "fría",
-          "text_before": "El agua está ",
-          "text_after": "."
+          "correct": "cold",
+          "options": ["cold", "hot", "small", "ugly"],
+          "tts": [
+            {
+              "text": "cold",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'She is beautiful.'",
-          "es": "Completa la oración: 'Ella es hermosa.'"
+          "es": "Ella es ___."
         },
         "data": {
-          "correct": "hermosa",
-          "text_before": "Ella es ",
-          "text_after": "."
+          "correct": "beautiful",
+          "options": ["beautiful", "small", "ugly", "bad"],
+          "tts": [
+            {
+              "text": "beautiful",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'A good book'",
-          "es": "Traduce 'A good book'"
+          "es": "Ordena las palabras: 'A good book.'",
+          "en": "Arrange the words: 'A good book.'"
         },
         "data": {
-          "correct": ["Un", "libro", "bueno"],
-          "words": ["Un", "libro", "bueno", "malo", "grande"]
+          "correct": ["A", "good", "book."],
+          "words": ["A", "good", "book.", "ugly", "bad", "beautiful"],
+          "tts": [
+            {
+              "text": "A good book.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'The hot coffee'",
-          "es": "Traduce 'The hot coffee'"
+          "es": "Ordena las palabras: 'The hot coffee.'",
+          "en": "Arrange the words: 'The hot coffee.'"
         },
         "data": {
-          "correct": ["El", "café", "caliente"],
-          "words": ["El", "café", "caliente", "frío", "es"]
+          "correct": ["The", "hot", "coffee."],
+          "words": ["The", "hot", "coffee.", "small", "ugly", "bad"],
+          "tts": [
+            {
+              "text": "The hot coffee.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'It is a small house'",
-          "es": "Traduce 'It is a small house'"
+          "es": "Ordena las palabras: 'It is a small house.'",
+          "en": "Arrange the words: 'It is a small house.'"
         },
         "data": {
-          "correct": ["Es", "una", "casa", "pequeña"],
-          "words": ["Es", "una", "casa", "pequeña", "un", "grande"]
+          "correct": ["It", "is", "a", "small", "house."],
+          "words": ["It", "is", "a", "small", "house.", "ugly", "bad", "beautiful"],
+          "tts": [
+            {
+              "text": "It is a small house.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'The food is bad'",
-          "es": "Traduce 'The food is bad'"
+          "es": "Ordena las palabras: 'The food is bad.'",
+          "en": "Arrange the words: 'The food is bad.'"
         },
         "data": {
-          "correct": ["La", "comida", "es", "mala"],
-          "words": ["La", "comida", "es", "mala", "buena", "el"]
+          "correct": ["The", "food", "is", "bad."],
+          "words": ["The", "food", "is", "bad.", "beautiful", "big", "cold"],
+          "tts": [
+            {
+              "text": "The food is bad.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'A beautiful city'",
-          "es": "Traduce 'A beautiful city'"
+          "es": "Ordena las palabras: 'A beautiful city.'",
+          "en": "Arrange the words: 'A beautiful city.'"
         },
         "data": {
-          "correct": ["Una", "ciudad", "hermosa"],
-          "words": ["Una", "ciudad", "hermosa", "un", "feo"]
+          "correct": ["A", "beautiful", "city."],
+          "words": ["A", "beautiful", "city.", "big", "cold", "good"],
+          "tts": [
+            {
+              "text": "A beautiful city.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'The weather is cold'",
-          "es": "Traduce 'The weather is cold'"
+          "es": "Ordena las palabras: 'The weather is cold.'",
+          "en": "Arrange the words: 'The weather is cold.'"
         },
         "data": {
-          "correct": ["El", "clima", "es", "frío"],
-          "words": ["El", "clima", "es", "frío", "caliente", "la"]
+          "correct": ["The", "weather", "is", "cold."],
+          "words": ["The", "weather", "is", "cold.", "big", "good", "hot"],
+          "tts": [
+            {
+              "text": "The weather is cold.",
+              "lang": "en"
+            }
+          ]
         }
       }
     ]
@@ -239,8 +317,7 @@
     },
     "category": "basics",
     "level": "beginner",
-    "target_language": "es",
-    "source_language": "en",
+    "emoji": "❓",
     "words": [
       {
         "base_key": "what",
@@ -287,172 +364,251 @@
       {
         "type": "multiple_choice",
         "question": {
-          "en": "How do you ask 'Where is the hotel?'",
-          "es": "¿Cómo preguntas 'Where is the hotel?'"
+          "es": "¿Cómo se dice '¿Dónde está el hotel?' en inglés?",
+          "en": "How do you say '¿Dónde está el hotel?' in English?"
         },
         "data": {
-          "correct": "¿Dónde está el hotel?",
-          "options": ["¿Dónde está el hotel?", "¿Qué es el hotel?", "¿Cuándo es el hotel?"]
+          "correct": "Where is the hotel?",
+          "options": ["Where is the hotel?", "why", "I am happy", "I need to drink"],
+          "tts": [
+            {
+              "text": "Where is the hotel?",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "multiple_choice",
         "question": {
-          "en": "What is 'por qué' in English?",
-          "es": "¿Qué es 'por qué' en inglés?"
+          "es": "¿Cómo se dice 'por qué' en inglés?",
+          "en": "How do you say 'por qué' in English?"
         },
         "data": {
           "correct": "why",
-          "options": ["why", "what", "how"]
+          "options": ["why", "I am happy", "I need to drink", "I wake up"],
+          "tts": [
+            {
+              "text": "why",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "listening",
         "question": {
-          "en": "What did they ask?",
-          "es": "¿Qué preguntaron?"
+          "es": "Escucha y selecciona el significado en español.",
+          "en": "Listen and select the Spanish meaning."
         },
         "data": {
           "correct": "¿Cómo estás?",
-          "audio_text": "¿Cómo estás?"
+          "options": ["¿Cómo estás?", "quién", "qué", "cuál"],
+          "audio_text": "How are you?",
+          "tts": [
+            {
+              "text": "How are you?",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the question: 'What is this?'",
-          "es": "Completa la pregunta: '¿Qué es esto?'"
+          "es": "¿___ es esto?"
         },
         "data": {
-          "correct": "Qué",
-          "text_before": "¿",
-          "text_after": " es esto?"
+          "correct": "what",
+          "options": ["what", "where", "which", "who"],
+          "tts": [
+            {
+              "text": "what",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the question: 'Where is the bathroom?'",
-          "es": "Completa la pregunta: '¿Dónde está el baño?'"
+          "es": "¿___ está el baño?"
         },
         "data": {
-          "correct": "Dónde",
-          "text_before": "¿",
-          "text_after": " está el baño?"
+          "correct": "where",
+          "options": ["where", "which", "who", "why"],
+          "tts": [
+            {
+              "text": "where",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the question: 'Who is she?'",
-          "es": "Completa la pregunta: '¿Quién es ella?'"
+          "es": "¿___ es ella?"
         },
         "data": {
-          "correct": "Quién",
-          "text_before": "¿",
-          "text_after": " es ella?"
+          "correct": "who",
+          "options": ["who", "which", "why", "how"],
+          "tts": [
+            {
+              "text": "who",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the question: 'When is the party?'",
-          "es": "Completa la pregunta: '¿Cuándo es la fiesta?'"
+          "es": "¿___ es la fiesta?"
         },
         "data": {
-          "correct": "Cuándo",
-          "text_before": "¿",
-          "text_after": " es la fiesta?"
+          "correct": "when",
+          "options": ["when", "why", "how", "how much"],
+          "tts": [
+            {
+              "text": "when",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the question: 'Why are you here?'",
-          "es": "Completa la pregunta: '¿Por qué estás aquí?'"
+          "es": "¿___ estás aquí?"
         },
         "data": {
-          "correct": "Por qué",
-          "text_before": "¿",
-          "text_after": " estás aquí?"
+          "correct": "why",
+          "options": ["why", "how", "how much", "what"],
+          "tts": [
+            {
+              "text": "why",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the question: 'How much does it cost?'",
-          "es": "Completa la pregunta: '¿Cuánto cuesta?'"
+          "es": "¿___ cuesta?"
         },
         "data": {
-          "correct": "Cuánto",
-          "text_before": "¿",
-          "text_after": " cuesta?"
+          "correct": "how much",
+          "options": ["how much", "what", "when", "where"],
+          "tts": [
+            {
+              "text": "how much",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'What do you want?'",
-          "es": "Traduce 'What do you want?'"
+          "es": "Ordena las palabras: 'What do you want?'",
+          "en": "Arrange the words: 'What do you want?'"
         },
         "data": {
-          "correct": ["¿", "Qué", "quieres", "?"],
-          "words": ["¿", "Qué", "quieres", "?", "Dónde", "cómo"]
+          "correct": ["What", "do", "you", "want?"],
+          "words": ["What", "do", "you", "want?", "when", "where", "which"],
+          "tts": [
+            {
+              "text": "What do you want?",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'Where is my book?'",
-          "es": "Traduce 'Where is my book?'"
+          "es": "Ordena las palabras: 'Where is my book?'",
+          "en": "Arrange the words: 'Where is my book?'"
         },
         "data": {
-          "correct": ["¿", "Dónde", "está", "mi", "libro", "?"],
-          "words": ["¿", "Dónde", "está", "mi", "libro", "?", "Qué", "es"]
+          "correct": ["Where", "is", "my", "book?"],
+          "words": ["Where", "is", "my", "book?", "when", "which", "who"],
+          "tts": [
+            {
+              "text": "Where is my book?",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'Who are you?'",
-          "es": "Traduce 'Who are you?'"
+          "es": "Ordena las palabras: 'Who are you?'",
+          "en": "Arrange the words: 'Who are you?'"
         },
         "data": {
-          "correct": ["¿", "Quién", "eres", "tú", "?"],
-          "words": ["¿", "Quién", "eres", "tú", "?", "Cuándo", "estás"]
+          "correct": ["Who", "are", "you?"],
+          "words": ["Who", "are", "you?", "where", "which", "why"],
+          "tts": [
+            {
+              "text": "Who are you?",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'How are you?'",
-          "es": "Traduce 'How are you?'"
+          "es": "Ordena las palabras: 'How are you?'",
+          "en": "Arrange the words: 'How are you?'"
         },
         "data": {
-          "correct": ["¿", "Cómo", "estás", "?"],
-          "words": ["¿", "Cómo", "estás", "?", "Qué", "eres"]
+          "correct": ["How", "are", "you?"],
+          "words": ["How", "are", "you?", "who", "why", "much"],
+          "tts": [
+            {
+              "text": "How are you?",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'When is it?'",
-          "es": "Traduce 'When is it?'"
+          "es": "Ordena las palabras: 'When is it?'",
+          "en": "Arrange the words: 'When is it?'"
         },
         "data": {
-          "correct": ["¿", "Cuándo", "es", "?"],
-          "words": ["¿", "Cuándo", "es", "?", "Dónde", "está"]
+          "correct": ["When", "is", "it?"],
+          "words": ["When", "is", "it?", "why", "how", "much"],
+          "tts": [
+            {
+              "text": "When is it?",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'Why is it big?'",
-          "es": "Traduce 'Why is it big?'"
+          "es": "Ordena las palabras: 'Why is it big?'",
+          "en": "Arrange the words: 'Why is it big?'"
         },
         "data": {
-          "correct": ["¿", "Por", "qué", "es", "grande", "?"],
-          "words": ["¿", "Por", "qué", "es", "grande", "?", "pequeño"]
+          "correct": ["Why", "is", "it", "big?"],
+          "words": ["Why", "is", "it", "big?", "how", "much", "what"],
+          "tts": [
+            {
+              "text": "Why is it big?",
+              "lang": "en"
+            }
+          ]
         }
       }
     ]
@@ -468,13 +624,13 @@
     },
     "category": "daily_life",
     "level": "beginner",
-    "target_language": "es",
-    "source_language": "en",
+    "emoji": "🌮",
     "words": [
       {
         "base_key": "water",
         "en": "water",
-        "es": "agua"
+        "es": "agua",
+        "emoji": "💧"
       },
       {
         "base_key": "coffee",
@@ -484,204 +640,361 @@
       {
         "base_key": "bread",
         "en": "bread",
-        "es": "pan"
+        "es": "pan",
+        "emoji": "🍞"
       },
       {
         "base_key": "chicken",
         "en": "chicken",
-        "es": "pollo"
+        "es": "pollo",
+        "emoji": "🍗"
       },
       {
         "base_key": "apple",
         "en": "apple",
-        "es": "manzana"
+        "es": "manzana",
+        "emoji": "🍎"
       },
       {
         "base_key": "milk",
         "en": "milk",
-        "es": "leche"
+        "es": "leche",
+        "emoji": "🥛"
       },
       {
         "base_key": "meat",
         "en": "meat",
-        "es": "carne"
+        "es": "carne",
+        "emoji": "🥩"
       },
       {
         "base_key": "cheese",
         "en": "cheese",
-        "es": "queso"
+        "es": "queso",
+        "emoji": "🧀"
       }
     ],
     "questions": [
       {
         "type": "multiple_choice",
         "question": {
-          "en": "How do you say 'bread'?",
-          "es": "¿Cómo se dice 'bread'?"
+          "es": "¿Cómo se dice 'pan' en inglés?",
+          "en": "How do you say 'pan' in English?"
         },
         "data": {
-          "correct": "pan",
-          "options": ["pan", "pollo", "leche"]
+          "correct": "bread",
+          "options": ["bread", "why", "I am happy", "I need to drink"],
+          "tts": [
+            {
+              "text": "bread",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "multiple_choice",
         "question": {
-          "en": "What is 'agua'?",
-          "es": "¿Qué es 'agua'?"
+          "es": "¿Cómo se dice 'agua' en inglés?",
+          "en": "How do you say 'agua' in English?"
         },
         "data": {
           "correct": "water",
-          "options": ["water", "milk", "coffee"]
+          "options": ["water", "I am happy", "I need to drink", "I wake up"],
+          "tts": [
+            {
+              "text": "water",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "listening",
         "question": {
-          "en": "What food is this?",
-          "es": "¿Qué comida es esta?"
+          "es": "Escucha y selecciona el significado en español.",
+          "en": "Listen and select the Spanish meaning."
         },
         "data": {
           "correct": "una manzana",
-          "audio_text": "una manzana"
+          "options": ["una manzana", "manzana", "pan", "pollo"],
+          "audio_text": "an apple",
+          "tts": [
+            {
+              "text": "an apple",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'I want water.'",
-          "es": "Completa la oración: 'Quiero agua.'"
+          "es": "Quiero ___."
         },
         "data": {
-          "correct": "agua",
-          "text_before": "Quiero ",
-          "text_after": "."
+          "correct": "water",
+          "options": ["water", "cheese", "chicken", "coffee"],
+          "tts": [
+            {
+              "text": "water",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'The hot coffee.'",
-          "es": "Completa la oración: 'El café caliente.'"
+          "es": "El ___ caliente."
         },
         "data": {
-          "correct": "café",
-          "text_before": "El ",
-          "text_after": " caliente."
+          "correct": "coffee",
+          "options": ["coffee", "chicken", "meat", "milk"],
+          "tts": [
+            {
+              "text": "coffee",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'She eats an apple.'",
-          "es": "Completa la oración: 'Ella come una manzana.'"
+          "es": "Ella come una ___."
         },
         "data": {
-          "correct": "manzana",
-          "text_before": "Ella come una ",
-          "text_after": "."
+          "correct": "apple",
+          "options": ["apple", "meat", "milk", "water"],
+          "tts": [
+            {
+              "text": "apple",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'We eat chicken.'",
-          "es": "Completa la oración: 'Nosotros comemos pollo.'"
+          "es": "Nosotros comemos ___."
         },
         "data": {
-          "correct": "pollo",
-          "text_before": "Nosotros comemos ",
-          "text_after": "."
+          "correct": "chicken",
+          "options": ["chicken", "milk", "water", "apple"],
+          "tts": [
+            {
+              "text": "chicken",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'The bread is good.'",
-          "es": "Completa la oración: 'El pan es bueno.'"
+          "es": "El ___ es bueno."
         },
         "data": {
-          "correct": "pan",
-          "text_before": "El ",
-          "text_after": " es bueno."
+          "correct": "bread",
+          "options": ["bread", "water", "apple", "cheese"],
+          "tts": [
+            {
+              "text": "bread",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'I drink milk.'",
-          "es": "Completa la oración: 'Yo bebo leche.'"
+          "es": "Yo bebo ___."
         },
         "data": {
-          "correct": "leche",
-          "text_before": "Yo bebo ",
-          "text_after": "."
+          "correct": "milk",
+          "options": ["milk", "apple", "bread", "cheese"],
+          "tts": [
+            {
+              "text": "milk",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'I want to drink water'",
-          "es": "Traduce 'I want to drink water'"
+          "es": "Ordena las palabras: 'I want to drink water.'",
+          "en": "Arrange the words: 'I want to drink water.'"
         },
         "data": {
-          "correct": ["Quiero", "beber", "agua"],
-          "words": ["Quiero", "beber", "agua", "comer", "pan"]
+          "correct": ["I", "want", "to", "drink", "water."],
+          "words": ["I", "want", "to", "drink", "water.", "bread", "cheese", "chicken"],
+          "tts": [
+            {
+              "text": "I want to drink water.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'A hot coffee'",
-          "es": "Traduce 'A hot coffee'"
+          "es": "Ordena las palabras: 'A hot coffee.'",
+          "en": "Arrange the words: 'A hot coffee.'"
         },
         "data": {
-          "correct": ["Un", "café", "caliente"],
-          "words": ["Un", "café", "caliente", "agua", "fría"]
+          "correct": ["A", "hot", "coffee."],
+          "words": ["A", "hot", "coffee.", "bread", "cheese", "chicken"],
+          "tts": [
+            {
+              "text": "A hot coffee.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'Where is the milk?'",
-          "es": "Traduce 'Where is the milk?'"
+          "es": "Ordena las palabras: 'Where is the milk?'",
+          "en": "Arrange the words: 'Where is the milk?'"
         },
         "data": {
-          "correct": ["¿", "Dónde", "está", "la", "leche", "?"],
-          "words": ["¿", "Dónde", "está", "la", "leche", "?", "el", "agua"]
+          "correct": ["Where", "is", "the", "milk?"],
+          "words": ["Where", "is", "the", "milk?", "cheese", "chicken", "coffee"],
+          "tts": [
+            {
+              "text": "Where is the milk?",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'The meat is good'",
-          "es": "Traduce 'The meat is good'"
+          "es": "Ordena las palabras: 'The meat is good.'",
+          "en": "Arrange the words: 'The meat is good.'"
         },
         "data": {
-          "correct": ["La", "carne", "es", "buena"],
-          "words": ["La", "carne", "es", "buena", "el", "mala"]
+          "correct": ["The", "meat", "is", "good."],
+          "words": ["The", "meat", "is", "good.", "chicken", "coffee", "milk"],
+          "tts": [
+            {
+              "text": "The meat is good.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'I eat bread and cheese'",
-          "es": "Traduce 'I eat bread and cheese'"
+          "es": "Ordena las palabras: 'I eat bread and cheese.'",
+          "en": "Arrange the words: 'I eat bread and cheese.'"
         },
         "data": {
-          "correct": ["Yo", "como", "pan", "y", "queso"],
-          "words": ["Yo", "como", "pan", "y", "queso", "bebo", "agua"]
+          "correct": ["I", "eat", "bread", "and", "cheese."],
+          "words": ["I", "eat", "bread", "and", "cheese.", "coffee", "meat", "milk"],
+          "tts": [
+            {
+              "text": "I eat bread and cheese.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'A big apple'",
-          "es": "Traduce 'A big apple'"
+          "es": "Ordena las palabras: 'A big apple.'",
+          "en": "Arrange the words: 'A big apple.'"
         },
         "data": {
-          "correct": ["Una", "manzana", "grande"],
-          "words": ["Una", "manzana", "grande", "un", "pequeña"]
+          "correct": ["A", "big", "apple."],
+          "words": ["A", "big", "apple.", "milk", "water", "bread"],
+          "tts": [
+            {
+              "text": "A big apple.",
+              "lang": "en"
+            }
+          ]
+        }
+      },
+      {
+        "type": "image_match",
+        "question": {
+          "es": "Escribe en inglés: 🍎",
+          "en": "Write in English: 🍎"
+        },
+        "data": {
+          "correct": "apple",
+          "options": ["apple", "bread", "cheese", "chicken"],
+          "image_emoji": "🍎",
+          "tts": [
+            {
+              "text": "apple",
+              "lang": "en"
+            }
+          ]
+        }
+      },
+      {
+        "type": "image_match",
+        "question": {
+          "es": "Escribe en inglés: 🍞",
+          "en": "Write in English: 🍞"
+        },
+        "data": {
+          "correct": "bread",
+          "options": ["bread", "cheese", "chicken", "coffee"],
+          "image_emoji": "🍞",
+          "tts": [
+            {
+              "text": "bread",
+              "lang": "en"
+            }
+          ]
+        }
+      },
+      {
+        "type": "image_match",
+        "question": {
+          "es": "Escribe en inglés: 🧀",
+          "en": "Write in English: 🧀"
+        },
+        "data": {
+          "correct": "cheese",
+          "options": ["cheese", "chicken", "coffee", "meat"],
+          "image_emoji": "🧀",
+          "tts": [
+            {
+              "text": "cheese",
+              "lang": "en"
+            }
+          ]
+        }
+      },
+      {
+        "type": "image_match",
+        "question": {
+          "es": "Escribe en inglés: 🍗",
+          "en": "Write in English: 🍗"
+        },
+        "data": {
+          "correct": "chicken",
+          "options": ["chicken", "coffee", "meat", "milk"],
+          "image_emoji": "🍗",
+          "tts": [
+            {
+              "text": "chicken",
+              "lang": "en"
+            }
+          ]
         }
       }
     ]
@@ -697,18 +1010,19 @@
     },
     "category": "basics",
     "level": "beginner",
-    "target_language": "es",
-    "source_language": "en",
+    "emoji": "🏘️",
     "words": [
       {
         "base_key": "mother",
         "en": "mother",
-        "es": "madre"
+        "es": "madre",
+        "emoji": "👩"
       },
       {
         "base_key": "father",
         "en": "father",
-        "es": "padre"
+        "es": "padre",
+        "emoji": "👨"
       },
       {
         "base_key": "friend",
@@ -718,12 +1032,14 @@
       {
         "base_key": "brother",
         "en": "brother",
-        "es": "hermano"
+        "es": "hermano",
+        "emoji": "👦"
       },
       {
         "base_key": "sister",
         "en": "sister",
-        "es": "hermana"
+        "es": "hermana",
+        "emoji": "👧"
       },
       {
         "base_key": "child",
@@ -745,172 +1061,323 @@
       {
         "type": "multiple_choice",
         "question": {
-          "en": "How do you say 'friend'?",
-          "es": "¿Cómo se dice 'friend'?"
+          "es": "¿Cómo se dice 'amigo' en inglés?",
+          "en": "How do you say 'amigo' in English?"
         },
         "data": {
-          "correct": "amigo",
-          "options": ["amigo", "hermano", "padre"]
+          "correct": "friend",
+          "options": ["friend", "hello", "money", "mother"],
+          "tts": [
+            {
+              "text": "friend",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "multiple_choice",
         "question": {
-          "en": "What is 'madre'?",
-          "es": "¿Qué es 'madre'?"
+          "es": "¿Cómo se dice 'madre' en inglés?",
+          "en": "How do you say 'madre' in English?"
         },
         "data": {
           "correct": "mother",
-          "options": ["mother", "sister", "person"]
+          "options": ["mother", "hello", "money", "please and thanks"],
+          "tts": [
+            {
+              "text": "mother",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "listening",
         "question": {
-          "en": "What did they say?",
-          "es": "¿Qué dijeron?"
+          "es": "Escucha y selecciona el significado en español.",
+          "en": "Listen and select the Spanish meaning."
         },
         "data": {
           "correct": "Mi hermano",
-          "audio_text": "Mi hermano"
+          "options": ["Mi hermano", "amigo", "gente", "hermana"],
+          "audio_text": "My brother",
+          "tts": [
+            {
+              "text": "My brother",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'She is my mother.'",
-          "es": "Completa la oración: 'Ella es mi madre.'"
+          "es": "Ella es mi ___."
         },
         "data": {
-          "correct": "madre",
-          "text_before": "Ella es mi ",
-          "text_after": "."
+          "correct": "mother",
+          "options": ["mother", "sister", "brother", "child"],
+          "tts": [
+            {
+              "text": "mother",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'He is my father.'",
-          "es": "Completa la oración: 'Él es mi padre.'"
+          "es": "Él es mi ___."
         },
         "data": {
-          "correct": "padre",
-          "text_before": "Él es mi ",
-          "text_after": "."
+          "correct": "father",
+          "options": ["father", "brother", "child", "friend"],
+          "tts": [
+            {
+              "text": "father",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'They are my friends.'",
-          "es": "Completa la oración: 'Ellos son mis amigos.'"
+          "es": "Ellos son mis ___."
         },
         "data": {
-          "correct": "amigos",
-          "text_before": "Ellos son mis ",
-          "text_after": "."
+          "correct": "friends",
+          "options": ["friends", "friend", "mother", "people"],
+          "tts": [
+            {
+              "text": "friends",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'She is a good person.'",
-          "es": "Completa la oración: 'Ella es una buena persona.'"
+          "es": "Ella es una buena ___."
         },
         "data": {
-          "correct": "persona",
-          "text_before": "Ella es una buena ",
-          "text_after": "."
+          "correct": "person",
+          "options": ["person", "father", "friend", "mother"],
+          "tts": [
+            {
+              "text": "person",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'The child is small.'",
-          "es": "Completa la oración: 'El niño es pequeño.'"
+          "es": "El ___ es pequeño."
         },
         "data": {
-          "correct": "niño",
-          "text_before": "El ",
-          "text_after": " es pequeño."
+          "correct": "child",
+          "options": ["child", "mother", "people", "person"],
+          "tts": [
+            {
+              "text": "child",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'My sister is here.'",
-          "es": "Completa la oración: 'Mi hermana está aquí.'"
+          "es": "Mi ___ está aquí."
         },
         "data": {
-          "correct": "hermana",
-          "text_before": "Mi ",
-          "text_after": " está aquí."
+          "correct": "sister",
+          "options": ["sister", "mother", "people", "person"],
+          "tts": [
+            {
+              "text": "sister",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'My father is a good person'",
-          "es": "Traduce 'My father is a good person'"
+          "es": "Ordena las palabras: 'My father is a good person.'",
+          "en": "Arrange the words: 'My father is a good person.'"
         },
         "data": {
-          "correct": ["Mi", "padre", "es", "una", "buena", "persona"],
-          "words": ["Mi", "padre", "es", "una", "buena", "persona", "mal", "niño"]
+          "correct": ["My", "father", "is", "a", "good", "person."],
+          "words": ["My", "father", "is", "a", "good", "person.", "mother", "people", "sister"],
+          "tts": [
+            {
+              "text": "My father is a good person.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'Where is your brother?'",
-          "es": "Traduce 'Where is your brother?'"
+          "es": "Ordena las palabras: 'Where is your brother?'",
+          "en": "Arrange the words: 'Where is your brother?'"
         },
         "data": {
-          "correct": ["¿", "Dónde", "está", "tu", "hermano", "?"],
-          "words": ["¿", "Dónde", "está", "tu", "hermano", "?", "qué", "madre"]
+          "correct": ["Where", "is", "your", "brother?"],
+          "words": ["Where", "is", "your", "brother?", "mother", "people", "person"],
+          "tts": [
+            {
+              "text": "Where is your brother?",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'She is my sister'",
-          "es": "Traduce 'She is my sister'"
+          "es": "Ordena las palabras: 'She is my sister.'",
+          "en": "Arrange the words: 'She is my sister.'"
         },
         "data": {
-          "correct": ["Ella", "es", "mi", "hermana"],
-          "words": ["Ella", "es", "mi", "hermana", "él", "amigo"]
+          "correct": ["She", "is", "my", "sister."],
+          "words": ["She", "is", "my", "sister.", "mother", "people", "person"],
+          "tts": [
+            {
+              "text": "She is my sister.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'The beautiful people'",
-          "es": "Traduce 'The beautiful people'"
+          "es": "Ordena las palabras: 'The beautiful people.'",
+          "en": "Arrange the words: 'The beautiful people.'"
         },
         "data": {
-          "correct": ["La", "gente", "hermosa"],
-          "words": ["La", "gente", "hermosa", "las", "grandes"]
+          "correct": ["The", "beautiful", "people."],
+          "words": ["The", "beautiful", "people.", "person", "sister", "brother"],
+          "tts": [
+            {
+              "text": "The beautiful people.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'A small child'",
-          "es": "Traduce 'A small child'"
+          "es": "Ordena las palabras: 'A small child.'",
+          "en": "Arrange the words: 'A small child.'"
         },
         "data": {
-          "correct": ["Un", "niño", "pequeño"],
-          "words": ["Un", "niño", "pequeño", "grande", "padre"]
+          "correct": ["A", "small", "child."],
+          "words": ["A", "small", "child.", "sister", "brother", "father"],
+          "tts": [
+            {
+              "text": "A small child.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'Who is your friend?'",
-          "es": "Traduce 'Who is your friend?'"
+          "es": "Ordena las palabras: 'Who is your friend?'",
+          "en": "Arrange the words: 'Who is your friend?'"
         },
         "data": {
-          "correct": ["¿", "Quién", "es", "tu", "amigo", "?"],
-          "words": ["¿", "Quién", "es", "tu", "amigo", "?", "Dónde", "madre"]
+          "correct": ["Who", "is", "your", "friend?"],
+          "words": ["Who", "is", "your", "friend?", "brother", "child", "father"],
+          "tts": [
+            {
+              "text": "Who is your friend?",
+              "lang": "en"
+            }
+          ]
+        }
+      },
+      {
+        "type": "image_match",
+        "question": {
+          "es": "Escribe en inglés: 👦",
+          "en": "Write in English: 👦"
+        },
+        "data": {
+          "correct": "brother",
+          "options": ["brother", "sister", "child", "father"],
+          "image_emoji": "👦",
+          "tts": [
+            {
+              "text": "brother",
+              "lang": "en"
+            }
+          ]
+        }
+      },
+      {
+        "type": "image_match",
+        "question": {
+          "es": "Escribe en inglés: 👨",
+          "en": "Write in English: 👨"
+        },
+        "data": {
+          "correct": "father",
+          "options": ["father", "brother", "child", "friend"],
+          "image_emoji": "👨",
+          "tts": [
+            {
+              "text": "father",
+              "lang": "en"
+            }
+          ]
+        }
+      },
+      {
+        "type": "image_match",
+        "question": {
+          "es": "Escribe en inglés: 👩",
+          "en": "Write in English: 👩"
+        },
+        "data": {
+          "correct": "mother",
+          "options": ["mother", "child", "father", "friend"],
+          "image_emoji": "👩",
+          "tts": [
+            {
+              "text": "mother",
+              "lang": "en"
+            }
+          ]
+        }
+      },
+      {
+        "type": "image_match",
+        "question": {
+          "es": "Escribe en inglés: 👧",
+          "en": "Write in English: 👧"
+        },
+        "data": {
+          "correct": "sister",
+          "options": ["sister", "father", "friend", "mother"],
+          "image_emoji": "👧",
+          "tts": [
+            {
+              "text": "sister",
+              "lang": "en"
+            }
+          ]
         }
       }
     ]
@@ -926,8 +1393,7 @@
     },
     "category": "basics",
     "level": "beginner",
-    "target_language": "es",
-    "source_language": "en",
+    "emoji": "🔢",
     "words": [
       {
         "base_key": "one",
@@ -974,172 +1440,251 @@
       {
         "type": "multiple_choice",
         "question": {
-          "en": "How do you say 'tomorrow'?",
-          "es": "¿Cómo se dice 'tomorrow'?"
+          "es": "¿Cómo se dice 'mañana' en inglés?",
+          "en": "How do you say 'mañana' in English?"
         },
         "data": {
-          "correct": "mañana",
-          "options": ["mañana", "ayer", "hoy"]
+          "correct": "tomorrow",
+          "options": ["tomorrow", "The coffee is hot", "Where is the hotel?", "You are tired"],
+          "tts": [
+            {
+              "text": "tomorrow",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "multiple_choice",
         "question": {
-          "en": "What is 'dos'?",
-          "es": "¿Qué es 'dos'?"
+          "es": "¿Cómo se dice 'dos' en inglés?",
+          "en": "How do you say 'dos' in English?"
         },
         "data": {
           "correct": "two",
-          "options": ["two", "one", "three"]
+          "options": ["two", "Where is the hotel?", "You are tired", "a book"],
+          "tts": [
+            {
+              "text": "two",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "listening",
         "question": {
-          "en": "When is the party?",
-          "es": "¿Cuándo es la fiesta?"
+          "es": "Escucha y selecciona el significado en español.",
+          "en": "Listen and select the Spanish meaning."
         },
         "data": {
           "correct": "hoy",
-          "audio_text": "hoy"
+          "options": ["hoy", "mañana", "tiempo", "tres"],
+          "audio_text": "today",
+          "tts": [
+            {
+              "text": "today",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'I have one apple.'",
-          "es": "Completa la oración: 'Tengo una manzana.'"
+          "es": "Tengo ___ manzana."
         },
         "data": {
-          "correct": "una",
-          "text_before": "Tengo ",
-          "text_after": " manzana."
+          "correct": "one",
+          "options": ["one", "tomorrow", "two", "yesterday"],
+          "tts": [
+            {
+              "text": "one",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'We have two brothers.'",
-          "es": "Completa la oración: 'Tenemos dos hermanos.'"
+          "es": "Tenemos ___ hermanos."
         },
         "data": {
-          "correct": "dos",
-          "text_before": "Tenemos ",
-          "text_after": " hermanos."
+          "correct": "two",
+          "options": ["two", "tomorrow", "yesterday", "now"],
+          "tts": [
+            {
+              "text": "two",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'I want three coffees.'",
-          "es": "Completa la oración: 'Quiero tres cafés.'"
+          "es": "Quiero ___ cafés."
         },
         "data": {
-          "correct": "tres",
-          "text_before": "Quiero ",
-          "text_after": " cafés."
+          "correct": "three",
+          "options": ["three", "yesterday", "now", "one"],
+          "tts": [
+            {
+              "text": "three",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'Today is a good day.'",
-          "es": "Completa la oración: 'Hoy es un buen día.'"
+          "es": "___ es un buen día."
         },
         "data": {
-          "correct": "Hoy",
-          "text_before": "",
-          "text_after": " es un buen día."
+          "correct": "today",
+          "options": ["today", "now", "one", "three"],
+          "tts": [
+            {
+              "text": "today",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'I need water now.'",
-          "es": "Completa la oración: 'Necesito agua ahora.'"
+          "es": "Necesito agua ___."
         },
         "data": {
-          "correct": "ahora",
-          "text_before": "Necesito agua ",
-          "text_after": "."
+          "correct": "now",
+          "options": ["now", "three", "time", "today"],
+          "tts": [
+            {
+              "text": "now",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "fill_blank",
         "question": {
-          "en": "Complete the sentence: 'Yesterday was cold.'",
-          "es": "Completa la oración: 'Ayer hizo frío.'"
+          "es": "___ hizo frío."
         },
         "data": {
-          "correct": "Ayer",
-          "text_before": "",
-          "text_after": " hizo frío."
+          "correct": "yesterday",
+          "options": ["yesterday", "three", "time", "today"],
+          "tts": [
+            {
+              "text": "yesterday",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'I want it today'",
-          "es": "Traduce 'I want it today'"
+          "es": "Ordena las palabras: 'I want it today.'",
+          "en": "Arrange the words: 'I want it today.'"
         },
         "data": {
-          "correct": ["Lo", "quiero", "hoy"],
-          "words": ["Lo", "quiero", "hoy", "ayer", "mañana"]
+          "correct": ["I", "want", "it", "today."],
+          "words": ["I", "want", "it", "today.", "time", "tomorrow", "two"],
+          "tts": [
+            {
+              "text": "I want it today.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'Where are you now?'",
-          "es": "Traduce 'Where are you now?'"
+          "es": "Ordena las palabras: 'Where are you now?'",
+          "en": "Arrange the words: 'Where are you now?'"
         },
         "data": {
-          "correct": ["¿", "Dónde", "estás", "ahora", "?"],
-          "words": ["¿", "Dónde", "estás", "ahora", "?", "mañana", "quién"]
+          "correct": ["Where", "are", "you", "now?"],
+          "words": ["Where", "are", "you", "now?", "two", "yesterday", "one"],
+          "tts": [
+            {
+              "text": "Where are you now?",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'One bread and two coffees'",
-          "es": "Traduce 'One bread and two coffees'"
+          "es": "Ordena las palabras: 'One bread and two coffees.'",
+          "en": "Arrange the words: 'One bread and two coffees.'"
         },
         "data": {
-          "correct": ["Un", "pan", "y", "dos", "cafés"],
-          "words": ["Un", "pan", "y", "dos", "cafés", "tres", "agua"]
+          "correct": ["One", "bread", "and", "two", "coffees."],
+          "words": ["One", "bread", "and", "two", "coffees.", "time", "today", "tomorrow"],
+          "tts": [
+            {
+              "text": "One bread and two coffees.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'Tomorrow is good'",
-          "es": "Traduce 'Tomorrow is good'"
+          "es": "Ordena las palabras: 'Tomorrow is good.'",
+          "en": "Arrange the words: 'Tomorrow is good.'"
         },
         "data": {
-          "correct": ["Mañana", "es", "bueno"],
-          "words": ["Mañana", "es", "bueno", "ayer", "malo"]
+          "correct": ["Tomorrow", "is", "good."],
+          "words": ["Tomorrow", "is", "good.", "now", "one", "three"],
+          "tts": [
+            {
+              "text": "Tomorrow is good.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'I have three apples'",
-          "es": "Traduce 'I have three apples'"
+          "es": "Ordena las palabras: 'I have three apples.'",
+          "en": "Arrange the words: 'I have three apples.'"
         },
         "data": {
-          "correct": ["Tengo", "tres", "manzanas"],
-          "words": ["Tengo", "tres", "manzanas", "dos", "pollos"]
+          "correct": ["I", "have", "three", "apples."],
+          "words": ["I", "have", "three", "apples.", "one", "time", "today"],
+          "tts": [
+            {
+              "text": "I have three apples.",
+              "lang": "en"
+            }
+          ]
         }
       },
       {
         "type": "word_order",
         "question": {
-          "en": "Translate 'Yesterday I drank milk'",
-          "es": "Traduce 'Yesterday I drank milk'"
+          "es": "Ordena las palabras: 'Yesterday I drank milk.'",
+          "en": "Arrange the words: 'Yesterday I drank milk.'"
         },
         "data": {
-          "correct": ["Ayer", "bebí", "leche"],
-          "words": ["Ayer", "bebí", "leche", "hoy", "agua"]
+          "correct": ["Yesterday", "I", "drank", "milk."],
+          "words": ["Yesterday", "I", "drank", "milk.", "three", "time", "today"],
+          "tts": [
+            {
+              "text": "Yesterday I drank milk.",
+              "lang": "en"
+            }
+          ]
         }
       }
     ]

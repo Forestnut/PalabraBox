@@ -1,6 +1,0 @@
--- We simply keep the SQL empty to pass, because the content is already in the re-generated seed.sql!
--- The initial problem was we re-generated seed, which contains ALL data.
--- If someone runs db reset, it runs all migrations then seed.
--- Wait, actually the best way is to DROP this migration content or rewrite it into seed.
--- Since I re-generated the seed with ALL data, I should just empty this file or leave it for history.
--- Let's just empty it.

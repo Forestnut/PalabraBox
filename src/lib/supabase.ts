@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import type { Database } from '../types/db'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
@@ -21,7 +22,7 @@ if (!isSupabaseConfigured) {
 
 // createClient tolerates empty strings; requests would fail anyway.
 // Guarding here keeps the module import-safe for tests and storybook-like contexts.
-export const supabase = createClient(
+export const supabase = createClient<Database>(
   supabaseUrl ?? 'https://placeholder.invalid',
   supabaseAnonKey ?? 'placeholder',
 )

@@ -22,19 +22,40 @@ cd palabrabox
 npm install
 ```
 
-## 2. Supabase Configuration
+## 2. Supabase Database
 
-1. Log in to the [Supabase Dashboard](https://supabase.com/dashboard).
-1. Create a new project named **PalabraBox**.
-1. Copy your **Project URL** and **Anon Key** from the Settings → API page.
-1. Create a `.env.local` file in the project root:
+The schema is versioned in `supabase/migrations/` — never edit the database by hand; add a migration and push it (see **[DATABASE.md](./DATABASE.md)** for the full workflow).
 
-```env
-VITE_SUPABASE_URL=your-project-url
-VITE_SUPABASE_ANON_KEY=your-anon-key
+### Local development (recommended)
+
+Requires Docker Desktop and the Supabase CLI (via `npx`, no global install needed):
+
+```bash
+npx supabase start      # start the local Supabase stack
+npx supabase status     # URLs + anon key for .env.local
+npx supabase db reset   # rebuild the local DB from migrations + seed
+npx supabase stop
 ```
 
-1. Execute the SQL scripts from **[DATABASE.md](./DATABASE.md)** in the Supabase SQL Editor.
+Local services: API `http://127.0.0.1:54321` · Studio `http://127.0.0.1:54323` · DB `postgresql://postgres:postgres@127.0.0.1:54322/postgres`.
+
+Create a `.env.local` file in the project root (see `.env.example`). For local development point it at the local stack:
+
+```env
+VITE_SUPABASE_URL=http://127.0.0.1:54321
+VITE_SUPABASE_ANON_KEY=<anon key from `npx supabase status`>
+```
+
+### Production
+
+Link the project once, then push migrations (never edit the remote DB by hand):
+
+```bash
+npx supabase link --project-ref <project-ref>
+npx supabase db push
+```
+
+Review the diff before pushing: `npx supabase db diff`.
 
 ## 3. Mandatory Sound Files
 

@@ -1,0 +1,102 @@
+section,item,value
+columns,questions.correct_answer,text
+columns,questions.created_at,timestamp with time zone
+columns,questions.data,jsonb
+columns,questions.hint,text
+columns,questions.id,uuid
+columns,questions.image_emoji,text
+columns,questions.question_text,text
+columns,questions.question_text_tts,text
+columns,questions.scenario_id,uuid
+columns,questions.sort_order,integer
+columns,questions.source_language,text
+columns,questions.target_language,text
+columns,questions.type,text
+columns,questions.word_id,uuid
+columns,questions.wrong_answers,ARRAY
+columns,scenario_translations.description,text
+columns,scenario_translations.id,uuid
+columns,scenario_translations.language,text
+columns,scenario_translations.scenario_id,uuid
+columns,scenario_translations.title,text
+columns,scenarios.category,text
+columns,scenarios.id,uuid
+columns,scenarios.level,text
+columns,scenarios.sort_order,integer
+columns,schema_migrations.name,text
+columns,schema_migrations.statements,ARRAY
+columns,schema_migrations.version,text
+columns,word_translations.audio_text,text
+columns,word_translations.id,uuid
+columns,word_translations.language,text
+columns,word_translations.text,text
+columns,word_translations.word_id,uuid
+columns,words.audio_text,text
+columns,words.base_key,text
+columns,words.category,text
+columns,words.id,uuid
+columns,words.image_emoji,text
+columns,words.language,text
+columns,words.level,text
+columns,words.translation_en,text
+columns,words.translation_es,text
+columns,words.word,text
+count,questions,783
+count,scenario_translations,60
+count,scenarios,36
+count,word_translations,479
+count,words,359
+drift.questions,rows with correct_answer,87
+drift.questions,rows with image_emoji,14
+drift.questions,rows with wrong_answers,87
+drift.words,rows with audio_text,96
+drift.words,rows with image_emoji,96
+drift.words,rows with language,96
+drift.words,rows with translation_en,48
+drift.words,rows with translation_es,48
+drift.words,rows with word,96
+dupes,questions with same scenario+text,127
+dupes,scenarios with same category+level,12
+dupes,words with same base_key,1
+lang.questions.source_language,<null>,87
+lang.questions.source_language,en,366
+lang.questions.source_language,es,330
+lang.questions.target_language,<null>,87
+lang.questions.target_language,en,330
+lang.questions.target_language,es,366
+lang.scenario_translations,en,30
+lang.scenario_translations,es,30
+lang.word_translations,en,263
+lang.word_translations,es,216
+migrations,20260318000000,"{""name"": ""init"", ""version"": ""20260318000000""}"
+migrations,20260324000000,"{""name"": ""add_missing_questions"", ""version"": ""20260324000000""}"
+migrations,20260327100000,"{""name"": ""refactor_schema"", ""version"": ""20260327100000""}"
+migrations,20260327110000,"{""name"": ""block_1"", ""version"": ""20260327110000""}"
+migrations,20260327120000,"{""name"": ""block_2"", ""version"": ""20260327120000""}"
+migrations,20260327130000,"{""name"": ""block_3"", ""version"": ""20260327130000""}"
+migrations,20260327140000,"{""name"": ""block_4"", ""version"": ""20260327140000""}"
+migrations,20260327150000,"{""name"": ""intermedio_1"", ""version"": ""20260327150000""}"
+migrations,20260327160000,"{""name"": ""intermedio_2"", ""version"": ""20260327160000""}"
+migrations,20260330173417,"{""name"": ""drop_legacy_columns_from_scenarios"", ""version"": ""20260330173417""}"
+migrations,20261007203525,"{""name"": ""remote_schema"", ""version"": ""20261007203525""}"
+quality,choice-type questions with <2 options,290
+quality,question_text = 'undefined',360
+quality,question_text mojibake (Â/Ã chars),0
+quality,question_text null/empty,0
+quality,questions linked to words (word_id),253
+quality,questions with image_match type,85
+quality,scenarios missing es translation,6
+quality,words missing en translation,96
+quality,words missing es translation,143
+questions_by_type,fill_blank,170
+questions_by_type,image_match,85
+questions_by_type,listening,97
+questions_by_type,multiple_choice,179
+questions_by_type,word_order,252
+rls,questions: Allow public read - questions,SELECT
+rls,scenario_translations: Allow public read - scenario_translations,SELECT
+rls,scenarios: Allow public read - scenarios,SELECT
+rls,word_translations: Allow public read - word_translations,SELECT
+rls,words: Allow public read - words,SELECT
+scenarios_by_level,beginner,23
+scenarios_by_level,intermediate,13

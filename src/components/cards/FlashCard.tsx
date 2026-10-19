@@ -11,37 +11,33 @@ interface FlashCardProps {
   word: Word
 }
 
+/**
+ * Flashcard: English front (the learning target), Spanish back.
+ * Audio follows the same direction — en-US on the front, es-ES on the back.
+ */
 export function FlashCard({ word }: FlashCardProps) {
   const [flipped, setFlipped] = useState(false)
   const speechSpeed = useSettingsStore((s) => s.speechSpeed)
 
+  const frontText = word.en.text
+  const backText = word.es.text
+  const emoji = word.emoji
+
   const handlePlayAudio = (e: React.MouseEvent, side: 'front' | 'back') => {
     e.stopPropagation()
-    const isFrontSpanish =
-      word.language === 'spanish' ||
-      (word.language as string) === 'es' ||
-      word.language?.startsWith('es')
-
     if (side === 'front') {
-      const text = word.audio_text || word.word
-      const lang = isFrontSpanish ? 'es-ES' : 'en-US'
-      speechService.speak(text, lang, speechSpeed)
+      speechService.speak(word.en.audioText || frontText, 'en-US', speechSpeed)
     } else {
-      const text = word.translation_es || word.translation_en || ''
-      const lang = isFrontSpanish ? 'en-US' : 'es-ES'
-      speechService.speak(text, lang, speechSpeed)
+      speechService.speak(word.es.audioText || backText, 'es-ES', speechSpeed)
     }
   }
-
-  const emoji = word.image_emoji
-  const translation = word.translation_es || word.translation_en || ''
 
   return (
     <div
       role="button"
       tabIndex={0}
       aria-pressed={flipped}
-      aria-label={`Tarjeta: ${word.word}. Activar para girar`}
+      aria-label={`Tarjeta: ${frontText}. Activar para girar`}
       className="w-full max-w-sm mx-auto perspective-midrange cursor-pointer select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pb-amber rounded-3xl"
       onClick={() => setFlipped(!flipped)}
       onKeyDown={(e) => {
@@ -70,12 +66,12 @@ export function FlashCard({ word }: FlashCardProps) {
           {emoji && <span className="text-5xl sm:text-6xl mb-2">{emoji}</span>}
 
           <h2 className="text-3xl sm:text-4xl font-black text-pb-dark tracking-tight text-center">
-            {word.word}
+            {frontText}
           </h2>
 
           <motion.button
             onClick={(e) => handlePlayAudio(e, 'front')}
-            aria-label={`Escuchar "${word.word}"`}
+            aria-label={`Escuchar "${frontText}"`}
             className="mt-2 w-14 h-14 rounded-full bg-linear-to-b from-[#0a8a5e] to-pb-emerald text-white flex items-center justify-center shadow-[0_4px_0_0_#035c3a] active:shadow-[0_1px_0_0_#035c3a] active:translate-y-0.75 transition-all cursor-pointer"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
@@ -108,12 +104,12 @@ export function FlashCard({ word }: FlashCardProps) {
           )}
 
           <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight text-center drop-shadow-sm">
-            {translation}
+            {backText}
           </h2>
 
           <motion.button
             onClick={(e) => handlePlayAudio(e, 'back')}
-            aria-label={`Escuchar "${translation}"`}
+            aria-label={`Escuchar "${backText}"`}
             className="mt-2 w-12 h-12 rounded-full bg-white text-pb-amber flex items-center justify-center shadow-[0_4px_0_0_#d86c00] active:shadow-[0_1px_0_0_#d86c00] active:translate-y-0.75 transition-all cursor-pointer"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}

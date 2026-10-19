@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export type LearningLanguage = 'english'
+/** Language codes follow the DB convention (en/es/pl). The product currently teaches English. */
+export type LearningLanguage = 'en'
 export type LearningLevel = 'beginner' | 'intermediate'
 
 interface SettingsState {
@@ -38,6 +39,15 @@ export const useSettingsStore = create<SettingsState>()(
     }),
     {
       name: 'palabrabox-settings-storage',
+      version: 1,
+      migrate: (persistedState: unknown) => {
+        // v0→v1: language codes moved from full names ('english') to ISO codes ('en')
+        const state = persistedState as { learningLanguage?: unknown } | undefined
+        if (state && state.learningLanguage === 'english') {
+          state.learningLanguage = 'en'
+        }
+        return persistedState as SettingsState
+      },
     },
   ),
 )
