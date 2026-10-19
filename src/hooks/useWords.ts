@@ -1,18 +1,47 @@
 import { useEffect, useState, useCallback } from 'react'
 import { isSupabaseConfigured, supabase, SUPABASE_CONFIG_ERROR } from '../lib/supabase'
-import type { Word } from '../types'
+import type { Level, Word } from '../types'
 import { useSettingsStore } from '../store/settingsStore'
 import { analyticsService } from '../services/analyticsService'
+import { shuffleArray } from '../utils/shuffle'
+
+interface WordTranslationRow {
+  language: string
+  text: string
+  audio_text: string | null
+}
+
+interface WordRow {
+  id: string
+  base_key: string
+  category: string
+  level: string
+  emoji: string | null
+  word_translations: WordTranslationRow[]
+}
+
+function mapWordRow(row: WordRow): Word | null {
+  const en = row.word_translations.find((t) => t.language === 'en')
+  const es = row.word_translations.find((t) => t.language === 'es')
+  if (!en || !es) return null // incomplete vocabulary entry — content:check guarantees both
+  return {
+    id: row.id,
+    baseKey: row.base_key,
+    category: row.category,
+    level: row.level as Level,
+    emoji: row.emoji,
+    en: { text: en.text, audioText: en.audio_text },
+    es: { text: es.text, audioText: es.audio_text },
+  }
+}
 
 /**
- * Provides word collections for flashcards and exercises.
+ * Provides word collections for flashcards, joined with their en/es
+ * translations (normalized schema: words + word_translations).
  *
  * Offline support is handled by the PWA service worker (runtime caching of
  * Supabase REST responses) — there is deliberately no second localStorage
  * cache layer here.
- *
- * TODO(E7 in docs/PLAN.md): query the normalized schema (words + word_translations)
- * using generated types once the DB baseline lands.
  */
 export function useWords(category?: string) {
   const [words, setWords] = useState<Word[]>([])
@@ -20,7 +49,6 @@ export function useWords(category?: string) {
   const [error, setError] = useState<string | null>(null)
   const [refreshTrigger, setRefreshTrigger] = useState(0)
 
-  const learningLanguage = useSettingsStore((state) => state.learningLanguage) || 'english'
   const learningLevel = useSettingsStore((state) => state.learningLevel) || 'beginner'
 
   useEffect(() => {
@@ -37,9 +65,11 @@ export function useWords(category?: string) {
 
         let query = supabase
           .from('words')
-          .select('*')
-          .eq('language', learningLanguage)
+          .select(
+            'id, base_key, category, level, emoji, word_translations(language, text, audio_text)',
+          )
           .eq('level', learningLevel)
+          .order('base_key', { ascending: true })
 
         if (category) {
           query = query.eq('category', category)
@@ -51,7 +81,11 @@ export function useWords(category?: string) {
           throw new Error(sbError.message)
         }
 
-        setWords((data as Word[]) ?? [])
+        const mapped = ((data ?? []) as WordRow[])
+          .map(mapWordRow)
+          .filter((w): w is Word => w !== null)
+
+        setWords(mapped)
       } catch (err: unknown) {
         setError(err instanceof Error ? err.message : String(err))
         console.error('Error fetching words:', err)
@@ -61,7 +95,7 @@ export function useWords(category?: string) {
     }
 
     fetchWords()
-  }, [learningLanguage, learningLevel, category, refreshTrigger])
+  }, [learningLevel, category, refreshTrigger])
 
   /**
    * Forcefully fetches fresh words from the database.
@@ -78,16 +112,9 @@ export function useWords(category?: string) {
     (limit: number): Word[] => {
       const uniqueMap = new Map<string, Word>()
       for (const w of words) {
-        uniqueMap.set(w.word.toLowerCase(), w)
+        uniqueMap.set(w.baseKey, w)
       }
-      const uniqueWords = Array.from(uniqueMap.values())
-
-      const shuffled = [...uniqueWords]
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-      }
-      return shuffled.slice(0, limit)
+      return shuffleArray(Array.from(uniqueMap.values())).slice(0, limit)
     },
     [words],
   )
@@ -101,27 +128,23 @@ export function useWords(category?: string) {
     (limit: number): Word[] => {
       if (words.length === 0) return []
 
-      // 1. Deduplicate
+      // 1. Deduplicate by base_key
       const uniqueMap = new Map<string, Word>()
       for (const w of words) {
-        uniqueMap.set(w.word.toLowerCase(), w)
+        uniqueMap.set(w.baseKey, w)
       }
       const uniqueWords = Array.from(uniqueMap.values())
 
-      // 2. Base Random Shuffle (Fisher-Yates) to ensure fair distribution of untested cards
-      const shuffled = [...uniqueWords]
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-      }
+      // 2. Base random shuffle to ensure fair distribution of untested cards
+      const shuffled = shuffleArray([...uniqueWords])
 
       const stats = analyticsService.getWorstWordsStats()
       const statsMap = new Map(stats.map((s) => [s.word.toLowerCase(), s]))
 
-      // 3. Sort by priority
+      // 3. Sort by priority (weakest first)
       const sortedWords = shuffled.sort((a, b) => {
-        const statA = statsMap.get(a.word.toLowerCase())
-        const statB = statsMap.get(b.word.toLowerCase())
+        const statA = statsMap.get(a.en.text.toLowerCase())
+        const statB = statsMap.get(b.en.text.toLowerCase())
 
         const ratioA = statA ? statA.correct / (statA.correct + statA.incorrect) : 0.5
         const ratioB = statB ? statB.correct / (statB.correct + statB.incorrect) : 0.5

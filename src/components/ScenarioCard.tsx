@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faLock } from '@fortawesome/free-solid-svg-icons'
-import type { ScenarioWithProgress } from '../hooks/useScenarios'
+import type { ScenarioWithProgress } from '../types'
 import { cn } from '../utils/cn'
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 export function ScenarioCard({ scenario, onClick }: Props) {
-  const { title_display, emoji, stars, isLocked, description } = scenario
+  const { title, emoji, stars, isLocked, description } = scenario
 
   return (
     <button
@@ -57,7 +57,7 @@ export function ScenarioCard({ scenario, onClick }: Props) {
         {isLocked ? '🔒' : emoji}
       </span>
       <h2 className="text-xs sm:text-sm font-black text-pb-dark leading-tight relative z-20 mt-1 line-clamp-2">
-        {title_display}
+        {title}
       </h2>
       {description && (
         <p className="text-[10px] sm:text-xs text-pb-text-light font-medium mt-1 relative z-20 px-1 line-clamp-2 hidden sm:block">

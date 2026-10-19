@@ -4,7 +4,7 @@ import { PageTransition } from '../components/layout/PageTransition'
 import { ScreenWrapper } from '../components/layout/ScreenWrapper'
 import { BackButton } from '../components/layout/BackButton'
 import { useScenarios } from '../hooks/useScenarios'
-import type { ScenarioWithProgress } from '../hooks/useScenarios'
+import type { ScenarioWithProgress } from '../types'
 import { ScenarioCard } from '../components/ScenarioCard'
 import { useGameStore } from '../store/gameStore'
 
